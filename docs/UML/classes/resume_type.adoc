@@ -1,0 +1,30 @@
+=== RESUME_TYPE Enumeration
+
+[cols="^1,3,5"]
+|===
+h|*Enumeration*
+2+^h|*RESUME_TYPE*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|resume_next
+a|Resume at the next Task in the same thread of control.
+
+h|
+|resume_specified
+a|Resume at a specified Task in the same thread of control.
+
+h|
+|retry_current
+a|Retry the dispatch in the same thread of control.
+
+h|
+|new_thread
+a|Recommence as a new thread of execution at `_restart_location_`.
+|===

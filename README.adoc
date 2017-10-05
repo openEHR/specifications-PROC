@@ -1,0 +1,10 @@
+= specifications-PROC
+openEHR Process Model Specifications
+
+This repository contains the document and model sources (Asciidoctor and MagicDraw) for the openEHR Reference Model specifications.
+
+== Available Specifications
+
+Core Specifications
+
+* Task Planning Model - https://rawgit.com/openEHR/specifications-PROC/master/docs/task_planning/task_planning.html[HTML]

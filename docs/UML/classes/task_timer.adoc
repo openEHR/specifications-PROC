@@ -1,0 +1,30 @@
+=== TASK_TIMER Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*TASK_TIMER*
+
+h|*Description*
+2+a|Timer object with a duration
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*id*: `String`
+a|
+
+h|*0..1*
+|*expire_action*: `EVENT_ACTION`
+a|Action to perform if dispatched to target times out with no response.
+
+h|*1..1*
+|*duration*: `Duration`
+a|
+
+h|*0..1*
+|*expiry_action*: `EVENT_ACTION`
+a|Action to perform on timer expiry.
+|===

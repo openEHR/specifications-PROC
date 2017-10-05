@@ -1,0 +1,28 @@
+=== EVENT_ACTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*EVENT_ACTION*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*resume_type*: `RESUME_TYPE`
+a|Procedure to execute when completion notification received, for example, to display a form, notify performer etc.
+
+TODO: determine details.
+
+h|*0..1*
+|*system_call*: `List<SYSTEM_CALL>`
+a|System call to perform on receipt of event
+
+h|*0..1*
+|*message*: `String`
+a|Optional message to display to original Task context (i.e. application, form etc) if timer expires.
+|===

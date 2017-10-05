@@ -1,0 +1,14 @@
+=== CALLBACK_WAIT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CALLBACK_WAIT*
+
+h|*Description*
+2+a|Event generated on receipt of notification of completion of a Dispatchable Task.
+
+h|*Inherit*
+2+|`NON_DETERMINISTIC_EVENT`
+
+|===

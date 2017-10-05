@@ -1,0 +1,22 @@
+=== EVENT_BRANCH Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*EVENT_BRANCH*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`TASK_GROUP`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*precondition*: `EVENT_WAIT`
+a|
+|===

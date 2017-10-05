@@ -1,0 +1,71 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+:doctype: book
+:pagenums:
+:numbered!:
+// get rid of PDF 'Chapter' labs on level 1 headings
+:chapter-label:
+//
+// HTML-only attributes
+//
+:linkcss:
+:keywords: process model, openehr
+:description: openEHR Process Model
+:sectanchors:
+:proc_release: latest
+:rm_release: latest
+:base_release: latest
+:jira-roadmap: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased
+:jira-hist-issues: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released
+
+image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
+
+= Process Model (PROC) - {proc_release}
+
+// Use the following version for 'latest'
+ifeval::["{proc_release}" == "latest"]
+:jira-issues: https://openehr.atlassian.net/projects/SPECPROC/issues/SPECPROC-1?filter=allopenissues
+[.title-para]
+{jira-roadmap}[Roadmap] | {jira-issues}[Current Issues] | {jira-hist-issues}[Change History]
+endif::[]
+
+// Use the following version for a named release
+ifeval::["{proc_release}" != "latest"]
+:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/10060
+:jira-cr-release: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released
+[.title-para]
+{jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
+endif::[]
+
+== Specifications
+
+[cols="1,5", options="header"]
+|===
+h|Specification h|Description
+
+|http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html[Task Planning IM]
+|A major extension to the openEHR EHR specificationsl that specifies Planned Tasks and clinical workflow.
+
+|===
+
+== Computable Expressions
+
+[cols="2,5", options="header"]
+|===
+|Resource |Description
+
+|http://www.openehr.org/releases/PROC/{proc_release}/UML/openEHR_UML-PROC.mdzip[openEHR_UML-PROC.mdzip]
+|UML file for MagicDraw 18.5 for PROC model. Contains UML 2.5 standard XMI file.
+
+|http://www.openehr.org/releases/RM/{rm_release}/UML/openEHR_UML-RM.mdzip[openEHR_UML-RM.mdzip]
+|UML file for MagicDraw 18.5 for RM model. Contains UML 2.5 standard XMI file.
+
+|http://www.openehr.org/releases/BASE/{base_release}/UML/openEHR_UML-Base.mdzip[openEHR_UML-Base.mdzip]
+|UML file for MagicDraw 18.5 for BASE model (included by RM). Contains UML 2.5 standard XMI file.
+
+|===
+
+
+== Class Index
+include::UML/class_index.adoc[leveloffset=+1]

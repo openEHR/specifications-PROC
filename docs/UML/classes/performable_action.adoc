@@ -1,0 +1,29 @@
+=== PERFORMABLE_ACTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_PERFORMABLE_ACTION (abstract)_*
+
+h|*Description*
+2+a|Represents an action that can be performed by the principal performer during the Plan execution. This is either inline defined or via reference to a sub-plan.
+
+h|*Inherit*
+2+|`TASK_ACTION`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*resources*: `List<RESOURCE_PARTICIPATION>`
+a|Descriptions of resources required for the Task, if required to be processed at runtime as pre-conditions to Task execution.
+
+h|*0..1*
+|*other_participations*: `List<TASK_PARTICIPATION>`
+a|List of participations for task item.
+
+h|*0..1*
+|*capture_dataset*: `List<DATASET_SPEC>`
+a|Associated data-set template and/or form via which data to be captured during this Task will actually be entered.
+|===

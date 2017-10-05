@@ -1,0 +1,13 @@
+=== EXECUTION_RULE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*EXECUTION_RULE*
+
+h|*Description*
+2+a|Rule controlling execution in addition to basic sequential / parallel setting.
+
+TODO: define detail.
+
+|===

@@ -1,0 +1,25 @@
+=== DISPATCHABLE_ACTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_DISPATCHABLE_ACTION (abstract)_*
+
+h|*Description*
+2+a|Type of Task Action that is performed by another performer, system or organisation. All such Task Actions are 'dispatchable' in the sense that they consist of notifying a request to another principal_performer, or an exterior system or service of some kind, and potentially receiving a callback notification when the requested work is complete.
+
+h|*Inherit*
+2+|`TASK_ACTION`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*wait*: `Boolean`
+a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. Wait = True corresponds to a context switch (block and wait) while wait = False indicates a context fork.
+
+h|*0..1*
+|*callback*: `CALLBACK_WAIT`
+a|
+|===

@@ -1,0 +1,21 @@
+=== M_PERFORMABLE_ACTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*M_PERFORMABLE_ACTION*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`M_TASK_ACTION`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*resources*: `List<M_RESOURCE_ALLOCATION>`
+a|
+|===

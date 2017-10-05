@@ -1,0 +1,11 @@
+=== TASK_PRECONDITION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_TASK_PRECONDITION (abstract)_*
+
+h|*Description*
+2+a|Preconditions on a Task being executed, such as events, state (of something in the environment), or timing. Task Precondition is a way of generalising the various kinds of condition that if satisfied, allow a Task or Task Group to become available for execution by the performer.
+
+|===

@@ -1,0 +1,22 @@
+=== M_CONDITION_GROUP Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*M_CONDITION_GROUP*
+
+h|*Description*
+2+a|Materialised run-time homologue of CONDITION_GROUP from a Task Plan definition.
+
+h|*Inherit*
+2+|`M_PLAN_ITEM`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(redefined)*
+|*definition*: `DECISION_GROUP`
+a|Reference to corresponding DECISION_GROUP instance in Task Plan definition.
+|===

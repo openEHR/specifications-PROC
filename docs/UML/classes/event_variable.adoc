@@ -1,0 +1,14 @@
+=== EVENT_VARIABLE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*EVENT_VARIABLE*
+
+h|*Description*
+2+a|Variable whose value is required to be the latest; ideally, updating would be implemented by listener model.
+
+h|*Inherit*
+2+|`CONTEXT_VARIABLE`
+
+|===

@@ -1,0 +1,25 @@
+=== DECISION_GROUP Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DECISION_GROUP*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`TASK_GROUP`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*members*: `List<DECISION_BRANCH>`
+a|Set of Tasks to perform. Sequencing is either the natural order of the tasks list, or may be controlled by
+
+h|*Invariants*
+2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
+|===
