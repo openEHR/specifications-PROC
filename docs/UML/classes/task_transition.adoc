@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*TASK_TRANSITION*
 
 h|*Description*
-2+a|Event wait type for Task transitions, specified in terms of target states reached by the identified Task.
+2+a|Event wait type for Task transitions, specified in terms of target state reached by the identified Task. Example: Task 123 `completed`.
 
 TODO: may need specify the specific transitions rather than target states.
 
@@ -18,10 +18,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_id*: 
-a|
+|*task_id*: `UID_BASED_ID`
+a|Identifier of Task.
 
-h|*0..1*
-|*transitions*: `List<TASK_LIFECYCLE>`
-a|
+h|*1..1*
+|*transition*: `TASK_LIFECYCLE`
+a|Task lifecycle transition that defines this event.
 |===

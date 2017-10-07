@@ -29,7 +29,7 @@ TODO: may be movable to `PERFORMABLE_ACTION`.
 
 h|*0..1*
 |*subject_preconditions*: `List<SUBJECT_PRECONDITION>`
-a|Condition which must be met for the TASK_ITEM to be available to perform in a runtime execution context.
+a|Condition which must be met for the Task Action to be available to perform in a runtime execution context.
 
 h|*0..1*
 |*costing_data*: `TASK_COSTING`

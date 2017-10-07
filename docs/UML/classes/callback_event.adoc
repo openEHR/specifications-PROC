@@ -1,9 +1,9 @@
-=== CALLBACK_WAIT Class
+=== CALLBACK_EVENT Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*CALLBACK_WAIT*
+2+^h|*CALLBACK_EVENT*
 
 h|*Description*
 2+a|Event generated on receipt of notification of completion of a Dispatchable Task.

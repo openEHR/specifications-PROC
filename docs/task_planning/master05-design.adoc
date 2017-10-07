@@ -87,7 +87,7 @@ Where an overall work plan requires separate actors who do not operate within th
 
 During the execution of a Task Plan, at any given time, a particular physical actor must be _assigned_ as the principal performer, in order for the Plan to proceed. This assignment will change over time for long-running Plans, due to shift changes, out of hours contacts, worker vacations and so on. In this model, worker changes are handled by runtime _allocation_ and are not treated as context switches. The allocation concept is described in more detail below.
 
-=== [[task_preconditions_concept]]Task Preconditions
+=== [[task_preconditions_concept]]Wait Conditions
 
 Many tasks in the real world can only be performed when certain preconditions are met. This model distinguishes the following kinds of preconditions:
 

@@ -6,20 +6,11 @@ h|*Class*
 2+^h|*_EVENT_WAIT (abstract)_*
 
 h|*Description*
-2+a|
-
-h|*Inherit*
-2+|`TASK_PRECONDITION`
+2+a|Abstract parent of all Event Wait types. Has optional specific Event Actions for receipt of a success or fail signal from the event source. If no specific actions are associated, the default behaviour is to resume at the next available Task in the current execution.
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
-
-h|*0..1*
-|*restart_location*: `UID_BASED_ID`
-a|Reference to a resume Task in the current Plan, at which to restart when the request / handoff has completed.
-
-If not set, the following Task is assumed. It set, is typically an earlier Task, in situations where the current Task(s) are no longer needed once the external action has been completed.
 
 h|*0..1*
 |*success_action*: `EVENT_ACTION`

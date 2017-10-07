@@ -8,6 +8,9 @@ h|*Class*
 h|*Description*
 2+a|Any kind of symbolic variable that can be used within Expressions in the Task Plan, including in pre-conditions and decision pathways.
 
+h|*Inherit*
+2+|`CONTEXT_VALUE`
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*

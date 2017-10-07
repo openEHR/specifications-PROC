@@ -16,9 +16,11 @@ h|*Attributes*
 
 h|*1..1*
 |*resource_type*: `DV_TEXT`
-a|
+a|Text or coded description of resource.
 
 h|*0..1*
 |*external_ref*: `OBJECT_REF`
-a|
+a|Reference to resource, e.g. in scheduling or other system.
+
+TODO: may need to be a more powerful reference like a SYSTEM_CALL.
 |===

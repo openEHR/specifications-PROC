@@ -16,14 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*item_id*: `Integer`
-a|Integer indicating the ordinal number of this Task within its Task group. Used for referencing from other objects. Required to be unique with respect to other siblings in the same Task group.
-
-Identification of any Task in a Task Plan is done using paths of the form /task_group_id/task_group_id.
-
-TODO: needed?
-
-h|*1..1*
 |*description*: `DV_TEXT`
 a|Human-readable form of the task directive.
 
@@ -36,6 +28,6 @@ h|*0..1*
 a|Archetypable structure for recording non hard-modelled information.
 
 h|*0..1*
-|*precondition*: `TASK_PRECONDITION`
-a|
+|*wait_condition*: `WAIT_CONDITION`
+a|Optional Event or timing condition on which this Plan Item blocks.
 |===

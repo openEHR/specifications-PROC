@@ -2,7 +2,7 @@
 
 == Survey of Requirements
 
-This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of 'planning' of clinical work is required. The defining characteristic of the requirements is that they primarily relate to an active human subject, rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management).
+This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of granular planning of clinical tasks is required. The central concept is that of a _plan_ (or set of plans) designed to achieve a _goal_ and that relate to an _active biological subject_ (normally a human or animal patient), rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management). Related requiredments of individual worker task lists are discussed below.
 
 In more sophisticated environments (generally hospitals), much task planning relates to guideline-based orders and medication administration. There are various levels at which to understand this, from care pathways (potentially covering management of a complex condition like sepsis) to specific workflows for particular elements of care within a pathway. One common conceptual entity is the so-called _order set_, which is generally understood as:
 
@@ -10,11 +10,11 @@ In more sophisticated environments (generally hospitals), much task planning rel
 * potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;
 * descriptive meta-data, including authors, history, evidence base, etc.
 
-In openEHR, the first element corresponds to a set of Instructions, while the second is a candidate for representation in openEHR via the Task Planning facility documented in this specification. Hence, the addition of Task Planning to openEHR provides an important element enabling the order set notion to be formalised in openEHR.
+In openEHR, the first item corresponds to a set of openEHR Instructions, while the second is a candidate for representation in openEHR via the Task Planning facility documented in this specification. Hence, the addition of Task Planning to openEHR provides an important element enabling the order set notion to be formalised in openEHR.
 
-The specification also addresses the lack of fine-grained task planning facilities in the basic openEHR specifications, which are limited to the Instruction and Action concepts. These provide ways of stating orders and recording actions performed after the fact, but no way of representing or sharing plans for actions before they are performed. This limitation is described in more detail below.
+The specification addresses the lack of fine-grained task planning facilities in the basic openEHR specifications, which are limited to the Instruction and Action concepts. These provide ways of stating orders and recording actions performed after the fact, but no way of representing or sharing plans for actions before they are performed. This limitation is described in more detail below.
 
-The general approach followed here is to specify a representation of task plans at various stages in the planning lifecycle, i.e.:
+The approach followed here is to specify representations of task plans at various stages in the planning lifecycle, i.e.:
 
 * *design time*: templates or prototypes of standard task plans are developed and published;
 * *runtime - planning*: task plan prototypes are turned into concrete plans for specific work items for specific patients and activated;
@@ -57,9 +57,17 @@ In the following, the term 'task' denotes the definition of an action to be perf
 
 For the sake of brevity, 'Action' below is intended to imply an openEHR `ACTION`, `OBSERVATION` or potentially other Entry sub-type, unless otherwise stated.
 
+== Task Plans versus Task Lists (TODO Lists)
+
+The specification is based around the concept of a _task plan_, which is designed to achieve a goal, and at execution time is applied to a _subject_, i.e. human or other subject of care. The plan notion is thus goal- and subject-centric.
+
+A related concept is that of the _task list_ (aka 'TODO list'), which is a logical list of tasks for a worker to perform. The task list is thus worker-centric, not subject-centric, and as such, task lists must be _derived_ from task plans. Conceptually this is done by processing all extant task plans for some organisational unit (say a hospital department) and allocating particular tasks to particular actors. Allocation may happen in a just-in-time fashion, and may be modified (e.g. due to unforeseen unavailability of workers), such that a task list is essentially a dynamic personal calendar view for the short term (typically days or weeks) whereas task plans may correspond to any length of time, from a few minutes to years.
+
+This specification does not cover the model of worker task lists or extracted calendar views, although it provides some guidance on how to generate task lists for workers.
+
 == Execution Paradigm
 
-As soon as the notion of 'planning' is assumed, we enter some form of the workflow space, and it becomes essential to describe the intended paradigm of the human / machine execution environment. This is due to the fact that any description of planned tasks acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the executing actors (generally human, although they may also be devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.
+As soon as the notion of planning is assumed, we enter some form of the workflow space, and it becomes essential to describe the intended paradigm of the human / machine execution environment. This is due to the fact that any description of planned tasks acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the executing actors (generally human, although they may also be devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.
 
 Although the task plan facility described in this specification is relatively simple compared to some workflow tools, we can nevertheless distinguish the following entities in the environment:
 

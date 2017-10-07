@@ -45,7 +45,7 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html">Task Planning IM</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html">Task Planning Model</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A major extension to the openEHR EHR specificationsl that specifies Planned Tasks and clinical workflow.</p></td>
 </tr>
 </tbody>
@@ -95,10 +95,25 @@
 <div class="ulist xcode">
 <ul>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_callback_wait_class">CALLBACK_WAIT</a></p>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_boolean_context_expression_class">BOOLEAN_CONTEXT_EXPRESSION</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_clock_timing_class">CLOCK_TIMING</a></p>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_calendar_event_class">CALENDAR_EVENT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_callback_event_class">CALLBACK_EVENT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_condition_branch_class">CONDITION_BRANCH</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_condition_group_class">CONDITION_GROUP</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_context_expression_class">CONTEXT_EXPRESSION</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_context_value_class">CONTEXT_VALUE</a></p>
 </li>
 <li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_context_variable_class">CONTEXT_VARIABLE</a></p>
@@ -131,10 +146,10 @@
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_event_group_class">EVENT_GROUP</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_event_linked_timing_class">EVENT_LINKED_TIMING</a></p>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_event_record_class">EVENT_RECORD</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_event_record_class">EVENT_RECORD</a></p>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_event_spec_class">EVENT_SPEC</a></p>
 </li>
 <li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_event_variable_class">EVENT_VARIABLE</a></p>
@@ -147,9 +162,6 @@
 </li>
 <li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_execution_type_enumeration">EXECUTION_TYPE</a></p>
-</li>
-<li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_expr_variable_class">EXPR_VARIABLE</a></p>
 </li>
 <li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_external_request_class">EXTERNAL_REQUEST</a></p>
@@ -224,10 +236,7 @@
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_resume_type_enumeration">RESUME_TYPE</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_state_condition_class">STATE_CONDITION</a></p>
-</li>
-<li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_state_linked_timing_class">STATE_LINKED_TIMING</a></p>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_state_trigger_class">STATE_TRIGGER</a></p>
 </li>
 <li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_state_variable_class">STATE_VARIABLE</a></p>
@@ -266,9 +275,6 @@
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_task_linked_timing_class">TASK_LINKED_TIMING</a></p>
-</li>
-<li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_task_notification_record_class">TASK_NOTIFICATION_RECORD</a></p>
 </li>
 <li>
@@ -287,9 +293,6 @@
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_task_plan_execution_history_class">TASK_PLAN_EXECUTION_HISTORY</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_task_precondition_class">TASK_PRECONDITION</a></p>
-</li>
-<li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_task_repeat_class">TASK_REPEAT</a></p>
 </li>
 <li>
@@ -305,13 +308,25 @@
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_timer_expiry_class">TIMER_EXPIRY</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_timing_reference_enumeration">TIMING_REFERENCE</a></p>
-</li>
-<li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_timing_spec_class">TIMING_SPEC</a></p>
 </li>
 <li>
-<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_variable_trigger_class">VARIABLE_TRIGGER</a></p>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_tt_class">TT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_tt_class">TT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_tt_class">TT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_tt_class">TT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_tt_class">TT</a></p>
+</li>
+<li>
+<p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_wait_condition_class">WAIT_CONDITION</a></p>
 </li>
 <li>
 <p><a href="http://www.openehr.org/releases/PROC/latest/task_planning.html#_work_plan_class">WORK_PLAN</a></p>
@@ -326,7 +341,7 @@
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-05 19:07:09 BST
+Last updated 2017-10-06 15:18:13 BST
 </div>
 </div>
 </body>

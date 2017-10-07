@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*precondition*: `EVENT_WAIT`
+|*wait_condition*: `EVENT_SPEC`
 a|
 |===

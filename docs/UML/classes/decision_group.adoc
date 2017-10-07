@@ -6,7 +6,9 @@ h|*Class*
 2+^h|*DECISION_GROUP*
 
 h|*Description*
-2+a|
+2+a|Special kind of Task Group whose members are all `DECISION_BRANCH` instances, each of which represents a mutually distinct value sub-range, and which represent together the total possible range of values of the test expression.
+
+This structure is the equivalent of a programming switch statement.
 
 h|*Inherit*
 2+|`TASK_GROUP`
@@ -15,10 +17,14 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
+h|*1..1*
+|*test*: `CONTEXT_EXPRESSION`
+a|Test expression that generates a value of any type whose sub-ranges may be assigned to the various output branches, in the manner of a switch statement.
+
 h|*0..1 +
 (redefined)*
 |*members*: `List<DECISION_BRANCH>`
-a|Set of Tasks to perform. Sequencing is either the natural order of the tasks list, or may be controlled by
+a|Set of branches in this Decision Group.
 
 h|*Invariants*
 2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`

@@ -1,0 +1,21 @@
+=== CONTEXT_EXPRESSION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CONTEXT_EXPRESSION*
+
+h|*Description*
+2+a|An expression that references one or more context variables. At run time, Context Expressions are updated when changes to their dependent variables are detected.
+
+h|*Inherit*
+2+|`CONTEXT_VALUE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*variables*: `List<CONTEXT_VARIABLE>`
+a|List of variable mentioned in this Expression.
+|===

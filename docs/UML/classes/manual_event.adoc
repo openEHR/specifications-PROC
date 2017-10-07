@@ -18,8 +18,4 @@ h|*Attributes*
 h|*1..1*
 |*description*: `String`
 a|
-
-h|*0..1*
-|*other_details*: `ITEM_STRUCTURE`
-a|
 |===

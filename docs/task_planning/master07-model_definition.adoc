@@ -180,35 +180,21 @@ TBD: potentially add in a special branch that acts like the else on a case state
 
 Event structures are structurally similar, but have different execution-time semantics, because they involve a wait state.
 
-== Plan Data Context
-
-A Task Plan may contain various logic _expressions_, occurring in the following places:
-
-* `SUBJECT_PRECONDITION._expression_`;
-* `DECISION_BRANCH._test_expression_`;
-* `TASK_REPEAT._terminate_condition_`.
-
-These expressions may mention variables that are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event'. In order to allow expressions to use symbolic variables such as `is_female` or `stroke_time` within logical expressions, a way of defining each variable is required. This is provided by the `CONTEXT_VARIABLE` type within `PLAN_DATA_CONTEXT`, a data context object at the Task Plan level.
-
-Each context variable has a symbolic name, type from within the openEHR type system, and a _populating_request_, which defines how to populate the variable with a System Request, typically an EHR query or similar. 
-
-[.tbd]
-TBD: to be continued; see also {openehr_expression}[openEHR Expression language].
-
 == Detailed Plan Semantics
 
-=== Repetition
+=== Events and Timing
 
-[.tbd]
-TBD: to be described
+xxxx
+
+[.text-center]
+.proc.task_planning model - events and timing
+image::{uml_export_dir}/diagrams/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
+
+xxx
 
 === Timing
 
-In the coordinated team work situation, the timing of Tasks tends to be based on previous Tasks completing and/or receipt of completion notifications from Tasks being performed by other actors. However, for scenarios such as routine drug administration, the timing of Tasks can be specified directly. The following view of the model shows the timing classes in detail.
-
-[.text-center]
-.proc.task_planning package definition model (timing view)
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-timing.svg[id=proc_task_planning_definition_timing, align="center"]
+In the coordinated team work situation, the timing of Tasks tends to be based on previous Tasks completing and/or receipt of completion notifications from Tasks being performed by other actors. However, for scenarios such as routine drug administration, the timing of Tasks can be specified directly. 
 
 This is achieved via the `_execution_time_` attribute, whose value at runtime is understood as a guide, enabling Tasks to be placed on a scheduled timeline. A performer may execute the Task earlier or later than the indicated time, with the final `ACTION` or other Entry recording the actual time.
 
@@ -230,6 +216,11 @@ If no `_execution_time_` is specified, a Task is assumed to be available for exe
 
 [.tbd]
 ISSUE-time-relativity: time is somewhat complicated. In a TASK_PLAN archetype we need to use relative offsets everywhere, but at runtime, we need absolute times. We could consider setting an 'origin time' for the Task Plan as a whole when it is instantiated, and computing absolute times for each Task at that point. However, at runtime, the timings may be changed by the performer (e.g. times to admin drugs) and the intention is probably to make them 'stick', even if the notional origin time is moved. However in other cases, the idea may be to move the origin and have all the times move.
+
+=== Repetition
+
+[.tbd]
+TBD: to be described
 
 === Subject Pre-conditions
 
@@ -301,7 +292,7 @@ include::{uml_export_dir}/classes/execution_rule.adoc[]
 
 include::{uml_export_dir}/classes/task.adoc[]
 
-include::{uml_export_dir}/classes/task_precondition.adoc[]
+include::{uml_export_dir}/classes/wait_condition.adoc[]
 
 include::{uml_export_dir}/classes/task_repeat.adoc[]
 
@@ -335,6 +326,10 @@ include::{uml_export_dir}/classes/system_request.adoc[]
 include::{uml_export_dir}/classes/linked_plan.adoc[]
 
 
+include::{uml_export_dir}/classes/condition_group.adoc[]
+
+include::{uml_export_dir}/classes/condition_branch.adoc[]
+
 include::{uml_export_dir}/classes/decision_group.adoc[]
 
 include::{uml_export_dir}/classes/decision_branch.adoc[]
@@ -346,32 +341,24 @@ include::{uml_export_dir}/classes/event_branch.adoc[]
 
 include::{uml_export_dir}/classes/timing_spec.adoc[]
 
-include::{uml_export_dir}/classes/clock_timing.adoc[]
-
-include::{uml_export_dir}/classes/event_linked_timing.adoc[]
-
-include::{uml_export_dir}/classes/temporal_relation.adoc[]
-
-include::{uml_export_dir}/classes/task_linked_timing.adoc[]
-
-include::{uml_export_dir}/classes/state_linked_timing.adoc[]
-
+include::{uml_export_dir}/classes/event_spec.adoc[]
 
 include::{uml_export_dir}/classes/event_wait.adoc[]
+
+include::{uml_export_dir}/classes/event_action.adoc[]
 
 include::{uml_export_dir}/classes/non_deterministic_event.adoc[]
 
 include::{uml_export_dir}/classes/manual_event.adoc[]
 
-include::{uml_export_dir}/classes/callback_wait.adoc[]
+include::{uml_export_dir}/classes/callback_event.adoc[]
+
+include::{uml_export_dir}/classes/state_trigger.adoc[]
 
 include::{uml_export_dir}/classes/deterministic_event.adoc[]
 
 include::{uml_export_dir}/classes/timer_expiry.adoc[]
 
-include::{uml_export_dir}/classes/resume_type.adoc[]
+include::{uml_export_dir}/classes/calendar_event.adoc[]
 
 include::{uml_export_dir}/classes/task_timer.adoc[]
-
-
-include::{uml_export_dir}/classes/state_condition.adoc[]

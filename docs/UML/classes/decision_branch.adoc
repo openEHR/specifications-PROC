@@ -15,8 +15,7 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1 +
-(redefined)*
-|*precondition*: `STATE_CONDITION`
+h|*1..1*
+|*range*: `Any`
 a|
 |===

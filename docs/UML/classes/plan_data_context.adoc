@@ -8,11 +8,17 @@ h|*Class*
 h|*Description*
 2+a|Container for all variable definitions used in the Task Plan.
 
+TODO: possibly needs to be shared across all Task Plans in Work Plan.
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
 |*variables*: `List<CONTEXT_VARIABLE>`
-a|List of all preconditions, decision_groups and pathways variables.
+a|List of all variables tracked by this Plan.
+
+h|*0..1*
+|*expressions*: `List<CONTEXT_EXPRESSION>`
+a|
 |===

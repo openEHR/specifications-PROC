@@ -1,0 +1,24 @@
+=== CONDITION_GROUP Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CONDITION_GROUP*
+
+h|*Description*
+2+a|Special kind of Task Group whose members are all `CONDITION_BRANCH` instances, each of which represents a conditional expression based on context variables.
+
+This structure is the equivalent of a programming if/then/else statement.
+
+h|*Inherit*
+2+|`TASK_GROUP`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*members*: `List<CONDITION_BRANCH>`
+a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+|===

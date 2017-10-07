@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*wait_timout*: `TASK_TIMER`
+|*timout*: `TASK_TIMER`
 a|Maximum time to wait, if wait attribute is set True. Used by the Plan execution engine to set a timer.
 |===

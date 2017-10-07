@@ -16,7 +16,9 @@ h|*1..1*
 |*description*: `String`
 a|Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer.
 
+Evaluated when encountered.
+
 h|*0..1*
-|*expression*: `DV_PARSABLE`
-a|In the case that required_status /= mandatory; a Boolean expression that can be evaluated at runtime to determine inclusion.
+|*expression*: `BOOLEAN_CONTEXT_EXPRESSION`
+a|A Boolean expression that can be evaluated at runtime to determine availability.
 |===

@@ -44,7 +44,7 @@ endif::[]
 |===
 h|Specification h|Description
 
-|http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html[Task Planning IM]
+|http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html[Task Planning Model]
 |A major extension to the openEHR EHR specificationsl that specifies Planned Tasks and clinical workflow.
 
 |===

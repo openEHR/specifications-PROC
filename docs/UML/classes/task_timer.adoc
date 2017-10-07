@@ -24,7 +24,7 @@ h|*1..1*
 |*duration*: `Duration`
 a|
 
-h|*0..1*
-|*expiry_action*: `EVENT_ACTION`
-a|Action to perform on timer expiry.
+h|*1..1*
+|*expiry_event*: `TIMER_EXPIRY`
+a|
 |===

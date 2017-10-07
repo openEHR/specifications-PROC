@@ -26,10 +26,44 @@ At the lower right is a Task Execution History, which is a record of all events 
 .Task planning overview
 image::diagrams/task_planning_overview.svg[id=task_planning_overview, align="center", width=75%]
 
+== Identification and Referencing
+
+With a Task Plan, various elements need to be referenceable at runtime. Tasks and Task Groups are identified via the `_uid_` attribute inherited from `LOCATABLE` via `PLAN_ITEM`, and which is populated with a Guid. References to a Task or Task Group are thus achieved with `UID_BASED_ID` instances carrying a Guid.
+
+== Plan Data Context
+
+A Task Plan may contain logic _variable references_ and _expressions_, used in various ways within the Plan structure. These are globally collated and tracked at runtime. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. The type `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in the Plan.
+
+[.text-center]
+.Task planning - context values
+image::{uml_export_dir}/diagrams/PROC-task_planning.definition-context.svg[id=proc_task_planning_context, align="center"]
+
+Variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event'. In order to allow expressions to use symbolic variables such as `is_female` or `stroke_time` within logical expressions, a way of defining each variable is required. This is provided by the `CONTEXT_VARIABLE` type.
+
+Each context variable has a symbolic name (`CONTEXT_VARIABLE._name_`), a type from within the openEHR type system (`EXPR_TYPE_DEF`), and a _populating_request_, which defines how to populate the variable with a System Request, typically an EHR query or similar.
+
+[.tbd]
+TBD: to be continued; see also {openehr_expression}[openEHR Expression language].
+
 == Class Descriptions
 
-The following classes are common to all sub-packages.
+include::{uml_export_dir}/classes/plan_data_context.adoc[]
+
+include::{uml_export_dir}/classes/context_value.adoc[]
+
+include::{uml_export_dir}/classes/context_variable.adoc[]
+
+include::{uml_export_dir}/classes/event_variable.adoc[]
+
+include::{uml_export_dir}/classes/state_variable.adoc[]
+
+include::{uml_export_dir}/classes/context_expression.adoc[]
+
 
 include::{uml_export_dir}/classes/task_lifecycle.adoc[]
 
 include::{uml_export_dir}/classes/system_call.adoc[]
+
+include::{uml_export_dir}/classes/resume_type.adoc[]
+
+include::{uml_export_dir}/classes/temporal_relation.adoc[]

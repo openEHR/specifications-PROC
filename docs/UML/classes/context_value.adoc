@@ -1,0 +1,11 @@
+=== CONTEXT_VALUE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_CONTEXT_VALUE (abstract)_*
+
+h|*Description*
+2+a|Any kind of value used in the Plan definition. Typed by the formal type of the value, i.e. Boolean, Integer etc. The types are represented by `EXPR_TYPE_DEF` descendants.
+
+|===

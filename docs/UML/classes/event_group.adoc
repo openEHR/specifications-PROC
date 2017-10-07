@@ -6,7 +6,9 @@ h|*Class*
 2+^h|*EVENT_GROUP*
 
 h|*Description*
-2+a|
+2+a|Special kind of Task Group whose members are `EVENT_BRANCH` instances each representing a mutually exclusive Event Wait, the first of which occurs determines the execution path.
+
+TODO: it is not clear that this is a necessary pattern; remove?
 
 h|*Inherit*
 2+|`TASK_GROUP`
@@ -22,7 +24,7 @@ a|Timer to start on entry into Event Group. If no events are received within thi
 h|*0..1 +
 (redefined)*
 |*members*: `List<EVENT_BRANCH>`
-a|Set of Tasks to perform. Sequencing is either the natural order of the tasks list, or may be controlled by
+a|Set of branches in this Event Group.
 
 h|*Invariants*
 2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
