@@ -9,13 +9,6 @@ h|*Description*
 2+a|A kind of event that is not guaranteed to occur.
 
 h|*Inherit*
-2+|`EVENT_WAIT`
+2+|`PLAN_EVENT`
 
-h|*Attributes*
-^h|*Signature*
-^h|*Meaning*
-
-h|*0..1*
-|*timout*: `TASK_TIMER`
-a|Maximum time to wait, if wait attribute is set True. Used by the Plan execution engine to set a timer.
 |===

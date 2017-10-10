@@ -1,0 +1,11 @@
+=== 30:00 : Point_interval<Date_time> Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*30:00 : Point_interval<Date_time>*
+
+h|*Description*
+2+a|
+
+|===

@@ -1,0 +1,18 @@
+=== PLAN_TIMELINE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PLAN_TIMELINE*
+
+h|*Description*
+2+a|List of Plan Items that have a wait_condition containing an `AGENDA_MOMENT`, whose times will be converted at Plan activation to fixed times on an execution calendar.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*planned_items*: `List<PLAN_ITEM>`
+a|List of Plan Items that have a wait_condition containing a `TIMELINE_MOMENT`.
+|===

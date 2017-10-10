@@ -1,0 +1,11 @@
+=== PLAN_EVENT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_PLAN_EVENT (abstract)_*
+
+h|*Description*
+2+a|Entity representing an 'event wait', or listener for one or more events. Has optional specific Event Actions for receipt of a success or fail signal from the event source. If no specific actions are associated, the default behaviour is to resume at the next available Task in the current execution.
+
+|===

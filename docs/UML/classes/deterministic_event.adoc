@@ -9,6 +9,6 @@ h|*Description*
 2+a|A kind of event that is guaranteed to occur assuming the system is still functioning.
 
 h|*Inherit*
-2+|`EVENT_WAIT`
+2+|`PLAN_EVENT`
 
 |===

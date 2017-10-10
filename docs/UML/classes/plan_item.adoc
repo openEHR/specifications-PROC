@@ -28,6 +28,6 @@ h|*0..1*
 a|Archetypable structure for recording non hard-modelled information.
 
 h|*0..1*
-|*wait_condition*: `WAIT_CONDITION`
-a|Optional Event or timing condition on which this Plan Item blocks.
+|*wait_spec*: `TASK_WAIT`
+a|Optional wait specification for a Task. If not set, the Task is immediately available once execution reaches it. If set, the Task becomes available when an Event linked to the `_wait_spec_` occurs.
 |===

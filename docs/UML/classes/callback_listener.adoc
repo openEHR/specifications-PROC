@@ -1,0 +1,38 @@
+=== CALLBACK_LISTENER Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CALLBACK_LISTENER*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`ND_EVENT_LISTENER`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*fail_action*: `EVENT_ACTION`
+a|Action to perform if any listened-for event returns a fail result.
+
+h|*0..1*
+|*resume_location*: `UID_BASED_ID`
+a|Reference to a resume Task in the current Plan, at which to restart when the request / handoff has completed.
+
+If not set, the following Task is assumed. It set, is typically an earlier Task, in situations where the current Task(s) are no longer needed once the external action has been completed.
+
+h|*0..1*
+|*resume_type*: `RESUME_TYPE`
+a|Procedure to execute when completion notification received, for example, to display a form, notify performer etc.
+
+TODO: determine details.
+
+h|*1..1 +
+(redefined)*
+|*event*: `CALLBACK_NOTIFICATION`
+a|
+|===

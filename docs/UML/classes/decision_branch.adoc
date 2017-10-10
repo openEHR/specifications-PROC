@@ -18,4 +18,7 @@ h|*Attributes*
 h|*1..1*
 |*range*: `Any`
 a|
+
+h|*Invariants*
+2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
 |===

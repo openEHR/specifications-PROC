@@ -61,7 +61,7 @@ This specification benefited from formal and informal input from the openEHR and
 * Pekka Pesola, Engineer, Tieto, Finland
 * Vladimir Vladimirovich Makarov, Department of Information Technologies, City of Moscow
 
-== Support
+=== Support
 
 The work reported in this specification has been funded by the following organisations:
 
@@ -69,6 +69,12 @@ The work reported in this specification has been funded by the following organis
 * DIPS, Norway
 * Marand d.o.o., Slovenia
 * Ars Semantica, UK
+
+=== Intellectual Origins
+
+Many of the design ideas presented in this specification came from industry sources, as well as research literature. The openEHR implementers Marand and DIPS provided significant detailed requirements, use cases, and design ideas. 
+
+Additionally the Activity-Based Design (ABD) project at Intermountain Healthcare (2015-), on which the primary author worked part time proved an important source of cross-fertilisation. The latter project, led by David Edwards and Alan James (chief architect), has a sophisticated architecture based on a custom archetype / template framework, adaptive workflow concepts, application generation and real-time speech recognition. It has pioneered a number of concepts used in the current specification, including the separation of Definition, Materialised and Runtime levels of representation.
 
 === Trademarks
 
@@ -92,10 +98,11 @@ include::master04-requirements.adoc[leveloffset=+1]
 include::master05-design.adoc[leveloffset=+1]
 include::master06-model_overview.adoc[leveloffset=+1]
 include::master07-model_definition.adoc[leveloffset=+1]
-include::master08-model_execution.adoc[leveloffset=+1]
-include::master09-ehr_semantics.adoc[leveloffset=+1]
-include::master10-scenarios.adoc[leveloffset=+1]
-include::master11-impl_guidance.adoc[leveloffset=+1]
+include::master08-definition_patterns.adoc[leveloffset=+1]
+include::master09-model_execution.adoc[leveloffset=+1]
+include::master10-ehr_semantics.adoc[leveloffset=+1]
+//include::master11-scenarios.adoc[leveloffset=+1]
+//include::master12-impl_guidance.adoc[leveloffset=+1]
 
 
 //

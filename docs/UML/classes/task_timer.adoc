@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*TASK_TIMER*
 
 h|*Description*
-2+a|Timer object with a duration
+2+a|Timer object with a duration and associated Timer Expiry Event.
 
 h|*Attributes*
 ^h|*Signature*

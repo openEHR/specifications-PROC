@@ -20,6 +20,6 @@ h|*1..1*
 a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. Wait = True corresponds to a context switch (block and wait) while wait = False indicates a context fork.
 
 h|*0..1*
-|*callback*: `CALLBACK_EVENT`
+|*callback*: `CALLBACK_LISTENER`
 a|
 |===

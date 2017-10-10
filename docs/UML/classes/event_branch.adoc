@@ -11,12 +11,7 @@ h|*Description*
 h|*Inherit*
 2+|`TASK_GROUP`
 
-h|*Attributes*
-^h|*Signature*
-^h|*Meaning*
 
-h|*0..1 +
-(redefined)*
-|*wait_condition*: `EVENT_SPEC`
-a|
+h|*Invariants*
+2+a|*_Wait_spec_not_void_*: `wait_spec /= Void`
 |===

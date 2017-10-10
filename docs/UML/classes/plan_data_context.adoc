@@ -20,5 +20,5 @@ a|List of all variables tracked by this Plan.
 
 h|*0..1*
 |*expressions*: `List<CONTEXT_EXPRESSION>`
-a|
+a|List of all expressions used in the Plan, based on tracked variables.
 |===

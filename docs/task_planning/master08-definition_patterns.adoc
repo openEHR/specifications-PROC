@@ -1,0 +1,20 @@
+= Definition Model Patterns
+
+This section describes typical workflow patterns in terms of the Definition Model described above.
+
+== Timing Patterns
+
+
+
+=== Clock Timing
+
+=== Task-related Timing
+
+=== State-related Timing
+
+
+== Callback Patterns
+
+
+
+== 

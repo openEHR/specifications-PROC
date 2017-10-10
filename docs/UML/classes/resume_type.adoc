@@ -13,10 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|
-|resume_next
-a|Resume at the next Task in the same thread of control.
-
-h|
 |resume_specified
 a|Resume at a specified Task in the same thread of control.
 

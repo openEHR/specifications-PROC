@@ -1,0 +1,25 @@
+=== TIMELINE_MOMENT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*TIMELINE_MOMENT*
+
+h|*Description*
+2+a|Time point defined in the global Work Plan calendar.
+
+h|*Inherit*
+2+|`DETERMINISTIC_EVENT`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*variable_time*: `Duration`
+a|Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.
+
+h|*0..1*
+|*fixed_time*: `Time`
+a|Fixed time specification, to be added to variable time when the latter is converted to absolute time at activation. Used to expressed fixed hours in the day, when the day is movable.
+|===

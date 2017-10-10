@@ -37,6 +37,30 @@ h|*0..1*
 |*order_list*: `List<LOCATABLE_REF>`
 a|Reference list of orders in this Work Plan.
 
+h|*1..1*
+|*calendar*: `PLAN_CALENDAR`
+a|
+
+h|*1..1*
+|*timeline*: `PLAN_TIMELINE`
+a|Global timeline of Work Plan, on which Tasks with planned times can be listed.
+
+h|*0..1*
+|*timers*: `List<TASK_TIMER>`
+a|Reference list of all defined Timers.
+
+h|*0..1*
+|*events*: `List<EVENT_LISTENER>`
+a|List of Event Wait instances in this Plan.
+
+h|*0..1*
+|*context*: `PLAN_DATA_CONTEXT`
+a|
+
+h|*0..1*
+|*listeners*: `List<EVENT_LISTENER>`
+a|Reference list of all defined Event Listeners.
+
 h|*1..1 +
 (redefined)*
 |*description*: `DV_TEXT`

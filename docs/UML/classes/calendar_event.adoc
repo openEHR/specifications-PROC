@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*CALENDAR_EVENT*
 
 h|*Description*
-2+a|Event stated in terms of an event in a real-world calendar that is independent of the Task Planning system.
+2+a|Event on the global calendar, specified by absolute time.
 
 h|*Inherit*
 2+|`DETERMINISTIC_EVENT`
@@ -15,11 +15,11 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
-|*calendar_id*: `String`
-a|Identifier of calendar.
+h|*0..1*
+|*event_id*: `UID_BASED_ID`
+a|Identifier of event within global Plan calendar.
 
 h|*1..1*
-|*event_id*: `String`
-a|Identifier of event within calendar.
+|*time*: `Date_time`
+a|
 |===

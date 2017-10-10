@@ -21,4 +21,10 @@ h|*0..1 +
 (redefined)*
 |*members*: `List<CONDITION_BRANCH>`
 a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+
+h|*Invariants*
+2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
+
+h|
+2+a|*_Inv_seq_execution_*: `execution_type = EXECUTION_TYPE.sequential`
 |===

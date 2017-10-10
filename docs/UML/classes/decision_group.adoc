@@ -28,4 +28,7 @@ a|Set of branches in this Decision Group.
 
 h|*Invariants*
 2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
+
+h|
+2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
 |===

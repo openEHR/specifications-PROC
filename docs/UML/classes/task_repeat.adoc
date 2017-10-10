@@ -17,6 +17,6 @@ h|*0..1*
 a|Range of repetitions. If the lower limit is greater than zero, at least one repeat is required. A range such as 0..3 means up to 3 repeats possible, but not required.
 
 h|*0..1*
-|*terminate_condition*: `BOOLEAN_CONTEXT_EXPRESSION`
+|*terminate_condition*: `PLAN_EVENT`
 a|States a condition for when repetition should stop.
 |===

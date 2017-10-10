@@ -70,10 +70,6 @@ a|Identifier of instance of order set from which this Task Plan is drawn, if the
 TODO: needed?
 
 h|*0..1*
-|*context*: `PLAN_DATA_CONTEXT`
-a|
-
-h|*0..1*
 |*indications*: `List<DV_TEXT>`
 a|Clinical applicability of this Task item to subject of work, e.g. 'pregnancy', 'lymphoma' etc. May be derived from a governing guideline. May be displayed as a safety precaution to human performer.
 
