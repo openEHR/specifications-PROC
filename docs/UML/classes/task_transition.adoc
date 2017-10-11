@@ -11,7 +11,7 @@ h|*Description*
 TODO: may need specify the specific transitions rather than target states.
 
 h|*Inherit*
-2+|`NON_DETERMINISTIC_EVENT`
+2+|`PLAN_EVENT`
 
 h|*Attributes*
 ^h|*Signature*
@@ -22,6 +22,6 @@ h|*1..1*
 a|Identifier of Task with which this event is associated.
 
 h|*1..1*
-|*transition*: `TASK_LIFECYCLE`
-a|Task lifecycle transition that defines this event.
+|*transitions*: `List<TASK_LIFECYCLE>`
+a|One or more Task lifecycle transition(s) that defines this event; if more than one, the logical relation is 'OR'.
 |===

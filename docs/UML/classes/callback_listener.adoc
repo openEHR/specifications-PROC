@@ -9,7 +9,7 @@ h|*Description*
 2+a|
 
 h|*Inherit*
-2+|`ND_EVENT_LISTENER`
+2+|`EVENT_LISTENER`
 
 h|*Attributes*
 ^h|*Signature*

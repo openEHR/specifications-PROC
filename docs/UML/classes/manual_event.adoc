@@ -9,7 +9,7 @@ h|*Description*
 2+a|Event type representing the manual signalling of a real-world event to the system, such as arrival of a test result, manually taken vital sign value over a threshold.
 
 h|*Inherit*
-2+|`NON_DETERMINISTIC_EVENT`
+2+|`PLAN_EVENT`
 
 h|*Attributes*
 ^h|*Signature*

@@ -1,0 +1,11 @@
+=== CALENDAR_ENTRY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CALENDAR_ENTRY*
+
+h|*Description*
+2+a|
+
+|===

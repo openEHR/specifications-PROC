@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*entries*: `List<CALENDAR_EVENT>`
+|*entries*: `List<CALENDAR_ENTRY>`
 a|
 |===

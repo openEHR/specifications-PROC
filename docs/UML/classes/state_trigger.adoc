@@ -9,7 +9,7 @@ h|*Description*
 2+a|Type of event representing an expression referring to one or more tracked variables, reaching a value or passing a threshold value.
 
 h|*Inherit*
-2+|`NON_DETERMINISTIC_EVENT`
+2+|`PLAN_EVENT`
 
 h|*Attributes*
 ^h|*Signature*

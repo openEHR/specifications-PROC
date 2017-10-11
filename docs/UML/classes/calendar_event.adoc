@@ -6,10 +6,10 @@ h|*Class*
 2+^h|*CALENDAR_EVENT*
 
 h|*Description*
-2+a|Event on the global calendar, specified by absolute time.
+2+a|Specifies an event generated during execution when the Plan clock reaches a corresponding entry in the global calendar.
 
 h|*Inherit*
-2+|`DETERMINISTIC_EVENT`
+2+|`PLAN_EVENT`
 
 h|*Attributes*
 ^h|*Signature*

@@ -46,10 +46,6 @@ h|*1..1*
 a|Global timeline of Work Plan, on which Tasks with planned times can be listed.
 
 h|*0..1*
-|*timers*: `List<TASK_TIMER>`
-a|Reference list of all defined Timers.
-
-h|*0..1*
 |*events*: `List<EVENT_LISTENER>`
 a|List of Event Wait instances in this Plan.
 

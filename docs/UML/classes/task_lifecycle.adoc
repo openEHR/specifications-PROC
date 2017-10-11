@@ -38,9 +38,9 @@ a|Task is waiting for completion of a handoff or external request.
 
 h|
 |underway
-a|
+a|Task has been commenced.
 
 h|
 |resumed
-a|
+a|Task has been resumed from `suspend` state.
 |===

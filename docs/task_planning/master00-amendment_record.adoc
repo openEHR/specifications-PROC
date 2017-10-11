@@ -8,14 +8,15 @@
 
 |[[latest_issue]]0.8.2
 |{openehr_jira}/SPECPROC-1[SPECPROC-1]Workshop Sep 25-28. Significant rework to model. +
- Move to new PROC openEHR component.
+ Include event-based design; global calendar, timeline. +
+ Move spec to new PROC openEHR component.
 |B Fabjan, +
  B Lah, +
  B Naess, +
  M Kejžar, +
  E Leonov, +
  T Beale
-|[[latest_issue_date]]29 Sep 2017
+|[[latest_issue_date]]10 Oct 2017
 
 |0.8.1
 |New Task subtypes; re-design 'system request' concept; build out callback classes; remove explicit notifications from model. +

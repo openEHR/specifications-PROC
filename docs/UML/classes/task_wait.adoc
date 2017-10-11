@@ -6,24 +6,16 @@ h|*Class*
 2+^h|*TASK_WAIT*
 
 h|*Description*
-2+a|Object representing time of an Task to be performed in terms of a related event.
+2+a|Object representing time of an Task to be performed in terms of a related event. The `_delay_` attribute may be used to delay the start time by some amount. The `_start_window_` is used to add an 'acceptable delay' time within which the Task should be start with respect to the intended start time. The `_timeout_` attribute can be used for non-deterministic Events
 
 * clock time: event = `TIMER_EXPIRY`
 * event-linked: event = `CALENDAR_EVENT` or `MANUAL_EVENT`, e.g. evening meal, washing, etc;
 * task-linked: event = `TASK_TRANSITION`, e.g. 1hr after previous Task done;
 * state-linked: event = `STATE_TRIGGER`
 
-TODO: probably need an option for coded times like 'afternoon', 'midday' etc.
-
-TODO: These classes should probably be made generic and added to the BASE component. Needs to take into account some of the other models of time specification. See e.g. openEHR-EHR-CLUSTER.timing_daily.v0.0.1 for other design concepts.
-
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
-
-h|*0..1*
-|*start_window*: `TASK_TIMER`
-a|Time window after an initial time during which the action should start. Allows for approximate times to be used operationally.
 
 h|*0..1*
 |*events*: `List<PLAN_EVENT>`
@@ -32,6 +24,10 @@ a|Event that defines the intended point in time.
 h|*1..1*
 |*event_relation*: `TEMPORAL_RELATION`
 a|Temporal relation to the event of the point or period in time being defined by this Timing Spec.
+
+h|*0..1*
+|*start_window*: `TASK_TIMER`
+a|Time window after an initial time during which the action should start. Allows for approximate times to be used operationally.
 
 h|*0..1*
 |*timeout*: `TASK_TIMER`

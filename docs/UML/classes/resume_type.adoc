@@ -6,7 +6,7 @@ h|*Enumeration*
 2+^h|*RESUME_TYPE*
 
 h|*Description*
-2+a|
+2+a|Enumeration of types of resume behaviour after a callback.
 
 h|*Attributes*
 ^h|*Signature*

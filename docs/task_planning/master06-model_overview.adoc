@@ -32,7 +32,7 @@ With a Task Plan, various elements need to be referenceable at runtime. Tasks an
 
 == Plan Data Context
 
-A Task Plan may contain logical _variable references_ and _expressions_, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. The type `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in the Plan.
+A Task Plan may contain logical _variable references_ and _expressions_, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. The type `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in the Plan.
 
 [.text-center]
 .Task planning - context values

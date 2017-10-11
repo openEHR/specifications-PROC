@@ -6,10 +6,10 @@ h|*Class*
 2+^h|*TIMELINE_MOMENT*
 
 h|*Description*
-2+a|Time point defined in the global Work Plan calendar.
+2+a|Specifies a time event generated during execution when the Plan clock reaches a specific time defined in the global Plan Timeline.
 
 h|*Inherit*
-2+|`DETERMINISTIC_EVENT`
+2+|`PLAN_EVENT`
 
 h|*Attributes*
 ^h|*Signature*

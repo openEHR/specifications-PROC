@@ -15,7 +15,7 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
-|*variables*: `List<CONTEXT_VARIABLE>`
-a|List of variable mentioned in this Expression.
+h|*1..1*
+|*expression*: `String`
+a|Expression, in openEHR Expression syntax.
 |===

@@ -4,6 +4,9 @@ This section describes typical workflow patterns in terms of the Definition Mode
 
 == Timing Patterns
 
+[.text-center]
+.Timing Patterns
+image::diagrams/uc_task_state_timing_1.svg[id=timing_patterns_1, align="center", width=70%]
 
 
 === Clock Timing
@@ -14,7 +17,3 @@ This section describes typical workflow patterns in terms of the Definition Mode
 
 
 == Callback Patterns
-
-
-
-== 

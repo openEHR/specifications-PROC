@@ -19,4 +19,8 @@ a|
 h|*0..1*
 |*success_action*: `EVENT_ACTION`
 a|Action to perform if any listened-for event returns a success result.
+
+h|*0..1*
+|*timeout*: `TASK_TIMER`
+a|Maximum time to wait, if wait attribute is set True. Used by the Plan execution engine to set a timer.
 |===
