@@ -1,0 +1,21 @@
+=== CONTINUOUS_EVENT_VARIABLE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CONTINUOUS_EVENT_VARIABLE*
+
+h|*Description*
+2+a|Dynamically updated variable of any continuous type whose value may change by arbitrarily small amounts. The `_update_variation_` attribute may be used to control updating frequency.
+
+h|*Inherit*
+2+|`EVENT_VARIABLE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*update_variation*: `Real`
+a|Minimum percentage variation from current value to be considered a change that should cause an update.
+|===

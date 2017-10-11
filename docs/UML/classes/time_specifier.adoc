@@ -1,0 +1,11 @@
+=== TIME_SPECIFIER Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_TIME_SPECIFIER (abstract)_*
+
+h|*Description*
+2+a|Abstract parent of types used to specify a point in time.
+
+|===

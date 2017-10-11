@@ -1,0 +1,34 @@
+=== M_WORK_PLAN Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*M_WORK_PLAN*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*plans*: `List<M_TASK_PLAN>`
+a|
+
+h|*1..1*
+|*owner*: `WORK_PLAN`
+a|
+
+h|*1..1*
+|*timeline*: `M_TIMELINE`
+a|
+
+h|*1..1*
+|*calendar*: `M_CALENDAR`
+a|
+
+h|*1..1*
+|*context*: `M_PLAN_DATA_CONTEXT`
+a|
+|===

@@ -23,4 +23,8 @@ a|Retry the dispatch in the same thread of control.
 h|
 |new_thread
 a|Recommence as a new thread of execution at `_restart_location_`.
+
+h|
+|resume_next
+a|Resume at the next Task.
 |===

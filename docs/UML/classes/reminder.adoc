@@ -1,0 +1,14 @@
+=== REMINDER Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*REMINDER*
+
+h|*Description*
+2+a|Specialised Timer configured to generate a reminder or alert to performer or other user.
+
+h|*Inherit*
+2+|`TIMER_WAIT`
+
+|===

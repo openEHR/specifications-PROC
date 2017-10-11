@@ -1,9 +1,9 @@
-=== EVENT_LISTENER Class
+=== EVENT_WAIT Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*EVENT_LISTENER*
+2+^h|*EVENT_WAIT*
 
 h|*Description*
 2+a|
@@ -21,6 +21,6 @@ h|*0..1*
 a|Action to perform if any listened-for event returns a success result.
 
 h|*0..1*
-|*timeout*: `TASK_TIMER`
-a|Maximum time to wait, if wait attribute is set True. Used by the Plan execution engine to set a timer.
+|*timeout*: `TIMER_WAIT`
+a|Timeout handler to use if no other Event is received within a certain time.
 |===

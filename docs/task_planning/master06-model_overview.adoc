@@ -30,20 +30,25 @@ image::diagrams/task_planning_overview.svg[id=task_planning_overview, align="cen
 
 With a Task Plan, various elements need to be referenceable at runtime. Tasks and Task Groups are identified via the `_uid_` attribute inherited from `LOCATABLE` via `PLAN_ITEM`, and which is populated with a Guid. References to a Task or Task Group are thus achieved with `UID_BASED_ID` instances carrying a Guid.
 
+== Specifying Time
+
+Generic classes for specifying time formally and in customary form such as 'afternoon' are provided for use in the main model. These are shown bottom right of the above UML diagram: `TIME_SPECIFIER` and descendants.
+
 == Plan Data Context
 
-A Task Plan may contain logical _variable references_ and _expressions_, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. The type `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in the Plan.
+A Task Plan may contain logical _variable references_ and _expressions_, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. 
 
 [.text-center]
 .Task planning - context values
 image::{uml_export_dir}/diagrams/PROC-task_planning.definition-context.svg[id=proc_task_planning_context, align="center"]
 
-Variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event'. In order to allow expressions to use symbolic variables such as `is_female` or `stroke_time` within logical expressions, a way of defining each variable is required. This is provided by the `CONTEXT_VARIABLE` type.
+An instance of `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic _variables_ or _expressions_ that reference such variables, respectively represented by the classes `CONTEXT_VARIABLE<T>` and `CONTEXT_EXPRESSION<T>`. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.
+
+Variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as `systolic_bp - diastolic_bp`, where `systolic_bp` and `diastolic_bp` are defined as single variables. The syntax of expressions is defined by the {openehr_expression}[openEHR Expression language].
 
 Each context variable has a symbolic name (`CONTEXT_VARIABLE._name_`), a type from within the openEHR type system (`EXPR_TYPE_DEF`), and a _populating_request_, which defines how to populate the variable with a System Request, typically an EHR query or similar.
 
-[.tbd]
-TBD: to be continued; see also {openehr_expression}[openEHR Expression language].
+There are two types of variables - 'event' and 'state', which distinguish the update basis. An Event variable is 'watched' by some technical means, and its value is updated whenever it changes. The `CONTINUOUS_EVENT_VARIABLE` specialised type can be used for managing updates of continuous valued variables (i.e. real values) such that changes below a certain threshold, say 2% do not register.
 
 == Class Descriptions
 
@@ -54,6 +59,8 @@ include::{uml_export_dir}/classes/context_value.adoc[]
 include::{uml_export_dir}/classes/context_variable.adoc[]
 
 include::{uml_export_dir}/classes/event_variable.adoc[]
+
+include::{uml_export_dir}/classes/continuous_event_variable.adoc[]
 
 include::{uml_export_dir}/classes/state_variable.adoc[]
 
@@ -67,3 +74,14 @@ include::{uml_export_dir}/classes/task_lifecycle.adoc[]
 include::{uml_export_dir}/classes/resume_type.adoc[]
 
 include::{uml_export_dir}/classes/temporal_relation.adoc[]
+
+include::{uml_export_dir}/classes/execution_type.adoc[]
+
+
+include::{uml_export_dir}/classes/time_specifier.adoc[]
+
+include::{uml_export_dir}/classes/clock_time.adoc[]
+
+include::{uml_export_dir}/classes/calendar_time.adoc[]
+
+include::{uml_export_dir}/classes/customary_time.adoc[]

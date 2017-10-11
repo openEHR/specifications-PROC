@@ -17,6 +17,6 @@ h|*0..1*
 a|List of Plan Items that have a wait_condition containing a `TIMELINE_MOMENT`.
 
 h|*0..1*
-|*timers*: `List<TASK_TIMER>`
+|*timers*: `List<TIMER_WAIT>`
 a|Reference list of all defined Timers.
 |===

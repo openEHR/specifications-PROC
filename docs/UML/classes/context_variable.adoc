@@ -19,10 +19,6 @@ h|*1..1*
 |*name*: `String`
 a|Name of variable, as used in precondition and decision expressions.
 
-h|*1..1*
-|*type*: `EXPR_TYPE_DEF`
-a|Type of this variable.
-
 h|*0..1*
 |*populating_request*: `SYSTEM_CALL`
 a|Optional specification of a system request that would populate a context variable.

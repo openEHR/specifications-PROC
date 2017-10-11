@@ -18,7 +18,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*timeout*: `TASK_TIMER`
+|*timeout*: `TIMER_WAIT`
 a|Timer to start on entry into Event Group. If no events are received within this time, a branch with a Timer Expiry event type can be entered. If no such branch is defined, the Timer Expiry may be used to display a message to the performer.
 
 h|*0..1 +

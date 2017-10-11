@@ -21,15 +21,15 @@ h|*0..1*
 |*events*: `List<PLAN_EVENT>`
 a|Event that defines the intended point in time.
 
-h|*1..1*
+h|*0..1*
 |*event_relation*: `TEMPORAL_RELATION`
 a|Temporal relation to the event of the point or period in time being defined by this Timing Spec.
 
 h|*0..1*
-|*start_window*: `TASK_TIMER`
+|*start_window*: `REMINDER`
 a|Time window after an initial time during which the action should start. Allows for approximate times to be used operationally.
 
 h|*0..1*
-|*timeout*: `TASK_TIMER`
-a|Maximum time to wait, if wait attribute is set True. Used by the Plan execution engine to set a timer.
+|*timeout*: `TIMER_WAIT`
+a|Timeout handler to use if no other Event is received within a certain time.
 |===

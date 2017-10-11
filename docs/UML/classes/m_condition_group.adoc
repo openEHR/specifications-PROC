@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*definition*: `DECISION_GROUP`
+|*definition*: `CONDITION_GROUP`
 a|Reference to corresponding DECISION_GROUP instance in Task Plan definition.
 |===

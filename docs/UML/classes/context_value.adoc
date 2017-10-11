@@ -8,4 +8,11 @@ h|*Class*
 h|*Description*
 2+a|Any kind of value used in the Plan definition. Typed by the formal type of the value, i.e. Boolean, Integer etc. The types are represented by `EXPR_TYPE_DEF` descendants.
 
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*type*: `EXPR_TYPE_DEF`
+a|Type of this variable.
 |===

@@ -10,8 +10,6 @@ h|*Description*
 
 This could include OS calls, e.g. to launch an application for a certain user.
 
-TODO: for REST API, call spec is probably just a URI.
-
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*

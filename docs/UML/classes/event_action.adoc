@@ -17,10 +17,6 @@ h|*0..1*
 a|System call to perform on receipt of event
 
 h|*0..1*
-|*message*: `String`
+|*message*: `DV_TEXT`
 a|Optional message to display to original Task context (i.e. application, form etc) if timer expires.
-
-h|*0..1*
-|*timer*: `TASK_TIMER`
-a|A new Timer to be started as an Event receipt action.
 |===

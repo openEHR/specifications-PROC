@@ -6,9 +6,7 @@ h|*Class*
 2+^h|*TASK_TRANSITION*
 
 h|*Description*
-2+a|Event wait type for Task transitions, specified in terms of target state reached by the associated Task. Example: Task `completed`.
-
-TODO: may need specify the specific transitions rather than target states.
+2+a|Event type for Task transitions, specified in terms of target state reached by the associated Task.
 
 h|*Inherit*
 2+|`PLAN_EVENT`

@@ -10,32 +10,31 @@ image::{uml_export_dir}/diagrams/PROC-task_planning.definition-structure.svg[id=
 
 The remaining classes are shown in various specialised views below.
 
-The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (`WORK_PLAN._plans_`), not physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as _sub-plans_ of other Task Plans, and team-based Plans, featuring _hand-offs_ between Task Plans.
+The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (`WORK_PLAN._plans_`) rather than physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as _sub-plans_ of other Task Plans, and team-based Plans, featuring _hand-offs_ between Task Plans.
 
 A Work Plan has a number of global attributes, as follows:
 
 * `_context_`: a data context for the Plan as a whole, which enables external variables (such as patient data items) to be tracked and updated;
 * `_calendar_`: a global calendar for the Plan, into which entries may be added representing fixed events such as appointments, holidays etc;
 * `_timeline_`: the global timeline for the Plan (and hence the subject) into which planned Tasks are fixed, with times specified as offsets from the zero point;
-* `_timers_`: a reference list of all Timers in use in the Plan;
-* `_listeners_`: a reference list of all Event listeners defined in the Plan.
+* `_event_wait_states_`: a reference list of all Event wait instances defined in the Plan.
 
-The details of all these structures are described in various sections below.
+The details of these structures are described in various sections below.
 
 As can be seen, the `_definition_` of a `TASK_PLAN` is a `TASK_GROUP`, which has as its `_members_` any number of `PLAN_ITEMs`, which resolve to either `TASK_GROUP` (and some specialisations described below), or `TASK`.
 
-`PLAN_ITEM` has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above in the section <<wait_condition,Wait Conditions>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
+`PLAN_ITEM` has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above in the section <<time_and_wait_states,Time and Wait States>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
 
 The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typicaly a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
 
-=== Task Group Structure
+== Task Group Structure
 
-The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visbility of Sub-Plans to users with different experience levels. This is described more fully below.
+The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
 
 [.tbd]
 TBD: other execution rules.
 
-The following illustrates the Task Plan structure including nested Task Groups.
+The following illustrates a simple Task Plan structure including nested Task Groups.
 
 [.text-center]
 .Task grouping
@@ -43,7 +42,29 @@ image::diagrams/task_grouping.svg[id=task_grouping, align="center", width=25%]
 
 The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any Task semantics.
 
-=== Task Action Types
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/work_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_item.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_wait.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
+
+== Task Actions
 
 The specific definition of the work of Tasks is provided by `TASK._action_`, of type `TASK_ACTION` and its subtypes. Two abstract sub-types distinguish the two basic flavours of Task Action, namely _dispatchable_, meaning 'sent elsewhere for processing', and _performable_, meaning 'defined and performed within the current Plan'. The following UML diagram shows `TASK_ACTION` and its subtypes in detail.
 
@@ -53,8 +74,12 @@ image::{uml_export_dir}/diagrams/PROC-task_planning.definition-actions.svg[id=rm
 
 `TASK_ACTION` includes three attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
 
+A subject precondition is formally represented as a `BOOLEAN_CONTEXT_EXPRESSION`, whose `_expression_` value is a string in {openehr_expression}[openEHR Expression Language] syntax.
+
+Pre-conditions are evaluated at the point at which the Task to which they are attached becomes available during execution. If any pre-condition evaluates to False, the Task is in theory unable to be performed. A clinical professional may override at execution time, since it may always be the case that particular circumstances obviate the need for a particular pre-condition that normally applies.
+
 [.tbd]
-TBD: this could potentially move to `PERFORMABLE_ACTION`.
+TBD: subject precondition could potentially move to `PERFORMABLE_ACTION`.
 
 The second generally applicable attribute is `_costing_data_`, since cost information may clearly be relevant to any Plan item. Costing is dealt with in detail below.
 
@@ -74,9 +99,9 @@ The subtypes of `TASK_ACTION` consist of the following (reading from the right h
 
 The following sections provide more detail on some of these model features.
 
-== Performable Actions
+=== Performable Actions
 
-=== Sub-plans and Re-use
+==== Sub-plans and Re-use
 
 As described above, multiple Task Plans may be used to define a single logical plan of work. This occurs for two main reasons:
 
@@ -91,7 +116,7 @@ image::diagrams/task_linking.svg[id=task_linking, align="center", width=70%]
 
 This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the `SUB_PLAN` class. Since a Sub-plan is a kind of Task, it has a _description_ and could be performed and signed off as if it were a normal inline `DEFINED_ACTION` by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The `PLAN_ITME._training_level_` attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.
 
-=== Inline Defined Actions
+==== Inline Defined Actions
 
 Tasks whose definitions are stated within a Task Plan are modelled using the `DEFINED_ACTION` type. A detailed specification of the work to be done in a Defined Action  may be stated via optional atttribute `_prototype_` of type `ENTRY`, which enables the details of a Task to be specified in terms of a descendant of the `ENTRY` class. This is typically an `ACTION` instance but could be an `OBSERVATION`, `ADMIN_ENTRY` or other descendant. The following view of the UML illustrates.
 
@@ -128,7 +153,7 @@ Within the definition of a Defined Action, one or more data-sets may be specifie
 [.tbd]
 TBD: a single attribute may be sufficient.
 
-== Dispatchable Actions
+=== Dispatchable Actions
 
 The type `DISPATCHABLE_ACTION` is the abstract parent of various Action subtypes that represent work requested to be done by some other agent, i.e. external to the current Task Plan. The general execution scheme for such Actions is as follows:
 
@@ -138,7 +163,7 @@ The type `DISPATCHABLE_ACTION` is the abstract parent of various Action subtypes
 
 The following sub-sections described the various subtypes of `DISPATCHABLE_ACTION`, while callbacks are described in detail further down.
 
-=== Hand-offs and Coordinated Teamwork
+==== Hand-offs and Coordinated Teamwork
 
 Work Plans may be designed to contain multiple Task Plans, each corresponding to a team worker. In the execution of such a Work Plan, the performer of any Task Plan may at some point need to hand off to another performer, i.e. one of the other Task Plans in the same Work Plan. As described above, the original worker may wait or continue, and in both cases, receipt of a callback notification from the other Task Plan may cause a change in the execution path of the first Plan.
 
@@ -148,15 +173,43 @@ The following illustrates, using the example of an acute stroke management care 
 .Task coordination
 image::diagrams/task_coordination.svg[id=task_coordination, align="center", width=65%]
 
-In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback listener resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
+In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback wait resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
 
-=== External Request
+==== External Request
 
 The Task sub-type `EXTERNAL_REQUEST` represents a request by the current performer to an external entity completely outside of the current Work Plan computation context to perform some work on behalf of the performer. This is normally an organisation of which routine requests can be made (e.g. pathology laboratory). The request is defined in terms of an organisation identifier, a request identifier (i.e. a name or type of job) and a list of other details, represented by the standard archetypable `ITEM_STRUCTURE`.
 
-=== System Request
+==== System Request
 
 In a similar way to External Request, the `SYSTEM_REQUEST` Task sub-type represents a request to a _system_ with a computational interface on behalf of the performer, such as a logging facility or a decision support system. The request is defined in terms of a `SYSTEM_CALL` instance.
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/task_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/subject_precondition.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_costing.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/performable_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/resource_participation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/defined_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/sub_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/dispatchable_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/hand_off.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/external_request.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/system_request.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/linked_plan.adoc[leveloffset=+1]
 
 == Conditional Structures
 
@@ -174,7 +227,7 @@ The following diagram shows a typical condition structure.
 .Condition structure
 image::diagrams/condition_structure.svg[id=condition_structure, align="center", width=40%]
 
-The second structure corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-range of the expression's value range. The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should be individually mutually exclusive, and collectively they should cover the entire value range of the expression. If these criteria are not met, the Decision Group may not be decidable, e.g. if the tested variable is outside the range of every branch. There is no implied ordering of processing the branches, so `_execution_type_` is constrained to `parallel`.
+The second structure corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (`_execution_type_` is constrained to `sequential`), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.
 
 The following diagram shows a typical decision structure.
 
@@ -182,16 +235,29 @@ The following diagram shows a typical decision structure.
 .Decision structure
 image::diagrams/decision_structure.svg[id=decision_structure, align="center", width=40%]
 
-The third structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when/then/else/then rules structure in a rule-based programming environment.
+The third structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.
 
-[.tbd]
-TODO: diagram.
+[.text-center]
+.Event structure
+image::diagrams/event_structure.svg[id=event_structure, align="center", width=85%]
 
-== Detailed Plan Semantics
+=== Class Descriptions
 
-=== Events
+include::{uml_export_dir}/classes/condition_group.adoc[leveloffset=+1]
 
-Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the _reaching_ of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of _listeners_ that may be used to react to them.
+include::{uml_export_dir}/classes/condition_branch.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/decision_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/decision_branch.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/event_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/event_branch.adoc[leveloffset=+1]
+
+== Events
+
+Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the _reaching_ of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of _wait states_ that may be used to intercept them.
 
 [.text-center]
 .proc.task_planning model - Events
@@ -201,31 +267,71 @@ In the above, the descendants of `PLAN_EVENT` represent various kinds of events,
 
 Three event types are as follows:
 
-* `TIMER_EXPIRY`: represents the expiry of a Timer that was launched at some earlier time;
+* `TIMER_EVENT`: represents the expiry of a Timer that was launched at some earlier time;
 * `TIMELINE_MOMENT`: represents a time-point within the global Plan timeline that is specified _relative_ to the Plan's start time, and converted to absolute time at activation;
 * `CALENDAR_EVENT`: represents an event in the global Plan calendar, which is specified in absolute time.
 * `TASK_TRANSITION`: an event corresponding to a lifecycle transition of a Task, such as being cancelled or done;
 * `CALLBACK_NOTIFICATION`: a callback notification connected to a dispatch call for a Dispatchable Task (Hand-off, External Request, System Request);
 * `STATE_TRIGGER`: an event generated by a change in a tracked variable, or an expression based on tracked variables, e.g. a value reaching a threshold;
-* `MANUAL_EVENT`: an event that is manually signalled to the Plan execution engine by a user;
+* `MANUAL_NOTIFICATION`: an event that is manually notified to the Plan execution engine by a user;
+* `SYSTEM_NOTIFICATION`: an event that is notified to the Plan execution engine by a system or service;
 * `DELAY_EVENT`: a special kind of event is used to represent any other event with an added delay.
 
 Instances of all of these types, on their own only identify the type and source of an event. Events can be waited on in two ways. The first is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute. This represents a timing wait-state for a Task and is described in detail below.
 
-The other way to intercept events and subsequently perform actions is via an instance of `EVENT_LISTENER<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. Types such as `EVENT_LISTENER <MANUAL_EVENT>` may thus be constructed. The `EVENT_LISTENER` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
+The other way to intercept events and subsequently perform actions is via an instance of `EVENT_WAIT<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. Types such as `EVENT_WAIT<MANUAL_EVENT>` may thus be constructed. The `EVENT_WAIT<T>` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
 
 * making system calls, if the `_system_call_` attribute is set, e.g. to cause a notification to be sent or write to a system logger;
-* displaying a message to the user, specified in the `_message_` attribute;
-* starting a named Timer (`_timer_` attribute).
+* displaying a message to the user, specified in the `_message_` attribute.
 
-For non-deterministic Events, the `_timeout_` attribute may be set, which enables a `TASK_TIMER` to be launched, which in turn will result in a `TIMER_EXPIRY` event for which a another `EVENT_LISTENER` may be configured. This would normally only be applied to non-deterministic events, ensuring that non-arrival does not block Plan execution.
+For non-deterministic Events, the `_timeout_` attribute may be set to point to a `TIMER_WAIT`, which enables timeout actions to be specified.
 
-A specialisation of `EVENT_LISTENER<T>` is `CALLBACK_LISTENER`, which adds three attributes:
+=== Timers
+
+The class `TIMER_WAIT` is based on the generic type `EVENT_WAIT<TIMER_EVENT>`, and provides a way to specify a Timer (the `TIMER_EVENT` instance) and listen for it (the `TIMER_WAIT`). Timeouts can be used on the `TASK_WAIT` wait state as well as any `EVENT_WAIT` wait state, including `CALLBACK_WAIT`. A `TIMER_WAIT` creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited `EVENT_WAIT._success_action_` attribute.
+
+A specialised timer class `REMINDER` can be specified if needed, that consists of a `TIMER_WAIT` designed to generate a user notification.
+
+=== Callbacks
+
+A specialisation of `EVENT_WAIT<T>` is `CALLBACK_WAIT`, used to handle notifications of dispatched Tasks that complete, as well as timeouts if no response is received. This class which adds three attributes:
 
 * `_fail_action_`: enables a different Action to be specified on receipt of a callback with a 'fail' status;
 * `_resume_type_` and `_resume_location_`: these enable resumption of processing at a different location in the Plan, e.g. an earlier Task that may need to be redone.
 
-=== Specifying Task Timing
+A Callback Wait can thus have three distinct Event responders: `_success_action_`, `_fail_action_` and `_timeout_`.
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/plan_event.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/delay_event.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/manual_notification.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/system_notification.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/callback_notification.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/state_trigger.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/timer_event.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/calendar_event.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/timeline_moment.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/event_wait.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/timer_wait.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/reminder.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
+
+== Timing
 
 Time is manifested in the model in a number of ways. Firstly, there are three kinds of events that encode time directly, as described above. Of these, the `TIMELINE_MOMENT` type corresponds to what is normally understood as 'clock time' or 'diary' time in the sense of a modern calendar or diary tool. This concept is called the _timeline_ here to distinguish it from the global Plan _calendar_, which contains events already fixed in time, e.g. appointments made by other systems, holidays etc. 
 
@@ -234,35 +340,20 @@ Any Plan Item (i.e. `TASK`, `TASK_GROUP` or descendant) may specify timing via i
 The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task may be commenced, either in terms of time-related events, or non-deterministic events, as follows:
 
 * _clock time_: the Task is to be executed at a specific clock time represented by an instance of `TIMELINE_MOMENT`; within a Task definition, this must be specified as a relative duration with respect to the origin clock time of the Task Plan, which is only known in absolute terms at execution time;
-* _event-linked time_: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of `CALENDAR_EVENT` or `MANUAL_EVENT` is used; the `TASK_WAIT` attributes indicate the specifics such as '1 hour before', 'with meal' etc;
+* _event-linked time_: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of `CALENDAR_EVENT` is used; the `TASK_WAIT` attributes indicate the specifics such as '1 hour before', 'with meal' etc;
+* _notification-linked time_: the Task is to be executed at a time related to a notification, either from a system (specified with `SYSTEM_NOTIFICATION`) or manually notified (`MANUAL_NOTIFICATION`);
 * _task-linked time_: the Task is to be executed at a time related to the timing of another Task lifecycle transition, such as completion of the previous Task; this is represented by an instance of `TASK_TRANSITION` whose `_transition_` indicates the required lifecycle transition;
 * _state-linked time_: the Task is to be executed at a time related to the state of the subject, as specified by an instance of `STATE_TRIGGER`. This uses a Boolean-valued `_expression_` attribute to state a condition which when true indicates that a Task time-to-execute has been reached.
 
-The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of fixed and variable components. The variable part is understood as an offset from the Plan zero point at activation, while the fixed part enables fixed points in time such as a particular hour or day to be specified. A combination of the two such as +1d, 01:30:00 can thus be used to state a time like '1:30 PM on day one of the plan'.
+The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as +1d, 01:30:00 can thus be used to state a time like '1:30 PM on day one of the plan'.
 
-=== Timers
+The special Event type `DELAY_EVENT` may be used to add a delay to any other Event, e.g. to wait for a Task transition to `cancelled` plus 1 hour.
 
-Timers are used in various places in the model to enable time delays or wait periods to be specified relative to another event in time, when it occurs. The type `TASK_TIMER` is used to define a Timer, and the Event sub-type `TIMER_EXPIRY` is sed to represent to its expiry. Timers have an identifier which enables a Timer Expiry instance to refer to its launching Timer. When a Timer is launched at execution time, a matching `TIMER_EXPIRY` attached to either `PLAN_ITEM._wait_spec_` or to an `EVENT_LISTENER` attached elsewhere in the model will enable the expiry event to be caught and acted upon.
+== Repetition
 
-=== Callbacks
+Repetition may be specified in the model via the attribute `PLAN_ITEM._repeat_spec_`. This is intended to be used to designate sub-sections in a Plan as being repeatable rather than single Tasks, since the main point of a Task Plan is precisely to define individual Tasks in time for execution and sign-off.
 
-Using the above scheme, system callbacks can be conveniently represented with a `CALLBACK_LISTENER`.
-
-[.tbd]
-TODO
-
-=== Repetition
-
-[.tbd]
-TBD: to be described
-
-=== Subject Pre-conditions
-
-In addition to timing and events, other conditions may determine when or if a Task can be performed. One type is modelled as the `TASK_ACTION` attribute `_subject_preconditions_: TASK_PRECONDITION`. A subject precondition is formally represented as a `BOOLEAN_CONTEXT_EXPRESSION`, whose `_expression_` value is a string in {openehr_expression}[openEHR Expression Language] syntax.
-
-Pre-conditions are intended to be used to express real-world conditions containing references to subject state, such as vital signs, white cell count and so on. Pre-conditions should be evaluated at the point at which the Task to which they are attached enter the lifecycle state `available`. If any pre-condition evaluates to False, the Task is in theory unable to be performed. A clinical professional may override at execution time, since it may always be the case that particular circumstances obviate the need for a particular pre-condition that normally applies.
-
-=== Training Level
+== Training Level
 
 One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks. 
 
@@ -270,7 +361,7 @@ To enable a single Plan to be used in both ways, the concept of 'training level'
 
 The default value of `_training_level_` is 0.
 
-=== References to Design-time Artefacts
+== References to Design-time Artefacts
 
 `WORK_PLAN` and `TASK_PLAN` contain various references to external artefacts that they are typically based on or relate to, as follows:
 
@@ -308,90 +399,3 @@ A workflow application or engine executing a Task Plan can determine the availab
 
 The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, with the corresponding `TASK_EVENT_RECORD` recording the use of override.
 
-== Class Descriptions
-
-include::{uml_export_dir}/classes/work_plan.adoc[]
-
-include::{uml_export_dir}/classes/task_plan.adoc[]
-
-include::{uml_export_dir}/classes/task_participation.adoc[]
-
-include::{uml_export_dir}/classes/plan_item.adoc[]
-
-include::{uml_export_dir}/classes/task_group.adoc[]
-
-include::{uml_export_dir}/classes/execution_type.adoc[]
-
-include::{uml_export_dir}/classes/execution_rule.adoc[]
-
-include::{uml_export_dir}/classes/task.adoc[]
-
-include::{uml_export_dir}/classes/task_wait.adoc[]
-
-include::{uml_export_dir}/classes/task_repeat.adoc[]
-
-
-include::{uml_export_dir}/classes/task_action.adoc[]
-
-include::{uml_export_dir}/classes/subject_precondition.adoc[]
-
-include::{uml_export_dir}/classes/task_costing.adoc[]
-
-include::{uml_export_dir}/classes/dataset_spec.adoc[]
-
-include::{uml_export_dir}/classes/performable_action.adoc[]
-
-include::{uml_export_dir}/classes/resource_participation.adoc[]
-
-include::{uml_export_dir}/classes/defined_action.adoc[]
-
-include::{uml_export_dir}/classes/sub_plan.adoc[]
-
-
-include::{uml_export_dir}/classes/dispatchable_action.adoc[]
-
-include::{uml_export_dir}/classes/hand_off.adoc[]
-
-include::{uml_export_dir}/classes/external_request.adoc[]
-
-include::{uml_export_dir}/classes/system_request.adoc[]
-
-include::{uml_export_dir}/classes/linked_plan.adoc[]
-
-
-include::{uml_export_dir}/classes/condition_group.adoc[]
-
-include::{uml_export_dir}/classes/condition_branch.adoc[]
-
-include::{uml_export_dir}/classes/decision_group.adoc[]
-
-include::{uml_export_dir}/classes/decision_branch.adoc[]
-
-include::{uml_export_dir}/classes/event_group.adoc[]
-
-include::{uml_export_dir}/classes/event_branch.adoc[]
-
-
-include::{uml_export_dir}/classes/plan_event.adoc[]
-
-include::{uml_export_dir}/classes/event_action.adoc[]
-
-include::{uml_export_dir}/classes/manual_event.adoc[]
-
-include::{uml_export_dir}/classes/callback_notification.adoc[]
-
-include::{uml_export_dir}/classes/state_trigger.adoc[]
-
-include::{uml_export_dir}/classes/timer_expiry.adoc[]
-
-include::{uml_export_dir}/classes/calendar_event.adoc[]
-
-include::{uml_export_dir}/classes/timeline_moment.adoc[]
-
-include::{uml_export_dir}/classes/task_timer.adoc[]
-
-include::{uml_export_dir}/classes/event_listener.adoc[]
-
-include::{uml_export_dir}/classes/callback_listener.adoc[]
-
-include::{uml_export_dir}/classes/event_action.adoc[]

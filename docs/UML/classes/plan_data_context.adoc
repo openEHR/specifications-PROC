@@ -8,8 +8,6 @@ h|*Class*
 h|*Description*
 2+a|Container for all variable definitions used in the Task Plan.
 
-TODO: possibly needs to be shared across all Task Plans in Work Plan.
-
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*

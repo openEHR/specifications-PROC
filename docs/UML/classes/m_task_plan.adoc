@@ -29,10 +29,6 @@ h|*0..1*
 a|Reference list of all wait conditions in the Task Plan, and current status.
 
 h|*1..1*
-|*context*: `M_PLAN_DATA_CONTEXT`
-a|
-
-h|*1..1*
 |*principal_performer*: `M_PERFORMER_ALLOCATION`
 a|Run-time principal performer - a person or other agent.
 h|*Functions*

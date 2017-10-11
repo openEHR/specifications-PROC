@@ -6,9 +6,9 @@ h|*Class*
 2+^h|*DECISION_GROUP*
 
 h|*Description*
-2+a|Special kind of Task Group whose members are all `DECISION_BRANCH` instances, each of which represents a mutually distinct value sub-range, and which represent together the total possible range of values of the test expression.
+2+a|Special kind of Task Group whose members are all `DECISION_BRANCH` instances, each of which represents a distinct value sub-range, and which represent together the total possible range of values of the test expression.
 
-This structure is the equivalent of a programming switch statement.
+This structure is the equivalent of a programming switch statement. It is processed in order, and for situations that need it, the last branch may represent an 'any value', corresponding to a final 'else' at the end of the switch.
 
 h|*Inherit*
 2+|`TASK_GROUP`
@@ -27,8 +27,8 @@ h|*0..1 +
 a|Set of branches in this Decision Group.
 
 h|*Invariants*
-2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
+2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
 
 h|
-2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
+2+a|*_Inv_seq_execution_*: `execution_type = EXECUTION_TYPE.sequential`
 |===
