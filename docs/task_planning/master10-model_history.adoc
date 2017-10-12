@@ -1,0 +1,42 @@
+= Task Plan Execution History
+
+== Overview
+
+The history of execution events is represented in the runtime instance of `EXECUTION_HISTORY`. This is a history of real world execution events that accumulates over the duration of processing of the Task Plan. 
+
+[.text-center]
+.proc.task_planning.history package
+image::{uml_export_dir}/diagrams/PROC-task_planning.history.svg[id=proc_task_planning_history, align="center"]
+
+As shown above, two types of execution event are defined:
+
+* `TASK_EVENT_RECORD`: type representing a change to one consitutent Task. Thus, if the performer cancels a particular Task within the list, a `TASK_EVENT_RECORD` will be added to the history, including Task id, time, and reason; notifications can also be recorded on such events;
+* `TASK_PLAN_EVENT_RECORD_`: type representing any kind of execution event not linked to a specific Task, for example 'plan abandonment', 'new principal performer'.
+
+The first type may also include forward references to EHR Entries that were committed as a result of a Task being performed. This facilitates logical indexing of planned and performed work items.
+
+[.tbd]
+ISSUE-fwd-refs: entry_instance is a forward reference - which requires updating the Task Plan after the Tasks have beed performed and relevant Entries committed. Is this complication worth the benefit obtained, i.e. directly followable links rather than querying, to find Entries from the Task Plan items? Is being able to determine the resulting Entries starting from the Task Plan even useful?
+
+The Execution history for a Plan execution will grow and might become quite long for some Task Plan executions. How it may be persisted in various ways. The following possibilities are all compatible with both the model, and typical EHR requirements:
+
+* In the Task Plan application persistence:
+** persist the full history, delete or archive once the Task Plan is fully completed;
+* In the EHR:
+** persist the full history in some or all cases, if useful in the EHR environment (e.g. for teaching);
+** persist a partial / filtered version of the history, e.g. retain only _cancel_ and _abort_ events, on the basis that completed Tasks will show up as `ACTIONs` elsewhere in the EHR;
+** don't persist any of the history - rely on the workflow application persistence for it during execution, and forget afterward.
+
+This approach cleanly separates the definitional representation of a Task Plan, which should only change if changes to the plan are made, and the execution state, which is built during the work performance.
+
+== Class Descriptions
+
+include::{uml_export_dir}/classes/task_plan_execution_history.adoc[]
+
+include::{uml_export_dir}/classes/event_record.adoc[]
+
+include::{uml_export_dir}/classes/task_plan_event_record.adoc[]
+
+include::{uml_export_dir}/classes/task_event_record.adoc[]
+
+include::{uml_export_dir}/classes/task_notification_record.adoc[]

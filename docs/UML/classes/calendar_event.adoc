@@ -16,10 +16,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*event_id*: `UID_BASED_ID`
-a|Identifier of event within global Plan calendar.
+|*entry_id*: `UID_BASED_ID`
+a|Identifier of entry within global Plan calendar.
 
 h|*1..1*
 |*time*: `Date_time`
-a|
+a|Time of entry in calendar.
 |===

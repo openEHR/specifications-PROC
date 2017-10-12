@@ -6,9 +6,9 @@ h|*Class*
 2+^h|*TASK_PLAN*
 
 h|*Description*
-2+a|Logical list of Tasks in a structure defining order and conditions of execution of items of work intended to achieve a goal. A Task Plan consists of a top-level TASK_GROUP containing PLAN_ITEMs, which are either atomic TASKs, more TASK_GROUPs or DECISION nodes.
+2+a|Logical list of Tasks in a structure defining order and conditions of execution of items of work intended to achieve a goal. A Task Plan consists of a top-level `TASK_GROUP` containing `PLAN_ITEMs`, which are either atomic TASKs, more `TASK_GROUPs` or conditional Groups.
 
-A Task Plan specifies a principal_performer, representing a kind of actor who can perform the Tasks, and bounding start_time and completion_time information.
+A Task Plan specifies a `_principal_performer_`, representing a kind of actor who can perform the Tasks, and bounding `_start_time_` and `_completion_time_` information.
 
 It has an associated execution_history that can be used to record work events in time.
 

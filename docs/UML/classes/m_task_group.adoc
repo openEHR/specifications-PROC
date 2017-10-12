@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*M_TASK_GROUP*
 
 h|*Description*
-2+a|Materialised run-time homologue of TASK_GROUP from a Task Plan definition.
+2+a|Materialised form of `TASK_GROUP` from a Task Plan definition.
 
 h|*Inherit*
 2+|`M_PLAN_ITEM`

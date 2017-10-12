@@ -31,9 +31,13 @@ The actual definition of work to be done, i.e. Tasks, occurs within each Task Pl
 
 However, in the real world, almost every job can be sub-divided into smaller pieces of work in a fractal nature. This simple fact requires that the general structure of Tasks is actually a hierarchy, within which sequential Task lists occur commonly (and will be the top-level structure in simple cases). The formal construct provided for this is the Task Group, which may contain Tasks and more Task Groups.
 
-With hierarchy and sequential execution semantics, a great many types of work can be represented. However, some sets of Tasks can be performed without regard to order - i.e. in parallel. The model defined here therefore includes an execution type indicator at the Task Group level, so that manner of performing the work items within a Group - with or without regard to order - can be indicated. In purely sequential Task Plans, there is only one _execution path_. Parallel execution enables the possibility of multiple execution paths during a Plan execution.
+With hierarchy and sequential execution semantics, a great many types of work can be represented. However, some sets of Tasks can be performed without regard to order - i.e. in parallel. The model defined here therefore includes an execution type indicator at the Task Group level, so that manner of performing the work items within a Task Group - with or without regard to order - can be indicated. In purely sequential Task Plans, there is only one _execution path_. Parallel execution enables the possibility of multiple execution paths during a Plan execution.
 
-The availability of parallelism in a Task Plan, particularly where the parallel elements are whole Task Groups, also creates the possibility of _choice_. Rather than every parallel path being mandatory or arbitrarily optional, a set of parallel paths may be defined withing a _condition node_ within the Plan, where a variable is evaluated and various value sub-ranges correspond to multiple paths. Such groups are represented by a Decision Group within the model, and each output path by a _Decision Path Group_.
+The power of the Task Group / Task structure can be significantly augmented in another dimension with the addition of conditions, to create _conditional structures_. These can be used to represent a variety of logical choice structures, equivalent to the following programming concepts:
+
+* *if/elseif/else*: a standard multi-branch logic chain with any condition on each branch, evaluated in order;
+* *switch*: a standard multi-way logic structure based on a single condition and branches for multiple value sub-ranges;
+* *rule-set*: a typical chained event-driven rule structure whereby each branch is defined to fire on reception of a specific kind of event.
 
 The leaf level constituents of a Task Plan are Tasks of various kinds, including inline-defined Tasks; requests to other contexts within the same Work Plan; requests to external contexts and requests to IT systems and services.
 
@@ -50,7 +54,7 @@ We can summarise the above-described structure in reverse:
 
 * *Task*: a separately performable unit of planned work at any level of granularity; may be defined inline or 
 * *Task Group*: a group of Tasks and/or more Task Groups within a Task Plan that are to be executed on the same basis, e.g. sequential, parallel.
-* *Decision Group* and *Decision Path Group*: two special kinds of Group that enable decision nodes to be represented in a Plan.
+* *conditional Group types*: special kinds of Task Group that enable conditional logic structures to be represented in a Plan.
 * *Task Plan*: a logical set of Tasks for a single performer context to achieve a defined result within a larger plan.
 * *Work Plan*: top-level structure containing related Task Plans needed to implement an intended outcome for a subject of care.
 
@@ -85,7 +89,7 @@ The following diagram shows the taxonomy of task types.
 
 [.text-center]
 .Task Taxonomy
-image::diagrams/task_taxonomy.svg[id=task_taxonomy, align="center", width=60%]
+image::diagrams/task_taxonomy.svg[id=task_taxonomy, align="center", width=50%]
 
 === Principal Performer
 

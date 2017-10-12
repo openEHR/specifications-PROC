@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*M_DISPATCHABLE_ACTION*
 
 h|*Description*
-2+a|
+2+a|Materialised form of `DISPATCHABLE_ACTION`.
 
 h|*Inherit*
 2+|`M_TASK_ACTION`

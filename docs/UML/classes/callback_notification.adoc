@@ -18,4 +18,8 @@ h|*Attributes*
 h|*1..1*
 |*task_id*: `UID_BASED_ID`
 a|Identifier of originating Task.
+
+h|*0..1*
+|*request_id*: `String`
+a|Identifier of original request, may be matchable with `EXTERNAL_REQUEST._request_id_`.
 |===

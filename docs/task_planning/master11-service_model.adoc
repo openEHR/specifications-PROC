@@ -1,0 +1,26 @@
+= Transactional Service Model
+
+== Overview
+
+The information structures required to represent planned Tasks and references at design and runtime are non-trivial. For this reason, an abstract service is defined, with a transactional interface that converts calls into correct underlying information structures. The following UML diagram illustrates the services.
+
+[.text-center]
+.proc.task_planning.service package
+image::{uml_export_dir}/diagrams/PROC-task_planning.service.svg[id=proc_task_planning_service, align="center"]
+
+== Definition Interface
+
+[.tbd]
+TBC: 
+
+== Execution-time Interface
+
+[.tbd]
+TBC: 
+
+== Class Descriptions
+
+include::{uml_export_dir}/classes/i_task_plan_definition.adoc[]
+
+include::{uml_export_dir}/classes/i_task_plan_materialised.adoc[]
+

@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*M_WORK_PLAN*
 
 h|*Description*
-2+a|
+2+a|Materialised form of `WORK_PLAN`.
 
 h|*Attributes*
 ^h|*Signature*
@@ -14,21 +14,21 @@ h|*Attributes*
 
 h|*0..1*
 |*plans*: `List<M_TASK_PLAN>`
-a|
+a|Member Plans.
 
 h|*1..1*
 |*owner*: `WORK_PLAN`
-a|
+a|Owning Work Plan definition.
 
 h|*1..1*
 |*timeline*: `M_TIMELINE`
-a|
+a|Materialised global timeline.
 
 h|*1..1*
 |*calendar*: `M_CALENDAR`
-a|
+a|Materialised global calendar.
 
 h|*1..1*
 |*context*: `M_PLAN_DATA_CONTEXT`
-a|
+a|Materialised global context.
 |===

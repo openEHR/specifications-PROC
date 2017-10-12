@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*M_PERFORMABLE_ACTION*
 
 h|*Description*
-2+a|
+2+a|Materialised form of `PERFORMABLE_ACTION`.
 
 h|*Inherit*
 2+|`M_TASK_ACTION`

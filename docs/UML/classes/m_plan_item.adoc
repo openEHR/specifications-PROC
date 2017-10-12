@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*_M_PLAN_ITEM (abstract)_*
 
 h|*Description*
-2+a|Abstract parent of materialised run-time types that correspond to design time PLAN_ITEM instances.
+2+a|Abstract parent of materialised run-time types that correspond to design time `PLAN_ITEM` instances.
 
 h|*Attributes*
 ^h|*Signature*

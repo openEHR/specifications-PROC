@@ -21,5 +21,5 @@ a|Flag indicating whether to wait or continue in the current Plan after the disp
 
 h|*0..1*
 |*callback*: `CALLBACK_WAIT`
-a|
+a|Optional callback notification handler.
 |===

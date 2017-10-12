@@ -4,15 +4,18 @@ This section describes typical workflow patterns in terms of the Definition Mode
 
 == Timing Patterns
 
+The following diagram shows the definition structures corresponding to four typical wait states, where a Task is waiting on a timing or other Event.
+
 [.text-center]
 .Timing Patterns
-image::diagrams/uc_task_state_timing_1.svg[id=timing_patterns_1, align="center", width=85%]
-
-=== Clock Timing
-
-=== Task-related Timing
-
-=== State-related Timing
-
+image::diagrams/uc_task_timing_1.svg[id=timing_patterns_1, align="center", width=85%]
 
 == Callback Patterns
+
+The following diagram shows the defnition structure for a dispatchable Task Action with a callback.
+
+[.text-center]
+.Timing Patterns
+image::diagrams/uc_task_callback_1.svg[id=timing_callback_pattern_1, align="center"]
+
+

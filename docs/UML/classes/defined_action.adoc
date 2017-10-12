@@ -6,9 +6,9 @@ h|*Class*
 2+^h|*DEFINED_ACTION*
 
 h|*Description*
-2+a|Task sub-type that represents concretely defined work items. The definition of the work of the Task is expressed in terms of archetype of an ENTRY (usually an ACTION) that will be used to record the Task's execution.
+2+a|Task sub-type that represents concretely defined work items. The definition of the work of the Task is expressed in terms of archetype of an `ENTRY` (usually an `ACTION`) that will be used to record the Task's execution.
 
-The entry_instance attribute can be used to record a forward reference to an ACTION or other ENTRY when it has been recorded.
+The `_entry_instance_` attribute can be used to record a forward reference to an `ACTION` or other `ENTRY` when it has been recorded.
 
 h|*Inherit*
 2+|`PERFORMABLE_ACTION`
@@ -19,7 +19,7 @@ h|*Attributes*
 
 h|*0..1*
 |*prototype*: `List<ENTRY>`
-a|Prototype instance of one or more Entries that express the specific work of the Task. Normally one Entry would be used, typically an ACTION, but more than one may sometimes make sense, e.g. an ACTION and an OBSERVATION.
+a|Prototype instance of one or more Entries that express the specific work of the Task. Normally one Entry would be used, typically an `ACTION`, but more than one may sometimes make sense, e.g. an `ACTION` and an `OBSERVATION`.
 
 h|*0..1*
 |*optionality*: `VALIDITY_KIND`

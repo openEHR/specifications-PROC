@@ -22,5 +22,5 @@ h|*0..1*
 |*external_ref*: `OBJECT_REF`
 a|Reference to resource, e.g. in scheduling or other system.
 
-TODO: may need to be a more powerful reference like a SYSTEM_CALL.
+TODO: may need to be a more powerful reference like a `SYSTEM_CALL`.
 |===

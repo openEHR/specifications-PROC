@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*CONDITION_BRANCH*
 
 h|*Description*
-2+a|
+2+a|A specialised kind of `TASK_GROUP` representing a branch in a Condition Group.
 
 h|*Inherit*
 2+|`TASK_GROUP`

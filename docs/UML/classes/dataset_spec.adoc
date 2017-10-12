@@ -17,8 +17,8 @@ h|*0..1*
 a|Form identifier.
 
 h|*0..1*
-|*template_id*: 
-a|Template identifier. If used with no form_id, the Execution engine needs to determine how to find a form based on the template identifier.
+|*template_id*: `String`
+a|Template identifier in String form of an `ARCHETYPE_HRID`. If used with no `_form_id_`, the Execution engine needs to determine how to find a form based on the template identifier.
 
 h|*0..1*
 |*other_details*: `ITEM_STRUCTURE`

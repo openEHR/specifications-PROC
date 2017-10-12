@@ -19,7 +19,7 @@ h|*Attributes*
 
 h|*0..1*
 |*review_dataset*: `List<DATASET_SPEC>`
-a|Optional data-set to review prior to / as part of performing Task. This implies a data retrieval from the EHR or other system, which may be specified using a SYSTEM_REQUEST attached to this Task.
+a|Optional data-set to review prior to / as part of performing Task. This implies a data retrieval from the EHR or other system, which may be specified using a `SYSTEM_REQUEST` attached to this Task.
 
 h|*0..1*
 |*instruction_activity*: `LOCATABLE_REF`

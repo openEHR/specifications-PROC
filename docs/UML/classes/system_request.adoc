@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*SYSTEM_REQUEST*
 
 h|*Description*
-2+a|Request to an external system.
+2+a|Request to an external computational system or service.
 
 h|*Inherit*
 2+|`DISPATCHABLE_ACTION`
@@ -17,5 +17,5 @@ h|*Attributes*
 
 h|*1..1*
 |*system_call*: `SYSTEM_CALL`
-a|
+a|Definition of call to make.
 |===

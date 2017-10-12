@@ -21,7 +21,7 @@ a|Identifier of organisation to which the request or order is addressed.
 
 h|*1..1*
 |*request_id*: `String`
-a|
+a|Request identifier for this type request. May be used in callback notification. Other runtime instance-level identifiers may be needed as well.
 
 h|*0..1*
 |*other_details*: `ITEM_STRUCTURE`

@@ -17,7 +17,7 @@ h|*Attributes*
 
 h|*1..1*
 |*task_id*: `String`
-a|Identification of Task in the Task Plan structre using a path of the form /task_group_id/task_group_id.
+a|Identification of Task in the Task Plan structre using a path of the form `/task_group_id/task_group_id`.
 
 h|*1..1*
 |*lifecycle_state*: `TASK_LIFECYCLE`
@@ -29,10 +29,7 @@ a|Notifications that were performed as part of this Task Event.
 
 h|*0..1*
 |*entry_instances*: `List<LOCATABLE_REF>`
-a|Forward references to Entry (e.g. ACTION, OBSERVATION etc) that was recorded as a result of this Task being performed. If this is set, it indicates that the planned Task is 'done' i.e. checked off the plan.
-
-[.tbd]
-ISSUE-fwd-refs: entry_instance is a forward reference - which requires updating the Task Plan after the Tasks have beed performed and relevant Entries committed. Is this complication worth the benefit obtained, i.e. directly followable links rather than querying, to find Entries from the Task Plan items? Is being able to determine the resulting Entries starting from the Task Plan even useful?
+a|Forward references to Entry (e.g. `ACTION`, `OBSERVATION` etc) that was recorded as a result of this Task being performed. If this is set, it indicates that the planned Task is 'done' i.e. checked off the plan.
 
 h|*1..1*
 |*preconditions_satisfied*: `Boolean`
@@ -44,5 +41,5 @@ a|Set to True if all wait_conditions for the corresponding Task were satisfied w
 
 h|*0..1*
 |*lifecycle_transition_reason*: `String`
-a|Additional reason for lifecycle
+a|Optional reason for lifecycle transition.
 |===

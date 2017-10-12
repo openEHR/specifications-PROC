@@ -17,9 +17,9 @@ h|*Attributes*
 
 h|*1..1*
 |*source*: `UID_BASED_ID`
-a|
+a|Reference to source Event.
 
 h|*1..1*
 |*delay*: `Duration`
-a|
+a|Length of the delay.
 |===

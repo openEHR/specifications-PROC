@@ -1,4 +1,4 @@
-= Task Definition Model
+= Definition Model
 
 == Overview
 
@@ -59,8 +59,6 @@ include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/task.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/task_wait.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
 
@@ -171,7 +169,7 @@ The following illustrates, using the example of an acute stroke management care 
 
 [.text-center]
 .Task coordination
-image::diagrams/task_coordination.svg[id=task_coordination, align="center", width=65%]
+image::diagrams/task_coordination.svg[id=task_coordination, align="center", width=80%]
 
 In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback wait resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
 
@@ -188,8 +186,6 @@ In a similar way to External Request, the `SYSTEM_REQUEST` Task sub-type represe
 include::{uml_export_dir}/classes/task_action.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/subject_precondition.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/task_costing.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
 
@@ -257,6 +253,8 @@ include::{uml_export_dir}/classes/event_branch.adoc[leveloffset=+1]
 
 == Events
 
+== Event Types
+
 Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the _reaching_ of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of _wait states_ that may be used to intercept them.
 
 [.text-center]
@@ -265,10 +263,10 @@ image::{uml_export_dir}/diagrams/PROC-task_planning.definition-event.svg[id=proc
 
 In the above, the descendants of `PLAN_EVENT` represent various kinds of events, which roughly divide into _deterministic events_, i.e. known, system-endogenous events, and _non-deterministic events_, i.e. events from the outside world whose receipt is not guaranteed.
 
-Three event types are as follows:
+The event types are as follows:
 
 * `TIMER_EVENT`: represents the expiry of a Timer that was launched at some earlier time;
-* `TIMELINE_MOMENT`: represents a time-point within the global Plan timeline that is specified _relative_ to the Plan's start time, and converted to absolute time at activation;
+* `TIMELINE_MOMENT`: represents a time-point within the global Plan timeline that is specified _relative_ to the Plan's start time, and converted to absolute time at activation; this type expresses to what is normally understood as 'clock time' or 'diary' time in the sense of a modern calendar or diary tool, and is how time can be specified directly for Tasks;
 * `CALENDAR_EVENT`: represents an event in the global Plan calendar, which is specified in absolute time.
 * `TASK_TRANSITION`: an event corresponding to a lifecycle transition of a Task, such as being cancelled or done;
 * `CALLBACK_NOTIFICATION`: a callback notification connected to a dispatch call for a Dispatchable Task (Hand-off, External Request, System Request);
@@ -277,14 +275,33 @@ Three event types are as follows:
 * `SYSTEM_NOTIFICATION`: an event that is notified to the Plan execution engine by a system or service;
 * `DELAY_EVENT`: a special kind of event is used to represent any other event with an added delay.
 
-Instances of all of these types, on their own only identify the type and source of an event. Events can be waited on in two ways. The first is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute. This represents a timing wait-state for a Task and is described in detail below.
+Instances of all of these types, on their own only identify the type and source of an event. Events can be waited on in two ways. 
 
-The other way to intercept events and subsequently perform actions is via an instance of `EVENT_WAIT<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. Types such as `EVENT_WAIT<MANUAL_EVENT>` may thus be constructed. The `EVENT_WAIT<T>` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
+=== Task Wait State
+
+The first way is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute, which refers to an instance of `TASK_WAIT`. The `TASK_WAIT` class models a wait state, and defines how to specify the details of when a Task should start with respect to any of the Event types described above. Its `_events_` attribute enables more than multiple Events to be used as a trigger, with an assumed logical OR relation among the Events. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). The `_start_window_` attribute allows for a delay from the trigger moment, and  `_timeout_`, if set, will cause a Timer to be started in cases where Event receipt is not certain. These Timers are just special cases of the `EVENT_WAIT` type, described below.
+
+The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task may be commenced, either in terms of time-related events, or non-deterministic events, as follows:
+
+* _clock time_: the Task is to be executed at a specific clock time represented by an instance of `TIMELINE_MOMENT`; within a Task definition, this must be specified as a relative duration with respect to the origin clock time of the Task Plan, which is only known in absolute terms at execution time;
+* _event-linked time_: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of `CALENDAR_EVENT` is used; the `TASK_WAIT` attributes indicate the specifics such as '1 hour before', 'with meal' etc;
+* _notification-linked time_: the Task is to be executed at a time related to a notification, either from a system (specified with `SYSTEM_NOTIFICATION`) or manually notified (`MANUAL_NOTIFICATION`);
+* _task-linked time_: the Task is to be executed at a time related to the timing of another Task lifecycle transition, such as completion of the previous Task; this is represented by an instance of `TASK_TRANSITION` whose `_transition_` indicates the required lifecycle transition;
+* _state-linked time_: the Task is to be executed at a time related to the state of the subject, as specified by an instance of `STATE_TRIGGER`. This uses a Boolean-valued `_expression_` attribute to state a condition which when true indicates that a Task time-to-execute has been reached.
+
+The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `+1d, 01:30:00` can thus be used to state a time like '1:30 PM on day one of the plan'.
+
+=== Event Wait State
+
+The second way to intercept events and subsequently perform actions is via an instance of `EVENT_WAIT<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. Types such as `EVENT_WAIT<MANUAL_EVENT>` may thus be constructed. The `EVENT_WAIT<T>` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
 
 * making system calls, if the `_system_call_` attribute is set, e.g. to cause a notification to be sent or write to a system logger;
 * displaying a message to the user, specified in the `_message_` attribute.
+* optionally indicates where execution should resume in the plan, for example at an earlier Task, via the `_resume_type_` and `_resume_location_` attributes.
 
-For non-deterministic Events, the `_timeout_` attribute may be set to point to a `TIMER_WAIT`, which enables timeout actions to be specified.
+The latter attributes are normally only for use with callbacks.
+
+For non-deterministic Events, the `EVENT_WAIT._timeout_` attribute may be set to point to a `TIMER_WAIT`, which enables timeout actions to be specified.
 
 === Timers
 
@@ -294,14 +311,15 @@ A specialised timer class `REMINDER` can be specified if needed, that consists o
 
 === Callbacks
 
-A specialisation of `EVENT_WAIT<T>` is `CALLBACK_WAIT`, used to handle notifications of dispatched Tasks that complete, as well as timeouts if no response is received. This class which adds three attributes:
+A specialisation of `EVENT_WAIT<CALLBACK_NOTIFICATION>` is `CALLBACK_WAIT`, used to handle notifications of dispatched Tasks that complete, as well as timeouts if no response is received. This class adds one attribute:
 
-* `_fail_action_`: enables a different Action to be specified on receipt of a callback with a 'fail' status;
-* `_resume_type_` and `_resume_location_`: these enable resumption of processing at a different location in the Plan, e.g. an earlier Task that may need to be redone.
+* `_fail_action_`: enables a different `EVENT_ACTION` to be specified on receipt of a callback with a 'fail' status;
 
 A Callback Wait can thus have three distinct Event responders: `_success_action_`, `_fail_action_` and `_timeout_`.
 
 === Class Descriptions
+
+include::{uml_export_dir}/classes/task_wait.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/plan_event.adoc[leveloffset=+1]
 
@@ -331,24 +349,6 @@ include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
 
-== Timing
-
-Time is manifested in the model in a number of ways. Firstly, there are three kinds of events that encode time directly, as described above. Of these, the `TIMELINE_MOMENT` type corresponds to what is normally understood as 'clock time' or 'diary' time in the sense of a modern calendar or diary tool. This concept is called the _timeline_ here to distinguish it from the global Plan _calendar_, which contains events already fixed in time, e.g. appointments made by other systems, holidays etc. 
-
-Any Plan Item (i.e. `TASK`, `TASK_GROUP` or descendant) may specify timing via its `_wait_spec_` attribute, which refers to an instance of `TASK_WAIT`. The `TASK_WAIT` class models a wait state, and defines how to specify the details of when a Task should start with respect to any of the Event types described above. Its `_events_` attribute enables more than multiple Events to be used as a trigger, with an assumed logical OR relation among the Events. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). The `_start_window_` attribute allows for a delay from the trigger moment, and  `_timeout_`, if set, will cause a Timer to be started in cases where Event receipt is not certain.
-
-The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task may be commenced, either in terms of time-related events, or non-deterministic events, as follows:
-
-* _clock time_: the Task is to be executed at a specific clock time represented by an instance of `TIMELINE_MOMENT`; within a Task definition, this must be specified as a relative duration with respect to the origin clock time of the Task Plan, which is only known in absolute terms at execution time;
-* _event-linked time_: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of `CALENDAR_EVENT` is used; the `TASK_WAIT` attributes indicate the specifics such as '1 hour before', 'with meal' etc;
-* _notification-linked time_: the Task is to be executed at a time related to a notification, either from a system (specified with `SYSTEM_NOTIFICATION`) or manually notified (`MANUAL_NOTIFICATION`);
-* _task-linked time_: the Task is to be executed at a time related to the timing of another Task lifecycle transition, such as completion of the previous Task; this is represented by an instance of `TASK_TRANSITION` whose `_transition_` indicates the required lifecycle transition;
-* _state-linked time_: the Task is to be executed at a time related to the state of the subject, as specified by an instance of `STATE_TRIGGER`. This uses a Boolean-valued `_expression_` attribute to state a condition which when true indicates that a Task time-to-execute has been reached.
-
-The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as +1d, 01:30:00 can thus be used to state a time like '1:30 PM on day one of the plan'.
-
-The special Event type `DELAY_EVENT` may be used to add a delay to any other Event, e.g. to wait for a Task transition to `cancelled` plus 1 hour.
-
 == Repetition
 
 Repetition may be specified in the model via the attribute `PLAN_ITEM._repeat_spec_`. This is intended to be used to designate sub-sections in a Plan as being repeatable rather than single Tasks, since the main point of a Task Plan is precisely to define individual Tasks in time for execution and sign-off.
@@ -361,12 +361,12 @@ To enable a single Plan to be used in both ways, the concept of 'training level'
 
 The default value of `_training_level_` is 0.
 
-== References to Design-time Artefacts
+== References to Clinical Quality Artefacts
 
-`WORK_PLAN` and `TASK_PLAN` contain various references to external artefacts that they are typically based on or relate to, as follows:
+The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
 
 * In `WORK_PLAN`:
-** `_care_plan_`: a reference to a driving Care Plan from elsewhere in the EHR, if any exists;
+** `_care_plan_`: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
 ** `_care_pathway_`: references to a care pathway from which this Task Plan was derived, if any;
 * In `TASK_PLAN`:
 ** `_guideline_`: reference to a published guideline from which this particular Task Plan was derived, if any;
@@ -374,28 +374,11 @@ The default value of `_training_level_` is 0.
 ** `_order_set_`: the identifier of an Order Set which this Task Plan uses, if any;
 ** `_workflow_id_`: an identifier shared among orders (`INSTRUCTIONs` and `ACTIONs`) from the Order Set instance used in this Task Plan, if any.
 
-== Interaction with the EHR
-
-=== Versioning and EHR Committal
-
-If a `WORK_PLAN` and its constituent parts is created within a `COMPOSITION` for committal to the EHR (or a workflow-specific part of the EHR), it may be re-versioned as changes are made to its contents. The causes of change include:
-
-* changes to the definition;
-* additions to the execution history, corresponding to each Task or Plan level event, including completion or abandonment of the Task Plan.
+== Cost Tracking
 
 [.tbd]
-TBD: review the following para
+TBD: describe cost tracking.
 
-As the `TASK_PLAN` gets progressively built and executed over time, its owning `COMPOSITION` will undergo numerous changes, corresponding both to changes to the plan definition, and also execution of the actions performed to fulfill it. Typically only the former will generate new committed versions to the EHR, whereas the latter will most likely only be used by the workflow application during execution of the Task Plan. How changes to Task Plan are versioned and added to the EHR (or not) can be handled flexibly according to local needs.
+=== Class Descriptions
 
-== Task Availability
-
-A workflow application or engine executing a Task Plan can determine the availability for execution of any Task Group or Task as follows:
-
-* *control-flow*: check completion status of preceding Tasks / Groups within the current Task Group;
-* *timing*: check Task execution time, if set, with respect to current time;
-* *validity*:
-** check Task preconditions, assessed by executing precondition expressions against the EHR.
-
-The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, with the corresponding `TASK_EVENT_RECORD` recording the use of override.
-
+include::{uml_export_dir}/classes/task_costing.adoc[leveloffset=+1]

@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*EVENT_WAIT*
 
 h|*Description*
-2+a|
+2+a|Wait state for any kind of Event, with a success Action and an optional separate timeout Event Wait state.
 
 h|*Attributes*
 ^h|*Signature*

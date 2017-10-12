@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*M_TASK*
 
 h|*Description*
-2+a|Materialised run-time homologue of TASK type and its descendants from a Task Plan definition.
+2+a|Materialised form of `TASK` type and its descendants from a Task Plan definition.
 
 h|*Inherit*
 2+|`M_PLAN_ITEM`

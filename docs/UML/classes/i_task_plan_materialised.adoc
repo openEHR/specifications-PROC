@@ -1,0 +1,26 @@
+=== I_TASK_PLAN_MATERIALISED Interface
+
+[cols="^1,3,5"]
+|===
+h|*Interface*
+2+^h|*I_TASK_PLAN_MATERIALISED*
+
+h|*Description*
+2+a|
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*materialise*
+a|
+
+h|
+|*activate*
+a|
+
+h|
+|*terminate*
+a|
+|===

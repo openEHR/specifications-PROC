@@ -14,7 +14,7 @@ h|*Attributes*
 
 h|*0..1*
 |*start_time*: `Date_time`
-a|Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via PLANNED_TIME.relative_offset.
+a|Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via `PLANNED_TIME._relative_offset_`.
 
 h|*1..1*
 |*definition*: `M_TASK_GROUP`
@@ -37,5 +37,5 @@ h|*Functions*
 
 h|
 |*lifecycle_state* (): `TASK_LIFECYCLE`
-a|Lifecycle state of Task Plan, derived as a copy of the lifecycle_state() of the definition TASK_GROUP.
+a|Lifecycle state of Task Plan, derived as a copy of the `_lifecycle_state()_` of the definition `TASK_GROUP`.
 |===

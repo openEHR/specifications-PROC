@@ -1,8 +1,8 @@
 = Relationship with other openEHR EHR Artefacts
 
-== TODO
+== Overview
 
-One of the side-effects of distinct state machines for `INSTRUCTIONs` and Task Plans is that not all careflow steps and states in the former need to be represented as Tasks in a Task Plan. For example, a significant number of careflow steps defined in `ACTION` archetypes are for non-Active states, i.e. Planning, Postponement, Suspension etc. These steps do not need to have Tasks defined for them, since by definition they are nearly all unplanned. 
+One of the side-effects of distinct state machines for `INSTRUCTIONs` and Task Plans is that not all careflow steps and states in the former need to be represented as Tasks in a Task Plan. For example, a significant number of careflow steps defined in `ACTION` archetypes are for non-Active states, e.g. Planning, Postponement, Suspension etc. These steps do not need to have Tasks defined for them, since by definition they are nearly all unplanned. 
 
 As a consequence, most Tasks in a Task Plan correspond only to Active-state careflow steps of constituent order `INSTRUCTIONs`.
 
