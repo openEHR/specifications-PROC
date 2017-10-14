@@ -1,0 +1,24 @@
+=== I_WORK_PLAN_DEFINITION Interface
+
+[cols="^1,3,5"]
+|===
+h|*Interface*
+2+^h|*I_WORK_PLAN_DEFINITION*
+
+h|*Description*
+2+a|Task planning API that converts transactional calls to correct Task Planning information structures at Work Plan level.
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*plans* (): `List<UID_BASED_ID>`
+a|List of Task Plan ids for this Work Plan.
+
+h|
+|*plan* ( +
+a_task_plan_id: `UID_BASED_ID[1]` +
+): `List<I_TASK_PLAN_DEFINITION>`
+a|Obtain a Task Plan definition API interface.
+|===

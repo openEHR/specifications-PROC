@@ -20,7 +20,11 @@ TBC:
 
 == Class Descriptions
 
-include::{uml_export_dir}/classes/i_task_plan_definition.adoc[]
+include::{uml_export_dir}/classes/i_work_plan_definition.adoc[]
+
+include::{uml_export_dir}/classes/i_task_plan_materialised.adoc[]
+
+include::{uml_export_dir}/classes/i_work_plan_definition.adoc[]
 
 include::{uml_export_dir}/classes/i_task_plan_materialised.adoc[]
 

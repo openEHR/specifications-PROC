@@ -25,5 +25,5 @@ h|*0..1*
 |*optionality*: `VALIDITY_KIND`
 a|Informal indication of whether Task is considered optional or not from the point of view of any guideline. If not set, the Task is treated as mandatory.
 
-TODO: is this useful or meaningful, since it can change
+This attribute is not used computationally.
 |===

@@ -10,7 +10,7 @@ image::{uml_export_dir}/diagrams/PROC-task_planning.definition-structure.svg[id=
 
 The remaining classes are shown in various specialised views below.
 
-The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (`WORK_PLAN._plans_`) rather than physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as _sub-plans_ of other Task Plans, and team-based Plans, featuring _hand-offs_ between Task Plans.
+The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (`WORK_PLAN._plans_` and `WORK_PLAN._top_level_plans_`) rather than physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as _sub-plans_ of other Task Plans, and team-based Plans, featuring _hand-offs_ between Task Plans. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the start points for activity for the various actors. Non-top-level plans are those used as sub-plans.
 
 A Work Plan has a number of global attributes, as follows:
 
@@ -19,7 +19,7 @@ A Work Plan has a number of global attributes, as follows:
 * `_timeline_`: the global timeline for the Plan (and hence the subject) into which planned Tasks are fixed, with times specified as offsets from the zero point;
 * `_event_wait_states_`: a reference list of all Event wait instances defined in the Plan.
 
-The details of these structures are described in various sections below.
+Both `WORK_PLAN` and `TASK_PLAN` are descendants of `CONTENT_ITEM`, which makes them a type of content that may occur in a `COMPOSITION`. Compositions used for this purpose have their `_category_` attribute set to the openEHR coded term `|Work Plan|`. This enables Work Plans to be committed to the openEHR EHR.
 
 As can be seen, the `_definition_` of a `TASK_PLAN` is a `TASK_GROUP`, which has as its `_members_` any number of `PLAN_ITEMs`, which resolve to either `TASK_GROUP` (and some specialisations described below), or `TASK`.
 
@@ -27,7 +27,7 @@ As can be seen, the `_definition_` of a `TASK_PLAN` is a `TASK_GROUP`, which has
 
 The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typicaly a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
 
-== Task Group Structure
+=== Task Group Structure
 
 The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
 
@@ -253,7 +253,7 @@ include::{uml_export_dir}/classes/event_branch.adoc[leveloffset=+1]
 
 == Events
 
-== Event Types
+=== Event Types
 
 Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the _reaching_ of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of _wait states_ that may be used to intercept them.
 
@@ -297,9 +297,9 @@ The second way to intercept events and subsequently perform actions is via an in
 
 * making system calls, if the `_system_call_` attribute is set, e.g. to cause a notification to be sent or write to a system logger;
 * displaying a message to the user, specified in the `_message_` attribute.
-* optionally indicates where execution should resume in the plan, for example at an earlier Task, via the `_resume_type_` and `_resume_location_` attributes.
+* optionally indicates where execution should resume in the plan, for example at an earlier Task, via the `_resume_action_` attribute, whose value is aninstance of `RESUME_ACTION`, defining the `_resume_type_` and `_resume_location_` attributes.
 
-The latter attributes are normally only for use with callbacks.
+The latter attributes are normally only for use with callbacks and are described in detail below.
 
 For non-deterministic Events, the `EVENT_WAIT._timeout_` attribute may be set to point to a `TIMER_WAIT`, which enables timeout actions to be specified.
 
@@ -348,6 +348,8 @@ include::{uml_export_dir}/classes/reminder.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
 
 == Repetition
 

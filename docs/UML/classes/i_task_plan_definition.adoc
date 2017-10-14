@@ -6,7 +6,7 @@ h|*Interface*
 2+^h|*I_TASK_PLAN_DEFINITION*
 
 h|*Description*
-2+a|Task planning service that converts transactional calls to correct Task Planning information structures.
+2+a|Task planning API for definition Task Plan level.
 
 h|*Functions*
 ^h|*Signature*

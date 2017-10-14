@@ -1,8 +1,8 @@
-= Task Plan Execution History
+= Plan Execution History
 
 == Overview
 
-The history of execution events is represented in the runtime instance of `EXECUTION_HISTORY`. This is a history of real world execution events that accumulates over the duration of processing of the Task Plan. 
+The history of execution events from a Work Plan execution is represented in the runtime instances of classes defined in the `proc.task_planning.history` package, of which `EXECUTION_HISTORY` is the root.
 
 [.text-center]
 .proc.task_planning.history package

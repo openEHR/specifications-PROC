@@ -17,14 +17,10 @@ h|
 a|Resume at a specified Task in the same thread of control.
 
 h|
-|retry_current
-a|Retry the dispatch in the same thread of control.
+|retry_current_group
+a|Retry Tasks starting at the top of the current Group.
 
 h|
 |new_thread
 a|Recommence as a new thread of execution at `_restart_location_`.
-
-h|
-|resume_next
-a|Resume at the next Task.
 |===

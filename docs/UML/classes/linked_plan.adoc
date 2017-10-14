@@ -14,5 +14,5 @@ h|*Attributes*
 
 h|*1..1*
 |*target*: `UID_BASED_ID`
-a|UID of target TASK_PLAN object.
+a|UID of target `TASK_PLAN` object.
 |===

@@ -10,7 +10,7 @@ h|*Description*
 
 This allows Task Group to define the execution basis for a collection of Tasks, which may include more Task groups.
 
-The execution_type attribute defines the mode of execution. If not set, sequential execution is assumed.
+The `_execution_type_` attribute defines the mode of execution. If not set, sequential execution is assumed.
 
 h|*Inherit*
 2+|`PLAN_ITEM`

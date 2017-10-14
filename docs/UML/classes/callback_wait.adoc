@@ -22,5 +22,5 @@ a|Action to perform if any listened-for event returns a fail result.
 h|*1..1 +
 (redefined)*
 |*event*: `CALLBACK_NOTIFICATION`
-a|
+a|Callback notification on which this Callback wait state is based.
 |===

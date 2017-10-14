@@ -8,8 +8,6 @@ h|*Class*
 h|*Description*
 2+a|Special kind of Task Group whose members are `EVENT_BRANCH` instances each representing a mutually exclusive Event Wait, the first of which occurs determines the execution path.
 
-TODO: it is not clear that this is a necessary pattern; remove?
-
 h|*Inherit*
 2+|`TASK_GROUP`
 

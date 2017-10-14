@@ -4,9 +4,25 @@ The following sections describe the design key ideas used in the Task Planning m
 
 == Computational Basis
 
-A basic choice in the architecture presented here is that it is executable in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing Task Plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may indeed perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world work environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, whole.
+A basic choice in the architecture presented here is that it is executable in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may indeed perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world work environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, whole.
 
-This follows the YAWL rather than BPMN approach, such that no Plan defined according to this specification has ambiguous meaning.
+This follows the YAWL (<<Hofstede_van_der_Aalst_2009>>) rather than BPMN approach, such that no Plan defined according to this specification has ambiguous meaning.
+
+== Computational Context
+
+This specification describes the models and semantics for task plans and their execution by a notional openEHR Task Planning execution engine ('TP engine'). This is assumed to operate in a server computing environment in which other systems exist with which the TP engine communicates. A key system is the openEHR EHR system, via which openEHR EHRs are accessible to the TP Engine. 
+
+Outside of the environment exist other organisations with which TP engine communicates by generic means (ultimately, email, phone calls, etc), mediated by an appropriate communications / notification system within the environment.
+
+Users who act as performers of tasks are connected to the engine via applications that communicate to the TP engine via the API of the TP Engine. These applications may be dedicated to Task Planning or a combined openEHR application context containing Task Planning components or forms. Users who act as plan designers are connected to a task planning designer system via a dedicated designer application.
+
+The overall context is shown below.
+
+[.text-center]
+.Computational Environment
+image::diagrams/computational_environment.svg[id=computational_environment, align="center", width=80%]
+
+One of the major differences between the openEHR Task Planning architecture compared to other workflow architectures is that it can rely on shared access to persistent patient EHRs as the location in which context data can be read (e.g. patient variables) and in which records of performed tasks are ultimately stored, in the form of openEHR Compositions containing Entries, in the usual way.
 
 == Conceptual Basics
 
@@ -146,7 +162,7 @@ Task Plans are defined, refined and used in various phases in time. A number of 
 |Clinical time - +
  planning               |*Instantiated definition* +
                          (instances of definition +
-                          classes)                   |When a Task Plan model is _used_, it is created as instances of the Task Planning definition
+                          classes)                   |When a Work Plan model is _used_, it is created as instances of the Task Planning definition
                                                       model (i.e. in the technical class/instance sense), and the result is understood as a _concrete_ definition
                                                       of the Task Plan to be used in a specific situation for a specific subject (i.e. patient).
                                                       
@@ -156,9 +172,10 @@ Task Plans are defined, refined and used in various phases in time. A number of 
  plan execution         |*Materialised definition* +
                         (instances of +
                          materialised classes, +
-                         persisted over sessions)    |At Plan execution time, a Task Plan definition will be 'materialised', i.e. instantiated into a form that can                                  be used for execution and tracking of the Plan.
+                         persisted over sessions)    |Close to Plan execution time, a Work Plan definition will be 'materialised', i.e. instantiated into a form that                                can be used for execution and tracking of the Plan. At the point of materialisation, the definition model must 
+                                                      be published and persisted, guaranteeing the its availability as the reference model for its materialised expressions. It may be materialised any number of times, corresponding to the distinct number of instances of use required. Each materialisation
 
-                                                      In this form, repeatable sections of the definition are 'unfolded' into literal sections, for as many repetitions as required by the relevant performer(s). Accordingly, parts of the materialised expression of a Plan may have an N:1 relationship with the original definition form.
+                                                      In the materialised form, repeatable sections of the definition are 'unfolded' into literal sections, for as many repetitions as required by the relevant performer(s). Accordingly, parts of the materialised expression of a Plan may have an N:1 relationship with the original definition form.
                                                       
                                                       Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form
                                                       compared to the definition form.
@@ -168,7 +185,7 @@ Task Plans are defined, refined and used in various phases in time. A number of 
  task execution         |*Runtime instantiation* +
                         (instances of +
                          materialised classes, +
-                         during session)            |Since a Plan execution may run over many hours, days or longer, the materialised expression will in general                                   correspond to something larger than the literal in-memory instantiation of (parts of) the Plan required during                                 any given user-application the session during which some or all of the Task Plan might be performed. The part                                 of the plan currently being displayed, performed, tracked etc, is known here as the 'run-time instantiation',                                 and consists of a subset of the total materialised form instances.
+                         during session)            |Since a Plan execution may run over many hours, days or longer, the materialised expression will in general                                     correspond to something larger than the literal in-memory instantiation of (parts of) the Plan required during                                 any given user-application the session during which some or all of the Task Plan might be performed. The part                                   of the plan currently being displayed, performed, tracked etc, is known here as the 'run-time instantiation',                                   and consists of a subset of the total materialised form instances.
  
 |===
 
@@ -176,32 +193,34 @@ In this scheme, archetype- and template-based modelling is used as much as possi
 
 === Separation of Definition and Execution
 
-According to the above, the concrete definition of a Task Plan is constructed in the 'planning phase' of clinical time, to define work _to be done_ in the near future, by the planner and/or others. As the work is performed, the results are documented with openEHR Entries, such as Actions and Observations. During the execution of the plan there is usually a need to track the progress of the work in terms of Task completions, cancellations, failures, abandonment and so on.
+According to the above, the concrete definition of a Work Plan is constructed in the 'planning phase' of clinical time, to define work _to be done_ in the near future, by the planner and/or others. As the work is performed, the results are documented with openEHR Entries, such as Actions and Observations. During the execution of the plan there is usually a need to track the progress of the work in terms of Task completions, cancellations, failures, abandonment and so on.
 
-As per the above table, the model defined in this specification separates the definition of Task Plans from their executions. This is achieved via `definition` and `materialised` parts of the model, corresponding to the concrete definition and materialised phases described above. Instances of the former are used to represent the definition of a plan, and would accordingly be used by a tools designed for that purpose. Similarly, run-time execution tools would be built using the `materialised` part of the model, as well as the `definition` part, since the latter is referred to by the former.
+As per the above table, the model defined in this specification separates the definition of Work Plans from their executions. This is achieved via `definition` and `materialised` parts of the model, corresponding to the concrete definition and materialised phases described above. Instances of the former are used to represent the definition of a plan, and would accordingly be used by a tools designed for that purpose. Similarly, run-time execution tools would be built using the `materialised` part of the model, as well as the `definition` part, since the latter is referred to by the former.
 
 It is the materialised expression of a Plan that is used to record all Plan-related actions by Task performers. This state may be persisted for plans whose execution takes place over more than a user-application session.
 
 The history of actions on the Plan can be understood as a set of _transactions_ over time, and the model provides a third `history` part that can be used to efficiently represent this history, allowing it to be permanently recorded.
 
-== Execution Semantics
+== Execution Concepts
+
+=== Plan Execution Lifecycle
 
 A Work Plan definition can be executed by being materialised. The model recognises three states in the execution phase, as follows.
 
 * `materialised` state: after creation of the materialised Plan, the Plan may be modified by its user(s), and pre-allocations done of performers.
-* `activated` state: the materialised Plan is _activated_ when the users want to proceed. Connections must be established between the Plan execution context and various channels or APIs via which performer allocation and communication can be achieved. This establishes the zero point of the execution clock, and will cause performer allocations and generate various kinds of notifications as time moves forward. During the work, Tasks become _available_ (see below) as earlier Tasks are completed or cancelled. When a Task is available to be done, the performer has various options, including doing the work, cancelling the Task as not needed, completing the Task, aborting it, and abandoning the entire Plan.
+* `activated` state: the materialised Plan is _activated_ when the users want to proceed. Connections must be established between the Plan execution context and various channels or APIs via which performer allocation and communication can be achieved. Activation establishes the zero point of the execution clock, and will cause performer allocations and generate various kinds of notifications as time moves forward. During the work, Tasks become _available_ as earlier Tasks are completed or cancelled. When a Task is available to be done, the performer has various options, including doing the work, cancelling the Task as not needed, completing the Task, aborting it, and abandoning the entire Plan.
 * `terminated` state: A Plan terminates when a path taken through the materialised Task graph terminates, either due to finishing, or due to abandonment at an intermediate Task. The Plan as a whole returns a termination status of success or fail, which may be used to control behaviour if it is part of a chain in which a context switch follows termination.
 
 === Allocation
 
-Since a Task in a Task Plan being executed at runtime represents the Plan execution system's knowledge of some work being performed in the real world, a way to connect the Plan as it is in the system (e.g. as shown on a UI application, or via notifications such as instant messaging) to the real-world actors performing it is needed. Following YAWL, the architecture described here treats _allocation_ of work to a performer as a formal phase during Plan execution.
+Since a Task in a Task Plan being executed at runtime represents the Plan execution system's knowledge of some work being performed in the real world, a way to connect the Plan as it is in the system (e.g. as shown on a UI application, or via notifications such as instant messaging) to the real-world actors performing it is needed. Following YAWL, the architecture described here treats _allocation_ of work to a performer as a formal activity during Plan execution.
 
 Conceptually, worker allocation is understood in the following way. Firstly, it is assumed that Tasks can be allocated to two types of worker resource:
 
 * individuals, specified in the Plan definition in terms of role and/or function within _principal performer_ and _other participations_ e.g. 'cardiologist';
 * a worker _pool_, i.e. group of equivalent workers, e.g. nurses on a particular ward; here, any one of the workers can perform a given Task, and the workers may swap over time.
 
-Secondly, at runtime, the actual worker will be resolved at execution time in the following way:
+Secondly, at runtime, the actual worker will be resolved at execution time as follows:
 
 * the Plan or Task is _assigned_ to a real individual or worker pool;
 * an appropriate worker _claims_ a Plan (if Plans are posted somewhere, awaiting workers) or _accepts_ the Task (if Plan invitations are sent to individuals).
@@ -218,7 +237,7 @@ From the viewpoint of Plan execution, the final state of a Task execution determ
 
 A special transition `_override_` is used to force a Task to into the `available` state; this represents a performer explicitly overriding preconditions or subject preconditions.
 
-=== Task Availability
+=== Availability
 
 A Task becomes _available_ to perform when three kinds of condition are met: 
 

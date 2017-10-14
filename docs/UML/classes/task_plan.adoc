@@ -10,9 +10,9 @@ h|*Description*
 
 A Task Plan specifies a `_principal_performer_`, representing a kind of actor who can perform the Tasks, and bounding `_start_time_` and `_completion_time_` information.
 
-It has an associated execution_history that can be used to record work events in time.
+It has an associated `_execution_history_` that can be used to record work events in time.
 
-The attributes care_plan and guideline_id provide a way of associating a Task Plan with an operational care plan, and also a published guideline or protocol on which the Task Plan may be based.
+The attributes `_care_plan_` and `_guideline_id_` provide a way of associating a Task Plan with an operational care plan, and also a published guideline or protocol on which the Task Plan may be based.
 
 h|*Inherit*
 2+|`CONTENT_ITEM`
@@ -33,11 +33,11 @@ h|*0..1*
 |*guideline*: `DV_IDENTIFIER`
 a|Identifier of guideline on which this Task Plan is based, if such exists. A 'guideline' is understood here as a published standard for performing a detailed Task.
 
-It is currently assumed that there is no reliable machine identifier system for guidelines. A DV_IDENTIFIER allows things like:
+It is currently assumed that there is no reliable machine identifier system for guidelines. A `DV_IDENTIFIER` allows things like:
 
-* issuer = "NICE";
-* id = "https://www.nice.org.uk/guidance/cg180"
-* type = "NHS guideline for Atrial fibrillation: management"
+* `issuer = "NICE"`;
+* `id = "https://www.nice.org.uk/guidance/cg180"`;
+* `type = "NHS guideline for Atrial fibrillation: management"`.
 
 h|*1..1*
 |*definition*: `TASK_GROUP`
@@ -53,21 +53,19 @@ a|A URI (typically a local URL) that points to the document form of any governin
 
 h|*0..1*
 |*expiry_time*: `Duration`
-a|Maximal date/time by which this Task Plan should be considered obsolete. If not set, the Task Plan would normally be inferred to be obsolete after a discharge from acute care, but in primary or social care situations, no value may be assumed to indicate that the Tasks are still to be performed, depending on the times specified in the execution_time attribute of TASKs in the plan.
+a|Maximal date/time by which this Task Plan should be considered obsolete. If not set, the Task Plan would normally be inferred to be obsolete after a discharge from acute care, but in primary or social care situations, no value may be assumed to indicate that the Tasks are still to be performed, depending on the times specified in the `_execution_time_` attribute of `TASKs` in the Plan.
 
 h|*0..1*
 |*due_time*: `Duration`
 a|Due date/time expressed as an offset, to be converted to a real date/time at activation.
 
 h|*0..1*
-|*order_set*: `DV_IDENTIFIER`
+|*order_set_type*: `DV_IDENTIFIER`
 a|Optional identifier for an order set, which is understood as a _type_ of order set, e.g. 'R-CHOP-14'.
 
 h|*0..1*
-|*workflow_id*: `OBJECT_REF`
-a|Identifier of instance of order set from which this Task Plan is drawn, if there is one. Should match the workflow_id in all INSTRUCTION and other ENTRY instances created due to the same order set instance.
-
-TODO: needed?
+|*order_set_id*: `DV_IDENTIFIER`
+a|Identifier of instance of an order set on which this Task Plan is based, if there is one.
 
 h|*0..1*
 |*indications*: `List<DV_TEXT>`

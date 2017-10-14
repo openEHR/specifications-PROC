@@ -14,7 +14,7 @@ h|*Attributes*
 
 h|*1..1*
 |*event*: `P`
-a|
+a|Descriptor for event on which this wait state is based.
 
 h|*0..1*
 |*success_action*: `EVENT_ACTION`

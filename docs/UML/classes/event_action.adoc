@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*EVENT_ACTION*
 
 h|*Description*
-2+a|Action(s) to perform on receipt of an event with a particular status.
+2+a|Action(s) to perform on receipt of an event with a particular status. If `_resume_action_` is set, it dictates where execution resumes; if not, the default is to resume at the next Task in normal execution flow.
 
 h|*Attributes*
 ^h|*Signature*
@@ -21,14 +21,6 @@ h|*0..1*
 a|Optional message to display to original Task context (i.e. application, form etc) if timer expires.
 
 h|*0..1*
-|*resume_location*: `UID_BASED_ID`
-a|Reference to a resume Task in the current Plan, at which to restart when the request / handoff has completed.
-
-If not set, the following Task is assumed. It set, is typically an earlier Task, in situations where the current Task(s) are no longer needed once the external action has been completed.
-
-h|*0..1*
-|*resume_type*: `RESUME_TYPE`
-a|Procedure to execute when completion notification received, for example, to display a form, notify performer etc.
-
-TODO: determine details.
+|*resume_action*: `RESUME_ACTION`
+a|Optional resume action, used when the intention is to resume in a different location than the default (i.e. next available Task).
 |===
