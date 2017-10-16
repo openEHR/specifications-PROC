@@ -134,7 +134,7 @@ The following illustrates Task definitions using prototypes.
 
 [.text-center]
 .Task definition
-image::diagrams/task_definition.svg[id=task_definition, align="center", width=30%]
+image::diagrams/task_definition.svg[id=task_definition, align="center", width=40%]
 
 Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The `_prototype_` attribute in a `TASK_PLAN` archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. `ACTION` or other Entry. This can be used in various ways, as follows:
 
@@ -146,9 +146,6 @@ In the latter case, the slot may be filled in the Task Plan template with an `AC
 One reason to allow a Task to contain a `_prototype_` reference that remains unresolved until runtime is if the Task represents the act of making an observation, for example, taking a blood pressure. In such cases, no prototype at all may be needed, and the Task `_description_` attribute (inherited from `PLAN_ITEM`) may be sufficient information for the performer. On the other hand, a prototype `OBSERVATION` could be specified in the `TASK_PLAN` template, which defines a particular form of the observation, e.g. a blood pressure which only records mean arterial pressure and cuff size.
 
 To allow further flexibility, The multiplicity of the `_prototype_` attribute is unlimited, to allow for the possibility of one Task being prototyped by more than one Entry instance, e.g. an `ACTION` and an `OBSERVATION`, two `ADMIN_ENTRY` instances and so on.
-
-[.tbd]
-ISSUE-task-entry-corr: the alternative seems to be to allow a Task to correspond to e.g. a whole Composition template, where the `COMPOSITION` contains a number of e.g. `ACTIONs` or `OBSERVATIONs`. Problems I see with this: a) who knows what is in the Composition template? It may change over time; b) what if only some of the items in the Composition template can be done? Is the Task half complete? Or should the performer not do any of it?
 
 ==== Data-sets and Application Interaction
 
