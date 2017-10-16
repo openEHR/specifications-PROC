@@ -6,6 +6,6 @@ h|*Class*
 2+^h|*CALENDAR_ENTRY*
 
 h|*Description*
-2+a|
+2+a|A single calendar entry.
 
 |===

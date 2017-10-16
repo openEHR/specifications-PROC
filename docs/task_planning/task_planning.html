@@ -132,14 +132,17 @@
 <li><a href="#_class_descriptions_2">6.1.2. Class Descriptions</a>
 <ul class="sectlevel4">
 <li><a href="#_work_plan_class">6.1.2.1. WORK_PLAN Class</a></li>
-<li><a href="#_task_plan_class">6.1.2.2. TASK_PLAN Class</a></li>
-<li><a href="#_task_participation_class">6.1.2.3. TASK_PARTICIPATION Class</a></li>
-<li><a href="#_plan_item_class">6.1.2.4. PLAN_ITEM Class</a></li>
-<li><a href="#_task_group_class">6.1.2.5. TASK_GROUP Class</a></li>
-<li><a href="#_execution_type_enumeration_2">6.1.2.6. EXECUTION_TYPE Enumeration</a></li>
-<li><a href="#_execution_rule_class">6.1.2.7. EXECUTION_RULE Class</a></li>
-<li><a href="#_task_class">6.1.2.8. TASK Class</a></li>
-<li><a href="#_task_repeat_class">6.1.2.9. TASK_REPEAT Class</a></li>
+<li><a href="#_plan_calendar_class">6.1.2.2. PLAN_CALENDAR Class</a></li>
+<li><a href="#_plan_timeline_class">6.1.2.3. PLAN_TIMELINE Class</a></li>
+<li><a href="#_calendar_entry_class">6.1.2.4. CALENDAR_ENTRY Class</a></li>
+<li><a href="#_task_plan_class">6.1.2.5. TASK_PLAN Class</a></li>
+<li><a href="#_task_participation_class">6.1.2.6. TASK_PARTICIPATION Class</a></li>
+<li><a href="#_plan_item_class">6.1.2.7. PLAN_ITEM Class</a></li>
+<li><a href="#_task_group_class">6.1.2.8. TASK_GROUP Class</a></li>
+<li><a href="#_execution_type_enumeration_2">6.1.2.9. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_execution_rule_class">6.1.2.10. EXECUTION_RULE Class</a></li>
+<li><a href="#_task_class">6.1.2.11. TASK Class</a></li>
+<li><a href="#_task_repeat_class">6.1.2.12. TASK_REPEAT Class</a></li>
 </ul>
 </li>
 </ul>
@@ -2616,7 +2619,104 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.1.2.2. TASK_PLAN Class</h5>
+<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.1.2.2. PLAN_CALENDAR Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PLAN_CALENDAR</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Work Plan global calendar in which all absolute-time Calendar Events are recorded.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entries</strong>: <code>List&lt;CALENDAR_ENTRY&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Entries in calendar.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.1.2.3. PLAN_TIMELINE Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PLAN_TIMELINE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>List of Plan Items that have a wait_condition containing an <code>AGENDA_MOMENT</code>, whose times will be converted at Plan activation to fixed times on an execution calendar.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>planned_items</strong>: <code>List&lt;PLAN_ITEM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of Plan Items that have a wait_condition containing a <code>TIMELINE_MOMENT</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timers</strong>: <code>List&lt;TIMER_WAIT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Reference list of all defined Timers.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.1.2.4. CALENDAR_ENTRY Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALENDAR_ENTRY</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>A single calendar entry.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.1.2.5. TASK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2756,7 +2856,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.1.2.3. TASK_PARTICIPATION Class</h5>
+<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.1.2.6. TASK_PARTICIPATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2818,7 +2918,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.1.2.4. PLAN_ITEM Class</h5>
+<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.1.2.7. PLAN_ITEM Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2877,7 +2977,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.1.2.5. TASK_GROUP Class</h5>
+<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.1.2.8. TASK_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2952,7 +3052,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.1.2.6. EXECUTION_TYPE Enumeration</h5>
+<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.1.2.9. EXECUTION_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2993,7 +3093,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.1.2.7. EXECUTION_RULE Class</h5>
+<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.1.2.10. EXECUTION_RULE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3018,7 +3118,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_class"><a class="anchor" href="#_task_class"></a>6.1.2.8. TASK Class</h5>
+<h5 id="_task_class"><a class="anchor" href="#_task_class"></a>6.1.2.11. TASK Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3056,7 +3156,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.1.2.9. TASK_REPEAT Class</h5>
+<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.1.2.12. TASK_REPEAT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">

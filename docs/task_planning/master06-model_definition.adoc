@@ -46,6 +46,12 @@ The combination of the Task Group / Task hierachical pattern, which implicitly d
 
 include::{uml_export_dir}/classes/work_plan.adoc[leveloffset=+1]
 
+include::{uml_export_dir}/classes/plan_calendar.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_timeline.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/calendar_entry.adoc[leveloffset=+1]
+
 include::{uml_export_dir}/classes/task_plan.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]

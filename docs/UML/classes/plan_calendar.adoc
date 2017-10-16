@@ -14,5 +14,5 @@ h|*Attributes*
 
 h|*0..1*
 |*entries*: `List<CALENDAR_ENTRY>`
-a|
+a|Entries in calendar.
 |===
