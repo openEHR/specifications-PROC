@@ -424,7 +424,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-1">SPECPROC-1</a> Further documentation improvements;
  Added explanations for resume semantics; added <code>RESUME_ACTION</code> class.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Oct 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Oct 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9.0</p></td>
@@ -444,6 +444,7 @@
  B Naess,<br>
  M Kejžar,<br>
  E Leonov,<br>
+ V Makarov,<br>
  T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10 Oct 2017</p></td>
 </tr>
@@ -493,8 +494,8 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.6.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECRM-58">SPECRM-58</a>. Initial writing.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,
- B Naess,
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ B Naess,<br>
  I McNicoll</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">26 Jan 2017</p></td>
 </tr>
@@ -547,7 +548,7 @@
 <p>Pekka Pesola, Engineer, Tieto, Finland</p>
 </li>
 <li>
-<p>Vladimir Vladimirovich Makarov, Department of Information Technologies, City of Moscow</p>
+<p>Vladimir V Makarov, Department of Information Technologies, City of Moscow</p>
 </li>
 </ul>
 </div>
@@ -559,9 +560,6 @@
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p>City of Moscow, Russia</p>
-</li>
 <li>
 <p>DIPS, Norway</p>
 </li>
@@ -2583,15 +2581,10 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;EVENT_WAIT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>List of Event Wait instances in this Plan.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code>PLAN_DATA_CONTEXT</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Global Work Plan data context.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
@@ -4511,6 +4504,16 @@
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
 </tr>
 </tbody>
 </table>
@@ -6583,7 +6586,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-14 15:47:48 BST
+Last updated 2017-10-19 11:52:38 BST
 </div>
 </div>
 </body>

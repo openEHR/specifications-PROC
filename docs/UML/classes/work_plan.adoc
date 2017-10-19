@@ -46,12 +46,8 @@ h|*1..1*
 a|Global timeline of Work Plan, on which Tasks with planned times can be listed.
 
 h|*0..1*
-|*events*: `List<EVENT_WAIT>`
-a|List of Event Wait instances in this Plan.
-
-h|*0..1*
 |*context*: `PLAN_DATA_CONTEXT`
-a|
+a|Global Work Plan data context.
 
 h|*0..1*
 |*event_wait_states*: `List<EVENT_WAIT>`

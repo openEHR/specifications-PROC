@@ -59,13 +59,12 @@ This specification benefited from formal and informal input from the openEHR and
 * Bjørn Næss, DIPS, Norway
 * Pablo Pazos Gutierrez, CaboLabs, Uruguay
 * Pekka Pesola, Engineer, Tieto, Finland
-* Vladimir Vladimirovich Makarov, Department of Information Technologies, City of Moscow
+* Vladimir V Makarov, Department of Information Technologies, City of Moscow
 
 === Support
 
 The work reported in this specification has been funded by the following organisations:
 
-* City of Moscow, Russia
 * DIPS, Norway
 * Marand d.o.o., Slovenia
 * Ars Semantica, UK
