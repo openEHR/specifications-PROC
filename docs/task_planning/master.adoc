@@ -65,8 +65,8 @@ This specification benefited from formal and informal input from the openEHR and
 
 The work reported in this specification has been funded by the following organisations:
 
-* DIPS, Norway
 * Marand d.o.o., Slovenia
+* DIPS, Norway
 * Ars Semantica, UK
 
 === Intellectual Origins
