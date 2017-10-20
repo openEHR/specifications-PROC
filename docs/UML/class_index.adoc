@@ -66,8 +66,6 @@
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_hand_off_class[HAND_OFF]
 [.xcode]
-* http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_item_sructure_class[ITEM_SRUCTURE]
-[.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_i_task_plan_definition_interface[I_TASK_PLAN_DEFINITION]
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_i_task_plan_materialised_interface[I_TASK_PLAN_MATERIALISED]

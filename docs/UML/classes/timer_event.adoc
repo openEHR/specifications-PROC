@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*duration*: `Duration`
+|*duration*: `IDuration`
 a|Delay from activation time to receive the event notification.
 
 h|*0..1*

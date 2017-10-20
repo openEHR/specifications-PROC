@@ -20,6 +20,6 @@ h|*1..1*
 a|Reference to source Event.
 
 h|*1..1*
-|*delay*: `Duration`
+|*delay*: `IDuration`
 a|Length of the delay.
 |===

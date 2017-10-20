@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*timeline_offset*: `Duration`
+|*timeline_offset*: `IDuration`
 a|Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.
 
 h|*0..1*
