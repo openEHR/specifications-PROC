@@ -47,6 +47,9 @@ h|Specification h|Description
 |http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html[Task Planning Specification]
 |A major extension to the openEHR EHR specifications that defines a formal model for Task Plans and clinical workflow.
 
+|http://www.openehr.org/releases/PROC/{proc_release}/tp_vml.html[TP-VML]
+|Task Planning Visual Modelling Language - a visual modelling language for Task Planning.
+
 |===
 
 == Computable Expressions
