@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="description" content="openEHR TP Visual Modelling Language">
+<meta name="keywords" content="task, planning, visual language">
+<title>Task Planning Visual Modelling Language (TP-VML)</title>
+<link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/openehr.css">
+<link rel="stylesheet" href="http://www.openehr.org/releases/BASE/latest/resources/css/pygments-murphy.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_task_planning_visual_modelling_language_tp_vml">Task Planning Visual Modelling Language (TP-VML)</a>
+<ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_primary_author">Primary Author</a></li>
+<li><a href="#_contributors">Contributors</a></li>
+<li><a href="#_support">Support</a></li>
+<li><a href="#_trademarks">Trademarks</a></li>
+</ul>
+</li>
+<li><a href="#_preface">1. Preface</a>
+<ul class="sectlevel2">
+<li><a href="#_purpose">1.1. Purpose</a></li>
+<li><a href="#_related_documents">1.2. Related Documents</a></li>
+<li><a href="#_status">1.3. Status</a></li>
+<li><a href="#_conformance">1.4. Conformance</a></li>
+</ul>
+</li>
+<li><a href="#_overview">2. Overview</a></li>
+<li><a href="#_elements">3. Elements</a>
+<ul class="sectlevel2">
+<li><a href="#_composites">3.1. Composites</a>
+<ul class="sectlevel3">
+<li><a href="#_plans">3.1.1. Plans</a></li>
+<li><a href="#_task_groups">3.1.2. Task Groups</a></li>
+<li><a href="#_conditional_structures">3.1.3. Conditional Structures</a></li>
+</ul>
+</li>
+<li><a href="#_primitives">3.2. Primitives</a>
+<ul class="sectlevel3">
+<li><a href="#_events">3.2.1. Events</a></li>
+<li><a href="#_tasks">3.2.2. Tasks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_patterns">4. Patterns</a></li>
+<li><a href="#_references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png" alt="openEHR logo">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_task_planning_visual_modelling_language_tp_vml" class="sect0">Task Planning Visual Modelling Language (TP-VML)</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="http://www.openehr.org/programs/specification/">openEHR Specification Program</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: TRIAL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: task, planning, visual language</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="diagrams/openehr_block_diagram.png" alt="openEHR components" width="60%">
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2017 The openEHR Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="http://www.openehr.org/">The openEHR Foundation</a> is an independent, non-profit community organisation, facilitating the sharing of health records by consumers and clinicians via open-source, standards-based implementations.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="http://www.openehr.org/releases/BASE/latest/resources/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://openehr.atlassian.net/browse/SPECPR/" class="bare">https://openehr.atlassian.net/browse/SPECPR/</a><br>
+ Web: <a href="http://www.openehr.org/" class="bare">http://www.openehr.org/</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record">Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 54.5454%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;1.0.0</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-2">SPECPROC-2</a> Initial Writing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>20 Oct 2017</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements">Acknowledgements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_primary_author">Primary Author</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contributors">Contributors</h3>
+<div class="paragraph">
+<p>This specification benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Borut Fabjan, Program Manager, Marand, Slovenia</p>
+</li>
+<li>
+<p>Matija Kejžar, Marand, Slovenia</p>
+</li>
+<li>
+<p>Eugeny Leonov, Solit Clouds, Moscow, Russia</p>
+</li>
+<li>
+<p>Bjørn Næss, DIPS, Norway</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support">Support</h3>
+<div class="paragraph">
+<p>The work reported in this specification has been funded by the following organisations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>City of Moscow, Russia</p>
+</li>
+<li>
+<p>DIPS, Norway</p>
+</li>
+<li>
+<p>Marand d.o.o., Slovenia</p>
+</li>
+<li>
+<p>Ars Semantica, UK</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trademarks">Trademarks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>'openEHR' is a trademark of the openEHR Foundation.</p>
+</li>
+<li>
+<p>'OMG' is a trademark of the Object Management Group.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a>1. Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
+<div class="paragraph">
+<p>This document describes a visual modelling language for the openEHR Task Planning Model, known as TP-VML. This is designed to enable visually efficient visual representations of Task Plans to be authored with appropriately configured tools.</p>
+</div>
+<div class="paragraph">
+<p>The intended audience includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Task Plan and workflow authors;</p>
+</li>
+<li>
+<p>Tool vendors.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_related_documents"><a class="anchor" href="#_related_documents"></a>1.2. Related Documents</h3>
+<div class="paragraph">
+<p>Prerequisite documents for reading this document include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="http://www.openehr.org/releases/PROC/latest/task_planning.html">openEHR Task Planning Model</a>;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
+<div class="paragraph">
+<p>This specification is in the TRIAL state. The development version of this document can be found at {openehr_tp_vml}.</p>
+</div>
+<div class="paragraph">
+<p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
+</div>
+<div class="paragraph tbd">
+<p><strong>TBD</strong>: (example To Be Determined paragraph)</p>
+</div>
+<div class="paragraph">
+<p>Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the <a href="http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org">technical mailing list</a>, or on the <a href="https://openehr.atlassian.net/browse/SPECPR/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel">specifications issue tracker</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.4. Conformance</h3>
+<div class="paragraph">
+<p>Conformance of a data or software artifact to an openEHR Reference Model specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal, automated derivations from the Reference Model, ITS conformance indicates RM conformance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_elements"><a class="anchor" href="#_elements"></a>3. Elements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_composites"><a class="anchor" href="#_composites"></a>3.1. Composites</h3>
+<div class="sect3">
+<h4 id="_plans"><a class="anchor" href="#_plans"></a>3.1.1. Plans</h4>
+<div id="tp_vml_plans" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/TP-VML-plans.svg" alt="TP VML plans">
+</div>
+<div class="title">Figure 1. Plans</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_task_groups"><a class="anchor" href="#_task_groups"></a>3.1.2. Task Groups</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_conditional_structures"><a class="anchor" href="#_conditional_structures"></a>3.1.3. Conditional Structures</h4>
+<div id="tp_vml_conditionals" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/TP-VML-conditionals.svg" alt="TP VML conditionals">
+</div>
+<div class="title">Figure 2. Conditional structures</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>3.2. Primitives</h3>
+<div class="sect3">
+<h4 id="_events"><a class="anchor" href="#_events"></a>3.2.1. Events</h4>
+<div id="tp_vml_events" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/TP-VML-events.svg" alt="TP VML events" width="70%">
+</div>
+<div class="title">Figure 3. Events</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tasks"><a class="anchor" href="#_tasks"></a>3.2.2. Tasks</h4>
+<div id="tp_vml_tasks" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/TP-VML-tasks.svg" alt="TP VML tasks" width="70%">
+</div>
+<div class="title">Figure 4. Tasks</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_patterns"><a class="anchor" href="#_patterns"></a>4. Patterns</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-10-20 21:53:26 BST
+</div>
+</div>
+</body>
+</html>

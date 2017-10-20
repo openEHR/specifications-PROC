@@ -1,0 +1,95 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+:doctype: book
+:source-highlighter: pygments
+:pygments-style: murphy
+//:toc: macro
+:toc: left
+:toclevels: 4
+:pagenums:
+:sectnums!:
+:sectnumlevels: 4
+// get rid of PDF 'Chapter' labs on level 1 headings
+:chapter-label:
+:copyright_year: 2017
+//
+// HTML-only attributes
+//
+:linkcss:
+:keywords: task, planning, visual language
+:description: openEHR TP Visual Modelling Language
+:spec_status: TRIAL
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
+
+= Task Planning Visual Modelling Language (TP-VML)
+
+include::{base_dir}/docs_common/boilerplate/full_front_block.adoc[]
+include::{base_dir}/docs_common/references/openehr_resources.adoc[]
+
+//
+// ============================================= Asciidoc BODY ===============================================
+//
+
+include::master00-amendment_record.adoc[leveloffset=+1]
+
+//
+// --------------------------------------------- Preface -----------------------------------------------
+//
+== Acknowledgements
+
+=== Primary Author
+
+* Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board.
+
+=== Contributors
+
+This specification benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
+
+* Borut Fabjan, Program Manager, Marand, Slovenia
+* Matija Kejžar, Marand, Slovenia
+* Eugeny Leonov, Solit Clouds, Moscow, Russia
+* Bjørn Næss, DIPS, Norway
+
+=== Support
+
+The work reported in this specification has been funded by the following organisations:
+
+* City of Moscow, Russia
+* DIPS, Norway
+* Marand d.o.o., Slovenia
+* Ars Semantica, UK
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation.
+* 'OMG' is a trademark of the Object Management Group.
+
+//
+// --------------------------------------------- TOC -----------------------------------------------
+//
+//toc::[left]
+
+//
+// --------------------------------------------- CHAPTERS -----------------------------------------------
+//
+:sectanchors:
+:sectnums:
+include::master01-preface.adoc[leveloffset=+1]
+include::master02-overview.adoc[leveloffset=+1]
+include::master03-elements.adoc[leveloffset=+1]
+include::master04-patterns.adoc[leveloffset=+1]
+
+
+//
+// --------------------------------------------- REFERENCES -----------------------------------------------
+//
+:sectnums!:
+== References
+
+//include::{base_dir}/docs_common/references/workflow_publications.adoc[leveloffset=+1]

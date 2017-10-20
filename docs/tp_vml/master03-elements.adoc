@@ -1,0 +1,32 @@
+= Elements
+
+== Composites
+
+=== Plans
+
+[.text-center]
+.Plans
+image::diagrams/TP-VML-plans.svg[id=tp_vml_plans, align="center"]
+
+=== Task Groups
+
+=== Conditional Structures
+
+[.text-center]
+.Conditional structures
+image::diagrams/TP-VML-conditionals.svg[id=tp_vml_conditionals, align="center"]
+
+== Primitives
+
+=== Events
+
+[.text-center]
+.Events
+image::diagrams/TP-VML-events.svg[id=tp_vml_events, align="center", width=70%]
+
+=== Tasks
+
+[.text-center]
+.Tasks
+image::diagrams/TP-VML-tasks.svg[id=tp_vml_tasks, align="center", width=70%]
+
