@@ -198,6 +198,4 @@
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_tt_class[TT]
 [.xcode]
-* http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_tt_class[TT]
-[.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_work_plan_class[WORK_PLAN]

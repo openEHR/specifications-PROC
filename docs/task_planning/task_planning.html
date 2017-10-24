@@ -111,15 +111,16 @@
 <li><a href="#_continuous_event_variable_class">5.4.5. CONTINUOUS_EVENT_VARIABLE Class</a></li>
 <li><a href="#_state_variable_class">5.4.6. STATE_VARIABLE Class</a></li>
 <li><a href="#_context_expression_class">5.4.7. CONTEXT_EXPRESSION Class</a></li>
-<li><a href="#_system_call_class">5.4.8. SYSTEM_CALL Class</a></li>
-<li><a href="#_task_lifecycle_enumeration">5.4.9. TASK_LIFECYCLE Enumeration</a></li>
-<li><a href="#_resume_type_enumeration">5.4.10. RESUME_TYPE Enumeration</a></li>
-<li><a href="#_temporal_relation_enumeration">5.4.11. TEMPORAL_RELATION Enumeration</a></li>
-<li><a href="#_execution_type_enumeration">5.4.12. EXECUTION_TYPE Enumeration</a></li>
-<li><a href="#_time_specifier_class">5.4.13. TIME_SPECIFIER Class</a></li>
-<li><a href="#_clock_time_class">5.4.14. CLOCK_TIME Class</a></li>
-<li><a href="#_calendar_time_class">5.4.15. CALENDAR_TIME Class</a></li>
-<li><a href="#_customary_time_class">5.4.16. CUSTOMARY_TIME Class</a></li>
+<li><a href="#_boolean_context_expression_class">5.4.8. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
+<li><a href="#_system_call_class">5.4.9. SYSTEM_CALL Class</a></li>
+<li><a href="#_task_lifecycle_enumeration">5.4.10. TASK_LIFECYCLE Enumeration</a></li>
+<li><a href="#_resume_type_enumeration">5.4.11. RESUME_TYPE Enumeration</a></li>
+<li><a href="#_temporal_relation_enumeration">5.4.12. TEMPORAL_RELATION Enumeration</a></li>
+<li><a href="#_execution_type_enumeration">5.4.13. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_time_specifier_class">5.4.14. TIME_SPECIFIER Class</a></li>
+<li><a href="#_clock_time_class">5.4.15. CLOCK_TIME Class</a></li>
+<li><a href="#_calendar_time_class">5.4.16. CALENDAR_TIME Class</a></li>
+<li><a href="#_customary_time_class">5.4.17. CUSTOMARY_TIME Class</a></li>
 </ul>
 </li>
 </ul>
@@ -420,11 +421,18 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;1.0.0</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-2">SPECPROC-2</a> Fix various typos; add missed <code>BOOLEAN_CONTEXT_EXPRESSION</code>;
+ Remove duplicate attribute <code>WORK_PLAN.<em>events</em></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>24 Oct 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-1">SPECPROC-1</a> Further documentation improvements;
  Added explanations for resume semantics; added <code>RESUME_ACTION</code> class.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Oct 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17 Oct 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9.0</p></td>
@@ -560,6 +568,9 @@
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>City of Moscow</p>
+</li>
 <li>
 <p>Marand d.o.o., Slovenia</p>
 </li>
@@ -1818,7 +1829,7 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>EXPR_TYPE_DEF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>T</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Type of this variable.</p>
 </div></div></td>
@@ -2012,7 +2023,33 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_system_call_class"><a class="anchor" href="#_system_call_class"></a>5.4.8. SYSTEM_CALL Class</h4>
+<h4 id="_boolean_context_expression_class"><a class="anchor" href="#_boolean_context_expression_class"></a>5.4.8. BOOLEAN_CONTEXT_EXPRESSION Class</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>BOOLEAN_CONTEXT_EXPRESSION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Boolean-valued form of <code>CONTEXT_EXPRESSION</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_EXPRESSION</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_system_call_class"><a class="anchor" href="#_system_call_class"></a>5.4.9. SYSTEM_CALL Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2063,7 +2100,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_task_lifecycle_enumeration"><a class="anchor" href="#_task_lifecycle_enumeration"></a>5.4.9. TASK_LIFECYCLE Enumeration</h4>
+<h4 id="_task_lifecycle_enumeration"><a class="anchor" href="#_task_lifecycle_enumeration"></a>5.4.10. TASK_LIFECYCLE Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2146,7 +2183,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_resume_type_enumeration"><a class="anchor" href="#_resume_type_enumeration"></a>5.4.10. RESUME_TYPE Enumeration</h4>
+<h4 id="_resume_type_enumeration"><a class="anchor" href="#_resume_type_enumeration"></a>5.4.11. RESUME_TYPE Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2194,7 +2231,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_temporal_relation_enumeration"><a class="anchor" href="#_temporal_relation_enumeration"></a>5.4.11. TEMPORAL_RELATION Enumeration</h4>
+<h4 id="_temporal_relation_enumeration"><a class="anchor" href="#_temporal_relation_enumeration"></a>5.4.12. TEMPORAL_RELATION Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2242,7 +2279,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_execution_type_enumeration"><a class="anchor" href="#_execution_type_enumeration"></a>5.4.12. EXECUTION_TYPE Enumeration</h4>
+<h4 id="_execution_type_enumeration"><a class="anchor" href="#_execution_type_enumeration"></a>5.4.13. EXECUTION_TYPE Enumeration</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2283,7 +2320,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_time_specifier_class"><a class="anchor" href="#_time_specifier_class"></a>5.4.13. TIME_SPECIFIER Class</h4>
+<h4 id="_time_specifier_class"><a class="anchor" href="#_time_specifier_class"></a>5.4.14. TIME_SPECIFIER Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2305,7 +2342,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_clock_time_class"><a class="anchor" href="#_clock_time_class"></a>5.4.14. CLOCK_TIME Class</h4>
+<h4 id="_clock_time_class"><a class="anchor" href="#_clock_time_class"></a>5.4.15. CLOCK_TIME Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2343,7 +2380,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_calendar_time_class"><a class="anchor" href="#_calendar_time_class"></a>5.4.15. CALENDAR_TIME Class</h4>
+<h4 id="_calendar_time_class"><a class="anchor" href="#_calendar_time_class"></a>5.4.16. CALENDAR_TIME Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2381,7 +2418,7 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="_customary_time_class"><a class="anchor" href="#_customary_time_class"></a>5.4.16. CUSTOMARY_TIME Class</h4>
+<h4 id="_customary_time_class"><a class="anchor" href="#_customary_time_class"></a>5.4.17. CUSTOMARY_TIME Class</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2805,14 +2842,14 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expiry_time</strong>: <code>Duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expiry_time</strong>: <code>IDuration</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Maximal date/time by which this Task Plan should be considered obsolete. If not set, the Task Plan would normally be inferred to be obsolete after a discharge from acute care, but in primary or social care situations, no value may be assumed to indicate that the Tasks are still to be performed, depending on the times specified in the <code><em>execution_time</em></code> attribute of <code>TASKs</code> in the Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>due_time</strong>: <code>Duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>due_time</strong>: <code>IDuration</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Due date/time expressed as an offset, to be converted to a real date/time at activation.</p>
 </div></div></td>
@@ -6586,7 +6623,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 13:02:04 BST
+Last updated 2017-10-21 22:58:14 BST
 </div>
 </div>
 </body>

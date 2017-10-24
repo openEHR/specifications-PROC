@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*BOOLEAN_CONTEXT_EXPRESSION*
 
 h|*Description*
-2+a|
+2+a|Boolean-valued form of `CONTEXT_EXPRESSION`.
 
 h|*Inherit*
 2+|`CONTEXT_EXPRESSION`

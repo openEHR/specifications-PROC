@@ -52,11 +52,11 @@ h|*0..1*
 a|A URI (typically a local URL) that points to the document form of any governing guideline or other best practice publication in use in the current institution. This link provides a way for a clinician to cross-check the Task Plan design and functioning against the definitive document that acts as the source of its semantics.
 
 h|*0..1*
-|*expiry_time*: `Duration`
+|*expiry_time*: `IDuration`
 a|Maximal date/time by which this Task Plan should be considered obsolete. If not set, the Task Plan would normally be inferred to be obsolete after a discharge from acute care, but in primary or social care situations, no value may be assumed to indicate that the Tasks are still to be performed, depending on the times specified in the `_execution_time_` attribute of `TASKs` in the Plan.
 
 h|*0..1*
-|*due_time*: `Duration`
+|*due_time*: `IDuration`
 a|Due date/time expressed as an offset, to be converted to a real date/time at activation.
 
 h|*0..1*

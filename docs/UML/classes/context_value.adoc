@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*type*: `EXPR_TYPE_DEF`
+|*type*: `T`
 a|Type of this variable.
 |===

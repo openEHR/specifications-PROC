@@ -6,11 +6,17 @@
 
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.0.0*
 
-|[[latest_issue]]1.0.0
+|[[latest_issue]]1.0.1
+|{openehr_jira}/SPECPROC-2[SPECPROC-2] Fix various typos; add missed `BOOLEAN_CONTEXT_EXPRESSION`;
+ Remove duplicate attribute `WORK_PLAN._events_`.
+|M Kejžar
+|[[latest_issue_date]]24 Oct 2017
+
+|1.0.0
 |{openehr_jira}/SPECPROC-1[SPECPROC-1] Further documentation improvements;
  Added explanations for resume semantics; added `RESUME_ACTION` class.
 |T Beale
-|[[latest_issue_date]]17 Oct 2017
+|17 Oct 2017
 
 |0.9.0
 |{openehr_jira}/SPECPROC-1[SPECPROC-1] Restructure document;
