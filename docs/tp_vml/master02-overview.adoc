@@ -1,2 +1,14 @@
 = Overview
 
+== Palette
+
+[.text-center]
+.Plans
+image::diagrams/TP-VML-palette.svg[id=tp_vml_palette, align="center"]
+
+== Draw.io Tool mode
+
+The following files can be downloaded and then imported into draw.io as libraries to provide a working palette for TP-VML diagrams.
+
+* link:draw.io-lib/TP-VML-main.xml[TP-VML main]
+* link:draw.io-lib/TP-VML-annotations.xml[TP-VML annotations]
