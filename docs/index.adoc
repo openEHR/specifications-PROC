@@ -19,7 +19,7 @@
 :jira-roadmap: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased
 :jira-hist-issues: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released
 
-image::http://www.openehr.org/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
+image::/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
 
 = Process Model (PROC) - {proc_release}
 
@@ -44,10 +44,10 @@ endif::[]
 |===
 h|Specification h|Description
 
-|http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html[Task Planning Specification]
+|link:/releases/PROC/{proc_release}/task_planning.html[Task Planning Specification]
 |A major extension to the openEHR EHR specifications that defines a formal model for Task Plans and clinical workflow.
 
-|http://www.openehr.org/releases/PROC/{proc_release}/tp_vml.html[TP-VML]
+|link:/releases/PROC/{proc_release}/tp_vml.html[TP-VML]
 |Task Planning Visual Modelling Language - a visual modelling language for Task Planning.
 
 |===
@@ -58,13 +58,13 @@ h|Specification h|Description
 |===
 |Resource |Description
 
-|http://www.openehr.org/releases/PROC/{proc_release}/UML/openEHR_UML-PROC.mdzip[openEHR_UML-PROC.mdzip]
+|link:/releases/PROC/{proc_release}/UML/openEHR_UML-PROC.mdzip[openEHR_UML-PROC.mdzip]
 |UML file for MagicDraw 18.5 for PROC model. Contains UML 2.5 standard XMI file.
 
-|http://www.openehr.org/releases/RM/{rm_release}/UML/openEHR_UML-RM.mdzip[openEHR_UML-RM.mdzip]
+|link:/releases/RM/{rm_release}/UML/openEHR_UML-RM.mdzip[openEHR_UML-RM.mdzip]
 |UML file for MagicDraw 18.5 for RM model. Contains UML 2.5 standard XMI file.
 
-|http://www.openehr.org/releases/BASE/{base_release}/UML/openEHR_UML-Base.mdzip[openEHR_UML-Base.mdzip]
+|link:/releases/BASE/{base_release}/UML/openEHR_UML-Base.mdzip[openEHR_UML-Base.mdzip]
 |UML file for MagicDraw 18.5 for BASE model (included by RM). Contains UML 2.5 standard XMI file.
 
 |===
