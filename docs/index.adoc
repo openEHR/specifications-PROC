@@ -32,7 +32,7 @@ endif::[]
 
 // Use the following version for a named release
 ifeval::["{proc_release}" != "latest"]
-:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/10060
+:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/12501
 :jira-cr-release: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released
 [.title-para]
 {jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
