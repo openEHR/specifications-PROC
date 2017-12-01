@@ -6,9 +6,11 @@ h|*Class*
 2+^h|*SYSTEM_CALL*
 
 h|*Description*
-2+a|Definition of a request to make to a system (i.e. information system or device) via its API, that reads or writes information specific to the Task to which it is attached in an actual Plan.
+2+a|Abstract definition of a request to make to a system (i.e. information system or device) via its API, that reads or writes information specific to the Task to which it is attached in an actual Plan.
 
 This could include OS calls, e.g. to launch an application for a certain user.
+
+The formal signature of the call may be referenced via the `definition` attribute.
 
 h|*Attributes*
 ^h|*Signature*
@@ -23,6 +25,16 @@ h|*1..1*
 a|Name of call in API.
 
 h|*0..1*
-|*parameters*: `Hash<String, String>`
-a|Call parameters.
+|*definition*: 
+a|Signature definition of call.
+
+TODO: to be defined.
+
+h|*0..1*
+|*parameter_map*: `Hash<String, String>`
+a|Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.
+
+h|*0..1*
+|*bound_parameters*: `Hash<String, Any>`
+a|Parameter values fixed for any invocation of the call. For example, a general call such as `_cds_check (type: String, other_args, ...)_` might be used from within the Task Plan in the form `_cds_check ("hypertension risk", other_args, ...)_`, i.e. the first argument is always fixed.
 |===

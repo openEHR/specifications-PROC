@@ -13,6 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
+|*name*: `String`
+a|Name of variable, as used in precondition and decision expressions.
+
+h|*1..1*
 |*type*: `T`
 a|Type of this variable.
 |===

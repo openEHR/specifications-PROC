@@ -1,0 +1,14 @@
+=== API_CALL Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*API_CALL*
+
+h|*Description*
+2+a|Type of System call targetted to a general API, which may by via any concrete technology or protocol. The parameters list will normally consist of heterogeneous types.
+
+h|*Inherit*
+2+|`SYSTEM_CALL`
+
+|===

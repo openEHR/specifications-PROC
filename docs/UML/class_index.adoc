@@ -6,6 +6,8 @@
 ==== Package task_planning
 
 [.xcode]
+* http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_api_call_class[API_CALL]
+[.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_boolean_context_expression_class[BOOLEAN_CONTEXT_EXPRESSION]
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_calendar_entry_class[CALENDAR_ENTRY]
@@ -23,6 +25,8 @@
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_condition_branch_class[CONDITION_BRANCH]
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_condition_group_class[CONDITION_GROUP]
+[.xcode]
+* http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_context_constant_class[CONTEXT_CONSTANT]
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_context_expression_class[CONTEXT_EXPRESSION]
 [.xcode]
@@ -123,6 +127,8 @@
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_plan_item_class[PLAN_ITEM]
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_plan_timeline_class[PLAN_TIMELINE]
+[.xcode]
+* http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_query_call_class[QUERY_CALL]
 [.xcode]
 * http://www.openehr.org/releases/PROC/{proc_release}/task_planning.html#_reminder_class[REMINDER]
 [.xcode]

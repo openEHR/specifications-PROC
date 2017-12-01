@@ -24,10 +24,6 @@ image::diagrams/task_planning_overview.svg[id=task_planning_overview, align="cen
 
 With a Task Plan, various elements need to be referenceable at runtime. Tasks and Task Groups are identified via the `_uid_` attribute inherited from `LOCATABLE` via `PLAN_ITEM`, and which is populated with a Guid. References to a Task or Task Group are thus achieved with `UID_BASED_ID` instances carrying a Guid.
 
-== Specifying Time
-
-Generic classes for specifying time formally and in customary form such as 'afternoon' are provided for use in the main model. These are shown bottom right of the above UML diagram: `TIME_SPECIFIER` and descendants.
-
 == Plan Data Context
 
 A Task Plan may contain logical _variable references_ and _expressions_, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. 
@@ -38,46 +34,177 @@ image::{uml_export_dir}/diagrams/PROC-task_planning.definition-context.svg[id=pr
 
 An instance of `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic _variables_ or _expressions_ that reference such variables, respectively represented by the classes `CONTEXT_VARIABLE<T>` and `CONTEXT_EXPRESSION<T>`. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.
 
-Variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as `systolic_bp - diastolic_bp`, where `systolic_bp` and `diastolic_bp` are defined as single variables. The syntax of expressions is defined by the {openehr_expression}[openEHR Expression language].
+Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as `bp_systolic - bp_diastolic`, where `bp_systolic` and `bp_diastolic` are defined as single variables. The syntax of expressions is defined by the {openehr_expression}[openEHR Expression language].
 
 Each context variable has a symbolic name (`CONTEXT_VARIABLE._name_`), a type from within the openEHR type system (`EXPR_TYPE_DEF`), and a _populating_request_, which defines how to populate the variable with a System Request, typically an EHR query or similar.
 
 There are two types of variables - 'event' and 'state', which distinguish the update basis. An Event variable is 'watched' by some technical means, and its value is updated whenever it changes. The `CONTINUOUS_EVENT_VARIABLE` specialised type can be used for managing updates of continuous valued variables (i.e. real values) such that changes below a certain threshold, say 2% do not register.
 
-== Class Descriptions
+=== Class Descriptions
 
-include::{uml_export_dir}/classes/plan_data_context.adoc[]
+include::{uml_export_dir}/classes/plan_data_context.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/context_value.adoc[]
+include::{uml_export_dir}/classes/context_value.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/context_variable.adoc[]
+include::{uml_export_dir}/classes/context_variable.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/event_variable.adoc[]
+include::{uml_export_dir}/classes/event_variable.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/continuous_event_variable.adoc[]
+include::{uml_export_dir}/classes/continuous_event_variable.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/state_variable.adoc[]
+include::{uml_export_dir}/classes/state_variable.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/context_expression.adoc[]
+include::{uml_export_dir}/classes/context_expression.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/boolean_context_expression.adoc[]
+include::{uml_export_dir}/classes/boolean_context_expression.adoc[leveloffset=+1]
 
+== System Calls
 
-include::{uml_export_dir}/classes/system_call.adoc[]
+The `SYSTEM_CALL` class and its descendants provide a way to represent a call to any service or interface available within the computing environment. The class attributes are designed to carry sufficient meta-data such that a call invocation module or plug-in in the Task Planning execution environment can convert the call to a concrete form (e.g. a REST or RPC call) and then execute it.
 
-include::{uml_export_dir}/classes/task_lifecycle.adoc[]
+=== Generic API calls
 
-include::{uml_export_dir}/classes/resume_type.adoc[]
+The representation of a generic API call is via the `API_CALL` class, while the `QUERY_CALL` class provides a way to represent a call to a query service.
 
-include::{uml_export_dir}/classes/temporal_relation.adoc[]
+For generic API calls, the assumed model of calling is as follows: when the call is invoked, all required parameters are passed; these are obtained from two sources:
 
-include::{uml_export_dir}/classes/execution_type.adoc[]
+* _variables_: context variables, Work Plan built-in variables (see below);
+* _fixed parameters_: parameters whose value is fixed from the point of view of the Plan definition.
 
+The first is specified via the `_parameter_map_` attribute, which defines the mapping between the external call parameter names and the names of variables that will be used to populate them at invocation. For example, assume there is an API call in a clinical decision support service with the following signature, which is to be used in a Task Plan:
 
-include::{uml_export_dir}/classes/time_specifier.adoc[]
+[source, typescript]
+----
+    cds_calc_risk (
+        risk_type:  String;
+        sex: CodedText;
+        date_of_birth: Iso8601Date;
+        is_smoker: Boolean;
+    ): Real
+----
 
-include::{uml_export_dir}/classes/clock_time.adoc[]
+The `_parameter_map_` attribute of the `SYSTEM_CALL` instance will contain the following, where the right hand item in each case is the name of a Work Plan context variable:
 
-include::{uml_export_dir}/classes/calendar_time.adoc[]
+[source, json]
+----
+    {
+        "parameter_map": {
+            "sex":           "subject_sex",
+            "date_of_birth": "subject_dob",
+            "is_smoker":     "tobacco_use_status"
+        }
+    }
+----
 
-include::{uml_export_dir}/classes/customary_time.adoc[]
+This tells the Task Plan execution system to inject the current value of the context variable `subject_sex` into the location where the `sex` parameter is expected and so on.
+
+[.tbd]
+TBD: we may need to allow functions, so that data type/structure conversions can be managed.
+
+The second type of parameter is a fixed value, which enables the System call to represent the external call in a preferred way. An example of this is a general API call such as `cds_check (type: String, other_args, ...)` might be used from within the Task Plan with the first argument fixed in each case, to form specific invocations, e.g. `cds_check ("hypertension risk", other_args, ...)`, `cds_check ("diabetes type 2 risk", other_args, ...)` etc. Fixed parameters are represented in the `_bound_parameters_` attribute of a `SYSTEM_CALL` instance.
+
+The total set of parameters for any System call is provided by the combination of the contents of the `_parameter_map_` and `_bound_parameters_` attributes, where either may be empty.
+
+=== Query Calls
+
+The above provides for API calls whose signature definition may be more or less anything. For the case of query invocation, some simplifying assumptions can be made, and in the interests of clarity, the `QUERY_CALL` class is defined for this purpose. A `QUERY_CALL` instance represents a query invocation which is assumed to take the  form of either an ad hoc query or a stored query, with substitutable parameters. The external calls are therefore assumed to take one of the two forms:
+
+[source, typescript]
+----
+    // ad hoc query call
+    execute_ad_hoc_query (
+        query_text: String;
+        args: Hash<String, String>;
+    ): Result
+    
+    // stored query call
+    execute_stored_query (
+        query_id: String;
+        args: Hash<String, String>;
+    ): Result
+    
+----
+
+In the first case, a query string is supplied; in the second, the registered identifier of a stored query is supplied. In both cases, the substitutable parameters are supplied though the `args` attribute, which is a keyed list of `String` values that can be substituted into the replaceable parameters found in the query.
+
+In order to represent an invocation of either of these calls, the `_parameter_map_` attribute is used to represent the map between the names of _the substitutable parameters in the query_ and variables from the Work Plan context. Since these are often likely to be the same (almost certainly the case for ad hoc queries), mappings are only required for substitutable variables whose names differ in the query and in the Plan context variable set.
+
+The `_bound_parameters_` may be used in a similar fashion, to represent fixed-value substitutable parameters.
+
+As a consequence of this scheme, the total set of replaceable query parameters is specified by the combination of the `_parameter_map_`, the `_bound_parameters_` and the context variables. In many cases, only the latter may be used.
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/system_call.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/api_call.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/query_call.adoc[leveloffset=+1]
+
+== Variable Referencing
+
+Within the expressions and System calls used in Task definitions, various variables may be used. These includ the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. `var_name` and `varName` refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.
+
+Within expressions, defined variables are referenced using their plain name, i.e. `var_name` or `varName`. Within System calls there are two places where variable references may appear:
+
+* within the `_parameters_` list, to indicate the mapping of a call parameter to a variable defined in the Work Plan context;
+* as lexical inline replaceable parameters within a call parameter that represents an ad hoc query string or similar.
+
+For the first case, the plain name is used. In the second case, variables usually appear within query strings in a lexical form that depends on the particular kind of query syntax, i.e. forms such as:
+
+* `$var_name` - openEHR AQL;
+* `@varName` - SQL Server, Oracle, PostGres 9 or later;
+* `$[varName]` - some SQL implementations.
+
+[.tbd]
+TBD: do we need another property to record the type of query syntax, e.g. 'aql', 'oracle-sql', or variable syntax, since it is not a SQL standard?
+
+The following table describes the variables available within a 
+
+[cols="1,1,1,3", options="header"]
+|===
+|Name                              |Type               |Status     |Description
+
+4+|_Work plan-defined variables_
+|`work_plan_id` / `workPlanId`     |`String`           |Standard   |Variable referring to current `WORK_PLAN._uid_`
+|`task_plan_id` / `taskPlanId`     |`String`           |Standard   |Variable referring to current `TASK_PLAN._uid_`
+|`task_group_id` / `taskGroupId`   |`String`           |Standard   |Variable referring to current `TASK_GROUP._uid_`
+|`task_id` / `taskId`              |`String`           |Standard   |Variable referring to current `TASK._uid_`
+|`subject_id` / `subjectId`        |`String`           |Standard   |Variable referring to current `WORK_PLAN._subject.external_ref.id.value_`
+
+4+|_Context variables and expressions_
+|`var_name` / `varName`            |`Any`              |Standard   |Any variable or expression, e.g. `$heart_rate`;
+|`ehr_id` / `ehrId`                |`String`           |Preferred  |Variable referring to EHR id of EHR of the subject of the Task Plan
+|`bp_systolic` / `bpSystolic`      |`Real`             |Preferred  |Variable referring to subject current systolic arterial blood pressure
+|`bp_diastolic` / `bpDiastolic`    |`Real`             |Preferred  |Variable referring to subject current diastolic arterial blood pressure
+|`heart_rate` / `heartRate`        |`Real`             |Preferred  |Variable referring to subject current heart rate
+
+|===
+
+== Specifying Time
+
+Generic classes for specifying time formally and in customary form such as 'afternoon' are provided for use in the main model. These are shown bottom right of the above UML diagram: `TIME_SPECIFIER` and descendants.
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/time_specifier.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/clock_time.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/calendar_time.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/customary_time.adoc[leveloffset=+1]
+
+== Enumerated Types
+
+Various enumerated types are defined in the `definitions` package, for use by the definition, materialised and runtime models.
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/task_lifecycle.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/resume_type.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/temporal_relation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]

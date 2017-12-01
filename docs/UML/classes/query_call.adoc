@@ -1,0 +1,36 @@
+=== QUERY_CALL Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*QUERY_CALL*
+
+h|*Description*
+2+a|Type of System Call that is to a query service, where calls are available for executing ad hoc queries and stored queries. For the ad hoc case, the parameters are of the form:
+
+* `_query_text_: String`
+* `_query_parameters_: Hash<String, String>`
+
+while for the stored query case, a `_query_id_` would be supplied instead of the `_query_text_: String`.
+
+In the context of a Work Plan / Task Plan, query parameters  supplied from three places:
+
+* for substitutable parameters having the same name as context variables, by implicit substitution;
+* for parameters with different names, `_parameter_map_` defines the mapping;
+* for fixed parameters, `_bound_parameters_` contains the values.
+
+h|*Inherit*
+2+|`SYSTEM_CALL`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*query_id*: `String`
+a|Identifier of a stored query.
+
+h|*0..1*
+|*query_text*: `String`
+a|Ad hoc query text.
+|===
