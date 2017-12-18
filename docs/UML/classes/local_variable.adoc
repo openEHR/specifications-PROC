@@ -1,0 +1,14 @@
+=== LOCAL_VARIABLE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*LOCAL_VARIABLE*
+
+h|*Description*
+2+a|Variable that is used locally within the Work Plan, and can be used to transmit information to sub-plans.
+
+h|*Inherit*
+2+|`CONTEXT_VARIABLE`
+
+|===

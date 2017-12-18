@@ -26,19 +26,22 @@ With a Task Plan, various elements need to be referenceable at runtime. Tasks an
 
 == Plan Data Context
 
-A Task Plan may contain logical _variable references_ and _expressions_, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates. 
+A Task Plan may contain logical _symbolic values_ of various kinds, including _constants_, _variable references_ and _expressions_, which are used in within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. Each context value has a symbolic name (`CONTEXT_VALUE._name_`), a type from within the openEHR type system (`EXPR_TYPE_DEF`).
+The following UML diagram illustrates. 
 
 [.text-center]
 .Task planning - context values
 image::{uml_export_dir}/diagrams/PROC-task_planning.definition-context.svg[id=proc_task_planning_context, align="center"]
 
-An instance of `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic _variables_ or _expressions_ that reference such variables, respectively represented by the classes `CONTEXT_VARIABLE<T>` and `CONTEXT_EXPRESSION<T>`. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.
+An instance of `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic _variables_ or _constants_, or else _expressions_ that reference such variables, respectively represented by the classes `CONTEXT_VARIABLE<T>`, `CONTEXT_CONSTANT<T>` and `CONTEXT_EXPRESSION<T>`. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.
 
-Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as `bp_systolic - bp_diastolic`, where `bp_systolic` and `bp_diastolic` are defined as single variables. The syntax of expressions is defined by the {openehr_expression}[openEHR Expression language].
+Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as `$bp_systolic - $bp_diastolic`, where `$bp_systolic` and `$bp_diastolic` are defined as single variables. The syntax of expressions is defined by the {openehr_expression}[openEHR Expression language].
 
-Each context variable has a symbolic name (`CONTEXT_VARIABLE._name_`), a type from within the openEHR type system (`EXPR_TYPE_DEF`), and a _populating_request_, which defines how to populate the variable with a System Request, typically an EHR query or similar.
+Two types of context variable are distinguished: external and local, represented by `EXTERNAL_VARIABLE<t>` and `LOCAL_VARIABLE<T>`. The former represent values of entities outside the task planning environment, and are written to via a `_populating_request_` which uses some method (such as EHR querying, API calls) to obtain the relevant external value. They are accordingly not writable from within the Work Plan.
 
-There are two types of variables - 'event' and 'state', which distinguish the update basis. An Event variable is 'watched' by some technical means, and its value is updated whenever it changes. The `CONTINUOUS_EVENT_VARIABLE` specialised type can be used for managing updates of continuous valued variables (i.e. real values) such that changes below a certain threshold, say 2% do not register.
+There are two types of external variables - 'event' and 'state', which distinguish the update basis. An Event variable is 'watched' by some technical means, and its value is updated whenever it changes. The `CONTINUOUS_EVENT_VARIABLE` specialised type can be used for managing updates of continuous valued variables (i.e. real values) such that changes below a certain threshold, say 2% do not register.
+
+Local variables are internal to the Work Plan, and can be read and written to by expressions used within Tasks in the Plan.
 
 === Class Descriptions
 
@@ -47,6 +50,10 @@ include::{uml_export_dir}/classes/plan_data_context.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/context_value.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/context_variable.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/external_variable.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/local_variable.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/event_variable.adoc[leveloffset=+1]
 
@@ -143,14 +150,14 @@ include::{uml_export_dir}/classes/query_call.adoc[leveloffset=+1]
 
 == Variable Referencing
 
-Within the expressions and System calls used in Task definitions, various variables may be used. These includ the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. `var_name` and `varName` refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.
+Within the expressions and System calls used in Task definitions, various variables may be used. These includ the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. `$var_name` and `$varName` refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.
 
-Within expressions, defined variables are referenced using their plain name, i.e. `var_name` or `varName`. Within System calls there are two places where variable references may appear:
+Within expressions, defined variables are referenced using the '$' syntax, i.e. `$var_name` or `$varName`. Within System calls there are two places where variable references may appear:
 
 * within the `_parameters_` list, to indicate the mapping of a call parameter to a variable defined in the Work Plan context;
 * as lexical inline replaceable parameters within a call parameter that represents an ad hoc query string or similar.
 
-For the first case, the plain name is used. In the second case, variables usually appear within query strings in a lexical form that depends on the particular kind of query syntax, i.e. forms such as:
+For the first case, the '$' name form is used. In the second case, variables usually appear within query strings in a lexical form that depends on the particular kind of query syntax, i.e. forms such as:
 
 * `$var_name` - openEHR AQL;
 * `@varName` - SQL Server, Oracle, PostGres 9 or later;
@@ -159,25 +166,25 @@ For the first case, the plain name is used. In the second case, variables usuall
 [.tbd]
 TBD: do we need another property to record the type of query syntax, e.g. 'aql', 'oracle-sql', or variable syntax, since it is not a SQL standard?
 
-The following table describes the variables available within a 
+The following table describes the variables available within a typical Work Plan.
 
 [cols="1,1,1,3", options="header"]
 |===
-|Name                              |Type               |Status     |Description
+|Name                                |Type               |Status     |Description
 
 4+|_Work plan-defined variables_
-|`work_plan_id` / `workPlanId`     |`String`           |Standard   |Variable referring to current `WORK_PLAN._uid_`
-|`task_plan_id` / `taskPlanId`     |`String`           |Standard   |Variable referring to current `TASK_PLAN._uid_`
-|`task_group_id` / `taskGroupId`   |`String`           |Standard   |Variable referring to current `TASK_GROUP._uid_`
-|`task_id` / `taskId`              |`String`           |Standard   |Variable referring to current `TASK._uid_`
-|`subject_id` / `subjectId`        |`String`           |Standard   |Variable referring to current `WORK_PLAN._subject.external_ref.id.value_`
+|`$work_plan_id` / `$workPlanId`     |`String`           |Standard   |Variable referring to current `WORK_PLAN._uid_`
+|`$task_plan_id` / `$taskPlanId`     |`String`           |Standard   |Variable referring to current `TASK_PLAN._uid_`
+|`$task_group_id` / `$taskGroupId`   |`String`           |Standard   |Variable referring to current `TASK_GROUP._uid_`
+|`$task_id` / `$taskId`              |`String`           |Standard   |Variable referring to current `TASK._uid_`
+|`$subject_id` / `$subjectId`        |`String`           |Standard   |Variable referring to current `WORK_PLAN._subject.external_ref.id.value_`
 
 4+|_Context variables and expressions_
-|`var_name` / `varName`            |`Any`              |Standard   |Any variable or expression, e.g. `$heart_rate`;
-|`ehr_id` / `ehrId`                |`String`           |Preferred  |Variable referring to EHR id of EHR of the subject of the Task Plan
-|`bp_systolic` / `bpSystolic`      |`Real`             |Preferred  |Variable referring to subject current systolic arterial blood pressure
-|`bp_diastolic` / `bpDiastolic`    |`Real`             |Preferred  |Variable referring to subject current diastolic arterial blood pressure
-|`heart_rate` / `heartRate`        |`Real`             |Preferred  |Variable referring to subject current heart rate
+|`$var_name` / `$varName`            |`Any`              |Standard   |Any variable or expression, e.g. `$heart_rate`;
+|`$ehr_id` / `$ehrId`                |`String`           |Preferred  |Variable referring to EHR id of EHR of the subject of the Task Plan
+|`$bp_systolic` / `$bpSystolic`      |`Real`             |Preferred  |Variable referring to subject current systolic arterial blood pressure
+|`$bp_diastolic` / `$bpDiastolic`    |`Real`             |Preferred  |Variable referring to subject current diastolic arterial blood pressure
+|`$heart_rate` / `$heartRate`        |`Real`             |Preferred  |Variable referring to subject current heart rate
 
 |===
 

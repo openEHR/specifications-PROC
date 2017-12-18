@@ -9,7 +9,7 @@ h|*Description*
 2+a|Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.
 
 h|*Inherit*
-2+|`CONTEXT_VARIABLE`
+2+|`EXTERNAL_VARIABLE`
 
 h|*Attributes*
 ^h|*Signature*

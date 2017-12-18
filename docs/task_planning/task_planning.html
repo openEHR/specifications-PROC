@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
 <meta name="description" content="openEHR Task Planning Specification">
 <meta name="keywords" content="task, planning, EHR, EMR, reference model, openehr">
 <title>Task Planning Model Specification</title>
@@ -107,11 +107,13 @@
 <li><a href="#_plan_data_context_class">5.2.1.1. PLAN_DATA_CONTEXT Class</a></li>
 <li><a href="#_context_value_class">5.2.1.2. CONTEXT_VALUE Class</a></li>
 <li><a href="#_context_variable_class">5.2.1.3. CONTEXT_VARIABLE Class</a></li>
-<li><a href="#_event_variable_class">5.2.1.4. EVENT_VARIABLE Class</a></li>
-<li><a href="#_continuous_event_variable_class">5.2.1.5. CONTINUOUS_EVENT_VARIABLE Class</a></li>
-<li><a href="#_state_variable_class">5.2.1.6. STATE_VARIABLE Class</a></li>
-<li><a href="#_context_expression_class">5.2.1.7. CONTEXT_EXPRESSION Class</a></li>
-<li><a href="#_boolean_context_expression_class">5.2.1.8. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
+<li><a href="#_external_variable_class">5.2.1.4. EXTERNAL_VARIABLE Class</a></li>
+<li><a href="#_local_variable_class">5.2.1.5. LOCAL_VARIABLE Class</a></li>
+<li><a href="#_event_variable_class">5.2.1.6. EVENT_VARIABLE Class</a></li>
+<li><a href="#_continuous_event_variable_class">5.2.1.7. CONTINUOUS_EVENT_VARIABLE Class</a></li>
+<li><a href="#_state_variable_class">5.2.1.8. STATE_VARIABLE Class</a></li>
+<li><a href="#_context_expression_class">5.2.1.9. CONTEXT_EXPRESSION Class</a></li>
+<li><a href="#_boolean_context_expression_class">5.2.1.10. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
 </li>
 </ul>
@@ -452,15 +454,21 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;1.?.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.0.?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-5">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Dec 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
  Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
- Add <code>CONTEXT_CONSTANT</code> type.<br>
+ Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.<br>
  <a href="https://openehr.atlassian.net/browse/SPECPROC-4">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Dec 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 Dec 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.1</p></td>
@@ -1492,8 +1500,8 @@
                           (archetypes and templates<br>
                           of definition classes)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">At the <em>model</em> level, a Work Plan and its constituent Task Plans are represented in the form of openEHR
-                                                      templated archetype(s) based on the Task Planning definition model of this specification.
-</p><p class="tableblock">                                                      Multiple layers of modelling may be used to represent a range of Plan Templates from the more
+                                                      templated archetype(s) based on the Task Planning definition model of this specification.</p>
+<p class="tableblock">                                                      Multiple layers of modelling may be used to represent a range of Plan Templates from the more
                                                       general to the specific, and then templated to define a <em>near subject-specific Plan</em>. For example
                                                       a general model may be built to represent a 'chemotherapy' Plan; a specalised form of this may
                                                       represent R-CHOP protocols; an even more specialised one may represent a particular institution&#8217;s
@@ -1507,8 +1515,8 @@
                           classes)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">When a Work Plan model is <em>used</em>, it is created as instances of the Task Planning definition
                                                       model (i.e. in the technical class/instance sense), and the result is understood as a <em>concrete</em> definition
-                                                      of the Task Plan to be used in a specific situation for a specific subject (i.e. patient).
-</p><p class="tableblock">                                                      When the instantiation is performed, the model-user may provide values for particular parts of the model,
+                                                      of the Task Plan to be used in a specific situation for a specific subject (i.e. patient).</p>
+<p class="tableblock">                                                      When the instantiation is performed, the model-user may provide values for particular parts of the model,
                                                       such as medication dosages, that correspond to the particular patient. They may also make other limited adjustments that are compatible with the archetypes and template.</p></td>
 </tr>
 <tr>
@@ -1519,11 +1527,11 @@
                          materialised classes,<br>
                          persisted over sessions)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Close to Plan execution time, a Work Plan definition will be 'materialised', i.e. instantiated into a form that                                can be used for execution and tracking of the Plan. At the point of materialisation, the definition model must
-                                                      be published and persisted, guaranteeing the its availability as the reference model for its materialised expressions. It may be materialised any number of times, corresponding to the distinct number of instances of use required. Each materialisation
-</p><p class="tableblock">                                                      In the materialised form, repeatable sections of the definition are 'unfolded' into literal sections, for as many repetitions as required by the relevant performer(s). Accordingly, parts of the materialised expression of a Plan may have an N:1 relationship with the original definition form.
-</p><p class="tableblock">                                                      Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form
-                                                      compared to the definition form.
-</p><p class="tableblock">                                                      The materialised form has its own class model containing additional data items to enable run-time tracking of the Plan as it is performed. During execution time, various kinds of deletions and modifications to the materialised representation are possible, corresponding to changes in plan that respond to unexpected events.</p></td>
+                                                      be published and persisted, guaranteeing the its availability as the reference model for its materialised expressions. It may be materialised any number of times, corresponding to the distinct number of instances of use required. Each materialisation</p>
+<p class="tableblock">                                                      In the materialised form, repeatable sections of the definition are 'unfolded' into literal sections, for as many repetitions as required by the relevant performer(s). Accordingly, parts of the materialised expression of a Plan may have an N:1 relationship with the original definition form.</p>
+<p class="tableblock">                                                      Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form
+                                                      compared to the definition form.</p>
+<p class="tableblock">                                                      The materialised form has its own class model containing additional data items to enable run-time tracking of the Plan as it is performed. During execution time, various kinds of deletions and modifications to the materialised representation are possible, corresponding to changes in plan that respond to unexpected events.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clinical time -<br>
@@ -1778,7 +1786,8 @@
 <div class="sect2">
 <h3 id="_plan_data_context"><a class="anchor" href="#_plan_data_context"></a>5.2. Plan Data Context</h3>
 <div class="paragraph">
-<p>A Task Plan may contain logical <em>variable references</em> and <em>expressions</em>, which are used in various ways within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. To facilitate their definition and computable use, they are fully typed. The following UML diagram illustrates.</p>
+<p>A Task Plan may contain logical <em>symbolic values</em> of various kinds, including <em>constants</em>, <em>variable references</em> and <em>expressions</em>, which are used in within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. Each context value has a symbolic name (<code>CONTEXT_VALUE.<em>name</em></code>), a type from within the openEHR type system (<code>EXPR_TYPE_DEF</code>).
+The following UML diagram illustrates.</p>
 </div>
 <div id="proc_task_planning_context" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -1787,16 +1796,19 @@
 <div class="title">Figure 11. Task planning - context values</div>
 </div>
 <div class="paragraph">
-<p>An instance of <code>PLAN_DATA_CONTEXT</code> represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic <em>variables</em> or <em>expressions</em> that reference such variables, respectively represented by the classes <code>CONTEXT_VARIABLE&lt;T&gt;</code> and <code>CONTEXT_EXPRESSION&lt;T&gt;</code>. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.</p>
+<p>An instance of <code>PLAN_DATA_CONTEXT</code> represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic <em>variables</em> or <em>constants</em>, or else <em>expressions</em> that reference such variables, respectively represented by the classes <code>CONTEXT_VARIABLE&lt;T&gt;</code>, <code>CONTEXT_CONSTANT&lt;T&gt;</code> and <code>CONTEXT_EXPRESSION&lt;T&gt;</code>. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.</p>
 </div>
 <div class="paragraph">
-<p>Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as <code>bp_systolic - bp_diastolic</code>, where <code>bp_systolic</code> and <code>bp_diastolic</code> are defined as single variables. The syntax of expressions is defined by the <a href="/releases/BASE/latest/expression.html">openEHR Expression language</a>.</p>
+<p>Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as <code>$bp_systolic - $bp_diastolic</code>, where <code>$bp_systolic</code> and <code>$bp_diastolic</code> are defined as single variables. The syntax of expressions is defined by the <a href="/releases/BASE/latest/expression.html">openEHR Expression language</a>.</p>
 </div>
 <div class="paragraph">
-<p>Each context variable has a symbolic name (<code>CONTEXT_VARIABLE.<em>name</em></code>), a type from within the openEHR type system (<code>EXPR_TYPE_DEF</code>), and a <em>populating_request</em>, which defines how to populate the variable with a System Request, typically an EHR query or similar.</p>
+<p>Two types of context variable are distinguished: external and local, represented by <code>EXTERNAL_VARIABLE&lt;t&gt;</code> and <code>LOCAL_VARIABLE&lt;T&gt;</code>. The former represent values of entities outside the task planning environment, and are written to via a <code><em>populating_request</em></code> which uses some method (such as EHR querying, API calls) to obtain the relevant external value. They are accordingly not writable from within the Work Plan.</p>
 </div>
 <div class="paragraph">
-<p>There are two types of variables - 'event' and 'state', which distinguish the update basis. An Event variable is 'watched' by some technical means, and its value is updated whenever it changes. The <code>CONTINUOUS_EVENT_VARIABLE</code> specialised type can be used for managing updates of continuous valued variables (i.e. real values) such that changes below a certain threshold, say 2% do not register.</p>
+<p>There are two types of external variables - 'event' and 'state', which distinguish the update basis. An Event variable is 'watched' by some technical means, and its value is updated whenever it changes. The <code>CONTINUOUS_EVENT_VARIABLE</code> specialised type can be used for managing updates of continuous valued variables (i.e. real values) such that changes below a certain threshold, say 2% do not register.</p>
+</div>
+<div class="paragraph">
+<p>Local variables are internal to the Work Plan, and can be read and written to by expressions used within Tasks in the Plan.</p>
 </div>
 <div class="sect3">
 <h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>5.2.1. Class Descriptions</h4>
@@ -1910,6 +1922,32 @@
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VALUE</code></p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_external_variable_class"><a class="anchor" href="#_external_variable_class"></a>5.2.1.4. EXTERNAL_VARIABLE Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>EXTERNAL_VARIABLE (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>A variable that carries a value from the external environment, including patient variables, and has a method of being populated. Cannot be written to from within the TP environment.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VARIABLE</code></p></td>
+</tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
@@ -1926,7 +1964,33 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_variable_class"><a class="anchor" href="#_event_variable_class"></a>5.2.1.4. EVENT_VARIABLE Class</h5>
+<h5 id="_local_variable_class"><a class="anchor" href="#_local_variable_class"></a>5.2.1.5. LOCAL_VARIABLE Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>LOCAL_VARIABLE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Variable that is used locally within the Work Plan, and can be used to transmit information to sub-plans.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VARIABLE</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_event_variable_class"><a class="anchor" href="#_event_variable_class"></a>5.2.1.6. EVENT_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1946,13 +2010,13 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_continuous_event_variable_class"><a class="anchor" href="#_continuous_event_variable_class"></a>5.2.1.5. CONTINUOUS_EVENT_VARIABLE Class</h5>
+<h5 id="_continuous_event_variable_class"><a class="anchor" href="#_continuous_event_variable_class"></a>5.2.1.7. CONTINUOUS_EVENT_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1990,7 +2054,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.6. STATE_VARIABLE Class</h5>
+<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.8. STATE_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2010,7 +2074,7 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2028,7 +2092,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_expression_class"><a class="anchor" href="#_context_expression_class"></a>5.2.1.7. CONTEXT_EXPRESSION Class</h5>
+<h5 id="_context_expression_class"><a class="anchor" href="#_context_expression_class"></a>5.2.1.9. CONTEXT_EXPRESSION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2066,7 +2130,7 @@
 </table>
 </div>
 <div class="sect4">
-<h5 id="_boolean_context_expression_class"><a class="anchor" href="#_boolean_context_expression_class"></a>5.2.1.8. BOOLEAN_CONTEXT_EXPRESSION Class</h5>
+<h5 id="_boolean_context_expression_class"><a class="anchor" href="#_boolean_context_expression_class"></a>5.2.1.10. BOOLEAN_CONTEXT_EXPRESSION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2121,12 +2185,12 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="typescript">    <span class="tok-nx">cds_calc_risk</span> <span class="tok-p">(</span>
-        <span class="tok-nx">risk_type</span>:  <span class="tok-kt">String</span><span class="tok-p">;</span>
-        <span class="tok-nx">sex</span>: <span class="tok-kt">CodedText</span><span class="tok-p">;</span>
-        <span class="tok-nx">date_of_birth</span>: <span class="tok-kt">Iso8601Date</span><span class="tok-p">;</span>
-        <span class="tok-nx">is_smoker</span>: <span class="tok-kt">Boolean</span><span class="tok-p">;</span>
-    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Real</span></code></pre>
+<pre class="pygments highlight"><code data-lang="typescript">    cds_calc_risk (
+        risk_type:  String;
+        sex: CodedText;
+        date_of_birth: Iso8601Date;
+        is_smoker: Boolean;
+    ): Real</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2163,17 +2227,17 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="typescript">    <span class="tok-c1">// ad hoc query call</span>
-    <span class="tok-nx">execute_ad_hoc_query</span> <span class="tok-p">(</span>
-        <span class="tok-nx">query_text</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
-        <span class="tok-nx">args</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
-    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span>
+<pre class="pygments highlight"><code data-lang="typescript">    // ad hoc query call
+    execute_ad_hoc_query (
+        query_text: String;
+        args: Hash&lt;String, String&gt;;
+    ): Result
 
-    <span class="tok-c1">// stored query call</span>
-    <span class="tok-nx">execute_stored_query</span> <span class="tok-p">(</span>
-        <span class="tok-nx">query_id</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
-        <span class="tok-nx">args</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
-    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span></code></pre>
+    // stored query call
+    execute_stored_query (
+        query_id: String;
+        args: Hash&lt;String, String&gt;;
+    ): Result</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2367,10 +2431,10 @@
 <div class="sect2">
 <h3 id="_variable_referencing"><a class="anchor" href="#_variable_referencing"></a>5.4. Variable Referencing</h3>
 <div class="paragraph">
-<p>Within the expressions and System calls used in Task definitions, various variables may be used. These includ the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. <code>var_name</code> and <code>varName</code> refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.</p>
+<p>Within the expressions and System calls used in Task definitions, various variables may be used. These includ the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. <code>$var_name</code> and <code>$varName</code> refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.</p>
 </div>
 <div class="paragraph">
-<p>Within expressions, defined variables are referenced using their plain name, i.e. <code>var_name</code> or <code>varName</code>. Within System calls there are two places where variable references may appear:</p>
+<p>Within expressions, defined variables are referenced using the '$' syntax, i.e. <code>$var_name</code> or <code>$varName</code>. Within System calls there are two places where variable references may appear:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2383,7 +2447,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>For the first case, the plain name is used. In the second case, variables usually appear within query strings in a lexical form that depends on the particular kind of query syntax, i.e. forms such as:</p>
+<p>For the first case, the '$' name form is used. In the second case, variables usually appear within query strings in a lexical form that depends on the particular kind of query syntax, i.e. forms such as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2402,7 +2466,7 @@
 <p>TBD: do we need another property to record the type of query syntax, e.g. 'aql', 'oracle-sql', or variable syntax, since it is not a SQL standard?</p>
 </div>
 <div class="paragraph">
-<p>The following table describes the variables available within a</p>
+<p>The following table describes the variables available within a typical Work Plan.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2424,31 +2488,31 @@
 <td class="tableblock halign-left valign-top" colspan="4"><p class="tableblock"><em>Work plan-defined variables</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>work_plan_id</code> / <code>workPlanId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$work_plan_id</code> / <code>$workPlanId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to current <code>WORK_PLAN.<em>uid</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>task_plan_id</code> / <code>taskPlanId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$task_plan_id</code> / <code>$taskPlanId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to current <code>TASK_PLAN.<em>uid</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>task_group_id</code> / <code>taskGroupId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$task_group_id</code> / <code>$taskGroupId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to current <code>TASK_GROUP.<em>uid</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>task_id</code> / <code>taskId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$task_id</code> / <code>$taskId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to current <code>TASK.<em>uid</em></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subject_id</code> / <code>subjectId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$subject_id</code> / <code>$subjectId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to current <code>WORK_PLAN.<em>subject.external_ref.id.value</em></code></p></td>
@@ -2457,31 +2521,31 @@
 <td class="tableblock halign-left valign-top" colspan="4"><p class="tableblock"><em>Context variables and expressions</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>var_name</code> / <code>varName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$var_name</code> / <code>$varName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Any</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any variable or expression, e.g. <code>$heart_rate</code>;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ehr_id</code> / <code>ehrId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$ehr_id</code> / <code>$ehrId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Preferred</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to EHR id of EHR of the subject of the Task Plan</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bp_systolic</code> / <code>bpSystolic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$bp_systolic</code> / <code>$bpSystolic</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Real</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Preferred</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to subject current systolic arterial blood pressure</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bp_diastolic</code> / <code>bpDiastolic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$bp_diastolic</code> / <code>$bpDiastolic</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Real</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Preferred</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to subject current diastolic arterial blood pressure</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>heart_rate</code> / <code>heartRate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$heart_rate</code> / <code>$heartRate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Real</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Preferred</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable referring to subject current heart rate</p></td>
@@ -4612,12 +4676,9 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_constraint</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_constraint</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Constraint on result value of the owning Decision Group <code><em>test</em></code> expression, for this branch.</p>
-</div>
-<div class="paragraph">
-<p>TODO: consider use of <code>C_PRIMITIVE_OBJECT</code> from AOM as constrainer type.</p>
 </div></div></td>
 </tr>
 <tr>

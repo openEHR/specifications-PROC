@@ -16,10 +16,8 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*value_constraint*: `Any`
+|*value_constraint*: `BOOLEAN_CONTEXT_EXPRESSION`
 a|Constraint on result value of the owning Decision Group `_test_` expression, for this branch.
-
-TODO: consider use of `C_PRIMITIVE_OBJECT` from AOM as constrainer type.
 
 h|*Invariants*
 2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
