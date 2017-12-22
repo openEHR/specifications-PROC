@@ -106,14 +106,15 @@
 <ul class="sectlevel4">
 <li><a href="#_plan_data_context_class">5.2.1.1. PLAN_DATA_CONTEXT Class</a></li>
 <li><a href="#_context_value_class">5.2.1.2. CONTEXT_VALUE Class</a></li>
-<li><a href="#_context_variable_class">5.2.1.3. CONTEXT_VARIABLE Class</a></li>
-<li><a href="#_external_variable_class">5.2.1.4. EXTERNAL_VARIABLE Class</a></li>
-<li><a href="#_local_variable_class">5.2.1.5. LOCAL_VARIABLE Class</a></li>
-<li><a href="#_event_variable_class">5.2.1.6. EVENT_VARIABLE Class</a></li>
-<li><a href="#_continuous_event_variable_class">5.2.1.7. CONTINUOUS_EVENT_VARIABLE Class</a></li>
-<li><a href="#_state_variable_class">5.2.1.8. STATE_VARIABLE Class</a></li>
-<li><a href="#_context_expression_class">5.2.1.9. CONTEXT_EXPRESSION Class</a></li>
-<li><a href="#_boolean_context_expression_class">5.2.1.10. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
+<li><a href="#_context_constant_class">5.2.1.3. CONTEXT_CONSTANT Class</a></li>
+<li><a href="#_context_variable_class">5.2.1.4. CONTEXT_VARIABLE Class</a></li>
+<li><a href="#_external_variable_class">5.2.1.5. EXTERNAL_VARIABLE Class</a></li>
+<li><a href="#_local_variable_class">5.2.1.6. LOCAL_VARIABLE Class</a></li>
+<li><a href="#_event_variable_class">5.2.1.7. EVENT_VARIABLE Class</a></li>
+<li><a href="#_continuous_event_variable_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE Class</a></li>
+<li><a href="#_state_variable_class">5.2.1.9. STATE_VARIABLE Class</a></li>
+<li><a href="#_context_expression_class">5.2.1.10. CONTEXT_EXPRESSION Class</a></li>
+<li><a href="#_boolean_context_expression_class">5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
 </li>
 </ul>
@@ -455,20 +456,25 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-5">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
+ Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
+ Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Dec 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
- Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
- Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-4">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-5">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-4">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">18 Dec 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02 Dec 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.1</p></td>
@@ -1900,7 +1906,41 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_variable_class"><a class="anchor" href="#_context_variable_class"></a>5.2.1.3. CONTEXT_VARIABLE Class</h5>
+<h5 id="_context_constant_class"><a class="anchor" href="#_context_constant_class"></a>5.2.1.3. CONTEXT_CONSTANT Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTEXT_CONSTANT</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VALUE</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_context_variable_class"><a class="anchor" href="#_context_variable_class"></a>5.2.1.4. CONTEXT_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1926,7 +1966,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_external_variable_class"><a class="anchor" href="#_external_variable_class"></a>5.2.1.4. EXTERNAL_VARIABLE Class</h5>
+<h5 id="_external_variable_class"><a class="anchor" href="#_external_variable_class"></a>5.2.1.5. EXTERNAL_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1964,7 +2004,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_local_variable_class"><a class="anchor" href="#_local_variable_class"></a>5.2.1.5. LOCAL_VARIABLE Class</h5>
+<h5 id="_local_variable_class"><a class="anchor" href="#_local_variable_class"></a>5.2.1.6. LOCAL_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1990,7 +2030,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_variable_class"><a class="anchor" href="#_event_variable_class"></a>5.2.1.6. EVENT_VARIABLE Class</h5>
+<h5 id="_event_variable_class"><a class="anchor" href="#_event_variable_class"></a>5.2.1.7. EVENT_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2016,7 +2056,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_continuous_event_variable_class"><a class="anchor" href="#_continuous_event_variable_class"></a>5.2.1.7. CONTINUOUS_EVENT_VARIABLE Class</h5>
+<h5 id="_continuous_event_variable_class"><a class="anchor" href="#_continuous_event_variable_class"></a>5.2.1.8. CONTINUOUS_EVENT_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2054,7 +2094,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.8. STATE_VARIABLE Class</h5>
+<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.9. STATE_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2092,7 +2132,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_expression_class"><a class="anchor" href="#_context_expression_class"></a>5.2.1.9. CONTEXT_EXPRESSION Class</h5>
+<h5 id="_context_expression_class"><a class="anchor" href="#_context_expression_class"></a>5.2.1.10. CONTEXT_EXPRESSION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2130,7 +2170,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_boolean_context_expression_class"><a class="anchor" href="#_boolean_context_expression_class"></a>5.2.1.10. BOOLEAN_CONTEXT_EXPRESSION Class</h5>
+<h5 id="_boolean_context_expression_class"><a class="anchor" href="#_boolean_context_expression_class"></a>5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">

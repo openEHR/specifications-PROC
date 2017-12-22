@@ -7,19 +7,23 @@
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
 
 |[[latest_issue]]1.1.0
-|{openehr_jira}/SPECPROC-5[SPECPROC-5]. Correct `DECISION_BRANCH` method of specifying value.
+|{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +
+ Adjust `CONTEXT_EXPRESSION` type to have `_name_`; +
+ Add `CONTEXT_CONSTANT`, `EXTERNAL_VARIABLE` and `LOCAL_VARIABLE` types.
 |T Beale
 |[[latest_issue_date]]04 Dec 2017
 
 |
-|{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +
- Adjust `CONTEXT_EXPRESSION` type to have `_name_`; +
- Add `CONTEXT_CONSTANT`, `EXTERNAL_VARIABLE` and `LOCAL_VARIABLE` types. +
- {openehr_jira}/SPECPROC-4[SPECPROC-4]. Refine `SYSTEM_CALL` model, describe variable referencing.
+|{openehr_jira}/SPECPROC-5[SPECPROC-5]. Correct `DECISION_BRANCH` method of specifying value.
+|T Beale
+|04 Dec 2017
+
+|
+|{openehr_jira}/SPECPROC-4[SPECPROC-4]. Refine `SYSTEM_CALL` model, describe variable referencing.
 |M Kejžar, +
  M Polajnar, +
  T Beale
-|18 Dec 2017
+|02 Dec 2017
 
 |1.0.1
 |{openehr_jira}/SPECPROC-2[SPECPROC-2] Fix various typos; add missed `BOOLEAN_CONTEXT_EXPRESSION`;
