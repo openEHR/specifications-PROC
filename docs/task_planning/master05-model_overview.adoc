@@ -98,9 +98,9 @@ The `_parameter_map_` attribute of the `SYSTEM_CALL` instance will contain the f
 ----
     {
         "parameter_map": [
-            {"plan_value_name": "subject_sex",        "name": "sex"},
-            {"plan_value_name": "subject_dob",        "name": "dateOfBirth"},
-            {"plan_value_name": "tobacco_use_status", "name": "isSmoker"}
+            {"context_name": "subject_sex",        "name": "sex"},
+            {"context_name": "subject_dob",        "name": "dateOfBirth"},
+            {"context_name": "tobacco_use_status", "name": "isSmoker"}
         ]
     }
 ----
