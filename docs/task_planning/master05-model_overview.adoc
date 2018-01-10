@@ -77,31 +77,31 @@ The representation of a generic API call is via the `API_CALL` class, while the 
 
 For generic API calls, the assumed model of calling is as follows: when the call is invoked, all required parameters are passed; these are obtained from two sources:
 
-* _variables_: context variables, Work Plan built-in variables (see below);
+* _context values_: context values, Work Plan built-in variables (see below);
 * _fixed parameters_: parameters whose value is fixed from the point of view of the Plan definition.
 
 The first is specified via the `_parameter_map_` attribute, which defines the mapping between the external call parameter names and the names of variables that will be used to populate them at invocation. For example, assume there is an API call in a clinical decision support service with the following signature, which is to be used in a Task Plan:
 
-[source, typescript]
+[source, ts]
 ----
     cds_calc_risk (
-        risk_type:  String;
-        sex: CodedText;
-        date_of_birth: Iso8601Date;
-        is_smoker: Boolean;
+        riskType:    String;
+        sex:         CodedText;
+        dateOfBirth: Iso8601Date;
+        isSmoker:    Boolean;
     ): Real
 ----
 
-The `_parameter_map_` attribute of the `SYSTEM_CALL` instance will contain the following, where the right hand item in each case is the name of a Work Plan context variable:
+The `_parameter_map_` attribute of the `SYSTEM_CALL` instance will contain the following, where the left hand item in each case is the name of a Work Plan context value (i.e. variable, expression or constant):
 
 [source, json]
 ----
     {
-        "parameter_map": {
-            "sex":           "subject_sex",
-            "date_of_birth": "subject_dob",
-            "is_smoker":     "tobacco_use_status"
-        }
+        "parameter_map": [
+            {"plan_value_name": "subject_sex",        "name": "sex"},
+            {"plan_value_name": "subject_dob",        "name": "dateOfBirth"},
+            {"plan_value_name": "tobacco_use_status", "name": "isSmoker"}
+        ]
     }
 ----
 
@@ -116,20 +116,20 @@ The total set of parameters for any System call is provided by the combination o
 
 === Query Calls
 
-The above provides for API calls whose signature definition may be more or less anything. For the case of query invocation, some simplifying assumptions can be made, and in the interests of clarity, the `QUERY_CALL` class is defined for this purpose. A `QUERY_CALL` instance represents a query invocation which is assumed to take the  form of either an ad hoc query or a stored query, with substitutable parameters. The external calls are therefore assumed to take one of the two forms:
+The above provides for API calls whose signature definition may be more or less anything. For the case of query invocation, some simplifying assumptions can be made, and in the interests of clarity, the `QUERY_CALL` class is defined for this purpose. A `QUERY_CALL` instance represents a query invocation which is assumed to take the  form of either an ad hoc query or a stored query, with substitutable parameters. accordingly, the external API calls are therefore assumed to take one of the two forms:
 
 [source, typescript]
 ----
     // ad hoc query call
     execute_ad_hoc_query (
         query_text: String;
-        args: Hash<String, String>;
+        parameters: Hash<String, String>;
     ): Result
     
     // stored query call
     execute_stored_query (
         query_id: String;
-        args: Hash<String, String>;
+        parameters: Hash<String, String>;
     ): Result
     
 ----
@@ -145,6 +145,10 @@ As a consequence of this scheme, the total set of replaceable query parameters i
 === Class Descriptions
 
 include::{uml_export_dir}/classes/system_call.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/parameter_def.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/parameter_mapping.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/api_call.adoc[leveloffset=+1]
 
@@ -166,7 +170,7 @@ For the first case, the '$' name form is used. In the second case, variables usu
 * `$[varName]` - some SQL implementations.
 
 [.tbd]
-TBD: do we need another property to record the type of query syntax, e.g. 'aql', 'oracle-sql', or variable syntax, since it is not a SQL standard?
+TBD: do we need another property to record the type of query syntax, e.g. `'aql'`, `'oracle-sql'`, or variable syntax, since it is not a SQL standard?
 
 The following table describes the variables available within a typical Work Plan.
 

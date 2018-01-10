@@ -8,8 +8,8 @@
 <meta name="description" content="openEHR Task Planning Specification">
 <meta name="keywords" content="task, planning, EHR, EMR, reference model, openehr">
 <title>Task Planning Model Specification</title>
-<link rel="stylesheet" href="/releases/BASE/latest/resources/css/openehr.css">
-<link rel="stylesheet" href="/releases/BASE/latest/resources/css/pygments-murphy.css">
+<link rel="stylesheet" href="https://www.openehr.org/releases/BASE/latest/resources/css/openehr.css">
+<link rel="stylesheet" href="https://www.openehr.org/releases/BASE/latest/resources/css/pygments-murphy.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -126,8 +126,10 @@
 <li><a href="#_class_descriptions_2">5.3.3. Class Descriptions</a>
 <ul class="sectlevel4">
 <li><a href="#_system_call_class">5.3.3.1. SYSTEM_CALL Class</a></li>
-<li><a href="#_api_call_class">5.3.3.2. API_CALL Class</a></li>
-<li><a href="#_query_call_class">5.3.3.3. QUERY_CALL Class</a></li>
+<li><a href="#_parameter_def_class">5.3.3.2. PARAMETER_DEF Class</a></li>
+<li><a href="#_parameter_mapping_class">5.3.3.3. PARAMETER_MAPPING Class</a></li>
+<li><a href="#_api_call_class">5.3.3.4. API_CALL Class</a></li>
+<li><a href="#_query_call_class">5.3.3.5. QUERY_CALL Class</a></li>
 </ul>
 </li>
 </ul>
@@ -412,7 +414,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2017 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2018 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -456,11 +458,19 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-6">SPECPROC-6</a>. Adjust <code>SYSTEM_CALL</code> definition;<br>
+ Add <code>PARAMETER_DEF</code> and <code>PARAMETER_MAPPING</code> types.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ M Kejžar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jan 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
  Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
  Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Dec 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -2213,7 +2223,7 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>variables</em>: context variables, Work Plan built-in variables (see below);</p>
+<p><em>context values</em>: context values, Work Plan built-in variables (see below);</p>
 </li>
 <li>
 <p><em>fixed parameters</em>: parameters whose value is fixed from the point of view of the Plan definition.</p>
@@ -2225,25 +2235,25 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="typescript">    cds_calc_risk (
-        risk_type:  String;
-        sex: CodedText;
-        date_of_birth: Iso8601Date;
-        is_smoker: Boolean;
-    ): Real</code></pre>
+<pre class="pygments highlight"><code data-lang="ts">    <span class="tok-nx">cds_calc_risk</span> <span class="tok-p">(</span>
+        <span class="tok-nx">riskType</span>:    <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">sex</span>:         <span class="tok-kt">CodedText</span><span class="tok-p">;</span>
+        <span class="tok-nx">dateOfBirth</span>: <span class="tok-kt">Iso8601Date</span><span class="tok-p">;</span>
+        <span class="tok-nx">isSmoker</span>:    <span class="tok-kt">Boolean</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Real</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code><em>parameter_map</em></code> attribute of the <code>SYSTEM_CALL</code> instance will contain the following, where the right hand item in each case is the name of a Work Plan context variable:</p>
+<p>The <code><em>parameter_map</em></code> attribute of the <code>SYSTEM_CALL</code> instance will contain the following, where the left hand item in each case is the name of a Work Plan context value (i.e. variable, expression or constant):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="json">    <span class="tok-p">{</span>
-        <span class="tok-nt">&quot;parameter_map&quot;</span><span class="tok-p">:</span> <span class="tok-p">{</span>
-            <span class="tok-nt">&quot;sex&quot;</span><span class="tok-p">:</span>           <span class="tok-s2">&quot;subject_sex&quot;</span><span class="tok-p">,</span>
-            <span class="tok-nt">&quot;date_of_birth&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_dob&quot;</span><span class="tok-p">,</span>
-            <span class="tok-nt">&quot;is_smoker&quot;</span><span class="tok-p">:</span>     <span class="tok-s2">&quot;tobacco_use_status&quot;</span>
-        <span class="tok-p">}</span>
+        <span class="tok-nt">&quot;parameter_map&quot;</span><span class="tok-p">:</span> <span class="tok-p">[</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;plan_value_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_sex&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;sex&quot;</span><span class="tok-p">},</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;plan_value_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_dob&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;dateOfBirth&quot;</span><span class="tok-p">},</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;plan_value_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;tobacco_use_status&quot;</span><span class="tok-p">,</span> <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;isSmoker&quot;</span><span class="tok-p">}</span>
+        <span class="tok-p">]</span>
     <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -2263,20 +2273,20 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_query_calls"><a class="anchor" href="#_query_calls"></a>5.3.2. Query Calls</h4>
 <div class="paragraph">
-<p>The above provides for API calls whose signature definition may be more or less anything. For the case of query invocation, some simplifying assumptions can be made, and in the interests of clarity, the <code>QUERY_CALL</code> class is defined for this purpose. A <code>QUERY_CALL</code> instance represents a query invocation which is assumed to take the  form of either an ad hoc query or a stored query, with substitutable parameters. The external calls are therefore assumed to take one of the two forms:</p>
+<p>The above provides for API calls whose signature definition may be more or less anything. For the case of query invocation, some simplifying assumptions can be made, and in the interests of clarity, the <code>QUERY_CALL</code> class is defined for this purpose. A <code>QUERY_CALL</code> instance represents a query invocation which is assumed to take the  form of either an ad hoc query or a stored query, with substitutable parameters. accordingly, the external API calls are therefore assumed to take one of the two forms:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="typescript">    // ad hoc query call
     execute_ad_hoc_query (
         query_text: String;
-        args: Hash&lt;String, String&gt;;
+        parameters: Hash&lt;String, String&gt;;
     ): Result
 
     // stored query call
     execute_stored_query (
         query_id: String;
-        args: Hash&lt;String, String&gt;;
+        parameters: Hash&lt;String, String&gt;;
     ): Result</code></pre>
 </div>
 </div>
@@ -2327,7 +2337,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Identifier of target system, typically a domain name.</p>
 </div></div></td>
@@ -2351,14 +2361,14 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parameter_map</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parameter_map</strong>: <code>List&lt;PARAMETER_MAPPING&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bound_parameters</strong>: <code>Hash&lt;String, Any&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bound_parameters</strong>: <code>List&lt;PARAMETER_DEF&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Parameter values fixed for any invocation of the call. For example, a general call such as <code><em>cds_check (type: String, other_args, &#8230;&#8203;)</em></code> might be used from within the Task Plan in the form <code><em>cds_check ("hypertension risk", other_args, &#8230;&#8203;)</em></code>, i.e. the first argument is always fixed.</p>
 </div></div></td>
@@ -2367,7 +2377,96 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_api_call_class"><a class="anchor" href="#_api_call_class"></a>5.3.3.2. API_CALL Class</h5>
+<h5 id="_parameter_def_class"><a class="anchor" href="#_parameter_def_class"></a>5.3.3.2. PARAMETER_DEF Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PARAMETER_DEF</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Specifies a parameter with a name and type from an external API, and a value to be passed for this parameter on call invocation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of parameter in external API call.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>EXPR_TYPE_DEF</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Type of parameter in external API call.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Fixed value to pass on call invocation.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_parameter_mapping_class"><a class="anchor" href="#_parameter_mapping_class"></a>5.3.3.3. PARAMETER_MAPPING Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PARAMETER_MAPPING</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Mapping of an internal context value name to an external API call parameter name.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of parameter in external API call definition.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name of context value definition (i.e. variable, expression, constant, including built-ins) whose value should be passed through as the named parameter on call invocation.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_api_call_class"><a class="anchor" href="#_api_call_class"></a>5.3.3.4. API_CALL Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2393,7 +2492,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_query_call_class"><a class="anchor" href="#_query_call_class"></a>5.3.3.3. QUERY_CALL Class</h5>
+<h5 id="_query_call_class"><a class="anchor" href="#_query_call_class"></a>5.3.3.5. QUERY_CALL Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2503,7 +2602,7 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 <div class="paragraph tbd">
-<p>TBD: do we need another property to record the type of query syntax, e.g. 'aql', 'oracle-sql', or variable syntax, since it is not a SQL standard?</p>
+<p>TBD: do we need another property to record the type of query syntax, e.g. <code>'aql'</code>, <code>'oracle-sql'</code>, or variable syntax, since it is not a SQL standard?</p>
 </div>
 <div class="paragraph">
 <p>The following table describes the variables available within a typical Work Plan.</p>
@@ -7131,7 +7230,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-30 00:01:07 GMT
+Last updated 2017-11-30 01:01:07 CET
 </div>
 </div>
 </body>

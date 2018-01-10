@@ -7,11 +7,18 @@
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
 
 |[[latest_issue]]1.1.0
+|{openehr_jira}/SPECPROC-6[SPECPROC-6]. Adjust `SYSTEM_CALL` definition; +
+ Add `PARAMETER_DEF` and `PARAMETER_MAPPING` types.
+|T Beale, +
+ M Kejžar
+|[[latest_issue_date]]10 Jan 2018
+
+|
 |{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +
  Adjust `CONTEXT_EXPRESSION` type to have `_name_`; +
  Add `CONTEXT_CONSTANT`, `EXTERNAL_VARIABLE` and `LOCAL_VARIABLE` types.
 |T Beale
-|[[latest_issue_date]]04 Dec 2017
+|04 Dec 2017
 
 |
 |{openehr_jira}/SPECPROC-5[SPECPROC-5]. Correct `DECISION_BRANCH` method of specifying value.

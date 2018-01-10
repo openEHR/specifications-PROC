@@ -1,0 +1,22 @@
+=== PARAMETER_MAPPING Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PARAMETER_MAPPING*
+
+h|*Description*
+2+a|Mapping of an internal context value name to an external API call parameter name.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*name*: `String`
+a|Name of parameter in external API call definition.
+
+h|*1..1*
+|*context_name*: `String`
+a|Name of context value definition (i.e. variable, expression, constant, including built-ins) whose value should be passed through as the named parameter on call invocation.
+|===

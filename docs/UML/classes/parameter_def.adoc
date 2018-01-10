@@ -1,0 +1,26 @@
+=== PARAMETER_DEF Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PARAMETER_DEF*
+
+h|*Description*
+2+a|Specifies a parameter with a name and type from an external API, and a value to be passed for this parameter on call invocation.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*name*: `String`
+a|Name of parameter in external API call.
+
+h|*1..1*
+|*type*: `EXPR_TYPE_DEF`
+a|Type of parameter in external API call.
+
+h|*1..1*
+|*value*: `Any`
+a|Fixed value to pass on call invocation.
+|===

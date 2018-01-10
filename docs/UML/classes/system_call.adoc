@@ -17,7 +17,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*system_id*: `UID_BASED_ID`
+|*system_id*: `String`
 a|Identifier of target system, typically a domain name.
 
 h|*1..1*
@@ -31,10 +31,10 @@ a|Signature definition of call.
 TODO: to be defined.
 
 h|*0..1*
-|*parameter_map*: `Hash<String, String>`
+|*parameter_map*: `List<PARAMETER_MAPPING>`
 a|Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.
 
 h|*0..1*
-|*bound_parameters*: `Hash<String, Any>`
+|*bound_parameters*: `List<PARAMETER_DEF>`
 a|Parameter values fixed for any invocation of the call. For example, a general call such as `_cds_check (type: String, other_args, ...)_` might be used from within the Task Plan in the form `_cds_check ("hypertension risk", other_args, ...)_`, i.e. the first argument is always fixed.
 |===
