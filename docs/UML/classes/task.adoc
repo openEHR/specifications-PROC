@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*TASK*
+2+^h|*_TASK (abstract)_*
 
 h|*Description*
 2+a|Atomic Task that is typed according to the kind of `TASK_ACTION` it includes. A `TASK` has a lifecycle that can be progressed in the plan execution, i.e. in the Materialised form.

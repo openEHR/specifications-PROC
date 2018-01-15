@@ -24,7 +24,7 @@ image::diagrams/computational_environment.svg[id=computational_environment, alig
 
 One of the major differences between the openEHR Task Planning architecture compared to other workflow architectures is that it can rely on shared access to persistent patient EHRs as the location in which context data can be read (e.g. patient variables) and in which records of performed tasks are ultimately stored, in the form of openEHR Compositions containing Entries, in the usual way.
 
-== Conceptual Basics
+== Conceptual Elements
 
 === Work Plan
 
@@ -37,7 +37,7 @@ Within a Work Plan, each included Task Plan is a definition of work to be perfor
 
 Sub-plans occur to allow re-use of Plans for smaller pieces of work and also to provide a means of controlling the detail level of work differently for performers of different experience levels.
 
-The entirety of the Work Plan definition is assumed to be executable within a single computational context, in which methods of notification and worker communication are available, enabling the state of progress of the work defined in the Plan to be fully represented. A Work Plan will often be limited to a single enterprise, but this need not be the case, as long as all of its Task Plans communicate within the same Plan execution context. 
+The entirety of the Work Plan definition is assumed to be _executable within a single computational context_ (e.g. a 'Task Planning engine'), in which methods of notification and worker communication are available, enabling the state of progress of the work defined in the Plan to be fully represented. A Work Plan will often be limited to a single enterprise, but this need not be the case, as long as all of its Task Plans communicate within the same Plan execution context. 
 
 More typically, some jobs required by a Work Plan are performed in another organisational context entirely, and from the point of view of the original Work Plan, the second organisation is seen as a 'black box' to which a request can be made and a result might be returned. A common example is a hospital clinical workflow that at some point requires a laboratory result, which is processed by an external organisation. These situations are handled by an 'external request' Task type.
 
@@ -47,16 +47,6 @@ The actual definition of work to be done, i.e. Tasks, occurs within each Task Pl
 
 However, in the real world, almost every job can be sub-divided into smaller pieces of work in a fractal nature. This simple fact requires that the general structure of Tasks is actually a hierarchy, within which sequential Task lists occur commonly (and will be the top-level structure in simple cases). The formal construct provided for this is the Task Group, which may contain Tasks and more Task Groups.
 
-With hierarchy and sequential execution semantics, a great many types of work can be represented. However, some sets of Tasks can be performed without regard to order - i.e. in parallel. The model defined here therefore includes an execution type indicator at the Task Group level, so that manner of performing the work items within a Task Group - with or without regard to order - can be indicated. In purely sequential Task Plans, there is only one _execution path_. Parallel execution enables the possibility of multiple execution paths during a Plan execution.
-
-The power of the Task Group / Task structure can be significantly augmented in another dimension with the addition of conditions, to create _conditional structures_. These can be used to represent a variety of logical choice structures, equivalent to the following programming concepts:
-
-* *if/elseif/else*: a standard multi-branch logic chain with any condition on each branch, evaluated in order;
-* *switch*: a standard multi-way logic structure based on a single condition and branches for multiple value sub-ranges;
-* *rule-set*: a typical chained event-driven rule structure whereby each branch is defined to fire on reception of a specific kind of event.
-
-The leaf level constituents of a Task Plan are Tasks of various kinds, including inline-defined Tasks; requests to other contexts within the same Work Plan; requests to external contexts and requests to IT systems and services.
-
 The Task concept defined in this specification is relatively straightforward in the abstract: it corresponds to a separately performable _item of work_ for a _performer_ to execute. A Task within a Plan has a lifecycle whose states indicate whether it is planned, available, complete etc.
 
 In business terms, a Task typically corresponds to:
@@ -65,6 +55,32 @@ In business terms, a Task typically corresponds to:
 * an explicit level of re-imbursement / billing;
 * granularity of check-list and protocol single items, designed to be signed off as performed;
 * a particular planned time of execution.
+
+==== Parallel and Sequential Execution
+
+With hierarchy and sequential execution semantics, a great many types of work can be represented. However, some sets of Tasks can be performed without regard to order - i.e. in parallel. The model defined here therefore includes an execution type indicator at the Task Group level, so that manner of performing the work items within a Task Group - with or without regard to order - can be indicated. In purely sequential Task Plans, there is only one _execution path_. Parallel execution enables the possibility of multiple execution paths during a Plan execution.
+
+==== Conditional Structures
+
+The power of the Task Group / Task structure can be significantly augmented in another dimension with the addition of conditions, to create _conditional structures_. These can be used to represent a variety of logical choice structures, equivalent to the following programming concepts:
+
+* *if/elseif/else*: a multi-branch logic chain with any condition on each branch, evaluated in order;
+* *switch*: a multi-way logic structure based on a single condition and branches for multiple value sub-ranges;
+* *rule-set*: a chained event-driven rule structure whereby each branch is defined to fire on reception of a specific kind of event.
+
+In a purely deterministic view of workflow, the above types of conditional structures correspond to the situation where the conditions are fully defined in the Plan, and execution unequivocally follows the paths according to the evaluation results of each condition. However, in a realistic system this is only one possible mode of execution, because the condition expressions might not always correctly represent reality, due to being approximate or simply deficient. In such cases, the user may need to _override_ the ordinary execution path. This can easily happen in a clinical scenario, where the condition structure is defined as an attempt to represent _recommendations_ that may be overridden by better knowledge on the part of the runtime user (e.g. an oncologist).
+
+A third possibility exists as well: conditional pathways whose conditions are not encoded at all in the Plan definition, i.e. are only known by runtime users. Such 'ad hoc' conditional structures occur where no clear or simple algorithm can be stated for choosing each path. A typical example in a clinical situation is a physician determining the complex trade-off between efficacy and side-effects for which drug regime to use for a complex condition such as cancer.
+
+There are thus three levels of human/system interaction with respect to conditional processing:
+
+* _fully automated_: formal conditions fully express the criteria for altenate paths;
+* _decision support_: formal conditions are an attempt to provide support to users, but may be overridden;
+* _ad hoc_: alternate pathways are defined, but the criteria for entry are provided by the user at execution time.
+
+==== Summary
+
+The leaf level constituents of a Task Plan are Tasks of various kinds, including inline-defined Tasks; requests to other contexts within the same Work Plan; requests to external contexts and requests to IT systems and services.
 
 We can summarise the above-described structure in reverse:
 

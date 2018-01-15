@@ -1,0 +1,29 @@
+=== CHOICE_GROUP Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_CHOICE_GROUP (abstract)_*
+
+h|*Description*
+2+a|Abstract precursor of root node of any decision structure.
+
+h|*Inherit*
+2+|`TASK_GROUP`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*override_type*: `OVERRIDE_TYPE`
+a|Indicates kind of user override that would be accepted at runtime.
+
+h|*0..1 +
+(redefined)*
+|*members*: `List<CHOICE_BRANCH>`
+a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+
+h|*Invariants*
+2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
+|===

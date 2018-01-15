@@ -1,0 +1,25 @@
+=== DISPATCHABLE_TASK Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DISPATCHABLE_TASK*
+
+h|*Description*
+2+a|Type of Task that is performed by another actor. Such Tasks are 'dispatchable' in the sense that they consist of notifying a request to another principal performer, or an external system or service of some kind, and potentially receiving a callback notification when the requested work is complete.
+
+h|*Inherit*
+2+|`TASK`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*wait*: `Boolean`
+a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. Wait = True corresponds to a context switch (block and wait) while wait = False indicates a context fork.
+
+h|*0..1*
+|*callback*: `CALLBACK_WAIT`
+a|Optional callback notification handler.
+|===

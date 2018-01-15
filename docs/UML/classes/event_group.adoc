@@ -9,7 +9,7 @@ h|*Description*
 2+a|Special kind of Task Group whose members are `EVENT_BRANCH` instances each representing a mutually exclusive Event Wait, the first of which occurs determines the execution path.
 
 h|*Inherit*
-2+|`TASK_GROUP`
+2+|`CHOICE_GROUP`
 
 h|*Attributes*
 ^h|*Signature*
@@ -23,7 +23,4 @@ h|*0..1 +
 (redefined)*
 |*members*: `List<EVENT_BRANCH>`
 a|Set of branches in this Event Group.
-
-h|*Invariants*
-2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
 |===

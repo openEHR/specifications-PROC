@@ -1,0 +1,26 @@
+=== OVERRIDE_TYPE Enumeration
+
+[cols="^1,3,5"]
+|===
+h|*Enumeration*
+2+^h|*OVERRIDE_TYPE*
+
+h|*Description*
+2+a|Enumeration expressing kinds of override that can be stated for a Plan definition decision structure.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|allowed
+a|Override by user is allowed.
+
+h|
+|allowed_with_reason
+a|User override allowed with provided reason.
+
+h|
+|prohibited
+a|Override by user is prohibited.
+|===

@@ -30,4 +30,8 @@ a|Archetypable structure for recording non hard-modelled information.
 h|*0..1*
 |*wait_spec*: `TASK_WAIT`
 a|Optional wait specification for a Task. If not set, the Task is immediately available once execution reaches it. If set, the Task becomes available when an Event linked to the `_wait_spec_` occurs.
+
+h|*0..1*
+|*review_dataset*: `List<DATASET_SPEC>`
+a|Optional data-set to review prior to / as part of performing the Plan element. This implies a data retrieval from the EHR or other system, which may be specified using a `SYSTEM_REQUEST` attached to this Task.
 |===

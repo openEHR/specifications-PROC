@@ -9,7 +9,7 @@ h|*Description*
 2+a|A specialised kind of `TASK_GROUP` representing a branch in a Decision Group.
 
 h|*Inherit*
-2+|`TASK_GROUP`
+2+|`CHOICE_BRANCH`
 
 h|*Attributes*
 ^h|*Signature*

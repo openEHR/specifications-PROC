@@ -11,7 +11,7 @@ h|*Description*
 This structure is the equivalent of a programming switch statement. It is processed in order, and for situations that need it, the last branch may represent an 'any value', corresponding to a final 'else' at the end of the switch.
 
 h|*Inherit*
-2+|`TASK_GROUP`
+2+|`CHOICE_GROUP`
 
 h|*Attributes*
 ^h|*Signature*
@@ -28,7 +28,4 @@ a|Set of branches in this Decision Group.
 
 h|*Invariants*
 2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
-
-h|
-2+a|*_Inv_seq_execution_*: `execution_type = EXECUTION_TYPE.sequential`
 |===

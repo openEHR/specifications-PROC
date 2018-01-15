@@ -22,5 +22,5 @@ a|List of all expressions used in the Plan, based on tracked variables.
 
 h|*0..1*
 |*constants*: `List<CONTEXT_CONSTANT>`
-a|
+a|List of all constants used in the Plan.
 |===

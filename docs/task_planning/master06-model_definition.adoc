@@ -10,6 +10,8 @@ image::{uml_export_dir}/diagrams/PROC-task_planning.definition-structure.svg[id=
 
 The remaining classes are shown in various specialised views below.
 
+=== Plan Structure
+
 The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (`WORK_PLAN._plans_` and `WORK_PLAN._top_level_plans_`) rather than physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as _sub-plans_ of other Task Plans, and team-based Plans, featuring _hand-offs_ between Task Plans. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the start points for activity for the various actors. Non-top-level plans are those used as sub-plans.
 
 A Work Plan has a number of global attributes, as follows:
@@ -25,7 +27,9 @@ As can be seen, the `_definition_` of a `TASK_PLAN` is a `TASK_GROUP`, which has
 
 `PLAN_ITEM` has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above in the section <<time_and_wait_states,Time and Wait States>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
 
-The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typicaly a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
+The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
+
+A `PLAN_ITEM` also has a `_review_dataset_` attribute, which allows a screen form or other data set to be specified that should be provided to the user at runtime on entry to a Task or Task Group structure.
 
 === Task Group Structure
 
@@ -40,7 +44,15 @@ The following illustrates a simple Task Plan structure including nested Task Gro
 .Task grouping
 image::diagrams/task_grouping.svg[id=task_grouping, align="center", width=25%]
 
-The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any Task semantics.
+The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.
+
+=== Tasks
+
+Tasks are represented by the `Task` class whose two concrete sub-types distinguish the two basic flavours of Task, namely _dispatchable_, meaning 'dispatched for execution to another performer', and _performable_, meaning 'defined and performed by the current performer'. `TASK` is a generic type, whose generic parameter is constrained to the type `TASK_ACTION`, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.
+
+The `DISPATCHABLE_TASK` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.
+
+The `PERFORMABLE_TASK` class attribute `_capture_dataset_` allows a dataset or form to be specified, for which data must be obtained during the Task execution.
 
 === Class Descriptions
 
@@ -66,17 +78,23 @@ include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/task.adoc[leveloffset=+1]
 
+include::{uml_export_dir}/classes/dispatchable_task.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/performable_task.adoc[leveloffset=+1]
+
 include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
 
 == Task Actions
 
-The specific definition of the work of Tasks is provided by `TASK._action_`, of type `TASK_ACTION` and its subtypes. Two abstract sub-types distinguish the two basic flavours of Task Action, namely _dispatchable_, meaning 'sent elsewhere for processing', and _performable_, meaning 'defined and performed within the current Plan'. The following UML diagram shows `TASK_ACTION` and its subtypes in detail.
+The specific definition of the work of Tasks is provided by `TASK._action_`, of type `TASK_ACTION` and its subtypes. Two abstract sub-types `DISPATCHABLE_ACTION` and `PERFORMABLE_ACTION` distinguish the _dispatchable_ and _performable_ flavours of Task Action, corresponding to the two `TASK` subtypes. The following UML diagram shows `TASK_ACTION` and its subtypes in detail.
 
 [.text-center]
 .proc.task_planning.definition model - Task Actions
 image::{uml_export_dir}/diagrams/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
 
-`TASK_ACTION` includes three attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
+`TASK_ACTION` includes two attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
 
 A subject precondition is formally represented as a `BOOLEAN_CONTEXT_EXPRESSION`, whose `_expression_` value is a string in {openehr_expression}[openEHR Expression Language] syntax.
 
@@ -87,11 +105,7 @@ TBD: subject precondition could potentially move to `PERFORMABLE_ACTION`.
 
 The second generally applicable attribute is `_costing_data_`, since cost information may clearly be relevant to any Plan item. Costing is dealt with in detail below.
 
-The third attribute is `_review_dataset_` which provides the ability to specify a data set or form to display when entering a Task, to aid the performer.
-
-In a similar manner, a small number of attributes apply to Dispatchable Actions and Performable Actions. The former class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.
-
-Performable Actions have three attributes. The `_other_participations_` and `_resources_` attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the `_principal_performer_`. Finally, the `_capture_dataset_` allows a dataset or form to be specified, for which data must be obtained during the Task execution.
+Performable Actions have two attributes. The `_other_participations_` and `_resources_` attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the `_principal_performer_`. 
 
 The subtypes of `TASK_ACTION` consist of the following (reading from the right hand side):
 
@@ -190,8 +204,6 @@ include::{uml_export_dir}/classes/task_action.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/subject_precondition.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/performable_action.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/resource_participation.adoc[leveloffset=+1]
@@ -212,13 +224,23 @@ include::{uml_export_dir}/classes/linked_plan.adoc[leveloffset=+1]
 
 == Conditional Structures
 
-More advanced applications of Task Plans include three common conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of `TASK_GROUP` and are illustrated in the following UML model.
+More advanced applications of Task Plans include four conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of `TASK_GROUP` and are illustrated in the following UML model. 
 
 [.text-center]
 .proc.task_planning package definition model (decision view)
 image::{uml_export_dir}/diagrams/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
 
-The first pattern is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes `CONDITION_GROUP` and `CONDITION_BRANCH` provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the `_execution_type_` is constrained to `sequential`.
+The pattern types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the `CHOICE_GROUP` and `CHOICE_BRANCH` classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.
+
+* _fully automated_: three kinds of fully defined decision structures, namely the `CONDITION_XX`, `DECISION_XX` and `EVENT_XX` classes shown in the UML diagram;
+* _decision support_: where instances of the above structures should be considered recommendations only, the `_override_type_` attribute defined on `CHOICE_GROUP` may be used on any `XX_GROUP` to indicate that user override is allowed;
+* _ad hoc_: a dedicated variation `ADHOC_GROUP` and `ADHOC_BRANCH` are used to represent multiple branches where no criteria are defined in the Plan definition, but instead provided by an execution-time user.
+
+In the override and adhoc cases, a justification may be provided at execution-time for having overridden or made a particular adhoc choice. This is represented in the materialised model, and therefore does not appear in the definition model.
+
+The three fully defined decision patterns are as follows.
+
+The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes `CONDITION_GROUP` and `CONDITION_BRANCH` provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the `_execution_type_` is constrained to `sequential`.
 
 The following diagram shows a typical condition structure.
 
@@ -226,7 +248,7 @@ The following diagram shows a typical condition structure.
 .Condition structure
 image::diagrams/condition_structure.svg[id=condition_structure, align="center", width=40%]
 
-The second structure corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (`_execution_type_` is constrained to `sequential`), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.
+The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (`_execution_type_` is constrained to `sequential`), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.
 
 The following diagram shows a typical decision structure.
 
@@ -234,13 +256,23 @@ The following diagram shows a typical decision structure.
 .Decision structure
 image::diagrams/decision_structure.svg[id=decision_structure, align="center", width=40%]
 
-The third structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.
+The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.
 
 [.text-center]
 .Event structure
 image::diagrams/event_structure.svg[id=event_structure, align="center", width=85%]
 
 === Class Descriptions
+
+include::{uml_export_dir}/classes/choice_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/override_type.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/choice_branch.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/adhoc_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/adhoc_branch.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/condition_group.adoc[leveloffset=+1]
 

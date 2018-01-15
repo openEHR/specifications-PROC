@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*SYSTEM_CALL*
+2+^h|*_SYSTEM_CALL (abstract)_*
 
 h|*Description*
 2+a|Abstract definition of a request to make to a system (i.e. information system or device) via its API, that reads or writes information specific to the Task to which it is attached in an actual Plan.

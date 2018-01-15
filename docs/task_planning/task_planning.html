@@ -68,10 +68,16 @@
 <ul class="sectlevel2">
 <li><a href="#_computational_basis">4.1. Computational Basis</a></li>
 <li><a href="#_computational_context">4.2. Computational Context</a></li>
-<li><a href="#_conceptual_basics">4.3. Conceptual Basics</a>
+<li><a href="#_conceptual_elements">4.3. Conceptual Elements</a>
 <ul class="sectlevel3">
 <li><a href="#_work_plan">4.3.1. Work Plan</a></li>
-<li><a href="#_task_plan">4.3.2. Task Plan</a></li>
+<li><a href="#_task_plan">4.3.2. Task Plan</a>
+<ul class="sectlevel4">
+<li><a href="#_parallel_and_sequential_execution">4.3.2.1. Parallel and Sequential Execution</a></li>
+<li><a href="#_conditional_structures">4.3.2.2. Conditional Structures</a></li>
+<li><a href="#_summary">4.3.2.3. Summary</a></li>
+</ul>
+</li>
 <li><a href="#_graph_structure">4.3.3. Graph Structure</a></li>
 <li><a href="#_work_context">4.3.4. Work Context</a></li>
 <li><a href="#_context_switching_and_forking">4.3.5. Context Switching and Forking</a></li>
@@ -165,21 +171,26 @@
 <ul class="sectlevel2">
 <li><a href="#_overview">6.1. Overview</a>
 <ul class="sectlevel3">
-<li><a href="#_task_group_structure">6.1.1. Task Group Structure</a></li>
-<li><a href="#_class_descriptions_5">6.1.2. Class Descriptions</a>
+<li><a href="#_plan_structure">6.1.1. Plan Structure</a></li>
+<li><a href="#_task_group_structure">6.1.2. Task Group Structure</a></li>
+<li><a href="#_tasks">6.1.3. Tasks</a></li>
+<li><a href="#_class_descriptions_5">6.1.4. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_work_plan_class">6.1.2.1. WORK_PLAN Class</a></li>
-<li><a href="#_plan_calendar_class">6.1.2.2. PLAN_CALENDAR Class</a></li>
-<li><a href="#_plan_timeline_class">6.1.2.3. PLAN_TIMELINE Class</a></li>
-<li><a href="#_calendar_entry_class">6.1.2.4. CALENDAR_ENTRY Class</a></li>
-<li><a href="#_task_plan_class">6.1.2.5. TASK_PLAN Class</a></li>
-<li><a href="#_task_participation_class">6.1.2.6. TASK_PARTICIPATION Class</a></li>
-<li><a href="#_plan_item_class">6.1.2.7. PLAN_ITEM Class</a></li>
-<li><a href="#_task_group_class">6.1.2.8. TASK_GROUP Class</a></li>
-<li><a href="#_execution_type_enumeration_2">6.1.2.9. EXECUTION_TYPE Enumeration</a></li>
-<li><a href="#_execution_rule_class">6.1.2.10. EXECUTION_RULE Class</a></li>
-<li><a href="#_task_class">6.1.2.11. TASK Class</a></li>
-<li><a href="#_task_repeat_class">6.1.2.12. TASK_REPEAT Class</a></li>
+<li><a href="#_work_plan_class">6.1.4.1. WORK_PLAN Class</a></li>
+<li><a href="#_plan_calendar_class">6.1.4.2. PLAN_CALENDAR Class</a></li>
+<li><a href="#_plan_timeline_class">6.1.4.3. PLAN_TIMELINE Class</a></li>
+<li><a href="#_calendar_entry_class">6.1.4.4. CALENDAR_ENTRY Class</a></li>
+<li><a href="#_task_plan_class">6.1.4.5. TASK_PLAN Class</a></li>
+<li><a href="#_task_participation_class">6.1.4.6. TASK_PARTICIPATION Class</a></li>
+<li><a href="#_plan_item_class">6.1.4.7. PLAN_ITEM Class</a></li>
+<li><a href="#_task_group_class">6.1.4.8. TASK_GROUP Class</a></li>
+<li><a href="#_execution_type_enumeration_2">6.1.4.9. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_execution_rule_class">6.1.4.10. EXECUTION_RULE Class</a></li>
+<li><a href="#_task_class">6.1.4.11. TASK Class</a></li>
+<li><a href="#_dispatchable_task_class">6.1.4.12. DISPATCHABLE_TASK Class</a></li>
+<li><a href="#_performable_task_class">6.1.4.13. PERFORMABLE_TASK Class</a></li>
+<li><a href="#_task_repeat_class">6.1.4.14. TASK_REPEAT Class</a></li>
+<li><a href="#_dataset_spec_class">6.1.4.15. DATASET_SPEC Class</a></li>
 </ul>
 </li>
 </ul>
@@ -204,30 +215,34 @@
 <ul class="sectlevel4">
 <li><a href="#_task_action_class">6.2.3.1. TASK_ACTION Class</a></li>
 <li><a href="#_subject_precondition_class">6.2.3.2. SUBJECT_PRECONDITION Class</a></li>
-<li><a href="#_dataset_spec_class">6.2.3.3. DATASET_SPEC Class</a></li>
-<li><a href="#_performable_action_class">6.2.3.4. PERFORMABLE_ACTION Class</a></li>
-<li><a href="#_resource_participation_class">6.2.3.5. RESOURCE_PARTICIPATION Class</a></li>
-<li><a href="#_defined_action_class">6.2.3.6. DEFINED_ACTION Class</a></li>
-<li><a href="#_sub_plan_class">6.2.3.7. SUB_PLAN Class</a></li>
-<li><a href="#_dispatchable_action_class">6.2.3.8. DISPATCHABLE_ACTION Class</a></li>
-<li><a href="#_hand_off_class">6.2.3.9. HAND_OFF Class</a></li>
-<li><a href="#_external_request_class">6.2.3.10. EXTERNAL_REQUEST Class</a></li>
-<li><a href="#_system_request_class">6.2.3.11. SYSTEM_REQUEST Class</a></li>
-<li><a href="#_linked_plan_class">6.2.3.12. LINKED_PLAN Class</a></li>
+<li><a href="#_performable_action_class">6.2.3.3. PERFORMABLE_ACTION Class</a></li>
+<li><a href="#_resource_participation_class">6.2.3.4. RESOURCE_PARTICIPATION Class</a></li>
+<li><a href="#_defined_action_class">6.2.3.5. DEFINED_ACTION Class</a></li>
+<li><a href="#_sub_plan_class">6.2.3.6. SUB_PLAN Class</a></li>
+<li><a href="#_dispatchable_action_class">6.2.3.7. DISPATCHABLE_ACTION Class</a></li>
+<li><a href="#_hand_off_class">6.2.3.8. HAND_OFF Class</a></li>
+<li><a href="#_external_request_class">6.2.3.9. EXTERNAL_REQUEST Class</a></li>
+<li><a href="#_system_request_class">6.2.3.10. SYSTEM_REQUEST Class</a></li>
+<li><a href="#_linked_plan_class">6.2.3.11. LINKED_PLAN Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_conditional_structures">6.3. Conditional Structures</a>
+<li><a href="#_conditional_structures_2">6.3. Conditional Structures</a>
 <ul class="sectlevel3">
 <li><a href="#_class_descriptions_7">6.3.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_condition_group_class">6.3.1.1. CONDITION_GROUP Class</a></li>
-<li><a href="#_condition_branch_class">6.3.1.2. CONDITION_BRANCH Class</a></li>
-<li><a href="#_decision_group_class">6.3.1.3. DECISION_GROUP Class</a></li>
-<li><a href="#_decision_branch_class">6.3.1.4. DECISION_BRANCH Class</a></li>
-<li><a href="#_event_group_class">6.3.1.5. EVENT_GROUP Class</a></li>
-<li><a href="#_event_branch_class">6.3.1.6. EVENT_BRANCH Class</a></li>
+<li><a href="#_choice_group_class">6.3.1.1. CHOICE_GROUP Class</a></li>
+<li><a href="#_override_type_enumeration">6.3.1.2. OVERRIDE_TYPE Enumeration</a></li>
+<li><a href="#_choice_branch_class">6.3.1.3. CHOICE_BRANCH Class</a></li>
+<li><a href="#_adhoc_group_class">6.3.1.4. ADHOC_GROUP Class</a></li>
+<li><a href="#_adhoc_branch_class">6.3.1.5. ADHOC_BRANCH Class</a></li>
+<li><a href="#_condition_group_class">6.3.1.6. CONDITION_GROUP Class</a></li>
+<li><a href="#_condition_branch_class">6.3.1.7. CONDITION_BRANCH Class</a></li>
+<li><a href="#_decision_group_class">6.3.1.8. DECISION_GROUP Class</a></li>
+<li><a href="#_decision_branch_class">6.3.1.9. DECISION_BRANCH Class</a></li>
+<li><a href="#_event_group_class">6.3.1.10. EVENT_GROUP Class</a></li>
+<li><a href="#_event_branch_class">6.3.1.11. EVENT_BRANCH Class</a></li>
 </ul>
 </li>
 </ul>
@@ -459,10 +474,12 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-6">SPECPROC-6</a>. Adjust <code>SYSTEM_CALL</code> definition;<br>
- Add <code>PARAMETER_DEF</code> and <code>PARAMETER_MAPPING</code> types.</p></td>
+ Add <code>PARAMETER_DEF</code> and <code>PARAMETER_MAPPING</code> types.<br>
+ <a href="https://openehr.atlassian.net/browse/SPECPROC-7">SPECPROC-7</a>. Provide support in decision structures for automated / decision support / ad hoc modes;<br>
+ Add <code>CHOICE_GROUP</code>, <code>CHOICE_BRANCH</code>, <code>ADHOC_GROUP</code>, <code>ADHOC_BRANCH</code> classes, and an attribute for marking any group as overridable at execution time.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  M Kejžar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Jan 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Jan 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1263,7 +1280,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conceptual_basics"><a class="anchor" href="#_conceptual_basics"></a>4.3. Conceptual Basics</h3>
+<h3 id="_conceptual_elements"><a class="anchor" href="#_conceptual_elements"></a>4.3. Conceptual Elements</h3>
 <div class="sect3">
 <h4 id="_work_plan"><a class="anchor" href="#_work_plan"></a>4.3.1. Work Plan</h4>
 <div class="paragraph">
@@ -1286,7 +1303,7 @@
 <p>Sub-plans occur to allow re-use of Plans for smaller pieces of work and also to provide a means of controlling the detail level of work differently for performers of different experience levels.</p>
 </div>
 <div class="paragraph">
-<p>The entirety of the Work Plan definition is assumed to be executable within a single computational context, in which methods of notification and worker communication are available, enabling the state of progress of the work defined in the Plan to be fully represented. A Work Plan will often be limited to a single enterprise, but this need not be the case, as long as all of its Task Plans communicate within the same Plan execution context.</p>
+<p>The entirety of the Work Plan definition is assumed to be <em>executable within a single computational context</em> (e.g. a 'Task Planning engine'), in which methods of notification and worker communication are available, enabling the state of progress of the work defined in the Plan to be fully represented. A Work Plan will often be limited to a single enterprise, but this need not be the case, as long as all of its Task Plans communicate within the same Plan execution context.</p>
 </div>
 <div class="paragraph">
 <p>More typically, some jobs required by a Work Plan are performed in another organisational context entirely, and from the point of view of the original Work Plan, the second organisation is seen as a 'black box' to which a request can be made and a result might be returned. A common example is a hospital clinical workflow that at some point requires a laboratory result, which is processed by an external organisation. These situations are handled by an 'external request' Task type.</p>
@@ -1299,28 +1316,6 @@
 </div>
 <div class="paragraph">
 <p>However, in the real world, almost every job can be sub-divided into smaller pieces of work in a fractal nature. This simple fact requires that the general structure of Tasks is actually a hierarchy, within which sequential Task lists occur commonly (and will be the top-level structure in simple cases). The formal construct provided for this is the Task Group, which may contain Tasks and more Task Groups.</p>
-</div>
-<div class="paragraph">
-<p>With hierarchy and sequential execution semantics, a great many types of work can be represented. However, some sets of Tasks can be performed without regard to order - i.e. in parallel. The model defined here therefore includes an execution type indicator at the Task Group level, so that manner of performing the work items within a Task Group - with or without regard to order - can be indicated. In purely sequential Task Plans, there is only one <em>execution path</em>. Parallel execution enables the possibility of multiple execution paths during a Plan execution.</p>
-</div>
-<div class="paragraph">
-<p>The power of the Task Group / Task structure can be significantly augmented in another dimension with the addition of conditions, to create <em>conditional structures</em>. These can be used to represent a variety of logical choice structures, equivalent to the following programming concepts:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>if/elseif/else</strong>: a standard multi-branch logic chain with any condition on each branch, evaluated in order;</p>
-</li>
-<li>
-<p><strong>switch</strong>: a standard multi-way logic structure based on a single condition and branches for multiple value sub-ranges;</p>
-</li>
-<li>
-<p><strong>rule-set</strong>: a typical chained event-driven rule structure whereby each branch is defined to fire on reception of a specific kind of event.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The leaf level constituents of a Task Plan are Tasks of various kinds, including inline-defined Tasks; requests to other contexts within the same Work Plan; requests to external contexts and requests to IT systems and services.</p>
 </div>
 <div class="paragraph">
 <p>The Task concept defined in this specification is relatively straightforward in the abstract: it corresponds to a separately performable <em>item of work</em> for a <em>performer</em> to execute. A Task within a Plan has a lifecycle whose states indicate whether it is planned, available, complete etc.</p>
@@ -1344,6 +1339,58 @@
 </li>
 </ul>
 </div>
+<div class="sect4">
+<h5 id="_parallel_and_sequential_execution"><a class="anchor" href="#_parallel_and_sequential_execution"></a>4.3.2.1. Parallel and Sequential Execution</h5>
+<div class="paragraph">
+<p>With hierarchy and sequential execution semantics, a great many types of work can be represented. However, some sets of Tasks can be performed without regard to order - i.e. in parallel. The model defined here therefore includes an execution type indicator at the Task Group level, so that manner of performing the work items within a Task Group - with or without regard to order - can be indicated. In purely sequential Task Plans, there is only one <em>execution path</em>. Parallel execution enables the possibility of multiple execution paths during a Plan execution.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_conditional_structures"><a class="anchor" href="#_conditional_structures"></a>4.3.2.2. Conditional Structures</h5>
+<div class="paragraph">
+<p>The power of the Task Group / Task structure can be significantly augmented in another dimension with the addition of conditions, to create <em>conditional structures</em>. These can be used to represent a variety of logical choice structures, equivalent to the following programming concepts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>if/elseif/else</strong>: a multi-branch logic chain with any condition on each branch, evaluated in order;</p>
+</li>
+<li>
+<p><strong>switch</strong>: a multi-way logic structure based on a single condition and branches for multiple value sub-ranges;</p>
+</li>
+<li>
+<p><strong>rule-set</strong>: a chained event-driven rule structure whereby each branch is defined to fire on reception of a specific kind of event.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In a purely deterministic view of workflow, the above types of conditional structures correspond to the situation where the conditions are fully defined in the Plan, and execution unequivocally follows the paths according to the evaluation results of each condition. However, in a realistic system this is only one possible mode of execution, because the condition expressions might not always correctly represent reality, due to being approximate or simply deficient. In such cases, the user may need to <em>override</em> the ordinary execution path. This can easily happen in a clinical scenario, where the condition structure is defined as an attempt to represent <em>recommendations</em> that may be overridden by better knowledge on the part of the runtime user (e.g. an oncologist).</p>
+</div>
+<div class="paragraph">
+<p>A third possibility exists as well: conditional pathways whose conditions are not encoded at all in the Plan definition, i.e. are only known by runtime users. Such 'ad hoc' conditional structures occur where no clear or simple algorithm can be stated for choosing each path. A typical example in a clinical situation is a physician determining the complex trade-off between efficacy and side-effects for which drug regime to use for a complex condition such as cancer.</p>
+</div>
+<div class="paragraph">
+<p>There are thus three levels of human/system interaction with respect to conditional processing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>fully automated</em>: formal conditions fully express the criteria for altenate paths;</p>
+</li>
+<li>
+<p><em>decision support</em>: formal conditions are an attempt to provide support to users, but may be overridden;</p>
+</li>
+<li>
+<p><em>ad hoc</em>: alternate pathways are defined, but the criteria for entry are provided by the user at execution time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_summary"><a class="anchor" href="#_summary"></a>4.3.2.3. Summary</h5>
+<div class="paragraph">
+<p>The leaf level constituents of a Task Plan are Tasks of various kinds, including inline-defined Tasks; requests to other contexts within the same Work Plan; requests to external contexts and requests to IT systems and services.</p>
+</div>
 <div class="paragraph">
 <p>We can summarise the above-described structure in reverse:</p>
 </div>
@@ -1365,6 +1412,7 @@
 <p><strong>Work Plan</strong>: top-level structure containing related Task Plans needed to implement an intended outcome for a subject of care.</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1869,7 +1917,9 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constants</strong>: <code>List&lt;CONTEXT_CONSTANT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>List of all constants used in the Plan.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1930,7 +1980,9 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Definition of a symbolic constant value that can be used in Context Expressions.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
@@ -1944,7 +1996,9 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Value of the constant.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -2316,7 +2370,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>SYSTEM_CALL</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>SYSTEM_CALL (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -3085,6 +3139,8 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>The remaining classes are shown in various specialised views below.</p>
 </div>
+<div class="sect3">
+<h4 id="_plan_structure"><a class="anchor" href="#_plan_structure"></a>6.1.1. Plan Structure</h4>
 <div class="paragraph">
 <p>The top-level structure for defining plans is a <code>WORK_PLAN</code>, which includes one or more related <code>TASK_PLANs</code> making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (<code>WORK_PLAN.<em>plans</em></code> and <code>WORK_PLAN.<em>top_level_plans</em></code>) rather than physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as <em>sub-plans</em> of other Task Plans, and team-based Plans, featuring <em>hand-offs</em> between Task Plans. For a Work Plan, two distinct lists of Task Plans are maintained: <code><em>plans</em></code>, which references all Task Plans, and <code><em>top_level_plans</em></code>, which is a list of those Task Plans that act as the start points for activity for the various actors. Non-top-level plans are those used as sub-plans.</p>
 </div>
@@ -3117,10 +3173,14 @@ The following UML diagram illustrates.</p>
 <p><code>PLAN_ITEM</code> has a mandatory <code><em>description</em></code> attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: <code><em>wait_spec</em></code> and <code><em>repeat_spec</em></code>. The first enables a wait state (described above in the section <a href="#time_and_wait_states">Time and Wait States</a>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.</p>
 </div>
 <div class="paragraph">
-<p>The second attribute, <code><em>repeat_spec</em></code>, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typicaly a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
+<p>The second attribute, <code><em>repeat_spec</em></code>, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
+</div>
+<div class="paragraph">
+<p>A <code>PLAN_ITEM</code> also has a <code><em>review_dataset</em></code> attribute, which allows a screen form or other data set to be specified that should be provided to the user at runtime on entry to a Task or Task Group structure.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_task_group_structure"><a class="anchor" href="#_task_group_structure"></a>6.1.1. Task Group Structure</h4>
+<h4 id="_task_group_structure"><a class="anchor" href="#_task_group_structure"></a>6.1.2. Task Group Structure</h4>
 <div class="paragraph">
 <p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> type, which has three key attributes. Execution of a Group is controlled by the <code><em>execution_type</em></code> and <code><em>execution_rules</em></code> attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
 </div>
@@ -3137,13 +3197,25 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 13. Task grouping</div>
 </div>
 <div class="paragraph">
-<p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any Task semantics.</p>
+<p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_5"><a class="anchor" href="#_class_descriptions_5"></a>6.1.2. Class Descriptions</h4>
+<h4 id="_tasks"><a class="anchor" href="#_tasks"></a>6.1.3. Tasks</h4>
+<div class="paragraph">
+<p>Tasks are represented by the <code>Task</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em>, meaning 'dispatched for execution to another performer', and <em>performable</em>, meaning 'defined and performed by the current performer'. <code>TASK</code> is a generic type, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.</p>
+</div>
+<div class="paragraph">
+<p>The <code>DISPATCHABLE_TASK</code> class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.</p>
+</div>
+<div class="paragraph">
+<p>The <code>PERFORMABLE_TASK</code> class attribute <code><em>capture_dataset</em></code> allows a dataset or form to be specified, for which data must be obtained during the Task execution.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_5"><a class="anchor" href="#_class_descriptions_5"></a>6.1.4. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_work_plan_class"><a class="anchor" href="#_work_plan_class"></a>6.1.2.1. WORK_PLAN Class</h5>
+<h5 id="_work_plan_class"><a class="anchor" href="#_work_plan_class"></a>6.1.4.1. WORK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3217,7 +3289,9 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>calendar</strong>: <code>PLAN_CALENDAR</code></p></td>
-<td class="tableblock halign-left valign-top"><div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Global calendar object, containing events fixed in time relevant to the Plan&#8217;s Tasks, for example appointments.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
@@ -3259,7 +3333,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.1.2.2. PLAN_CALENDAR Class</h5>
+<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.1.4.2. PLAN_CALENDAR Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3293,7 +3367,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.1.2.3. PLAN_TIMELINE Class</h5>
+<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.1.4.3. PLAN_TIMELINE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3334,7 +3408,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.1.2.4. CALENDAR_ENTRY Class</h5>
+<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.1.4.4. CALENDAR_ENTRY Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3356,7 +3430,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.1.2.5. TASK_PLAN Class</h5>
+<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.1.4.5. TASK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3496,7 +3570,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.1.2.6. TASK_PARTICIPATION Class</h5>
+<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.1.4.6. TASK_PARTICIPATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3558,7 +3632,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.1.2.7. PLAN_ITEM Class</h5>
+<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.1.4.7. PLAN_ITEM Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3613,11 +3687,18 @@ The following UML diagram illustrates.</p>
 <p>Optional wait specification for a Task. If not set, the Task is immediately available once execution reaches it. If set, the Task becomes available when an Event linked to the <code><em>wait_spec</em></code> occurs.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code>List&lt;DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional data-set to review prior to / as part of performing the Plan element. This implies a data retrieval from the EHR or other system, which may be specified using a <code>SYSTEM_REQUEST</code> attached to this Task.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.1.2.8. TASK_GROUP Class</h5>
+<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.1.4.8. TASK_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3692,7 +3773,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.1.2.9. EXECUTION_TYPE Enumeration</h5>
+<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.1.4.9. EXECUTION_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3733,7 +3814,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.1.2.10. EXECUTION_RULE Class</h5>
+<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.1.4.10. EXECUTION_RULE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3758,7 +3839,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_class"><a class="anchor" href="#_task_class"></a>6.1.2.11. TASK Class</h5>
+<h5 id="_task_class"><a class="anchor" href="#_task_class"></a>6.1.4.11. TASK Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3768,7 +3849,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>TASK (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -3796,7 +3877,90 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.1.2.12. TASK_REPEAT Class</h5>
+<h5 id="_dispatchable_task_class"><a class="anchor" href="#_dispatchable_task_class"></a>6.1.4.12. DISPATCHABLE_TASK Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DISPATCHABLE_TASK</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Type of Task that is performed by another actor. Such Tasks are 'dispatchable' in the sense that they consist of notifying a request to another principal performer, or an external system or service of some kind, and potentially receiving a callback notification when the requested work is complete.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. Wait = True corresponds to a context switch (block and wait) while wait = False indicates a context fork.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>callback</strong>: <code>CALLBACK_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional callback notification handler.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_performable_task_class"><a class="anchor" href="#_performable_task_class"></a>6.1.4.13. PERFORMABLE_TASK Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>PERFORMABLE_TASK (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Represents a Task that can be performed by the principal performer during the Plan execution.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_dataset</strong>: <code>List&lt;DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Associated data-set template and/or form via which data to be captured during this Task will actually be entered.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.1.4.14. TASK_REPEAT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3836,12 +4000,60 @@ The following UML diagram illustrates.</p>
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_dataset_spec_class"><a class="anchor" href="#_dataset_spec_class"></a>6.1.4.15. DATASET_SPEC Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DATASET_SPEC</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Form identifier.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Template identifier in String form of an <code>ARCHETYPE_HRID</code>. If used with no <code><em>form_id</em></code>, the Execution engine needs to determine how to find a form based on the template identifier.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Other data-set related details.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_task_actions"><a class="anchor" href="#_task_actions"></a>6.2. Task Actions</h3>
 <div class="paragraph">
-<p>The specific definition of the work of Tasks is provided by <code>TASK.<em>action</em></code>, of type <code>TASK_ACTION</code> and its subtypes. Two abstract sub-types distinguish the two basic flavours of Task Action, namely <em>dispatchable</em>, meaning 'sent elsewhere for processing', and <em>performable</em>, meaning 'defined and performed within the current Plan'. The following UML diagram shows <code>TASK_ACTION</code> and its subtypes in detail.</p>
+<p>The specific definition of the work of Tasks is provided by <code>TASK.<em>action</em></code>, of type <code>TASK_ACTION</code> and its subtypes. Two abstract sub-types <code>DISPATCHABLE_ACTION</code> and <code>PERFORMABLE_ACTION</code> distinguish the <em>dispatchable</em> and <em>performable</em> flavours of Task Action, corresponding to the two <code>TASK</code> subtypes. The following UML diagram shows <code>TASK_ACTION</code> and its subtypes in detail.</p>
 </div>
 <div id="rm_definition_actions" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -3850,7 +4062,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 14. proc.task_planning.definition model - Task Actions</div>
 </div>
 <div class="paragraph">
-<p><code>TASK_ACTION</code> includes three attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
+<p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
 </div>
 <div class="paragraph">
 <p>A subject precondition is formally represented as a <code>BOOLEAN_CONTEXT_EXPRESSION</code>, whose <code><em>expression</em></code> value is a string in <a href="/releases/BASE/latest/expression.html">openEHR Expression Language</a> syntax.</p>
@@ -3865,13 +4077,7 @@ The following UML diagram illustrates.</p>
 <p>The second generally applicable attribute is <code><em>costing_data</em></code>, since cost information may clearly be relevant to any Plan item. Costing is dealt with in detail below.</p>
 </div>
 <div class="paragraph">
-<p>The third attribute is <code><em>review_dataset</em></code> which provides the ability to specify a data set or form to display when entering a Task, to aid the performer.</p>
-</div>
-<div class="paragraph">
-<p>In a similar manner, a small number of attributes apply to Dispatchable Actions and Performable Actions. The former class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.</p>
-</div>
-<div class="paragraph">
-<p>Performable Actions have three attributes. The <code><em>other_participations</em></code> and <code><em>resources</em></code> attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the <code><em>principal_performer</em></code>. Finally, the <code><em>capture_dataset</em></code> allows a dataset or form to be specified, for which data must be obtained during the Task execution.</p>
+<p>Performable Actions have two attributes. The <code><em>other_participations</em></code> and <code><em>resources</em></code> attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the <code><em>principal_performer</em></code>.</p>
 </div>
 <div class="paragraph">
 <p>The subtypes of <code>TASK_ACTION</code> consist of the following (reading from the right hand side):</p>
@@ -4071,13 +4277,6 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code>List&lt;DATASET_SPEC&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional data-set to review prior to / as part of performing Task. This implies a data retrieval from the EHR or other system, which may be specified using a <code>SYSTEM_REQUEST</code> attached to this Task.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_activity</strong>: <code>LOCATABLE_REF</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Optional reference back to the <code>ACTIVITY</code> of an <code>INSTRUCTION</code> that generated this <code>TASK</code>.</p>
@@ -4148,55 +4347,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dataset_spec_class"><a class="anchor" href="#_dataset_spec_class"></a>6.2.3.3. DATASET_SPEC Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DATASET_SPEC</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Form identifier.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Template identifier in String form of an <code>ARCHETYPE_HRID</code>. If used with no <code><em>form_id</em></code>, the Execution engine needs to determine how to find a form based on the template identifier.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Other data-set related details.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_performable_action_class"><a class="anchor" href="#_performable_action_class"></a>6.2.3.4. PERFORMABLE_ACTION Class</h5>
+<h5 id="_performable_action_class"><a class="anchor" href="#_performable_action_class"></a>6.2.3.3. PERFORMABLE_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4211,7 +4362,7 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Represents an action that can be performed by the principal performer during the Plan execution. This is either inline defined or via reference to a sub-plan.</p>
+<p>Represents an Action that can be performed by the principal performer during the Plan execution. This is either inline defined or via reference to a sub-plan.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4237,18 +4388,11 @@ The following UML diagram illustrates.</p>
 <p>List of participations for task item.</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_dataset</strong>: <code>List&lt;DATASET_SPEC&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Associated data-set template and/or form via which data to be captured during this Task will actually be entered.</p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_resource_participation_class"><a class="anchor" href="#_resource_participation_class"></a>6.2.3.5. RESOURCE_PARTICIPATION Class</h5>
+<h5 id="_resource_participation_class"><a class="anchor" href="#_resource_participation_class"></a>6.2.3.4. RESOURCE_PARTICIPATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4295,7 +4439,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_defined_action_class"><a class="anchor" href="#_defined_action_class"></a>6.2.3.6. DEFINED_ACTION Class</h5>
+<h5 id="_defined_action_class"><a class="anchor" href="#_defined_action_class"></a>6.2.3.5. DEFINED_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4346,7 +4490,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_sub_plan_class"><a class="anchor" href="#_sub_plan_class"></a>6.2.3.7. SUB_PLAN Class</h5>
+<h5 id="_sub_plan_class"><a class="anchor" href="#_sub_plan_class"></a>6.2.3.6. SUB_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4375,7 +4519,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dispatchable_action_class"><a class="anchor" href="#_dispatchable_action_class"></a>6.2.3.8. DISPATCHABLE_ACTION Class</h5>
+<h5 id="_dispatchable_action_class"><a class="anchor" href="#_dispatchable_action_class"></a>6.2.3.7. DISPATCHABLE_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4390,37 +4534,18 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Type of Task Action that is performed by another performer, system or organisation. All such Task Actions are 'dispatchable' in the sense that they consist of notifying a request to another principal_performer, or an exterior system or service of some kind, and potentially receiving a callback notification when the requested work is complete.</p>
+<p>Type of Task Action that is performed by another performer, system or organisation.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_ACTION</code></p></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. Wait = True corresponds to a context switch (block and wait) while wait = False indicates a context fork.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>callback</strong>: <code>CALLBACK_WAIT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional callback notification handler.</p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_hand_off_class"><a class="anchor" href="#_hand_off_class"></a>6.2.3.9. HAND_OFF Class</h5>
+<h5 id="_hand_off_class"><a class="anchor" href="#_hand_off_class"></a>6.2.3.8. HAND_OFF Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4452,7 +4577,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_external_request_class"><a class="anchor" href="#_external_request_class"></a>6.2.3.10. EXTERNAL_REQUEST Class</h5>
+<h5 id="_external_request_class"><a class="anchor" href="#_external_request_class"></a>6.2.3.9. EXTERNAL_REQUEST Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4507,7 +4632,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_system_request_class"><a class="anchor" href="#_system_request_class"></a>6.2.3.11. SYSTEM_REQUEST Class</h5>
+<h5 id="_system_request_class"><a class="anchor" href="#_system_request_class"></a>6.2.3.10. SYSTEM_REQUEST Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4545,7 +4670,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_linked_plan_class"><a class="anchor" href="#_linked_plan_class"></a>6.2.3.12. LINKED_PLAN Class</h5>
+<h5 id="_linked_plan_class"><a class="anchor" href="#_linked_plan_class"></a>6.2.3.11. LINKED_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4581,9 +4706,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conditional_structures"><a class="anchor" href="#_conditional_structures"></a>6.3. Conditional Structures</h3>
+<h3 id="_conditional_structures_2"><a class="anchor" href="#_conditional_structures_2"></a>6.3. Conditional Structures</h3>
 <div class="paragraph">
-<p>More advanced applications of Task Plans include three common conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of <code>TASK_GROUP</code> and are illustrated in the following UML model.</p>
+<p>More advanced applications of Task Plans include four conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of <code>TASK_GROUP</code> and are illustrated in the following UML model.</p>
 </div>
 <div id="proc_task_planning_definition_decision" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -4592,7 +4717,29 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 19. proc.task_planning package definition model (decision view)</div>
 </div>
 <div class="paragraph">
-<p>The first pattern is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes <code>CONDITION_GROUP</code> and <code>CONDITION_BRANCH</code> provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the <code><em>execution_type</em></code> is constrained to <code>sequential</code>.</p>
+<p>The pattern types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the <code>CHOICE_GROUP</code> and <code>CHOICE_BRANCH</code> classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>fully automated</em>: three kinds of fully defined decision structures, namely the <code>CONDITION_XX</code>, <code>DECISION_XX</code> and <code>EVENT_XX</code> classes shown in the UML diagram;</p>
+</li>
+<li>
+<p><em>decision support</em>: where instances of the above structures should be considered recommendations only, the <code><em>override_type</em></code> attribute defined on <code>CHOICE_GROUP</code> may be used on any <code>XX_GROUP</code> to indicate that user override is allowed;</p>
+</li>
+<li>
+<p><em>ad hoc</em>: a dedicated variation <code>ADHOC_GROUP</code> and <code>ADHOC_BRANCH</code> are used to represent multiple branches where no criteria are defined in the Plan definition, but instead provided by an execution-time user.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the override and adhoc cases, a justification may be provided at execution-time for having overridden or made a particular adhoc choice. This is represented in the materialised model, and therefore does not appear in the definition model.</p>
+</div>
+<div class="paragraph">
+<p>The three fully defined decision patterns are as follows.</p>
+</div>
+<div class="paragraph">
+<p>The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes <code>CONDITION_GROUP</code> and <code>CONDITION_BRANCH</code> provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the <code><em>execution_type</em></code> is constrained to <code>sequential</code>.</p>
 </div>
 <div class="paragraph">
 <p>The following diagram shows a typical condition structure.</p>
@@ -4604,7 +4751,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 20. Condition structure</div>
 </div>
 <div class="paragraph">
-<p>The second structure corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (<code><em>execution_type</em></code> is constrained to <code>sequential</code>), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.</p>
+<p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (<code><em>execution_type</em></code> is constrained to <code>sequential</code>), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.</p>
 </div>
 <div class="paragraph">
 <p>The following diagram shows a typical decision structure.</p>
@@ -4616,7 +4763,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 21. Decision structure</div>
 </div>
 <div class="paragraph">
-<p>The third structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes <code>EVENT_GROUP</code> and <code>EVENT_BRANCH</code>, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.</p>
+<p>The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes <code>EVENT_GROUP</code> and <code>EVENT_BRANCH</code>, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.</p>
 </div>
 <div id="event_structure" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -4627,7 +4774,194 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_class_descriptions_7"><a class="anchor" href="#_class_descriptions_7"></a>6.3.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_condition_group_class"><a class="anchor" href="#_condition_group_class"></a>6.3.1.1. CONDITION_GROUP Class</h5>
+<h5 id="_choice_group_class"><a class="anchor" href="#_choice_group_class"></a>6.3.1.1. CHOICE_GROUP Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>CHOICE_GROUP (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Abstract precursor of root node of any decision structure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>override_type</strong>: <code>OVERRIDE_TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Indicates kind of user override that would be accepted at runtime.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;CHOICE_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Set of Tasks to perform. Execution order is defined by the <code><em>execution_type</em></code> setting, either sequential or parallel (no order).</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Inv_parallel</em></strong>: <code>execution_type = EXECUTION_TYPE.parallel</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_override_type_enumeration"><a class="anchor" href="#_override_type_enumeration"></a>6.3.1.2. OVERRIDE_TYPE Enumeration</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>OVERRIDE_TYPE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Enumeration expressing kinds of override that can be stated for a Plan definition decision structure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allowed</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Override by user is allowed.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allowed_with_reason</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>User override allowed with provided reason.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prohibited</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Override by user is prohibited.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_choice_branch_class"><a class="anchor" href="#_choice_branch_class"></a>6.3.1.3. CHOICE_BRANCH Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>CHOICE_BRANCH (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Abstract precursor of any subordinate branch in a decision structure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.3.1.4. ADHOC_GROUP Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>ADHOC_GROUP</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;ADHOC_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Set of Tasks to perform. Execution order is defined by the <code><em>execution_type</em></code> setting, either sequential or parallel (no order).</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.3.1.5. ADHOC_BRANCH Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>ADHOC_BRANCH</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_condition_group_class"><a class="anchor" href="#_condition_group_class"></a>6.3.1.6. CONDITION_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4650,7 +4984,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4671,17 +5005,11 @@ The following UML diagram illustrates.</p>
 <p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_seq_execution</em></strong>: <code>execution_type = EXECUTION_TYPE.sequential</code></p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_condition_branch_class"><a class="anchor" href="#_condition_branch_class"></a>6.3.1.2. CONDITION_BRANCH Class</h5>
+<h5 id="_condition_branch_class"><a class="anchor" href="#_condition_branch_class"></a>6.3.1.7. CONDITION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4701,7 +5029,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4725,7 +5053,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_decision_group_class"><a class="anchor" href="#_decision_group_class"></a>6.3.1.3. DECISION_GROUP Class</h5>
+<h5 id="_decision_group_class"><a class="anchor" href="#_decision_group_class"></a>6.3.1.8. DECISION_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4748,7 +5076,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4776,17 +5104,11 @@ The following UML diagram illustrates.</p>
 <p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_seq_execution</em></strong>: <code>execution_type = EXECUTION_TYPE.sequential</code></p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_decision_branch_class"><a class="anchor" href="#_decision_branch_class"></a>6.3.1.4. DECISION_BRANCH Class</h5>
+<h5 id="_decision_branch_class"><a class="anchor" href="#_decision_branch_class"></a>6.3.1.9. DECISION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4806,7 +5128,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4830,7 +5152,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.3.1.5. EVENT_GROUP Class</h5>
+<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.3.1.10. EVENT_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4850,7 +5172,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4872,17 +5194,11 @@ The following UML diagram illustrates.</p>
 <p>Set of branches in this Event Group.</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p><strong><em>Inv_parallel</em></strong>: <code>execution_type = EXECUTION_TYPE.parallel</code></p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.3.1.6. EVENT_BRANCH Class</h5>
+<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.3.1.11. EVENT_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4902,7 +5218,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>

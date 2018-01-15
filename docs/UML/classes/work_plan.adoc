@@ -39,7 +39,7 @@ a|Reference list of orders in this Work Plan.
 
 h|*1..1*
 |*calendar*: `PLAN_CALENDAR`
-a|
+a|Global calendar object, containing events fixed in time relevant to the Plan's Tasks, for example appointments.
 
 h|*1..1*
 |*timeline*: `PLAN_TIMELINE`

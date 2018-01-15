@@ -8,10 +8,12 @@
 
 |[[latest_issue]]1.1.0
 |{openehr_jira}/SPECPROC-6[SPECPROC-6]. Adjust `SYSTEM_CALL` definition; +
- Add `PARAMETER_DEF` and `PARAMETER_MAPPING` types.
+ Add `PARAMETER_DEF` and `PARAMETER_MAPPING` types. +
+ {openehr_jira}/SPECPROC-7[SPECPROC-7]. Provide support in decision structures for automated / decision support / ad hoc modes; +
+ Add `CHOICE_GROUP`, `CHOICE_BRANCH`, `ADHOC_GROUP`, `ADHOC_BRANCH` classes, and an attribute for marking any group as overridable at execution time.
 |T Beale, +
  M Kejžar
-|[[latest_issue_date]]10 Jan 2018
+|[[latest_issue_date]]15 Jan 2018
 
 |
 |{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +
