@@ -6,10 +6,10 @@ h|*Class*
 2+^h|*ADHOC_GROUP*
 
 h|*Description*
-2+a|
+2+a|Special kind of Task Group whose members are all `ADHOC_BRANCH` instances, each of which represents an outgoing branch. No conditions or rules are supplied in the model, and it is assumed that the user has a way of choosing based on the branches, and the decision context.
 
 h|*Inherit*
-2+|`CHOICE_GROUP`
+2+|`BLOCKING_GROUP`
 
 h|*Attributes*
 ^h|*Signature*

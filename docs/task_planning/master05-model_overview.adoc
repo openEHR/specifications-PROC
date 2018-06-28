@@ -156,7 +156,7 @@ include::{uml_export_dir}/classes/query_call.adoc[leveloffset=+1]
 
 == Variable Referencing
 
-Within the expressions and System calls used in Task definitions, various variables may be used. These includ the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. `$var_name` and `$varName` refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.
+Within the expressions and System calls used in Task definitions, various variables may be used. These include the context variables described above and built-in variables defined for any Work Plan context, enabling the current Plan, current Task etc to be referred to, for example in a System call. The 'camel-case' and 'snake-case' variants of a variable name are treated as equivalents, i.e. `$var_name` and `$varName` refer to the same thing. Among the context variables, some standard defaults are recommended in order to maximise reusability of Task Plan definitions.
 
 Within expressions, defined variables are referenced using the '$' syntax, i.e. `$var_name` or `$varName`. Within System calls there are two places where variable references may appear:
 

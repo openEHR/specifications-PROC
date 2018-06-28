@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*duration*: `IDuration`
+|*duration*: `Iso8601_duration`
 a|Delay from activation time to receive the event notification.
 
 h|*0..1*

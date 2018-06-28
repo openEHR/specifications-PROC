@@ -6,14 +6,26 @@
 
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
 
-|[[latest_issue]]1.1.0
+|[[latest_issue]]1.1.2
+|{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec.
+|B Naess, +
+ M Kejžar
+|[[latest_issue_date]]28 Jun 2018
+
+|1.1.1
+|{openehr_jira}/SPECPROC-9[SPECPROC-9]. Add sub-section on Time and Work in Background section. +
+ {openehr_jira}/SPECPROC-10[SPECPROC-10]. Add `BLOCKING_GROUP` and `BLOCKING_BRANCH` classes.
+|T Beale
+|21 Jun 2018
+
+|1.1.0
 |{openehr_jira}/SPECPROC-6[SPECPROC-6]. Adjust `SYSTEM_CALL` definition; +
  Add `PARAMETER_DEF` and `PARAMETER_MAPPING` types. +
  {openehr_jira}/SPECPROC-7[SPECPROC-7]. Provide support in decision structures for automated / decision support / ad hoc modes; +
  Add `CHOICE_GROUP`, `CHOICE_BRANCH`, `ADHOC_GROUP`, `ADHOC_BRANCH` classes, and an attribute for marking any group as overridable at execution time.
 |T Beale, +
  M Kejžar
-|[[latest_issue_date]]15 Jan 2018
+|15 Jan 2018
 
 |
 |{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +

@@ -28,7 +28,7 @@ One of the major differences between the openEHR Task Planning architecture comp
 
 === Work Plan
 
-The top-level formal concept defined is the _Work Plan_, which consists of one or more _Task Plans_. The Work Plan is a definition of work to be performed by one or more workers in order to achieve a defined goal with respect to a subject of care. Goals are often defined by published guidelines or care pathways, and the overall structure of work defined within a Work Plan and its constituent Task Plans may well be structured according to such publications.
+The top-level formal concept defined is the _Work Plan_, which consists of one or more _Task Plans_. The Work Plan is a definition of work to be performed by one or more workers in order to achieve a defined goal with respect to a _single subject of care_. A different subject requires a different instance of a Work Plan. Goals are often defined by published guidelines or care pathways, and the overall structure of work defined within a Work Plan and its constituent Task Plans may well be structured according to such publications.
 
 Within a Work Plan, each included Task Plan is a definition of work to be performed in a single work _context_, by a 'principal performer' and possibly other participants. Multiple Task Plans occur for two reasons:
 
@@ -43,7 +43,7 @@ More typically, some jobs required by a Work Plan are performed in another organ
 
 === Task Plan
 
-The actual definition of work to be done, i.e. Tasks, occurs within each Task Plan. The most basic structuring notion required is that of a sequential list of Tasks, enabling the representation of the set of steps in a typical linear workflow such as making tea or cleaning a wound.
+The actual definition of work to be done, i.e. Tasks, is stated within a Task Plan. The most basic structuring notion required is that of a sequential list of Tasks, enabling the representation of the set of steps in a typical linear workflow such as making tea or cleaning a wound.
 
 However, in the real world, almost every job can be sub-divided into smaller pieces of work in a fractal nature. This simple fact requires that the general structure of Tasks is actually a hierarchy, within which sequential Task lists occur commonly (and will be the top-level structure in simple cases). The formal construct provided for this is the Task Group, which may contain Tasks and more Task Groups.
 
@@ -84,7 +84,7 @@ The leaf level constituents of a Task Plan are Tasks of various kinds, including
 
 We can summarise the above-described structure in reverse:
 
-* *Task*: a separately performable unit of planned work at any level of granularity; may be defined inline or 
+* *Task*: a separately performable unit of planned work at any level of granularity; may be defined inline or via sub-plan;
 * *Task Group*: a group of Tasks and/or more Task Groups within a Task Plan that are to be executed on the same basis, e.g. sequential, parallel.
 * *conditional Group types*: special kinds of Task Group that enable conditional logic structures to be represented in a Plan.
 * *Task Plan*: a logical set of Tasks for a single performer context to achieve a defined result within a larger plan.
@@ -105,19 +105,19 @@ These more sophisticated rules are represented in a generic way, with the Task P
 
 A fundamental concept in this specification is that of _work context_, which is the factor that distinguishes one Task Plan from another, i.e. one Plan corresponds to Tasks to be performed in a single work context. Work context is defined as a single, _contiguous cognitive flow_ in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed _seamlessly_ by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a _single mind_.
 
-Continuous knowledge of the work, and continuous real-time communication with oneself ('train of thought') or directly among multiple performers is what characterises a given context. A different context is one with different cognitive actors, and with which communications is performed by notifications at certain time checkpoints, typically just the beginning and end.
+Continuous knowledge of the work, and continuous real-time communication with oneself ('train of thought') or directly among multiple performers is what characterises a given context. A different context is one with different cognitive actors, and within which communications are performed by notifications at certain time checkpoints, typically just the beginning and end.
 
-Since parallelism is possible within a single Plan, a performer may be working on more than one thing at once, within the same context. In other words, a work context (and a Task Plan in execution) may contain multiple execution paths at a point in time.
+Since parallelism is possible within a single Plan, a performer may be working on more than one thing at once, within the same context, for the subject. In other words, a work context (and a Task Plan in execution) may contain multiple execution paths at a point in time.
 
 === Context Switching and Forking
 
 If work has to be stopped within one context and passed to a different work context, a _context switch_ is required, and the first worker or team will wait for a response. If the context switch is within the same Work Plan, is termed a _handoff_, which entails switching Task Plans. A context change is also required to request work from an external environment. A second kind of change of control is a _context fork_, whereby the current performer signals to another context to start doing some work, but continues doing his own work. 
 
-A context switch is commonly known as 'block and wait' or 'synchronous processing', while the context fork is known as 'asynchronous' or 'parallel' processing.
+A context switch is commonly known as 'block and wait' or _synchronous processing_, while the context fork is known as _asynchronous_ or _parallel processing_.
 
-Work context is clearly maintained during a 'working session' during which the work is done by one or more performers. But if the work extends over hours or days, as in the case of chemotherapy, worker shifts will end and the work will be taken up by new workers, or perhaps the same workers on the next day. The Task Planning model does not consider this kind of _handoff_ to be a context switch, since it is assumed that the Task Planning runtime system maintains all relevant context information, available for use by new workers. All that is required to maintain the context is for de-allocation and re-allocation of the work to performers.
+Work context is clearly maintained during a _work session_ during which the work is done by one or more performers. But if the work extends over hours or days, as in the case of chemotherapy, worker shifts will end and the work will be taken up by new workers, or perhaps the same workers on the next day. The Task Planning model does not consider this kind of _handoff_ to be a context switch, since it is assumed that the Task Planning runtime system maintains all relevant context information, available for use by new workers. All that is required to maintain the context is for de-allocation and re-allocation of the work to performers.
 
-The following diagram shows the taxonomy of task types.
+The following diagram shows the taxonomy of task types that result from the above considerations.
 
 [.text-center]
 .Task Taxonomy
@@ -125,9 +125,9 @@ image::diagrams/task_taxonomy.svg[id=task_taxonomy, align="center", width=50%]
 
 === Principal Performer
 
-Following the definition of context above, a Task Plan is defined to have a _principle performer_, that is to say, a single logical executing actor. This is often a single person (or a device or possibly a software service), but might equally be a group of personnel, e.g. ward nurses, who execute the steps of a Task Plan during and across shift boundaries (wound dressing, turning patients, IV maintenance etc). In these cases the separate individuals constitute a 'single mind' as described above, with respect to the subject of care and the work, and their communication is not directly represented within the Task Plan.
+Following the notion of work context desscribed above, a Task Plan is defined to have a _principle performer_, that is to say, a single logical executing actor. This is often a single person (or a device or possibly a software service), but might equally be a group of personnel, e.g. ward nurses, who execute the steps of a Task Plan during and across shift boundaries (wound dressing, turning patients, IV maintenance etc). In these cases the separate individuals constitute a 'single mind' as described above, with respect to the subject of care and the work, and their communication is not directly represented within the Task Plan.
 
-In addition to the principal performer, other participations can be specified for any contained Task in a Plan. This allows the Plan to indicate where specific members working in a single context should be responsible for specific individual Tasks. However it is assumed that the principal performer is _responsible_ for all actions, and is also the notifier of action completions and cancellations.
+In addition to the principal performer, other _participations_ can be specified for any contained Task in a Plan. This allows the Plan to indicate where specific members working in a single cognitive work context should be responsible for specific individual Tasks. However it is assumed that the principal performer is _responsible_ for all actions, and is also the notifier of action completions and cancellations.
 
 The principal performer and other participants are specified in the Plan in terms of professional roles, and optionally a specific agent. This might in some cases be the patient.
 
@@ -144,9 +144,9 @@ Time is understood in three possible ways:
 
 * as a _relative offset_ from the start of the Plan timeline, when it is activated;
 * as an _absolute time_ as marked on a calendar;
-* as the _time of an event_.
+* as the _moment at which an event occurs_.
 
-The first two are converted to events by the execution system internal clock reaching markers on the timeline or calendar. For event-based times, the kinds of events recognised include the following:
+The first two are converted to artificial events by the execution system internal clock reaching markers on the Work Plan timeline or calendar. For real event-based times, the kinds of events recognised include the following:
 
 * _timer event_: an event caused by a timer that expires;
 * _state trigger_: a condition based on one or more watched variables available from the computation environment, including subject variables (sex, vital signs, etc) and variables relating to clinical processes, e.g. 'time since emergency admission'.
@@ -275,7 +275,7 @@ The following diagram illustrates these concepts.
 
 [.text-center]
 .Task Availability
-image::diagrams/task_availability.svg[id=task_availability, align="center", width=60%]
+image::diagrams/task_availability.svg[id=task_availability, align="center", width=55%]
 
 === Adaptive Modification and Exception-handling
 

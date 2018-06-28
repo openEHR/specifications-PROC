@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*time*: `Date_time`
+|*time*: `Iso8601_date_time`
 a|Time expressed as an absolute date/time.
 |===

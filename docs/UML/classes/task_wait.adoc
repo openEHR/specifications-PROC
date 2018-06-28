@@ -6,10 +6,10 @@ h|*Class*
 2+^h|*TASK_WAIT*
 
 h|*Description*
-2+a|Object representing time of an Task to be performed in terms of a related event. The `_delay_` attribute may be used to delay the start time by some amount. The `_start_window_` is used to add an 'acceptable delay' time within which the Task should be start with respect to the intended start time. The `_timeout_` attribute can be used for non-deterministic Events.
+2+a|Object representing time of a Task to be performed in terms of a related event. The `_start_window_` is used to add an 'acceptable delay' time within which the Task should be started with respect to the intended start time. The `_timeout_` attribute can be used for non-deterministic Events.
 
 * clock time: event = `TIMELINE_MOMENT`, `CALENDAR_EVENT`;
-* notification-based: event =  or `MANUAL_EVENT`, `SYSTEM_NOTIFICATION`;
+* notification-based: event = `MANUAL_NOTIFICATION`, `CALLBACK_NOTIFICATION` or `SYSTEM_NOTIFICATION`;
 * task-linked: event = `TASK_TRANSITION`, e.g. 1hr after previous Task done;
 * state-linked: event = `STATE_TRIGGER`, e.g. 'when systolic BP > 165';
 * any event with added delay: `DELAY_EVENT`.
@@ -20,7 +20,7 @@ h|*Attributes*
 
 h|*0..1*
 |*events*: `List<PLAN_EVENT>`
-a|Event that defines the intended point in time.
+a|One or more events that define the intended point in time. If there are more than one, the implied logical relation is OR, i.e. any event occurring causes the wait state to complete.
 
 h|*0..1*
 |*event_relation*: `TEMPORAL_RELATION`

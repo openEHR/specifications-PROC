@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*timeline_offset*: `IDuration`
+|*timeline_offset*: `Iso8601_duration`
 a|Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.
 
 h|*0..1*

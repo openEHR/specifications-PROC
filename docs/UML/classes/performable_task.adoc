@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_PERFORMABLE_TASK (abstract)_*
+2+^h|*PERFORMABLE_TASK*
 
 h|*Description*
 2+a|Represents a Task that can be performed by the principal performer during the Plan execution.

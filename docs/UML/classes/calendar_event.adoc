@@ -20,6 +20,6 @@ h|*0..1*
 a|Identifier of entry within global Plan calendar.
 
 h|*1..1*
-|*time*: `IDate_time`
+|*time*: `Iso8601_date_time`
 a|Time of entry in calendar.
 |===

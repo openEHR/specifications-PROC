@@ -270,10 +270,6 @@ include::{uml_export_dir}/classes/override_type.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/choice_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/adhoc_group.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/adhoc_branch.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/condition_group.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/condition_branch.adoc[leveloffset=+1]
@@ -281,6 +277,14 @@ include::{uml_export_dir}/classes/condition_branch.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/decision_group.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/decision_branch.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/blocking_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/blocking_branch.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/adhoc_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/adhoc_branch.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/event_group.adoc[leveloffset=+1]
 
@@ -385,6 +389,38 @@ include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
+
+== Task Lifecycle
+
+At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer. The lifecycle does not appear in the definition model `TASK` class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <<Materialised Model,described below>>.
+
+It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.
+
+The lifecycle is only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR `ACTION` or other Entry objects. The Task lifecycle states are as follows:
+
+* `initial`: initial pseudo-state, not used in operation;
+* `planned`: defined, but not yet available for execution;
+* `available`: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;
+* `cancelled` (T): cancelled prior or during execution as not needed for success of the Plan;
+* `completed` (T): performed to completion;
+* `abandoned` (T): execution was stopped before or after commencement due to completion being impossible.;
+* `underway`: indicates that a Task execution has been commenced;
+* `suspended`: indicates that a Task execution has been suspended.
+
+In the above, the terminal states are marked with '(T)'. The state machine is shown below.
+
+[.text-center]
+.Task lifecycle state machine
+image::{uml_export_dir}/diagrams/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
+
+A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the `abandoned` state is entered, it does not.
+
+The state machine is primarily designed to allow a stateless view of the actual execution state of a Task. That is to say, the standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, but not interim states during execution. The pathways through the states `underway` and `suspended` are provided to represent in-execution states, which are needed for two cases:
+
+* longer-running atomic Tasks;
+* dispatchable Tasks that are blocked waiting on another performer.
+
+It may be that one or more Tasks do not evaluate to `available` at runtime when the principal performer wants to treat them as being available. This may happen if the performer wants to execute a Task earlier than scheduled, or decides that an unmet precondition or wait condition does not matter (for example, they may know that it is met, but the Task Plan application may not yet know). Accordingly, a user override can be used, represented by the `_override_` transition from `planned` => `available`.
 
 == Repetition
 

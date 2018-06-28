@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*required_currency*: `Duration`
+|*required_currency*: `Iso8601_duration`
 a|Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.
 |===
