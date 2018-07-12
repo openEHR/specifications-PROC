@@ -42,7 +42,7 @@ The following illustrates a simple Task Plan structure including nested Task Gro
 
 [.text-center]
 .Task grouping
-image::diagrams/task_grouping.svg[id=task_grouping, align="center", width=25%]
+image::diagrams/task_grouping.svg[id=task_grouping, align="center", width=75%]
 
 The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.
 
@@ -130,7 +130,7 @@ The following instance diagram illustrates.
 
 [.text-center]
 .Task Plan linking
-image::diagrams/task_linking.svg[id=task_linking, align="center", width=70%]
+image::diagrams/task_linking.svg[id=task_linking, align="center"]
 
 This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the `SUB_PLAN` class. Since a Sub-plan is a kind of Task, it has a _description_ and could be performed and signed off as if it were a normal inline `DEFINED_ACTION` by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The `PLAN_ITME._training_level_` attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.
 
@@ -148,7 +148,7 @@ The following illustrates Task definitions using prototypes.
 
 [.text-center]
 .Task definition
-image::diagrams/task_definition.svg[id=task_definition, align="center", width=45%]
+image::diagrams/task_definition.svg[id=task_definition, align="center", width=65%]
 
 Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The `_prototype_` attribute in a `TASK_PLAN` archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. `ACTION` or other Entry. This can be used in various ways, as follows:
 
@@ -186,7 +186,7 @@ The following illustrates, using the example of an acute stroke management care 
 
 [.text-center]
 .Task coordination
-image::diagrams/task_coordination.svg[id=task_coordination, align="center", width=80%]
+image::diagrams/task_coordination.svg[id=task_coordination, align="center"]
 
 In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback wait resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
 
@@ -246,7 +246,7 @@ The following diagram shows a typical condition structure.
 
 [.text-center]
 .Condition structure
-image::diagrams/condition_structure.svg[id=condition_structure, align="center", width=40%]
+image::diagrams/condition_structure.svg[id=condition_structure, align="center"]
 
 The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (`_execution_type_` is constrained to `sequential`), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.
 
@@ -254,13 +254,13 @@ The following diagram shows a typical decision structure.
 
 [.text-center]
 .Decision structure
-image::diagrams/decision_structure.svg[id=decision_structure, align="center", width=40%]
+image::diagrams/decision_structure.svg[id=decision_structure, align="center"]
 
 The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.
 
 [.text-center]
 .Event structure
-image::diagrams/event_structure.svg[id=event_structure, align="center", width=85%]
+image::diagrams/event_structure.svg[id=event_structure, align="center"]
 
 === Class Descriptions
 
@@ -305,7 +305,7 @@ In the above, the descendants of `PLAN_EVENT` represent various kinds of events,
 The event types are as follows:
 
 * `TIMER_EVENT`: represents the expiry of a Timer that was launched at some earlier time;
-* `TIMELINE_MOMENT`: represents a time-point within the global Plan timeline that is specified _relative_ to the Plan's start time, and converted to absolute time at activation; this type expresses to what is normally understood as 'clock time' or 'diary' time in the sense of a modern calendar or diary tool, and is how time can be specified directly for Tasks;
+* `TIMELINE_MOMENT`: represents a fixed time-point on the Work Plan timeline;
 * `CALENDAR_EVENT`: represents an event in the global Plan calendar, which is specified in absolute time.
 * `TASK_TRANSITION`: an event corresponding to a lifecycle transition of a Task, such as being cancelled or done;
 * `CALLBACK_NOTIFICATION`: a callback notification connected to a dispatch call for a Dispatchable Task (Hand-off, External Request, System Request);
@@ -322,13 +322,13 @@ The first way is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait
 
 The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task may be commenced, either in terms of time-related events, or non-deterministic events, as follows:
 
-* _clock time_: the Task is to be executed at a specific clock time represented by an instance of `TIMELINE_MOMENT`; within a Task definition, this must be specified as a relative duration with respect to the origin clock time of the Task Plan, which is only known in absolute terms at execution time;
+* _clock time_: the Task is to be executed at a specific time on the Plan timeline, represented by an instance of `TIMELINE_MOMENT`;
 * _event-linked time_: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of `CALENDAR_EVENT` is used; the `TASK_WAIT` attributes indicate the specifics such as '1 hour before', 'with meal' etc;
 * _notification-linked time_: the Task is to be executed at a time related to a notification, either from a system (specified with `SYSTEM_NOTIFICATION`) or manually notified (`MANUAL_NOTIFICATION`);
 * _task-linked time_: the Task is to be executed at a time related to the timing of another Task lifecycle transition, such as completion of the previous Task; this is represented by an instance of `TASK_TRANSITION` whose `_transition_` indicates the required lifecycle transition;
 * _state-linked time_: the Task is to be executed at a time related to the state of the subject, as specified by an instance of `STATE_TRIGGER`. This uses a Boolean-valued `_expression_` attribute to state a condition which when true indicates that a Task time-to-execute has been reached.
 
-The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `+1d, 01:30:00` can thus be used to state a time like '1:30 PM on day one of the plan'.
+The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan timeline zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `P2D`, `13:30:00` can thus be used to state a time like '13:30 on day 2 of the plan'.
 
 === Event Wait State
 
@@ -377,6 +377,8 @@ include::{uml_export_dir}/classes/timer_event.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/calendar_event.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/timeline_moment.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_transition.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/event_wait.adoc[leveloffset=+1]
 

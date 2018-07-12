@@ -7,9 +7,12 @@
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
 
 |[[latest_issue]]1.1.2
-|{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec.
+|{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
+ {openehr_jira}/SPECPROC-XX[SPECPROC-XX]. Add `WORK_PLAN._indications_`. +
+ Improve documentation of `TIMELINE_MOMENT`.
 |B Naess, +
- M Kejžar
+ M Kejžar, +
+ T Beale
 |[[latest_issue_date]]28 Jun 2018
 
 |1.1.1

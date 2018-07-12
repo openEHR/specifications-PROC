@@ -57,6 +57,10 @@ h|*0..1*
 |*top_level_plans*: `List<UID_BASED_ID>`
 a|The set of top-level Plans that correspond to the performers and work pathways of this Work Plan.
 
+h|*0..1*
+|*indications*: `List<DV_TEXT>`
+a|Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.
+
 h|*1..1 +
 (redefined)*
 |*description*: `DV_TEXT`

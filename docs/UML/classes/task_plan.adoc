@@ -69,7 +69,7 @@ a|Identifier of instance of an order set on which this Task Plan is based, if th
 
 h|*0..1*
 |*indications*: `List<DV_TEXT>`
-a|Clinical applicability of this Task item to subject of work, e.g. 'pregnancy', 'lymphoma' etc. May be derived from a governing guideline. May be displayed as a safety precaution to human performer.
+a|Clinical applicability of this Task Plan to subject of work, e.g. 'pregnancy', 'lymphoma' etc. May be derived from a governing guideline. May be displayed as a safety precaution to human performer.
 
 h|*0..1*
 |*principal_performer*: `TASK_PARTICIPATION`

@@ -6,7 +6,11 @@ h|*Class*
 2+^h|*TIMELINE_MOMENT*
 
 h|*Description*
-2+a|Specifies a time event generated during execution when the Plan clock reaches a specific time defined in the global Plan Timeline.
+2+a|Specifies a time event generated during execution when the Plan clock reaches a specific point defined in the global Plan Timeline. The time of this timeline moment is calculated as the `_fixed_time_` in the day, e.g. `14:30:00`, no matter when the Plan is activated.
+
+The `_timeline_offset_` attribute can be used to specify a particular offset with respect to the plan time origin. The `_fixed_time_` then corresponds to the first occurrence of that time on the clock _after_ the `_timeline_offset_` is passed.
+
+This can be used to specify particular times on particular days, e.g.: `07:30:00 on day 3`, `14:00:00 on day 5` and so on by setting `_timeline_offset_` to numbers of days, e.g. `P3D`, `P5D` etc. Note that a value of `P1D` means the first 24h period after Plan activation, whereas if `_timeline_offset_` is not set, the `_fixed_time_` is understood to specify the first moment after Plan activation that this time is reached on the Plan clock.
 
 h|*Inherit*
 2+|`PLAN_EVENT`
@@ -21,5 +25,5 @@ a|Variable part of time specification, expressed as an offset from the zero time
 
 h|*0..1*
 |*fixed_time*: `TIME_SPECIFIER`
-a|Fixed time specification, to be added to variable time when the latter is converted to absolute time at activation. Used to expressed fixed hours in the day, when the day is movable.
+a|Fixed time specifier, used to expressed a fixed moment in the day.
 |===
