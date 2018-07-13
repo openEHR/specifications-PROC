@@ -8,7 +8,7 @@
 
 |[[latest_issue]]1.1.2
 |{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
- {openehr_jira}/SPECPROC-XX[SPECPROC-XX]. Add `WORK_PLAN._indications_`. +
+ {openehr_jira}/SPECPROC-11[SPECPROC-11]. Add `WORK_PLAN._indications_`; +
  Improve documentation of `TIMELINE_MOMENT`.
 |B Naess, +
  M Kejžar, +
@@ -17,7 +17,7 @@
 
 |1.1.1
 |{openehr_jira}/SPECPROC-9[SPECPROC-9]. Add sub-section on Time and Work in Background section. +
- {openehr_jira}/SPECPROC-10[SPECPROC-10]. Add `BLOCKING_GROUP` and `BLOCKING_BRANCH` classes.
+ {openehr_jira}/SPECPROC-10[SPECPROC-10]. Add `BLOCKING_GROUP` and `BLOCKING_BRANCH` classes and `EVENT_ACTION._receiver_thread_next_state_`.
 |T Beale
 |21 Jun 2018
 

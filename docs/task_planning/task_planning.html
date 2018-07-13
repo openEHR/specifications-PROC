@@ -330,11 +330,10 @@
 <li><a href="#_task_lifecycle_3">8.3.3. Task Lifecycle</a></li>
 <li><a href="#_task_availability">8.3.4. Task Availability</a></li>
 <li><a href="#_task_group_lifecycle_state">8.3.5. Task Group Lifecycle State</a></li>
-<li><a href="#_execution_path">8.3.6. Execution Path</a></li>
-<li><a href="#_resume_semantics">8.3.7. Resume Semantics</a></li>
-<li><a href="#_persistence">8.3.8. Persistence</a></li>
+<li><a href="#_resume_semantics">8.3.6. Resume Semantics</a></li>
 </ul>
 </li>
+<li><a href="#_persistence">8.4. Persistence</a></li>
 </ul>
 </li>
 <li><a href="#_materialised_model">9. Materialised Model</a>
@@ -491,7 +490,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-2">SPECPROC-2</a>. Change date/time types to <code>Iso8601_xxx</code> types from Foundation Types spec.<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-XX">SPECPROC-XX</a>. Add <code>WORK_PLAN.<em>indications</em></code>.<br>
+ <a href="https://openehr.atlassian.net/browse/SPECPROC-11">SPECPROC-11</a>. Add <code>WORK_PLAN.<em>indications</em></code>;<br>
  Improve documentation of <code>TIMELINE_MOMENT</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Kejžar,<br>
@@ -501,7 +500,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-9">SPECPROC-9</a>. Add sub-section on Time and Work in Background section.<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-10">SPECPROC-10</a>. Add <code>BLOCKING_GROUP</code> and <code>BLOCKING_BRANCH</code> classes.</p></td>
+ <a href="https://openehr.atlassian.net/browse/SPECPROC-10">SPECPROC-10</a>. Add <code>BLOCKING_GROUP</code> and <code>BLOCKING_BRANCH</code> classes and <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">21 Jun 2018</p></td>
 </tr>
@@ -6225,9 +6224,12 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_task_next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_thread_next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Next state of the receiver Task of this callback notification. If not set, default processing will be performed.</p>
+<p>Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the <em>enclosing Task Group</em> of the original dispatching Task.</p>
+</div>
+<div class="paragraph">
+<p>If not set, default processing will be performed.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6587,7 +6589,7 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_general_scheme"><a class="anchor" href="#_general_scheme"></a>8.2.1. General Scheme</h4>
 <div class="paragraph">
-<p>In a Task Plan, the execution path follows the chain of Tasks defined in the <code><em>defnition</em></code> of the Plan, which is a <code>TASK_GROUP</code>. It descends into and exits any other <code>TASK_GROUPs</code> encountered within the Plan as Tasks are executed. A Task becomes <code>available</code> based on a combination of completion (or skipping) of previous Tasks and other conditions, described below. The currently <code>available</code> Task in a Task Plan corresponds to the current execution point of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.</p>
+<p>In a Task Plan, the execution path follows the chain of Tasks defined in the <code><em>defnition</em></code> of the Plan, which is a <code>TASK_GROUP</code>. It descends into and exits any other <code>TASK_GROUPs</code> encountered within the Plan as Tasks are executed. A Task becomes <code>available</code> based on a combination of completion (or skipping) of previous Tasks and other conditions, according to logic described below. The currently <code>available</code> Task in a Task Plan corresponds to the <em>current execution point</em> of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.</p>
 </div>
 <div class="paragraph">
 <p>On the way, the execution path is modified by conditional nodes and also by Dispatchable Tasks, as follows.</p>
@@ -6599,22 +6601,19 @@ The following UML diagram illustrates.</p>
 <p>The various kinds of conditional nodes represent different ways of controlling execution of a Task Plan.</p>
 </div>
 <div class="paragraph">
-<p>A <code>CONDITION_GROUP / CONDITION_BRANCH</code> structure is processed in the same way as an if-then/elseif-then/else statement, i.e. in-order processing, with the first patching path followed. In the temporal plan execution environment, the processing proceeds instantaneously, i.e. there is no wait state involved.</p>
+<p>A <code>CONDITION_GROUP / CONDITION_BRANCH</code> structure is processed in the same way as an if-then/elseif-then/else statement in a programming language, i.e. in-order processing, with the first matching path followed. In the temporal Plan execution environment, the processing proceeds instantaneously, i.e. there is no wait state involved.</p>
 </div>
 <div class="paragraph">
-<p>A <code>DECISION_GROUP / DECISION_BRANCH</code> structure is processed like a case (aka switch) statement, i.e. evaluate the <code>DECISION_GROUP.<em>test</em></code>, find the first branch with a value range that contains the value, and follow it. This is also instantaneously processed.</p>
+<p>A <code>DECISION_GROUP / DECISION_BRANCH</code> structure is processed like a case (aka switch) statement in a programming language, i.e. evaluate the <code>DECISION_GROUP.<em>test</em></code>, find the first branch whose <code><em>value_constraint</em></code> (a value range) contains the value, and follow it. This is also instantaneously processed.</p>
 </div>
 <div class="paragraph">
-<p>An <code>ADHOC_GROUP / ADHOC_BRANCH</code> structure has to be processed using an implicit wait state, since it requires user input. It will thus block until input is supplied.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: define behaviour if no user input supplied: use global timeout to choose a default branch?</p>
+<p>The other two types of Choice Group are blocking.</p>
 </div>
 <div class="paragraph">
-<p>Finally the <code>EVENT_GROUP / EVENT_BRANCH</code> structure is also blocking due to <code>TASK_WAIT</code> states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the <code><em>timeout</em></code> on the group to fire.</p>
+<p>An <code>ADHOC_GROUP / ADHOC_BRANCH</code> structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited <code>BLOCKING_GROUP.<em>timeout</em></code> attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.</p>
 </div>
-<div class="paragraph tbd">
-<p>TBD: could define a default branch here as well.</p>
+<div class="paragraph">
+<p>Finally the <code>EVENT_GROUP / EVENT_BRANCH</code> structure is blocking due to <code>TASK_WAIT</code> states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the <code><em>timeout</em></code> on the group to fire. As for the Ad hoc case, a timeout may be set in order to force processing if none of the specified events occurs, and if not set, a global timeout will break the wait state if nothing else happens.</p>
 </div>
 </div>
 <div class="sect3">
@@ -6625,18 +6624,18 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>receiver Task next state: the next state of the receiver Task of the</p>
+<p>receiver Task next state: the next state of the receiver Task of the original execution path;</p>
 </li>
 <li>
-<p>actions to execute on the success, fail and timeout notifications from the dispatched Task (<code>EVENT_ACTION</code>);</p>
+<p>actions to execute on the success, fail and timeout notifications from the dispatched Task (<code>EVENT_ACTION</code>).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A typical usage of this feature is to have a Void success action (execution continues to the next Task), and Event Actions set on the fail and time-out branches of the Callback, usually to notify users or other systems. If there is no <code>CALLBACK_WAIT</code> set, a generic system timer is launched using the global default callback wait time.</p>
+<p>A typical usage of this feature is to have a Void success action (execution continues to the next Task), and Event Actions set on the fail and time-out branches of the Callback, usually to notify users or other systems. If there is no <code>CALLBACK_WAIT</code> set, a global system timeout will occur.</p>
 </div>
 <div class="paragraph">
-<p>The lifecycle state of a blocking Dispatchable Task has to be determined wth respect to the dispatch request. The starting state is <code>available</code> (having been arrived at by the usual means). When the dispatch is executed, the source Task enters the <code>underway</code> state via the <code><em>commenced</em></code> transition. When the work of the remote Task is completed, a notification will be received and the callback processed, if set. The next state of the receiver Task (i.e. the blocking Task) is either <code>EVENT_ACTION.<em>receiver_task_wait_state</em></code>, if set for the callback status that actually occurs, or else determined by default processing. The default state processing is as follows:</p>
+<p>The lifecycle state of a blocking Dispatchable Task has to be determined wth respect to the dispatch request. The starting state is <code>available</code> (having been arrived at by the usual means). When the dispatch is executed, the source Task enters the <code>underway</code> state via the <code><em>commenced</em></code> transition. When the work of the remote Task is completed, a notification will be received and the callback processed, if set. The next state of the receiver Task (i.e. the blocking Task) is either <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>, if set for the callback status that actually occurs, or else determined by default processing. The default state processing is as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -6665,7 +6664,7 @@ The following UML diagram illustrates.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>A common alternative next state for the <code>fail</code> and <code>timeout</code> notifications may be <code>cancelled</code> (i.e. stop the current Task, but don&#8217;t abandon the plan), which can be set using <code>EVENT_ACTION.<em>receiver_task_wait_state</em></code>.</p>
+<p>A common alternative next state for the <code>fail</code> and <code>timeout</code> notifications may be <code>cancelled</code> (i.e. stop the current Task, but don&#8217;t abandon the plan), which can be set using <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>.</p>
 </div>
 <div class="paragraph">
 <p>If the attached <code>CALLBACK_WAIT</code> object includes <code>EVENT_ACTIONs</code> that have <code><em>system_call</em></code> or <code><em>message</em></code> set for any of the notifications, these are processed in the normal way. If there is no <code>CALLBACK_WAIT</code> attached, no other callback processing is performed, and the timeout timer is determined by the global default timer for this dispatch.</p>
@@ -6677,7 +6676,7 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_context_fork"><a class="anchor" href="#_context_fork"></a>8.2.4. Context Fork</h4>
 <div class="paragraph">
-<p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>done</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the enclosing Task Group</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION._receiver_task_wait_state</code> is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
+<p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>done</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the enclosing Task Group</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code> is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
 </div>
 </div>
 </div>
@@ -6783,9 +6782,6 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>Because a (materialised) Task Group is also the top-level structure of the runtime Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_execution_path"><a class="anchor" href="#_execution_path"></a>8.3.6. Execution Path</h4>
 <div class="paragraph">
 <p>One of the consequences of Tasks being transitioned to terminal lifecycle states such as <code>completed</code>, <code>cancelled</code>, etc within the hierarchical Task Group structure is that an effective lifecycle state has to be computed for Task Group objects at runtime as well, as shown above. Essentially it computes the effective state for a Task Group at runtime as a terminal state if there are only Tasks in terminal states. In other words, completing, cancelling or abandoning all Tasks within a Group causes completion of the Group, and this applies when it is in parallel or seqential execution mode.</p>
 </div>
@@ -6803,7 +6799,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_resume_semantics"><a class="anchor" href="#_resume_semantics"></a>8.3.7. Resume Semantics</h4>
+<h4 id="_resume_semantics"><a class="anchor" href="#_resume_semantics"></a>8.3.6. Resume Semantics</h4>
 <div class="paragraph">
 <p>The <code><em>resume_type</em></code> and <code><em>resume_location</em></code> attributes of the <code>RESUME_ACTION</code> class constitute the possibility of an uncontrolled jump or 'goto' within the Task execution structure. If allowed without limitation, it is likely to lead to undecidable situations in Plan execution, and unreliable execution histories. For example, if the execution history shows that some Task Y was performed, then it would normally be assumed that the preceding Task X had also been performed (even if cancelled), and by extension that any wait state such as an Event Branch had been satisifed by the relevant event being received. If however, a jump to Task Y from some Task A on a completely separate path were allowed, no such inference can be made, without appropriate processing rules regarding such jumps.</p>
 </div>
@@ -6852,14 +6848,14 @@ The following UML diagram illustrates.</p>
 <p>This doesn&#8217;t address what should happen at execution time when conditions or wait states at intermediate nodes from the most recent common point to the resume point cannot be met. The simplest approach is that they are manually overridden, as may already be done in normal path processing. This has the effect that such overrides are  at least recorded in the execution history.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_persistence"><a class="anchor" href="#_persistence"></a>8.3.8. Persistence</h4>
+</div>
+<div class="sect2">
+<h3 id="_persistence"><a class="anchor" href="#_persistence"></a>8.4. Persistence</h3>
 <div class="paragraph">
 <p>The run-time instance structure may need to be persisted to enable a partial execution of a long-running Task Plan to be recorded and picked up when later tasks become ready. In theory, this could be within the EHR, but it is recommended that either a specific EHR area be used for this, or that run-time state persistence be implemented outside the EHR proper.</p>
 </div>
 <div class="paragraph tbd">
 <p>issue-runtime-persistence: if within the EHR, we could create a new 'pointer' on the EHR object that points to 'task runtime state' data or similar. Is this a useful thing to do?</p>
-</div>
 </div>
 </div>
 </div>

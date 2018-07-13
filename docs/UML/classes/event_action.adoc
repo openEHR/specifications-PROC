@@ -25,6 +25,8 @@ h|*0..1*
 a|Optional resume action, used when the intention is to resume in a different location than the default (i.e. next available Task).
 
 h|*0..1*
-|*receiver_task_next_state*: `TASK_LIFECYCLE`
-a|Next state of the receiver Task of this callback notification. If not set, default processing will be performed.
+|*receiver_thread_next_state*: `TASK_LIFECYCLE`
+a|Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the _enclosing Task Group_ of the original dispatching Task.
+
+If not set, default processing will be performed.
 |===

@@ -60,7 +60,7 @@ If other kinds of changes are needed, this is generally a sign that the Plan des
 
 === General Scheme
 
-In a Task Plan, the execution path follows the chain of Tasks defined in the `_defnition_` of the Plan, which is a `TASK_GROUP`. It descends into and exits any other `TASK_GROUPs` encountered within the Plan as Tasks are executed. A Task becomes `available` based on a combination of completion (or skipping) of previous Tasks and other conditions, described below. The currently `available` Task in a Task Plan corresponds to the current execution point of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.
+In a Task Plan, the execution path follows the chain of Tasks defined in the `_defnition_` of the Plan, which is a `TASK_GROUP`. It descends into and exits any other `TASK_GROUPs` encountered within the Plan as Tasks are executed. A Task becomes `available` based on a combination of completion (or skipping) of previous Tasks and other conditions, according to logic described below. The currently `available` Task in a Task Plan corresponds to the _current execution point_ of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.
 
 On the way, the execution path is modified by conditional nodes and also by Dispatchable Tasks, as follows.
 
@@ -68,30 +68,26 @@ On the way, the execution path is modified by conditional nodes and also by Disp
 
 The various kinds of conditional nodes represent different ways of controlling execution of a Task Plan.
 
-A `CONDITION_GROUP / CONDITION_BRANCH` structure is processed in the same way as an if-then/elseif-then/else statement, i.e. in-order processing, with the first patching path followed. In the temporal plan execution environment, the processing proceeds instantaneously, i.e. there is no wait state involved.
+A `CONDITION_GROUP / CONDITION_BRANCH` structure is processed in the same way as an if-then/elseif-then/else statement in a programming language, i.e. in-order processing, with the first matching path followed. In the temporal Plan execution environment, the processing proceeds instantaneously, i.e. there is no wait state involved.
 
-A `DECISION_GROUP / DECISION_BRANCH` structure is processed like a case (aka switch) statement, i.e. evaluate the `DECISION_GROUP._test_`, find the first branch with a value range that contains the value, and follow it. This is also instantaneously processed.
+A `DECISION_GROUP / DECISION_BRANCH` structure is processed like a case (aka switch) statement in a programming language, i.e. evaluate the `DECISION_GROUP._test_`, find the first branch whose `_value_constraint_` (a value range) contains the value, and follow it. This is also instantaneously processed.
 
-An `ADHOC_GROUP / ADHOC_BRANCH` structure has to be processed using an implicit wait state, since it requires user input. It will thus block until input is supplied.
+The other two types of Choice Group are blocking.
 
-[.tbd]
-TBD: define behaviour if no user input supplied: use global timeout to choose a default branch?
+An `ADHOC_GROUP / ADHOC_BRANCH` structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited `BLOCKING_GROUP._timeout_` attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.
 
-Finally the `EVENT_GROUP / EVENT_BRANCH` structure is also blocking due to `TASK_WAIT` states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the `_timeout_` on the group to fire.
-
-[.tbd]
-TBD: could define a default branch here as well.
+Finally the `EVENT_GROUP / EVENT_BRANCH` structure is blocking due to `TASK_WAIT` states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the `_timeout_` on the group to fire. As for the Ad hoc case, a timeout may be set in order to force processing if none of the specified events occurs, and if not set, a global timeout will break the wait state if nothing else happens.
 
 === Context switch
 
 A context switch involves the execution of a Dispatchable Task, which then blocks and waits for a response. Blocking is indicated by `DISPATCHABLE_TASK._wait_` being set `True`. The attached `CALLBACK_WAIT`, if set, indicates a number of things:
 
-* receiver Task next state: the next state of the receiver Task of the 
-* actions to execute on the success, fail and timeout notifications from the dispatched Task (`EVENT_ACTION`);
+* receiver Task next state: the next state of the receiver Task of the original execution path;
+* actions to execute on the success, fail and timeout notifications from the dispatched Task (`EVENT_ACTION`).
 
-A typical usage of this feature is to have a Void success action (execution continues to the next Task), and Event Actions set on the fail and time-out branches of the Callback, usually to notify users or other systems. If there is no `CALLBACK_WAIT` set, a generic system timer is launched using the global default callback wait time.
+A typical usage of this feature is to have a Void success action (execution continues to the next Task), and Event Actions set on the fail and time-out branches of the Callback, usually to notify users or other systems. If there is no `CALLBACK_WAIT` set, a global system timeout will occur.
 
-The lifecycle state of a blocking Dispatchable Task has to be determined wth respect to the dispatch request. The starting state is `available` (having been arrived at by the usual means). When the dispatch is executed, the source Task enters the `underway` state via the `_commenced_` transition. When the work of the remote Task is completed, a notification will be received and the callback processed, if set. The next state of the receiver Task (i.e. the blocking Task) is either `EVENT_ACTION._receiver_task_wait_state_`, if set for the callback status that actually occurs, or else determined by default processing. The default state processing is as follows:
+The lifecycle state of a blocking Dispatchable Task has to be determined wth respect to the dispatch request. The starting state is `available` (having been arrived at by the usual means). When the dispatch is executed, the source Task enters the `underway` state via the `_commenced_` transition. When the work of the remote Task is completed, a notification will be received and the callback processed, if set. The next state of the receiver Task (i.e. the blocking Task) is either `EVENT_ACTION._receiver_thread_next_state_`, if set for the callback status that actually occurs, or else determined by default processing. The default state processing is as follows:
 
 [cols="1,1", options="header"]
 |===
@@ -101,7 +97,7 @@ The lifecycle state of a blocking Dispatchable Task has to be determined wth res
 |`timeout`                      |`abandoned`
 |===
 
-A common alternative next state for the `fail` and `timeout` notifications may be `cancelled` (i.e. stop the current Task, but don't abandon the plan), which can be set using `EVENT_ACTION._receiver_task_wait_state_`.
+A common alternative next state for the `fail` and `timeout` notifications may be `cancelled` (i.e. stop the current Task, but don't abandon the plan), which can be set using `EVENT_ACTION._receiver_thread_next_state_`.
 
 If the attached `CALLBACK_WAIT` object includes `EVENT_ACTIONs` that have `_system_call_` or `_message_` set for any of the notifications, these are processed in the normal way. If there is no `CALLBACK_WAIT` attached, no other callback processing is performed, and the timeout timer is determined by the global default timer for this dispatch.
 
@@ -109,7 +105,7 @@ It would be reasonable to design an implementation with a default message of the
 
 === Context Fork
 
-In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to `done`. The next Task(s) become `available` in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, _if explicit next states are set_, is  _with respect to the enclosing Task Group_, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn't care what happens to the remote thread. However, if `EVENT_ACTION._receiver_task_wait_state` is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (`cancel`) or the whole Plan abandoned (`abandon`). Such a transition might even be set on `success`, which provides a way to model 'first one wins' logic.
+In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to `done`. The next Task(s) become `available` in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, _if explicit next states are set_, is  _with respect to the enclosing Task Group_, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn't care what happens to the remote thread. However, if `EVENT_ACTION._receiver_thread_next_state_` is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (`cancel`) or the whole Plan abandoned (`abandon`). Such a transition might even be set on `success`, which provides a way to model 'first one wins' logic.
 
 == Execution Semantics
 
@@ -182,8 +178,6 @@ TaskState inferredState (Set<TaskState> sourceStates) {
 
 Because a (materialised) Task Group is also the top-level structure of the runtime Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group.
 
-=== Execution Path
-
 One of the consequences of Tasks being transitioned to terminal lifecycle states such as `completed`, `cancelled`, etc within the hierarchical Task Group structure is that an effective lifecycle state has to be computed for Task Group objects at runtime as well, as shown above. Essentially it computes the effective state for a Task Group at runtime as a terminal state if there are only Tasks in terminal states. In other words, completing, cancelling or abandoning all Tasks within a Group causes completion of the Group, and this applies when it is in parallel or seqential execution mode.
 
 If a Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its completion state will be affected by this, and will be calculable according to the particular rules defined. Such rules can be understood as a short-hand for cancelling Tasks that are not needed, so that the effective Group lifecycle state can still be computed in the standard way.
@@ -218,7 +212,7 @@ The last possibility implies the need to _retry_ Tasks already performed, which 
 
 This doesn't address what should happen at execution time when conditions or wait states at intermediate nodes from the most recent common point to the resume point cannot be met. The simplest approach is that they are manually overridden, as may already be done in normal path processing. This has the effect that such overrides are  at least recorded in the execution history.
 
-=== Persistence
+== Persistence
 
 The run-time instance structure may need to be persisted to enable a partial execution of a long-running Task Plan to be recorded and picked up when later tasks become ready. In theory, this could be within the EHR, but it is recommended that either a specific EHR area be used for this, or that run-time state persistence be implemented outside the EHR proper.
 
