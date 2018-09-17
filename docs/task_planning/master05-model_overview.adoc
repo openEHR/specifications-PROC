@@ -26,6 +26,9 @@ With a Task Plan, various elements need to be referenceable at runtime. Tasks an
 
 == Plan Data Context
 
+[.tbd]
+TBD: this section needs to be upgraded to latest EL and BMM model. The type `EXPR_TYPE_DEF` will be replaced by a BMM equivalent.
+
 A Task Plan may contain logical _symbolic values_ of various kinds, including _constants_, _variable references_ and _expressions_, which are used in within the Plan structure. These are globally collated and tracked at runtime at the Work Plan level, i.e. in common to all Task Plans. Each context value has a symbolic name (`CONTEXT_VALUE._name_`), a type from within the openEHR type system (`EXPR_TYPE_DEF`).
 The following UML diagram illustrates. 
 
