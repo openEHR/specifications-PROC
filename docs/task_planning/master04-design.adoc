@@ -4,7 +4,7 @@ The following sections describe the design key ideas used in the Task Planning m
 
 == Computational Basis
 
-A basic choice in the architecture presented here is that it is executable in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may indeed perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world work environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, whole.
+A basic choice in the architecture presented here is that it is _executable_ in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may indeed perform some particular tTasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, whole.
 
 This follows the YAWL (<<Hofstede_van_der_Aalst_2009>>) rather than BPMN approach, such that no Plan defined according to this specification has ambiguous meaning.
 
@@ -16,13 +16,24 @@ Outside of the environment exist other organisations with which TP engine commun
 
 Users who act as performers of tasks are connected to the engine via applications that communicate to the TP engine via the API of the TP Engine. These applications may be dedicated to Task Planning or a combined openEHR application context containing Task Planning components or forms. Users who act as plan designers are connected to a task planning designer system via a dedicated designer application.
 
-The overall context is shown below.
+The computational environment is shown below.
 
 [.text-center]
 .Computational Environment
 image::diagrams/computational_environment.svg[id=computational_environment, align="center", width=80%]
 
 One of the major differences between the openEHR Task Planning architecture compared to other workflow architectures is that it can rely on shared access to persistent patient EHRs as the location in which context data can be read (e.g. patient variables) and in which records of performed tasks are ultimately stored, in the form of openEHR Compositions containing Entries, in the usual way.
+
+=== Separation of Definition and Execution
+
+One of the basic tenets of workflow processing is assumed here, namely the clear separation of Plan definition and Plan execution. This specification distinguishes more than the usual two levels of representation, as follows:
+
+* Plan _template_, representing re-usable Plans and Plan components, from which Plan 'definitions' can be generated;
+* Plan _definition_, the concrete representation of a particular Plan that may be directly executed;
+* Plan _execution_, the execution of the plan, which may be long-lived, e.g. days, months, years;
+* Task execution, the runtime execution of part(s) of a Plan during user sessions, via use of applications etc.
+
+The first level is implemented by Archetyping of the definition-level model defined in this specification.
 
 == Conceptual Elements
 
@@ -103,7 +114,7 @@ These more sophisticated rules are represented in a generic way, with the Task P
 
 === Work Context
 
-A fundamental concept in this specification is that of _work context_, which is the factor that distinguishes one Task Plan from another, i.e. one Plan corresponds to Tasks to be performed in a single work context. Work context is defined as a single, _contiguous cognitive flow_ in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed _seamlessly_ by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a _single mind_.
+A fundamental concept in this specification is that of _work context_, which is the factor that distinguishes one Task Plan from another, i.e. one Task Plan (and any sub-Task Plans) corresponds to Tasks to be performed in a single work context. Work context is defined as a single, _contiguous cognitive flow_ in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed _seamlessly_ by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a _single mind_.
 
 Continuous knowledge of the work, and continuous real-time communication with oneself ('train of thought') or directly among multiple performers is what characterises a given context. A different context is one with different cognitive actors, and within which communications are performed by notifications at certain time checkpoints, typically just the beginning and end.
 
@@ -111,11 +122,11 @@ Since parallelism is possible within a single Plan, a performer may be working o
 
 === Context Switching and Forking
 
-If work has to be stopped within one context and passed to a different work context, a _context switch_ is required, and the first worker or team will wait for a response. If the context switch is within the same Work Plan, is termed a _handoff_, which entails switching Task Plans. A context change is also required to request work from an external environment. A second kind of change of control is a _context fork_, whereby the current performer signals to another context to start doing some work, but continues doing his own work. 
+If work has to be stopped within one context and passed to a different work context, a _context switch_ is required, and the first worker or team will wait for a response. If the context switch is within the same Work Plan, it is termed a _handoff_, which entails switching Task Plans. A context change is also required to request work from an environment external to the current Work Plan. A second kind of change of control is a _context fork_, whereby the current performer signals to another context to start doing some work, but continues doing his own work. 
 
 A context switch is commonly known as 'block and wait' or _synchronous processing_, while the context fork is known as _asynchronous_ or _parallel processing_.
 
-Work context is clearly maintained during a _work session_ during which the work is done by one or more performers. But if the work extends over hours or days, as in the case of chemotherapy, worker shifts will end and the work will be taken up by new workers, or perhaps the same workers on the next day. The Task Planning model does not consider this kind of _handoff_ to be a context switch, since it is assumed that the Task Planning runtime system maintains all relevant context information, available for use by new workers. All that is required to maintain the context is for de-allocation and re-allocation of the work to performers.
+Work context is maintained during a _work session_ during which the work is done by one or more performers. But if the work extends over hours or days (e.g. chemotherapy), worker shifts will end and the work will be taken up by new workers, or perhaps the same workers on the next day. The Task Planning model does not consider this kind of worker replacement to be a context switch, since it is assumed that the Task Planning runtime system maintains all relevant context information, available for use by new workers. All that is required to maintain the context is for de-allocation and re-allocation of the work to new performers.
 
 The following diagram shows the taxonomy of task types that result from the above considerations.
 
@@ -178,44 +189,47 @@ Task Plans are defined, refined and used in various phases in time. A number of 
 |Clinical time - +
  planning               |*Instantiated definition* +
                          (instances of definition +
-                          classes)                   |When a Work Plan model is _used_, it is created as instances of the Task Planning definition
-                                                      model (i.e. in the technical class/instance sense), and the result is understood as a _concrete_ definition
-                                                      of the Task Plan to be used in a specific situation for a specific subject (i.e. patient).
+                          classes)                   |When a Work Plan model is _used_ for a subject (i.e. patient), it is _instantiated_ from its archetypes,
+                                                      creating instances of the Task Planning definition model (i.e. in the class/instance sense), and the result is understood as the _concrete_ definition of the Work Plan to be used in a specific situation for a specific subject (i.e. patient). At instantiation time, Task Plans re-used by reference within a Work Plan at the archetype level are instantiated as distinct instances for each such  reference.
                                                       
-                                                      When the instantiation is performed, the model-user may provide values for particular parts of the model,
-                                                      such as medication dosages, that correspond to the particular patient. They may also make other limited adjustments that are compatible with the archetypes and template.
+                                                      After Work Plan instantiation, the planner may adjust it in any way that maintains conformance with its archetypes and template, e.g. to provide values for particular parts of the model such as medication dosages, that correspond to the particular patient.
 |Clinical time - +
  plan execution         |*Materialised definition* +
                         (instances of +
                          materialised classes, +
-                         persisted over sessions)    |Close to Plan execution time, a Work Plan definition will be 'materialised', i.e. instantiated into a form that                                can be used for execution and tracking of the Plan. At the point of materialisation, the definition model must 
-                                                      be published and persisted, guaranteeing the its availability as the reference model for its materialised expressions. It may be materialised any number of times, corresponding to the distinct number of instances of use required. Each materialisation
+                         persisted over sessions)    |Close to Plan execution time, a Work Plan definition will be _materialised_, i.e. instantiated into a form                              that can be used for execution and tracking of the Plan. At the point of materialisation, the definition                                model must be published and persisted, guaranteeing the its availability as the reference model for its                                  materialised expressions. It may be materialised any number of times, corresponding to the distinct number                              of instances of use required. Each materialisation
 
                                                       In the materialised form, repeatable sections of the definition are 'unfolded' into literal sections, for as many repetitions as required by the relevant performer(s). Accordingly, parts of the materialised expression of a Plan may have an N:1 relationship with the original definition form.
                                                       
-                                                      Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form
-                                                      compared to the definition form.
+                                                      Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form compared to the definition form.
                                                                                                             
                                                       The materialised form has its own class model containing additional data items to enable run-time tracking of the Plan as it is performed. During execution time, various kinds of deletions and modifications to the materialised representation are possible, corresponding to changes in plan that respond to unexpected events.
 |Clinical time - +
  task execution         |*Runtime instantiation* +
                         (instances of +
                          materialised classes, +
-                         during session)            |Since a Plan execution may run over many hours, days or longer, the materialised expression will in general                                     correspond to something larger than the literal in-memory instantiation of (parts of) the Plan required during                                 any given user-application the session during which some or all of the Task Plan might be performed. The part                                   of the plan currently being displayed, performed, tracked etc, is known here as the 'run-time instantiation',                                   and consists of a subset of the total materialised form instances.
+                         during session)            |Since a Plan execution may run over many hours, days or longer, the materialised expression will in 
+                                                     general correspond to something larger than the literal in-memory instantiation of (parts of) the Plan required during any given user-application the session during which some or all of the Task Plan might be performed. The part of the plan currently being displayed, performed, tracked etc, is known here as the 'run-time instantiation', and consists of a subset of the total materialised form instances.
  
 |===
 
-In this scheme, archetype- and template-based modelling is used as much as possible in order to create layers of re-usable models that are progressively more specialised, until close-to-patient models are achieved, typically as templates. This enables the power of the archetype modelling formalism, including specialisation and composition to be used freely, in a similar manner to an object-oriented programming environment.
+=== Phases of Work
 
-=== Separation of Definition and Execution
+In this scheme, archetype- and template-based modelling is used as much as possible during the design phase, in order to create a hierarchy of re-usable models that are progressively more specialised, until close-to-patient models are achieved, typically as templates. This enables the power of the archetype modelling formalism, including specialisation and composition to be used freely, in a similar manner to an object-oriented programming environment.
 
-According to the above, the concrete definition of a Work Plan is constructed in the 'planning phase' of clinical time, to define work _to be done_ in the near future, by the planner and/or others. As the work is performed, the results are documented with openEHR Entries, such as Actions and Observations. During the execution of the plan there is usually a need to track the progress of the work in terms of Task completions, cancellations, failures, abandonment and so on.
+When the design phase is complete, a Work Plan template may be instantiated by a clinical planner in the _planning_ phase, to create definitions instances that are stored in a Composition in the patient EHR. During this phase, adjustments to the definition. Multiple workers may undertake such modifications, which may be performed over some time. At any given time, a particular patient EHR may contain multiple Work Plan definitions.
 
-As per the above table, the model defined in this specification separates the definition of Work Plans from their executions. This is achieved via `definition` and `materialised` parts of the model, corresponding to the concrete definition and materialised phases described above. Instances of the former are used to represent the definition of a plan, and would accordingly be used by a tools designed for that purpose. Similarly, run-time execution tools would be built using the `materialised` part of the model, as well as the `definition` part, since the latter is referred to by the former.
+When a Work Plan is ready, the execution phase can begin, done by materialising the Plan definition from the EHR into the TP Engine, where it can be executed. It is the materialised expression of a Plan that is used to record all Plan-related actions by Task performers.
 
-It is the materialised expression of a Plan that is used to record all Plan-related actions by Task performers. This state may be persisted for plans whose execution takes place over more than a user-application session.
+A Plan 'execution' may be long-lived, and extend beyond worker sessions in individual application invocations. The execution state will therefore be persisted for such Plans. During the execution phase, multiple _runtime executions_ will occur, during which some part of the Plan will actually execute with the relevant users (i.e. performers) and applications.
 
-The history of actions on the Plan can be understood as a set of _transactions_ over time, and the model provides a third `history` part that can be used to efficiently represent this history, allowing it to be permanently recorded.
+As the work is performed in the execution phase, the results are documented with openEHR Entries, such as Actions and Observations. 
+
+The following figure illustrates these phases of work and the series of representations of Work Plans as they progress from archetyped models to runtime executions.
+
+[.text-center]
+.TP Modelling Workflow
+image::diagrams/tp_modelling_wf.svg[id=tp_modelling_wf, align="center"]
 
 == Execution Concepts
 
@@ -285,7 +299,7 @@ One of the major challenges for any workflow system is that of being able to han
 * _logical addition_: work items that are not represented as Tasks in a Task Plan can always be done, such as making extra patient observations or performing unplanned patient actions (e.g. refit a catheter, change a dressing); in openEHR they will always be recorded in the normal manner via Observation and Action Entries;
 * _overrides_: various aspects of a Plan definition can be overridden at runtime, such as Task execution time and subject preconditions (such as BP < 160 mm[Hg]). Override is represented in the system as an alternative lifecycle transition that puts a Task into the `available` state even if not all conditions have been met for availability.
 
-== Relationship of Task Plans with existing openEHR Entry Types
+== Relationship of Tasks with existing openEHR Entry Types
 
 Within the phases of clinical planning and execution time described above, the Task Plan is not the only information artefact that may be created. The existing openEHR model `ENTRY` types provide the standard way to represent orders, via `INSTRUCTION`, and order-related performed activities, via `ACTION`. In addition, the usual `OBSERVATION`, `EVALUATION` and `ADMIN_ENTRY` types are used to record observations, diagnoses, and administrative events as they occur in clinical time. In abstract terms, Instructions may be understood as formal statements of 'what is to be done', and the other types, as records of 'what was done'. However, Instructions are most suited to concise representations of orderable actions, particularly medication administration, but not for general purpose detailed plans of events. The addition of Task Plans provides a way to specify such plans more flexibly, and in a step-by-step manner.
 
@@ -295,9 +309,9 @@ Both Instructions and Plans may be fully or partially defined by care pathways a
 .openEHR Planning Artefact Relationships
 image::diagrams/planning_artefacts.svg[id=planning_artefact_relationships, align="center", width=60%]
 
-In simple cases, a Task Plan may just be the list of Tasks to fulfill one order, i.e. a single `INSTRUCTION` prescribing a course of antibiotics. The general case however is that the Task Plan corresponds to a clinical goal which implicates multiple orders, such as the CHOP chemotherapy mentioned above. 
+In simple cases, a Task Plan may just be the list of Tasks to fulfill one order, i.e. a single `INSTRUCTION` prescribing a course of antibiotics. The general case however is that the Work Plan corresponds to a clinical goal which implicates multiple orders, such as the CHOP chemotherapy mentioned above. 
 
-Consequently, _not every Task in a Task Plan is associated with an order_, illustrated by the yellow Task objects in the above figure. While a typical case is that a Task corresponds to an openEHR `ACTION` that has not yet been recorded (and which normally has a driving `INSTRUCTION`), it may also correspond to an `ACTION` that has no `INSTRUCTION` or indeed an `OBSERVATION` or possibly an `EVALUATION` (perhaps some kind of check during a procedure). Indeed, there is also no reason why a Task Plan cannot consist of Tasks that define administrative work and would be documented with openEHR `ADMIN_ENTRYs`.
+Consequently, _not every Task in a Work Plan is associated with an order_, illustrated by the yellow Task objects in the above figure. While a typical case is that a Task corresponds to an openEHR `ACTION` that has not yet been recorded (and which normally has a driving `INSTRUCTION`), it may also correspond to an `ACTION` that has no `INSTRUCTION` or indeed an `OBSERVATION` or possibly an `EVALUATION` (perhaps some kind of check during a procedure). Indeed, there is also no reason why a Task Plan cannot consist of Tasks that define administrative work and would be documented with openEHR `ADMIN_ENTRYs`.
 
 We can infer from the above that the main driver of a Task Plan isn't in general an order, but a care plan or guideline that usually includes orders, or else plain old ad hoc planning.
 
@@ -307,7 +321,7 @@ A high-level view of how clinical work generates openEHR information can be visu
 .Clinical Investigator Process with Planning
 image::diagrams/clinical_process_planning.svg[id=clinical_process_planning, align="center", width=70%]
 
-According to this scheme, `TASK_PLAN` and `TASK` are new types of information that can be committed to the EHR.
+According to this scheme, `WORK_PLAN`, `TASK_PLAN` and `TASK` are new types of information that can be committed to the EHR.
 
 == Order Semantics versus Plan Semantics
 

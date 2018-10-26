@@ -2,7 +2,7 @@
 
 == Survey of Requirements
 
-This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of granular planning of clinical tasks is required. The central concept is that of a _plan_ (or set of plans) designed to achieve a _goal_ and that relate to an _active biological subject_ (normally a human or animal patient), rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management). Related requiredments of individual worker task lists are discussed below.
+This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of granular planning of clinical tasks is required. The central concept is that of a _plan_ (or set of plans) designed to achieve a _goal_ and that relate to an _active biological subject_ (normally a human or animal patient), rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management). Related requirements of individual worker task lists are discussed below.
 
 In more sophisticated environments (generally hospitals), much task planning relates to guideline-based orders and medication administration. There are various levels at which to understand this, from care pathways (potentially covering management of a complex condition like sepsis) to specific workflows for particular elements of care within a pathway. One common conceptual entity is the so-called _order set_, which is generally understood as:
 
@@ -65,7 +65,9 @@ A related concept is that of the _task list_ (aka 'TODO list'), which is a logic
 
 This specification does not cover the model of worker task lists or extracted calendar views, although it provides some guidance on how to generate task lists for workers.
 
-== Execution Paradigm
+== Execution Environment
+
+=== General Paradigm
 
 As soon as the notion of planning is assumed, we enter the workflow space, and it becomes essential to describe the intended paradigm of the human / machine execution environment. This is due to the fact that any description of planned tasks acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the executing actors (generally human, although they may also be devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.
 
@@ -77,7 +79,7 @@ Although the task plan facility described in this specification is relatively si
 * _real world_:
 ** *performing actor*, i.e. a human, machine or software application that performs tasks in the real world as part of a procedure designed to achieve a goal;
 
-In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer to peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application's idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a problem of _synchronisation_ of the two.
+In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application's idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a problem of _synchronisation_ of the two.
 
 There is also a question of communication between the workflow application and the real world actors, which we can think of as consisting of:
 
@@ -90,6 +92,29 @@ This environment can be illustrated as follows.
 [.text-center]
 .Work plan execution paradigm
 image::diagrams/workflow_execution_paradigm.svg[id=workflow_execution_paradigm, align="center", width=55%]
+
+=== Distributed Plans
+
+There is a potentially complicated relationship between IT environments in which computable plans execute and the work-places where the human actors are found. This is because 'systems' in a concrete sense are part of IT installations owned by organisations that may or may not be the employers of the workers, while plans may logically span more than one distinct work-place. For example a clinical plan for diagnosing and resolving angina may contain steps that are performed by:
+
+* an emergency department (part of a hospital);
+* a general practitioner (in a separate health clinic);
+* a cardiologist (within a hospital, quite often a different one);
+* a radiology department (usually within a hospital, possibly also different, for reasons of availability, machine type etc).
+
+These various healthcare facilities almost certainly have their own IT systems within a managed environment and security boundary, with some possible sharing of systems among some facilities. Consequently, where the notional clinical plan executes in the real world doesn't usually cleanly correspond to one IT system in which a plan engine can execute it.
+
+On the other hand, in an ideal environment with regional patient-centric hosted services (shared EHR etc), accessible by all healthcare facilities the patient visits, the logical locus of a plan's activities - the various HCFs taken together - correspond 1:1 with a location where the plan can be executed by an engine, i.e. the regional system.
+
+The following figure illustrates different possible relationships between a logical work plan definition whose work is performed by actors in different enterprises, and the location of work plan engines where such a plan may logically be executed. The particular arrangement shown has one enterprise (on the left) with its own separate IT (typical for most hospitals today) and three other enterprises that share regional health IT services relevant to the patient record and work plan execution (they probably have their own private IT for more mundate purposes as well of course). The work plan is shown as having tasks that are to be performed at all four of the enterprises.
+
+[.text-center]
+.Distributed work plan execution
+image::diagrams/distributed_plan_execution.svg[id=distributed_plan_execution, align="center", width=80%]
+
+The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is _some_ means of enabling the various parts of a plan to execute in the various work-places required.
+
+One of the challenges in such distributed work environments, which are the norm in healthcare, is the ownership, creation, maintenance and sharing of work plan definitions that implicate workers across enterprises.
 
 === Time and Work in the Real World
 

@@ -42,9 +42,11 @@
 <li><a href="#_limitations_of_the_openehr_standard_entry_model">2.2. Limitations of the openEHR standard Entry Model</a></li>
 <li><a href="#_care_pathways_and_task_planning">2.3. Care Pathways and Task Planning</a></li>
 <li><a href="#_task_plans_versus_task_lists_todo_lists">2.4. Task Plans versus Task Lists (TODO Lists)</a></li>
-<li><a href="#_execution_paradigm">2.5. Execution Paradigm</a>
+<li><a href="#_execution_environment">2.5. Execution Environment</a>
 <ul class="sectlevel3">
-<li><a href="#_time_and_work_in_the_real_world">2.5.1. Time and Work in the Real World</a></li>
+<li><a href="#_general_paradigm">2.5.1. General Paradigm</a></li>
+<li><a href="#_distributed_plans">2.5.2. Distributed Plans</a></li>
+<li><a href="#_time_and_work_in_the_real_world">2.5.3. Time and Work in the Real World</a></li>
 </ul>
 </li>
 <li><a href="#_relationship_to_workflow_formalisms_and_systems">2.6. Relationship to Workflow Formalisms and Systems</a></li>
@@ -72,7 +74,11 @@
 <li><a href="#_design_principles">4. Design Principles</a>
 <ul class="sectlevel2">
 <li><a href="#_computational_basis">4.1. Computational Basis</a></li>
-<li><a href="#_computational_context">4.2. Computational Context</a></li>
+<li><a href="#_computational_context">4.2. Computational Context</a>
+<ul class="sectlevel3">
+<li><a href="#_separation_of_definition_and_execution">4.2.1. Separation of Definition and Execution</a></li>
+</ul>
+</li>
 <li><a href="#_conceptual_elements">4.3. Conceptual Elements</a>
 <ul class="sectlevel3">
 <li><a href="#_work_plan">4.3.1. Work Plan</a></li>
@@ -92,7 +98,7 @@
 </li>
 <li><a href="#_levels_of_definition_and_representation">4.4. Levels of Definition and Representation</a>
 <ul class="sectlevel3">
-<li><a href="#_separation_of_definition_and_execution">4.4.1. Separation of Definition and Execution</a></li>
+<li><a href="#_phases_of_work">4.4.1. Phases of Work</a></li>
 </ul>
 </li>
 <li><a href="#_execution_concepts">4.5. Execution Concepts</a>
@@ -104,7 +110,7 @@
 <li><a href="#_adaptive_modification_and_exception_handling">4.5.5. Adaptive Modification and Exception-handling</a></li>
 </ul>
 </li>
-<li><a href="#_relationship_of_task_plans_with_existing_openehr_entry_types">4.6. Relationship of Task Plans with existing openEHR Entry Types</a></li>
+<li><a href="#_relationship_of_tasks_with_existing_openehr_entry_types">4.6. Relationship of Tasks with existing openEHR Entry Types</a></li>
 <li><a href="#_order_semantics_versus_plan_semantics">4.7. Order Semantics versus Plan Semantics</a></li>
 </ul>
 </li>
@@ -491,7 +497,10 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-2">SPECPROC-2</a>. Change date/time types to <code>Iso8601_xxx</code> types from Foundation Types spec.<br>
  <a href="https://openehr.atlassian.net/browse/SPECPROC-11">SPECPROC-11</a>. Add <code>WORK_PLAN.<em>indications</em></code>;<br>
- Improve documentation of <code>TIMELINE_MOMENT</code>.</p></td>
+ Improve documentation of <code>TIMELINE_MOMENT</code>;<br>
+ <a href="https://openehr.atlassian.net/browse/SPECPROC-13">SPECPROC-13</a>. Clarify Work Plan instantiation and distribution semantics:
+ Add section 4.4.1 Phases of Work;<br>
+ Add subsection to section 2.5 on Distributed plans.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Kejžar,<br>
  T Beale</p></td>
@@ -815,7 +824,7 @@
 <div class="sect2">
 <h3 id="_survey_of_requirements"><a class="anchor" href="#_survey_of_requirements"></a>2.1. Survey of Requirements</h3>
 <div class="paragraph">
-<p>This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of granular planning of clinical tasks is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active biological subject</em> (normally a human or animal patient), rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management). Related requiredments of individual worker task lists are discussed below.</p>
+<p>This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of granular planning of clinical tasks is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active biological subject</em> (normally a human or animal patient), rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management). Related requirements of individual worker task lists are discussed below.</p>
 </div>
 <div class="paragraph">
 <p>In more sophisticated environments (generally hospitals), much task planning relates to guideline-based orders and medication administration. There are various levels at which to understand this, from care pathways (potentially covering management of a complex condition like sepsis) to specific workflows for particular elements of care within a pathway. One common conceptual entity is the so-called <em>order set</em>, which is generally understood as:</p>
@@ -933,7 +942,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_execution_paradigm"><a class="anchor" href="#_execution_paradigm"></a>2.5. Execution Paradigm</h3>
+<h3 id="_execution_environment"><a class="anchor" href="#_execution_environment"></a>2.5. Execution Environment</h3>
+<div class="sect3">
+<h4 id="_general_paradigm"><a class="anchor" href="#_general_paradigm"></a>2.5.1. General Paradigm</h4>
 <div class="paragraph">
 <p>As soon as the notion of planning is assumed, we enter the workflow space, and it becomes essential to describe the intended paradigm of the human / machine execution environment. This is due to the fact that any description of planned tasks acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the executing actors (generally human, although they may also be devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.</p>
 </div>
@@ -968,7 +979,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer to peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a problem of <em>synchronisation</em> of the two.</p>
+<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a problem of <em>synchronisation</em> of the two.</p>
 </div>
 <div class="paragraph">
 <p>There is also a question of communication between the workflow application and the real world actors, which we can think of as consisting of:</p>
@@ -995,8 +1006,52 @@
 </div>
 <div class="title">Figure 2. Work plan execution paradigm</div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_time_and_work_in_the_real_world"><a class="anchor" href="#_time_and_work_in_the_real_world"></a>2.5.1. Time and Work in the Real World</h4>
+<h4 id="_distributed_plans"><a class="anchor" href="#_distributed_plans"></a>2.5.2. Distributed Plans</h4>
+<div class="paragraph">
+<p>There is a potentially complicated relationship between IT environments in which computable plans execute and the work-places where the human actors are found. This is because 'systems' in a concrete sense are part of IT installations owned by organisations that may or may not be the employers of the workers, while plans may logically span more than one distinct work-place. For example a clinical plan for diagnosing and resolving angina may contain steps that are performed by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an emergency department (part of a hospital);</p>
+</li>
+<li>
+<p>a general practitioner (in a separate health clinic);</p>
+</li>
+<li>
+<p>a cardiologist (within a hospital, quite often a different one);</p>
+</li>
+<li>
+<p>a radiology department (usually within a hospital, possibly also different, for reasons of availability, machine type etc).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These various healthcare facilities almost certainly have their own IT systems within a managed environment and security boundary, with some possible sharing of systems among some facilities. Consequently, where the notional clinical plan executes in the real world doesn&#8217;t usually cleanly correspond to one IT system in which a plan engine can execute it.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, in an ideal environment with regional patient-centric hosted services (shared EHR etc), accessible by all healthcare facilities the patient visits, the logical locus of a plan&#8217;s activities - the various HCFs taken together - correspond 1:1 with a location where the plan can be executed by an engine, i.e. the regional system.</p>
+</div>
+<div class="paragraph">
+<p>The following figure illustrates different possible relationships between a logical work plan definition whose work is performed by actors in different enterprises, and the location of work plan engines where such a plan may logically be executed. The particular arrangement shown has one enterprise (on the left) with its own separate IT (typical for most hospitals today) and three other enterprises that share regional health IT services relevant to the patient record and work plan execution (they probably have their own private IT for more mundate purposes as well of course). The work plan is shown as having tasks that are to be performed at all four of the enterprises.</p>
+</div>
+<div id="distributed_plan_execution" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/distributed_plan_execution.svg" alt="distributed plan execution" width="80%">
+</div>
+<div class="title">Figure 3. Distributed work plan execution</div>
+</div>
+<div class="paragraph">
+<p>The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is <em>some</em> means of enabling the various parts of a plan to execute in the various work-places required.</p>
+</div>
+<div class="paragraph">
+<p>One of the challenges in such distributed work environments, which are the norm in healthcare, is the ownership, creation, maintenance and sharing of work plan definitions that implicate workers across enterprises.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_time_and_work_in_the_real_world"><a class="anchor" href="#_time_and_work_in_the_real_world"></a>2.5.3. Time and Work in the Real World</h4>
 <div class="paragraph">
 <p>One of the key characteristics of work in the real world is the passage of time, and how it relates to workers. In general human workers are present for a <em>shift</em> or <em>work day</em> of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during a work day. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).</p>
 </div>
@@ -1218,7 +1273,7 @@
 <div class="content">
 <img src="diagrams/IHC_stroke_decision_path.png" alt="IHC stroke decision path" width="80%">
 </div>
-<div class="title">Figure 3. Decision pathway example (Intermountain Healthcare Acute Stroke CPM)</div>
+<div class="title">Figure 4. Decision pathway example (Intermountain Healthcare Acute Stroke CPM)</div>
 </div>
 <div class="paragraph">
 <p>In this example, the node containing the text "Further CLASSIFY &#8230;&#8203;" corresponds to a decision point that can be represented as <code>$symptom_onset_time := t</code>, where <code>t</code> is a time entered by a user. The subsequent nodes in the chart can be understood as paths based respectively on the tests <code>$symptom_onset_time &lt; 4.5h</code> and <code>4.5h &lt; $symptom_onset_time &lt; 6h</code>.</p>
@@ -1309,7 +1364,7 @@
 <div class="sect2">
 <h3 id="_computational_basis"><a class="anchor" href="#_computational_basis"></a>4.1. Computational Basis</h3>
 <div class="paragraph">
-<p>A basic choice in the architecture presented here is that it is executable in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may indeed perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world work environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, whole.</p>
+<p>A basic choice in the architecture presented here is that it is <em>executable</em> in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may indeed perform some particular tTasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, whole.</p>
 </div>
 <div class="paragraph">
 <p>This follows the YAWL (<a href="#Hofstede_van_der_Aalst_2009">[Hofstede_van_der_Aalst_2009]</a>) rather than BPMN approach, such that no Plan defined according to this specification has ambiguous meaning.</p>
@@ -1327,16 +1382,41 @@
 <p>Users who act as performers of tasks are connected to the engine via applications that communicate to the TP engine via the API of the TP Engine. These applications may be dedicated to Task Planning or a combined openEHR application context containing Task Planning components or forms. Users who act as plan designers are connected to a task planning designer system via a dedicated designer application.</p>
 </div>
 <div class="paragraph">
-<p>The overall context is shown below.</p>
+<p>The computational environment is shown below.</p>
 </div>
 <div id="computational_environment" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="diagrams/computational_environment.svg" alt="computational environment" width="80%">
 </div>
-<div class="title">Figure 4. Computational Environment</div>
+<div class="title">Figure 5. Computational Environment</div>
 </div>
 <div class="paragraph">
 <p>One of the major differences between the openEHR Task Planning architecture compared to other workflow architectures is that it can rely on shared access to persistent patient EHRs as the location in which context data can be read (e.g. patient variables) and in which records of performed tasks are ultimately stored, in the form of openEHR Compositions containing Entries, in the usual way.</p>
+</div>
+<div class="sect3">
+<h4 id="_separation_of_definition_and_execution"><a class="anchor" href="#_separation_of_definition_and_execution"></a>4.2.1. Separation of Definition and Execution</h4>
+<div class="paragraph">
+<p>One of the basic tenets of workflow processing is assumed here, namely the clear separation of Plan definition and Plan execution. This specification distinguishes more than the usual two levels of representation, as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Plan <em>template</em>, representing re-usable Plans and Plan components, from which Plan 'definitions' can be generated;</p>
+</li>
+<li>
+<p>Plan <em>definition</em>, the concrete representation of a particular Plan that may be directly executed;</p>
+</li>
+<li>
+<p>Plan <em>execution</em>, the execution of the plan, which may be long-lived, e.g. days, months, years;</p>
+</li>
+<li>
+<p>Task execution, the runtime execution of part(s) of a Plan during user sessions, via use of applications etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first level is implemented by Archetyping of the definition-level model defined in this specification.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1500,7 +1580,7 @@
 <div class="sect3">
 <h4 id="_work_context"><a class="anchor" href="#_work_context"></a>4.3.4. Work Context</h4>
 <div class="paragraph">
-<p>A fundamental concept in this specification is that of <em>work context</em>, which is the factor that distinguishes one Task Plan from another, i.e. one Plan corresponds to Tasks to be performed in a single work context. Work context is defined as a single, <em>contiguous cognitive flow</em> in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed <em>seamlessly</em> by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a <em>single mind</em>.</p>
+<p>A fundamental concept in this specification is that of <em>work context</em>, which is the factor that distinguishes one Task Plan from another, i.e. one Task Plan (and any sub-Task Plans) corresponds to Tasks to be performed in a single work context. Work context is defined as a single, <em>contiguous cognitive flow</em> in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed <em>seamlessly</em> by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a <em>single mind</em>.</p>
 </div>
 <div class="paragraph">
 <p>Continuous knowledge of the work, and continuous real-time communication with oneself ('train of thought') or directly among multiple performers is what characterises a given context. A different context is one with different cognitive actors, and within which communications are performed by notifications at certain time checkpoints, typically just the beginning and end.</p>
@@ -1512,13 +1592,13 @@
 <div class="sect3">
 <h4 id="_context_switching_and_forking"><a class="anchor" href="#_context_switching_and_forking"></a>4.3.5. Context Switching and Forking</h4>
 <div class="paragraph">
-<p>If work has to be stopped within one context and passed to a different work context, a <em>context switch</em> is required, and the first worker or team will wait for a response. If the context switch is within the same Work Plan, is termed a <em>handoff</em>, which entails switching Task Plans. A context change is also required to request work from an external environment. A second kind of change of control is a <em>context fork</em>, whereby the current performer signals to another context to start doing some work, but continues doing his own work.</p>
+<p>If work has to be stopped within one context and passed to a different work context, a <em>context switch</em> is required, and the first worker or team will wait for a response. If the context switch is within the same Work Plan, it is termed a <em>handoff</em>, which entails switching Task Plans. A context change is also required to request work from an environment external to the current Work Plan. A second kind of change of control is a <em>context fork</em>, whereby the current performer signals to another context to start doing some work, but continues doing his own work.</p>
 </div>
 <div class="paragraph">
 <p>A context switch is commonly known as 'block and wait' or <em>synchronous processing</em>, while the context fork is known as <em>asynchronous</em> or <em>parallel processing</em>.</p>
 </div>
 <div class="paragraph">
-<p>Work context is clearly maintained during a <em>work session</em> during which the work is done by one or more performers. But if the work extends over hours or days, as in the case of chemotherapy, worker shifts will end and the work will be taken up by new workers, or perhaps the same workers on the next day. The Task Planning model does not consider this kind of <em>handoff</em> to be a context switch, since it is assumed that the Task Planning runtime system maintains all relevant context information, available for use by new workers. All that is required to maintain the context is for de-allocation and re-allocation of the work to performers.</p>
+<p>Work context is maintained during a <em>work session</em> during which the work is done by one or more performers. But if the work extends over hours or days (e.g. chemotherapy), worker shifts will end and the work will be taken up by new workers, or perhaps the same workers on the next day. The Task Planning model does not consider this kind of worker replacement to be a context switch, since it is assumed that the Task Planning runtime system maintains all relevant context information, available for use by new workers. All that is required to maintain the context is for de-allocation and re-allocation of the work to new performers.</p>
 </div>
 <div class="paragraph">
 <p>The following diagram shows the taxonomy of task types that result from the above considerations.</p>
@@ -1527,7 +1607,7 @@
 <div class="content">
 <img src="diagrams/task_taxonomy.svg" alt="task taxonomy" width="50%">
 </div>
-<div class="title">Figure 5. Task Taxonomy</div>
+<div class="title">Figure 6. Task Taxonomy</div>
 </div>
 </div>
 <div class="sect3">
@@ -1637,11 +1717,9 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instantiated definition</strong><br>
                          (instances of definition<br>
                           classes)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When a Work Plan model is <em>used</em>, it is created as instances of the Task Planning definition
-                                                      model (i.e. in the technical class/instance sense), and the result is understood as a <em>concrete</em> definition
-                                                      of the Task Plan to be used in a specific situation for a specific subject (i.e. patient).</p>
-<p class="tableblock">                                                      When the instantiation is performed, the model-user may provide values for particular parts of the model,
-                                                      such as medication dosages, that correspond to the particular patient. They may also make other limited adjustments that are compatible with the archetypes and template.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When a Work Plan model is <em>used</em> for a subject (i.e. patient), it is <em>instantiated</em> from its archetypes,
+                                                      creating instances of the Task Planning definition model (i.e. in the class/instance sense), and the result is understood as the <em>concrete</em> definition of the Work Plan to be used in a specific situation for a specific subject (i.e. patient). At instantiation time, Task Plans re-used by reference within a Work Plan at the archetype level are instantiated as distinct instances for each such  reference.</p>
+<p class="tableblock">                                                      After Work Plan instantiation, the planner may adjust it in any way that maintains conformance with its archetypes and template, e.g. to provide values for particular parts of the model such as medication dosages, that correspond to the particular patient.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clinical time -<br>
@@ -1650,11 +1728,9 @@
                         (instances of<br>
                          materialised classes,<br>
                          persisted over sessions)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Close to Plan execution time, a Work Plan definition will be 'materialised', i.e. instantiated into a form that                                can be used for execution and tracking of the Plan. At the point of materialisation, the definition model must
-                                                      be published and persisted, guaranteeing the its availability as the reference model for its materialised expressions. It may be materialised any number of times, corresponding to the distinct number of instances of use required. Each materialisation</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Close to Plan execution time, a Work Plan definition will be <em>materialised</em>, i.e. instantiated into a form                              that can be used for execution and tracking of the Plan. At the point of materialisation, the definition                                model must be published and persisted, guaranteeing the its availability as the reference model for its                                  materialised expressions. It may be materialised any number of times, corresponding to the distinct number                              of instances of use required. Each materialisation</p>
 <p class="tableblock">                                                      In the materialised form, repeatable sections of the definition are 'unfolded' into literal sections, for as many repetitions as required by the relevant performer(s). Accordingly, parts of the materialised expression of a Plan may have an N:1 relationship with the original definition form.</p>
-<p class="tableblock">                                                      Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form
-                                                      compared to the definition form.</p>
+<p class="tableblock">                                                      Unreachable decision paths may be removed, and where possible decision nodes, simplifying the materialised form compared to the definition form.</p>
 <p class="tableblock">                                                      The materialised form has its own class model containing additional data items to enable run-time tracking of the Plan as it is performed. During execution time, various kinds of deletions and modifications to the materialised representation are possible, corresponding to changes in plan that respond to unexpected events.</p></td>
 </tr>
 <tr>
@@ -1664,26 +1740,36 @@
                         (instances of<br>
                          materialised classes,<br>
                          during session)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Since a Plan execution may run over many hours, days or longer, the materialised expression will in general                                     correspond to something larger than the literal in-memory instantiation of (parts of) the Plan required during                                 any given user-application the session during which some or all of the Task Plan might be performed. The part                                   of the plan currently being displayed, performed, tracked etc, is known here as the 'run-time instantiation',                                   and consists of a subset of the total materialised form instances.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Since a Plan execution may run over many hours, days or longer, the materialised expression will in
+                                                     general correspond to something larger than the literal in-memory instantiation of (parts of) the Plan required during any given user-application the session during which some or all of the Task Plan might be performed. The part of the plan currently being displayed, performed, tracked etc, is known here as the 'run-time instantiation', and consists of a subset of the total materialised form instances.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>In this scheme, archetype- and template-based modelling is used as much as possible in order to create layers of re-usable models that are progressively more specialised, until close-to-patient models are achieved, typically as templates. This enables the power of the archetype modelling formalism, including specialisation and composition to be used freely, in a similar manner to an object-oriented programming environment.</p>
-</div>
 <div class="sect3">
-<h4 id="_separation_of_definition_and_execution"><a class="anchor" href="#_separation_of_definition_and_execution"></a>4.4.1. Separation of Definition and Execution</h4>
+<h4 id="_phases_of_work"><a class="anchor" href="#_phases_of_work"></a>4.4.1. Phases of Work</h4>
 <div class="paragraph">
-<p>According to the above, the concrete definition of a Work Plan is constructed in the 'planning phase' of clinical time, to define work <em>to be done</em> in the near future, by the planner and/or others. As the work is performed, the results are documented with openEHR Entries, such as Actions and Observations. During the execution of the plan there is usually a need to track the progress of the work in terms of Task completions, cancellations, failures, abandonment and so on.</p>
+<p>In this scheme, archetype- and template-based modelling is used as much as possible during the design phase, in order to create a hierarchy of re-usable models that are progressively more specialised, until close-to-patient models are achieved, typically as templates. This enables the power of the archetype modelling formalism, including specialisation and composition to be used freely, in a similar manner to an object-oriented programming environment.</p>
 </div>
 <div class="paragraph">
-<p>As per the above table, the model defined in this specification separates the definition of Work Plans from their executions. This is achieved via <code>definition</code> and <code>materialised</code> parts of the model, corresponding to the concrete definition and materialised phases described above. Instances of the former are used to represent the definition of a plan, and would accordingly be used by a tools designed for that purpose. Similarly, run-time execution tools would be built using the <code>materialised</code> part of the model, as well as the <code>definition</code> part, since the latter is referred to by the former.</p>
+<p>When the design phase is complete, a Work Plan template may be instantiated by a clinical planner in the <em>planning</em> phase, to create definitions instances that are stored in a Composition in the patient EHR. During this phase, adjustments to the definition. Multiple workers may undertake such modifications, which may be performed over some time. At any given time, a particular patient EHR may contain multiple Work Plan definitions.</p>
 </div>
 <div class="paragraph">
-<p>It is the materialised expression of a Plan that is used to record all Plan-related actions by Task performers. This state may be persisted for plans whose execution takes place over more than a user-application session.</p>
+<p>When a Work Plan is ready, the execution phase can begin, done by materialising the Plan definition from the EHR into the TP Engine, where it can be executed. It is the materialised expression of a Plan that is used to record all Plan-related actions by Task performers.</p>
 </div>
 <div class="paragraph">
-<p>The history of actions on the Plan can be understood as a set of <em>transactions</em> over time, and the model provides a third <code>history</code> part that can be used to efficiently represent this history, allowing it to be permanently recorded.</p>
+<p>A Plan 'execution' may be long-lived, and extend beyond worker sessions in individual application invocations. The execution state will therefore be persisted for such Plans. During the execution phase, multiple <em>runtime executions</em> will occur, during which some part of the Plan will actually execute with the relevant users (i.e. performers) and applications.</p>
+</div>
+<div class="paragraph">
+<p>As the work is performed in the execution phase, the results are documented with openEHR Entries, such as Actions and Observations.</p>
+</div>
+<div class="paragraph">
+<p>The following figure illustrates these phases of work and the series of representations of Work Plans as they progress from archetyped models to runtime executions.</p>
+</div>
+<div id="tp_modelling_wf" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="diagrams/tp_modelling_wf.svg" alt="tp modelling wf">
+</div>
+<div class="title">Figure 7. TP Modelling Workflow</div>
 </div>
 </div>
 </div>
@@ -1798,7 +1884,7 @@
 <div class="content">
 <img src="diagrams/task_availability.svg" alt="task availability" width="55%">
 </div>
-<div class="title">Figure 6. Task Availability</div>
+<div class="title">Figure 8. Task Availability</div>
 </div>
 </div>
 <div class="sect3">
@@ -1822,7 +1908,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_relationship_of_task_plans_with_existing_openehr_entry_types"><a class="anchor" href="#_relationship_of_task_plans_with_existing_openehr_entry_types"></a>4.6. Relationship of Task Plans with existing openEHR Entry Types</h3>
+<h3 id="_relationship_of_tasks_with_existing_openehr_entry_types"><a class="anchor" href="#_relationship_of_tasks_with_existing_openehr_entry_types"></a>4.6. Relationship of Tasks with existing openEHR Entry Types</h3>
 <div class="paragraph">
 <p>Within the phases of clinical planning and execution time described above, the Task Plan is not the only information artefact that may be created. The existing openEHR model <code>ENTRY</code> types provide the standard way to represent orders, via <code>INSTRUCTION</code>, and order-related performed activities, via <code>ACTION</code>. In addition, the usual <code>OBSERVATION</code>, <code>EVALUATION</code> and <code>ADMIN_ENTRY</code> types are used to record observations, diagnoses, and administrative events as they occur in clinical time. In abstract terms, Instructions may be understood as formal statements of 'what is to be done', and the other types, as records of 'what was done'. However, Instructions are most suited to concise representations of orderable actions, particularly medication administration, but not for general purpose detailed plans of events. The addition of Task Plans provides a way to specify such plans more flexibly, and in a step-by-step manner.</p>
 </div>
@@ -1833,13 +1919,13 @@
 <div class="content">
 <img src="diagrams/planning_artefacts.svg" alt="planning artefacts" width="60%">
 </div>
-<div class="title">Figure 7. openEHR Planning Artefact Relationships</div>
+<div class="title">Figure 9. openEHR Planning Artefact Relationships</div>
 </div>
 <div class="paragraph">
-<p>In simple cases, a Task Plan may just be the list of Tasks to fulfill one order, i.e. a single <code>INSTRUCTION</code> prescribing a course of antibiotics. The general case however is that the Task Plan corresponds to a clinical goal which implicates multiple orders, such as the CHOP chemotherapy mentioned above.</p>
+<p>In simple cases, a Task Plan may just be the list of Tasks to fulfill one order, i.e. a single <code>INSTRUCTION</code> prescribing a course of antibiotics. The general case however is that the Work Plan corresponds to a clinical goal which implicates multiple orders, such as the CHOP chemotherapy mentioned above.</p>
 </div>
 <div class="paragraph">
-<p>Consequently, <em>not every Task in a Task Plan is associated with an order</em>, illustrated by the yellow Task objects in the above figure. While a typical case is that a Task corresponds to an openEHR <code>ACTION</code> that has not yet been recorded (and which normally has a driving <code>INSTRUCTION</code>), it may also correspond to an <code>ACTION</code> that has no <code>INSTRUCTION</code> or indeed an <code>OBSERVATION</code> or possibly an <code>EVALUATION</code> (perhaps some kind of check during a procedure). Indeed, there is also no reason why a Task Plan cannot consist of Tasks that define administrative work and would be documented with openEHR <code>ADMIN_ENTRYs</code>.</p>
+<p>Consequently, <em>not every Task in a Work Plan is associated with an order</em>, illustrated by the yellow Task objects in the above figure. While a typical case is that a Task corresponds to an openEHR <code>ACTION</code> that has not yet been recorded (and which normally has a driving <code>INSTRUCTION</code>), it may also correspond to an <code>ACTION</code> that has no <code>INSTRUCTION</code> or indeed an <code>OBSERVATION</code> or possibly an <code>EVALUATION</code> (perhaps some kind of check during a procedure). Indeed, there is also no reason why a Task Plan cannot consist of Tasks that define administrative work and would be documented with openEHR <code>ADMIN_ENTRYs</code>.</p>
 </div>
 <div class="paragraph">
 <p>We can infer from the above that the main driver of a Task Plan isn&#8217;t in general an order, but a care plan or guideline that usually includes orders, or else plain old ad hoc planning.</p>
@@ -1851,10 +1937,10 @@
 <div class="content">
 <img src="diagrams/clinical_process_planning.svg" alt="clinical process planning" width="70%">
 </div>
-<div class="title">Figure 8. Clinical Investigator Process with Planning</div>
+<div class="title">Figure 10. Clinical Investigator Process with Planning</div>
 </div>
 <div class="paragraph">
-<p>According to this scheme, <code>TASK_PLAN</code> and <code>TASK</code> are new types of information that can be committed to the EHR.</p>
+<p>According to this scheme, <code>WORK_PLAN</code>, <code>TASK_PLAN</code> and <code>TASK</code> are new types of information that can be committed to the EHR.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1884,7 +1970,7 @@
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning-overview.svg" alt="PROC task planning overview">
 </div>
-<div class="title">Figure 9. rm.task_planning package overview</div>
+<div class="title">Figure 11. rm.task_planning package overview</div>
 </div>
 <div class="paragraph">
 <p>The following instance diagram illustrates the relationships among these models for one Task Plan. On the left is a Task Plan definition, consisting of a Task Group and various Defined Actions. Each of these Tasks may have a prototype Entry attached, which represents the intended data of an Action, Observation or other Entry that the Task defines.</p>
@@ -1899,7 +1985,7 @@
 <div class="content">
 <img src="diagrams/task_planning_overview.svg" alt="task planning overview" width="65%">
 </div>
-<div class="title">Figure 10. Task planning overview</div>
+<div class="title">Figure 12. Task planning overview</div>
 </div>
 <div class="sect2">
 <h3 id="_identification_and_referencing"><a class="anchor" href="#_identification_and_referencing"></a>5.1. Identification and Referencing</h3>
@@ -1920,7 +2006,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.definition-context.svg" alt="PROC task planning.definition context">
 </div>
-<div class="title">Figure 11. Task planning - context values</div>
+<div class="title">Figure 13. Task planning - context values</div>
 </div>
 <div class="paragraph">
 <p>An instance of <code>PLAN_DATA_CONTEXT</code> represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic <em>variables</em> or <em>constants</em>, or else <em>expressions</em> that reference such variables, respectively represented by the classes <code>CONTEXT_VARIABLE&lt;T&gt;</code>, <code>CONTEXT_CONSTANT&lt;T&gt;</code> and <code>CONTEXT_EXPRESSION&lt;T&gt;</code>. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.</p>
@@ -3197,7 +3283,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.definition-structure.svg" alt="PROC task planning.definition structure">
 </div>
-<div class="title">Figure 12. proc.task_planning.definition model overview</div>
+<div class="title">Figure 14. proc.task_planning.definition model overview</div>
 </div>
 <div class="paragraph">
 <p>The remaining classes are shown in various specialised views below.</p>
@@ -3257,7 +3343,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/task_grouping.svg" alt="task grouping" width="75%">
 </div>
-<div class="title">Figure 13. Task grouping</div>
+<div class="title">Figure 15. Task grouping</div>
 </div>
 <div class="paragraph">
 <p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.</p>
@@ -4129,7 +4215,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.definition-actions.svg" alt="PROC task planning.definition actions">
 </div>
-<div class="title">Figure 14. proc.task_planning.definition model - Task Actions</div>
+<div class="title">Figure 16. proc.task_planning.definition model - Task Actions</div>
 </div>
 <div class="paragraph">
 <p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
@@ -4198,7 +4284,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/task_linking.svg" alt="task linking">
 </div>
-<div class="title">Figure 15. Task Plan linking</div>
+<div class="title">Figure 17. Task Plan linking</div>
 </div>
 <div class="paragraph">
 <p>This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the <code>SUB_PLAN</code> class. Since a Sub-plan is a kind of Task, it has a <em>description</em> and could be performed and signed off as if it were a normal inline <code>DEFINED_ACTION</code> by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The <code>PLAN_ITME.<em>training_level</em></code> attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.</p>
@@ -4213,7 +4299,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.definition-defined_task.svg" alt="PROC task planning.definition defined task">
 </div>
-<div class="title">Figure 16. proc.task_planning.definition - Definition Task</div>
+<div class="title">Figure 18. proc.task_planning.definition - Definition Task</div>
 </div>
 <div class="paragraph">
 <p>The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of <code>DEFINED_ACTIONs</code>, each having a protoype of an <code>ACTION</code> instance based on the <code>openEHR-EHR-ACTION.medication.v1</code> archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an <code>ACTION</code> instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.</p>
@@ -4225,7 +4311,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/task_definition.svg" alt="task definition" width="65%">
 </div>
-<div class="title">Figure 17. Task definition</div>
+<div class="title">Figure 19. Task definition</div>
 </div>
 <div class="paragraph">
 <p>Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The <code><em>prototype</em></code> attribute in a <code>TASK_PLAN</code> archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. <code>ACTION</code> or other Entry. This can be used in various ways, as follows:</p>
@@ -4293,7 +4379,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/task_coordination.svg" alt="task coordination">
 </div>
-<div class="title">Figure 18. Task coordination</div>
+<div class="title">Figure 20. Task coordination</div>
 </div>
 <div class="paragraph">
 <p>In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (<code><em>wait</em></code> = <code>True</code>; callback wait resumes at the next Task) and the second an asynchronous fork (<code><em>wait</em></code> = <code>False</code>).</p>
@@ -4784,7 +4870,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.definition-decision.svg" alt="PROC task planning.definition decision">
 </div>
-<div class="title">Figure 19. proc.task_planning package definition model (decision view)</div>
+<div class="title">Figure 21. proc.task_planning package definition model (decision view)</div>
 </div>
 <div class="paragraph">
 <p>The pattern types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the <code>CHOICE_GROUP</code> and <code>CHOICE_BRANCH</code> classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.</p>
@@ -4818,7 +4904,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/condition_structure.svg" alt="condition structure">
 </div>
-<div class="title">Figure 20. Condition structure</div>
+<div class="title">Figure 22. Condition structure</div>
 </div>
 <div class="paragraph">
 <p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (<code><em>execution_type</em></code> is constrained to <code>sequential</code>), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.</p>
@@ -4830,7 +4916,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/decision_structure.svg" alt="decision structure">
 </div>
-<div class="title">Figure 21. Decision structure</div>
+<div class="title">Figure 23. Decision structure</div>
 </div>
 <div class="paragraph">
 <p>The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes <code>EVENT_GROUP</code> and <code>EVENT_BRANCH</code>, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.</p>
@@ -4839,7 +4925,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/event_structure.svg" alt="event structure">
 </div>
-<div class="title">Figure 22. Event structure</div>
+<div class="title">Figure 24. Event structure</div>
 </div>
 <div class="sect3">
 <h4 id="_class_descriptions_7"><a class="anchor" href="#_class_descriptions_7"></a>6.3.1. Class Descriptions</h4>
@@ -5381,7 +5467,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.definition-event.svg" alt="PROC task planning.definition event">
 </div>
-<div class="title">Figure 23. proc.task_planning model - Events</div>
+<div class="title">Figure 25. proc.task_planning model - Events</div>
 </div>
 <div class="paragraph">
 <p>In the above, the descendants of <code>PLAN_EVENT</code> represent various kinds of events, which roughly divide into <em>deterministic events</em>, i.e. known, system-endogenous events, and <em>non-deterministic events</em>, i.e. events from the outside world whose receipt is not guaranteed.</p>
@@ -6333,7 +6419,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
 </div>
-<div class="title">Figure 24. Task lifecycle state machine</div>
+<div class="title">Figure 26. Task lifecycle state machine</div>
 </div>
 <div class="paragraph">
 <p>A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the <code>abandoned</code> state is entered, it does not.</p>
@@ -6466,7 +6552,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/uc_task_timing_1.svg" alt="uc task timing 1" width="85%">
 </div>
-<div class="title">Figure 25. Timing Patterns</div>
+<div class="title">Figure 27. Timing Patterns</div>
 </div>
 </div>
 <div class="sect2">
@@ -6478,7 +6564,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="diagrams/uc_task_callback_1.svg" alt="uc task callback 1">
 </div>
-<div class="title">Figure 26. Timing Patterns</div>
+<div class="title">Figure 28. Timing Patterns</div>
 </div>
 </div>
 </div>
@@ -6875,7 +6961,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 27. proc.task_planning.materialised package</div>
+<div class="title">Figure 29. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -7215,7 +7301,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 28. proc.task_planning.history package</div>
+<div class="title">Figure 30. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -7541,7 +7627,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="../UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 29. proc.task_planning.service package</div>
+<div class="title">Figure 31. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -7768,7 +7854,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 30. Runtime planning structures</div>
+<div class="title">Figure 32. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>

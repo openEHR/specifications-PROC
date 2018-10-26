@@ -9,7 +9,10 @@
 |[[latest_issue]]1.1.2
 |{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
  {openehr_jira}/SPECPROC-11[SPECPROC-11]. Add `WORK_PLAN._indications_`; +
- Improve documentation of `TIMELINE_MOMENT`.
+ Improve documentation of `TIMELINE_MOMENT`; +
+ {openehr_jira}/SPECPROC-13[SPECPROC-13]. Clarify Work Plan instantiation and distribution semantics:
+ Add section 4.4.1 Phases of Work; +
+ Add subsection to section 2.5 on Distributed plans.
 |B Naess, +
  M Kejžar, +
  T Beale
