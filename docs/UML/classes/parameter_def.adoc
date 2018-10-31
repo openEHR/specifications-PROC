@@ -17,7 +17,7 @@ h|*1..1*
 a|Name of parameter in external API call.
 
 h|*1..1*
-|*type*: `EXPR_TYPE_DEF`
+|*type*: `EL_TYPE_DEF`
 a|Type of parameter in external API call.
 
 h|*1..1*

@@ -504,7 +504,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Kejžar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Jun 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>31 Oct 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1.1</p></td>
@@ -524,7 +524,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">15 Jan 2018</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
  Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
  Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.</p></td>
@@ -532,13 +532,13 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-5">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-4">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  M Polajnar,<br>
@@ -979,7 +979,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a problem of <em>synchronisation</em> of the two.</p>
+<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a challenge of <em>synchronisation</em> of the two.</p>
 </div>
 <div class="paragraph">
 <p>There is also a question of communication between the workflow application and the real world actors, which we can think of as consisting of:</p>
@@ -1123,7 +1123,7 @@
 <div class="sect2">
 <h3 id="_flexible_allocation_of_workers"><a class="anchor" href="#_flexible_allocation_of_workers"></a>3.1. Flexible Allocation of Workers</h3>
 <div class="paragraph">
-<p>As described earlier, the shfiting availability of workers for a given process needs to be accommodated with a Task planning solution. It should be possible for the specific worker performing a Task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.</p>
+<p>As described earlier, the shfiting availability of workers for a given process needs to be accommodated with a task planning solution. It should be possible for the specific worker performing a Task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1580,7 +1580,7 @@
 <div class="sect3">
 <h4 id="_work_context"><a class="anchor" href="#_work_context"></a>4.3.4. Work Context</h4>
 <div class="paragraph">
-<p>A fundamental concept in this specification is that of <em>work context</em>, which is the factor that distinguishes one Task Plan from another, i.e. one Task Plan (and any sub-Task Plans) corresponds to Tasks to be performed in a single work context. Work context is defined as a single, <em>contiguous cognitive flow</em> in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed <em>seamlessly</em> by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a <em>single mind</em>.</p>
+<p>A fundamental concept in this specification is <em>work context</em>, which is the factor that distinguishes one Task Plan from another, i.e. one Task Plan (and any sub-Task Plans) corresponds to Tasks to be performed in a single work context. Work context is defined as a single, <em>contiguous cognitive flow</em> in the real world (i.e. not in the computational representation, which must always be considered an approximation updated in snapshot fashion) in which work can be performed <em>seamlessly</em> by one or more performers on a single subject. Concretely, this means that the flow of cognitive activity is unbroken during the work. This may extend over time and even distinct physical spaces, such as in the case of tele-consultations. Normally a single cognitive flow corresponds to a single actor, usually a person, but this is not always the case. More than one person may be involved in performing work on the same subject, but essentially working as one, and relying on real-time verbal or other communication to achieve the effect of a <em>single mind</em>.</p>
 </div>
 <div class="paragraph">
 <p>Continuous knowledge of the work, and continuous real-time communication with oneself ('train of thought') or directly among multiple performers is what characterises a given context. A different context is one with different cognitive actors, and within which communications are performed by notifications at certain time checkpoints, typically just the beginning and end.</p>
@@ -2612,7 +2612,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>EXPR_TYPE_DEF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>EL_TYPE_DEF</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Type of parameter in external API call.</p>
 </div></div></td>
@@ -3418,7 +3418,7 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code>List&lt;UID_BASED_ID&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>The set of all Task Plans use in this Work Plan. In general, only some of these are top-level Plans.</p>
+<p>References to all Task Plans use in this Work Plan. In general, only some of these are top-level Plans.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3465,7 +3465,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>top_level_plans</strong>: <code>List&lt;UID_BASED_ID&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>top_level_plans</strong>: <code>List&lt;TASK_PLAN&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>The set of top-level Plans that correspond to the performers and work pathways of this Work Plan.</p>
 </div></div></td>

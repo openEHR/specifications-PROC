@@ -16,7 +16,7 @@
 |B Naess, +
  M Kejžar, +
  T Beale
-|[[latest_issue_date]]28 Jun 2018
+|[[latest_issue_date]]31 Oct 2018
 
 |1.1.1
 |{openehr_jira}/SPECPROC-9[SPECPROC-9]. Add sub-section on Time and Work in Background section. +
@@ -33,19 +33,19 @@
  M Kejžar
 |15 Jan 2018
 
-|
+|1.0.4
 |{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +
  Adjust `CONTEXT_EXPRESSION` type to have `_name_`; +
  Add `CONTEXT_CONSTANT`, `EXTERNAL_VARIABLE` and `LOCAL_VARIABLE` types.
 |T Beale
 |04 Dec 2017
 
-|
+|1.0.3
 |{openehr_jira}/SPECPROC-5[SPECPROC-5]. Correct `DECISION_BRANCH` method of specifying value.
 |T Beale
 |04 Dec 2017
 
-|
+|1.0.2
 |{openehr_jira}/SPECPROC-4[SPECPROC-4]. Refine `SYSTEM_CALL` model, describe variable referencing.
 |M Kejžar, +
  M Polajnar, +

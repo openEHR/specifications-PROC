@@ -14,7 +14,7 @@ Within these and many other similar clinical procedures, a number of commonly oc
 
 == Flexible Allocation of Workers
 
-As described earlier, the shfiting availability of workers for a given process needs to be accommodated with a Task planning solution. It should be possible for the specific worker performing a Task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.
+As described earlier, the shfiting availability of workers for a given process needs to be accommodated with a task planning solution. It should be possible for the specific worker performing a Task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.
 
 == Teamwork and Notifications
 
