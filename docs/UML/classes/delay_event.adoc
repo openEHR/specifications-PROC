@@ -16,10 +16,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*source*: `UID_BASED_ID`
+|*source*: `PLAN_EVENT`
 a|Reference to source Event.
 
 h|*1..1*
-|*delay*: `IDuration`
+|*delay*: `Iso8601_duration`
 a|Length of the delay.
 |===

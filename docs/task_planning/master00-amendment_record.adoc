@@ -6,7 +6,12 @@
 
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
 
-|[[latest_issue]]1.1.2
+|[[latest_issue]]1.2.0
+|{openehr_jira}/SPECPROC-15[SPECPROC-15]. Convert `DELAY_EVENT._source_` to a direct reference.
+|M Polajnar 
+|[[latest_issue_date]]21 Nov 2018
+
+|1.1.2
 |{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
  {openehr_jira}/SPECPROC-11[SPECPROC-11]. Add `WORK_PLAN._indications_`; +
  Improve documentation of `TIMELINE_MOMENT`; +
@@ -16,7 +21,7 @@
 |B Naess, +
  M Kejžar, +
  T Beale
-|[[latest_issue_date]]31 Oct 2018
+|31 Oct 2018
 
 |1.1.1
 |{openehr_jira}/SPECPROC-9[SPECPROC-9]. Add sub-section on Time and Work in Background section. +

@@ -13,7 +13,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*start_time*: `Date_time`
+|*start_time*: `Iso8601_date_time`
 a|Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via `PLANNED_TIME._relative_offset_`.
 
 h|*1..1*

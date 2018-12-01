@@ -8,8 +8,8 @@
 <meta name="description" content="openEHR Task Planning Specification">
 <meta name="keywords" content="task, planning, EHR, EMR, reference model, openehr">
 <title>Task Planning Model Specification</title>
-<link rel="stylesheet" href="https://www.openehr.org/releases/AA_GLOBAL/latest/resources/css/openehr.css">
-<link rel="stylesheet" href="https://www.openehr.org/releases/AA_GLOBAL/latest/resources/css/pygments-murphy.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-murphy.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -33,7 +33,8 @@
 <li><a href="#_purpose">1.1. Purpose</a></li>
 <li><a href="#_related_documents">1.2. Related Documents</a></li>
 <li><a href="#_status">1.3. Status</a></li>
-<li><a href="#_conformance">1.4. Conformance</a></li>
+<li><a href="#_feedback">1.4. Feedback</a></li>
+<li><a href="#_conformance">1.5. Conformance</a></li>
 </ul>
 </li>
 <li><a href="#_background">2. Background</a>
@@ -407,7 +408,7 @@
 <div class="sectionbody">
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="/releases/AA_GLOBAL/latest/resources/images/openehr_logo_large.png" alt="openEHR logo">
+<img src="https://specifications.openehr.org/images/openehr_logo_large.png" alt="openEHR logo">
 </div>
 </div>
 </div>
@@ -422,7 +423,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="/programs/specification/">openEHR Specification Program</a></th>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="https://www.openehr.org/programs/specification/">openEHR Specification Program</a></th>
 </tr>
 </thead>
 <tbody>
@@ -460,11 +461,11 @@
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="/releases/AA_GLOBAL/latest/resources/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://openehr.atlassian.net/browse/SPECPR/" class="bare">https://openehr.atlassian.net/browse/SPECPR/</a><br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://openehr.atlassian.net/browse/SPECPR" class="bare">https://openehr.atlassian.net/browse/SPECPR</a><br>
  Web: <a href="/">www.openehr.org</a></p></td>
 </tr>
 </tbody>
@@ -494,30 +495,36 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>R E L E A S E&#160;&#160;&#160;&#160;&#160;1.?.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.1.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-2">SPECPROC-2</a>. Change date/time types to <code>Iso8601_xxx</code> types from Foundation Types spec.<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-11">SPECPROC-11</a>. Add <code>WORK_PLAN.<em>indications</em></code>;<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-15">SPECPROC-15</a>. Convert <code>DELAY_EVENT.<em>source</em></code> to a direct reference.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Nov 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-2">SPECPROC-2</a>. Change date/time types to <code>Iso8601_xxx</code> types from Foundation Types spec.<br>
+ <a href="https://specifications.openehr.org/jira/browse/SPECPROC-11">SPECPROC-11</a>. Add <code>WORK_PLAN.<em>indications</em></code>;<br>
  Improve documentation of <code>TIMELINE_MOMENT</code>;<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-13">SPECPROC-13</a>. Clarify Work Plan instantiation and distribution semantics:
+ <a href="https://specifications.openehr.org/jira/browse/SPECPROC-13">SPECPROC-13</a>. Clarify Work Plan instantiation and distribution semantics:
  Add section 4.4.1 Phases of Work;<br>
  Add subsection to section 2.5 on Distributed plans.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Kejžar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>31 Oct 2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">31 Oct 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-9">SPECPROC-9</a>. Add sub-section on Time and Work in Background section.<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-10">SPECPROC-10</a>. Add <code>BLOCKING_GROUP</code> and <code>BLOCKING_BRANCH</code> classes and <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-9">SPECPROC-9</a>. Add sub-section on Time and Work in Background section.<br>
+ <a href="https://specifications.openehr.org/jira/browse/SPECPROC-10">SPECPROC-10</a>. Add <code>BLOCKING_GROUP</code> and <code>BLOCKING_BRANCH</code> classes and <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">21 Jun 2018</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-6">SPECPROC-6</a>. Adjust <code>SYSTEM_CALL</code> definition;<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-6">SPECPROC-6</a>. Adjust <code>SYSTEM_CALL</code> definition;<br>
  Add <code>PARAMETER_DEF</code> and <code>PARAMETER_MAPPING</code> types.<br>
- <a href="https://openehr.atlassian.net/browse/SPECPROC-7">SPECPROC-7</a>. Provide support in decision structures for automated / decision support / ad hoc modes;<br>
+ <a href="https://specifications.openehr.org/jira/browse/SPECPROC-7">SPECPROC-7</a>. Provide support in decision structures for automated / decision support / ad hoc modes;<br>
  Add <code>CHOICE_GROUP</code>, <code>CHOICE_BRANCH</code>, <code>ADHOC_GROUP</code>, <code>ADHOC_BRANCH</code> classes, and an attribute for marking any group as overridable at execution time.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  M Kejžar</p></td>
@@ -525,7 +532,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-3">SPECPROC-3</a>. Context value model adjustments;<br>
  Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
  Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
@@ -533,13 +540,13 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-5">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-5">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-4">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-4">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  M Polajnar,<br>
  T Beale</p></td>
@@ -547,7 +554,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-2">SPECPROC-2</a> Fix various typos; add missed <code>BOOLEAN_CONTEXT_EXPRESSION</code>;
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-2">SPECPROC-2</a> Fix various typos; add missed <code>BOOLEAN_CONTEXT_EXPRESSION</code>;
  Remove duplicate attribute <code>WORK_PLAN.<em>events</em></code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">24 Oct 2017</p></td>
@@ -557,21 +564,21 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-1">SPECPROC-1</a>. Further documentation improvements;
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-1">SPECPROC-1</a>. Further documentation improvements;
  Added explanations for resume semantics; added <code>RESUME_ACTION</code> class.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">17 Oct 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-1">SPECPROC-1</a>. Restructure document;
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-1">SPECPROC-1</a>. Restructure document;
  Various refactoring of Event classes; global calendar, timeline.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">12 Oct 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.8.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECPROC-1">SPECPROC-1</a>. Workshop Sep 25-28 and follow-up calls;<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECPROC-1">SPECPROC-1</a>. Workshop Sep 25-28 and follow-up calls;<br>
  Significant updates to model;<br>
  Include event-based design;<br>
  Moved spec to new PROC openEHR component.</p></td>
@@ -629,7 +636,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.6.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://openehr.atlassian.net/browse/SPECRM-58">SPECRM-58</a>. Initial writing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/jira/browse/SPECRM-58">SPECRM-58</a>. Initial writing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  B Naess,<br>
  I McNicoll</p></td>
@@ -780,7 +787,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="/releases/BASE/latest/architecture_overview.html">openEHR Architecture Overview</a>.</p>
+<p>The <a href="https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html">openEHR Architecture Overview</a>.</p>
 </li>
 </ul>
 </div>
@@ -790,7 +797,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="/releases/RM/latest/ehr.html">openEHR EHR Information Model</a>;</p>
+<p>The <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html">openEHR EHR Information Model</a>;</p>
 </li>
 </ul>
 </div>
@@ -798,7 +805,7 @@
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
 <div class="paragraph">
-<p>This specification is in the TRIAL state. The development version of this document can be found at <a href="/releases/PROC/latest/task_planning.html">www.openehr.org/releases/PROC/latest/task_planing.html</a>.</p>
+<p>This specification is in the TRIAL state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html">https://specifications.openehr.org/releases/PROC/latest/task_planning.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -806,14 +813,23 @@
 <div class="paragraph tbd">
 <p><strong>TBD</strong>: (example To Be Determined paragraph)</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Users are encouraged to comment on and/or advise on these paragraphs as well as the main content.  Feedback should be provided either on the <a href="http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org">technical mailing list</a>, or on the <a href="https://openehr.atlassian.net/issues/?filter=11106">specifications issue tracker</a>.</p>
+<p>Feedback may be provided on the <a href="http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org">technical mailing list</a>.</p>
+</div>
+<div class="paragraph">
+<p>Issues may be raised on the <a href="https://specifications.openehr.org/jira/issues/?filter=11106">specifications Problem Report tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>To see changes made due to previously reported issues, see the <a href="https://specifications.openehr.org/jira/issues/?filter=11129">PROC component Change Request tracker</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.4. Conformance</h3>
+<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.5. Conformance</h3>
 <div class="paragraph">
-<p>Conformance of a data or software artifact to an openEHR Reference Model specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal, automated derivations from the Reference Model, ITS conformance indicates RM conformance.</p>
+<p>Conformance of a data or software artifact to an openEHR Reference Model specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal, derivations from the Reference Model, ITS conformance indicates RM conformance.</p>
 </div>
 </div>
 </div>
@@ -874,7 +890,7 @@
 <div class="sect2">
 <h3 id="_limitations_of_the_openehr_standard_entry_model"><a class="anchor" href="#_limitations_of_the_openehr_standard_entry_model"></a>2.2. Limitations of the openEHR standard Entry Model</h3>
 <div class="paragraph">
-<p>The Entry model described in the <a href="/releases/RM/latest/ehr.html">openEHR EHR IM</a> defines a way to record clinical statements representing real observations, decisions, orders and actions that have occurred, in the EHR. In this scheme, Instructions represent orders for certain kinds of Actions to be performed. Actions and Observations represent events that have subsequently occurred in the real world - a real drug administration or an actual blood sugar measurement.</p>
+<p>The Entry model described in the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html">openEHR EHR IM</a> defines a way to record clinical statements representing real observations, decisions, orders and actions that have occurred, in the EHR. In this scheme, Instructions represent orders for certain kinds of Actions to be performed. Actions and Observations represent events that have subsequently occurred in the real world - a real drug administration or an actual blood sugar measurement.</p>
 </div>
 <div class="paragraph">
 <p>There is however a common additional need to concretely plan individual Actions and sometimes Observations ahead of time, as a set of 'tasks', often known as a 'task list'. Here we will use the more general term <em>task plan</em> to mean a specification of a set of actions to be performed by actors (usually human, but potentially machine as well) providing care.</p>
@@ -1931,7 +1947,7 @@
 <p>We can infer from the above that the main driver of a Task Plan isn&#8217;t in general an order, but a care plan or guideline that usually includes orders, or else plain old ad hoc planning.</p>
 </div>
 <div class="paragraph">
-<p>A high-level view of how clinical work generates openEHR information can be visualised conceptually with a modified version of the <a href="/releases/RM/latest/ehr.html#_information_ontology">Clinical Investigator process diagram</a> as follows:</p>
+<p>A high-level view of how clinical work generates openEHR information can be visualised conceptually with a modified version of the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_information_ontology">Clinical Investigator process diagram</a> as follows:</p>
 </div>
 <div id="clinical_process_planning" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -2012,7 +2028,7 @@ The following UML diagram illustrates.</p>
 <p>An instance of <code>PLAN_DATA_CONTEXT</code> represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic <em>variables</em> or <em>constants</em>, or else <em>expressions</em> that reference such variables, respectively represented by the classes <code>CONTEXT_VARIABLE&lt;T&gt;</code>, <code>CONTEXT_CONSTANT&lt;T&gt;</code> and <code>CONTEXT_EXPRESSION&lt;T&gt;</code>. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.</p>
 </div>
 <div class="paragraph">
-<p>Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as <code>$bp_systolic - $bp_diastolic</code>, where <code>$bp_systolic</code> and <code>$bp_diastolic</code> are defined as single variables. The syntax of expressions is defined by the <a href="/releases/BASE/latest/expression.html">openEHR Expression language</a>.</p>
+<p>Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as <code>$bp_systolic - $bp_diastolic</code>, where <code>$bp_systolic</code> and <code>$bp_diastolic</code> are defined as single variables. The syntax of expressions is defined by the {openehr_el}[openEHR Expression language].</p>
 </div>
 <div class="paragraph">
 <p>Two types of context variable are distinguished: external and local, represented by <code>EXTERNAL_VARIABLE&lt;t&gt;</code> and <code>LOCAL_VARIABLE&lt;T&gt;</code>. The former represent values of entities outside the task planning environment, and are written to via a <code><em>populating_request</em></code> which uses some method (such as EHR querying, API calls) to obtain the relevant external value. They are accordingly not writable from within the Work Plan.</p>
@@ -3477,14 +3493,6 @@ The following UML diagram illustrates.</p>
 <p>Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>DV_TEXT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Human-understandable description of the Task Plan, which may be specific to the work items and patient.</p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -4221,7 +4229,7 @@ The following UML diagram illustrates.</p>
 <p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
 </div>
 <div class="paragraph">
-<p>A subject precondition is formally represented as a <code>BOOLEAN_CONTEXT_EXPRESSION</code>, whose <code><em>expression</em></code> value is a string in <a href="/releases/BASE/latest/expression.html">openEHR Expression Language</a> syntax.</p>
+<p>A subject precondition is formally represented as a <code>BOOLEAN_CONTEXT_EXPRESSION</code>, whose <code><em>expression</em></code> value is a string in {openehr_el}[openEHR Expression Language] syntax.</p>
 </div>
 <div class="paragraph">
 <p>Pre-conditions are evaluated at the point at which the Task to which they are attached becomes available during execution. If any pre-condition evaluates to False, the Task is in theory unable to be performed. A clinical professional may override at execution time, since it may always be the case that particular circumstances obviate the need for a particular pre-condition that normally applies.</p>
@@ -4319,10 +4327,10 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="/releases/AM/latest/ADL2.html#_external_references">external reference</a>: specifies a fixed archetype identifier which will be substituted in the templated form of the Task Plan. This has the effect of creating <code>ACTION</code> or other prototype instances in the <code>TASK_PLAN</code> structure;</p>
+<p><a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_external_references">external reference</a>: specifies a fixed archetype identifier which will be substituted in the templated form of the Task Plan. This has the effect of creating <code>ACTION</code> or other prototype instances in the <code>TASK_PLAN</code> structure;</p>
 </li>
 <li>
-<p><a href="/releases/AM/latest/ADL2.html#_archetype_slots">archetype slot</a>: specified using a slot constraint that is satisfied by one or more archetypes that may be specified by a template, or left open until runtime.</p>
+<p><a href="https://specifications.openehr.org/releases/AM/latest/ADL2.html#_archetype_slots">archetype slot</a>: specified using a slot constraint that is satisfied by one or more archetypes that may be specified by a template, or left open until runtime.</p>
 </li>
 </ul>
 </div>
@@ -5733,14 +5741,14 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source</strong>: <code>PLAN_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Reference to source Event.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>delay</strong>: <code>IDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>delay</strong>: <code>Iso8601_duration</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Length of the delay.</p>
 </div></div></td>
@@ -7054,7 +7062,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code>Date_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code>Iso8601_date_time</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via <code>PLANNED_TIME.<em>relative_offset</em></code>.</p>
 </div></div></td>
