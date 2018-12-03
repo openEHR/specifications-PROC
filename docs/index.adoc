@@ -19,7 +19,15 @@
 :jira-roadmap: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased
 :jira-hist-issues: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released
 
-image::/releases/BASE/latest/resources/images/openehr_logo_large.png["openEHR logo",align="center"]
+include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+image::{openehr_logo}["openEHR logo",align="center"]
+
+image::openehr_block_diagram.svg["openEHR components",align="center",width="60%"]
 
 = Process Model (PROC) - {proc_release}
 
