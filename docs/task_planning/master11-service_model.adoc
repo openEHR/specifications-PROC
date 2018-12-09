@@ -6,7 +6,7 @@ The information structures required to represent planned Tasks and references at
 
 [.text-center]
 .proc.task_planning.service package
-image::{uml_export_dir}/diagrams/PROC-task_planning.service.svg[id=proc_task_planning_service, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.service.svg[id=proc_task_planning_service, align="center"]
 
 == Definition Interface
 

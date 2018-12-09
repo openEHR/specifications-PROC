@@ -6,7 +6,7 @@ The history of execution events from a Work Plan execution is represented in the
 
 [.text-center]
 .proc.task_planning.history package
-image::{uml_export_dir}/diagrams/PROC-task_planning.history.svg[id=proc_task_planning_history, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.history.svg[id=proc_task_planning_history, align="center"]
 
 As shown above, two types of execution event are defined:
 

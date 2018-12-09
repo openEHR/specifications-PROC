@@ -7,15 +7,15 @@
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
 
 |[[latest_issue]]1.2.0
-|{openehr_jira}/SPECPROC-15[SPECPROC-15]. Convert `DELAY_EVENT._source_` to a direct reference.
+|{spec_tickets}/SPECPROC-15[SPECPROC-15^]. Convert `DELAY_EVENT._source_` to a direct reference.
 |M Polajnar 
 |[[latest_issue_date]]21 Nov 2018
 
 |1.1.2
-|{openehr_jira}/SPECPROC-2[SPECPROC-2]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
- {openehr_jira}/SPECPROC-11[SPECPROC-11]. Add `WORK_PLAN._indications_`; +
+|{spec_tickets}/SPECPROC-2[SPECPROC-2^]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
+ {spec_tickets}/SPECPROC-11[SPECPROC-11^]. Add `WORK_PLAN._indications_`; +
  Improve documentation of `TIMELINE_MOMENT`; +
- {openehr_jira}/SPECPROC-13[SPECPROC-13]. Clarify Work Plan instantiation and distribution semantics:
+ {spec_tickets}/SPECPROC-13[SPECPROC-13^]. Clarify Work Plan instantiation and distribution semantics:
  Add section 4.4.1 Phases of Work; +
  Add subsection to section 2.5 on Distributed plans.
 |B Naess, +
@@ -24,41 +24,41 @@
 |31 Oct 2018
 
 |1.1.1
-|{openehr_jira}/SPECPROC-9[SPECPROC-9]. Add sub-section on Time and Work in Background section. +
- {openehr_jira}/SPECPROC-10[SPECPROC-10]. Add `BLOCKING_GROUP` and `BLOCKING_BRANCH` classes and `EVENT_ACTION._receiver_thread_next_state_`.
+|{spec_tickets}/SPECPROC-9[SPECPROC-9^]. Add sub-section on Time and Work in Background section. +
+ {spec_tickets}/SPECPROC-10[SPECPROC-10^]. Add `BLOCKING_GROUP` and `BLOCKING_BRANCH` classes and `EVENT_ACTION._receiver_thread_next_state_`.
 |T Beale
 |21 Jun 2018
 
 |1.1.0
-|{openehr_jira}/SPECPROC-6[SPECPROC-6]. Adjust `SYSTEM_CALL` definition; +
+|{spec_tickets}/SPECPROC-6[SPECPROC-6^]. Adjust `SYSTEM_CALL` definition; +
  Add `PARAMETER_DEF` and `PARAMETER_MAPPING` types. +
- {openehr_jira}/SPECPROC-7[SPECPROC-7]. Provide support in decision structures for automated / decision support / ad hoc modes; +
+ {spec_tickets}/SPECPROC-7[SPECPROC-7^]. Provide support in decision structures for automated / decision support / ad hoc modes; +
  Add `CHOICE_GROUP`, `CHOICE_BRANCH`, `ADHOC_GROUP`, `ADHOC_BRANCH` classes, and an attribute for marking any group as overridable at execution time.
 |T Beale, +
  M Kejžar
 |15 Jan 2018
 
 |1.0.4
-|{openehr_jira}/SPECPROC-3[SPECPROC-3]. Context value model adjustments; +
+|{spec_tickets}/SPECPROC-3[SPECPROC-3^]. Context value model adjustments; +
  Adjust `CONTEXT_EXPRESSION` type to have `_name_`; +
  Add `CONTEXT_CONSTANT`, `EXTERNAL_VARIABLE` and `LOCAL_VARIABLE` types.
 |T Beale
 |04 Dec 2017
 
 |1.0.3
-|{openehr_jira}/SPECPROC-5[SPECPROC-5]. Correct `DECISION_BRANCH` method of specifying value.
+|{spec_tickets}/SPECPROC-5[SPECPROC-5^]. Correct `DECISION_BRANCH` method of specifying value.
 |T Beale
 |04 Dec 2017
 
 |1.0.2
-|{openehr_jira}/SPECPROC-4[SPECPROC-4]. Refine `SYSTEM_CALL` model, describe variable referencing.
+|{spec_tickets}/SPECPROC-4[SPECPROC-4^]. Refine `SYSTEM_CALL` model, describe variable referencing.
 |M Kejžar, +
  M Polajnar, +
  T Beale
 |02 Dec 2017
 
 |1.0.1
-|{openehr_jira}/SPECPROC-2[SPECPROC-2] Fix various typos; add missed `BOOLEAN_CONTEXT_EXPRESSION`;
+|{spec_tickets}/SPECPROC-2[SPECPROC-2^] Fix various typos; add missed `BOOLEAN_CONTEXT_EXPRESSION`;
  Remove duplicate attribute `WORK_PLAN._events_`.
 |M Kejžar
 |24 Oct 2017
@@ -66,19 +66,19 @@
 4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.0.0*
 
 |1.0.0
-|{openehr_jira}/SPECPROC-1[SPECPROC-1]. Further documentation improvements;
+|{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Further documentation improvements;
  Added explanations for resume semantics; added `RESUME_ACTION` class.
 |T Beale
 |17 Oct 2017
 
 |0.9.0
-|{openehr_jira}/SPECPROC-1[SPECPROC-1]. Restructure document;
+|{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Restructure document;
  Various refactoring of Event classes; global calendar, timeline.
 |T Beale
 |12 Oct 2017
 
 |0.8.2
-|{openehr_jira}/SPECPROC-1[SPECPROC-1]. Workshop Sep 25-28 and follow-up calls; +
+|{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Workshop Sep 25-28 and follow-up calls; +
  Significant updates to model; +
  Include event-based design; +
  Moved spec to new PROC openEHR component.
@@ -129,7 +129,7 @@
 |31 May 2017
 
 |0.6.0
-|{openehr_jira}/SPECRM-58[SPECRM-58]. Initial writing.
+|{spec_tickets}/SPECRM-58[SPECRM-58^]. Initial writing.
 |T Beale, +
  B Naess, +
  I McNicoll

@@ -45,7 +45,7 @@ These entities and their relationships can be envisaged as follows.
 
 [.text-center]
 .The care pathway / care plan / task plan triad
-image::diagrams/pathway_plan_triad.svg[id=pathway_plan_triad, align="center", width=60%]
+image::{diagrams_uri}/pathway_plan_triad.svg[id=pathway_plan_triad, align="center", width=60%]
 
 The above diagram shows task plans as a concrete planning artefact that results from a care plan for a specific patient, and may be partly based on published care pathways and clinical guidelines, each of which can be thought of as a basis for task plans for an ideal patient for a given condition (e.g. pregnancy, sepsis, stroke etc). Where care pathways (or parts thereof) can be represented as formal artefacts, they can act as prototypes for task pan structures. However, a care pathway for a model patient is not the same thing as a task plan(s) for an actual patient, since each real patient has his/her own specific combination of conditions, preferences and ultimately phenotypic specificities. Thus, where task plans are based on care pathways, the latter act as prototypes whose ideal form may be modified by the specific care plan and/or as the care team deems appropriate.
 
@@ -91,7 +91,7 @@ This environment can be illustrated as follows.
 
 [.text-center]
 .Work plan execution paradigm
-image::diagrams/workflow_execution_paradigm.svg[id=workflow_execution_paradigm, align="center", width=55%]
+image::{diagrams_uri}/workflow_execution_paradigm.svg[id=workflow_execution_paradigm, align="center", width=55%]
 
 === Distributed Plans
 
@@ -110,7 +110,7 @@ The following figure illustrates different possible relationships between a logi
 
 [.text-center]
 .Distributed work plan execution
-image::diagrams/distributed_plan_execution.svg[id=distributed_plan_execution, align="center", width=80%]
+image::{diagrams_uri}/distributed_plan_execution.svg[id=distributed_plan_execution, align="center", width=80%]
 
 The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is _some_ means of enabling the various parts of a plan to execute in the various work-places required.
 

@@ -20,7 +20,7 @@ The computational environment is shown below.
 
 [.text-center]
 .Computational Environment
-image::diagrams/computational_environment.svg[id=computational_environment, align="center", width=80%]
+image::{diagrams_uri}/computational_environment.svg[id=computational_environment, align="center", width=80%]
 
 One of the major differences between the openEHR Task Planning architecture compared to other workflow architectures is that it can rely on shared access to persistent patient EHRs as the location in which context data can be read (e.g. patient variables) and in which records of performed tasks are ultimately stored, in the form of openEHR Compositions containing Entries, in the usual way.
 
@@ -132,7 +132,7 @@ The following diagram shows the taxonomy of task types that result from the abov
 
 [.text-center]
 .Task Taxonomy
-image::diagrams/task_taxonomy.svg[id=task_taxonomy, align="center", width=50%]
+image::{diagrams_uri}/task_taxonomy.svg[id=task_taxonomy, align="center", width=50%]
 
 === Principal Performer
 
@@ -229,7 +229,7 @@ The following figure illustrates these phases of work and the series of represen
 
 [.text-center]
 .TP Modelling Workflow
-image::diagrams/tp_modelling_wf.svg[id=tp_modelling_wf, align="center"]
+image::{diagrams_uri}/tp_modelling_wf.svg[id=tp_modelling_wf, align="center"]
 
 == Execution Concepts
 
@@ -289,7 +289,7 @@ The following diagram illustrates these concepts.
 
 [.text-center]
 .Task Availability
-image::diagrams/task_availability.svg[id=task_availability, align="center", width=55%]
+image::{diagrams_uri}/task_availability.svg[id=task_availability, align="center", width=55%]
 
 === Adaptive Modification and Exception-handling
 
@@ -307,7 +307,7 @@ Both Instructions and Plans may be fully or partially defined by care pathways a
 
 [.text-center]
 .openEHR Planning Artefact Relationships
-image::diagrams/planning_artefacts.svg[id=planning_artefact_relationships, align="center", width=60%]
+image::{diagrams_uri}/planning_artefacts.svg[id=planning_artefact_relationships, align="center", width=60%]
 
 In simple cases, a Task Plan may just be the list of Tasks to fulfill one order, i.e. a single `INSTRUCTION` prescribing a course of antibiotics. The general case however is that the Work Plan corresponds to a clinical goal which implicates multiple orders, such as the CHOP chemotherapy mentioned above. 
 
@@ -319,7 +319,7 @@ A high-level view of how clinical work generates openEHR information can be visu
 
 [.text-center]
 .Clinical Investigator Process with Planning
-image::diagrams/clinical_process_planning.svg[id=clinical_process_planning, align="center", width=70%]
+image::{diagrams_uri}/clinical_process_planning.svg[id=clinical_process_planning, align="center", width=70%]
 
 According to this scheme, `WORK_PLAN`, `TASK_PLAN` and `TASK` are new types of information that can be committed to the EHR.
 

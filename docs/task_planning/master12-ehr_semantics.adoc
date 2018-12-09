@@ -18,7 +18,7 @@ The model supports logical linking between these items to support workflow trace
 
 [.text-center]
 .Runtime planning structures
-image::diagrams/planning_runtime_structures.svg[id=runtime_planning_structures, align="center", width=80%]
+image::{diagrams_uri}/planning_runtime_structures.svg[id=runtime_planning_structures, align="center", width=80%]
 
 Various links can be recorded at execution time, as follows:
 

@@ -13,8 +13,6 @@
 :keywords: process model, openehr
 :description: openEHR Process Model
 :sectanchors:
-:jira-roadmap: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased
-:jira-hist-issues: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released
 
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
@@ -30,17 +28,16 @@ image::openehr_block_diagram.svg["openEHR components",align="center",width="60%"
 
 // Use the following version for 'latest'
 ifeval::["{proc_release}" == "latest"]
-:jira-issues: https://openehr.atlassian.net/projects/SPECPROC/issues/SPECPROC-1?filter=allopenissues
 [.title-para]
-{jira-roadmap}[Roadmap] | {jira-issues}[Current Issues] | {jira-hist-issues}[Change History]
+{component_prs}[Open Issues^] | {component_roadmap}[Roadmap^] | {component_history}[Previous Releases^] 
 endif::[]
 
 // Use the following version for a named release
 ifeval::["{proc_release}" != "latest"]
-:jira-pr-release: https://openehr.atlassian.net/projects/SPECPR/versions/12501
-:jira-cr-release: https://openehr.atlassian.net/projects/SPECPROC?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=released
+:proc_prs_fixed: {component_prs_fixed}{proc_release}/issues
+:proc_crs_done: {component_crs_done}{proc_release}/changes
 [.title-para]
-{jira-pr-release}[Problems Fixed] | {jira-cr-release}[Changes Implemented] | {jira-roadmap}[Roadmap] | {jira-hist-issues}[Change History]
+{proc_prs_fixed}[Issues Fixed^] | {proc_crs_done}[Changes Implemented^] | {component_roadmap}[Roadmap^] | {component_history}[Change History^]
 endif::[]
 
 == Specifications
@@ -64,13 +61,13 @@ h|Specification h|Description
 |Resource |Description
 
 |link:/releases/PROC/{proc_release}/UML/openEHR_UML-PROC.mdzip[openEHR_UML-PROC.mdzip]
-|UML file for MagicDraw 18.5 for PROC model. Contains UML 2.5 standard XMI file.
+|UML file for MagicDraw 19 for PROC model. Contains UML 2.5 standard XMI file.
 
 |link:/releases/RM/{rm_release}/UML/openEHR_UML-RM.mdzip[openEHR_UML-RM.mdzip]
-|UML file for MagicDraw 18.5 for RM model. Contains UML 2.5 standard XMI file.
+|UML file for MagicDraw 19 for RM model. Contains UML 2.5 standard XMI file.
 
 |link:/releases/BASE/{base_release}/UML/openEHR_UML-Base.mdzip[openEHR_UML-Base.mdzip]
-|UML file for MagicDraw 18.5 for BASE model (included by RM). Contains UML 2.5 standard XMI file.
+|UML file for MagicDraw 19 for BASE model (included by RM). Contains UML 2.5 standard XMI file.
 
 |===
 

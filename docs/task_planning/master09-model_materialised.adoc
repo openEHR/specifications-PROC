@@ -6,7 +6,7 @@ The <<proc_task_planning_overview,Model overview figure>> shows a package `proc.
 
 [.text-center]
 .proc.task_planning.materialised package
-image::{uml_export_dir}/diagrams/PROC-task_planning.materialised.svg[id=proc_task_planning_materialised, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.materialised.svg[id=proc_task_planning_materialised, align="center"]
 
 == Class Descriptions
 
