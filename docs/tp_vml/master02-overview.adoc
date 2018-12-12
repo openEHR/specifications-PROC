@@ -4,7 +4,7 @@
 
 [.text-center]
 .Plans
-image::diagrams/TP-VML-palette.svg[id=tp_vml_palette, align="center"]
+image::{diagrams_uri}/TP-VML-palette.svg[id=tp_vml_palette, align="center"]
 
 == Draw.io Tool mode
 

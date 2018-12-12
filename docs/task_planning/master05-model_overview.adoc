@@ -8,7 +8,7 @@ The `history` package contains the model of audit events that have occurred to e
 
 [.text-center]
 .rm.task_planning package overview
-image::{uml_export_dir}/diagrams/PROC-task_planning-overview.svg[id=proc_task_planning_overview, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning-overview.svg[id=proc_task_planning_overview, align="center"]
 
 The following instance diagram illustrates the relationships among these models for one Task Plan. On the left is a Task Plan definition, consisting of a Task Group and various Defined Actions. Each of these Tasks may have a prototype Entry attached, which represents the intended data of an Action, Observation or other Entry that the Task defines.
 
@@ -18,7 +18,7 @@ At the lower right is a Task Plan Execution History, which is a record of all ev
 
 [.text-center]
 .Task planning overview
-image::diagrams/task_planning_overview.svg[id=task_planning_overview, align="center", width=65%]
+image::{diagrams_uri}/task_planning_overview.svg[id=task_planning_overview, align="center", width=65%]
 
 == Identification and Referencing
 
@@ -34,7 +34,7 @@ A Task Plan may contain logical _variable references_ and _expressions_, which a
 
 [.text-center]
 .Task planning - context values
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-context.svg[id=proc_task_planning_context, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-context.svg[id=proc_task_planning_context, align="center"]
 
 An instance of `PLAN_DATA_CONTEXT` represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic _variables_ or _expressions_ that reference such variables, respectively represented by the classes `CONTEXT_VARIABLE<T>` and `CONTEXT_EXPRESSION<T>`. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.
 

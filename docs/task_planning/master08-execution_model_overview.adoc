@@ -95,7 +95,7 @@ In the above, the terminal states are marked with '(T)'. The state machine is sh
 
 [.text-center]
 .Task lifecycle state machine
-image::{uml_export_dir}/diagrams/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
+image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
 
 A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the `abandoned` state is entered, it does not.
 

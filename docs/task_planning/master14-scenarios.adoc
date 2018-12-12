@@ -13,7 +13,7 @@ Each of the `DEFINED_ACTION` protype instances in the `TASK_PLAN` should logical
 
 [.text-center]
 .Typical Task Plan - CHOP Chemotherapy
-image::{uml_export_dir}/diagrams/Planning-typical-instance.svg[id=planning_typical_instance, align="center"]
+image::{uml_diagrams_uri}/Planning-typical-instance.svg[id=planning_typical_instance, align="center"]
 
 It is worth considering some of the differences between how an order represents the Task and how it may be represented in a `DEFINED_ACTION` and an eventual `ACTION`. Consider the fourth drug in the CHOP regimen, a choice of Prednisone or Prednisolone. In the form expressed in the order, i.e. the `INSTRUCTION`, it may be expressed in the following form:
 

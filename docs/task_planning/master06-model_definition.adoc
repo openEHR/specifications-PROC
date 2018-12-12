@@ -6,7 +6,7 @@ The following figure shows the key classes in the `proc.task_planning.definition
 
 [.text-center]
 .proc.task_planning.definition model overview
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-structure.svg[id=proc_definition_structure, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-structure.svg[id=proc_definition_structure, align="center"]
 
 The remaining classes are shown in various specialised views below.
 
@@ -38,7 +38,7 @@ The following illustrates a simple Task Plan structure including nested Task Gro
 
 [.text-center]
 .Task grouping
-image::diagrams/task_grouping.svg[id=task_grouping, align="center", width=25%]
+image::{diagrams_uri}/task_grouping.svg[id=task_grouping, align="center", width=25%]
 
 The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any Task semantics.
 
@@ -74,7 +74,7 @@ The specific definition of the work of Tasks is provided by `TASK._action_`, of 
 
 [.text-center]
 .proc.task_planning.definition model - Task Actions
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
 
 `TASK_ACTION` includes three attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
 
@@ -116,7 +116,7 @@ The following instance diagram illustrates.
 
 [.text-center]
 .Task Plan linking
-image::diagrams/task_linking.svg[id=task_linking, align="center", width=70%]
+image::{diagrams_uri}/task_linking.svg[id=task_linking, align="center", width=70%]
 
 This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the `SUB_PLAN` class. Since a Sub-plan is a kind of Task, it has a _description_ and could be performed and signed off as if it were a normal inline `DEFINED_ACTION` by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The `PLAN_ITME._training_level_` attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.
 
@@ -126,7 +126,7 @@ Tasks whose definitions are stated within a Task Plan are modelled using the `DE
 
 [.text-center]
 .proc.task_planning.definition - Definition Task
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center"]
 
 The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of `DEFINED_ACTIONs`, each having a protoype of an `ACTION` instance based on the `openEHR-EHR-ACTION.medication.v1` archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an `ACTION` instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.
 
@@ -134,7 +134,7 @@ The following illustrates Task definitions using prototypes.
 
 [.text-center]
 .Task definition
-image::diagrams/task_definition.svg[id=task_definition, align="center", width=45%]
+image::{diagrams_uri}/task_definition.svg[id=task_definition, align="center", width=45%]
 
 Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The `_prototype_` attribute in a `TASK_PLAN` archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. `ACTION` or other Entry. This can be used in various ways, as follows:
 
@@ -172,7 +172,7 @@ The following illustrates, using the example of an acute stroke management care 
 
 [.text-center]
 .Task coordination
-image::diagrams/task_coordination.svg[id=task_coordination, align="center", width=80%]
+image::{diagrams_uri}/task_coordination.svg[id=task_coordination, align="center", width=80%]
 
 In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback wait resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
 
@@ -216,7 +216,7 @@ More advanced applications of Task Plans include three common conditional struct
 
 [.text-center]
 .proc.task_planning package definition model (decision view)
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
 
 The first pattern is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes `CONDITION_GROUP` and `CONDITION_BRANCH` provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the `_execution_type_` is constrained to `sequential`.
 
@@ -224,7 +224,7 @@ The following diagram shows a typical condition structure.
 
 [.text-center]
 .Condition structure
-image::diagrams/condition_structure.svg[id=condition_structure, align="center", width=40%]
+image::{diagrams_uri}/condition_structure.svg[id=condition_structure, align="center", width=40%]
 
 The second structure corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (`_execution_type_` is constrained to `sequential`), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.
 
@@ -232,13 +232,13 @@ The following diagram shows a typical decision structure.
 
 [.text-center]
 .Decision structure
-image::diagrams/decision_structure.svg[id=decision_structure, align="center", width=40%]
+image::{diagrams_uri}/decision_structure.svg[id=decision_structure, align="center", width=40%]
 
 The third structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.
 
 [.text-center]
 .Event structure
-image::diagrams/event_structure.svg[id=event_structure, align="center", width=85%]
+image::{diagrams_uri}/event_structure.svg[id=event_structure, align="center", width=85%]
 
 === Class Descriptions
 
@@ -262,7 +262,7 @@ Work plans inevitably interact with events in the external world, as well being 
 
 [.text-center]
 .proc.task_planning model - Events
-image::{uml_export_dir}/diagrams/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
 
 In the above, the descendants of `PLAN_EVENT` represent various kinds of events, which roughly divide into _deterministic events_, i.e. known, system-endogenous events, and _non-deterministic events_, i.e. events from the outside world whose receipt is not guaranteed.
 

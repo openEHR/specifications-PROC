@@ -81,7 +81,7 @@ An example of decision points is shown below, in an extract from the https://int
 
 [.text-center]
 .Decision pathway example (Intermountain Healthcare Acute Stroke CPM)
-image::diagrams/IHC_stroke_decision_path.png[id=decision_pathway_example, align="center", width=80%]
+image::{diagrams_uri}/IHC_stroke_decision_path.png[id=decision_pathway_example, align="center", width=80%]
 
 In this example, the node containing the text "Further CLASSIFY ..." corresponds to a decision point that can be represented as `$symptom_onset_time := t`, where `t` is a time entered by a user. The subsequent nodes in the chart can be understood as paths based respectively on the tests `$symptom_onset_time < 4.5h` and `4.5h < $symptom_onset_time < 6h`. 
 

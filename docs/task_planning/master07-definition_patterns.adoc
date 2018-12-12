@@ -8,7 +8,7 @@ The following diagram shows the definition structures corresponding to four typi
 
 [.text-center]
 .Timing Patterns
-image::diagrams/uc_task_timing_1.svg[id=timing_patterns_1, align="center", width=85%]
+image::{diagrams_uri}/uc_task_timing_1.svg[id=timing_patterns_1, align="center", width=85%]
 
 == Callback Patterns
 
@@ -16,6 +16,6 @@ The following diagram shows the defnition structure for a dispatchable Task Acti
 
 [.text-center]
 .Timing Patterns
-image::diagrams/uc_task_callback_1.svg[id=timing_callback_pattern_1, align="center"]
+image::{diagrams_uri}/uc_task_callback_1.svg[id=timing_callback_pattern_1, align="center"]
 
 

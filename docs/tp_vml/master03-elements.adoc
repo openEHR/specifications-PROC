@@ -6,7 +6,7 @@
 
 [.text-center]
 .Plans
-image::diagrams/TP-VML-plans.svg[id=tp_vml_plans, align="center"]
+image::{diagrams_uri}/TP-VML-plans.svg[id=tp_vml_plans, align="center"]
 
 === Task Groups
 
@@ -14,7 +14,7 @@ image::diagrams/TP-VML-plans.svg[id=tp_vml_plans, align="center"]
 
 [.text-center]
 .Conditional structures
-image::diagrams/TP-VML-conditionals.svg[id=tp_vml_conditionals, align="center"]
+image::{diagrams_uri}/TP-VML-conditionals.svg[id=tp_vml_conditionals, align="center"]
 
 == Primitives
 
@@ -22,11 +22,11 @@ image::diagrams/TP-VML-conditionals.svg[id=tp_vml_conditionals, align="center"]
 
 [.text-center]
 .Events
-image::diagrams/TP-VML-events.svg[id=tp_vml_events, align="center", width=70%]
+image::{diagrams_uri}/TP-VML-events.svg[id=tp_vml_events, align="center", width=70%]
 
 === Tasks
 
 [.text-center]
 .Tasks
-image::diagrams/TP-VML-tasks.svg[id=tp_vml_tasks, align="center", width=70%]
+image::{diagrams_uri}/TP-VML-tasks.svg[id=tp_vml_tasks, align="center", width=70%]
 
