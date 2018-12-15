@@ -73,4 +73,5 @@ h|Specification h|Description
 
 
 == Class Index
+
 include::UML/class_index.adoc[leveloffset=+1]
