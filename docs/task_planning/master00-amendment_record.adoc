@@ -4,7 +4,7 @@
 |===
 |Issue|Details|Raiser|Completed
 
-4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.?.?*
+4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.2.0
 |{spec_tickets}/SPECPROC-15[SPECPROC-15^]. Convert `DELAY_EVENT._source_` to a direct reference.
@@ -63,7 +63,7 @@
 |M Kejžar
 |24 Oct 2017
 
-4+^h|*R E L E A S E{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}1.0.0*
+4+^h|*PROC Release 1.0.0*
 
 |1.0.0
 |{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Further documentation improvements;
