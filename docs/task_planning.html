@@ -203,6 +203,8 @@
 <li><a href="#_performable_task_class">6.1.4.13. PERFORMABLE_TASK Class</a></li>
 <li><a href="#_task_repeat_class">6.1.4.14. TASK_REPEAT Class</a></li>
 <li><a href="#_dataset_spec_class">6.1.4.15. DATASET_SPEC Class</a></li>
+<li><a href="#_capture_dataset_spec_class">6.1.4.16. CAPTURE_DATASET_SPEC Class</a></li>
+<li><a href="#_review_dataset_spec_class">6.1.4.17. REVIEW_DATASET_SPEC Class</a></li>
 </ul>
 </li>
 </ul>
@@ -4214,6 +4216,71 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Other data-set related details.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_capture_dataset_spec_class"><a class="anchor" href="#_capture_dataset_spec_class"></a>6.1.4.16. CAPTURE_DATASET_SPEC Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CAPTURE_DATASET_SPEC</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_review_dataset_spec_class"><a class="anchor" href="#_review_dataset_spec_class"></a>6.1.4.17. REVIEW_DATASET_SPEC Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>REVIEW_DATASET_SPEC</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_datasets</strong>: <code>List&lt;CAPTURE_DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.</p>
 </div></div></td>
 </tr>
 </tbody>

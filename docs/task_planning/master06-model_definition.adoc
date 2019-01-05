@@ -86,6 +86,10 @@ include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
 
+include::{uml_export_dir}/classes/capture_dataset_spec.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/review_dataset_spec.adoc[leveloffset=+1]
+
 == Task Actions
 
 The specific definition of the work of Tasks is provided by `TASK._action_`, of type `TASK_ACTION` and its subtypes. Two abstract sub-types `DISPATCHABLE_ACTION` and `PERFORMABLE_ACTION` distinguish the _dispatchable_ and _performable_ flavours of Task Action, corresponding to the two `TASK` subtypes. The following UML diagram shows `TASK_ACTION` and its subtypes in detail.
