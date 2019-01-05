@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*CAPTURE_DATASET_SPEC*
 
 h|*Description*
-2+a|
+2+a|Specification of a related data capture data-set and/or form to use with a Task, usually by means data entry screens in an application being used by the principal performer.
 
 h|*Inherit*
 2+|`DATASET_SPEC`
