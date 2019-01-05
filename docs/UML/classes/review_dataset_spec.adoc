@@ -1,0 +1,25 @@
+=== REVIEW_DATASET_SPEC Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*REVIEW_DATASET_SPEC*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`DATASET_SPEC`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*populating_call*: `SYSTEM_CALL`
+a|
+
+h|*0..1*
+|*capture_datasets*: `List<CAPTURE_DATASET_SPEC>`
+a|Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.
+|===

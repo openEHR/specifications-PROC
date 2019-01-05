@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*target*: `UID_BASED_ID`
-a|UID of target `TASK_PLAN` object.
+|*target*: `TASK_PLAN`
+a|Reference to target `TASK_PLAN` object.
 |===

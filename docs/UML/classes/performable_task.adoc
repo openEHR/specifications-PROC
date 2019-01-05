@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*capture_dataset*: `List<DATASET_SPEC>`
+|*capture_dataset*: `List<CAPTURE_DATASET_SPEC>`
 a|Associated data-set template and/or form via which data to be captured during this Task will actually be entered.
 |===

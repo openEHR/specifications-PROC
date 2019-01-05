@@ -32,6 +32,6 @@ h|*0..1*
 a|Optional wait specification for a Task. If not set, the Task is immediately available once execution reaches it. If set, the Task becomes available when an Event linked to the `_wait_spec_` occurs.
 
 h|*0..1*
-|*review_dataset*: `List<DATASET_SPEC>`
+|*review_dataset*: `List<REVIEW_DATASET_SPEC>`
 a|Optional data-set to review prior to / as part of performing the Plan element.
 |===
