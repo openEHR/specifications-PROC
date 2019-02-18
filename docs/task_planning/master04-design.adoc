@@ -146,7 +146,6 @@ Where an overall work plan requires separate actors who do not operate within th
 
 During the execution of a Task Plan, at any given time, a particular physical actor must be _assigned_ as the principal performer, in order for the Plan to proceed. This assignment will change over time for long-running Plans, due to shift changes, out of hours contacts, worker vacations and so on. In this model, worker changes are handled by runtime _allocation_ and are not treated as context switches. The allocation concept is described in more detail below.
 
-[[time_and_wait_states]]
 === Time and Wait States
 
 Many tasks in the real world can only be performed when certain events occur or conditions become true. This model treats such conditions as wait states, based on events or time.

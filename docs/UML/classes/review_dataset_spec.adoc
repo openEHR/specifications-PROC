@@ -17,7 +17,7 @@ h|*Attributes*
 
 h|*0..1*
 |*populating_call*: `SYSTEM_CALL`
-a|
+a|Optional system call that will populate this data-set.
 
 h|*0..1*
 |*capture_datasets*: `List<CAPTURE_DATASET_SPEC>`

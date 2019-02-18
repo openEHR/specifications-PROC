@@ -12,7 +12,7 @@ The remaining classes are shown in various specialised views below.
 
 === Plan Structure
 
-The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Inclusion is achieved via UID references to Task Plans (`WORK_PLAN._plans_` and `WORK_PLAN._top_level_plans_`) rather than physical containment. This relationship allows related Task Plans to be grouped, which occurs for two reasons described earlier: re-use of Task Plans as _sub-plans_ of other Task Plans, and team-based Plans, featuring _hand-offs_ between Task Plans. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the start points for activity for the various actors. Non-top-level plans are those used as sub-plans.
+The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan.
 
 A Work Plan has a number of global attributes, as follows:
 
@@ -23,13 +23,12 @@ A Work Plan has a number of global attributes, as follows:
 
 Both `WORK_PLAN` and `TASK_PLAN` are descendants of `CONTENT_ITEM`, which makes them a type of content that may occur in a `COMPOSITION`. Compositions used for this purpose have their `_category_` attribute set to the openEHR coded term `|Work Plan|`. This enables Work Plans to be committed to the openEHR EHR.
 
-As can be seen, the `_definition_` of a `TASK_PLAN` is a `TASK_GROUP`, which has as its `_members_` any number of `PLAN_ITEMs`, which resolve to either `TASK_GROUP` (and some specialisations described below), or `TASK`.
+Plan internal structure is specified by the `_definition_` attribute of a `TASK_PLAN` is a `TASK_GROUP`, which has as its `_members_` any number of `PLAN_ITEMs`, which resolve either to more `TASK_GROUPs` (and some specialisations described below), or `TASK` entities.
 
-`PLAN_ITEM` has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above in the section <<time_and_wait_states,Time and Wait States>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
+`PLAN_ITEM` has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above in the 
+<<_time_and_wait_states>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
 
 The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
-
-A `PLAN_ITEM` also has a `_review_dataset_` attribute, which allows a screen form or other data set to be specified that should be provided to the user at runtime on entry to a Task or Task Group structure.
 
 === Task Group Structure
 
@@ -52,7 +51,16 @@ Tasks are represented by the `Task` class whose two concrete sub-types distingui
 
 The `DISPATCHABLE_TASK` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.
 
-The `PERFORMABLE_TASK` class attribute `_capture_dataset_` allows a dataset or form to be specified, for which data must be obtained during the Task execution.
+=== Data-sets and Application Interaction
+
+In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc. 
+
+A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A _review data-set_ may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute `PLAN_ITEM._review_dataset_`, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.
+
+Related to this is the `_capture_dataset_` attribute of the `PERFORMABLE_TASK` type, which enables the association of a dataset or form for inputting data with a performable Task.
+
+[.tbd]
+TBD: describe how this relates to the data set(s) of `PERFORMABLE_ACTION._prototype_` .
 
 === Class Descriptions
 
@@ -100,12 +108,9 @@ image::{uml_diagrams_uri}/PROC-task_planning.definition-actions.svg[id=rm_defini
 
 `TASK_ACTION` includes two attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
 
-A subject precondition is formally represented as a `BOOLEAN_CONTEXT_EXPRESSION`, whose `_expression_` value is a string in {openehr_expression_language}[openEHR Expression Language] syntax.
+A subject precondition is formally represented as a `BOOLEAN_CONTEXT_EXPRESSION`, whose `_expression_` value is a string in {openehr_expression_language}[openEHR Expression Language^] syntax.
 
 Pre-conditions are evaluated at the point at which the Task to which they are attached becomes available during execution. If any pre-condition evaluates to False, the Task is in theory unable to be performed. A clinical professional may override at execution time, since it may always be the case that particular circumstances obviate the need for a particular pre-condition that normally applies.
-
-[.tbd]
-TBD: subject precondition could potentially move to `PERFORMABLE_ACTION`.
 
 The second generally applicable attribute is `_costing_data_`, since cost information may clearly be relevant to any Plan item. Costing is dealt with in detail below.
 
@@ -165,16 +170,15 @@ One reason to allow a Task to contain a `_prototype_` reference that remains unr
 
 To allow further flexibility, The multiplicity of the `_prototype_` attribute is unlimited, to allow for the possibility of one Task being prototyped by more than one Entry instance, e.g. an `ACTION` and an `OBSERVATION`, two `ADMIN_ENTRY` instances and so on.
 
-==== Data-sets and Application Interaction
-
-Within the definition of a Defined Action, one or more data-sets may be specified for review and / or capture purposes (`DEFINED_ACTION._review_dataset_` and `_capture_dataset_`). A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A review data-set is specified to signal to the Task Plan runtime system to request the display of data at the start of the Task, in order to provide data needed by the user for the Task and potentially following Tasks. A capture data-set is specified when the purpose of the Task is to record data.
-
-[.tbd]
-TBD: a single attribute may be sufficient.
-
 === Dispatchable Actions
 
-The type `DISPATCHABLE_ACTION` is the abstract parent of various Action subtypes that represent work requested to be done by some other agent, i.e. external to the current Task Plan. The general execution scheme for such Actions is as follows:
+The type `DISPATCHABLE_ACTION` is the abstract parent of various Action subtypes that represent work requested to be done by some other agent, i.e. external to the current Task Plan. The three sub-types correspond to 3 different types of other performer, i.e.:
+
+* `HAND_OFF`: another principle performer in the same Work Plan;
+* `SYSTEM_REQUEST`: a computation to be performed by a system call;
+* `EXTERNAL_REQUEST`: a performer outside the current Work Plan computational environment.
+
+The general execution scheme for such Actions is as follows:
 
 * _dispatch_ the work request to a target actor or service;
 * _block or continue_, according to the `_wait_` flag, which determines switch or fork behaviour; and
@@ -194,13 +198,13 @@ image::{diagrams_uri}/task_coordination.svg[id=task_coordination, align="center"
 
 In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback wait resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
 
-==== External Request
-
-The Task sub-type `EXTERNAL_REQUEST` represents a request by the current performer to an external entity completely outside of the current Work Plan computation context to perform some work on behalf of the performer. This is normally an organisation of which routine requests can be made (e.g. pathology laboratory). The request is defined in terms of an organisation identifier, a request identifier (i.e. a name or type of job) and a list of other details, represented by the standard archetypable `ITEM_STRUCTURE`.
-
 ==== System Request
 
-In a similar way to External Request, the `SYSTEM_REQUEST` Task sub-type represents a request to a _system_ with a computational interface on behalf of the performer, such as a logging facility or a decision support system. The request is defined in terms of a `SYSTEM_CALL` instance.
+The Task sub-type `SYSTEM_REQUEST` represents a request to a _system_ with a computational interface on behalf of the performer, such as a logging facility or a decision support system. The request is defined in terms of a `SYSTEM_CALL` instance.
+
+==== External Request
+
+The Task sub-type `EXTERNAL_REQUEST` represents a request by the current performer to an external entity completely outside of the current Work Plan computational context, to request some work on behalf of the performer. This is typically an organisation of which routine requests can be made (e.g. pathology laboratory). The request has to be defined generically, in terms of an organisation identifier, a request identifier (i.e. a name or type of job) and a list of other details, represented by the standard archetypable `ITEM_STRUCTURE`.
 
 === Class Descriptions
 
@@ -306,25 +310,28 @@ image::{uml_diagrams_uri}/PROC-task_planning.definition-event.svg[id=proc_task_p
 
 In the above, the descendants of `PLAN_EVENT` represent various kinds of events, which roughly divide into _deterministic events_, i.e. known, system-endogenous events, and _non-deterministic events_, i.e. events from the outside world whose receipt is not guaranteed.
 
-The event types are as follows:
+The deterministic event types are as follows:
 
 * `TIMER_EVENT`: represents the expiry of a Timer that was launched at some earlier time;
 * `TIMELINE_MOMENT`: represents a fixed time-point on the Work Plan timeline;
 * `CALENDAR_EVENT`: represents an event in the global Plan calendar, which is specified in absolute time.
+* `DELAY_EVENT`: a special kind of event is used to represent any other event with an added delay.
+
+The non-deterministic event types are as follows:
+
 * `TASK_TRANSITION`: an event corresponding to a lifecycle transition of a Task, such as being cancelled or done;
 * `CALLBACK_NOTIFICATION`: a callback notification connected to a dispatch call for a Dispatchable Task (Hand-off, External Request, System Request);
 * `STATE_TRIGGER`: an event generated by a change in a tracked variable, or an expression based on tracked variables, e.g. a value reaching a threshold;
 * `MANUAL_NOTIFICATION`: an event that is manually notified to the Plan execution engine by a user;
 * `SYSTEM_NOTIFICATION`: an event that is notified to the Plan execution engine by a system or service;
-* `DELAY_EVENT`: a special kind of event is used to represent any other event with an added delay.
 
 Instances of all of these types, on their own only identify the type and source of an event. Events can be waited on in two ways. 
 
 === Task Wait State
 
-The first way is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute, which refers to an instance of `TASK_WAIT`. The `TASK_WAIT` class models a wait state, and defines how to specify the details of when a Task should start with respect to any of the Event types described above. Its `_events_` attribute enables more than multiple Events to be used as a trigger, with an assumed logical OR relation among the Events. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). The `_start_window_` attribute allows for a delay from the trigger moment, and  `_timeout_`, if set, will cause a Timer to be started in cases where Event receipt is not certain. These Timers are just special cases of the `EVENT_WAIT` type, described below.
+The first way is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute, which refers to an instance of `TASK_WAIT`. The `TASK_WAIT` class models a wait state, and defines how to specify the details of when a Task should start with respect to any of the Event types described above. Its `_events_` attribute enables multiple Events to be used as a trigger, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). The `_start_window_` attribute allows for a delay from the trigger moment, and  `_timeout_`, if set, will cause a Timer to be started in cases where Event receipt is not certain. These Timers are just special cases of the `EVENT_WAIT` type, described below.
 
-The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task may be commenced, either in terms of time-related events, or non-deterministic events, as follows:
+The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task becomes `available`, either in terms of time-related events, or non-deterministic events, as follows:
 
 * _clock time_: the Task is to be executed at a specific time on the Plan timeline, represented by an instance of `TIMELINE_MOMENT`;
 * _event-linked time_: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of `CALENDAR_EVENT` is used; the `TASK_WAIT` attributes indicate the specifics such as '1 hour before', 'with meal' etc;
@@ -332,15 +339,27 @@ The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants
 * _task-linked time_: the Task is to be executed at a time related to the timing of another Task lifecycle transition, such as completion of the previous Task; this is represented by an instance of `TASK_TRANSITION` whose `_transition_` indicates the required lifecycle transition;
 * _state-linked time_: the Task is to be executed at a time related to the state of the subject, as specified by an instance of `STATE_TRIGGER`. This uses a Boolean-valued `_expression_` attribute to state a condition which when true indicates that a Task time-to-execute has been reached.
 
-The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan timeline zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `P2D`, `13:30:00` can thus be used to state a time like '13:30 on day 2 of the plan'.
+The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan timeline zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `P2D`, `13:30:00` can thus be used to state a time like '13:30 on day 2 of the plan'. 
+
+This following figure illustrates two typical uses of `TASK_WAIT`.
+
+[.text-center]
+.Task wait state 
+image::{diagrams_uri}/task_wait_state.svg[id=task_wait_state, align="center"]
+
+When an event specified to a Task Wait state fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the `TASK_WAIT._start_window_` attribute may be used to specify a `REMINDER` notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited `_success_action_` attribute. This is illustrated below.
+
+[.text-center]
+.Task wait state with reminder
+image::{diagrams_uri}/task_wait_state_reminder.svg[id=task_wait_state_reminder, align="center"]
 
 === Event Wait State
 
 The second way to intercept events and subsequently perform actions is via an instance of `EVENT_WAIT<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. Types such as `EVENT_WAIT<MANUAL_EVENT>` may thus be constructed. The `EVENT_WAIT<T>` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
 
 * making system calls, if the `_system_call_` attribute is set, e.g. to cause a notification to be sent or write to a system logger;
-* displaying a message to the user, specified in the `_message_` attribute.
-* optionally indicates where execution should resume in the plan, for example at an earlier Task, via the `_resume_action_` attribute, whose value is aninstance of `RESUME_ACTION`, defining the `_resume_type_` and `_resume_location_` attributes.
+* displaying a message to the user, specified in the `_message_` attribute;
+* optionally indicates where execution should resume in the plan, for example at an earlier Task, via the `_resume_action_` attribute, whose value is an instance of `RESUME_ACTION`, defining the `_resume_type_` and `_resume_location_` attributes.
 
 The latter attributes are normally only for use with callbacks and are described in detail below.
 

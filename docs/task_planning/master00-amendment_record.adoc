@@ -7,10 +7,19 @@
 4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.3.0
+|{spec_tickets}/SPECPROC-xx[SPECPROC-xx^]. Improve diagrams and explanation on Task wait states and Events.
+|M Kejžar, +
+ B Naess, +
+ T Beale
+|[[latest_issue_date]]18 Jan 2019
+
+|
 |{spec_tickets}/SPECPROC-xx[SPECPROC-xx^]. Improve model of capture and review data-sets. +
  {spec_tickets}/SPECPROC-16[SPECPROC-16^]. Change `WORK_PLAN._top_level_plans_` and `LINKED_PLAN._target_` to direct links.
-|M Kejžar
-|[[latest_issue_date]]04 Jan 2019
+|M Kejžar, +
+ B Naess, +
+ T Beale
+|04 Jan 2019
 
 |1.2.0
 |{spec_tickets}/SPECPROC-15[SPECPROC-15^]. Convert `DELAY_EVENT._source_` to a direct reference.
