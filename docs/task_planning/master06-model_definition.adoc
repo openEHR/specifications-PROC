@@ -329,7 +329,7 @@ Instances of all of these types, on their own only identify the type and source 
 
 === Task Wait State
 
-The first way is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute, which refers to an instance of `TASK_WAIT`. The `TASK_WAIT` class models a wait state, and defines how to specify the details of when a Task should start with respect to any of the Event types described above. Its `_events_` attribute enables multiple Events to be used as a trigger, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). The `_start_window_` attribute allows for a delay from the trigger moment, and  `_timeout_`, if set, will cause a Timer to be started in cases where Event receipt is not certain. These Timers are just special cases of the `EVENT_WAIT` type, described below.
+The first way is via the `TASK_WAIT` attachable to any Plan Item, via the `_wait_spec_` attribute. The `TASK_WAIT` class models a wait state, and defines how to specify when a Task should start with respect to any of the Event types described above. Its `_events_` attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). The `_start_window_` attribute allows for a delay from the moment of event firing, and `_timeout_`, if set, will cause a Timer to be started in cases where Event receipt is not certain. These Timers are just special cases of the `EVENT_WAIT` type, described below.
 
 The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants provides a way to specify _when_ a Task becomes `available`, either in terms of time-related events, or non-deterministic events, as follows:
 
@@ -341,35 +341,41 @@ The combined structure of a `TASK_WAIT` and one or more `PLAN_EVENT` descendants
 
 The `TIMELINE_MOMENT` type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan timeline zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `P2D`, `13:30:00` can thus be used to state a time like '13:30 on day 2 of the plan'. 
 
-This following figure illustrates two typical uses of `TASK_WAIT`.
+This following figure illustrates typical uses of `TASK_WAIT`.
 
 [.text-center]
 .Task wait state 
 image::{diagrams_uri}/task_wait_state.svg[id=task_wait_state, align="center"]
 
-When an event specified to a Task Wait state fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the `TASK_WAIT._start_window_` attribute may be used to specify a `REMINDER` notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited `_success_action_` attribute. This is illustrated below.
-
-[.text-center]
-.Task wait state with reminder
-image::{diagrams_uri}/task_wait_state_reminder.svg[id=task_wait_state_reminder, align="center"]
-
 === Event Wait State
 
-The second way to intercept events and subsequently perform actions is via an instance of `EVENT_WAIT<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. Types such as `EVENT_WAIT<MANUAL_EVENT>` may thus be constructed. The `EVENT_WAIT<T>` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
+The second way to intercept events and subsequently perform actions is via an instance of `EVENT_WAIT<T>`, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. The `EVENT_WAIT<T>` class has a `_success_action_` attribute of type `EVENT_ACTION`, which enables any of the following actions to occur on receipt of an event:
 
 * making system calls, if the `_system_call_` attribute is set, e.g. to cause a notification to be sent or write to a system logger;
 * displaying a message to the user, specified in the `_message_` attribute;
 * optionally indicates where execution should resume in the plan, for example at an earlier Task, via the `_resume_action_` attribute, whose value is an instance of `RESUME_ACTION`, defining the `_resume_type_` and `_resume_location_` attributes.
 
-The latter attributes are normally only for use with callbacks and are described in detail below.
-
-For non-deterministic Events, the `EVENT_WAIT._timeout_` attribute may be set to point to a `TIMER_WAIT`, which enables timeout actions to be specified.
+For non-deterministic Events, the `EVENT_WAIT._timeout_` attribute may be set, which enables timeout actions to be specified.
 
 === Timers
 
-The class `TIMER_WAIT` is based on the generic type `EVENT_WAIT<TIMER_EVENT>`, and provides a way to specify a Timer (the `TIMER_EVENT` instance) and listen for it (the `TIMER_WAIT`). Timeouts can be used on the `TASK_WAIT` wait state as well as any `EVENT_WAIT` wait state, including `CALLBACK_WAIT`. A `TIMER_WAIT` creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited `EVENT_WAIT._success_action_` attribute.
+The class `TIMER_WAIT` is based on the generic type `EVENT_WAIT<TIMER_EVENT>`, and provides a way to specify a Timer (the `TIMER_EVENT` instance) and listen for it (the `TIMER_WAIT` instance). Timeouts can be used on the `TASK_WAIT` wait state as well as any `EVENT_WAIT` wait state, including `CALLBACK_WAIT`. A `TIMER_WAIT` creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited `EVENT_WAIT._success_action_` attribute.
 
-A specialised timer class `REMINDER` can be specified if needed, that consists of a `TIMER_WAIT` designed to generate a user notification.
+==== Task Wait State Timeout
+
+A timeout can be set on a Task Wait state by setting `TASK_WAIT._timeout_` with a `TIMER_WAIT` instance, which is activated when the Task Wait state is reached in the execution. The `_success_action_` of the `TIMER_WAIT` indicates what to do if the timer fires, which will occur if none of the Task Wait state events are received. The event attached to `TIMER_WAIT._event_` indicates the duration of the timer. The following diagram illustrates. If a Task Wait state event is received, this cancels the timeout, if set.
+
+[.text-center]
+.Timing Patterns
+image::{diagrams_uri}/uc_task_timing_1.svg[id=timing_patterns_1, align="center"]
+
+==== Reminders
+
+Timers can also be used to generate reminder events. When an event specified by a Task Wait state fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the `TASK_WAIT._start_window_` attribute may be used to specify a `REMINDER` notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited `_success_action_` attribute. This is illustrated below.
+
+[.text-center]
+.Task wait state with reminder
+image::{diagrams_uri}/task_wait_state_reminder.svg[id=task_wait_state_reminder, align="center"]
 
 === Callbacks
 
@@ -377,7 +383,16 @@ A specialisation of `EVENT_WAIT<CALLBACK_NOTIFICATION>` is `CALLBACK_WAIT`, used
 
 * `_fail_action_`: enables a different `EVENT_ACTION` to be specified on receipt of a callback with a 'fail' status;
 
-A Callback Wait can thus have three distinct Event responders: `_success_action_`, `_fail_action_` and `_timeout_`.
+A Callback Wait can thus have three distinct Event responders: `_success_action_`, `_fail_action_` and `_timeout_`. The following diagram shows the defnition structure for a dispatchable Task Action with a callback.
+
+[.text-center]
+.Timing Patterns
+image::{diagrams_uri}/uc_task_callback_1.svg[id=timing_callback_pattern_1, align="center"]
+
+=== Appointments
+
+[.tbd]
+TBD
 
 === Class Descriptions
 

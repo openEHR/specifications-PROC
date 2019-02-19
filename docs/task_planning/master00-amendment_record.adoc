@@ -8,9 +8,7 @@
 
 |[[latest_issue]]1.3.0
 |{spec_tickets}/SPECPROC-xx[SPECPROC-xx^]. Improve diagrams and explanation on Task wait states and Events.
-|M Kejžar, +
- B Naess, +
- T Beale
+|T Beale
 |[[latest_issue_date]]18 Jan 2019
 
 |
