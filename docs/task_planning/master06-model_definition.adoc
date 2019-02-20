@@ -157,7 +157,7 @@ The following illustrates Task definitions using prototypes.
 
 [.text-center]
 .Task definition
-image::{diagrams_uri}/task_definition.svg[id=task_definition, align="center", width=65%]
+image::{diagrams_uri}/task_definition.svg[id=task_definition, align="center", width=55%]
 
 Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The `_prototype_` attribute in a `TASK_PLAN` archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. `ACTION` or other Entry. This can be used in various ways, as follows:
 
