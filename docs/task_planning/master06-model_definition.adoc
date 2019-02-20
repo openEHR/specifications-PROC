@@ -149,7 +149,7 @@ Tasks whose definitions are stated within a Task Plan are modelled using the `DE
 
 [.text-center]
 .proc.task_planning.definition - Definition Task
-image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center"]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center", width=65%]
 
 The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of `DEFINED_ACTIONs`, each having a protoype of an `ACTION` instance based on the `openEHR-EHR-ACTION.medication.v1` archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an `ACTION` instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.
 
