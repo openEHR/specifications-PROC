@@ -366,7 +366,7 @@ The class `TIMER_WAIT` is based on the generic type `EVENT_WAIT<TIMER_EVENT>`, a
 A timeout can be set on a Task Wait state by setting `TASK_WAIT._timeout_` with a `TIMER_WAIT` instance, which is activated when the Task Wait state is reached in the execution. The `_success_action_` of the `TIMER_WAIT` indicates what to do if the timer fires, which will occur if none of the Task Wait state events are received. The event attached to `TIMER_WAIT._event_` indicates the duration of the timer. The following diagram illustrates. If a Task Wait state event is received, this cancels the timeout, if set.
 
 [.text-center]
-.Timing Patterns
+.Timing patterns
 image::{diagrams_uri}/uc_task_timing_1.svg[id=timing_patterns_1, align="center"]
 
 ==== Reminders
@@ -386,7 +386,7 @@ A specialisation of `EVENT_WAIT<CALLBACK_NOTIFICATION>` is `CALLBACK_WAIT`, used
 A Callback Wait can thus have three distinct Event responders: `_success_action_`, `_fail_action_` and `_timeout_`. The following diagram shows the defnition structure for a dispatchable Task Action with a callback.
 
 [.text-center]
-.Timing Patterns
+.Callback example
 image::{diagrams_uri}/uc_task_callback_1.svg[id=timing_callback_pattern_1, align="center"]
 
 === Appointments
