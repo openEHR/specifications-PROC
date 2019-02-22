@@ -1,9 +1,9 @@
-=== EVENT_WAIT Class
+=== EVENT_WAIT<P> Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*EVENT_WAIT*
+2+^h|*EVENT_WAIT<P>*
 
 h|*Description*
 2+a|Wait state for any kind of Event, with a success Action and an optional separate timeout Event Wait state.

@@ -123,15 +123,15 @@
 <li><a href="#_class_descriptions">5.2.1. Class Descriptions</a>
 <ul class="sectlevel4">
 <li><a href="#_plan_data_context_class">5.2.1.1. PLAN_DATA_CONTEXT Class</a></li>
-<li><a href="#_context_value_class">5.2.1.2. CONTEXT_VALUE Class</a></li>
-<li><a href="#_context_constant_class">5.2.1.3. CONTEXT_CONSTANT Class</a></li>
-<li><a href="#_context_variable_class">5.2.1.4. CONTEXT_VARIABLE Class</a></li>
-<li><a href="#_external_variable_class">5.2.1.5. EXTERNAL_VARIABLE Class</a></li>
-<li><a href="#_local_variable_class">5.2.1.6. LOCAL_VARIABLE Class</a></li>
-<li><a href="#_event_variable_class">5.2.1.7. EVENT_VARIABLE Class</a></li>
-<li><a href="#_continuous_event_variable_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE Class</a></li>
-<li><a href="#_state_variable_class">5.2.1.9. STATE_VARIABLE Class</a></li>
-<li><a href="#_context_expression_class">5.2.1.10. CONTEXT_EXPRESSION Class</a></li>
+<li><a href="#_context_value_t_class">5.2.1.2. CONTEXT_VALUE&lt;T&gt; Class</a></li>
+<li><a href="#_context_constant_tt_class">5.2.1.3. CONTEXT_CONSTANT&lt;TT&gt; Class</a></li>
+<li><a href="#_context_variable_tt_class">5.2.1.4. CONTEXT_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_external_variable_tt_class">5.2.1.5. EXTERNAL_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_local_variable_tt_class">5.2.1.6. LOCAL_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_event_variable_tt_class">5.2.1.7. EVENT_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_continuous_event_variable_tt_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_state_variable_tt_class">5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_context_expression_tt_class">5.2.1.10. CONTEXT_EXPRESSION&lt;TT&gt; Class</a></li>
 <li><a href="#_boolean_context_expression_class">5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
 </li>
@@ -199,9 +199,9 @@
 <li><a href="#_task_group_class">6.1.5.8. TASK_GROUP Class</a></li>
 <li><a href="#_execution_type_enumeration_2">6.1.5.9. EXECUTION_TYPE Enumeration</a></li>
 <li><a href="#_execution_rule_class">6.1.5.10. EXECUTION_RULE Class</a></li>
-<li><a href="#_task_class">6.1.5.11. TASK Class</a></li>
-<li><a href="#_dispatchable_task_class">6.1.5.12. DISPATCHABLE_TASK Class</a></li>
-<li><a href="#_performable_task_class">6.1.5.13. PERFORMABLE_TASK Class</a></li>
+<li><a href="#_task_ta_class">6.1.5.11. TASK&lt;TA&gt; Class</a></li>
+<li><a href="#_dispatchable_task_ta_class">6.1.5.12. DISPATCHABLE_TASK&lt;TA&gt; Class</a></li>
+<li><a href="#_performable_task_ta_class">6.1.5.13. PERFORMABLE_TASK&lt;TA&gt; Class</a></li>
 <li><a href="#_task_repeat_class">6.1.5.14. TASK_REPEAT Class</a></li>
 <li><a href="#_dataset_spec_class">6.1.5.15. DATASET_SPEC Class</a></li>
 <li><a href="#_capture_dataset_spec_class">6.1.5.16. CAPTURE_DATASET_SPEC Class</a></li>
@@ -279,7 +279,7 @@
 <li><a href="#_class_descriptions_8">6.4.7. Class Descriptions</a>
 <ul class="sectlevel4">
 <li><a href="#_task_wait_class">6.4.7.1. TASK_WAIT Class</a></li>
-<li><a href="#_plan_event_class">6.4.7.2. PLAN_EVENT Class</a></li>
+<li><a href="#_plan_event_class">6.4.7.2. PLAN_EVENT&lt;&gt; Class</a></li>
 <li><a href="#_delay_event_class">6.4.7.3. DELAY_EVENT Class</a></li>
 <li><a href="#_manual_notification_class">6.4.7.4. MANUAL_NOTIFICATION Class</a></li>
 <li><a href="#_system_notification_class">6.4.7.5. SYSTEM_NOTIFICATION Class</a></li>
@@ -289,10 +289,10 @@
 <li><a href="#_calendar_event_class">6.4.7.9. CALENDAR_EVENT Class</a></li>
 <li><a href="#_timeline_moment_class">6.4.7.10. TIMELINE_MOMENT Class</a></li>
 <li><a href="#_task_transition_class">6.4.7.11. TASK_TRANSITION Class</a></li>
-<li><a href="#_event_wait_class">6.4.7.12. EVENT_WAIT Class</a></li>
+<li><a href="#_event_wait_p_class">6.4.7.12. EVENT_WAIT&lt;P&gt; Class</a></li>
 <li><a href="#_timer_wait_class">6.4.7.13. TIMER_WAIT Class</a></li>
 <li><a href="#_reminder_class">6.4.7.14. REMINDER Class</a></li>
-<li><a href="#_callback_wait_class">6.4.7.15. CALLBACK_WAIT Class</a></li>
+<li><a href="#_callback_wait_class">6.4.7.15. CALLBACK_WAIT&lt;&gt; Class</a></li>
 <li><a href="#_event_action_class">6.4.7.16. EVENT_ACTION Class</a></li>
 <li><a href="#_resume_action_class">6.4.7.17. RESUME_ACTION Class</a></li>
 </ul>
@@ -2107,7 +2107,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_value_class"><a class="anchor" href="#_context_value_class"></a>5.2.1.2. CONTEXT_VALUE Class</h5>
+<h5 id="_context_value_t_class"><a class="anchor" href="#_context_value_t_class"></a>5.2.1.2. CONTEXT_VALUE&lt;T&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2117,7 +2117,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>CONTEXT_VALUE (abstract)</em></strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>CONTEXT_VALUE&lt;T&gt; (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2148,7 +2148,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_constant_class"><a class="anchor" href="#_context_constant_class"></a>5.2.1.3. CONTEXT_CONSTANT Class</h5>
+<h5 id="_context_constant_tt_class"><a class="anchor" href="#_context_constant_tt_class"></a>5.2.1.3. CONTEXT_CONSTANT&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2158,7 +2158,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTEXT_CONSTANT</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTEXT_CONSTANT&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2186,7 +2186,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_variable_class"><a class="anchor" href="#_context_variable_class"></a>5.2.1.4. CONTEXT_VARIABLE Class</h5>
+<h5 id="_context_variable_tt_class"><a class="anchor" href="#_context_variable_tt_class"></a>5.2.1.4. CONTEXT_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2196,7 +2196,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>CONTEXT_VARIABLE (abstract)</em></strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>CONTEXT_VARIABLE&lt;TT&gt; (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2212,7 +2212,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_external_variable_class"><a class="anchor" href="#_external_variable_class"></a>5.2.1.5. EXTERNAL_VARIABLE Class</h5>
+<h5 id="_external_variable_tt_class"><a class="anchor" href="#_external_variable_tt_class"></a>5.2.1.5. EXTERNAL_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2222,7 +2222,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>EXTERNAL_VARIABLE (abstract)</em></strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>EXTERNAL_VARIABLE&lt;TT&gt; (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2250,7 +2250,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_local_variable_class"><a class="anchor" href="#_local_variable_class"></a>5.2.1.6. LOCAL_VARIABLE Class</h5>
+<h5 id="_local_variable_tt_class"><a class="anchor" href="#_local_variable_tt_class"></a>5.2.1.6. LOCAL_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2260,7 +2260,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>LOCAL_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>LOCAL_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2276,7 +2276,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_variable_class"><a class="anchor" href="#_event_variable_class"></a>5.2.1.7. EVENT_VARIABLE Class</h5>
+<h5 id="_event_variable_tt_class"><a class="anchor" href="#_event_variable_tt_class"></a>5.2.1.7. EVENT_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2286,7 +2286,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EVENT_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EVENT_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2302,7 +2302,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_continuous_event_variable_class"><a class="anchor" href="#_continuous_event_variable_class"></a>5.2.1.8. CONTINUOUS_EVENT_VARIABLE Class</h5>
+<h5 id="_continuous_event_variable_tt_class"><a class="anchor" href="#_continuous_event_variable_tt_class"></a>5.2.1.8. CONTINUOUS_EVENT_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2312,7 +2312,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTINUOUS_EVENT_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTINUOUS_EVENT_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2340,7 +2340,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.9. STATE_VARIABLE Class</h5>
+<h5 id="_state_variable_tt_class"><a class="anchor" href="#_state_variable_tt_class"></a>5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2350,7 +2350,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -2378,7 +2378,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_context_expression_class"><a class="anchor" href="#_context_expression_class"></a>5.2.1.10. CONTEXT_EXPRESSION Class</h5>
+<h5 id="_context_expression_tt_class"><a class="anchor" href="#_context_expression_tt_class"></a>5.2.1.10. CONTEXT_EXPRESSION&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2388,7 +2388,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTEXT_EXPRESSION</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CONTEXT_EXPRESSION&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -3386,7 +3386,7 @@ The following UML diagram illustrates.</p>
 <p>Tasks are represented by the <code>Task</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em>, meaning 'dispatched for execution to another performer', and <em>performable</em>, meaning 'defined and performed by the current performer'. <code>TASK</code> is a generic type, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.</p>
 </div>
 <div class="paragraph">
-<p>The <code>DISPATCHABLE_TASK</code> class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.</p>
+<p>The <code>DISPATCHABLE_TASK</code> class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is described below.</p>
 </div>
 </div>
 <div class="sect3">
@@ -4030,7 +4030,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_class"><a class="anchor" href="#_task_class"></a>6.1.5.11. TASK Class</h5>
+<h5 id="_task_ta_class"><a class="anchor" href="#_task_ta_class"></a>6.1.5.11. TASK&lt;TA&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4040,7 +4040,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>TASK (abstract)</em></strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>TASK&lt;TA&gt; (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -4068,7 +4068,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dispatchable_task_class"><a class="anchor" href="#_dispatchable_task_class"></a>6.1.5.12. DISPATCHABLE_TASK Class</h5>
+<h5 id="_dispatchable_task_ta_class"><a class="anchor" href="#_dispatchable_task_ta_class"></a>6.1.5.12. DISPATCHABLE_TASK&lt;TA&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4078,7 +4078,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DISPATCHABLE_TASK</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DISPATCHABLE_TASK&lt;TA&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -4113,7 +4113,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_performable_task_class"><a class="anchor" href="#_performable_task_class"></a>6.1.5.13. PERFORMABLE_TASK Class</h5>
+<h5 id="_performable_task_ta_class"><a class="anchor" href="#_performable_task_ta_class"></a>6.1.5.13. PERFORMABLE_TASK&lt;TA&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4123,7 +4123,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PERFORMABLE_TASK</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PERFORMABLE_TASK&lt;TA&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -5824,7 +5824,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.4.7.2. PLAN_EVENT Class</h5>
+<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.4.7.2. PLAN_EVENT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5834,7 +5834,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>PLAN_EVENT (abstract)</em></strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>PLAN_EVENT&lt;&gt; (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -6264,7 +6264,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_wait_class"><a class="anchor" href="#_event_wait_class"></a>6.4.7.12. EVENT_WAIT Class</h5>
+<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.4.7.12. EVENT_WAIT&lt;P&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6274,7 +6274,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EVENT_WAIT</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>EVENT_WAIT&lt;P&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -6377,7 +6377,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.4.7.15. CALLBACK_WAIT Class</h5>
+<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.4.7.15. CALLBACK_WAIT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6387,7 +6387,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_WAIT</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_WAIT&lt;&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>

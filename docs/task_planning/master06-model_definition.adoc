@@ -49,7 +49,7 @@ The combination of the Task Group / Task hierachical pattern, which implicitly d
 
 Tasks are represented by the `Task` class whose two concrete sub-types distinguish the two basic flavours of Task, namely _dispatchable_, meaning 'dispatched for execution to another performer', and _performable_, meaning 'defined and performed by the current performer'. `TASK` is a generic type, whose generic parameter is constrained to the type `TASK_ACTION`, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.
 
-The `DISPATCHABLE_TASK` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event-wait that is triggered on receipt of a callback. How callbacks function in detail is described below.
+The `DISPATCHABLE_TASK` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is described below.
 
 === Data-sets and Application Interaction
 

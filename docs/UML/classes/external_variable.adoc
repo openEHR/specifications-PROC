@@ -1,9 +1,9 @@
-=== EXTERNAL_VARIABLE Class
+=== EXTERNAL_VARIABLE<TT> Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_EXTERNAL_VARIABLE (abstract)_*
+2+^h|*_EXTERNAL_VARIABLE<TT> (abstract)_*
 
 h|*Description*
 2+a|A variable that carries a value from the external environment, including patient variables, and has a method of being populated. Cannot be written to from within the TP environment.

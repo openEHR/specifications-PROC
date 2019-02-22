@@ -1,9 +1,9 @@
-=== DISPATCHABLE_TASK Class
+=== DISPATCHABLE_TASK<TA> Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DISPATCHABLE_TASK*
+2+^h|*DISPATCHABLE_TASK<TA>*
 
 h|*Description*
 2+a|Type of Task that is performed by another actor. Such Tasks are 'dispatchable' in the sense that they consist of notifying a request to another principal performer, or an external system or service of some kind, and potentially receiving a callback notification when the requested work is complete.

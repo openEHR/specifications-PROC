@@ -1,9 +1,9 @@
-=== CONTEXT_VARIABLE Class
+=== CONTEXT_VARIABLE<TT> Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_CONTEXT_VARIABLE (abstract)_*
+2+^h|*_CONTEXT_VARIABLE<TT> (abstract)_*
 
 h|*Description*
 2+a|Any kind of symbolic variable that can be used within Expressions in the Task Plan, including in pre-conditions and decision pathways.

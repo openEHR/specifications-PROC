@@ -25,7 +25,7 @@ Related documents include:
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {openehr_task_planning}[{openehr_task_planning}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_task_planning}[{openehr_proc_latest_task_planning}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
