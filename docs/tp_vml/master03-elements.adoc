@@ -40,5 +40,5 @@ image::{diagrams_uri}/TP-VML-tasks.svg[id=tp_vml_tasks, align="center"]
 
 [.text-center]
 .Events
-image::{diagrams_uri}/TP-VML-events.svg[id=tp_vml_events, align="center", width=70%]
+image::{diagrams_uri}/TP-VML-events.svg[id=tp_vml_events, align="center", width=35%]
 

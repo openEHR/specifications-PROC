@@ -9,7 +9,7 @@
 |[[latest_issue]]0.6.0
 |Update to modelling shapes used in main specification.
 |T Beale
-|[[latest_issue_date]]20 Feb 2019
+|[[latest_issue_date]]27 Feb 2019
 
 |0.5.0
 |{spec_tickets}/SPECPROC-2[SPECPROC-2^] Initial Writing.

@@ -1,18 +1,9 @@
 = Overview
 
-== Palette
-
-[.text-center]
-.Plans
-image::{diagrams_uri}/TP-VML-palette.svg[id=tp_vml_palette, align="center"]
-
 == Draw.io Tool mode
 
 The following files can be downloaded and then imported into draw.io as libraries to provide a working palette for TP-VML diagrams.
 
-* link:draw.io-lib/TP_VML2.xml[TP_VML2]
-
-Previous version of TP-VML:
-
-* link:draw.io-lib/TP-VML-main.xml[TP-VML main]
-* link:draw.io-lib/TP-VML-annotations.xml[TP-VML annotations]
+* link:draw.io-lib/TP_VML_groups.xml[TP_VML groups]
+* link:draw.io-lib/TP_VML_tasks.xml[TP_VML tasks]
+* link:draw.io-lib/TP_VML_events.xml[TP_VML events]
