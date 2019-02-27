@@ -17,8 +17,16 @@ image::{diagrams_uri}/TP-VML-task_groups.svg[id=tp_vml_task_groups, align="cente
 === Conditional Structures
 
 [.text-center]
-.Conditional structures
-image::{diagrams_uri}/TP-VML-conditionals.svg[id=tp_vml_conditionals, align="center"]
+.Conditional structures - CONDITION_GROUP
+image::{diagrams_uri}/TP-VML-conditionals_condition.svg[id=tp_vml_conditionals_condition, align="center"]
+
+[.text-center]
+.Conditional structures - DECISION_GROUP
+image::{diagrams_uri}/TP-VML-conditionals_decision.svg[id=tp_vml_conditionals_decision, align="center"]
+
+[.text-center]
+.Conditional structures - EVENT_GROUP
+image::{diagrams_uri}/TP-VML-conditionals_event.svg[id=tp_vml_conditionals_event, align="center"]
 
 == Primitives
 
