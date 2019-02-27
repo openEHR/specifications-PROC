@@ -4,6 +4,6 @@
 
 The following files can be downloaded and then imported into draw.io as libraries to provide a working palette for TP-VML diagrams.
 
-* link:draw.io-lib/TP_VML_groups.xml[TP_VML groups]
-* link:draw.io-lib/TP_VML_tasks.xml[TP_VML tasks]
-* link:draw.io-lib/TP_VML_events.xml[TP_VML events]
+* link:docs/tp_vml/draw.io-lib/TP_VML_groups.xml[TP_VML groups]
+* link:docs/tp_vml/draw.io-lib/TP_VML_tasks.xml[TP_VML tasks]
+* link:docs/tp_vml/draw.io-lib/TP_VML_events.xml[TP_VML events]
