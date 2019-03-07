@@ -500,7 +500,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.3.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-xx" target="_blank" rel="noopener">SPECPROC-xx</a>. Improve diagrams and explanation on Task wait states and Events.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Jan 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Mar 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -813,6 +813,9 @@
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a>;</p>
+</li>
 <li>
 <p>The <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html" target="_blank" rel="noopener">openEHR EHR Information Model</a>;</p>
 </li>
@@ -1990,6 +1993,9 @@
 <div class="sect1">
 <h2 id="_task_planning_model_overview"><a class="anchor" href="#_task_planning_model_overview"></a>5. Task Planning Model Overview</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section and the following one describe the Task Planning model in technical detail. Most of the emphasis is on the 'definition' level of expression, with most details of the 'materialised' and 'runtime' expressions left to implementers. Throughout these sections, a version of the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a> is used to illustrate instance structures. This visual language is designed to be formally aligned to the semantics of the model.</p>
+</div>
 <div class="paragraph">
 <p>The following UML diagram shows the <code>rm.task_planning</code> package in overview form, showing the constituent packages, <code>definition</code>, <code>materialised</code>, and <code>history</code>. The first of these packages contains the class model for the <em>definition model</em> expression of a Work Plan, i.e. the workflow structure intentionally designed to achive a goal.</p>
 </div>
@@ -4339,27 +4345,69 @@ The following UML diagram illustrates.</p>
 <p>Performable Actions have two attributes. The <code><em>other_participations</em></code> and <code><em>resources</em></code> attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the <code><em>principal_performer</em></code>.</p>
 </div>
 <div class="paragraph">
-<p>The subtypes of <code>TASK_ACTION</code> consist of the following (reading from the right hand side):</p>
+<p>The subtypes of <code>TASK_ACTION</code> consist of the following:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>DEFINED_ACTION</code>: an inline-defined Task to be performed by the principal performer of the Group (see below for details);</p>
-</li>
-<li>
-<p><code>SUB_PLAN</code>: a kind of Task that stands for another Task Plan (identified by the inherited <code>LINKED_PLAN.<em>target</em></code> attribute) to be performed by the current performer - usually a fine-grained set of steps designed to achieve the result of this Task.</p>
-</li>
-<li>
-<p><code>SYSTEM_REQUEST</code>: a kind of Task that consists of a request to a computational system, such as a data retrieval or procedure call, on behalf of the current performer;</p>
-</li>
-<li>
-<p><code>EXTERNAL_REQUEST</code>: a Task type that consists of a request to an external organisational entity that is outside the current Work Plan and its execution environment, on behalf of the current performer;</p>
-</li>
-<li>
-<p><code>HAND_OFF</code>: a kind of Task that hands off to another Task Plan in the same Work Plan, having a different performer (identified via the <code><em>target</em></code> attribute inherited from <code>LINKED_PLAN</code>);</p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 71.4286%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">TP-VML</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DEFINED_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="task_defined_task" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/task-defined_task.svg" alt="task defined task">
 </div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An inline-defined Task to be performed by the principal performer of the Group (see below for details);</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SUB_PLAN</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="task_sub_plan" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/task-sub_plan.svg" alt="task sub plan">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A kind of Task that stands for another Task Plan (identified by the inherited <code>LINKED_PLAN.<em>target</em></code> attribute) to be performed by the current performer - usually a fine-grained set of steps designed to achieve the result of this Task.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SYSTEM_REQUEST</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="task_system_request" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/task-system_request.svg" alt="task system request">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A kind of Task that consists of a request to a computational system, such as a data retrieval or procedure call, on behalf of the current performer;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HAND_OFF</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="task_hand_off" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/task-hand_off.svg" alt="task hand off">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A kind of Task that hands off to another Task Plan in the same Work Plan, having a different performer (identified via the <code><em>target</em></code> attribute inherited from <code>LINKED_PLAN</code>);</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EXTERNAL_REQUEST</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="task_external_request" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/task-external_request.svg" alt="task external request">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Task type that consists of a request to an external organisational entity that is outside the current Work Plan and its execution environment, on behalf of the current performer;</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>The following sections provide more detail on some of these model features.</p>
 </div>

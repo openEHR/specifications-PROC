@@ -116,13 +116,33 @@ The second generally applicable attribute is `_costing_data_`, since cost inform
 
 Performable Actions have two attributes. The `_other_participations_` and `_resources_` attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the `_principal_performer_`. 
 
-The subtypes of `TASK_ACTION` consist of the following (reading from the right hand side):
+The subtypes of `TASK_ACTION` consist of the following:
 
-* `DEFINED_ACTION`: an inline-defined Task to be performed by the principal performer of the Group (see below for details);
-* `SUB_PLAN`: a kind of Task that stands for another Task Plan (identified by the inherited `LINKED_PLAN._target_` attribute) to be performed by the current performer - usually a fine-grained set of steps designed to achieve the result of this Task.
-* `SYSTEM_REQUEST`: a kind of Task that consists of a request to a computational system, such as a data retrieval or procedure call, on behalf of the current performer;
-* `EXTERNAL_REQUEST`: a Task type that consists of a request to an external organisational entity that is outside the current Work Plan and its execution environment, on behalf of the current performer;
-* `HAND_OFF`: a kind of Task that hands off to another Task Plan in the same Work Plan, having a different performer (identified via the `_target_` attribute inherited from `LINKED_PLAN`);
+[cols="1,1,5", options="header"]
+|===
+|Type   |TP-VML |Description
+
+|`DEFINED_ACTION`
+a|image::{diagrams_uri}/task-defined_task.svg[id=task_defined_task, align="center"]
+|An inline-defined Task to be performed by the principal performer of the Group (see below for details);
+
+|`SUB_PLAN`
+a|image::{diagrams_uri}/task-sub_plan.svg[id=task_sub_plan, align="center"]
+|A kind of Task that stands for another Task Plan (identified by the inherited `LINKED_PLAN._target_` attribute) to be performed by the current performer - usually a fine-grained set of steps designed to achieve the result of this Task.
+
+|`SYSTEM_REQUEST`
+a|image::{diagrams_uri}/task-system_request.svg[id=task_system_request, align="center"]
+|A kind of Task that consists of a request to a computational system, such as a data retrieval or procedure call, on behalf of the current performer;
+
+|`HAND_OFF`
+a|image::{diagrams_uri}/task-hand_off.svg[id=task_hand_off, align="center"]
+|A kind of Task that hands off to another Task Plan in the same Work Plan, having a different performer (identified via the `_target_` attribute inherited from `LINKED_PLAN`);
+
+|`EXTERNAL_REQUEST`
+a|image::{diagrams_uri}/task-external_request.svg[id=task_external_request, align="center"]
+|A Task type that consists of a request to an external organisational entity that is outside the current Work Plan and its execution environment, on behalf of the current performer;
+
+|===
 
 The following sections provide more detail on some of these model features.
 

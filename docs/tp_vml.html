@@ -43,22 +43,21 @@
 </li>
 <li><a href="#_elements">3. Elements</a>
 <ul class="sectlevel2">
-<li><a href="#_composites">3.1. Composites</a>
+<li><a href="#_primitives">3.1. Primitives</a>
 <ul class="sectlevel3">
-<li><a href="#_plans">3.1.1. Plans</a></li>
-<li><a href="#_task_groups">3.1.2. Task Groups</a></li>
-<li><a href="#_conditional_structures">3.1.3. Conditional Structures</a></li>
+<li><a href="#_tasks">3.1.1. Tasks</a></li>
+<li><a href="#_events">3.1.2. Events</a></li>
 </ul>
 </li>
-<li><a href="#_primitives">3.2. Primitives</a>
+<li><a href="#_composites">3.2. Composites</a>
 <ul class="sectlevel3">
-<li><a href="#_tasks">3.2.1. Tasks</a></li>
-<li><a href="#_events">3.2.2. Events</a></li>
+<li><a href="#_plans">3.2.1. Plans</a></li>
+<li><a href="#_task_groups">3.2.2. Task Groups</a></li>
+<li><a href="#_conditional_structures">3.2.3. Conditional Structures</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_patterns">4. Patterns</a></li>
 </ul>
 </li>
 </ul>
@@ -159,7 +158,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.6.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Update to modelling shapes used in main specification.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>27 Feb 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Mar 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
@@ -337,81 +336,121 @@
 <div class="sect1">
 <h2 id="_elements"><a class="anchor" href="#_elements"></a>3. Elements</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The elements of TP-VML are based directly on the openEHR Task Planning formal specification, and can be used to construct exectuable Plans.</p>
+</div>
 <div class="sect2">
-<h3 id="_composites"><a class="anchor" href="#_composites"></a>3.1. Composites</h3>
+<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>3.1. Primitives</h3>
+<div class="paragraph">
+<p>The TP-VML elements in this section are atomic primitives that are used within various levels of containment structure, including Task Groups, the various kinds of conditional structure, Task Plans and Work Plans.</p>
+</div>
 <div class="sect3">
-<h4 id="_plans"><a class="anchor" href="#_plans"></a>3.1.1. Plans</h4>
+<h4 id="_tasks"><a class="anchor" href="#_tasks"></a>3.1.1. Tasks</h4>
+<div class="paragraph">
+<p>TP-VML Tasks correspond to formal types of the form <code>TASK&lt;T&gt;</code> (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#\_definition_model">TP main model</a>; <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#\_task_actions">TP Task Action types</a>), whose concrete forms are: <code>PERFORMABLE_TASK&lt;DEFINED_ACTION&gt;</code>, <code>PERFORMABLE_TASK&lt;SUB_PLAN&gt;</code>, <code>DISPATCHABLE_TASK&lt;HAND_OFF&gt;</code>, <code>DISPATCHABLE_TASK&lt;SYSTEM_REQUEST&gt;</code>, <code>DISPATCHABLE_TASK&lt;EXTERNAL_REQUEST&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Performable Tasks may have one or more associated <code><em>capture_datasets</em></code>. Dispatchable Tasks may have an associated callback wait state (<code>CALLBACK_WAIT</code>).</p>
+</div>
+<div id="tp_vml_tasks" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="tp_vml/diagrams/TP-VML-tasks.svg" alt="TP VML tasks">
+</div>
+<div class="title">Figure 1. Tasks</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_events"><a class="anchor" href="#_events"></a>3.1.2. Events</h4>
+<div class="paragraph">
+<p>TP-VML Events are defined in the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_events">Events section in the TP specification</a> and can be visually represented in three forms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>full form</em>: with icon and named attributes from the TP model;</p>
+</li>
+<li>
+<p><em>short form</em>: with icon and implicit attributes from the TP model;</p>
+</li>
+<li>
+<p><em>informal</em>: via an icon, with no further specification of details.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Events are specified as triggers for the wait states <code>TASK_WAIT</code>, <code>TIMER_WAIT</code> and <code>CALLBACK_WAIT</code>.</p>
+</div>
+<div id="tp_vml_events" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="tp_vml/diagrams/TP-VML-events.svg" alt="TP VML events">
+</div>
+<div class="title">Figure 2. Events</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_composites"><a class="anchor" href="#_composites"></a>3.2. Composites</h3>
+<div class="paragraph">
+<p>The TP-VML elements in this section are composite structures that contain primitive elements.</p>
+</div>
+<div class="sect3">
+<h4 id="_plans"><a class="anchor" href="#_plans"></a>3.2.1. Plans</h4>
+<div class="paragraph">
+<p>TP-VML icons for <code>WORK_PLAN</code> and <code>TASK_PLAN</code> are used (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_plan_structure">TP plan structure</a>), enabling some of the relevant meta-data to be visualised.</p>
+</div>
 <div id="tp_vml_plans" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-plans.svg" alt="TP VML plans">
 </div>
-<div class="title">Figure 1. Plans</div>
+<div class="title">Figure 3. Plans</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_groups"><a class="anchor" href="#_task_groups"></a>3.1.2. Task Groups</h4>
+<h4 id="_task_groups"><a class="anchor" href="#_task_groups"></a>3.2.2. Task Groups</h4>
+<div class="paragraph">
+<p>Task Group icons and their conditional structure derivatives use two visual elements to indicate the extent of the (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_task_group_structure">container structure</a>) they represent from the TP model.</p>
+</div>
+<div class="paragraph">
+<p>Since Tasks and other Task Groups within any Task Group are included by ordered containment (i.e. 'list' semantics) rather than chaining, contained items are shown connected with dashed arrows, indicating the implied ordered.</p>
+</div>
 <div id="tp_vml_task_groups" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-task_groups.svg" alt="TP VML task groups">
 </div>
-<div class="title">Figure 2. Task groups</div>
+<div class="title">Figure 4. Task groups</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_conditional_structures"><a class="anchor" href="#_conditional_structures"></a>3.1.3. Conditional Structures</h4>
+<h4 id="_conditional_structures"><a class="anchor" href="#_conditional_structures"></a>3.2.3. Conditional Structures</h4>
+<div class="paragraph">
+<p><a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_conditional_structures_2">TP conditional structures</a> follow the same structural logic as Task Groups, with the addition of various specific meta-data as per the specificaion.</p>
+</div>
 <div id="tp_vml_conditionals_condition" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-conditionals_condition.svg" alt="TP VML conditionals condition">
 </div>
-<div class="title">Figure 3. Conditional structures - CONDITION_GROUP</div>
+<div class="title">Figure 5. Conditional structures - CONDITION_GROUP</div>
 </div>
 <div id="tp_vml_conditionals_decision" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-conditionals_decision.svg" alt="TP VML conditionals decision">
 </div>
-<div class="title">Figure 4. Conditional structures - DECISION_GROUP</div>
+<div class="title">Figure 6. Conditional structures - DECISION_GROUP</div>
 </div>
 <div id="tp_vml_conditionals_event" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-conditionals_event.svg" alt="TP VML conditionals event">
 </div>
-<div class="title">Figure 5. Conditional structures - EVENT_GROUP</div>
+<div class="title">Figure 7. Conditional structures - EVENT_GROUP</div>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>3.2. Primitives</h3>
-<div class="sect3">
-<h4 id="_tasks"><a class="anchor" href="#_tasks"></a>3.2.1. Tasks</h4>
-<div id="tp_vml_tasks" class="imageblock text-center" style="text-align: center">
-<div class="content">
-<img src="tp_vml/diagrams/TP-VML-tasks.svg" alt="TP VML tasks">
-</div>
-<div class="title">Figure 6. Tasks</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_events"><a class="anchor" href="#_events"></a>3.2.2. Events</h4>
-<div id="tp_vml_events" class="imageblock text-center" style="text-align: center">
-<div class="content">
-<img src="tp_vml/diagrams/TP-VML-events.svg" alt="TP VML events" width="35%">
-</div>
-<div class="title">Figure 7. Events</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_patterns"><a class="anchor" href="#_patterns"></a>4. Patterns</h2>
-<div class="sectionbody">
-
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-14 10:07:10 GMT
+Last updated 2019-03-07 14:37:39 GMT
 </div>
 </div>
 </body>

@@ -21,6 +21,7 @@ Prerequisite documents for reading this document include:
 
 Related documents include:
 
+* The {openehr_tp_vml}[Task Planning Visual Modelling Language (TP-VML)^];
 * The {openehr_rm_ehr}[openEHR EHR Information Model^];
 
 == Status
