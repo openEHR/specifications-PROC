@@ -12,7 +12,11 @@ The remaining classes are shown in various specialised views below.
 
 === Plan Structure
 
-The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan.
+The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.
+
+[.text-center]
+.Work Plan top level structure
+image::{diagrams_uri}/work_task_plans.svg[id=work_task_plans, align="center", width=50%]
 
 A Work Plan has a number of global attributes, as follows:
 

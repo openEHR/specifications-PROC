@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
 <meta name="description" content="openEHR Task Planning Specification">
-<meta name="keywords" content="task, planning, EHR, EMR, reference model, openehr">
-<title>Task Planning Model Specification</title>
+<meta name="keywords" content="workflow, task, planning, EHR, EMR, reference model, openehr">
+<title>Task Planning Specification</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
@@ -16,7 +16,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_task_planning_model_specification">Task Planning Model Specification</a>
+<li><a href="#_task_planning_specification">Task Planning Specification</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -415,7 +415,7 @@
 </div>
 </div>
 </div>
-<h1 id="_task_planning_model_specification" class="sect0">Task Planning Model Specification</h1>
+<h1 id="_task_planning_specification" class="sect0">Task Planning Specification</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all spread">
@@ -438,7 +438,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: task, planning, EHR, EMR, reference model, openehr</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: workflow, task, planning, EHR, EMR, reference model, openehr</p></td>
 </tr>
 </tbody>
 </table>
@@ -3330,7 +3330,13 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_plan_structure"><a class="anchor" href="#_plan_structure"></a>6.1.1. Plan Structure</h4>
 <div class="paragraph">
-<p>The top-level structure for defining plans is a <code>WORK_PLAN</code>, which includes one or more related <code>TASK_PLANs</code> making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: <code><em>plans</em></code>, which references all Task Plans, and <code><em>top_level_plans</em></code>, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan.</p>
+<p>The top-level structure for defining plans is a <code>WORK_PLAN</code>, which includes one or more related <code>TASK_PLANs</code> making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: <code><em>plans</em></code>, which references all Task Plans, and <code><em>top_level_plans</em></code>, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.</p>
+</div>
+<div id="work_task_plans" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/work_task_plans.svg" alt="work task plans" width="50%">
+</div>
+<div class="title">Figure 15. Work Plan top level structure</div>
 </div>
 <div class="paragraph">
 <p>A Work Plan has a number of global attributes, as follows:</p>
@@ -3380,7 +3386,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_grouping.svg" alt="task grouping" width="75%">
 </div>
-<div class="title">Figure 15. Task grouping</div>
+<div class="title">Figure 16. Task grouping</div>
 </div>
 <div class="paragraph">
 <p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.</p>
@@ -4327,7 +4333,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-actions.svg" alt="PROC task planning.definition actions">
 </div>
-<div class="title">Figure 16. proc.task_planning.definition model - Task Actions</div>
+<div class="title">Figure 17. proc.task_planning.definition model - Task Actions</div>
 </div>
 <div class="paragraph">
 <p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
@@ -4435,7 +4441,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_linking.svg" alt="task linking">
 </div>
-<div class="title">Figure 17. Task Plan linking</div>
+<div class="title">Figure 18. Task Plan linking</div>
 </div>
 <div class="paragraph">
 <p>This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the <code>SUB_PLAN</code> class. Since a Sub-plan is a kind of Task, it has a <em>description</em> and could be performed and signed off as if it were a normal inline <code>DEFINED_ACTION</code> by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The <code>PLAN_ITME.<em>training_level</em></code> attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.</p>
@@ -4450,7 +4456,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-defined_task.svg" alt="PROC task planning.definition defined task" width="65%">
 </div>
-<div class="title">Figure 18. proc.task_planning.definition - Definition Task</div>
+<div class="title">Figure 19. proc.task_planning.definition - Definition Task</div>
 </div>
 <div class="paragraph">
 <p>The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of <code>DEFINED_ACTIONs</code>, each having a protoype of an <code>ACTION</code> instance based on the <code>openEHR-EHR-ACTION.medication.v1</code> archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an <code>ACTION</code> instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.</p>
@@ -4462,7 +4468,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_definition.svg" alt="task definition" width="55%">
 </div>
-<div class="title">Figure 19. Task definition</div>
+<div class="title">Figure 20. Task definition</div>
 </div>
 <div class="paragraph">
 <p>Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The <code><em>prototype</em></code> attribute in a <code>TASK_PLAN</code> archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. <code>ACTION</code> or other Entry. This can be used in various ways, as follows:</p>
@@ -4537,7 +4543,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_coordination.svg" alt="task coordination">
 </div>
-<div class="title">Figure 20. Task coordination</div>
+<div class="title">Figure 21. Task coordination</div>
 </div>
 <div class="paragraph">
 <p>In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (<code><em>wait</em></code> = <code>True</code>; callback wait resumes at the next Task) and the second an asynchronous fork (<code><em>wait</em></code> = <code>False</code>).</p>
@@ -5028,7 +5034,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-decision.svg" alt="PROC task planning.definition decision">
 </div>
-<div class="title">Figure 21. proc.task_planning package definition model (decision view)</div>
+<div class="title">Figure 22. proc.task_planning package definition model (decision view)</div>
 </div>
 <div class="paragraph">
 <p>The pattern types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the <code>CHOICE_GROUP</code> and <code>CHOICE_BRANCH</code> classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.</p>
@@ -5062,7 +5068,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/condition_structure.svg" alt="condition structure">
 </div>
-<div class="title">Figure 22. Condition structure</div>
+<div class="title">Figure 23. Condition structure</div>
 </div>
 <div class="paragraph">
 <p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (<code><em>execution_type</em></code> is constrained to <code>sequential</code>), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.</p>
@@ -5074,7 +5080,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/decision_structure.svg" alt="decision structure">
 </div>
-<div class="title">Figure 23. Decision structure</div>
+<div class="title">Figure 24. Decision structure</div>
 </div>
 <div class="paragraph">
 <p>The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes <code>EVENT_GROUP</code> and <code>EVENT_BRANCH</code>, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.</p>
@@ -5083,7 +5089,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/event_structure.svg" alt="event structure">
 </div>
-<div class="title">Figure 24. Event structure</div>
+<div class="title">Figure 25. Event structure</div>
 </div>
 <div class="sect3">
 <h4 id="_class_descriptions_7"><a class="anchor" href="#_class_descriptions_7"></a>6.3.1. Class Descriptions</h4>
@@ -5625,7 +5631,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-event.svg" alt="PROC task planning.definition event">
 </div>
-<div class="title">Figure 25. proc.task_planning model - Events</div>
+<div class="title">Figure 26. proc.task_planning model - Events</div>
 </div>
 <div class="paragraph">
 <p>In the above, the descendants of <code>PLAN_EVENT</code> represent various kinds of events, which roughly divide into <em>deterministic events</em>, i.e. known, system-endogenous events, and <em>non-deterministic events</em>, i.e. events from the outside world whose receipt is not guaranteed.</p>
@@ -5712,7 +5718,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state.svg" alt="task wait state">
 </div>
-<div class="title">Figure 26. Task wait state</div>
+<div class="title">Figure 27. Task wait state</div>
 </div>
 </div>
 <div class="sect3">
@@ -5751,7 +5757,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_timing_1.svg" alt="uc task timing 1">
 </div>
-<div class="title">Figure 27. Timing patterns</div>
+<div class="title">Figure 28. Timing patterns</div>
 </div>
 </div>
 <div class="sect4">
@@ -5763,7 +5769,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state_reminder.svg" alt="task wait state reminder">
 </div>
-<div class="title">Figure 28. Task wait state with reminder</div>
+<div class="title">Figure 29. Task wait state with reminder</div>
 </div>
 </div>
 </div>
@@ -5786,7 +5792,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_1.svg" alt="uc task callback 1">
 </div>
-<div class="title">Figure 29. Callback example</div>
+<div class="title">Figure 30. Callback example</div>
 </div>
 </div>
 <div class="sect3">
@@ -6623,7 +6629,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
 </div>
-<div class="title">Figure 30. Task lifecycle state machine</div>
+<div class="title">Figure 31. Task lifecycle state machine</div>
 </div>
 <div class="paragraph">
 <p>A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the <code>abandoned</code> state is entered, it does not.</p>
@@ -7133,7 +7139,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 31. proc.task_planning.materialised package</div>
+<div class="title">Figure 32. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -7473,7 +7479,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 32. proc.task_planning.history package</div>
+<div class="title">Figure 33. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -7799,7 +7805,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 33. proc.task_planning.service package</div>
+<div class="title">Figure 34. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -8026,7 +8032,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 34. Runtime planning structures</div>
+<div class="title">Figure 35. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>
@@ -8107,7 +8113,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-19 13:20:57 GMT
+Last updated 2019-03-08 13:23:43 GMT
 </div>
 </div>
 </body>

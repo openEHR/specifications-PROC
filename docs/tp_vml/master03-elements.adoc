@@ -2,34 +2,6 @@
 
 The elements of TP-VML are based directly on the openEHR Task Planning formal specification, and can be used to construct exectuable Plans.
 
-== Primitives
-
-The TP-VML elements in this section are atomic primitives that are used within various levels of containment structure, including Task Groups, the various kinds of conditional structure, Task Plans and Work Plans.
-
-=== Tasks
-
-TP-VML Tasks correspond to formal types of the form `TASK<T>` ({openehr_tp_vml}#\_definition_model[TP main model]; {openehr_tp_vml}#\_task_actions[TP Task Action types]), whose concrete forms are: `PERFORMABLE_TASK<DEFINED_ACTION>`, `PERFORMABLE_TASK<SUB_PLAN>`, `DISPATCHABLE_TASK<HAND_OFF>`, `DISPATCHABLE_TASK<SYSTEM_REQUEST>`, `DISPATCHABLE_TASK<EXTERNAL_REQUEST>`.
-
-Performable Tasks may have one or more associated `_capture_datasets_`. Dispatchable Tasks may have an associated callback wait state (`CALLBACK_WAIT`).
-
-[.text-center]
-.Tasks
-image::{diagrams_uri}/TP-VML-tasks.svg[id=tp_vml_tasks, align="center"]
-
-=== Events
-
-TP-VML Events are defined in the {openehr_tp_vml}#_events[Events section in the TP specification] and can be visually represented in three forms:
-
-* _full form_: with icon and named attributes from the TP model;
-* _short form_: with icon and implicit attributes from the TP model;
-* _informal_: via an icon, with no further specification of details.
-
-Events are specified as triggers for the wait states `TASK_WAIT`, `TIMER_WAIT` and `CALLBACK_WAIT`.
-
-[.text-center]
-.Events
-image::{diagrams_uri}/TP-VML-events.svg[id=tp_vml_events, align="center"]
-
 == Composites
 
 The TP-VML elements in this section are composite structures that contain primitive elements.
@@ -68,3 +40,30 @@ image::{diagrams_uri}/TP-VML-conditionals_decision.svg[id=tp_vml_conditionals_de
 .Conditional structures - EVENT_GROUP
 image::{diagrams_uri}/TP-VML-conditionals_event.svg[id=tp_vml_conditionals_event, align="center"]
 
+== Primitives
+
+The TP-VML elements in this section are atomic primitives that are used within various levels of containment structure, including Task Groups, the various kinds of conditional structure, Task Plans and Work Plans.
+
+=== Tasks
+
+TP-VML Tasks correspond to formal types of the form `TASK<T>` ({openehr_tp_vml}#\_definition_model[TP main model]; {openehr_tp_vml}#\_task_actions[TP Task Action types]), whose concrete forms are: `PERFORMABLE_TASK<DEFINED_ACTION>`, `PERFORMABLE_TASK<SUB_PLAN>`, `DISPATCHABLE_TASK<HAND_OFF>`, `DISPATCHABLE_TASK<SYSTEM_REQUEST>`, `DISPATCHABLE_TASK<EXTERNAL_REQUEST>`.
+
+Performable Tasks may have one or more associated `_capture_datasets_`. Dispatchable Tasks may have an associated callback wait state (`CALLBACK_WAIT`).
+
+[.text-center]
+.Tasks
+image::{diagrams_uri}/TP-VML-tasks.svg[id=tp_vml_tasks, align="center"]
+
+=== Events
+
+TP-VML Events are defined in the {openehr_tp_vml}#_events[Events section in the TP specification] and can be visually represented in three forms:
+
+* _full form_: with icon and named attributes from the TP model;
+* _short form_: with icon and implicit attributes from the TP model;
+* _informal_: via an icon, with no further specification of details.
+
+Events are specified as triggers for the wait states `TASK_WAIT`, `TIMER_WAIT` and `CALLBACK_WAIT`.
+
+[.text-center]
+.Events
+image::{diagrams_uri}/TP-VML-events.svg[id=tp_vml_events, align="center"]
