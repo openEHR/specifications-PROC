@@ -13,7 +13,7 @@ include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 // HTML-only attributes
 //
 :linkcss:
-:keywords: task, planning, EHR, EMR, reference model, openehr
+:keywords: workflow, task, planning, EHR, EMR, reference model, openehr
 :description: openEHR Task Planning Specification
 
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
@@ -24,7 +24,7 @@ include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
 image::{openehr_logo}["openEHR logo",align="center"]
 
-= Task Planning Model Specification
+= Task Planning Specification
 
 include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
 include::{ref_dir}/docs/references/reference_definitions.adoc[]

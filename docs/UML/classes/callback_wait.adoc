@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*CALLBACK_WAIT<>*
 
 h|*Description*
-2+a|Specialised descendant of `EVENT_ACTION <CALL_BACK_NOTIFICATION>` that adds a fail action. Used for representing post-callback actions.
+2+a|Specialised descendant of `EVENT_WAIT <CALL_BACK_NOTIFICATION>` that adds a fail action. Used for representing post-callback actions.
 
 h|*Inherit*
 2+|`EVENT_WAIT`

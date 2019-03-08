@@ -13,7 +13,7 @@ include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 // HTML-only attributes
 //
 :linkcss:
-:keywords: task, planning, visual language
+:keywords: task, planning, visual language, workflow
 :description: openEHR TP Visual Modelling Language
 :linkattrs:
 
