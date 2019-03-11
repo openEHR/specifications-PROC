@@ -6,7 +6,14 @@ h|*Class*
 2+^h|*EVENT_ACTION*
 
 h|*Description*
-2+a|Action(s) to perform on receipt of an event with a particular status. If `_resume_action_` is set, it dictates where execution resumes; if not, the default is to resume at the next Task in normal execution flow.
+2+a|Action(s) to perform on receipt of an event with a particular status. Four possible things can be specified:
+
+* a message;
+* a system call;
+* the next state of the Task or other resume location (`_receiver_thread_next_state`);
+* a specific resume action indicating to resume in a specific location in the Plan.
+
+If `_resume_action_` is set, it dictates where execution resumes; if not, the default is to resume at the next Task in normal execution flow.
 
 h|*Attributes*
 ^h|*Signature*
@@ -26,7 +33,7 @@ a|Optional resume action, used when the intention is to resume in a different lo
 
 h|*0..1*
 |*receiver_thread_next_state*: `TASK_LIFECYCLE`
-a|Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the _enclosing Task Group_ of the original dispatching Task.
+a|Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the _enclosing _Task Group_ of the original dispatching Task.
 
-If not set, default processing will be performed.
+If not set, default processing will be performed, which for a Task is to enter the `available` state.
 |===

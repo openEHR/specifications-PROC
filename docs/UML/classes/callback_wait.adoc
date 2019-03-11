@@ -19,6 +19,10 @@ h|*0..1*
 |*fail_action*: `EVENT_ACTION`
 a|Action to perform if any listened-for event returns a fail result.
 
+h|*0..1*
+|*custom_actions*: `Hash<String,EVENT_ACTION>`
+a|A keyed list of specific actions to perform based on custom key values, which are understood as types of remote event more specific than just 'success' or 'fail'.
+
 h|*1..1 +
 (redefined)*
 |*event*: `CALLBACK_NOTIFICATION`

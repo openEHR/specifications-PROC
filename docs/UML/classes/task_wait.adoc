@@ -33,4 +33,8 @@ a|Time window after an initial time during which the action should start. Allows
 h|*0..1*
 |*timeout*: `TIMER_WAIT`
 a|Timeout handler to use if no other Event is received within a certain time.
+
+h|*0..1*
+|*next_state*: `TASK_LIFECYCLE`
+a|Override for next state to enter on receipt of any Event in `_events`. Default processing is to enter the `available` state.
 |===

@@ -266,35 +266,40 @@
 <li><a href="#_events">6.4. Events</a>
 <ul class="sectlevel3">
 <li><a href="#_event_types">6.4.1. Event Types</a></li>
-<li><a href="#_task_wait_state">6.4.2. Task Wait State</a></li>
-<li><a href="#_event_wait_state">6.4.3. Event Wait State</a></li>
-<li><a href="#_timers">6.4.4. Timers</a>
+<li><a href="#_general_facilities">6.4.2. General Facilities</a>
 <ul class="sectlevel4">
-<li><a href="#_task_wait_state_timeout">6.4.4.1. Task Wait State Timeout</a></li>
-<li><a href="#_reminders">6.4.4.2. Reminders</a></li>
+<li><a href="#_timers">6.4.2.1. Timers</a></li>
+<li><a href="#_event_wait_state">6.4.2.2. Event Wait State</a></li>
 </ul>
 </li>
-<li><a href="#_callbacks">6.4.5. Callbacks</a></li>
-<li><a href="#_appointments">6.4.6. Appointments</a></li>
-<li><a href="#_class_descriptions_8">6.4.7. Class Descriptions</a>
+<li><a href="#_task_wait_state">6.4.3. Task Wait State</a>
 <ul class="sectlevel4">
-<li><a href="#_task_wait_class">6.4.7.1. TASK_WAIT Class</a></li>
-<li><a href="#_plan_event_class">6.4.7.2. PLAN_EVENT&lt;&gt; Class</a></li>
-<li><a href="#_delay_event_class">6.4.7.3. DELAY_EVENT Class</a></li>
-<li><a href="#_manual_notification_class">6.4.7.4. MANUAL_NOTIFICATION Class</a></li>
-<li><a href="#_system_notification_class">6.4.7.5. SYSTEM_NOTIFICATION Class</a></li>
-<li><a href="#_callback_notification_class">6.4.7.6. CALLBACK_NOTIFICATION Class</a></li>
-<li><a href="#_state_trigger_class">6.4.7.7. STATE_TRIGGER Class</a></li>
-<li><a href="#_timer_event_class">6.4.7.8. TIMER_EVENT Class</a></li>
-<li><a href="#_calendar_event_class">6.4.7.9. CALENDAR_EVENT Class</a></li>
-<li><a href="#_timeline_moment_class">6.4.7.10. TIMELINE_MOMENT Class</a></li>
-<li><a href="#_task_transition_class">6.4.7.11. TASK_TRANSITION Class</a></li>
-<li><a href="#_event_wait_p_class">6.4.7.12. EVENT_WAIT&lt;P&gt; Class</a></li>
-<li><a href="#_timer_wait_class">6.4.7.13. TIMER_WAIT Class</a></li>
-<li><a href="#_reminder_class">6.4.7.14. REMINDER Class</a></li>
-<li><a href="#_callback_wait_class">6.4.7.15. CALLBACK_WAIT&lt;&gt; Class</a></li>
-<li><a href="#_event_action_class">6.4.7.16. EVENT_ACTION Class</a></li>
-<li><a href="#_resume_action_class">6.4.7.17. RESUME_ACTION Class</a></li>
+<li><a href="#_time_out">6.4.3.1. Time-out</a></li>
+<li><a href="#_reminder">6.4.3.2. Reminder</a></li>
+<li><a href="#_lifecycle_transition_override">6.4.3.3. Lifecycle Transition Override</a></li>
+</ul>
+</li>
+<li><a href="#_callbacks">6.4.4. Callbacks</a></li>
+<li><a href="#_appointments">6.4.5. Appointments</a></li>
+<li><a href="#_class_descriptions_8">6.4.6. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_task_wait_class">6.4.6.1. TASK_WAIT Class</a></li>
+<li><a href="#_plan_event_class">6.4.6.2. PLAN_EVENT&lt;&gt; Class</a></li>
+<li><a href="#_delay_event_class">6.4.6.3. DELAY_EVENT Class</a></li>
+<li><a href="#_manual_notification_class">6.4.6.4. MANUAL_NOTIFICATION Class</a></li>
+<li><a href="#_system_notification_class">6.4.6.5. SYSTEM_NOTIFICATION Class</a></li>
+<li><a href="#_callback_notification_class">6.4.6.6. CALLBACK_NOTIFICATION Class</a></li>
+<li><a href="#_state_trigger_class">6.4.6.7. STATE_TRIGGER Class</a></li>
+<li><a href="#_timer_event_class">6.4.6.8. TIMER_EVENT Class</a></li>
+<li><a href="#_calendar_event_class">6.4.6.9. CALENDAR_EVENT Class</a></li>
+<li><a href="#_timeline_moment_class">6.4.6.10. TIMELINE_MOMENT Class</a></li>
+<li><a href="#_task_transition_class">6.4.6.11. TASK_TRANSITION Class</a></li>
+<li><a href="#_event_wait_p_class">6.4.6.12. EVENT_WAIT&lt;P&gt; Class</a></li>
+<li><a href="#_timer_wait_class">6.4.6.13. TIMER_WAIT Class</a></li>
+<li><a href="#_reminder_class">6.4.6.14. REMINDER Class</a></li>
+<li><a href="#_callback_wait_class">6.4.6.15. CALLBACK_WAIT&lt;&gt; Class</a></li>
+<li><a href="#_event_action_class">6.4.6.16. EVENT_ACTION Class</a></li>
+<li><a href="#_resume_action_class">6.4.6.17. RESUME_ACTION Class</a></li>
 </ul>
 </li>
 </ul>
@@ -498,9 +503,13 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-xx" target="_blank" rel="noopener">SPECPROC-xx</a>. Improve diagrams and explanation on Task wait states and Events.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Mar 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-xx" target="_blank" rel="noopener">SPECPROC-xx</a>. Improve diagrams and explanation on Task wait states and Events;<br>
+ Add <code>EVENT_ACTION.<em>custom_actions</em></code>;<br>
+ Add <code>REMINDER.<em>repeats</em></code>;<br>
+ Add <code>TASK_WAIT.<em>next_state</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ B Naess</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>11 Mar 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3395,7 +3404,7 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_tasks"><a class="anchor" href="#_tasks"></a>6.1.3. Tasks</h4>
 <div class="paragraph">
-<p>Tasks are represented by the <code>Task</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em>, meaning 'dispatched for execution to another performer', and <em>performable</em>, meaning 'defined and performed by the current performer'. <code>TASK</code> is a generic type, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.</p>
+<p>Tasks are represented by the <code>Task</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em>, meaning 'dispatched for execution to another performer', and <em>performable</em>, meaning 'performed by the current performer'. <code>TASK</code> is a generic (i.e. templated) type, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.</p>
 </div>
 <div class="paragraph">
 <p>The <code>DISPATCHABLE_TASK</code> class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is described below.</p>
@@ -5634,85 +5643,163 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 26. proc.task_planning model - Events</div>
 </div>
 <div class="paragraph">
-<p>In the above, the descendants of <code>PLAN_EVENT</code> represent various kinds of events, which roughly divide into <em>deterministic events</em>, i.e. known, system-endogenous events, and <em>non-deterministic events</em>, i.e. events from the outside world whose receipt is not guaranteed.</p>
+<p>The various Event types are shown below, with their TP-VML representations.</p>
 </div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">TP-VML</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TIMER_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_timer" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_timer.svg" alt="event timer">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by the expiry of a Timer that was launched at some earlier time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TIMELINE_MOMENT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_timeline_moment" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_timeline_moment.svg" alt="event timeline moment">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching a fixed time-point on the Work Plan timeline, specified by an offset from the Work Plan '0-point' plus an optional fixed time in the day. The latter enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as <code>P2D</code>, <code>13:30:00</code> can thus be used to state a time like '13:30 on day 2 of the plan'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALENDAR_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_calendar_event" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_calendar_event.svg" alt="event calendar event">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching an event in the global Plan calendar, which is specified in absolute time, independent of the Work Plan timeline.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TASK_TRANSITION</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_task_transition" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_task_transition.svg" alt="event task transition">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by the lifecycle transition of a Task, such as transition to <code>cancelled</code> or <code>done</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STATE_TRIGGER</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_state_trigger" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_state_trigger.svg" alt="event state trigger">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An event generated by a change in a tracked variable, or a Boolean expression based on tracked variables, e.g. a value reaching a threshold.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MANUAL_NOTIFICATION</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_manual_notification" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_manual_notification.svg" alt="event manual notification">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An event that is manually notified to the Plan execution engine by a user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SYSTEM_NOTIFICATION</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_system_notification" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_system_notification.svg" alt="event system notification">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An event that is notified to the Plan execution engine by a system.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELAY_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_delay" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_delay.svg" alt="event delay">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A special kind of event is used to represent any other event with an added delay.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALLBACK_NOTIFICATION</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div id="event_callback" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/event_callback.svg" alt="event callback">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A callback notification connected to a dispatch for a Dispatchable Task (Hand-off, External Request, System Request).</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>The deterministic event types are as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>TIMER_EVENT</code>: represents the expiry of a Timer that was launched at some earlier time;</p>
-</li>
-<li>
-<p><code>TIMELINE_MOMENT</code>: represents a fixed time-point on the Work Plan timeline;</p>
-</li>
-<li>
-<p><code>CALENDAR_EVENT</code>: represents an event in the global Plan calendar, which is specified in absolute time.</p>
-</li>
-<li>
-<p><code>DELAY_EVENT</code>: a special kind of event is used to represent any other event with an added delay.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The non-deterministic event types are as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>TASK_TRANSITION</code>: an event corresponding to a lifecycle transition of a Task, such as being cancelled or done;</p>
-</li>
-<li>
-<p><code>CALLBACK_NOTIFICATION</code>: a callback notification connected to a dispatch call for a Dispatchable Task (Hand-off, External Request, System Request);</p>
-</li>
-<li>
-<p><code>STATE_TRIGGER</code>: an event generated by a change in a tracked variable, or an expression based on tracked variables, e.g. a value reaching a threshold;</p>
-</li>
-<li>
-<p><code>MANUAL_NOTIFICATION</code>: an event that is manually notified to the Plan execution engine by a user;</p>
-</li>
-<li>
-<p><code>SYSTEM_NOTIFICATION</code>: an event that is notified to the Plan execution engine by a system or service;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Instances of all of these types, on their own only identify the type and source of an event. Events can be waited on in two ways.</p>
+<p>Instances of all of these types on their own only identify the type and source of an event - a wait state is required to catch an event. There are three types of wait state used in a TP definition: Task Wait, Timer Wait and CAllback Wait. These are described below.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.4.2. Task Wait State</h4>
+<h4 id="_general_facilities"><a class="anchor" href="#_general_facilities"></a>6.4.2. General Facilities</h4>
+<div class="sect4">
+<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.4.2.1. Timers</h5>
 <div class="paragraph">
-<p>The first way is via the <code>TASK_WAIT</code> attachable to any Plan Item, via the <code><em>wait_spec</em></code> attribute. The <code>TASK_WAIT</code> class models a wait state, and defines how to specify when a Task should start with respect to any of the Event types described above. Its <code><em>events</em></code> attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, or when oxygen saturation drops below 90% (whichever comes first)'. The <code><em>event_relation</em></code> attribute allows the Task to be specified as commencing <code>before</code>, <code>with</code> or <code>after</code> the trigger event (such as a meal). The <code><em>start_window</em></code> attribute allows for a delay from the moment of event firing, and <code><em>timeout</em></code>, if set, will cause a Timer to be started in cases where Event receipt is not certain. These Timers are just special cases of the <code>EVENT_WAIT</code> type, described below.</p>
+<p>A generic timer facility used in the various kinds of wait state is represented by the class <code>TIMER_WAIT</code>, based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code>. It provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance). Timeouts can be used on the <code>TASK_WAIT</code> wait state as well as any <code>EVENT_WAIT</code> wait state, including <code>CALLBACK_WAIT</code>. A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.4.2.2. Event Wait State</h5>
 <div class="paragraph">
-<p>The combined structure of a <code>TASK_WAIT</code> and one or more <code>PLAN_EVENT</code> descendants provides a way to specify <em>when</em> a Task becomes <code>available</code>, either in terms of time-related events, or non-deterministic events, as follows:</p>
+<p>The class <code>EVENT_WAIT&lt;T&gt;</code> defines a generic model of a general-purpose event wait state that may be specialised for particular purposes. Its attributes are as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>clock time</em>: the Task is to be executed at a specific time on the Plan timeline, represented by an instance of <code>TIMELINE_MOMENT</code>;</p>
+<p><code><em>success_action</em></code> of type <code>EVENT_ACTION</code>, which defines possible actions to occur on receipt of an event;</p>
 </li>
 <li>
-<p><em>event-linked time</em>: the Task is to be executed at a time related to a real world event, such as a meal or sleeping; in this case, an instance of <code>CALENDAR_EVENT</code> is used; the <code>TASK_WAIT</code> attributes indicate the specifics such as '1 hour before', 'with meal' etc;</p>
-</li>
-<li>
-<p><em>notification-linked time</em>: the Task is to be executed at a time related to a notification, either from a system (specified with <code>SYSTEM_NOTIFICATION</code>) or manually notified (<code>MANUAL_NOTIFICATION</code>);</p>
-</li>
-<li>
-<p><em>task-linked time</em>: the Task is to be executed at a time related to the timing of another Task lifecycle transition, such as completion of the previous Task; this is represented by an instance of <code>TASK_TRANSITION</code> whose <code><em>transition</em></code> indicates the required lifecycle transition;</p>
-</li>
-<li>
-<p><em>state-linked time</em>: the Task is to be executed at a time related to the state of the subject, as specified by an instance of <code>STATE_TRIGGER</code>. This uses a Boolean-valued <code><em>expression</em></code> attribute to state a condition which when true indicates that a Task time-to-execute has been reached.</p>
+<p><code><em>timeout</em></code> of type <code>TIMER_WAIT</code>, whose <code><em>success_action</em></code> defines possible actions when no event is received.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>TIMELINE_MOMENT</code> type allows a point in time relative to the start of the Plan to be specified, in terms of an offset and a fixed component, both optional. The offset part, if specified, establishes a point relative to the Plan timeline zero point (converted to absolute form at activation), while the fixed part enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as <code>P2D</code>, <code>13:30:00</code> can thus be used to state a time like '13:30 on day 2 of the plan'.</p>
+<p>The <code>EVENT_ACTION</code> type defines a number of things the system can do on a triggering event:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>make a system call, if the <code><em>system_call</em></code> attribute is set, e.g. to cause a notification to be sent or write to a system logger;</p>
+</li>
+<li>
+<p>displaying a message to the user, specified in the <code><em>message</em></code> attribute;</p>
+</li>
+<li>
+<p>optionally indicate a specific lifecycle state for the Plan Item (a Task or Task Group) receiving the event, specified by <code><em>receiver_thread_next_state</em></code>;</p>
+</li>
+<li>
+<p>optionally indicate where execution should resume in the plan, for example at an earlier Task, via the <code><em>resume_action</em></code> attribute, whose value is an instance of <code>RESUME_ACTION</code>, defining the <code><em>resume_type</em></code> and <code><em>resume_location</em></code> attributes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph tbd">
+<p>TBD: more on <code><em>receiver_thread_next_state</em></code></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.4.3. Task Wait State</h4>
+<div class="paragraph">
+<p>The principal way to wait for events is via the <code>TASK_WAIT</code> attachable to any <code>PLAN_ITEM</code> via the <code><em>wait_spec</em></code> attribute. The <code>TASK_WAIT</code> class represents a wait state that defines when a Task should enter the <code>available</code> state from the <code>planned</code> state in terms of Events of the types described above. Its <code><em>events</em></code> attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional <code><em>event_relation</em></code> attribute allows the Task to be specified as commencing <code>before</code>, <code>with</code> or <code>after</code> the trigger event (such as a meal).</p>
 </div>
 <div class="paragraph">
-<p>This following figure illustrates typical uses of <code>TASK_WAIT</code>.</p>
+<p>The following figure illustrates typical uses of <code>TASK_WAIT</code>.</p>
 </div>
 <div id="task_wait_state" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5720,38 +5807,10 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="title">Figure 27. Task wait state</div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.4.3. Event Wait State</h4>
-<div class="paragraph">
-<p>The second way to intercept events and subsequently perform actions is via an instance of <code>EVENT_WAIT&lt;T&gt;</code>, which is a generic class from which concrete types may be constructed based on the type of Event to be listened for. The <code>EVENT_WAIT&lt;T&gt;</code> class has a <code><em>success_action</em></code> attribute of type <code>EVENT_ACTION</code>, which enables any of the following actions to occur on receipt of an event:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>making system calls, if the <code><em>system_call</em></code> attribute is set, e.g. to cause a notification to be sent or write to a system logger;</p>
-</li>
-<li>
-<p>displaying a message to the user, specified in the <code><em>message</em></code> attribute;</p>
-</li>
-<li>
-<p>optionally indicates where execution should resume in the plan, for example at an earlier Task, via the <code><em>resume_action</em></code> attribute, whose value is an instance of <code>RESUME_ACTION</code>, defining the <code><em>resume_type</em></code> and <code><em>resume_location</em></code> attributes.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For non-deterministic Events, the <code>EVENT_WAIT.<em>timeout</em></code> attribute may be set, which enables timeout actions to be specified.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_timers"><a class="anchor" href="#_timers"></a>6.4.4. Timers</h4>
-<div class="paragraph">
-<p>The class <code>TIMER_WAIT</code> is based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code>, and provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance). Timeouts can be used on the <code>TASK_WAIT</code> wait state as well as any <code>EVENT_WAIT</code> wait state, including <code>CALLBACK_WAIT</code>. A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
-</div>
 <div class="sect4">
-<h5 id="_task_wait_state_timeout"><a class="anchor" href="#_task_wait_state_timeout"></a>6.4.4.1. Task Wait State Timeout</h5>
+<h5 id="_time_out"><a class="anchor" href="#_time_out"></a>6.4.3.1. Time-out</h5>
 <div class="paragraph">
-<p>A timeout can be set on a Task Wait state by setting <code>TASK_WAIT.<em>timeout</em></code> with a <code>TIMER_WAIT</code> instance, which is activated when the Task Wait state is reached in the execution. The <code><em>success_action</em></code> of the <code>TIMER_WAIT</code> indicates what to do if the timer fires, which will occur if none of the Task Wait state events are received. The event attached to <code>TIMER_WAIT.<em>event</em></code> indicates the duration of the timer. The following diagram illustrates. If a Task Wait state event is received, this cancels the timeout, if set.</p>
+<p>A timeout can be set on a Task Wait state by setting <code>TASK_WAIT.<em>timeout</em></code> with a <code>TIMER_WAIT</code> instance, which is activated when the Task Wait state is reached in the execution. This is useful in cases where Event receipt is not certain. The <code>TIMER_WAIT</code> generates a timer event if no other event is received; conversely, receipt of any other event cancels the timeout timer. The <code>TIMER_EVENT</code> attached to <code>TIMER_WAIT.<em>event</em></code> indicates the duration of the timer. The <code><em>success_action</em></code> of the <code>TIMER_WAIT</code> indicates actions to execute if the timer fires. The following Plan fragment illustrates.</p>
 </div>
 <div id="timing_patterns_1" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5761,9 +5820,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_reminders"><a class="anchor" href="#_reminders"></a>6.4.4.2. Reminders</h5>
+<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.4.3.2. Reminder</h5>
 <div class="paragraph">
-<p>Timers can also be used to generate reminder events. When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. This is illustrated below.</p>
+<p>When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. This is illustrated below.</p>
 </div>
 <div id="task_wait_state_reminder" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5772,39 +5831,57 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 29. Task wait state with reminder</div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_lifecycle_transition_override"><a class="anchor" href="#_lifecycle_transition_override"></a>6.4.3.3. Lifecycle Transition Override</h5>
+<div class="paragraph">
+<p>In some cases, it may be necessary to progress a Task to a state other than <code>available</code>. This may be dine by specifying <code>TASK_WAIT.<em>next_state</em></code>.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_callbacks"><a class="anchor" href="#_callbacks"></a>6.4.5. Callbacks</h4>
+<h4 id="_callbacks"><a class="anchor" href="#_callbacks"></a>6.4.4. Callbacks</h4>
 <div class="paragraph">
-<p>A specialisation of <code>EVENT_WAIT&lt;CALLBACK_NOTIFICATION&gt;</code> is <code>CALLBACK_WAIT</code>, used to handle notifications of dispatched Tasks that complete, as well as timeouts if no response is received. This class adds one attribute:</p>
+<p>A specialisation of <code>EVENT_WAIT&lt;CALLBACK_NOTIFICATION&gt;</code> is <code>CALLBACK_WAIT</code>, used to handle notifications of Dispatchable Tasks that return, as well as timeouts if no response is received. This class adds two attributes to <code>EVENT_WAIT&lt;T&gt;</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code><em>fail_action</em></code>: enables a different <code>EVENT_ACTION</code> to be specified on receipt of a callback with a 'fail' status;</p>
 </li>
+<li>
+<p><code><em>custom_actions</em></code>: enables a custom set of <code>EVENT_ACTIONs</code> to be specified, in the form of a Hash table, with a specific Event Action for each key; the keys are assumed to represent specific return statuses of the remote Task.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A Callback Wait can thus have three distinct Event responders: <code><em>success_action</em></code>, <code><em>fail_action</em></code> and <code><em>timeout</em></code>. The following diagram shows the defnition structure for a dispatchable Task Action with a callback.</p>
+<p>A Callback Wait thus has three standard Event responders: <code><em>success_action</em></code>, <code><em>fail_action</em></code> and <code><em>timeout</em></code>, and additionally any number of customer responders. The following diagram shows the definition structure for a dispatchable Task Action with a standard callback.</p>
 </div>
 <div id="timing_callback_pattern_1" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_1.svg" alt="uc task callback 1">
 </div>
-<div class="title">Figure 30. Callback example</div>
+<div class="title">Figure 30. Standard callback example</div>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the structure of a custom callback.</p>
+</div>
+<div id="timing_callback_pattern_2" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/uc_task_callback_2.svg" alt="uc task callback 2">
+</div>
+<div class="title">Figure 31. Custom callback example</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_appointments"><a class="anchor" href="#_appointments"></a>6.4.6. Appointments</h4>
+<h4 id="_appointments"><a class="anchor" href="#_appointments"></a>6.4.5. Appointments</h4>
 <div class="paragraph tbd">
 <p>TBD</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_8"><a class="anchor" href="#_class_descriptions_8"></a>6.4.7. Class Descriptions</h4>
+<h4 id="_class_descriptions_8"><a class="anchor" href="#_class_descriptions_8"></a>6.4.6. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_task_wait_class"><a class="anchor" href="#_task_wait_class"></a>6.4.7.1. TASK_WAIT Class</h5>
+<h5 id="_task_wait_class"><a class="anchor" href="#_task_wait_class"></a>6.4.6.1. TASK_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5874,11 +5951,18 @@ The following UML diagram illustrates.</p>
 <p>Timeout handler to use if no other Event is received within a certain time.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Override for next state to enter on receipt of any Event in <code>_events</code>. Default processing is to enter the <code>available</code> state.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.4.7.2. PLAN_EVENT&lt;&gt; Class</h5>
+<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.4.6.2. PLAN_EVENT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5914,7 +5998,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.4.7.3. DELAY_EVENT Class</h5>
+<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.4.6.3. DELAY_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5959,7 +6043,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.4.7.4. MANUAL_NOTIFICATION Class</h5>
+<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.4.6.4. MANUAL_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5997,7 +6081,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.4.7.5. SYSTEM_NOTIFICATION Class</h5>
+<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.4.6.5. SYSTEM_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6049,7 +6133,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.4.7.6. CALLBACK_NOTIFICATION Class</h5>
+<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.4.6.6. CALLBACK_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6094,7 +6178,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.4.7.7. STATE_TRIGGER Class</h5>
+<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.4.6.7. STATE_TRIGGER Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6132,7 +6216,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.4.7.8. TIMER_EVENT Class</h5>
+<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.4.6.8. TIMER_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6177,7 +6261,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.4.7.9. CALENDAR_EVENT Class</h5>
+<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.4.6.9. CALENDAR_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6222,7 +6306,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.4.7.10. TIMELINE_MOMENT Class</h5>
+<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.4.6.10. TIMELINE_MOMENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6273,7 +6357,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.4.7.11. TASK_TRANSITION Class</h5>
+<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.4.6.11. TASK_TRANSITION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6318,7 +6402,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.4.7.12. EVENT_WAIT&lt;P&gt; Class</h5>
+<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.4.6.12. EVENT_WAIT&lt;P&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6366,7 +6450,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.4.7.13. TIMER_WAIT Class</h5>
+<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.4.6.13. TIMER_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6405,7 +6489,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.4.7.14. REMINDER Class</h5>
+<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.4.6.14. REMINDER Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6427,11 +6511,23 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TIMER_WAIT</code></p></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeats</strong>: <code>Integer</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Default value of 0 means no repeats, i.e. one reminder Event is generated. A negative value means repeat forever.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.4.7.15. CALLBACK_WAIT&lt;&gt; Class</h5>
+<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.4.6.15. CALLBACK_WAIT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6466,6 +6562,13 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>custom_actions</strong>: <code>Hash&lt;String,EVENT_ACTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>A keyed list of specific actions to perform based on custom key values, which are understood as types of remote event more specific than just 'success' or 'fail'.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code>CALLBACK_NOTIFICATION</code></p></td>
@@ -6477,7 +6580,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.4.7.16. EVENT_ACTION Class</h5>
+<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.4.6.16. EVENT_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6492,7 +6595,26 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Action(s) to perform on receipt of an event with a particular status. If <code><em>resume_action</em></code> is set, it dictates where execution resumes; if not, the default is to resume at the next Task in normal execution flow.</p>
+<p>Action(s) to perform on receipt of an event with a particular status. Four possible things can be specified:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a message;</p>
+</li>
+<li>
+<p>a system call;</p>
+</li>
+<li>
+<p>the next state of the Task or other resume location (<code>_receiver_thread_next_state</code>);</p>
+</li>
+<li>
+<p>a specific resume action indicating to resume in a specific location in the Plan.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If <code><em>resume_action</em></code> is set, it dictates where execution resumes; if not, the default is to resume at the next Task in normal execution flow.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6525,17 +6647,17 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_thread_next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the <em>enclosing Task Group</em> of the original dispatching Task.</p>
+<p>Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the <em>enclosing _Task Group</em> of the original dispatching Task.</p>
 </div>
 <div class="paragraph">
-<p>If not set, default processing will be performed.</p>
+<p>If not set, default processing will be performed, which for a Task is to enter the <code>available</code> state.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.4.7.17. RESUME_ACTION Class</h5>
+<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.4.6.17. RESUME_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6629,7 +6751,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
 </div>
-<div class="title">Figure 31. Task lifecycle state machine</div>
+<div class="title">Figure 32. Task lifecycle state machine</div>
 </div>
 <div class="paragraph">
 <p>A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the <code>abandoned</code> state is entered, it does not.</p>
@@ -7139,7 +7261,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 32. proc.task_planning.materialised package</div>
+<div class="title">Figure 33. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -7479,7 +7601,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 33. proc.task_planning.history package</div>
+<div class="title">Figure 34. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -7805,7 +7927,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 34. proc.task_planning.service package</div>
+<div class="title">Figure 35. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -8032,7 +8154,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 35. Runtime planning structures</div>
+<div class="title">Figure 36. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>
