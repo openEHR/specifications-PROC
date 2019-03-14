@@ -10,7 +10,7 @@ image::{uml_diagrams_uri}/PROC-task_planning.definition-structure.svg[id=proc_de
 
 The remaining classes are shown in various specialised views below.
 
-=== Plan Structure
+== Plan Structure
 
 The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: `_plans_`, which references all Task Plans, and `_top_level_plans_`, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.
 
@@ -32,39 +32,22 @@ Plan internal structure is specified by the `_definition_` attribute of a `TASK_
 `PLAN_ITEM` has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above in the 
 <<_time_and_wait_states>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
 
+=== Repetition
+
 The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
 
-=== Task Group Structure
+=== References to Clinical Quality Artefacts
 
-The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
+The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
 
-[.tbd]
-TBD: other execution rules.
-
-The following illustrates a simple Task Plan structure including nested Task Groups.
-
-[.text-center]
-.Task grouping
-image::{diagrams_uri}/task_grouping.svg[id=task_grouping, align="center", width=75%]
-
-The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.
-
-=== Tasks
-
-Tasks are represented by the `Task` class whose two concrete sub-types distinguish the two basic flavours of Task, namely _dispatchable_, meaning 'dispatched for execution to another performer', and _performable_, meaning 'performed by the current performer'. `TASK` is a generic (i.e. templated) type, whose generic parameter is constrained to the type `TASK_ACTION`, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.
-
-The `DISPATCHABLE_TASK` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is described below.
-
-=== Data-sets and Application Interaction
-
-In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc. 
-
-A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A _review data-set_ may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute `PLAN_ITEM._review_dataset_`, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.
-
-Related to this is the `_capture_dataset_` attribute of the `PERFORMABLE_TASK` type, which enables the association of a dataset or form for inputting data with a performable Task.
-
-[.tbd]
-TBD: describe how this relates to the data set(s) of `PERFORMABLE_ACTION._prototype_` .
+* In `WORK_PLAN`:
+** `_care_plan_`: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
+** `_care_pathway_`: references to a care pathway from which this Task Plan was derived, if any;
+* In `TASK_PLAN`:
+** `_guideline_`: reference to a published guideline from which this particular Task Plan was derived, if any;
+** `_best_practice_ref_`: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;
+** `_order_set_`: the identifier of an Order Set which this Task Plan uses, if any;
+** `_workflow_id_`: an identifier shared among orders (`INSTRUCTIONs` and `ACTIONs`) from the Order Set instance used in this Task Plan, if any.
 
 === Class Descriptions
 
@@ -82,25 +65,95 @@ include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/plan_item.adoc[leveloffset=+1]
 
+include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
+
+== Task Group Structure
+
+The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
+
+[.tbd]
+TBD: other execution rules.
+
+The following illustrates a simple Task Plan structure including nested Task Groups.
+
+[.text-center]
+.Task grouping
+image::{diagrams_uri}/task_grouping.svg[id=task_grouping, align="center", width=75%]
+
+The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.
+
+=== Training Level
+
+One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks. 
+
+To enable a single Plan to be used in both ways, the concept of 'training level' is included in the model, on the `TASK_GROUP` class. This enables any Group of Tasks to be marked as having a specific training level, where a higher number corresponds to less experience. At execution time, the training level of the allocated performer can be obtained, and then used in comparison to the training level indicated on each Group (including the top-level Group of the whole Plan). If the user training level is higher, then the Group may be shown only as a single step (using its `_description_`, inherited from `PLAN_ITEM`); otherwise it may be shown as the set of sub-steps. This provides a simple way for the same Plan to be presented in different forms matching different performer experience levels.
+
+The default value of `_training_level_` is 0.
+
+=== Class Descriptions
+
 include::{uml_export_dir}/classes/task_group.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]
 
+== General Task Semantics
+
+Tasks are represented by the `TASK` class whose two concrete sub-types distinguish the two basic flavours of Task, namely _dispatchable_ and _performable_. `TASK` is a generic (i.e. templated) class, whose generic parameter is constrained to the type `TASK_ACTION`, the latter of whose subtypes defined the particular kinds of Tasks available. 
+
+The `DISPATCHABLE_TASK<T>` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is <<_callbacks,described below>>.
+
+There are some key differences between the two kinds of Task as shown in the following table.
+
+[cols="1,3,3", options="header"]
+|===
+|Task Type      |Description                                                                   |Lifecycle state
+
+|_Performable_  |Task performed by the current performer.                                      |Advanced by actions of performer (real world actor)
+|_Dispatchable_ |A Task whose work is dispatched for execution to another performer or system. |_wait_ = `True`: Advanced by receipt of callback notifications +
+                                                                                                _wait_ = `False`: Automatically advanced to `completed`
+|===
+
+=== Task Lifecycle
+
+At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer. The lifecycle does not appear in the definition model `TASK` class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <<Materialised Model,described below>>.
+
+It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.
+
+The lifecycle only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR `ACTION` or other Entry objects. The Task lifecycle states are as follows:
+
+* `initial`: initial pseudo-state, not used in operation;
+* `planned`: defined, but not yet available for execution;
+* `available`: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;
+* `cancelled` (T): cancelled prior or during execution as not needed for success of the Plan;
+* `completed` (T): performed to completion;
+* `abandoned` (T): execution was stopped before or after commencement due to completion being impossible.;
+* `underway`: indicates that a Task execution has been commenced;
+* `suspended`: indicates that a Task execution has been suspended.
+
+In the above, the terminal states are marked with '(T)'. The state machine is shown below.
+
+[.text-center]
+.Task lifecycle state machine
+image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
+
+A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the `abandoned` state is entered, it does not.
+
+The state machine is primarily designed to allow a stateless view of the actual execution state of a Task. That is to say, the standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, but not interim states during execution. The pathways through the states `underway` and `suspended` are provided to represent in-execution states, which are needed for two cases:
+
+* longer-running atomic Tasks;
+* dispatchable Tasks that are blocked waiting on another performer.
+
+It may be that one or more Tasks do not evaluate to `available` at runtime when the principal performer wants to treat them as being available. This may happen if the performer wants to execute a Task earlier than scheduled, or decides that an unmet precondition or wait condition does not matter (for example, they may know that it is met, but the Task Plan application may not yet know). Accordingly, a user override can be used, represented by the `_override_` transition from `planned` => `available`.
+
+=== Class Descriptions
+
 include::{uml_export_dir}/classes/task.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/dispatchable_task.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/performable_task.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/capture_dataset_spec.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/review_dataset_spec.adoc[leveloffset=+1]
 
 == Task Actions
 
@@ -254,6 +307,31 @@ include::{uml_export_dir}/classes/system_request.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/linked_plan.adoc[leveloffset=+1]
 
+== Data-sets and Application Interaction
+
+In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.
+
+The following UML diagram shows the data-set related classes in detail.
+
+[.text-center]
+.proc.task_planning.definition model overview
+image::{uml_diagrams_uri}/PROC-task_planning.definition-dataset.svg[id=proc_definition_dataset, align="center"]
+
+A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A _review data-set_ may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute `PLAN_ITEM._review_dataset_`, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.
+
+Related to this is the `_capture_dataset_` attribute of the `PERFORMABLE_TASK` type, which enables the association of a dataset or form for inputting data with a performable Task.
+
+[.tbd]
+TBD: describe how this relates to the data set(s) of `PERFORMABLE_ACTION._prototype_` .
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/capture_dataset_spec.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/review_dataset_spec.adoc[leveloffset=+1]
+
 == Conditional Structures
 
 More advanced applications of Task Plans include four conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of `TASK_GROUP` and are illustrated in the following UML model. 
@@ -339,39 +417,39 @@ The various Event types are shown below, with their TP-VML representations.
 |Type   |TP-VML |Description
 
 |`TIMER_EVENT`
-a|image::{diagrams_uri}/event_timer.svg[id=event_timer, align="center"]
+a|image::{diagrams_uri}/event_timer.svg[id=event_timer]
 |Event generated by the expiry of a Timer that was launched at some earlier time.
 
 |`TIMELINE_MOMENT`
-a|image::{diagrams_uri}/event_timeline_moment.svg[id=event_timeline_moment, align="center"]
+a|image::{diagrams_uri}/event_timeline_moment.svg[id=event_timeline_moment]
 |Event generated by system clock reaching a fixed time-point on the Work Plan timeline, specified by an offset from the Work Plan '0-point' plus an optional fixed time in the day. The latter enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as `P2D`, `13:30:00` can thus be used to state a time like '13:30 on day 2 of the plan'.
 
 |`CALENDAR_EVENT`
-a|image::{diagrams_uri}/event_calendar_event.svg[id=event_calendar_event, align="center"]
+a|image::{diagrams_uri}/event_calendar_event.svg[id=event_calendar_event]
 |Event generated by system clock reaching an event in the global Plan calendar, which is specified in absolute time, independent of the Work Plan timeline.
 
 |`TASK_TRANSITION`
-a|image::{diagrams_uri}/event_task_transition.svg[id=event_task_transition, align="center"]
+a|image::{diagrams_uri}/event_task_transition.svg[id=event_task_transition]
 |Event generated by the lifecycle transition of a Task, such as transition to `cancelled` or `done`.
 
 |`STATE_TRIGGER`
-a|image::{diagrams_uri}/event_state_trigger.svg[id=event_state_trigger, align="center"]
+a|image::{diagrams_uri}/event_state_trigger.svg[id=event_state_trigger]
 |An event generated by a change in a tracked variable, or a Boolean expression based on tracked variables, e.g. a value reaching a threshold.
 
 |`MANUAL_NOTIFICATION`
-a|image::{diagrams_uri}/event_manual_notification.svg[id=event_manual_notification, align="center"]
+a|image::{diagrams_uri}/event_manual_notification.svg[id=event_manual_notification]
 |An event that is manually notified to the Plan execution engine by a user.
 
 |`SYSTEM_NOTIFICATION`
-a|image::{diagrams_uri}/event_system_notification.svg[id=event_system_notification, align="center"]
+a|image::{diagrams_uri}/event_system_notification.svg[id=event_system_notification]
 |An event that is notified to the Plan execution engine by a system.
 
 |`DELAY_EVENT`
-a|image::{diagrams_uri}/event_delay.svg[id=event_delay, align="center"]
+a|image::{diagrams_uri}/event_delay.svg[id=event_delay]
 |A special kind of event is used to represent any other event with an added delay.
 
 |`CALLBACK_NOTIFICATION`
-a|image::{diagrams_uri}/event_callback.svg[id=event_callback, align="center"]
+a|image::{diagrams_uri}/event_callback.svg[id=event_callback]
 |A callback notification connected to a dispatch for a Dispatchable Task (Hand-off, External Request, System Request).
 
 |===
@@ -490,63 +568,6 @@ include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
-
-== Task Lifecycle
-
-At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer. The lifecycle does not appear in the definition model `TASK` class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <<Materialised Model,described below>>.
-
-It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.
-
-The lifecycle is only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR `ACTION` or other Entry objects. The Task lifecycle states are as follows:
-
-* `initial`: initial pseudo-state, not used in operation;
-* `planned`: defined, but not yet available for execution;
-* `available`: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;
-* `cancelled` (T): cancelled prior or during execution as not needed for success of the Plan;
-* `completed` (T): performed to completion;
-* `abandoned` (T): execution was stopped before or after commencement due to completion being impossible.;
-* `underway`: indicates that a Task execution has been commenced;
-* `suspended`: indicates that a Task execution has been suspended.
-
-In the above, the terminal states are marked with '(T)'. The state machine is shown below.
-
-[.text-center]
-.Task lifecycle state machine
-image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
-
-A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the `abandoned` state is entered, it does not.
-
-The state machine is primarily designed to allow a stateless view of the actual execution state of a Task. That is to say, the standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, but not interim states during execution. The pathways through the states `underway` and `suspended` are provided to represent in-execution states, which are needed for two cases:
-
-* longer-running atomic Tasks;
-* dispatchable Tasks that are blocked waiting on another performer.
-
-It may be that one or more Tasks do not evaluate to `available` at runtime when the principal performer wants to treat them as being available. This may happen if the performer wants to execute a Task earlier than scheduled, or decides that an unmet precondition or wait condition does not matter (for example, they may know that it is met, but the Task Plan application may not yet know). Accordingly, a user override can be used, represented by the `_override_` transition from `planned` => `available`.
-
-== Repetition
-
-Repetition may be specified in the model via the attribute `PLAN_ITEM._repeat_spec_`. This is intended to be used to designate sub-sections in a Plan as being repeatable rather than single Tasks, since the main point of a Task Plan is precisely to define individual Tasks in time for execution and sign-off.
-
-== Training Level
-
-One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks. 
-
-To enable a single Plan to be used in both ways, the concept of 'training level' is included in the model, on the `TASK_GROUP` class. This enables any Group of Tasks to be marked as having a specific training level, where a higher number corresponds to less experience. At execution time, the training level of the allocated performer can be obtained, and then used in comparison to the training level indicated on each Group (including the top-level Group of the whole Plan). If the user training level is higher, then the Group may be shown only as a single step (using its `_description_`, inherited from `PLAN_ITEM`); otherwise it may be shown as the set of sub-steps. This provides a simple way for the same Plan to be presented in different forms matching different performer experience levels.
-
-The default value of `_training_level_` is 0.
-
-== References to Clinical Quality Artefacts
-
-The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
-
-* In `WORK_PLAN`:
-** `_care_plan_`: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
-** `_care_pathway_`: references to a care pathway from which this Task Plan was derived, if any;
-* In `TASK_PLAN`:
-** `_guideline_`: reference to a published guideline from which this particular Task Plan was derived, if any;
-** `_best_practice_ref_`: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;
-** `_order_set_`: the identifier of an Order Set which this Task Plan uses, if any;
-** `_workflow_id_`: an identifier shared among orders (`INSTRUCTIONs` and `ACTIONs`) from the Order Set instance used in this Task Plan, if any.
 
 == Cost Tracking
 

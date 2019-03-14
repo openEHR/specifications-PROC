@@ -181,136 +181,157 @@
 </li>
 <li><a href="#_definition_model">6. Definition Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview">6.1. Overview</a>
+<li><a href="#_overview">6.1. Overview</a></li>
+<li><a href="#_plan_structure">6.2. Plan Structure</a>
 <ul class="sectlevel3">
-<li><a href="#_plan_structure">6.1.1. Plan Structure</a></li>
-<li><a href="#_task_group_structure">6.1.2. Task Group Structure</a></li>
-<li><a href="#_tasks">6.1.3. Tasks</a></li>
-<li><a href="#_data_sets_and_application_interaction">6.1.4. Data-sets and Application Interaction</a></li>
-<li><a href="#_class_descriptions_5">6.1.5. Class Descriptions</a>
+<li><a href="#_repetition">6.2.1. Repetition</a></li>
+<li><a href="#_references_to_clinical_quality_artefacts">6.2.2. References to Clinical Quality Artefacts</a></li>
+<li><a href="#_class_descriptions_5">6.2.3. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_work_plan_class">6.1.5.1. WORK_PLAN Class</a></li>
-<li><a href="#_plan_calendar_class">6.1.5.2. PLAN_CALENDAR Class</a></li>
-<li><a href="#_plan_timeline_class">6.1.5.3. PLAN_TIMELINE Class</a></li>
-<li><a href="#_calendar_entry_class">6.1.5.4. CALENDAR_ENTRY Class</a></li>
-<li><a href="#_task_plan_class">6.1.5.5. TASK_PLAN Class</a></li>
-<li><a href="#_task_participation_class">6.1.5.6. TASK_PARTICIPATION Class</a></li>
-<li><a href="#_plan_item_class">6.1.5.7. PLAN_ITEM Class</a></li>
-<li><a href="#_task_group_class">6.1.5.8. TASK_GROUP Class</a></li>
-<li><a href="#_execution_type_enumeration_2">6.1.5.9. EXECUTION_TYPE Enumeration</a></li>
-<li><a href="#_execution_rule_class">6.1.5.10. EXECUTION_RULE Class</a></li>
-<li><a href="#_task_ta_class">6.1.5.11. TASK&lt;TA&gt; Class</a></li>
-<li><a href="#_dispatchable_task_ta_class">6.1.5.12. DISPATCHABLE_TASK&lt;TA&gt; Class</a></li>
-<li><a href="#_performable_task_ta_class">6.1.5.13. PERFORMABLE_TASK&lt;TA&gt; Class</a></li>
-<li><a href="#_task_repeat_class">6.1.5.14. TASK_REPEAT Class</a></li>
-<li><a href="#_dataset_spec_class">6.1.5.15. DATASET_SPEC Class</a></li>
-<li><a href="#_capture_dataset_spec_class">6.1.5.16. CAPTURE_DATASET_SPEC Class</a></li>
-<li><a href="#_review_dataset_spec_class">6.1.5.17. REVIEW_DATASET_SPEC Class</a></li>
+<li><a href="#_work_plan_class">6.2.3.1. WORK_PLAN Class</a></li>
+<li><a href="#_plan_calendar_class">6.2.3.2. PLAN_CALENDAR Class</a></li>
+<li><a href="#_plan_timeline_class">6.2.3.3. PLAN_TIMELINE Class</a></li>
+<li><a href="#_calendar_entry_class">6.2.3.4. CALENDAR_ENTRY Class</a></li>
+<li><a href="#_task_plan_class">6.2.3.5. TASK_PLAN Class</a></li>
+<li><a href="#_task_participation_class">6.2.3.6. TASK_PARTICIPATION Class</a></li>
+<li><a href="#_plan_item_class">6.2.3.7. PLAN_ITEM Class</a></li>
+<li><a href="#_task_repeat_class">6.2.3.8. TASK_REPEAT Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_task_actions">6.2. Task Actions</a>
+<li><a href="#_task_group_structure">6.3. Task Group Structure</a>
 <ul class="sectlevel3">
-<li><a href="#_performable_actions">6.2.1. Performable Actions</a>
+<li><a href="#_training_level">6.3.1. Training Level</a></li>
+<li><a href="#_class_descriptions_6">6.3.2. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_sub_plans_and_re_use">6.2.1.1. Sub-plans and Re-use</a></li>
-<li><a href="#_inline_defined_actions">6.2.1.2. Inline Defined Actions</a></li>
-</ul>
-</li>
-<li><a href="#_dispatchable_actions">6.2.2. Dispatchable Actions</a>
-<ul class="sectlevel4">
-<li><a href="#_hand_offs_and_coordinated_teamwork">6.2.2.1. Hand-offs and Coordinated Teamwork</a></li>
-<li><a href="#_system_request">6.2.2.2. System Request</a></li>
-<li><a href="#_external_request">6.2.2.3. External Request</a></li>
-</ul>
-</li>
-<li><a href="#_class_descriptions_6">6.2.3. Class Descriptions</a>
-<ul class="sectlevel4">
-<li><a href="#_task_action_class">6.2.3.1. TASK_ACTION Class</a></li>
-<li><a href="#_subject_precondition_class">6.2.3.2. SUBJECT_PRECONDITION Class</a></li>
-<li><a href="#_performable_action_class">6.2.3.3. PERFORMABLE_ACTION Class</a></li>
-<li><a href="#_resource_participation_class">6.2.3.4. RESOURCE_PARTICIPATION Class</a></li>
-<li><a href="#_defined_action_class">6.2.3.5. DEFINED_ACTION Class</a></li>
-<li><a href="#_sub_plan_class">6.2.3.6. SUB_PLAN Class</a></li>
-<li><a href="#_dispatchable_action_class">6.2.3.7. DISPATCHABLE_ACTION Class</a></li>
-<li><a href="#_hand_off_class">6.2.3.8. HAND_OFF Class</a></li>
-<li><a href="#_external_request_class">6.2.3.9. EXTERNAL_REQUEST Class</a></li>
-<li><a href="#_system_request_class">6.2.3.10. SYSTEM_REQUEST Class</a></li>
-<li><a href="#_linked_plan_class">6.2.3.11. LINKED_PLAN Class</a></li>
+<li><a href="#_task_group_class">6.3.2.1. TASK_GROUP Class</a></li>
+<li><a href="#_execution_type_enumeration_2">6.3.2.2. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_execution_rule_class">6.3.2.3. EXECUTION_RULE Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_conditional_structures_2">6.3. Conditional Structures</a>
+<li><a href="#_general_task_semantics">6.4. General Task Semantics</a>
 <ul class="sectlevel3">
-<li><a href="#_class_descriptions_7">6.3.1. Class Descriptions</a>
+<li><a href="#_task_lifecycle_2">6.4.1. Task Lifecycle</a></li>
+<li><a href="#_class_descriptions_7">6.4.2. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_choice_group_class">6.3.1.1. CHOICE_GROUP Class</a></li>
-<li><a href="#_override_type_enumeration">6.3.1.2. OVERRIDE_TYPE Enumeration</a></li>
-<li><a href="#_choice_branch_class">6.3.1.3. CHOICE_BRANCH Class</a></li>
-<li><a href="#_condition_group_class">6.3.1.4. CONDITION_GROUP Class</a></li>
-<li><a href="#_condition_branch_class">6.3.1.5. CONDITION_BRANCH Class</a></li>
-<li><a href="#_decision_group_class">6.3.1.6. DECISION_GROUP Class</a></li>
-<li><a href="#_decision_branch_class">6.3.1.7. DECISION_BRANCH Class</a></li>
-<li><a href="#_blocking_group_class">6.3.1.8. BLOCKING_GROUP Class</a></li>
-<li><a href="#_blocking_branch_class">6.3.1.9. BLOCKING_BRANCH Class</a></li>
-<li><a href="#_adhoc_group_class">6.3.1.10. ADHOC_GROUP Class</a></li>
-<li><a href="#_adhoc_branch_class">6.3.1.11. ADHOC_BRANCH Class</a></li>
-<li><a href="#_event_group_class">6.3.1.12. EVENT_GROUP Class</a></li>
-<li><a href="#_event_branch_class">6.3.1.13. EVENT_BRANCH Class</a></li>
+<li><a href="#_task_ta_class">6.4.2.1. TASK&lt;TA&gt; Class</a></li>
+<li><a href="#_dispatchable_task_ta_class">6.4.2.2. DISPATCHABLE_TASK&lt;TA&gt; Class</a></li>
+<li><a href="#_performable_task_ta_class">6.4.2.3. PERFORMABLE_TASK&lt;TA&gt; Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_events">6.4. Events</a>
+<li><a href="#_task_actions">6.5. Task Actions</a>
 <ul class="sectlevel3">
-<li><a href="#_event_types">6.4.1. Event Types</a></li>
-<li><a href="#_general_facilities">6.4.2. General Facilities</a>
+<li><a href="#_performable_actions">6.5.1. Performable Actions</a>
 <ul class="sectlevel4">
-<li><a href="#_timers">6.4.2.1. Timers</a></li>
-<li><a href="#_event_wait_state">6.4.2.2. Event Wait State</a></li>
+<li><a href="#_sub_plans_and_re_use">6.5.1.1. Sub-plans and Re-use</a></li>
+<li><a href="#_inline_defined_actions">6.5.1.2. Inline Defined Actions</a></li>
 </ul>
 </li>
-<li><a href="#_task_wait_state">6.4.3. Task Wait State</a>
+<li><a href="#_dispatchable_actions">6.5.2. Dispatchable Actions</a>
 <ul class="sectlevel4">
-<li><a href="#_time_out">6.4.3.1. Time-out</a></li>
-<li><a href="#_reminder">6.4.3.2. Reminder</a></li>
-<li><a href="#_lifecycle_transition_override">6.4.3.3. Lifecycle Transition Override</a></li>
+<li><a href="#_hand_offs_and_coordinated_teamwork">6.5.2.1. Hand-offs and Coordinated Teamwork</a></li>
+<li><a href="#_system_request">6.5.2.2. System Request</a></li>
+<li><a href="#_external_request">6.5.2.3. External Request</a></li>
 </ul>
 </li>
-<li><a href="#_callbacks">6.4.4. Callbacks</a></li>
-<li><a href="#_appointments">6.4.5. Appointments</a></li>
-<li><a href="#_class_descriptions_8">6.4.6. Class Descriptions</a>
+<li><a href="#_class_descriptions_8">6.5.3. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_task_wait_class">6.4.6.1. TASK_WAIT Class</a></li>
-<li><a href="#_plan_event_class">6.4.6.2. PLAN_EVENT&lt;&gt; Class</a></li>
-<li><a href="#_delay_event_class">6.4.6.3. DELAY_EVENT Class</a></li>
-<li><a href="#_manual_notification_class">6.4.6.4. MANUAL_NOTIFICATION Class</a></li>
-<li><a href="#_system_notification_class">6.4.6.5. SYSTEM_NOTIFICATION Class</a></li>
-<li><a href="#_callback_notification_class">6.4.6.6. CALLBACK_NOTIFICATION Class</a></li>
-<li><a href="#_state_trigger_class">6.4.6.7. STATE_TRIGGER Class</a></li>
-<li><a href="#_timer_event_class">6.4.6.8. TIMER_EVENT Class</a></li>
-<li><a href="#_calendar_event_class">6.4.6.9. CALENDAR_EVENT Class</a></li>
-<li><a href="#_timeline_moment_class">6.4.6.10. TIMELINE_MOMENT Class</a></li>
-<li><a href="#_task_transition_class">6.4.6.11. TASK_TRANSITION Class</a></li>
-<li><a href="#_event_wait_p_class">6.4.6.12. EVENT_WAIT&lt;P&gt; Class</a></li>
-<li><a href="#_timer_wait_class">6.4.6.13. TIMER_WAIT Class</a></li>
-<li><a href="#_reminder_class">6.4.6.14. REMINDER Class</a></li>
-<li><a href="#_callback_wait_class">6.4.6.15. CALLBACK_WAIT&lt;&gt; Class</a></li>
-<li><a href="#_event_action_class">6.4.6.16. EVENT_ACTION Class</a></li>
-<li><a href="#_resume_action_class">6.4.6.17. RESUME_ACTION Class</a></li>
+<li><a href="#_task_action_class">6.5.3.1. TASK_ACTION Class</a></li>
+<li><a href="#_subject_precondition_class">6.5.3.2. SUBJECT_PRECONDITION Class</a></li>
+<li><a href="#_performable_action_class">6.5.3.3. PERFORMABLE_ACTION Class</a></li>
+<li><a href="#_resource_participation_class">6.5.3.4. RESOURCE_PARTICIPATION Class</a></li>
+<li><a href="#_defined_action_class">6.5.3.5. DEFINED_ACTION Class</a></li>
+<li><a href="#_sub_plan_class">6.5.3.6. SUB_PLAN Class</a></li>
+<li><a href="#_dispatchable_action_class">6.5.3.7. DISPATCHABLE_ACTION Class</a></li>
+<li><a href="#_hand_off_class">6.5.3.8. HAND_OFF Class</a></li>
+<li><a href="#_external_request_class">6.5.3.9. EXTERNAL_REQUEST Class</a></li>
+<li><a href="#_system_request_class">6.5.3.10. SYSTEM_REQUEST Class</a></li>
+<li><a href="#_linked_plan_class">6.5.3.11. LINKED_PLAN Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_task_lifecycle_2">6.5. Task Lifecycle</a></li>
-<li><a href="#_repetition">6.6. Repetition</a></li>
-<li><a href="#_training_level">6.7. Training Level</a></li>
-<li><a href="#_references_to_clinical_quality_artefacts">6.8. References to Clinical Quality Artefacts</a></li>
+<li><a href="#_data_sets_and_application_interaction">6.6. Data-sets and Application Interaction</a>
+<ul class="sectlevel3">
+<li><a href="#_class_descriptions_9">6.6.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_dataset_spec_class">6.6.1.1. DATASET_SPEC Class</a></li>
+<li><a href="#_capture_dataset_spec_class">6.6.1.2. CAPTURE_DATASET_SPEC Class</a></li>
+<li><a href="#_review_dataset_spec_class">6.6.1.3. REVIEW_DATASET_SPEC Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_conditional_structures_2">6.7. Conditional Structures</a>
+<ul class="sectlevel3">
+<li><a href="#_class_descriptions_10">6.7.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_choice_group_class">6.7.1.1. CHOICE_GROUP Class</a></li>
+<li><a href="#_override_type_enumeration">6.7.1.2. OVERRIDE_TYPE Enumeration</a></li>
+<li><a href="#_choice_branch_class">6.7.1.3. CHOICE_BRANCH Class</a></li>
+<li><a href="#_condition_group_class">6.7.1.4. CONDITION_GROUP Class</a></li>
+<li><a href="#_condition_branch_class">6.7.1.5. CONDITION_BRANCH Class</a></li>
+<li><a href="#_decision_group_class">6.7.1.6. DECISION_GROUP Class</a></li>
+<li><a href="#_decision_branch_class">6.7.1.7. DECISION_BRANCH Class</a></li>
+<li><a href="#_blocking_group_class">6.7.1.8. BLOCKING_GROUP Class</a></li>
+<li><a href="#_blocking_branch_class">6.7.1.9. BLOCKING_BRANCH Class</a></li>
+<li><a href="#_adhoc_group_class">6.7.1.10. ADHOC_GROUP Class</a></li>
+<li><a href="#_adhoc_branch_class">6.7.1.11. ADHOC_BRANCH Class</a></li>
+<li><a href="#_event_group_class">6.7.1.12. EVENT_GROUP Class</a></li>
+<li><a href="#_event_branch_class">6.7.1.13. EVENT_BRANCH Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_events">6.8. Events</a>
+<ul class="sectlevel3">
+<li><a href="#_event_types">6.8.1. Event Types</a></li>
+<li><a href="#_general_facilities">6.8.2. General Facilities</a>
+<ul class="sectlevel4">
+<li><a href="#_timers">6.8.2.1. Timers</a></li>
+<li><a href="#_event_wait_state">6.8.2.2. Event Wait State</a></li>
+</ul>
+</li>
+<li><a href="#_task_wait_state">6.8.3. Task Wait State</a>
+<ul class="sectlevel4">
+<li><a href="#_time_out">6.8.3.1. Time-out</a></li>
+<li><a href="#_reminder">6.8.3.2. Reminder</a></li>
+<li><a href="#_lifecycle_transition_override">6.8.3.3. Lifecycle Transition Override</a></li>
+</ul>
+</li>
+<li><a href="#_callbacks">6.8.4. Callbacks</a></li>
+<li><a href="#_appointments">6.8.5. Appointments</a></li>
+<li><a href="#_class_descriptions_11">6.8.6. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_task_wait_class">6.8.6.1. TASK_WAIT Class</a></li>
+<li><a href="#_plan_event_class">6.8.6.2. PLAN_EVENT&lt;&gt; Class</a></li>
+<li><a href="#_delay_event_class">6.8.6.3. DELAY_EVENT Class</a></li>
+<li><a href="#_manual_notification_class">6.8.6.4. MANUAL_NOTIFICATION Class</a></li>
+<li><a href="#_system_notification_class">6.8.6.5. SYSTEM_NOTIFICATION Class</a></li>
+<li><a href="#_callback_notification_class">6.8.6.6. CALLBACK_NOTIFICATION Class</a></li>
+<li><a href="#_state_trigger_class">6.8.6.7. STATE_TRIGGER Class</a></li>
+<li><a href="#_timer_event_class">6.8.6.8. TIMER_EVENT Class</a></li>
+<li><a href="#_calendar_event_class">6.8.6.9. CALENDAR_EVENT Class</a></li>
+<li><a href="#_timeline_moment_class">6.8.6.10. TIMELINE_MOMENT Class</a></li>
+<li><a href="#_task_transition_class">6.8.6.11. TASK_TRANSITION Class</a></li>
+<li><a href="#_event_wait_p_class">6.8.6.12. EVENT_WAIT&lt;P&gt; Class</a></li>
+<li><a href="#_timer_wait_class">6.8.6.13. TIMER_WAIT Class</a></li>
+<li><a href="#_reminder_class">6.8.6.14. REMINDER Class</a></li>
+<li><a href="#_callback_wait_class">6.8.6.15. CALLBACK_WAIT&lt;&gt; Class</a></li>
+<li><a href="#_event_action_class">6.8.6.16. EVENT_ACTION Class</a></li>
+<li><a href="#_resume_action_class">6.8.6.17. RESUME_ACTION Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#_cost_tracking">6.9. Cost Tracking</a>
 <ul class="sectlevel3">
-<li><a href="#_class_descriptions_9">6.9.1. Class Descriptions</a>
+<li><a href="#_class_descriptions_12">6.9.1. Class Descriptions</a>
 <ul class="sectlevel4">
 <li><a href="#_task_costing_class">6.9.1.1. TASK_COSTING Class</a></li>
 </ul>
@@ -353,7 +374,7 @@
 <li><a href="#_materialised_model">8. Materialised Model</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">8.1. Overview</a></li>
-<li><a href="#_class_descriptions_10">8.2. Class Descriptions</a>
+<li><a href="#_class_descriptions_13">8.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_m_work_plan_class">8.2.1. M_WORK_PLAN Class</a></li>
 <li><a href="#_m_task_plan_class">8.2.2. M_TASK_PLAN Class</a></li>
@@ -368,7 +389,7 @@
 <li><a href="#_plan_execution_history">9. Plan Execution History</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_3">9.1. Overview</a></li>
-<li><a href="#_class_descriptions_11">9.2. Class Descriptions</a>
+<li><a href="#_class_descriptions_14">9.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_task_plan_execution_history_class">9.2.1. TASK_PLAN_EXECUTION_HISTORY Class</a></li>
 <li><a href="#_event_record_class">9.2.2. EVENT_RECORD Class</a></li>
@@ -384,7 +405,7 @@
 <li><a href="#_overview_4">10.1. Overview</a></li>
 <li><a href="#_definition_interface">10.2. Definition Interface</a></li>
 <li><a href="#_execution_time_interface">10.3. Execution-time Interface</a></li>
-<li><a href="#_class_descriptions_12">10.4. Class Descriptions</a>
+<li><a href="#_class_descriptions_15">10.4. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_i_work_plan_definition_interface">10.4.1. I_WORK_PLAN_DEFINITION Interface</a></li>
 <li><a href="#_i_task_plan_materialised_interface">10.4.2. I_TASK_PLAN_MATERIALISED Interface</a></li>
@@ -3336,8 +3357,9 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>The remaining classes are shown in various specialised views below.</p>
 </div>
-<div class="sect3">
-<h4 id="_plan_structure"><a class="anchor" href="#_plan_structure"></a>6.1.1. Plan Structure</h4>
+</div>
+<div class="sect2">
+<h3 id="_plan_structure"><a class="anchor" href="#_plan_structure"></a>6.2. Plan Structure</h3>
 <div class="paragraph">
 <p>The top-level structure for defining plans is a <code>WORK_PLAN</code>, which includes one or more related <code>TASK_PLANs</code> making up a logical goal-oriented plan. For a Work Plan, two distinct lists of Task Plans are maintained: <code><em>plans</em></code>, which references all Task Plans, and <code><em>top_level_plans</em></code>, which is a list of those Task Plans that act as the root points for activity for the various actors. Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.</p>
 </div>
@@ -3376,59 +3398,58 @@ The following UML diagram illustrates.</p>
 <p><code>PLAN_ITEM</code> has a mandatory <code><em>description</em></code> attribute, which represents a natural language specification of the work of the Task. It also has two optional attributes that control the generic behaviour of Tasks and Groups: <code><em>wait_spec</em></code> and <code><em>repeat_spec</em></code>. The first enables a wait state (described above in the
 <a href="#_time_and_wait_states">Section 4.3.7</a>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.</p>
 </div>
+<div class="sect3">
+<h4 id="_repetition"><a class="anchor" href="#_repetition"></a>6.2.1. Repetition</h4>
 <div class="paragraph">
 <p>The second attribute, <code><em>repeat_spec</em></code>, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_group_structure"><a class="anchor" href="#_task_group_structure"></a>6.1.2. Task Group Structure</h4>
+<h4 id="_references_to_clinical_quality_artefacts"><a class="anchor" href="#_references_to_clinical_quality_artefacts"></a>6.2.2. References to Clinical Quality Artefacts</h4>
 <div class="paragraph">
-<p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> type, which has three key attributes. Execution of a Group is controlled by the <code><em>execution_type</em></code> and <code><em>execution_rules</em></code> attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
+<p>The classes <code>WORK_PLAN</code> and <code>TASK_PLAN</code> may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:</p>
 </div>
-<div class="paragraph tbd">
-<p>TBD: other execution rules.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In <code>WORK_PLAN</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>care_plan</em></code>: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;</p>
+</li>
+<li>
+<p><code><em>care_pathway</em></code>: references to a care pathway from which this Task Plan was derived, if any;</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>The following illustrates a simple Task Plan structure including nested Task Groups.</p>
+</li>
+<li>
+<p>In <code>TASK_PLAN</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>guideline</em></code>: reference to a published guideline from which this particular Task Plan was derived, if any;</p>
+</li>
+<li>
+<p><code><em>best_practice_ref</em></code>: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;</p>
+</li>
+<li>
+<p><code><em>order_set</em></code>: the identifier of an Order Set which this Task Plan uses, if any;</p>
+</li>
+<li>
+<p><code><em>workflow_id</em></code>: an identifier shared among orders (<code>INSTRUCTIONs</code> and <code>ACTIONs</code>) from the Order Set instance used in this Task Plan, if any.</p>
+</li>
+</ul>
 </div>
-<div id="task_grouping" class="imageblock text-center" style="text-align: center">
-<div class="content">
-<img src="task_planning/diagrams/task_grouping.svg" alt="task grouping" width="75%">
-</div>
-<div class="title">Figure 16. Task grouping</div>
-</div>
-<div class="paragraph">
-<p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tasks"><a class="anchor" href="#_tasks"></a>6.1.3. Tasks</h4>
-<div class="paragraph">
-<p>Tasks are represented by the <code>Task</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em>, meaning 'dispatched for execution to another performer', and <em>performable</em>, meaning 'performed by the current performer'. <code>TASK</code> is a generic (i.e. templated) type, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available. The two concrete subtypes have a small number of attributes globally applicable to all Task Actions that may be attached to them.</p>
-</div>
-<div class="paragraph">
-<p>The <code>DISPATCHABLE_TASK</code> class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is described below.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_data_sets_and_application_interaction"><a class="anchor" href="#_data_sets_and_application_interaction"></a>6.1.4. Data-sets and Application Interaction</h4>
-<div class="paragraph">
-<p>In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.</p>
-</div>
-<div class="paragraph">
-<p>A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A <em>review data-set</em> may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute <code>PLAN_ITEM.<em>review_dataset</em></code>, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.</p>
-</div>
-<div class="paragraph">
-<p>Related to this is the <code><em>capture_dataset</em></code> attribute of the <code>PERFORMABLE_TASK</code> type, which enables the association of a dataset or form for inputting data with a performable Task.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: describe how this relates to the data set(s) of <code>PERFORMABLE_ACTION.<em>prototype</em></code> .</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_class_descriptions_5"><a class="anchor" href="#_class_descriptions_5"></a>6.1.5. Class Descriptions</h4>
+<h4 id="_class_descriptions_5"><a class="anchor" href="#_class_descriptions_5"></a>6.2.3. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_work_plan_class"><a class="anchor" href="#_work_plan_class"></a>6.1.5.1. WORK_PLAN Class</h5>
+<h5 id="_work_plan_class"><a class="anchor" href="#_work_plan_class"></a>6.2.3.1. WORK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3545,7 +3566,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.1.5.2. PLAN_CALENDAR Class</h5>
+<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.2.3.2. PLAN_CALENDAR Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3579,7 +3600,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.1.5.3. PLAN_TIMELINE Class</h5>
+<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.2.3.3. PLAN_TIMELINE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3620,7 +3641,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.1.5.4. CALENDAR_ENTRY Class</h5>
+<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.2.3.4. CALENDAR_ENTRY Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3642,7 +3663,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.1.5.5. TASK_PLAN Class</h5>
+<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.2.3.5. TASK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3782,7 +3803,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.1.5.6. TASK_PARTICIPATION Class</h5>
+<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.2.3.6. TASK_PARTICIPATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3844,7 +3865,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.1.5.7. PLAN_ITEM Class</h5>
+<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.2.3.7. PLAN_ITEM Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3910,7 +3931,84 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.1.5.8. TASK_GROUP Class</h5>
+<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.2.3.8. TASK_REPEAT Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK_REPEAT</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Definition of repetition for a Task Item. The repeats attribute provides a constraint on a number of times. If not set, any number of repeats is allowed. The terminate_condition attribute defines when repetition should cease in terms of a condition, typically a subject-related variable.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeats</strong>: <code>Interval&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Range of repetitions. If the lower limit is greater than zero, at least one repeat is required. A range such as 0..3 means up to 3 repeats possible, but not required.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>States a condition for when repetition should stop.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_task_group_structure"><a class="anchor" href="#_task_group_structure"></a>6.3. Task Group Structure</h3>
+<div class="paragraph">
+<p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> type, which has three key attributes. Execution of a Group is controlled by the <code><em>execution_type</em></code> and <code><em>execution_rules</em></code> attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD: other execution rules.</p>
+</div>
+<div class="paragraph">
+<p>The following illustrates a simple Task Plan structure including nested Task Groups.</p>
+</div>
+<div id="task_grouping" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/task_grouping.svg" alt="task grouping" width="75%">
+</div>
+<div class="title">Figure 16. Task grouping</div>
+</div>
+<div class="paragraph">
+<p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.</p>
+</div>
+<div class="sect3">
+<h4 id="_training_level"><a class="anchor" href="#_training_level"></a>6.3.1. Training Level</h4>
+<div class="paragraph">
+<p>One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks.</p>
+</div>
+<div class="paragraph">
+<p>To enable a single Plan to be used in both ways, the concept of 'training level' is included in the model, on the <code>TASK_GROUP</code> class. This enables any Group of Tasks to be marked as having a specific training level, where a higher number corresponds to less experience. At execution time, the training level of the allocated performer can be obtained, and then used in comparison to the training level indicated on each Group (including the top-level Group of the whole Plan). If the user training level is higher, then the Group may be shown only as a single step (using its <code><em>description</em></code>, inherited from <code>PLAN_ITEM</code>); otherwise it may be shown as the set of sub-steps. This provides a simple way for the same Plan to be presented in different forms matching different performer experience levels.</p>
+</div>
+<div class="paragraph">
+<p>The default value of <code><em>training_level</em></code> is 0.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_6"><a class="anchor" href="#_class_descriptions_6"></a>6.3.2. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.3.2.1. TASK_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3985,7 +4083,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.1.5.9. EXECUTION_TYPE Enumeration</h5>
+<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.3.2.2. EXECUTION_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4026,7 +4124,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.1.5.10. EXECUTION_RULE Class</h5>
+<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.3.2.3. EXECUTION_RULE Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4050,8 +4148,118 @@ The following UML diagram illustrates.</p>
 </tbody>
 </table>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_task_semantics"><a class="anchor" href="#_general_task_semantics"></a>6.4. General Task Semantics</h3>
+<div class="paragraph">
+<p>Tasks are represented by the <code>TASK</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em> and <em>performable</em>. <code>TASK</code> is a generic (i.e. templated) class, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available.</p>
+</div>
+<div class="paragraph">
+<p>The <code>DISPATCHABLE_TASK&lt;T&gt;</code> class has two attributes to do with managing context change and callback. The <code><em>wait</em></code> flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The <code><em>callback</em></code> attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is <a href="#_callbacks">described below</a>.</p>
+</div>
+<div class="paragraph">
+<p>There are some key differences between the two kinds of Task as shown in the following table.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Task Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Lifecycle state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Performable</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Task performed by the current performer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advanced by actions of performer (real world actor)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Dispatchable</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Task whose work is dispatched for execution to another performer or system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>wait</em> = <code>True</code>: Advanced by receipt of callback notifications<br>
+                                                                                                <em>wait</em> = <code>False</code>: Automatically advanced to <code>completed</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_task_lifecycle_2"><a class="anchor" href="#_task_lifecycle_2"></a>6.4.1. Task Lifecycle</h4>
+<div class="paragraph">
+<p>At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer. The lifecycle does not appear in the definition model <code>TASK</code> class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <a href="#_materialised_model">described below</a>.</p>
+</div>
+<div class="paragraph">
+<p>It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.</p>
+</div>
+<div class="paragraph">
+<p>The lifecycle is only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR <code>ACTION</code> or other Entry objects. The Task lifecycle states are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>initial</code>: initial pseudo-state, not used in operation;</p>
+</li>
+<li>
+<p><code>planned</code>: defined, but not yet available for execution;</p>
+</li>
+<li>
+<p><code>available</code>: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;</p>
+</li>
+<li>
+<p><code>cancelled</code> (T): cancelled prior or during execution as not needed for success of the Plan;</p>
+</li>
+<li>
+<p><code>completed</code> (T): performed to completion;</p>
+</li>
+<li>
+<p><code>abandoned</code> (T): execution was stopped before or after commencement due to completion being impossible.;</p>
+</li>
+<li>
+<p><code>underway</code>: indicates that a Task execution has been commenced;</p>
+</li>
+<li>
+<p><code>suspended</code>: indicates that a Task execution has been suspended.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the above, the terminal states are marked with '(T)'. The state machine is shown below.</p>
+</div>
+<div id="task_state_machine" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
+</div>
+<div class="title">Figure 17. Task lifecycle state machine</div>
+</div>
+<div class="paragraph">
+<p>A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the <code>abandoned</code> state is entered, it does not.</p>
+</div>
+<div class="paragraph">
+<p>The state machine is primarily designed to allow a stateless view of the actual execution state of a Task. That is to say, the standard pathway is <code>available</code> &#8658; <code>completed</code> or <code>abandoned</code> or <code>cancelled</code>, which enables a user to indicate the outcome of executing a Task, but not interim states during execution. The pathways through the states <code>underway</code> and <code>suspended</code> are provided to represent in-execution states, which are needed for two cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>longer-running atomic Tasks;</p>
+</li>
+<li>
+<p>dispatchable Tasks that are blocked waiting on another performer.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It may be that one or more Tasks do not evaluate to <code>available</code> at runtime when the principal performer wants to treat them as being available. This may happen if the performer wants to execute a Task earlier than scheduled, or decides that an unmet precondition or wait condition does not matter (for example, they may know that it is met, but the Task Plan application may not yet know). Accordingly, a user override can be used, represented by the <code><em>override</em></code> transition from <code>planned</code> &#8658; <code>available</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_7"><a class="anchor" href="#_class_descriptions_7"></a>6.4.2. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_task_ta_class"><a class="anchor" href="#_task_ta_class"></a>6.1.5.11. TASK&lt;TA&gt; Class</h5>
+<h5 id="_task_ta_class"><a class="anchor" href="#_task_ta_class"></a>6.4.2.1. TASK&lt;TA&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4089,7 +4297,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dispatchable_task_ta_class"><a class="anchor" href="#_dispatchable_task_ta_class"></a>6.1.5.12. DISPATCHABLE_TASK&lt;TA&gt; Class</h5>
+<h5 id="_dispatchable_task_ta_class"><a class="anchor" href="#_dispatchable_task_ta_class"></a>6.4.2.2. DISPATCHABLE_TASK&lt;TA&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4134,7 +4342,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_performable_task_ta_class"><a class="anchor" href="#_performable_task_ta_class"></a>6.1.5.13. PERFORMABLE_TASK&lt;TA&gt; Class</h5>
+<h5 id="_performable_task_ta_class"><a class="anchor" href="#_performable_task_ta_class"></a>6.4.2.3. PERFORMABLE_TASK&lt;TA&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4171,170 +4379,10 @@ The following UML diagram illustrates.</p>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.1.5.14. TASK_REPEAT Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK_REPEAT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Definition of repetition for a Task Item. The repeats attribute provides a constraint on a number of times. If not set, any number of repeats is allowed. The terminate_condition attribute defines when repetition should cease in terms of a condition, typically a subject-related variable.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeats</strong>: <code>Interval&lt;Integer&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Range of repetitions. If the lower limit is greater than zero, at least one repeat is required. A range such as 0..3 means up to 3 repeats possible, but not required.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code>PLAN_EVENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>States a condition for when repetition should stop.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_dataset_spec_class"><a class="anchor" href="#_dataset_spec_class"></a>6.1.5.15. DATASET_SPEC Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>DATASET_SPEC (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Form identifier.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Template identifier in String form of an <code>ARCHETYPE_HRID</code>. If used with no <code><em>form_id</em></code>, the Execution engine needs to determine how to find a form based on the template identifier.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Other data-set related details.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_capture_dataset_spec_class"><a class="anchor" href="#_capture_dataset_spec_class"></a>6.1.5.16. CAPTURE_DATASET_SPEC Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CAPTURE_DATASET_SPEC</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Specification of a related data capture data-set and/or form to use with a Task, usually by means data entry screens in an application being used by the principal performer.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_review_dataset_spec_class"><a class="anchor" href="#_review_dataset_spec_class"></a>6.1.5.17. REVIEW_DATASET_SPEC Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>REVIEW_DATASET_SPEC</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Specification of a related data display data-set and/or form to use with a Task, usually by means display screens in an application being used by the principal performer.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code>SYSTEM_CALL</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional system call that will populate this data-set.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_datasets</strong>: <code>List&lt;CAPTURE_DATASET_SPEC&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_task_actions"><a class="anchor" href="#_task_actions"></a>6.2. Task Actions</h3>
+<h3 id="_task_actions"><a class="anchor" href="#_task_actions"></a>6.5. Task Actions</h3>
 <div class="paragraph">
 <p>The specific definition of the work of Tasks is provided by <code>TASK.<em>action</em></code>, of type <code>TASK_ACTION</code> and its subtypes. Two abstract sub-types <code>DISPATCHABLE_ACTION</code> and <code>PERFORMABLE_ACTION</code> distinguish the <em>dispatchable</em> and <em>performable</em> flavours of Task Action, corresponding to the two <code>TASK</code> subtypes. The following UML diagram shows <code>TASK_ACTION</code> and its subtypes in detail.</p>
 </div>
@@ -4342,7 +4390,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-actions.svg" alt="PROC task planning.definition actions">
 </div>
-<div class="title">Figure 17. proc.task_planning.definition model - Task Actions</div>
+<div class="title">Figure 18. proc.task_planning.definition model - Task Actions</div>
 </div>
 <div class="paragraph">
 <p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
@@ -4427,9 +4475,9 @@ The following UML diagram illustrates.</p>
 <p>The following sections provide more detail on some of these model features.</p>
 </div>
 <div class="sect3">
-<h4 id="_performable_actions"><a class="anchor" href="#_performable_actions"></a>6.2.1. Performable Actions</h4>
+<h4 id="_performable_actions"><a class="anchor" href="#_performable_actions"></a>6.5.1. Performable Actions</h4>
 <div class="sect4">
-<h5 id="_sub_plans_and_re_use"><a class="anchor" href="#_sub_plans_and_re_use"></a>6.2.1.1. Sub-plans and Re-use</h5>
+<h5 id="_sub_plans_and_re_use"><a class="anchor" href="#_sub_plans_and_re_use"></a>6.5.1.1. Sub-plans and Re-use</h5>
 <div class="paragraph">
 <p>As described above, multiple Task Plans may be used to define a single logical plan of work. This occurs for two main reasons:</p>
 </div>
@@ -4450,14 +4498,14 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_linking.svg" alt="task linking">
 </div>
-<div class="title">Figure 18. Task Plan linking</div>
+<div class="title">Figure 19. Task Plan linking</div>
 </div>
 <div class="paragraph">
 <p>This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the <code>SUB_PLAN</code> class. Since a Sub-plan is a kind of Task, it has a <em>description</em> and could be performed and signed off as if it were a normal inline <code>DEFINED_ACTION</code> by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The <code>PLAN_ITME.<em>training_level</em></code> attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_inline_defined_actions"><a class="anchor" href="#_inline_defined_actions"></a>6.2.1.2. Inline Defined Actions</h5>
+<h5 id="_inline_defined_actions"><a class="anchor" href="#_inline_defined_actions"></a>6.5.1.2. Inline Defined Actions</h5>
 <div class="paragraph">
 <p>Tasks whose definitions are stated within a Task Plan are modelled using the <code>DEFINED_ACTION</code> type. A detailed specification of the work to be done in a Defined Action  may be stated via optional atttribute <code><em>prototype</em></code> of type <code>ENTRY</code>, which enables the details of a Task to be specified in terms of a descendant of the <code>ENTRY</code> class. This is typically an <code>ACTION</code> instance but could be an <code>OBSERVATION</code>, <code>ADMIN_ENTRY</code> or other descendant. The following view of the UML illustrates.</p>
 </div>
@@ -4465,7 +4513,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-defined_task.svg" alt="PROC task planning.definition defined task" width="65%">
 </div>
-<div class="title">Figure 19. proc.task_planning.definition - Definition Task</div>
+<div class="title">Figure 20. proc.task_planning.definition - Definition Task</div>
 </div>
 <div class="paragraph">
 <p>The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of <code>DEFINED_ACTIONs</code>, each having a protoype of an <code>ACTION</code> instance based on the <code>openEHR-EHR-ACTION.medication.v1</code> archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an <code>ACTION</code> instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.</p>
@@ -4477,7 +4525,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_definition.svg" alt="task definition" width="55%">
 </div>
-<div class="title">Figure 20. Task definition</div>
+<div class="title">Figure 21. Task definition</div>
 </div>
 <div class="paragraph">
 <p>Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The <code><em>prototype</em></code> attribute in a <code>TASK_PLAN</code> archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. <code>ACTION</code> or other Entry. This can be used in various ways, as follows:</p>
@@ -4504,7 +4552,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dispatchable_actions"><a class="anchor" href="#_dispatchable_actions"></a>6.2.2. Dispatchable Actions</h4>
+<h4 id="_dispatchable_actions"><a class="anchor" href="#_dispatchable_actions"></a>6.5.2. Dispatchable Actions</h4>
 <div class="paragraph">
 <p>The type <code>DISPATCHABLE_ACTION</code> is the abstract parent of various Action subtypes that represent work requested to be done by some other agent, i.e. external to the current Task Plan. The three sub-types correspond to 3 different types of other performer, i.e.:</p>
 </div>
@@ -4541,7 +4589,7 @@ The following UML diagram illustrates.</p>
 <p>The following sub-sections described the various subtypes of <code>DISPATCHABLE_ACTION</code>, while callbacks are described in detail further down.</p>
 </div>
 <div class="sect4">
-<h5 id="_hand_offs_and_coordinated_teamwork"><a class="anchor" href="#_hand_offs_and_coordinated_teamwork"></a>6.2.2.1. Hand-offs and Coordinated Teamwork</h5>
+<h5 id="_hand_offs_and_coordinated_teamwork"><a class="anchor" href="#_hand_offs_and_coordinated_teamwork"></a>6.5.2.1. Hand-offs and Coordinated Teamwork</h5>
 <div class="paragraph">
 <p>Work Plans may be designed to contain multiple Task Plans, each corresponding to a team worker. In the execution of such a Work Plan, the performer of any Task Plan may at some point need to hand off to another performer, i.e. one of the other Task Plans in the same Work Plan. As described above, the original worker may wait or continue, and in both cases, receipt of a callback notification from the other Task Plan may cause a change in the execution path of the first Plan.</p>
 </div>
@@ -4552,29 +4600,29 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_coordination.svg" alt="task coordination">
 </div>
-<div class="title">Figure 21. Task coordination</div>
+<div class="title">Figure 22. Task coordination</div>
 </div>
 <div class="paragraph">
 <p>In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (<code><em>wait</em></code> = <code>True</code>; callback wait resumes at the next Task) and the second an asynchronous fork (<code><em>wait</em></code> = <code>False</code>).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_system_request"><a class="anchor" href="#_system_request"></a>6.2.2.2. System Request</h5>
+<h5 id="_system_request"><a class="anchor" href="#_system_request"></a>6.5.2.2. System Request</h5>
 <div class="paragraph">
 <p>The Task sub-type <code>SYSTEM_REQUEST</code> represents a request to a <em>system</em> with a computational interface on behalf of the performer, such as a logging facility or a decision support system. The request is defined in terms of a <code>SYSTEM_CALL</code> instance.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_external_request"><a class="anchor" href="#_external_request"></a>6.2.2.3. External Request</h5>
+<h5 id="_external_request"><a class="anchor" href="#_external_request"></a>6.5.2.3. External Request</h5>
 <div class="paragraph">
 <p>The Task sub-type <code>EXTERNAL_REQUEST</code> represents a request by the current performer to an external entity completely outside of the current Work Plan computational context, to request some work on behalf of the performer. This is typically an organisation of which routine requests can be made (e.g. pathology laboratory). The request has to be defined generically, in terms of an organisation identifier, a request identifier (i.e. a name or type of job) and a list of other details, represented by the standard archetypable <code>ITEM_STRUCTURE</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_6"><a class="anchor" href="#_class_descriptions_6"></a>6.2.3. Class Descriptions</h4>
+<h4 id="_class_descriptions_8"><a class="anchor" href="#_class_descriptions_8"></a>6.5.3. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_task_action_class"><a class="anchor" href="#_task_action_class"></a>6.2.3.1. TASK_ACTION Class</h5>
+<h5 id="_task_action_class"><a class="anchor" href="#_task_action_class"></a>6.5.3.1. TASK_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4632,7 +4680,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_subject_precondition_class"><a class="anchor" href="#_subject_precondition_class"></a>6.2.3.2. SUBJECT_PRECONDITION Class</h5>
+<h5 id="_subject_precondition_class"><a class="anchor" href="#_subject_precondition_class"></a>6.5.3.2. SUBJECT_PRECONDITION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4676,7 +4724,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_performable_action_class"><a class="anchor" href="#_performable_action_class"></a>6.2.3.3. PERFORMABLE_ACTION Class</h5>
+<h5 id="_performable_action_class"><a class="anchor" href="#_performable_action_class"></a>6.5.3.3. PERFORMABLE_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4721,7 +4769,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_resource_participation_class"><a class="anchor" href="#_resource_participation_class"></a>6.2.3.4. RESOURCE_PARTICIPATION Class</h5>
+<h5 id="_resource_participation_class"><a class="anchor" href="#_resource_participation_class"></a>6.5.3.4. RESOURCE_PARTICIPATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4768,7 +4816,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_defined_action_class"><a class="anchor" href="#_defined_action_class"></a>6.2.3.5. DEFINED_ACTION Class</h5>
+<h5 id="_defined_action_class"><a class="anchor" href="#_defined_action_class"></a>6.5.3.5. DEFINED_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4819,7 +4867,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_sub_plan_class"><a class="anchor" href="#_sub_plan_class"></a>6.2.3.6. SUB_PLAN Class</h5>
+<h5 id="_sub_plan_class"><a class="anchor" href="#_sub_plan_class"></a>6.5.3.6. SUB_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4848,7 +4896,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dispatchable_action_class"><a class="anchor" href="#_dispatchable_action_class"></a>6.2.3.7. DISPATCHABLE_ACTION Class</h5>
+<h5 id="_dispatchable_action_class"><a class="anchor" href="#_dispatchable_action_class"></a>6.5.3.7. DISPATCHABLE_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4874,7 +4922,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_hand_off_class"><a class="anchor" href="#_hand_off_class"></a>6.2.3.8. HAND_OFF Class</h5>
+<h5 id="_hand_off_class"><a class="anchor" href="#_hand_off_class"></a>6.5.3.8. HAND_OFF Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4906,7 +4954,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_external_request_class"><a class="anchor" href="#_external_request_class"></a>6.2.3.9. EXTERNAL_REQUEST Class</h5>
+<h5 id="_external_request_class"><a class="anchor" href="#_external_request_class"></a>6.5.3.9. EXTERNAL_REQUEST Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4961,7 +5009,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_system_request_class"><a class="anchor" href="#_system_request_class"></a>6.2.3.10. SYSTEM_REQUEST Class</h5>
+<h5 id="_system_request_class"><a class="anchor" href="#_system_request_class"></a>6.5.3.10. SYSTEM_REQUEST Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4999,7 +5047,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_linked_plan_class"><a class="anchor" href="#_linked_plan_class"></a>6.2.3.11. LINKED_PLAN Class</h5>
+<h5 id="_linked_plan_class"><a class="anchor" href="#_linked_plan_class"></a>6.5.3.11. LINKED_PLAN Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5035,7 +5083,153 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conditional_structures_2"><a class="anchor" href="#_conditional_structures_2"></a>6.3. Conditional Structures</h3>
+<h3 id="_data_sets_and_application_interaction"><a class="anchor" href="#_data_sets_and_application_interaction"></a>6.6. Data-sets and Application Interaction</h3>
+<div class="paragraph">
+<p>In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.</p>
+</div>
+<div class="paragraph">
+<p>The following UML diagram shows the data-set related classes in detail.</p>
+</div>
+<div id="proc_definition_dataset" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="UML/diagrams/PROC-task_planning.definition-dataset.svg" alt="PROC task planning.definition dataset">
+</div>
+<div class="title">Figure 23. proc.task_planning.definition model overview</div>
+</div>
+<div class="paragraph">
+<p>A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A <em>review data-set</em> may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute <code>PLAN_ITEM.<em>review_dataset</em></code>, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.</p>
+</div>
+<div class="paragraph">
+<p>Related to this is the <code><em>capture_dataset</em></code> attribute of the <code>PERFORMABLE_TASK</code> type, which enables the association of a dataset or form for inputting data with a performable Task.</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD: describe how this relates to the data set(s) of <code>PERFORMABLE_ACTION.<em>prototype</em></code> .</p>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_9"><a class="anchor" href="#_class_descriptions_9"></a>6.6.1. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_dataset_spec_class"><a class="anchor" href="#_dataset_spec_class"></a>6.6.1.1. DATASET_SPEC Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>DATASET_SPEC (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Form identifier.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Template identifier in String form of an <code>ARCHETYPE_HRID</code>. If used with no <code><em>form_id</em></code>, the Execution engine needs to determine how to find a form based on the template identifier.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Other data-set related details.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_capture_dataset_spec_class"><a class="anchor" href="#_capture_dataset_spec_class"></a>6.6.1.2. CAPTURE_DATASET_SPEC Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CAPTURE_DATASET_SPEC</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Specification of a related data capture data-set and/or form to use with a Task, usually by means data entry screens in an application being used by the principal performer.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_review_dataset_spec_class"><a class="anchor" href="#_review_dataset_spec_class"></a>6.6.1.3. REVIEW_DATASET_SPEC Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>REVIEW_DATASET_SPEC</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Specification of a related data display data-set and/or form to use with a Task, usually by means display screens in an application being used by the principal performer.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional system call that will populate this data-set.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_datasets</strong>: <code>List&lt;CAPTURE_DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conditional_structures_2"><a class="anchor" href="#_conditional_structures_2"></a>6.7. Conditional Structures</h3>
 <div class="paragraph">
 <p>More advanced applications of Task Plans include four conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of <code>TASK_GROUP</code> and are illustrated in the following UML model.</p>
 </div>
@@ -5043,7 +5237,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-decision.svg" alt="PROC task planning.definition decision">
 </div>
-<div class="title">Figure 22. proc.task_planning package definition model (decision view)</div>
+<div class="title">Figure 24. proc.task_planning package definition model (decision view)</div>
 </div>
 <div class="paragraph">
 <p>The pattern types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the <code>CHOICE_GROUP</code> and <code>CHOICE_BRANCH</code> classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.</p>
@@ -5077,7 +5271,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/condition_structure.svg" alt="condition structure">
 </div>
-<div class="title">Figure 23. Condition structure</div>
+<div class="title">Figure 25. Condition structure</div>
 </div>
 <div class="paragraph">
 <p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (<code><em>execution_type</em></code> is constrained to <code>sequential</code>), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.</p>
@@ -5089,7 +5283,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/decision_structure.svg" alt="decision structure">
 </div>
-<div class="title">Figure 24. Decision structure</div>
+<div class="title">Figure 26. Decision structure</div>
 </div>
 <div class="paragraph">
 <p>The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes <code>EVENT_GROUP</code> and <code>EVENT_BRANCH</code>, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.</p>
@@ -5098,12 +5292,12 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/event_structure.svg" alt="event structure">
 </div>
-<div class="title">Figure 25. Event structure</div>
+<div class="title">Figure 27. Event structure</div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_7"><a class="anchor" href="#_class_descriptions_7"></a>6.3.1. Class Descriptions</h4>
+<h4 id="_class_descriptions_10"><a class="anchor" href="#_class_descriptions_10"></a>6.7.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_choice_group_class"><a class="anchor" href="#_choice_group_class"></a>6.3.1.1. CHOICE_GROUP Class</h5>
+<h5 id="_choice_group_class"><a class="anchor" href="#_choice_group_class"></a>6.7.1.1. CHOICE_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5155,7 +5349,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_override_type_enumeration"><a class="anchor" href="#_override_type_enumeration"></a>6.3.1.2. OVERRIDE_TYPE Enumeration</h5>
+<h5 id="_override_type_enumeration"><a class="anchor" href="#_override_type_enumeration"></a>6.7.1.2. OVERRIDE_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5203,7 +5397,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_choice_branch_class"><a class="anchor" href="#_choice_branch_class"></a>6.3.1.3. CHOICE_BRANCH Class</h5>
+<h5 id="_choice_branch_class"><a class="anchor" href="#_choice_branch_class"></a>6.7.1.3. CHOICE_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5229,7 +5423,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_condition_group_class"><a class="anchor" href="#_condition_group_class"></a>6.3.1.4. CONDITION_GROUP Class</h5>
+<h5 id="_condition_group_class"><a class="anchor" href="#_condition_group_class"></a>6.7.1.4. CONDITION_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5277,7 +5471,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_condition_branch_class"><a class="anchor" href="#_condition_branch_class"></a>6.3.1.5. CONDITION_BRANCH Class</h5>
+<h5 id="_condition_branch_class"><a class="anchor" href="#_condition_branch_class"></a>6.7.1.5. CONDITION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5321,7 +5515,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_decision_group_class"><a class="anchor" href="#_decision_group_class"></a>6.3.1.6. DECISION_GROUP Class</h5>
+<h5 id="_decision_group_class"><a class="anchor" href="#_decision_group_class"></a>6.7.1.6. DECISION_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5376,7 +5570,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_decision_branch_class"><a class="anchor" href="#_decision_branch_class"></a>6.3.1.7. DECISION_BRANCH Class</h5>
+<h5 id="_decision_branch_class"><a class="anchor" href="#_decision_branch_class"></a>6.7.1.7. DECISION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5420,7 +5614,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_blocking_group_class"><a class="anchor" href="#_blocking_group_class"></a>6.3.1.8. BLOCKING_GROUP Class</h5>
+<h5 id="_blocking_group_class"><a class="anchor" href="#_blocking_group_class"></a>6.7.1.8. BLOCKING_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5466,7 +5660,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_blocking_branch_class"><a class="anchor" href="#_blocking_branch_class"></a>6.3.1.9. BLOCKING_BRANCH Class</h5>
+<h5 id="_blocking_branch_class"><a class="anchor" href="#_blocking_branch_class"></a>6.7.1.9. BLOCKING_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5492,7 +5686,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.3.1.10. ADHOC_GROUP Class</h5>
+<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.7.1.10. ADHOC_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5531,7 +5725,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.3.1.11. ADHOC_BRANCH Class</h5>
+<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.7.1.11. ADHOC_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5557,7 +5751,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.3.1.12. EVENT_GROUP Class</h5>
+<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.7.1.12. EVENT_GROUP Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5596,7 +5790,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.3.1.13. EVENT_BRANCH Class</h5>
+<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.7.1.13. EVENT_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5630,9 +5824,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_events"><a class="anchor" href="#_events"></a>6.4. Events</h3>
+<h3 id="_events"><a class="anchor" href="#_events"></a>6.8. Events</h3>
 <div class="sect3">
-<h4 id="_event_types"><a class="anchor" href="#_event_types"></a>6.4.1. Event Types</h4>
+<h4 id="_event_types"><a class="anchor" href="#_event_types"></a>6.8.1. Event Types</h4>
 <div class="paragraph">
 <p>Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the <em>reaching</em> of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of <em>wait states</em> that may be used to intercept them.</p>
 </div>
@@ -5640,7 +5834,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-event.svg" alt="PROC task planning.definition event">
 </div>
-<div class="title">Figure 26. proc.task_planning model - Events</div>
+<div class="title">Figure 28. proc.task_planning model - Events</div>
 </div>
 <div class="paragraph">
 <p>The various Event types are shown below, with their TP-VML representations.</p>
@@ -5661,7 +5855,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TIMER_EVENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_timer" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_timer" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_timer.svg" alt="event timer">
 </div>
@@ -5670,7 +5864,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TIMELINE_MOMENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_timeline_moment" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_timeline_moment" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_timeline_moment.svg" alt="event timeline moment">
 </div>
@@ -5679,7 +5873,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALENDAR_EVENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_calendar_event" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_calendar_event" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_calendar_event.svg" alt="event calendar event">
 </div>
@@ -5688,7 +5882,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TASK_TRANSITION</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_task_transition" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_task_transition" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_task_transition.svg" alt="event task transition">
 </div>
@@ -5697,7 +5891,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>STATE_TRIGGER</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_state_trigger" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_state_trigger" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_state_trigger.svg" alt="event state trigger">
 </div>
@@ -5706,7 +5900,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>MANUAL_NOTIFICATION</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_manual_notification" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_manual_notification" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_manual_notification.svg" alt="event manual notification">
 </div>
@@ -5715,7 +5909,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>SYSTEM_NOTIFICATION</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_system_notification" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_system_notification" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_system_notification.svg" alt="event system notification">
 </div>
@@ -5724,7 +5918,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELAY_EVENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_delay" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_delay" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_delay.svg" alt="event delay">
 </div>
@@ -5733,7 +5927,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALLBACK_NOTIFICATION</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="event_callback" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="event_callback" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/event_callback.svg" alt="event callback">
 </div>
@@ -5747,15 +5941,15 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_general_facilities"><a class="anchor" href="#_general_facilities"></a>6.4.2. General Facilities</h4>
+<h4 id="_general_facilities"><a class="anchor" href="#_general_facilities"></a>6.8.2. General Facilities</h4>
 <div class="sect4">
-<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.4.2.1. Timers</h5>
+<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.8.2.1. Timers</h5>
 <div class="paragraph">
 <p>A generic timer facility used in the various kinds of wait state is represented by the class <code>TIMER_WAIT</code>, based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code>. It provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance). Timeouts can be used on the <code>TASK_WAIT</code> wait state as well as any <code>EVENT_WAIT</code> wait state, including <code>CALLBACK_WAIT</code>. A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.4.2.2. Event Wait State</h5>
+<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.8.2.2. Event Wait State</h5>
 <div class="paragraph">
 <p>The class <code>EVENT_WAIT&lt;T&gt;</code> defines a generic model of a general-purpose event wait state that may be specialised for particular purposes. Its attributes are as follows:</p>
 </div>
@@ -5794,7 +5988,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.4.3. Task Wait State</h4>
+<h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.8.3. Task Wait State</h4>
 <div class="paragraph">
 <p>The principal way to wait for events is via the <code>TASK_WAIT</code> attachable to any <code>PLAN_ITEM</code> via the <code><em>wait_spec</em></code> attribute. The <code>TASK_WAIT</code> class represents a wait state that defines when a Task should enter the <code>available</code> state from the <code>planned</code> state in terms of Events of the types described above. Its <code><em>events</em></code> attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional <code><em>event_relation</em></code> attribute allows the Task to be specified as commencing <code>before</code>, <code>with</code> or <code>after</code> the trigger event (such as a meal).</p>
 </div>
@@ -5805,10 +5999,10 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state.svg" alt="task wait state">
 </div>
-<div class="title">Figure 27. Task wait state</div>
+<div class="title">Figure 29. Task wait state</div>
 </div>
 <div class="sect4">
-<h5 id="_time_out"><a class="anchor" href="#_time_out"></a>6.4.3.1. Time-out</h5>
+<h5 id="_time_out"><a class="anchor" href="#_time_out"></a>6.8.3.1. Time-out</h5>
 <div class="paragraph">
 <p>A timeout can be set on a Task Wait state by setting <code>TASK_WAIT.<em>timeout</em></code> with a <code>TIMER_WAIT</code> instance, which is activated when the Task Wait state is reached in the execution. This is useful in cases where Event receipt is not certain. The <code>TIMER_WAIT</code> generates a timer event if no other event is received; conversely, receipt of any other event cancels the timeout timer. The <code>TIMER_EVENT</code> attached to <code>TIMER_WAIT.<em>event</em></code> indicates the duration of the timer. The <code><em>success_action</em></code> of the <code>TIMER_WAIT</code> indicates actions to execute if the timer fires. The following Plan fragment illustrates.</p>
 </div>
@@ -5816,11 +6010,11 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_timing_1.svg" alt="uc task timing 1">
 </div>
-<div class="title">Figure 28. Timing patterns</div>
+<div class="title">Figure 30. Timing patterns</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.4.3.2. Reminder</h5>
+<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.8.3.2. Reminder</h5>
 <div class="paragraph">
 <p>When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. This is illustrated below.</p>
 </div>
@@ -5828,18 +6022,18 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state_reminder.svg" alt="task wait state reminder">
 </div>
-<div class="title">Figure 29. Task wait state with reminder</div>
+<div class="title">Figure 31. Task wait state with reminder</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_lifecycle_transition_override"><a class="anchor" href="#_lifecycle_transition_override"></a>6.4.3.3. Lifecycle Transition Override</h5>
+<h5 id="_lifecycle_transition_override"><a class="anchor" href="#_lifecycle_transition_override"></a>6.8.3.3. Lifecycle Transition Override</h5>
 <div class="paragraph">
 <p>In some cases, it may be necessary to progress a Task to a state other than <code>available</code>. This may be dine by specifying <code>TASK_WAIT.<em>next_state</em></code>.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_callbacks"><a class="anchor" href="#_callbacks"></a>6.4.4. Callbacks</h4>
+<h4 id="_callbacks"><a class="anchor" href="#_callbacks"></a>6.8.4. Callbacks</h4>
 <div class="paragraph">
 <p>A specialisation of <code>EVENT_WAIT&lt;CALLBACK_NOTIFICATION&gt;</code> is <code>CALLBACK_WAIT</code>, used to handle notifications of Dispatchable Tasks that return, as well as timeouts if no response is received. This class adds two attributes to <code>EVENT_WAIT&lt;T&gt;</code>:</p>
 </div>
@@ -5860,7 +6054,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_1.svg" alt="uc task callback 1">
 </div>
-<div class="title">Figure 30. Standard callback example</div>
+<div class="title">Figure 32. Standard callback example</div>
 </div>
 <div class="paragraph">
 <p>The following diagram shows the structure of a custom callback.</p>
@@ -5869,19 +6063,19 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_2.svg" alt="uc task callback 2">
 </div>
-<div class="title">Figure 31. Custom callback example</div>
+<div class="title">Figure 33. Custom callback example</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_appointments"><a class="anchor" href="#_appointments"></a>6.4.5. Appointments</h4>
+<h4 id="_appointments"><a class="anchor" href="#_appointments"></a>6.8.5. Appointments</h4>
 <div class="paragraph tbd">
 <p>TBD</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_8"><a class="anchor" href="#_class_descriptions_8"></a>6.4.6. Class Descriptions</h4>
+<h4 id="_class_descriptions_11"><a class="anchor" href="#_class_descriptions_11"></a>6.8.6. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_task_wait_class"><a class="anchor" href="#_task_wait_class"></a>6.4.6.1. TASK_WAIT Class</h5>
+<h5 id="_task_wait_class"><a class="anchor" href="#_task_wait_class"></a>6.8.6.1. TASK_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5962,7 +6156,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.4.6.2. PLAN_EVENT&lt;&gt; Class</h5>
+<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.8.6.2. PLAN_EVENT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -5998,7 +6192,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.4.6.3. DELAY_EVENT Class</h5>
+<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.8.6.3. DELAY_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6043,7 +6237,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.4.6.4. MANUAL_NOTIFICATION Class</h5>
+<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.8.6.4. MANUAL_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6081,7 +6275,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.4.6.5. SYSTEM_NOTIFICATION Class</h5>
+<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.8.6.5. SYSTEM_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6133,7 +6327,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.4.6.6. CALLBACK_NOTIFICATION Class</h5>
+<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.8.6.6. CALLBACK_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6178,7 +6372,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.4.6.7. STATE_TRIGGER Class</h5>
+<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.8.6.7. STATE_TRIGGER Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6216,7 +6410,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.4.6.8. TIMER_EVENT Class</h5>
+<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.8.6.8. TIMER_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6261,7 +6455,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.4.6.9. CALENDAR_EVENT Class</h5>
+<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.8.6.9. CALENDAR_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6306,7 +6500,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.4.6.10. TIMELINE_MOMENT Class</h5>
+<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.8.6.10. TIMELINE_MOMENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6357,7 +6551,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.4.6.11. TASK_TRANSITION Class</h5>
+<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.8.6.11. TASK_TRANSITION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6402,7 +6596,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.4.6.12. EVENT_WAIT&lt;P&gt; Class</h5>
+<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.8.6.12. EVENT_WAIT&lt;P&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6450,7 +6644,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.4.6.13. TIMER_WAIT Class</h5>
+<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.8.6.13. TIMER_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6489,7 +6683,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.4.6.14. REMINDER Class</h5>
+<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.8.6.14. REMINDER Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6527,7 +6721,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.4.6.15. CALLBACK_WAIT&lt;&gt; Class</h5>
+<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.8.6.15. CALLBACK_WAIT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6580,7 +6774,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.4.6.16. EVENT_ACTION Class</h5>
+<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.8.6.16. EVENT_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6657,7 +6851,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.4.6.17. RESUME_ACTION Class</h5>
+<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.8.6.17. RESUME_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6706,140 +6900,12 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_task_lifecycle_2"><a class="anchor" href="#_task_lifecycle_2"></a>6.5. Task Lifecycle</h3>
-<div class="paragraph">
-<p>At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer. The lifecycle does not appear in the definition model <code>TASK</code> class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <a href="#_materialised_model">described below</a>.</p>
-</div>
-<div class="paragraph">
-<p>It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.</p>
-</div>
-<div class="paragraph">
-<p>The lifecycle is only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR <code>ACTION</code> or other Entry objects. The Task lifecycle states are as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>initial</code>: initial pseudo-state, not used in operation;</p>
-</li>
-<li>
-<p><code>planned</code>: defined, but not yet available for execution;</p>
-</li>
-<li>
-<p><code>available</code>: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;</p>
-</li>
-<li>
-<p><code>cancelled</code> (T): cancelled prior or during execution as not needed for success of the Plan;</p>
-</li>
-<li>
-<p><code>completed</code> (T): performed to completion;</p>
-</li>
-<li>
-<p><code>abandoned</code> (T): execution was stopped before or after commencement due to completion being impossible.;</p>
-</li>
-<li>
-<p><code>underway</code>: indicates that a Task execution has been commenced;</p>
-</li>
-<li>
-<p><code>suspended</code>: indicates that a Task execution has been suspended.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In the above, the terminal states are marked with '(T)'. The state machine is shown below.</p>
-</div>
-<div id="task_state_machine" class="imageblock text-center" style="text-align: center">
-<div class="content">
-<img src="UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
-</div>
-<div class="title">Figure 32. Task lifecycle state machine</div>
-</div>
-<div class="paragraph">
-<p>A key feature of the state model is that the terminal states determine whether the Plan execution continues or not: if the <code>abandoned</code> state is entered, it does not.</p>
-</div>
-<div class="paragraph">
-<p>The state machine is primarily designed to allow a stateless view of the actual execution state of a Task. That is to say, the standard pathway is <code>available</code> &#8658; <code>completed</code> or <code>abandoned</code> or <code>cancelled</code>, which enables a user to indicate the outcome of executing a Task, but not interim states during execution. The pathways through the states <code>underway</code> and <code>suspended</code> are provided to represent in-execution states, which are needed for two cases:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>longer-running atomic Tasks;</p>
-</li>
-<li>
-<p>dispatchable Tasks that are blocked waiting on another performer.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>It may be that one or more Tasks do not evaluate to <code>available</code> at runtime when the principal performer wants to treat them as being available. This may happen if the performer wants to execute a Task earlier than scheduled, or decides that an unmet precondition or wait condition does not matter (for example, they may know that it is met, but the Task Plan application may not yet know). Accordingly, a user override can be used, represented by the <code><em>override</em></code> transition from <code>planned</code> &#8658; <code>available</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_repetition"><a class="anchor" href="#_repetition"></a>6.6. Repetition</h3>
-<div class="paragraph">
-<p>Repetition may be specified in the model via the attribute <code>PLAN_ITEM.<em>repeat_spec</em></code>. This is intended to be used to designate sub-sections in a Plan as being repeatable rather than single Tasks, since the main point of a Task Plan is precisely to define individual Tasks in time for execution and sign-off.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_training_level"><a class="anchor" href="#_training_level"></a>6.7. Training Level</h3>
-<div class="paragraph">
-<p>One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks.</p>
-</div>
-<div class="paragraph">
-<p>To enable a single Plan to be used in both ways, the concept of 'training level' is included in the model, on the <code>TASK_GROUP</code> class. This enables any Group of Tasks to be marked as having a specific training level, where a higher number corresponds to less experience. At execution time, the training level of the allocated performer can be obtained, and then used in comparison to the training level indicated on each Group (including the top-level Group of the whole Plan). If the user training level is higher, then the Group may be shown only as a single step (using its <code><em>description</em></code>, inherited from <code>PLAN_ITEM</code>); otherwise it may be shown as the set of sub-steps. This provides a simple way for the same Plan to be presented in different forms matching different performer experience levels.</p>
-</div>
-<div class="paragraph">
-<p>The default value of <code><em>training_level</em></code> is 0.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_references_to_clinical_quality_artefacts"><a class="anchor" href="#_references_to_clinical_quality_artefacts"></a>6.8. References to Clinical Quality Artefacts</h3>
-<div class="paragraph">
-<p>The classes <code>WORK_PLAN</code> and <code>TASK_PLAN</code> may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In <code>WORK_PLAN</code>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code><em>care_plan</em></code>: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;</p>
-</li>
-<li>
-<p><code><em>care_pathway</em></code>: references to a care pathway from which this Task Plan was derived, if any;</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>In <code>TASK_PLAN</code>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code><em>guideline</em></code>: reference to a published guideline from which this particular Task Plan was derived, if any;</p>
-</li>
-<li>
-<p><code><em>best_practice_ref</em></code>: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;</p>
-</li>
-<li>
-<p><code><em>order_set</em></code>: the identifier of an Order Set which this Task Plan uses, if any;</p>
-</li>
-<li>
-<p><code><em>workflow_id</em></code>: an identifier shared among orders (<code>INSTRUCTIONs</code> and <code>ACTIONs</code>) from the Order Set instance used in this Task Plan, if any.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_cost_tracking"><a class="anchor" href="#_cost_tracking"></a>6.9. Cost Tracking</h3>
 <div class="paragraph tbd">
 <p>TBD: describe cost tracking.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_9"><a class="anchor" href="#_class_descriptions_9"></a>6.9.1. Class Descriptions</h4>
+<h4 id="_class_descriptions_12"><a class="anchor" href="#_class_descriptions_12"></a>6.9.1. Class Descriptions</h4>
 <div class="sect4">
 <h5 id="_task_costing_class"><a class="anchor" href="#_task_costing_class"></a>6.9.1.1. TASK_COSTING Class</h5>
 <table class="tableblock frame-all grid-all spread">
@@ -7261,11 +7327,11 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 33. proc.task_planning.materialised package</div>
+<div class="title">Figure 34. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_descriptions_10"><a class="anchor" href="#_class_descriptions_10"></a>8.2. Class Descriptions</h3>
+<h3 id="_class_descriptions_13"><a class="anchor" href="#_class_descriptions_13"></a>8.2. Class Descriptions</h3>
 <div class="sect3">
 <h4 id="_m_work_plan_class"><a class="anchor" href="#_m_work_plan_class"></a>8.2.1. M_WORK_PLAN Class</h4>
 <table class="tableblock frame-all grid-all spread">
@@ -7601,7 +7667,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 34. proc.task_planning.history package</div>
+<div class="title">Figure 35. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -7660,7 +7726,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_descriptions_11"><a class="anchor" href="#_class_descriptions_11"></a>9.2. Class Descriptions</h3>
+<h3 id="_class_descriptions_14"><a class="anchor" href="#_class_descriptions_14"></a>9.2. Class Descriptions</h3>
 <div class="sect3">
 <h4 id="_task_plan_execution_history_class"><a class="anchor" href="#_task_plan_execution_history_class"></a>9.2.1. TASK_PLAN_EXECUTION_HISTORY Class</h4>
 <table class="tableblock frame-all grid-all spread">
@@ -7927,7 +7993,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 35. proc.task_planning.service package</div>
+<div class="title">Figure 36. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -7943,7 +8009,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_descriptions_12"><a class="anchor" href="#_class_descriptions_12"></a>10.4. Class Descriptions</h3>
+<h3 id="_class_descriptions_15"><a class="anchor" href="#_class_descriptions_15"></a>10.4. Class Descriptions</h3>
 <div class="sect3">
 <h4 id="_i_work_plan_definition_interface"><a class="anchor" href="#_i_work_plan_definition_interface"></a>10.4.1. I_WORK_PLAN_DEFINITION Interface</h4>
 <table class="tableblock frame-all grid-all spread">
@@ -8154,7 +8220,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 36. Runtime planning structures</div>
+<div class="title">Figure 37. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>
