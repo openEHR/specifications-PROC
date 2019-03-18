@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*_CHOICE_GROUP (abstract)_*
 
 h|*Description*
-2+a|Abstract precursor of root node of any decision structure.
+2+a|Abstract precursor of root node of any decision structure. All such structures are instances of a Task Group in parallel mode, with XOR (single path) concurrency logic.
 
 h|*Inherit*
 2+|`TASK_GROUP`
@@ -26,4 +26,7 @@ a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` 
 
 h|*Invariants*
 2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
+
+h|
+2+a|*_Inv_xor_concurrency_*: `concurrency_mode = CONCURRENCY_MODE.xor_one_path`
 |===

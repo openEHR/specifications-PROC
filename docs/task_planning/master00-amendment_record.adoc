@@ -7,7 +7,8 @@
 4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.3.0
-|{spec_tickets}/SPECPROC-19[SPECPROC-19^]. Refine model of concurrency in `TASK_GROUP`
+|{spec_tickets}/SPECPROC-19[SPECPROC-19^]. Refine model of concurrency in `TASK_GROUP`: add class `CONCURRENCY_MODE`; improve explanation of `TASK_GROUP`; +
+ Add `_concurrency_mode_ = xor_one_path` invariant to `CHOICE_GROUP`.
 |T Beale
 |[[latest_issue_date]]18 Mar 2019
 
