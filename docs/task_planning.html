@@ -4029,39 +4029,62 @@ The following UML diagram illustrates.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 50.0002%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8572%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-top">TP-VML</th>
 <th class="tableblock halign-left valign-top">Concurrency mode</th>
-<th class="tableblock halign-left valign-top">Split/join logic</th>
+<th class="tableblock halign-left valign-top">Split/<br>
+                              join logic</th>
 <th class="tableblock halign-left valign-top">Conditionality</th>
 <th class="tableblock halign-left valign-top">Semantics</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_and" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_and.svg" alt="task group parallel and">
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>and_all_paths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AND</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(none)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">All parallel paths are followed.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_xor" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_xor.svg" alt="task group parallel xor">
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xor_one_path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">XOR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1/N</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only one parallel path is followed.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_or_first" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N/M</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">One or more paths may be commenced, and the Group is complete as soon as one path completes.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_or_all" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_or_all.svg" alt="task group parallel or all">
+</div>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N/M</p></td>
@@ -4604,7 +4627,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DEFINED_ACTION</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="task_defined_task" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="task_defined_task" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task-defined_task.svg" alt="task defined task">
 </div>
@@ -4613,7 +4636,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>SUB_PLAN</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="task_sub_plan" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="task_sub_plan" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task-sub_plan.svg" alt="task sub plan">
 </div>
@@ -4622,7 +4645,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>SYSTEM_REQUEST</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="task_system_request" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="task_system_request" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task-system_request.svg" alt="task system request">
 </div>
@@ -4631,7 +4654,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>HAND_OFF</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="task_hand_off" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="task_hand_off" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task-hand_off.svg" alt="task hand off">
 </div>
@@ -4640,7 +4663,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>EXTERNAL_REQUEST</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div id="task_external_request" class="imageblock" style="text-align: center">
+<td class="tableblock halign-left valign-top"><div><div id="task_external_request" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task-external_request.svg" alt="task external request">
 </div>
@@ -4689,7 +4712,7 @@ The following UML diagram illustrates.</p>
 </div>
 <div id="proc_task_planning_definition_defined_task" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="UML/diagrams/PROC-task_planning.definition-defined_task.svg" alt="PROC task planning.definition defined task" width="65%">
+<img src="UML/diagrams/PROC-task_planning.definition-defined_task.svg" alt="PROC task planning.definition defined task" width="50%">
 </div>
 <div class="title">Figure 23. proc.task_planning.definition - Definition Task</div>
 </div>

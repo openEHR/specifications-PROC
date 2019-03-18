@@ -92,13 +92,21 @@ image::{diagrams_uri}/task_group_parallel.svg[id=task_group_parallel, align="cen
 
 The type of split and join (i.e. AND, OR, XOR, or other) depends on additional rules for concurrent processing, represented by the attribute `_concurrency_mode_`, whose possible values define the type of split and join, as shown below. The concurrency mode is important because it tells the execution engine at runtime under what conditions to consider the group has completed. The AND cases is the simplest, since there is no conditional processing - all paths must be followed. The XOR case represents a 1/N choice, so completion is also trivial to determine. However the OR case is more complicated. It might initially seem as if the Group may be considered completed when the first path completes (i.e. 'quickest path wins'). However, an alternative reasonable approach is to wait for all paths that were commenced to complete. Both possibilities are catered for.
 
-[cols="1,1,1,3", options="header"]
+[cols="1,1,1,1,3", options="header"]
 |===
-|Concurrency mode    |Split/join logic   |Conditionality     |Semantics
+|TP-VML |Concurrency mode    |Split/ +
+                              join logic |Conditionality     |Semantics
 
+a|image::{diagrams_uri}/task_group_parallel_and.svg[id=task_group_parallel_and]
 |`and_all_paths`     |AND                |(none)             |All parallel paths are followed.
+
+a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=task_group_parallel_xor]
 |`xor_one_path`      |XOR                |1/N                |Only one parallel path is followed.
+
+a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=task_group_parallel_or_first]
 |`or_first_completed`|OR                 |N/M                |One or more paths may be commenced, and the Group is complete as soon as one path completes.
+
+a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=task_group_parallel_or_all]
 |`or_all_started`    |OR                 |N/M                |One or more paths may be commenced, and the Group is complete when all paths commenced complete.
 
 |===
@@ -227,23 +235,23 @@ The subtypes of `TASK_ACTION` consist of the following:
 |Type   |TP-VML |Description
 
 |`DEFINED_ACTION`
-a|image::{diagrams_uri}/task-defined_task.svg[id=task_defined_task, align="center"]
+a|image::{diagrams_uri}/task-defined_task.svg[id=task_defined_task]
 |An inline-defined Task to be performed by the principal performer of the Group (see below for details);
 
 |`SUB_PLAN`
-a|image::{diagrams_uri}/task-sub_plan.svg[id=task_sub_plan, align="center"]
+a|image::{diagrams_uri}/task-sub_plan.svg[id=task_sub_plan]
 |A kind of Task that stands for another Task Plan (identified by the inherited `LINKED_PLAN._target_` attribute) to be performed by the current performer - usually a fine-grained set of steps designed to achieve the result of this Task.
 
 |`SYSTEM_REQUEST`
-a|image::{diagrams_uri}/task-system_request.svg[id=task_system_request, align="center"]
+a|image::{diagrams_uri}/task-system_request.svg[id=task_system_request]
 |A kind of Task that consists of a request to a computational system, such as a data retrieval or procedure call, on behalf of the current performer;
 
 |`HAND_OFF`
-a|image::{diagrams_uri}/task-hand_off.svg[id=task_hand_off, align="center"]
+a|image::{diagrams_uri}/task-hand_off.svg[id=task_hand_off]
 |A kind of Task that hands off to another Task Plan in the same Work Plan, having a different performer (identified via the `_target_` attribute inherited from `LINKED_PLAN`);
 
 |`EXTERNAL_REQUEST`
-a|image::{diagrams_uri}/task-external_request.svg[id=task_external_request, align="center"]
+a|image::{diagrams_uri}/task-external_request.svg[id=task_external_request]
 |A Task type that consists of a request to an external organisational entity that is outside the current Work Plan and its execution environment, on behalf of the current performer;
 
 |===
@@ -273,7 +281,7 @@ Tasks whose definitions are stated within a Task Plan are modelled using the `DE
 
 [.text-center]
 .proc.task_planning.definition - Definition Task
-image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center", width=65%]
+image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center", width=50%]
 
 The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of `DEFINED_ACTIONs`, each having a protoype of an `ACTION` instance based on the `openEHR-EHR-ACTION.medication.v1` archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an `ACTION` instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.
 
