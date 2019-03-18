@@ -36,4 +36,7 @@ h|*0..1*
 a|Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the _enclosing _Task Group_ of the original dispatching Task.
 
 If not set, default processing will be performed, which for a Task is to enter the `available` state.
+
+h|*Invariants*
+2+a|*_Inv_custom_actions_next_state_*: `custom_actions.for_all ((ev:EVENT_ACTION) {ev.receiver_thread_next_state /= Void})`
 |===

@@ -1,0 +1,30 @@
+=== CONCURRENCY_MODE Enumeration
+
+[cols="^1,3,5"]
+|===
+h|*Enumeration*
+2+^h|*CONCURRENCY_MODE*
+
+h|*Description*
+2+a|Mode in which concurrent processing should proceed.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|xor_one_path
+a|Only one parallel path is followed.
+
+h|
+|and_all_paths
+a|All paths are followed, and Group completes only when all complete.
+
+h|
+|or_first_completed
+a|Group completes when any one path completes.
+
+h|
+|or_all_started
+a|Group is complete when all paths commenced complete.
+|===

@@ -8,6 +8,13 @@ h|*Class*
 h|*Description*
 2+a|Specialised descendant of `EVENT_WAIT <CALL_BACK_NOTIFICATION>` that adds a fail action. Used for representing post-callback actions.
 
+Default processing if `EVENT_ACTION._receiver_thread_next_state_` is not set:
+
+* on `_success_action_`: the owning Task `_lifecycle_state_` is progressed to the `completed` state.
+* on `_fail_action_`: the owning Task `_lifecycle_state_` is progressed to the `abandoned` state.
+
+`EVENT_ACTION._receiver_thread_next_state_` must be set on all
+
 h|*Inherit*
 2+|`EVENT_WAIT`
 

@@ -12,6 +12,8 @@ This allows Task Group to define the execution basis for a collection of Tasks, 
 
 The `_execution_type_` attribute defines the mode of execution. If not set, sequential execution is assumed.
 
+If set to `parallel`, the Task Group represents a split/join pair with respect to all contained Tasks and Groups. In this case, `_concurrency_mode_` may be set to control the processing. If it is not set, 'AND' logic is assumed (i.e. `and_all_paths`).
+
 h|*Inherit*
 2+|`PLAN_ITEM`
 
@@ -37,4 +39,8 @@ a|Other rules that may control execution over and above the basic sequential / p
 
 * at least N members must complete for group to complete;
 * exit group on first succeeding task.
+
+h|*0..1*
+|*concurrency_mode*: `CONCURRENCY_MODE`
+a|Mode in which to execute if execution type is parallel.
 |===

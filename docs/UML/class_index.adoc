@@ -36,6 +36,8 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/task_planning.html#_clock_time_class[CLOCK_TIME^]
 [.xcode]
+* link:/releases/PROC/{proc_release}/task_planning.html#_concurrency_mode_enumeration[CONCURRENCY_MODE^]
+[.xcode]
 * link:/releases/PROC/{proc_release}/task_planning.html#_condition_branch_class[CONDITION_BRANCH^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/task_planning.html#_condition_group_class[CONDITION_GROUP^]
