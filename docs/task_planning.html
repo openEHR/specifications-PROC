@@ -4035,57 +4035,55 @@ The following UML diagram illustrates.</p>
 <col style="width: 14.2857%;">
 <col style="width: 42.8572%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">TP-VML</th>
-<th class="tableblock halign-left valign-top">Concurrency mode</th>
-<th class="tableblock halign-left valign-top">Split/<br>
-                              join logic</th>
-<th class="tableblock halign-left valign-top">Conditionality</th>
-<th class="tableblock halign-left valign-top">Semantics</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Concurrency mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TP-VML</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Split/<br>
+                              join logic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conditionality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Semantics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>and_all_paths</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_and" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task_group_parallel_and.svg" alt="task group parallel and">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>and_all_paths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AND</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(none)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">All parallel paths are followed.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xor_one_path</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_xor" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task_group_parallel_xor.svg" alt="task group parallel xor">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xor_one_path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">XOR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1/N</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only one parallel path is followed.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_or_first" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N/M</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">One or more paths may be commenced, and the Group is complete as soon as one path completes.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_or_all" class="imageblock">
 <div class="content">
 <img src="task_planning/diagrams/task_group_parallel_or_all.svg" alt="task group parallel or all">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N/M</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">One or more paths may be commenced, and the Group is complete when all paths commenced complete.</p></td>
@@ -6158,7 +6156,10 @@ The following UML diagram illustrates.</p>
 <div class="sect4">
 <h5 id="_timers"><a class="anchor" href="#_timers"></a>6.8.2.1. Timers</h5>
 <div class="paragraph">
-<p>A generic timer facility used in the various kinds of wait state is represented by the class <code>TIMER_WAIT</code>, based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code>. It provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance). Timeouts can be used on the <code>TASK_WAIT</code> wait state as well as any <code>EVENT_WAIT</code> wait state, including <code>CALLBACK_WAIT</code>. A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
+<p>A generic timer can be specified using the Event type <code>TIMER_EVENT</code>. This is either attached to a <code>TASK_WAIT</code> wait state, which controls when a Task becomes available, or to a <code>TIMER_WAIT</code> wait state, which is used to represent a timeout on another wait state. <code>TIMER_WAIT</code> is based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code> and provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance).  A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>The timer represented by a <code>TIMER_EVENT</code> is started when the wait state to which it is attached is reached in the execution.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6224,6 +6225,9 @@ The following UML diagram illustrates.</p>
 <img src="task_planning/diagrams/uc_task_timing_1.svg" alt="uc task timing 1">
 </div>
 <div class="title">Figure 33. Timing patterns</div>
+</div>
+<div class="paragraph">
+<p>A Timeout can be also be used on a callback, via <code>CALLBACK_WAIT.<em>timeout</em></code>.</p>
 </div>
 </div>
 <div class="sect4">

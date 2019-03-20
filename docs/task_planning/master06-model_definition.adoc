@@ -49,7 +49,7 @@ The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to extern
 ** `_order_set_`: the identifier of an Order Set which this Task Plan uses, if any;
 ** `_workflow_id_`: an identifier shared among orders (`INSTRUCTIONs` and `ACTIONs`) from the Order Set instance used in this Task Plan, if any.
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/work_plan.adoc[leveloffset=+1]
 
@@ -92,22 +92,26 @@ image::{diagrams_uri}/task_group_parallel.svg[id=task_group_parallel, align="cen
 
 The type of split and join (i.e. AND, OR, XOR, or other) depends on additional rules for concurrent processing, represented by the attribute `_concurrency_mode_`, whose possible values define the type of split and join, as shown below. The concurrency mode is important because it tells the execution engine at runtime under what conditions to consider the group has completed. The AND cases is the simplest, since there is no conditional processing - all paths must be followed. The XOR case represents a 1/N choice, so completion is also trivial to determine. However the OR case is more complicated. It might initially seem as if the Group may be considered completed when the first path completes (i.e. 'quickest path wins'). However, an alternative reasonable approach is to wait for all paths that were commenced to complete. Both possibilities are catered for.
 
-[cols="1,1,1,1,3", options="header"]
+[cols="1,1,1,1,3", optixons="header"]
 |===
-|TP-VML |Concurrency mode    |Split/ +
+|Concurrency mode    |TP-VML |Split/ +
                               join logic |Conditionality     |Semantics
 
+|`and_all_paths`     
 a|image::{diagrams_uri}/task_group_parallel_and.svg[id=task_group_parallel_and]
-|`and_all_paths`     |AND                |(none)             |All parallel paths are followed.
+|AND                |(none)             |All parallel paths are followed.
 
+|`xor_one_path`     
 a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=task_group_parallel_xor]
-|`xor_one_path`      |XOR                |1/N                |Only one parallel path is followed.
+|XOR                |1/N                |Only one parallel path is followed.
 
+|`or_first_completed`
 a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=task_group_parallel_or_first]
-|`or_first_completed`|OR                 |N/M                |One or more paths may be commenced, and the Group is complete as soon as one path completes.
+|OR                 |N/M                |One or more paths may be commenced, and the Group is complete as soon as one path completes.
 
+|`or_all_started`    
 a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=task_group_parallel_or_all]
-|`or_all_started`    |OR                 |N/M                |One or more paths may be commenced, and the Group is complete when all paths commenced complete.
+|OR                 |N/M                |One or more paths may be commenced, and the Group is complete when all paths commenced complete.
 
 |===
 
@@ -143,7 +147,7 @@ To enable a single Plan to be used in both ways, the concept of 'training level'
 
 The default value of `_training_level_` is 0.
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/task_group.adoc[leveloffset=+1]
 
@@ -202,7 +206,7 @@ The state machine is primarily designed to allow a stateless view of the actual 
 
 It may be that one or more Tasks do not evaluate to `available` at runtime when the principal performer wants to treat them as being available. This may happen if the performer wants to execute a Task earlier than scheduled, or decides that an unmet precondition or wait condition does not matter (for example, they may know that it is met, but the Task Plan application may not yet know). Accordingly, a user override can be used, represented by the `_override_` transition from `planned` => `available`.
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/task.adoc[leveloffset=+1]
 
@@ -338,7 +342,7 @@ The Task sub-type `SYSTEM_REQUEST` represents a request to a _system_ with a com
 
 The Task sub-type `EXTERNAL_REQUEST` represents a request by the current performer to an external entity completely outside of the current Work Plan computational context, to request some work on behalf of the performer. This is typically an organisation of which routine requests can be made (e.g. pathology laboratory). The request has to be defined generically, in terms of an organisation identifier, a request identifier (i.e. a name or type of job) and a list of other details, represented by the standard archetypable `ITEM_STRUCTURE`.
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/task_action.adoc[leveloffset=+1]
 
@@ -379,7 +383,7 @@ Related to this is the `_capture_dataset_` attribute of the `PERFORMABLE_TASK` t
 [.tbd]
 TBD: describe how this relates to the data set(s) of `PERFORMABLE_ACTION._prototype_` .
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
 
@@ -432,7 +436,7 @@ The final structure is a wait state at which multiple branches correspond to the
 .Event structure
 image::{diagrams_uri}/event_structure.svg[id=event_structure, align="center"]
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/choice_group.adoc[leveloffset=+1]
 
@@ -520,7 +524,9 @@ Instances of all of these types on their own only identify the type and source o
 
 ==== Timers
 
-A generic timer facility used in the various kinds of wait state is represented by the class `TIMER_WAIT`, based on the generic type `EVENT_WAIT<TIMER_EVENT>`. It provides a way to specify a Timer (the `TIMER_EVENT` instance) and listen for it (the `TIMER_WAIT` instance). Timeouts can be used on the `TASK_WAIT` wait state as well as any `EVENT_WAIT` wait state, including `CALLBACK_WAIT`. A `TIMER_WAIT` creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited `EVENT_WAIT._success_action_` attribute.
+A generic timer can be specified using the Event type `TIMER_EVENT`. This is either attached to a `TASK_WAIT` wait state, which controls when a Task becomes available, or to a `TIMER_WAIT` wait state, which is used to represent a timeout on another wait state. `TIMER_WAIT` is based on the generic type `EVENT_WAIT<TIMER_EVENT>` and provides a way to specify a Timer (the `TIMER_EVENT` instance) and listen for it (the `TIMER_WAIT` instance).  A `TIMER_WAIT` creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited `EVENT_WAIT._success_action_` attribute.
+
+The timer represented by a `TIMER_EVENT` is started when the wait state to which it is attached is reached in the execution.
 
 ==== Event Wait State
 
@@ -556,6 +562,8 @@ A timeout can be set on a Task Wait state by setting `TASK_WAIT._timeout_` with 
 [.text-center]
 .Timing patterns
 image::{diagrams_uri}/uc_task_timing_1.svg[id=timing_patterns_1, align="center"]
+
+A Timeout can be also be used on a callback, via `CALLBACK_WAIT._timeout_`.
 
 ==== Reminder
 
@@ -593,7 +601,7 @@ image::{diagrams_uri}/uc_task_callback_2.svg[id=timing_callback_pattern_2, align
 [.tbd]
 TBD
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/task_wait.adoc[leveloffset=+1]
 
@@ -634,6 +642,6 @@ include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
 [.tbd]
 TBD: describe cost tracking.
 
-=== Class Descriptions
+=== Class Definitions
 
 include::{uml_export_dir}/classes/task_costing.adoc[leveloffset=+1]
