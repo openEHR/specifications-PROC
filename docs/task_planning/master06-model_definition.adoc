@@ -36,6 +36,8 @@ Plan internal structure is specified by the `_definition_` attribute of a `TASK_
 
 The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
 
+The optional `_period_` attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.
+
 === References to Clinical Quality Artefacts
 
 The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
@@ -92,7 +94,7 @@ image::{diagrams_uri}/task_group_parallel.svg[id=task_group_parallel, align="cen
 
 The type of split and join (i.e. AND, OR, XOR, or other) depends on additional rules for concurrent processing, represented by the attribute `_concurrency_mode_`, whose possible values define the type of split and join, as shown below. The concurrency mode is important because it tells the execution engine at runtime under what conditions to consider the group has completed. The AND cases is the simplest, since there is no conditional processing - all paths must be followed. The XOR case represents a 1/N choice, so completion is also trivial to determine. However the OR case is more complicated. It might initially seem as if the Group may be considered completed when the first path completes (i.e. 'quickest path wins'). However, an alternative reasonable approach is to wait for all paths that were commenced to complete. Both possibilities are catered for.
 
-[cols="1,1,1,1,3", optixons="header"]
+[cols="1,1,1,1,3", options="header"]
 |===
 |Concurrency mode    |TP-VML |Split/ +
                               join logic |Conditionality     |Semantics
@@ -518,7 +520,7 @@ a|image::{diagrams_uri}/event_callback.svg[id=event_callback]
 
 |===
 
-Instances of all of these types on their own only identify the type and source of an event - a wait state is required to catch an event. There are three types of wait state used in a TP definition: Task Wait, Timer Wait and CAllback Wait. These are described below.
+Instances of all of these types on their own only identify the type and source of an event - a wait state is required to catch an event. There are three types of wait state used in a TP definition: Task Wait, Timer Wait and Callback Wait. These are described below.
 
 === General Facilities
 

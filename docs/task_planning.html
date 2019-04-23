@@ -490,7 +490,7 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="https://www.openehr.org" target="_blank" rel="noopener">The openEHR Foundation</a> is an independent, non-profit community organisation, facilitating the sharing of health records by consumers and clinicians via open standards-based implementations.</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="https://www.openehr.org" target="_blank" rel="noopener">The openEHR Foundation</a> is an independent, non-profit foundation, facilitating the sharing of health records by consumers and clinicians via open specifications, clinical models and open platform implementations.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
@@ -529,10 +529,17 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-20" target="_blank" rel="noopener">SPECPROC-20</a>. Add <code><em>period</em></code> to <code>TASK_REPEAT</code> class..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>12 Apr 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-19" target="_blank" rel="noopener">SPECPROC-19</a>. Refine model of concurrency in <code>TASK_GROUP</code>: add class <code>CONCURRENCY_MODE</code>; improve explanation of <code>TASK_GROUP</code>;<br>
  Add <code><em>concurrency_mode</em> = xor_one_path</code> invariant to <code>CHOICE_GROUP</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Mar 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 Mar 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3416,6 +3423,9 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>The second attribute, <code><em>repeat_spec</em></code>, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (typically a Group) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
 </div>
+<div class="paragraph">
+<p>The optional <code><em>period</em></code> attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_references_to_clinical_quality_artefacts"><a class="anchor" href="#_references_to_clinical_quality_artefacts"></a>6.2.2. References to Clinical Quality Artefacts</h4>
@@ -3959,7 +3969,10 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Definition of repetition for a Task Item. The repeats attribute provides a constraint on a number of times. If not set, any number of repeats is allowed. The terminate_condition attribute defines when repetition should cease in terms of a condition, typically a subject-related variable.</p>
+<p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute provides a constraint on a number of times. If not set, any number of repeats is allowed. The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable.</p>
+</div>
+<div class="paragraph">
+<p>If <code><em>period</em></code> is set, this defines the duration between the start of each iteration at execution time. It has the effect at runtime of adding a <code><em>wait_spec</em></code> with a <code>TIMELINE_MOMENT</code> event to each <code>PLAN_ITEM</code> copy in the materialised form, i.e. creating the same structure as would have been created if the repetitions had been manually specified.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3979,6 +3992,13 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code>PLAN_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>States a condition for when repetition should stop.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>period</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional period of repetition, i.e. duration between the commencement of each <code>PLAN_ITEM</code> clone in the materialised form.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4035,15 +4055,17 @@ The following UML diagram illustrates.</p>
 <col style="width: 14.2857%;">
 <col style="width: 42.8572%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Concurrency mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TP-VML</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Split/<br>
-                              join logic</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Conditionality</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Semantics</p></td>
+<th class="tableblock halign-left valign-top">Concurrency mode</th>
+<th class="tableblock halign-left valign-top">TP-VML</th>
+<th class="tableblock halign-left valign-top">Split/<br>
+                              join logic</th>
+<th class="tableblock halign-left valign-top">Conditionality</th>
+<th class="tableblock halign-left valign-top">Semantics</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>and_all_paths</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div id="task_group_parallel_and" class="imageblock">
@@ -6148,7 +6170,7 @@ The following UML diagram illustrates.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Instances of all of these types on their own only identify the type and source of an event - a wait state is required to catch an event. There are three types of wait state used in a TP definition: Task Wait, Timer Wait and CAllback Wait. These are described below.</p>
+<p>Instances of all of these types on their own only identify the type and source of an event - a wait state is required to catch an event. There are three types of wait state used in a TP definition: Task Wait, Timer Wait and Callback Wait. These are described below.</p>
 </div>
 </div>
 <div class="sect3">
