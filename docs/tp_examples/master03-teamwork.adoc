@@ -1,0 +1,12 @@
+= Teamwork
+
+xxx
+
+== Outpatient Ophthalmology Encounter
+
+Taken from https://github.com/bjornna/TP-examples/blob/master/16-eye_outpatient/index.adoc[DIPS Eye encounter example].
+
+[.text-center]
+.Plans
+image::{diagrams_uri}/outpatient_eye_clinic.svg[id=outpatient_eye_clinic, align="center"]
+

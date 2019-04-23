@@ -1,0 +1,34 @@
+= Preface
+
+== Purpose
+
+This document contains elaborated examples of the openEHR Task Planning (TP) Model, with diagrams in TP-VML.
+
+The intended audience includes:
+
+* Task Plan and workflow authors;
+* Tool vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_task_planning}[openEHR Task Planning Model^];
+* The {openehr_tp_vml}[openEHR Task Planning Visual Modelling Language (TP-VML)^];
+
+== Status
+
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_tp_examples}[{openehr_proc_latest_tp_examples}^].
+
+Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
+[.tbd]
+*TBD*: (example To Be Determined paragraph)
+
+== Feedback
+
+Feedback may be provided on the {openehr_technical_list}[technical mailing list^].
+
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
+
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
+

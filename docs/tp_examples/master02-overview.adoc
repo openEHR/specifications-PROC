@@ -1,0 +1,10 @@
+= Overview
+
+== Draw.io Tool mode
+
+The following files can be downloaded and then imported into draw.io as libraries to provide a working palette for TP-VML diagrams.
+
+* link:{doc_name}/draw.io-lib/TP_VML_plans.xml[TP_VML plans]
+* link:{doc_name}/draw.io-lib/TP_VML_groups.xml[TP_VML groups]
+* link:{doc_name}/draw.io-lib/TP_VML_tasks.xml[TP_VML tasks]
+* link:{doc_name}/draw.io-lib/TP_VML_events.xml[TP_VML events]

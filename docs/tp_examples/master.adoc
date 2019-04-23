@@ -1,0 +1,81 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
+
+//
+// Document-specific attributes
+//
+:copyright_year: 2017
+:spec_status: TRIAL
+
+//
+// HTML-only attributes
+//
+:linkcss:
+:keywords: task, planning, examples, workflow
+:description: openEHR Task Planning (TP) Examples
+:linkattrs:
+
+include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+image::{openehr_logo}["openEHR logo",align="center"]
+
+= Task Planning Examples
+
+include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
+include::{ref_dir}/docs/references/reference_definitions.adoc[]
+
+//
+// ============================================= Asciidoc BODY ===============================================
+//
+
+include::master00-amendment_record.adoc[leveloffset=+1]
+
+//
+// --------------------------------------------- Preface -----------------------------------------------
+//
+== Acknowledgements
+
+=== Editors
+
+* Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board
+* Bjørn Næss, DIPS, Norway
+
+=== Support
+
+
+The work reported in this specification has been funded by the following organisations:
+
+* DIPS, Norway
+* Marand d.o.o., Slovenia
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation.
+* 'OMG' is a trademark of the Object Management Group.
+
+//
+// --------------------------------------------- TOC -----------------------------------------------
+//
+//toc::[left]
+
+//
+// --------------------------------------------- CHAPTERS -----------------------------------------------
+//
+:sectanchors:
+:sectnums:
+include::master01-preface.adoc[leveloffset=+1]
+include::master02-overview.adoc[leveloffset=+1]
+include::master03-teamwork.adoc[leveloffset=+1]
+
+
+//
+// --------------------------------------------- REFERENCES -----------------------------------------------
+//
+//:sectnums!:
+//== References
