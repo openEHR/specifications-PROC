@@ -1,12 +1,51 @@
 = Teamwork
 
-xxx
+The examples in this section illustrate the use of TP for team-based work plans, including hand-offs, callbacks and other kinds of coordination.
 
-== Outpatient Ophthalmology Encounter
+== Out-patient Eye Clinic Encounter
 
-Taken from https://github.com/bjornna/TP-examples/blob/master/16-eye_outpatient/index.adoc[DIPS Eye encounter example].
+This example is based on the original description of https://github.com/bjornna/TP-examples/blob/master/16-eye_outpatient/index.adoc[DIPS Eye encounter example].
 
 [.text-center]
-.Plans
+.Outpatient eye clinic encounter
 image::{diagrams_uri}/outpatient_eye_clinic.svg[id=outpatient_eye_clinic, align="center"]
 
+As for all Plans defined in the Task Planning formalism, it must be remembered that the Plan definition above is what the _TP engine executes_. It is the result of the execution (including worker allocation and communication, which is not shown in the definition) that causes workers in the real world to do things. Additionally, what the TP engine knows about the real world is limited to what it is told - many actions and events can occur outside the TP computing environment that will remain unknown to the system unless it is informed (e.g. by Manual notification).
+
+The Work Plan consists of two top-level Task Plans, one for the patient and one for the clinic administrator / reception. The latter has two sub-plans linked by hand-off Tasks.
+
+The purpose of the patient top-level Task Plan is to allow the system to notify the patient of the visit, via a reminder on the day of the visit, or some fixed time beforehand. The driving event is the calendar appointment, which is waited on by both the patient and the clinic admin Task Plans. It is assumed that longer term reminders, opportunities for changing appointments and so on are managed by another system that see the same calendar events, and is responsible for setting the calendar events in the first place. Thus, in the model above, the patient top-level plan is not really necessary (he/she will be notified by the appointment system), and is mainly included for purposes of demonstration.
+
+=== Plan Description
+
+The main work of the Work Plan is in the other three Task Plans, which essentially encode the following logic:
+
+Clinic Administrator:
+
+* clinic has a live Task Plan waiting on appointment A for patient P, at 2019-02-15 09:30:00;
+* when this calendar timepoint is reached, the TP system 'opens' the appointment via a System Request to the clinic appointment system (details not shown);
+* WAIT: the clinic Task Plan enters a new wait state for patient P, for appointment A;
+
+Patient:
+
+* patient arrives at clinic (modelled as a Manual notification);
+
+Clinic Administrator:
+
+* receive patient, record presence;
+* Hand-off: pass to consultation (e.g. send to waiting area);
+* WAIT: until manual notification (patient returns)
+
+Nurse:
+
+* receive patient & check EMR
+* review eye function, decide on whether to send to doc or not:
+** EITHER: return to reception
+** OR: pass to doctor
+
+Specialist:
+
+* receive patient and check EMR
+* perform examination
+* update EMR
+* send patient back to reception.

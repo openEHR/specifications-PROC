@@ -41,7 +41,11 @@
 </li>
 <li><a href="#_teamwork">3. Teamwork</a>
 <ul class="sectlevel2">
-<li><a href="#_outpatient_ophthalmology_encounter">3.1. Outpatient Ophthalmology Encounter</a></li>
+<li><a href="#_out_patient_eye_clinic_encounter">3.1. Out-patient Eye Clinic Encounter</a>
+<ul class="sectlevel3">
+<li><a href="#_plan_description">3.1.1. Plan Description</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -293,18 +297,117 @@
 <h2 id="_teamwork"><a class="anchor" href="#_teamwork"></a>3. Teamwork</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>xxx</p>
+<p>The examples in this section illustrate the use of TP for team-based work plans, including hand-offs, callbacks and other kinds of coordination.</p>
 </div>
 <div class="sect2">
-<h3 id="_outpatient_ophthalmology_encounter"><a class="anchor" href="#_outpatient_ophthalmology_encounter"></a>3.1. Outpatient Ophthalmology Encounter</h3>
+<h3 id="_out_patient_eye_clinic_encounter"><a class="anchor" href="#_out_patient_eye_clinic_encounter"></a>3.1. Out-patient Eye Clinic Encounter</h3>
 <div class="paragraph">
-<p>Taken from <a href="https://github.com/bjornna/TP-examples/blob/master/16-eye_outpatient/index.adoc">DIPS Eye encounter example</a>.</p>
+<p>This example is based on the original description of <a href="https://github.com/bjornna/TP-examples/blob/master/16-eye_outpatient/index.adoc">DIPS Eye encounter example</a>.</p>
 </div>
 <div id="outpatient_eye_clinic" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="tp_examples/diagrams/outpatient_eye_clinic.svg" alt="outpatient eye clinic">
 </div>
-<div class="title">Figure 1. Plans</div>
+<div class="title">Figure 1. Outpatient eye clinic encounter</div>
+</div>
+<div class="paragraph">
+<p>As for all Plans defined in the Task Planning formalism, it must be remembered that the Plan definition above is what the <em>TP engine executes</em>. It is the result of the execution (including worker allocation and communication, which is not shown in the definition) that causes workers in the real world to do things. Additionally, what the TP engine knows about the real world is limited to what it is told - many actions and events can occur outside the TP computing environment that will remain unknown to the system unless it is informed (e.g. by Manual notification).</p>
+</div>
+<div class="paragraph">
+<p>The Work Plan consists of two top-level Task Plans, one for the patient and one for the clinic administrator / reception. The latter has two sub-plans linked by hand-off Tasks.</p>
+</div>
+<div class="paragraph">
+<p>The purpose of the patient top-level Task Plan is to allow the system to notify the patient of the visit, via a reminder on the day of the visit, or some fixed time beforehand. The driving event is the calendar appointment, which is waited on by both the patient and the clinic admin Task Plans. It is assumed that longer term reminders, opportunities for changing appointments and so on are managed by another system that see the same calendar events, and is responsible for setting the calendar events in the first place. Thus, in the model above, the patient top-level plan is not really necessary (he/she will be notified by the appointment system), and is mainly included for purposes of demonstration.</p>
+</div>
+<div class="sect3">
+<h4 id="_plan_description"><a class="anchor" href="#_plan_description"></a>3.1.1. Plan Description</h4>
+<div class="paragraph">
+<p>The main work of the Work Plan is in the other three Task Plans, which essentially encode the following logic:</p>
+</div>
+<div class="paragraph">
+<p>Clinic Administrator:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>clinic has a live Task Plan waiting on appointment A for patient P, at 2019-02-15 09:30:00;</p>
+</li>
+<li>
+<p>when this calendar timepoint is reached, the TP system 'opens' the appointment via a System Request to the clinic appointment system (details not shown);</p>
+</li>
+<li>
+<p>WAIT: the clinic Task Plan enters a new wait state for patient P, for appointment A;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Patient:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>patient arrives at clinic (modelled as a Manual notification);</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Clinic Administrator:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>receive patient, record presence;</p>
+</li>
+<li>
+<p>Hand-off: pass to consultation (e.g. send to waiting area);</p>
+</li>
+<li>
+<p>WAIT: until manual notification (patient returns)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Nurse:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>receive patient &amp; check EMR</p>
+</li>
+<li>
+<p>review eye function, decide on whether to send to doc or not:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>EITHER: return to reception</p>
+</li>
+<li>
+<p>OR: pass to doctor</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Specialist:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>receive patient and check EMR</p>
+</li>
+<li>
+<p>perform examination</p>
+</li>
+<li>
+<p>update EMR</p>
+</li>
+<li>
+<p>send patient back to reception.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
