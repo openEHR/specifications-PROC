@@ -6,7 +6,9 @@ h|*Class*
 2+^h|*CALLBACK_NOTIFICATION*
 
 h|*Description*
-2+a|Event generated on receipt of notification of completion of a Dispatchable Task.
+2+a|Event generated on receipt of notification of completion of the work of the target of a Dispatchable Task.
+
+If `_manually_notified_` is set, the callback will be notified in the real world rather than by the system.
 
 h|*Inherit*
 2+|`PLAN_EVENT`
@@ -22,4 +24,12 @@ a|Identifier of originating Task.
 h|*0..1*
 |*request_id*: `String`
 a|Identifier of original request, may be matchable with `EXTERNAL_REQUEST._request_id_`.
+
+h|*0..1*
+|*subject_id*: `String`
+a|Identifier of subject to which callback relates.
+
+h|*1..1*
+|*manually_notified*: `Boolean`
+a|If True, callback will be manually notified, e.g. by return of ambulatory subject, manual provision of tissue sample, etc.
 |===

@@ -57,9 +57,9 @@ In the following, the term 'task' denotes the definition of an action to be perf
 
 For the sake of brevity, 'Action' below is intended to imply an openEHR `ACTION`, `OBSERVATION` or potentially other Entry sub-type, unless otherwise stated.
 
-== Task Plans versus Task Lists (TODO Lists)
+== Work Plans versus Task Lists (TODO Lists)
 
-The specification is based around the concept of a _task plan_, which is designed to achieve a goal, and at execution time is applied to a _subject_, i.e. human or other subject of care. The plan notion is thus goal- and subject-centric.
+The specification is based around the concept of a _work plan_, which is designed to achieve a goal, and at execution time is applied to a _subject_, i.e. human or other subject of care. The plan notion is thus goal- and subject-centric.
 
 A related concept is that of the _task list_ (aka 'TODO list'), which is a logical list of tasks for a worker to perform. The task list is thus worker-centric, not subject-centric, and as such, task lists must be _derived_ from task plans. Conceptually this is done by processing all extant task plans for some organisational unit (say a hospital department) and allocating particular tasks to particular actors. Allocation may happen in a just-in-time fashion, and may be modified (e.g. due to unforeseen unavailability of workers), such that a task list is essentially a dynamic personal calendar view for the short term (typically days or weeks) whereas task plans may correspond to any length of time, from a few minutes to years.
 

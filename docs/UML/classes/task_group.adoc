@@ -30,8 +30,8 @@ h|*0..1*
 a|Basis for executing the Task items contained in this Task Group.
 
 h|*0..1*
-|*training_level*: `Integer`
-a|An integer value representing the training level for which this Task Plan is designed. A high value corresponds to a lower level of expertise. The default value is zero.
+|*concurrency_mode*: `CONCURRENCY_MODE`
+a|Mode in which to execute if execution type is parallel.
 
 h|*0..1*
 |*execution_rules*: `List<EXECUTION_RULE>`
@@ -41,6 +41,6 @@ a|Other rules that may control execution over and above the basic sequential / p
 * exit group on first succeeding task.
 
 h|*0..1*
-|*concurrency_mode*: `CONCURRENCY_MODE`
-a|Mode in which to execute if execution type is parallel.
+|*training_level*: `Integer`
+a|An integer value representing the training level for which this Task Plan is designed. A high value corresponds to a lower level of expertise. The default value is zero.
 |===

@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*PLAN_TIMELINE*
 
 h|*Description*
-2+a|List of Plan Items that have a `_wait_condition_` containing an `TIMELINE_MOMENT`, whose times will be converted at Plan activation to fixed times on an execution calendar.
+2+a|List of Plan Items that have a `_wait_condition_` containing a `TIMELINE_MOMENT` event.
 
 h|*Attributes*
 ^h|*Signature*

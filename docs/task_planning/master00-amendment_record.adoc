@@ -7,10 +7,20 @@
 4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.3.0
-|{spec_tickets}/SPECPROC-20[SPECPROC-20^]. Add `_period_` to `TASK_REPEAT` class..
+|{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Enable Callbacks to be manually notified.
+|T Beale
+|[[latest_issue_date]]01 May 2019
+
+|
+|{spec_tickets}/SPECPROC-23[SPECPROC-23^]. Correct `CLOCK_TIME._time_` type to `Iso8601_time`.
+|B Fabjan
+|25 Apr 2019
+
+|
+|{spec_tickets}/SPECPROC-20[SPECPROC-20^]. Add `_period_` to `TASK_REPEAT` class.
 |M Kejžar, +
  T Beale
-|[[latest_issue_date]]12 Apr 2019
+|12 Apr 2019
 
 |
 |{spec_tickets}/SPECPROC-19[SPECPROC-19^]. Refine model of concurrency in `TASK_GROUP`: add class `CONCURRENCY_MODE`; improve explanation of `TASK_GROUP`; +

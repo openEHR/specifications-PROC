@@ -109,11 +109,11 @@ The following kinds of abandonment of tasks should be supported:
 * cancellation of a particular task on a list ahead of time, with a reason;
 * marking a task as 'did not perform' after the planned time has passed, with a reason.
 
-== Rationalising Unrelated Task Plans
+== Rationalising Unrelated Work Plans
 
-It is assumed that at any moment there could be multiple task plans extant for _different problems and timelines_ for the same subject of care, e.g. chemotherapy, hypertension, ante-natal care. If naively created, these could clash in time and potentially in terms of other resources. There should therefore be support for being able to efficiently locate all existing task plans and scan their times, states and resources. This aids avoiding clashes and also finding opportunities for rationalising and bundling tasks e.g. grouping multiple tasks into a single visit, taking bloods require by two protocols at the same sitting etc.
+It is assumed that at any moment there could be multiple work plans extant for _different problems and timelines_ for the same subject of care, e.g. chemotherapy, hypertension, ante-natal care. If naively created, these could clash in time and potentially in terms of other resources. There should therefore be support for being able to efficiently locate all existing plans and scan their times, states and resources. This aids avoiding clashes and also finding opportunities for rationalising and bundling tasks e.g. grouping multiple tasks into a single visit, taking bloods require by two protocols at the same sitting etc.
 
-It should be possible to process multiple task plans as part of interfacing with or constructing a 'patient diary', i.e. rationalised list of all work to be done involving the patient.
+It should be possible to process multiple work plans as part of interfacing with or constructing a 'patient diary', i.e. rationalised list of all work to be done involving the patient.
 
 == Support Process Analytics
 

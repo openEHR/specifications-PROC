@@ -1,0 +1,90 @@
+= Execution
+
+This section describes the execution time semantics that correspond to the materialised and runtime forms of the Task Planning model.
+
+== Phases of Processing
+
+As described in the earlier section <<Execution Concepts>>, Work Plan execution traverses three states: `materialised`, `activated` and `terminated`. These are described in the following sub-sections.
+
+=== Materialisation
+
+When a Work Plan is to be made available for use, it will be _materialised_, which concretely means instantiating and usually persisting it (this might be avoided for very short run Plans). Some user input may be required, e.g. number of repetitions of repeatable sections. Conditional branches whose conditions or events will never be met can also be removed during materialisation.
+
+The materialised representation consists of:
+
+* A copy of the definition form of the Plan;
+* An instance of the Plan using Materialised model instances, i.e. the `M_XXX` classes shown below, representing the concrete executable Tasks, each with a reference back to a definition Task. 
+* For Plans with repeatable sections, the Materialised model contains these sections 'unrolled' into as many instances as required by the Plan activator. In terms of the materialised model described below, some `M_TASK_GROUP` instances will have their `_members_` containing additional `M_XX` instances. Thus, more than one `M_TASK` may point to the same generating `TASK` from the definition.
+
+The structure created will thus mirror the structure of the original definition, with extra copies for repeatable sections and potentially 'dead branches' removed. 
+
+At materialisation time, an instance of `EXECUTION_HISTORY` is also created, proving a root point to accumulate Plan execution event records.
+
+Advance allocations of Tasks to concrete participants may be made in this phase.
+
+=== Activation
+
+A materialised Work Plan is _activated_ when it is ready to be used. Activation starts the timeline clock for the Work Plan; accordingly, execution times in the constituent Task Plans are converted to absolute clock times, or a form that can be related to clock time, e.g. via the use of the materialised Work Plan timeline and calendar.
+
+As part of activation, the _runtime window_ must be determined. This is a moving window corresponding to the section of a materialised Plan that will be actively executing at any moment. The size of the window should be at least a working shift (e.g. 8-12 hours), but might be longer, e.g. the number of days used in the organisation for lookahead planning. The parts of Task Plans within a Work Plan that are inside the runtime window are in active execution, while other parts (both prior and after the window) are not currently executing but should be available for visualisation.
+
+When the runtime window is known, allocations for the window can be managed, as <<Allocation,described below>>. To enable allocation to take place, a communication channel must be established with each potential worker or worker pool. This may consist of any technical means, including email, instant messager, a ward screen application and so on. Allocations may be filled in a 'just in time' fashion where the technical means exists to enable it (e.g. push communications from the server).
+
+Execution starts by putting the Work Plan's top-level Task Plans into an initial wait state, waiting on allocation of principal performer, and availability of the Task Plan subject (patient, related person, image, tissue sample etc). 
+
+For each Task Plan, execution of the Plan section within the runtime window consists of:
+
+* Tasks within the runtime window being displayed within a separate or shared application for each performer, along with lifecycle state of each Task;
+* Tasks become _available_ as earlier Tasks are completed or cancelled. When a Task is available to be done, the performer has various options, including doing the work, cancelling the Task as not needed, completing the Task, or aborting it, which abandons the entire Plan;
+* performers interact with the visual representation to transition the lifecycle state of each Task;
+* as the work proceeds, event records are generated and added to the execution history.
+* the Plan remains in the `active` state until abandoned or completed.
+
+=== Termination
+
+A Task Plan _terminates_ when the execution path taken through the materialised Group/Task graph completes, either due to finishing, or due to abandonment at an intermediate Task.
+
+The Task Plan as a whole returns a termination status of `success` or `fail`, which may be used to control behaviour if it is part of a hand-off chain in which a context switch follows termination of one Task Plan.
+
+A Work Plan terminates when all member Task Plans have terminated in the above fashion.
+
+An event record is added to the execution history for each Task Plan termination, and for the final Work Plan termination.
+
+=== Allowed Plan Modifications
+
+After materialisation but prior to activation, changes may be made to any part of the materialised plan, corresponding to adjusting repeated sections and removing or adding back in condition branches according to relevancy with respect to newly evaluated subject variables (e.g. discovering that the patient is pregnant may require certain Decision Branches to be added back in).
+
+Once activation has occurred, changes of the same type may still occur, but only _ahead of the runtime window_, since the parts of the Plan within the window, or already executed can't safely or sensibly be altered.
+
+If other kinds of changes are needed, this is generally a sign that the Plan design contains issues, and that the current version if already in use will be abandoned in favour of a newer version.
+
+== Execution Processing
+
+=== Worker Allocation
+
+Before a materialised Work Plan can be executed, at least the `_principal_performer_` must be allocated for Task Plans containing Tasks within the current runtime window (<<Activation,see above>>). Some actors designated `PERFORMABLE_ACTION._other_participations_` of affected Tasks may need to be allocated as well. Not all performers are needed at any time, only those implicated in the part of the Plan to be executed, e.g. for the current day within a multi-day Plan.
+
+The allocation process consists of:
+
+* _assignment_ of a Plan or Task to a real actor or worker pool;
+* receipt by the TP engine of a _claim_ by an individual to accept the request. 
+
+Assigning communicates a request to potential worker(s) (e.g. via application screens, personal messages, scheduling systems etc), one of which accepts the request and thereby becomes the allocated worker. This is done by user(s) authenticating to the Plan execution engine via an application and accepting the request. This operation is likely to be done nearly invisibly to the user, who may simply open an application window or click on a notification.
+
+The principal performer is considered to have been allocated when the work is claimed by the worker, and a _live communication channel_ has been established between the TP engine and the worker.
+
+=== Worker De-allocation
+
+At various moments during the execution of a Plan, a worker may leave e.g. due to worker shift changeover, being called away, or just finishing for the day. When a worker _disconnects from the communication channel_, either actively (e.g. by closing an application) or by an inactivity time-out, the TP engine registers a de-allocation of the worker. For the remaining Task(s) in the Plan to be performed, the necessary worker allocations have to be repeated by the TP engine.
+
+=== Resource Allocation
+
+[.tbd]
+TBD
+
+== Persistence
+
+The run-time instance structure may need to be persisted to enable a partial execution of a long-running Task Plan to be recorded and picked up when later tasks become ready. In theory, this could be within the EHR, but it is recommended that either a specific EHR area be used for this, or that run-time state persistence be implemented outside the EHR proper.
+
+[.tbd]
+issue-runtime-persistence: if within the EHR, we could create a new 'pointer' on the EHR object that points to 'task runtime state' data or similar. Is this a useful thing to do?

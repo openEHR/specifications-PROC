@@ -27,7 +27,7 @@ a|Human-understandable description of the Task Plan, which may be specific to th
 
 h|*0..1*
 |*subject*: `PARTY_PROXY`
-a|Optional indicator of subject of Task, which is normally the subject of the EHR. If this is not the case, this attribute states who the Task is to be performed on.
+a|Optional indicator of subject of Task Plan, which is normally the subject of the EHR. If this is not the case, this attribute states with respect to whom the Plan is to be performed.
 
 h|*0..1*
 |*guideline*: `DV_IDENTIFIER`

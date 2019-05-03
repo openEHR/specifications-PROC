@@ -1,0 +1,131 @@
+= Global Semantics
+
+This section describes the global semantics of the model in execution, taking into account all elements described above.
+
+== Aggregate Lifecycle State
+
+A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.
+
+Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.
+
+=== Task Group Lifecycle State
+
+The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.
+
+[source, java]
+--------
+//
+// Infer the state of a collection whose members have states in sourceStates.
+// The order of if/else evaluation determines the correct result.
+//
+TaskState inferredState (Set<TaskState> sourceStates) {
+    
+    if (sourceStates.contains(Abandoned))
+        return Abandoned;
+    else if (sourceStates.contains(Available))
+        return Available;
+    else if (sourceStates.contains(Planned))
+        return Planned;
+    else if (sourceStates.contains(Suspended))
+        return Suspended;
+    else if (sourceStates.contains(Underway))
+        return Underway;
+    else if (sourceStates.contains(Completed))
+        return Completed;
+    else if (sourceStates.contains(Cancelled))
+        return Cancelled;
+    else
+        return Initial;
+}
+--------
+
+One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.
+
+Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (`TASK_PLAN._definition_`).
+
+If `TASK_GROUP._execution_type_` is `parallel`, then the value of `_concurrency_mode_` will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.
+
+Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.
+
+If the `abandoned` state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be `abandoned`. 
+
+=== Work Group Lifecycle State
+
+In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.
+
+== Control Flow
+
+=== Graph Structure
+
+The execution graph structure of a Work Plan consists of its top-level Task Plan(s) (`WORK_PLAN._top_level_plans_`) and subordinate Task Plans linked from Hand-offs and sub-plans (i.e. `DISPATCHABLE_TASK<HAND_OFF>` and `DISPATCHABLE_TASK<SUB_PLAN>`) Task types. Top-level Task Plans are those that do not have prior executable Tasks, and are thus active at activation time. The following illustrates a typical structure.
+
+[.text-center]
+.Work Plan control path graph structure
+image::{diagrams_uri}/wp_tp_hierarchy.svg[id=wp_tp_hierarchy, align="center", width=70%]
+
+=== General Scheme
+
+When a materialised Work Plan is activated (<<_activation,see below>>), its top-level Task Plans are active, meaning that their initial Task(s) are in the `available` lifecycle state, as <<_task_lifecycle,described above>>. 
+
+In a Task Plan, the _execution path_ follows the chain of Tasks defined in the `_definition_` of the Plan, which is a `TASK_GROUP`. It descends into and exits any other `TASK_GROUPs` encountered within the Plan as Tasks are executed and completed or cancelled by their workers. A Task becomes `available` based on a combination of completion (or skipping) of previous Tasks and other conditions, according to the Task lifecycle logic <<_task_lifecycle,described above>>.
+
+The currently `available` Task in a Task Plan corresponds to the _current execution point_ of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.
+
+On the way, the execution path is modified by conditional nodes and also by Dispatchable Tasks, as follows.
+
+=== Conditional Nodes
+
+The various kinds of conditional nodes represent different ways of controlling execution of a Task Plan.
+
+A `CONDITION_GROUP / CONDITION_BRANCH` structure is processed in the same way as an if-then/elseif-then/else statement in a programming language, i.e. in-order processing, with the first matching path followed. In the temporal Plan execution environment, the processing proceeds instantaneously, i.e. there is no wait state involved.
+
+A `DECISION_GROUP / DECISION_BRANCH` structure is processed like a case (aka switch) statement in a programming language, i.e. evaluate the `DECISION_GROUP._test_`, find the first branch whose `_value_constraint_` (a value range) contains the value, and follow it. This is also instantaneously processed.
+
+The other two types of Choice Group are blocking.
+
+An `ADHOC_GROUP / ADHOC_BRANCH` structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited `BLOCKING_GROUP._timeout_` attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.
+
+Finally the `EVENT_GROUP / EVENT_BRANCH` structure is blocking due to `TASK_WAIT` states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the `_timeout_` on the group to fire. As for the Ad hoc case, a timeout may be set in order to force processing if none of the specified events occurs, and if not set, a global timeout will break the wait state if nothing else happens.
+
+== Task Dispatching
+
+=== Hand-offs
+
+[.tbd]
+TBD:
+
+=== External Requests
+
+[.tbd]
+TBD:
+
+=== System Requests
+
+[.tbd]
+TBD:
+
+=== Resume Semantics
+
+The `_resume_type_` and `_resume_location_` attributes of the `RESUME_ACTION` class constitute the possibility of an uncontrolled jump or 'goto' within the Task execution structure. If allowed without limitation, it is likely to lead to undecidable situations in Plan execution, and unreliable execution histories. For example, if the execution history shows that some Task Y was performed, then it would normally be assumed that the preceding Task X had also been performed (even if cancelled), and by extension that any wait state such as an Event Branch had been satisifed by the relevant event being received. If however, a jump to Task Y from some Task A on a completely separate path were allowed, no such inference can be made, without appropriate processing rules regarding such jumps.
+
+To create workable rules, the notion of the _execution path_ described above has to be used, i.e. the path traversed so far throught the Group / Task graph to the current point. Because the graph has no cycles, a _most recent common location_ for the execution path actually taken and the designated resume location can always be found. This location may be somewhere back in the current path, including at the start (no real common point), or the current Task (resume location is ahead, not behind).
+
+Making the execution valid according to the Plan while allowing an arbitrary resumption point requires finding a _valid path_ from the most recent common location to the resume location. This can be done if the intermediate steps from the most recent common point and the resume point can be shown to be traversable. There are three situations that can occur at each node along this path:
+
+* normal Tasks with no `_wait_spec_` (i.e. planned or event-based timing): these may be automatically cancelled, meaning 'not done, not needed';
+* normal Tasks with a `_wait_spec_`: these can be traversed if the relevant time-related or other events are known to have already been received;
+* conditional Group structures: these can be traversed if the relevant conditions and/or events are known to be true, or to have already been received, respectively.
+
+Whether the intermediate logical conditions or event wait states (including timeline events) up to the resume location are satisfiable can in general only be known at execution time. This means that at design time, no general rule can be used to limit the choice of a resume location. However, the intermediate wait states and conditions can be determined easily enough and shown in a tool to the designer, enabling at least a guess as to viability.
+
+What actually happens at execution time depends on where the resume location is, as follows:
+
+* *forward resume*: the resume location is ahead of the current point on the execution path; getting there just requires the above algorithm of cancellation with condition and event checks;
+* *alternate path*: the resume location is on an alternate branch with respect to the current execution path; this may be treated as for the forward resume case;
+* *current path*: the resume location is earlier on the current path.
+
+The last possibility implies the need to _retry_ Tasks already performed, which must be in either the `cancelled` or `completed` state. Assuming that the intention of the resume location is to perform (again) the Task or Group at that location, the latter must be put back into the `available` state. This is enabled by the special transitions `_retry_` from `cancelled` to `available` and `_redo_` from or `completed` to `available`.
+
+This doesn't address what should happen at execution time when conditions or wait states at intermediate nodes from the most recent common point to the resume point cannot be met. The simplest approach is that they are manually overridden, as may already be done in normal path processing. This has the effect that such overrides are  at least recorded in the execution history.
+
+== Appointments

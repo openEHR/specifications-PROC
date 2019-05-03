@@ -6,7 +6,9 @@ h|*Class*
 2+^h|*DISPATCHABLE_TASK<TA>*
 
 h|*Description*
-2+a|Type of Task that is performed by another actor. Such Tasks are 'dispatchable' in the sense that they consist of notifying a request to another principal performer, or an external system or service of some kind, and potentially receiving a callback notification when the requested work is complete.
+2+a|Type of Task representing work to be performed by another actor. Such Tasks are 'dispatchable' in the sense that they consist of notifying a request for specific work to be done by another principal performer, or an external system or service. The details of the target  are defined in `_action_`.
+
+If `_wait_` is True, the Task blocks until the target work thread returns. If `_callback_` is set, specific processing can be performed on the return, before execution progresses. If it is not set, the Task completes normally on target completion, and execution continues to the next Task. In this case (`_wait_ = True`, no `_callback_`), a global timer will be created for the Task to deal with the situation where the dispatch target never returns.
 
 h|*Inherit*
 2+|`TASK`
@@ -17,7 +19,7 @@ h|*Attributes*
 
 h|*1..1*
 |*wait*: `Boolean`
-a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. Wait = True corresponds to a context switch (block and wait) while wait = False indicates a context fork.
+a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. `_wait_ = True` corresponds to a context switch (block and wait) while `_wait_ = False` indicates a context fork.
 
 h|*0..1*
 |*callback*: `CALLBACK_WAIT`

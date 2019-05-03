@@ -55,7 +55,9 @@ a|Reference list of all defined Event Listeners.
 
 h|*0..1*
 |*top_level_plans*: `List<TASK_PLAN>`
-a|The set of top-level Plans that correspond to the performers and work pathways of this Work Plan.
+a|The set of Task Plans that are active at Work Plan activation. Does not include Task Plans referred to from `HAND_OFF` or `SUB_PLAN`.
+
+TODO: change to computed?
 
 h|*0..1*
 |*indications*: `List<DV_TEXT>`
