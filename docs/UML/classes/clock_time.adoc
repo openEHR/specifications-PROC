@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*time*: `Iso8601_duration`
+|*time*: `Iso8601_time`
 a|Time expressed as a clock time within a day.
 |===
