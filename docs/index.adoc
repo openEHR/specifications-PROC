@@ -52,6 +52,9 @@ h|Specification h|Description
 |link:/releases/PROC/{proc_release}/tp_vml.html[TP-VML]
 |Task Planning Visual Modelling Language - a visual modelling language for Task Planning.
 
+|link:/releases/PROC/{proc_release}/tp_examples.html[TP Examples]
+|Real world detailed examples using Task Planning.
+
 |===
 
 == Computable Expressions

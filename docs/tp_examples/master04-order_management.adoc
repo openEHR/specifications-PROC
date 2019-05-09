@@ -1,0 +1,19 @@
+= Order Management
+
+The examples in this section illustrate the use of TP for order management, where openEHR Instructions and Actions (or other non-openEHR equivalents) are created and tracked.
+
+== Order Coordination
+
+This example is based on a standard Moscow City clinic protocol, and covers a 12 month period.
+
+[.text-center]
+.GP order coordination
+image::{diagrams_uri}/order_coordination.svg[id=order_coordination, align="center"]
+
+=== Plan Overview
+
+xxx
+
+=== Detailed Description
+
+xxx

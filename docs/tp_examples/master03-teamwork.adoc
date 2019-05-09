@@ -10,13 +10,15 @@ This example is based on the original description of https://github.com/bjornna/
 .Outpatient eye clinic encounter
 image::{diagrams_uri}/outpatient_eye_clinic.svg[id=outpatient_eye_clinic, align="center"]
 
+=== Plan Overview
+
 As for all Plans defined in the Task Planning formalism, it must be remembered that the Plan definition above is what the _TP engine executes_. It is the result of the execution (including worker allocation and communication, which is not shown in the definition) that causes workers in the real world to do things. Additionally, what the TP engine knows about the real world is limited to what it is told - many actions and events can occur outside the TP computing environment that will remain unknown to the system unless it is informed (e.g. by Manual notification).
 
 The Work Plan consists of two top-level Task Plans, one for the patient and one for the clinic administrator / reception. The latter has two sub-plans linked by hand-off Tasks.
 
 The purpose of the patient top-level Task Plan is to allow the system to notify the patient of the visit, via a reminder on the day of the visit, or some fixed time beforehand. The driving event is the calendar appointment, which is waited on by both the patient and the clinic admin Task Plans. It is assumed that longer term reminders, opportunities for changing appointments and so on are managed by another system that see the same calendar events, and is responsible for setting the calendar events in the first place. Thus, in the model above, the patient top-level plan is not really necessary (he/she will be notified by the appointment system), and is mainly included for purposes of demonstration.
 
-=== Plan Description
+=== Detailed Description
 
 The main work of the Work Plan is in the other three Task Plans, which essentially encode the following logic:
 

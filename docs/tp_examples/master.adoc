@@ -72,6 +72,7 @@ The work reported in this specification has been funded by the following organis
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
 include::master03-teamwork.adoc[leveloffset=+1]
+include::master04-order_management.adoc[leveloffset=+1]
 
 
 //
