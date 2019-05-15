@@ -16,7 +16,7 @@ Within these and many other similar clinical procedures, a number of commonly oc
 
 As described earlier, the shfiting availability of workers for a given process needs to be accommodated with a task planning solution. It should be possible for the specific worker performing a Task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.
 
-== Teamwork and Notifications
+== Coordinated Teamwork
 
 In many cases, a task plan is intended for execution by a team of specialised performers, with each performer doing their part of the work, and at various points, passing control to another team member. Management of acute stroke is an example of this. In other cases, team members are working more or less in parallel, or by communicating in real time to each other. In both situations, if the workers are not physically in the same room at the same time, notifications are needed to alert each person when to start working on the subject; similarly, callback notifications are needed to alert original workers when other work has been completed, for example, an MRI image taken and report written.
 
@@ -27,6 +27,10 @@ The simplest need is to be able to post a full plan of all actions to be perform
 In openEHR, an order is represented by an `INSTRUCTION` instance, which contains a directive to do something such as preform radiography or administer medication. The form of representation in the Instruction is normally _interpretable_ by an agent who will convert it to separate tasks. For example, a drug order for Amoxicillin 500mg oral tablet 3 times/day x 7 days is converted by a human agent to 21 separate tasks, each consisting of taking one tablet at a certain time or day. These tasks can be represented in a task plan, each task of which which can then be performed and signed off by a staff member, e.g. a shift nurse. The task plan acts as a record of what has been done, and what is left to do.
 
 One difficulty with posting a full plan is that in some cases, the work is effectively open-ended, i.e. it has no currently known completion date. This might be because the patient condition being treated is chronic, e.g. insulin or Salbutamol (Ventolin) treatment; or it might be that although the condition is assumed to be limited in time, no current assumption can be made about when, e.g. pain medication of a trauma patient.
+
+== Tracking Orders from Plans
+
+A standard activity within any clinic context is to raise orders, e.g. for lab tests, radiology etc, and to await the results. This may commonly be done within the context of a plan representing a standard protocol, such as for an annual schedule of health checks for various categories of patient (child, adult, elderly, diabetic etc). In an openEHR context, orders are represented using Instruction EHR entries, with subsequent actions being recorded as Action entries in the EHR. Where a plan is defined to create orders, it should be possible to define tasks in the plan to create, execute (i.e. send) orders, and wait on results, for multiple simultaneous orders in the same plan.
 
 == Order Sets and Protocols
 

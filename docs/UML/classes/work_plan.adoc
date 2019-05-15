@@ -33,10 +33,6 @@ h|*0..1*
 |*care_plan*: `LOCATABLE_REF`
 a|Care plan in EHR from which this Work Plan is derived, if any.
 
-h|*0..1*
-|*order_list*: `List<LOCATABLE_REF>`
-a|Reference list of orders in this Work Plan.
-
 h|*1..1*
 |*calendar*: `PLAN_CALENDAR`
 a|Global calendar object, containing events fixed in time relevant to the Plan's Tasks, for example appointments.
@@ -62,4 +58,8 @@ TODO: change to computed?
 h|*0..1*
 |*indications*: `List<DV_TEXT>`
 a|Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.
+
+h|*1..1*
+|*order_list*: `String`
+a|Orders tracked by Tasks in this Work Plan.
 |===

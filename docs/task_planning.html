@@ -56,20 +56,21 @@
 <li><a href="#_requirements">3. Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_flexible_allocation_of_workers">3.1. Flexible Allocation of Workers</a></li>
-<li><a href="#_teamwork_and_notifications">3.2. Teamwork and Notifications</a></li>
+<li><a href="#_coordinated_teamwork">3.2. Coordinated Teamwork</a></li>
 <li><a href="#_planned_tasks_for_an_order">3.3. Planned Tasks for an Order</a></li>
-<li><a href="#_order_sets_and_protocols">3.4. Order Sets and Protocols</a></li>
-<li><a href="#_lookahead_plan">3.5. Lookahead Plan</a></li>
-<li><a href="#_recurring_repeatable_tasks">3.6. Recurring / Repeatable Tasks</a></li>
-<li><a href="#_checklist_sign_off">3.7. Checklist &amp; Sign-off</a></li>
-<li><a href="#_sub_plans">3.8. Sub-plans</a></li>
-<li><a href="#_task_grouping_optionality_and_execution_basis">3.9. Task Grouping, Optionality and Execution Basis</a></li>
-<li><a href="#_decision_pathways">3.10. Decision Pathways</a></li>
-<li><a href="#_different_types_of_cancellation">3.11. Different types of Cancellation</a></li>
-<li><a href="#_changes_and_abandonment">3.12. Changes and Abandonment</a></li>
-<li><a href="#_rationalising_unrelated_work_plans">3.13. Rationalising Unrelated Work Plans</a></li>
-<li><a href="#_support_process_analytics">3.14. Support Process Analytics</a></li>
-<li><a href="#_support_for_costing_and_billing_information">3.15. Support for Costing and Billing Information</a></li>
+<li><a href="#_tracking_orders_from_plans">3.4. Tracking Orders from Plans</a></li>
+<li><a href="#_order_sets_and_protocols">3.5. Order Sets and Protocols</a></li>
+<li><a href="#_lookahead_plan">3.6. Lookahead Plan</a></li>
+<li><a href="#_recurring_repeatable_tasks">3.7. Recurring / Repeatable Tasks</a></li>
+<li><a href="#_checklist_sign_off">3.8. Checklist &amp; Sign-off</a></li>
+<li><a href="#_sub_plans">3.9. Sub-plans</a></li>
+<li><a href="#_task_grouping_optionality_and_execution_basis">3.10. Task Grouping, Optionality and Execution Basis</a></li>
+<li><a href="#_decision_pathways">3.11. Decision Pathways</a></li>
+<li><a href="#_different_types_of_cancellation">3.12. Different types of Cancellation</a></li>
+<li><a href="#_changes_and_abandonment">3.13. Changes and Abandonment</a></li>
+<li><a href="#_rationalising_unrelated_work_plans">3.14. Rationalising Unrelated Work Plans</a></li>
+<li><a href="#_support_process_analytics">3.15. Support Process Analytics</a></li>
+<li><a href="#_support_for_costing_and_billing_information">3.16. Support for Costing and Billing Information</a></li>
 </ul>
 </li>
 <li><a href="#_design_principles">4. Design Principles</a>
@@ -343,11 +344,17 @@
 </li>
 </ul>
 </li>
-<li><a href="#_cost_tracking">6.9. Cost Tracking</a>
+<li><a href="#_order_tracking">6.9. Order Tracking</a>
 <ul class="sectlevel3">
-<li><a href="#_class_definitions_8">6.9.1. Class Definitions</a>
+<li><a href="#_tracking_an_existing_order">6.9.1. Tracking an Existing Order</a></li>
+<li><a href="#_creating_and_tracking_an_order">6.9.2. Creating and Tracking an Order</a></li>
+</ul>
+</li>
+<li><a href="#_cost_tracking">6.10. Cost Tracking</a>
+<ul class="sectlevel3">
+<li><a href="#_class_definitions_8">6.10.1. Class Definitions</a>
 <ul class="sectlevel4">
-<li><a href="#_task_costing_class">6.9.1.1. TASK_COSTING Class</a></li>
+<li><a href="#_task_costing_class">6.10.1.1. TASK_COSTING Class</a></li>
 </ul>
 </li>
 </ul>
@@ -553,9 +560,18 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-24" target="_blank" rel="noopener">SPECPROC-24</a>. Add Order tracking to model.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ M Polajnar,<br>
+ T Beale,<br>
+ B Naess</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 May 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Enable Callbacks to be manually notified.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>01 May 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">01 May 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1249,7 +1265,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_teamwork_and_notifications"><a class="anchor" href="#_teamwork_and_notifications"></a>3.2. Teamwork and Notifications</h3>
+<h3 id="_coordinated_teamwork"><a class="anchor" href="#_coordinated_teamwork"></a>3.2. Coordinated Teamwork</h3>
 <div class="paragraph">
 <p>In many cases, a task plan is intended for execution by a team of specialised performers, with each performer doing their part of the work, and at various points, passing control to another team member. Management of acute stroke is an example of this. In other cases, team members are working more or less in parallel, or by communicating in real time to each other. In both situations, if the workers are not physically in the same room at the same time, notifications are needed to alert each person when to start working on the subject; similarly, callback notifications are needed to alert original workers when other work has been completed, for example, an MRI image taken and report written.</p>
 </div>
@@ -1267,7 +1283,13 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_order_sets_and_protocols"><a class="anchor" href="#_order_sets_and_protocols"></a>3.4. Order Sets and Protocols</h3>
+<h3 id="_tracking_orders_from_plans"><a class="anchor" href="#_tracking_orders_from_plans"></a>3.4. Tracking Orders from Plans</h3>
+<div class="paragraph">
+<p>A standard activity within any clinic context is to raise orders, e.g. for lab tests, radiology etc, and to await the results. This may commonly be done within the context of a plan representing a standard protocol, such as for an annual schedule of health checks for various categories of patient (child, adult, elderly, diabetic etc). In an openEHR context, orders are represented using Instruction EHR entries, with subsequent actions being recorded as Action entries in the EHR. Where a plan is defined to create orders, it should be possible to define tasks in the plan to create, execute (i.e. send) orders, and wait on results, for multiple simultaneous orders in the same plan.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_order_sets_and_protocols"><a class="anchor" href="#_order_sets_and_protocols"></a>3.5. Order Sets and Protocols</h3>
 <div class="paragraph">
 <p>A plan for a clinical intervention will typically need to encompass more than one order, in situations where drugs and other therapies are used according to a protocol or regime. For example, in multi-drug chemotherapy based on protocols like CHOP (non-Hodgkin&#8217;s lymphoma), COPP or Stanford V (Hodgkin&#8217;s lymphoma) etc, a single drug such as Cyclophosphamide is just a component. A task plan for administering chemotherapy according to a R-CHOP protocol would implicate orders for the drugs  (R)ituximab, (C)yclophosphamide, (H)ydroxydaunorubicin, (O)ncovin, and (P)rednisolone or Prednisone, and would accordingly include planned tasks for each of these drugs as they are administered according to the protocol.</p>
 </div>
@@ -1335,7 +1357,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lookahead_plan"><a class="anchor" href="#_lookahead_plan"></a>3.5. Lookahead Plan</h3>
+<h3 id="_lookahead_plan"><a class="anchor" href="#_lookahead_plan"></a>3.6. Lookahead Plan</h3>
 <div class="paragraph">
 <p>A more flexible version of a plan is 'lookahead' planning, i.e. posting a plan of tasks for a moving window in time, e.g. one day, a few days, a few nursing rotations etc. The idea is not to try to plan out the entire plan execution, since it can easily change or be stopped, e.g. due to change in patient or other unexpected events. In a lookahead approach, some planned tasks are executed, and more planned tasks are added. The planned timing of each set of tasks may change due to the current situation, with the effect that the overall set of tasks that unfolds in time may well be different from an attempt to plan all tasks before any are executed.</p>
 </div>
@@ -1344,25 +1366,25 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_recurring_repeatable_tasks"><a class="anchor" href="#_recurring_repeatable_tasks"></a>3.6. Recurring / Repeatable Tasks</h3>
+<h3 id="_recurring_repeatable_tasks"><a class="anchor" href="#_recurring_repeatable_tasks"></a>3.7. Recurring / Repeatable Tasks</h3>
 <div class="paragraph">
 <p>Many clinical plans involve repetition over time. For example, the 14-day version of the CHOP protocol (CHOP-14) involves execution of the 5 day treatment every 14 days, for 3 iterations. Other clinical plans are essentially permanently recurring for the life of the patient, e.g asthma therapy.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_checklist_sign_off"><a class="anchor" href="#_checklist_sign_off"></a>3.7. Checklist &amp; Sign-off</h3>
+<h3 id="_checklist_sign_off"><a class="anchor" href="#_checklist_sign_off"></a>3.8. Checklist &amp; Sign-off</h3>
 <div class="paragraph">
 <p>If a task plan is created, the constituent tasks can be viewed by workers as a checklist, and subsequently signed off as having been either performed or not done over time. The utility of this is that the correspondence between the tasks actually performed (represented by <code>ACTION</code>, <code>OBSERVATION</code> etc Entries) and the planned tasks is established. If a planned Action A1 is posted with execution time T, it might actually be performed at time T', but users still want to know that it was planned Action A1 that was intentionally performed, and not some other Action in the task plan. Over the course of the order execution, a picture will emerge of planned Actions being performed and signed off, possibly with some being missed as not needed, or not done for some other reason. Additional Actions not originally posted in the plan might also be done if they are allowed by the general specification of the relevant archetypes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sub_plans"><a class="anchor" href="#_sub_plans"></a>3.8. Sub-plans</h3>
+<h3 id="_sub_plans"><a class="anchor" href="#_sub_plans"></a>3.9. Sub-plans</h3>
 <div class="paragraph">
 <p>Plans can be described at varying levels of detail, depending on how workers are intended to work with them. One institution may describe an action such as cannulation atomically, relying on professional training and situational specifics to generate the correct concrete outcome, whereas another may require nurses to follow a guideline such as this <a href="http://emedicine.medscape.com/article/1998177-overview">Medscape Intravenous Cannulation</a> guideline. In cases where a self-standing clinical task is itself fully described in terms of steps, it is possible to represent the latter as its own task plan, and to be able to <em>refer</em> to it from another task plan. The general case is that any task that could be represented by a single item in a task plan could also be represented by a reference to a separate detailed task plan.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_task_grouping_optionality_and_execution_basis"><a class="anchor" href="#_task_grouping_optionality_and_execution_basis"></a>3.9. Task Grouping, Optionality and Execution Basis</h3>
+<h3 id="_task_grouping_optionality_and_execution_basis"><a class="anchor" href="#_task_grouping_optionality_and_execution_basis"></a>3.10. Task Grouping, Optionality and Execution Basis</h3>
 <div class="paragraph">
 <p>A set of tasks intended to achieve a defined goal could be performed sequentially or in parallel, and may include sub-groups of tasks that can performed together. A common situation is to have a task plan intended for sequential (i.e. ordered) execution by the agent, one of whose steps is actually a sub-group of tasks which can be executed in parallel (i.e. in any order).</p>
 </div>
@@ -1374,7 +1396,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_decision_pathways"><a class="anchor" href="#_decision_pathways"></a>3.10. Decision Pathways</h3>
+<h3 id="_decision_pathways"><a class="anchor" href="#_decision_pathways"></a>3.11. Decision Pathways</h3>
 <div class="paragraph">
 <p>Task plans derived from semi-formal care pathways or guidelines (and potentially ad hoc designed plans) may contain 'decision points', which are of the following logical form:</p>
 </div>
@@ -1405,7 +1427,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_different_types_of_cancellation"><a class="anchor" href="#_different_types_of_cancellation"></a>3.11. Different types of Cancellation</h3>
+<h3 id="_different_types_of_cancellation"><a class="anchor" href="#_different_types_of_cancellation"></a>3.12. Different types of Cancellation</h3>
 <div class="paragraph">
 <p>Tasks in a plan can be cancelled before being attempted for two types of reasons. One case is when the performer or the system realises the task can&#8217;t be performed (perhaps for lack of resources), and it is cancelled from the plan ahead of time. The other case is when the performer or system realises that the task isn&#8217;t needed, and can be cancelled as unnecessary, or already done by an external agent (e.g. an examination done at a night clinic).</p>
 </div>
@@ -1414,7 +1436,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_changes_and_abandonment"><a class="anchor" href="#_changes_and_abandonment"></a>3.12. Changes and Abandonment</h3>
+<h3 id="_changes_and_abandonment"><a class="anchor" href="#_changes_and_abandonment"></a>3.13. Changes and Abandonment</h3>
 <div class="paragraph">
 <p>Inevitably, some task plans will have to be changed or abandoned partway through due to unexpected changes in the patient situation. The question here is: what should be done with the remaining planned tasks that will not be performed? Should they be marked as 'won&#8217;t do' (with some reason) and committed to the EHR, or should they be deleted prior to being committed to the EHR?</p>
 </div>
@@ -1439,7 +1461,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rationalising_unrelated_work_plans"><a class="anchor" href="#_rationalising_unrelated_work_plans"></a>3.13. Rationalising Unrelated Work Plans</h3>
+<h3 id="_rationalising_unrelated_work_plans"><a class="anchor" href="#_rationalising_unrelated_work_plans"></a>3.14. Rationalising Unrelated Work Plans</h3>
 <div class="paragraph">
 <p>It is assumed that at any moment there could be multiple work plans extant for <em>different problems and timelines</em> for the same subject of care, e.g. chemotherapy, hypertension, ante-natal care. If naively created, these could clash in time and potentially in terms of other resources. There should therefore be support for being able to efficiently locate all existing plans and scan their times, states and resources. This aids avoiding clashes and also finding opportunities for rationalising and bundling tasks e.g. grouping multiple tasks into a single visit, taking bloods require by two protocols at the same sitting etc.</p>
 </div>
@@ -1448,7 +1470,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_support_process_analytics"><a class="anchor" href="#_support_process_analytics"></a>3.14. Support Process Analytics</h3>
+<h3 id="_support_process_analytics"><a class="anchor" href="#_support_process_analytics"></a>3.15. Support Process Analytics</h3>
 <div class="paragraph">
 <p>As tasks are performed and signed off on the list of posted planned tasks, there will generally be differences between Actions actually performed and the tasks on the list. Differences may include:</p>
 </div>
@@ -1470,7 +1492,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_support_for_costing_and_billing_information"><a class="anchor" href="#_support_for_costing_and_billing_information"></a>3.15. Support for Costing and Billing Information</h3>
+<h3 id="_support_for_costing_and_billing_information"><a class="anchor" href="#_support_for_costing_and_billing_information"></a>3.16. Support for Costing and Billing Information</h3>
 <div class="paragraph">
 <p>It should be possible to record internal costing data against task plans as a whole, and also individual tasks. Additionally, it should be possible to attach external billing information to tasks and task plans. Costing information might be attached to each task, such as consumption of inventory items, time and other resources. Billing information is typically more coarse-grained and reported using nationally agreed code systems, e.g. ICD10 or similar.</p>
 </div>
@@ -3487,7 +3509,10 @@ The following UML diagram illustrates.</p>
 <p><code><em>timeline</em></code>: the global timeline for the Plan (and hence the subject) into which planned Tasks are fixed, with times specified as offsets from the zero point;</p>
 </li>
 <li>
-<p><code><em>event_wait_states</em></code>: a reference list of all Event wait instances defined in the Plan.</p>
+<p><code><em>event_wait_states</em></code>: a reference list of all Event wait instances defined in the Plan;</p>
+</li>
+<li>
+<p><code><em>order_list</em></code>: a table of references to orders being tracked in the Plan (described in <a href="#_order_tracking">Section 6.9</a> below).</p>
 </li>
 </ul>
 </div>
@@ -3628,13 +3653,6 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code>List&lt;LOCATABLE_REF&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Reference list of orders in this Work Plan.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>calendar</strong>: <code>PLAN_CALENDAR</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
@@ -3677,6 +3695,13 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>indications</strong>: <code>List&lt;DV_TEXT&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Orders tracked by Tasks in this Work Plan.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4042,6 +4067,16 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code>List&lt;REVIEW_DATASET_SPEC&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Optional data-set to review prior to / as part of performing the Plan element.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tag</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>References to order(s) being created and / or tracked by this Plan item. The value(s) must match <code>ORDER_REF.<em>order_tag</em></code> values from the list <code>WORK_PLAN.<em>order_list</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7413,14 +7448,94 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cost_tracking"><a class="anchor" href="#_cost_tracking"></a>6.9. Cost Tracking</h3>
+<h3 id="_order_tracking"><a class="anchor" href="#_order_tracking"></a>6.9. Order Tracking</h3>
+<div class="paragraph">
+<p>A small number of features in the model are designed to support the tracking of orders from a Work Plan. The following UML view shows the relevant classes and properties.</p>
+</div>
+<div id="proc_definition_order_tracking" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="UML/diagrams/PROC-task_planning.definition-order_tracking.svg" alt="PROC task planning.definition order tracking">
+</div>
+<div class="title">Figure 38. Order tracking</div>
+</div>
+<div class="paragraph">
+<p>The facilities consist of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>ORDER_REF</code> class, representing an 'order reference', keyed by the <code><em>order_tag</em></code> attribute;</p>
+</li>
+<li>
+<p><code>WORK_PLAN.<em>order_list</em></code> is a table of Order Refs being tracked by the current Plan;</p>
+</li>
+<li>
+<p><code>PLAN_ITEM.<em>order_tags</em></code> allows any Task or Task Group to reference one or more <code>ORDER_REF</code> instances in the Work Plan <code><em>order_list</em></code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These features enable the creation and/or tracking of orders in an EHR system, according to various scenarios described below. Orders as described here are usually represented as openEHR Instructions and Actions committed to an openEHR EHR (within Compositions), but may in fact be any object(s) that can be referred to by a <code>LOCTABLE_REF</code>, which contains a URI. The following sub-sections assume openEHR Instructions and Actions for simplicity of explanation.</p>
+</div>
+<div class="paragraph">
+<p>A key property in all scenarios is <code><em>order_tag</em></code>, used to <em>identify</em> an order tracking reference (i.e. an <code>ORDER_REF</code>), and <code>PLAN_ITEM.<em>order_tags</em></code> to refer to one or more such references from any Task or Group element in the Plan. An order tag may take any String value not containing white space characters. The recommended approach is to use strings meaningful and unique within the Plan context, such that every order is distinguished, including distinct instances. For example, the value <code>"hypertension_medication"</code> may be sufficient within one Plan to identify and track an order for such medication, but if the Plan potentially may track two or more such medications, more unique values will be required, e.g. <code>"beta_blocker_medication"</code>, <code>"ACE_inhibitor_medication"</code> etc. Similarly, orders for different types of insulin (typical for diabetics) would need to be distinguished.</p>
+</div>
+<div class="paragraph">
+<p>Multiple order tags may be used in a <code>PLAN_ITEM</code> (i.e. usually a Task) for the case where a single Task causes creation of multiple orders, or a single Task waits on events (Action commits) from multiple orders.</p>
+</div>
+<div class="paragraph">
+<p>For Plans in which repetition occurs (<code>PLAN_ITEM.<em>repeat_spec</em></code>), order tags may be constructed using the format <code>"xxxx@n"</code>, e.g. <code>"doxorubicin@1"</code>, <code>"doxorubicin_admin@2"</code> to refer to the orders for Doxorubicin in two distinct cycles of chemtherapy mentioned in the same Work Plan.</p>
+</div>
+<div class="sect3">
+<h4 id="_tracking_an_existing_order"><a class="anchor" href="#_tracking_an_existing_order"></a>6.9.1. Tracking an Existing Order</h4>
+<div class="paragraph">
+<p>In this scenario, at Work Plan design time, an order <em>already exists</em> in the form of an Instruction committed to a patient EHR. This might be a standing order, e.g. for insulin for a diabetic, or any other long-running medication or therapy for a sufferer of a chronic illness. The Plan might be used to track patient or healthcare professional administrations of such a medication.</p>
+</div>
+<div class="paragraph">
+<p>Since it is possible to construct a <code>LOCATABLE_REF</code> to the <code>INSTRUCTION</code> (and indeed, to a contained <code>ACTIVITY</code>), it may be referenced from a Work Plan using an <code>ORDER_REF</code> instance, via the <code><em>order_ref</em></code> property. The corresponding Instruction archetype identifier may also be recorded, enabling direct lookup by the TP engine, for use within the Plan modelling environment. The <code><em>order_tag</em></code> field will be set to a value that refers to the order in a sufficiently precise way as to be unique within the Work Plan.</p>
+</div>
+<div class="paragraph">
+<p>This scheme allows Tasks to be defined within the Plan that have a Task Wait (<code>PLAN_ITEM.<em>wait_spec</em></code>) that wait on an event (e.g. <code>SYSTEM_NOTIFICATION</code> or <code>MANUAL_NOTIFICATION</code>) that is generated due to subsequent commits to the EHR of <code>ACTIONs</code> for the original order (e.g. drug administration events, cancellation or suspension of medication by the doctor etc).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_and_tracking_an_order"><a class="anchor" href="#_creating_and_tracking_an_order"></a>6.9.2. Creating and Tracking an Order</h4>
+<div class="paragraph">
+<p>In this scenario, the Work Plan is the creator of the order(s) of interest. At Work Plan <em>design time</em>, there is no order (i.e. <code>INSTRUCTION</code>) in the EHR (this will only occur at Plan execution time), so  <code>ORDER_REF.<em>order_ref</em></code> cannot initially be populated. An <code>ORDER_REF</code> can nevertheless be created for the order at Plan design time, with the <code><em>order_tag</em></code> being used to refer to the order from within the Work Plan. A typical Plan structure in this case might contain the following, for each order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a <code>PERFORMABLE_TASK&lt;DEFINED_ACTION&gt;</code> with associated <code><em>capture_dataset</em></code>, representing the entry of routine data and creation of the order, resulting in a commit to the EHR system of a Composition containing an Instruction for the order;</p>
+</li>
+<li>
+<p>a subsequent <code>DISPATCHABLE_TASK&lt;SYSTEM_REQUEST&gt;</code> (or <code>DISPATCHABLE_TASK&lt;EXTERNAL_REQUEST&gt;</code>) that causes the appropriate API call or message to be generated and sent to the filler of the order (e.g. pharmacy, laboratory etc); this Task may include a callback wait state (<code>DISPATCHABLE_TASK.<em>callback</em></code>) so that it blocks and waits for a result within a certain time-frame.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both the Performable and Dispatchable Tasks would use <code>PLAN_ITEM.<em>order_tags</em></code> to logically refer to the same order. (Note that any number of pairs of Performable and Dispatchable Tasks may be defined to create and react to different orders being processed within the same Work Plan).</p>
+</div>
+<div class="paragraph">
+<p>The concrete callback event can be arranged to occur when an <code>ACTION</code> for the order of interest is committed to the EHR. This relies on the population of the relevant Work Plan <code>CONTEXT_REF.<em>order_ref</em></code> attribute within the TP engine execution environment, at the moment the order is created in the EHR system. This then allows commits of <code>ACTIONs</code> for that order (among others, generally) to be matched with the Dispatchable Task(s) waiting on them.</p>
+</div>
+<div class="paragraph">
+<p>The Dispatchable Task might be located in a repeating section of the Plan, if the intention is to await multiple Actions for the same Instruction.</p>
+</div>
+<div class="paragraph">
+<p>An example of a Work Plan representing this scenario is available in the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_examples.html#_order_coordination" target="_blank" rel="noopener">Task Planning Examples</a> document.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cost_tracking"><a class="anchor" href="#_cost_tracking"></a>6.10. Cost Tracking</h3>
 <div class="paragraph tbd">
 <p>TBD: describe cost tracking.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions_8"><a class="anchor" href="#_class_definitions_8"></a>6.9.1. Class Definitions</h4>
+<h4 id="_class_definitions_8"><a class="anchor" href="#_class_definitions_8"></a>6.10.1. Class Definitions</h4>
 <div class="sect4">
-<h5 id="_task_costing_class"><a class="anchor" href="#_task_costing_class"></a>6.9.1.1. TASK_COSTING Class</h5>
+<h5 id="_task_costing_class"><a class="anchor" href="#_task_costing_class"></a>6.10.1.1. TASK_COSTING Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7470,24 +7585,24 @@ The following UML diagram illustrates.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="java"><span class="tok-c1">//</span>
-<span class="tok-c1">// Infer the state of a collection whose members have states in sourceStates.</span>
+<span class="tok-c1">// Infer the state of a collection whose members have states in source_states.</span>
 <span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
 <span class="tok-c1">//</span>
-<span class="tok-n">TaskState</span> <span class="tok-nf">inferredState</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">TaskState</span><span class="tok-o">&gt;</span> <span class="tok-n">sourceStates</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+<span class="tok-n">Task_state</span> <span class="tok-nf">inferred_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_state</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
 
-    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">sourceStates</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-o">;</span>
     <span class="tok-k">else</span>
         <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-o">;</span>
@@ -7528,7 +7643,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/wp_tp_hierarchy.svg" alt="wp tp hierarchy" width="70%">
 </div>
-<div class="title">Figure 38. Work Plan control path graph structure</div>
+<div class="title">Figure 39. Work Plan control path graph structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -7815,7 +7930,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 39. proc.task_planning.materialised package</div>
+<div class="title">Figure 40. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -8155,7 +8270,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 40. proc.task_planning.history package</div>
+<div class="title">Figure 41. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -8481,7 +8596,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 41. proc.task_planning.service package</div>
+<div class="title">Figure 42. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -8708,7 +8823,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 42. Runtime planning structures</div>
+<div class="title">Figure 43. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>

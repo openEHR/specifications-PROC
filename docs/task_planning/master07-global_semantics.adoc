@@ -15,24 +15,24 @@ The following algorithm is used to compute the runtime lifecycle state of a Task
 [source, java]
 --------
 //
-// Infer the state of a collection whose members have states in sourceStates.
+// Infer the state of a collection whose members have states in source_states.
 // The order of if/else evaluation determines the correct result.
 //
-TaskState inferredState (Set<TaskState> sourceStates) {
+Task_state inferred_state (Set<Task_state> source_states) {
     
-    if (sourceStates.contains(Abandoned))
+    if (source_states.contains(Abandoned))
         return Abandoned;
-    else if (sourceStates.contains(Available))
+    else if (source_states.contains(Available))
         return Available;
-    else if (sourceStates.contains(Planned))
+    else if (source_states.contains(Planned))
         return Planned;
-    else if (sourceStates.contains(Suspended))
+    else if (source_states.contains(Suspended))
         return Suspended;
-    else if (sourceStates.contains(Underway))
+    else if (source_states.contains(Underway))
         return Underway;
-    else if (sourceStates.contains(Completed))
+    else if (source_states.contains(Completed))
         return Completed;
-    else if (sourceStates.contains(Cancelled))
+    else if (source_states.contains(Cancelled))
         return Cancelled;
     else
         return Initial;
