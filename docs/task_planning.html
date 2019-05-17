@@ -348,11 +348,16 @@
 <ul class="sectlevel3">
 <li><a href="#_tracking_an_existing_order">6.9.1. Tracking an Existing Order</a></li>
 <li><a href="#_creating_and_tracking_an_order">6.9.2. Creating and Tracking an Order</a></li>
+<li><a href="#_class_definitions_8">6.9.3. Class Definitions</a>
+<ul class="sectlevel4">
+<li><a href="#_order_ref_class">6.9.3.1. ORDER_REF Class</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_cost_tracking">6.10. Cost Tracking</a>
 <ul class="sectlevel3">
-<li><a href="#_class_definitions_8">6.10.1. Class Definitions</a>
+<li><a href="#_class_definitions_9">6.10.1. Class Definitions</a>
 <ul class="sectlevel4">
 <li><a href="#_task_costing_class">6.10.1.1. TASK_COSTING Class</a></li>
 </ul>
@@ -3698,8 +3703,8 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code>String</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code>Hash&lt;String,ORDER_REF&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Orders tracked by Tasks in this Work Plan.</p>
 </div></div></td>
@@ -4067,16 +4072,6 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code>List&lt;REVIEW_DATASET_SPEC&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Optional data-set to review prior to / as part of performing the Plan element.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tags</strong>: <code>List&lt;String&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>References to order(s) being created and / or tracked by this Plan item. The value(s) must match <code>ORDER_REF.<em>order_tag</em></code> values from the list <code>WORK_PLAN.<em>order_list</em></code>.</p>
-</div>
-<div class="paragraph">
-<p>Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4663,6 +4658,16 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>action</strong>: <code>TA</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Task Action definition.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tags</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>References to order(s) being created and / or tracked by this Task. The value(s) must match <code>ORDER_REF.<em>order_tag</em></code> values from the list <code>WORK_PLAN.<em>order_list</em></code> and be unique within the list.</p>
+</div>
+<div class="paragraph">
+<p>Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6406,13 +6411,16 @@ The following UML diagram illustrates.</p>
 <div class="sect4">
 <h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.8.3.2. Reminder</h5>
 <div class="paragraph">
-<p>When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. This is illustrated below.</p>
+<p>When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. If <code>REMINDER.<em>repeats</em></code> is non-zero, more than one reminder event may be generated. An example is illustrated below.</p>
 </div>
 <div id="task_wait_state_reminder" class="imageblock text-center" style="text-align: center">
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state_reminder.svg" alt="task wait state reminder">
 </div>
 <div class="title">Figure 34. Task wait state with reminder</div>
+</div>
+<div class="paragraph">
+<p>The execution processing associated with a Reminder is that one or more Reminder events is generated by the system for a Task which is already <code>available</code>. Each of Reminder event will normally cause a communication to the principle performer via the message defined in its <code><em>success_action</em></code>. The performer responds by performing the work of the Task, and progressing it to a final state, in the normal way (possibly via the <code>underway</code> state, for a long-running Task). As soon as the Task is progressed beyond the <code>available</code> state, no further Reminders occur.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6473,7 +6481,8 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-left valign-top">TP-VML</th>
 <th class="tableblock halign-left valign-top">Dispatch<br>
                              processing</th>
-<th class="tableblock halign-left valign-top">Response<br>
+<th class="tableblock halign-left valign-top">Default<br>
+                                             Response<br>
                                              processing</th>
 <th class="tableblock halign-left valign-top">Timeout handling</th>
 </tr>
@@ -6504,7 +6513,7 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Wait;<br>
  &#8594; <code>underway</code> state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">process callback:<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process callback<sup>*</sup>:<br>
  <em>success</em>:<br>
  &#8594; <code>completed</code> state<br>
  <em>fail</em>:<br>
@@ -6512,7 +6521,8 @@ The following UML diagram illustrates.</p>
  <em>timeout</em>:<br>
  &#8594; <code>abandoned</code> state<br>
  <br>
- + Event actions</p></td>
+ + Custom actions
+ + process Event actions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use <code><em>callback.timeout</em></code> if set</p></td>
 </tr>
 <tr>
@@ -6538,15 +6548,15 @@ The following UML diagram illustrates.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#8594; <code>completed</code> state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">process callback<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process callback<sup>*</sup>:<br>
  Event actions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use <code><em>callback.timeout</em></code> if set</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="5"><p class="tableblock"><sup>*</sup>default state processing; may be overridden using <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>, for example to set the next state for the <code>fail</code> and <code>timeout</code> notifications to <code>cancelled</code> rather than <code>abandoned</code> (i.e. stop the current Task, but don&#8217;t abandon the plan).</p></td>
+</tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>In the above, only the default state processing on callback is shown. This may be changed using <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>, for example to set the next state for the <code>fail</code> and <code>timeout</code> notifications to <code>cancelled</code> rather than <code>abandoned</code> (i.e. stop the current Task, but don&#8217;t abandon the plan),</p>
-</div>
 <div class="paragraph">
 <p>If the attached <code>CALLBACK_WAIT</code> object includes <code>EVENT_ACTIONs</code> that have <code><em>system_call</em></code> or <code><em>message</em></code> set for any of the notifications, these are processed in the normal way. If there is no <code>CALLBACK_WAIT</code> attached, no other callback processing is performed, and the timeout timer is determined by the global default timer for this dispatch.</p>
 </div>
@@ -7470,7 +7480,7 @@ The following UML diagram illustrates.</p>
 <p><code>WORK_PLAN.<em>order_list</em></code> is a table of Order Refs being tracked by the current Plan;</p>
 </li>
 <li>
-<p><code>PLAN_ITEM.<em>order_tags</em></code> allows any Task or Task Group to reference one or more <code>ORDER_REF</code> instances in the Work Plan <code><em>order_list</em></code>.</p>
+<p><code>TASK.<em>order_tags</em></code> allows any Task to reference one or more <code>ORDER_REF</code> instances in the Work Plan <code><em>order_list</em></code>.</p>
 </li>
 </ul>
 </div>
@@ -7478,10 +7488,10 @@ The following UML diagram illustrates.</p>
 <p>These features enable the creation and/or tracking of orders in an EHR system, according to various scenarios described below. Orders as described here are usually represented as openEHR Instructions and Actions committed to an openEHR EHR (within Compositions), but may in fact be any object(s) that can be referred to by a <code>LOCTABLE_REF</code>, which contains a URI. The following sub-sections assume openEHR Instructions and Actions for simplicity of explanation.</p>
 </div>
 <div class="paragraph">
-<p>A key property in all scenarios is <code><em>order_tag</em></code>, used to <em>identify</em> an order tracking reference (i.e. an <code>ORDER_REF</code>), and <code>PLAN_ITEM.<em>order_tags</em></code> to refer to one or more such references from any Task or Group element in the Plan. An order tag may take any String value not containing white space characters. The recommended approach is to use strings meaningful and unique within the Plan context, such that every order is distinguished, including distinct instances. For example, the value <code>"hypertension_medication"</code> may be sufficient within one Plan to identify and track an order for such medication, but if the Plan potentially may track two or more such medications, more unique values will be required, e.g. <code>"beta_blocker_medication"</code>, <code>"ACE_inhibitor_medication"</code> etc. Similarly, orders for different types of insulin (typical for diabetics) would need to be distinguished.</p>
+<p>A key property in all scenarios is <code><em>order_tag</em></code>, used to <em>identify</em> an order tracking reference (i.e. an <code>ORDER_REF</code>), and <code>TASK.<em>order_tags</em></code> to refer to one or more such references from any Task in the Plan. An order tag may take any String value not containing white space characters. The recommended approach is to use strings meaningful and unique within the Plan context, such that every order is distinguished, including distinct instances. For example, the value <code>"hypertension_medication"</code> may be sufficient within one Plan to identify and track an order for such medication, but if the Plan potentially may track two or more such medications, more unique values will be required, e.g. <code>"beta_blocker_medication"</code>, <code>"ACE_inhibitor_medication"</code> etc. Similarly, orders for different types of insulin (typical for diabetics) would need to be distinguished.</p>
 </div>
 <div class="paragraph">
-<p>Multiple order tags may be used in a <code>PLAN_ITEM</code> (i.e. usually a Task) for the case where a single Task causes creation of multiple orders, or a single Task waits on events (Action commits) from multiple orders.</p>
+<p>Multiple order tags may be used in a <code>TASK</code> for the case where a single Task causes creation of multiple orders, or a single Task waits on events (Action commits) from multiple orders.</p>
 </div>
 <div class="paragraph">
 <p>For Plans in which repetition occurs (<code>PLAN_ITEM.<em>repeat_spec</em></code>), order tags may be constructed using the format <code>"xxxx@n"</code>, e.g. <code>"doxorubicin@1"</code>, <code>"doxorubicin_admin@2"</code> to refer to the orders for Doxorubicin in two distinct cycles of chemtherapy mentioned in the same Work Plan.</p>
@@ -7526,6 +7536,68 @@ The following UML diagram illustrates.</p>
 <p>An example of a Work Plan representing this scenario is available in the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_examples.html#_order_coordination" target="_blank" rel="noopener">Task Planning Examples</a> document.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_class_definitions_8"><a class="anchor" href="#_class_definitions_8"></a>6.9.3. Class Definitions</h4>
+<div class="sect4">
+<h5 id="_order_ref_class"><a class="anchor" href="#_order_ref_class"></a>6.9.3.1. ORDER_REF Class</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>ORDER_REF</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>An instance of this class represents a logical tracking reference to one 'order' in the real world. In an openEHR system, this will be represented by an <code>INSTRUCTION</code> committed to the EHR, normally followed by <code>ACTIONs</code> each representing the execution of an Activity or change of state of the order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tag</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Tag that refers to this order within a Work Plan. May include an instance-level modifier such as '@1', '@2' etc, to distinguish repeats within a Plan.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_archetype_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Identifier of openEHR Instruction archetype that contains the order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>action_archetype_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Identifier of openEHR Action archetype that defines the actions that may occur with respect to the Instruction activities used in this order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_ref</strong>: <code>LOCATABLE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>EHR system order reference. When referencing an openEHR order, this will be a reference to the initial Instruction defining the order.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_cost_tracking"><a class="anchor" href="#_cost_tracking"></a>6.10. Cost Tracking</h3>
@@ -7533,7 +7605,7 @@ The following UML diagram illustrates.</p>
 <p>TBD: describe cost tracking.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions_8"><a class="anchor" href="#_class_definitions_8"></a>6.10.1. Class Definitions</h4>
+<h4 id="_class_definitions_9"><a class="anchor" href="#_class_definitions_9"></a>6.10.1. Class Definitions</h4>
 <div class="sect4">
 <h5 id="_task_costing_class"><a class="anchor" href="#_task_costing_class"></a>6.10.1.1. TASK_COSTING Class</h5>
 <table class="tableblock frame-all grid-all spread">

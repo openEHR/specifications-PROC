@@ -59,7 +59,7 @@ h|*0..1*
 |*indications*: `List<DV_TEXT>`
 a|Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.
 
-h|*1..1*
-|*order_list*: `String`
+h|*0..1*
+|*order_list*: `Hash<String,ORDER_REF>`
 a|Orders tracked by Tasks in this Work Plan.
 |===

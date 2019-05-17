@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*ORDER_REF*
 
 h|*Description*
-2+a|
+2+a|An instance of this class represents a logical tracking reference to one 'order' in the real world. In an openEHR system, this will be represented by an `INSTRUCTION` committed to the EHR, normally followed by `ACTIONs` each representing the execution of an Activity or change of state of the order.
 
 h|*Inherit*
 2+|`LOCATABLE`
@@ -29,5 +29,5 @@ a|Identifier of openEHR Action archetype that defines the actions that may occur
 
 h|*0..1*
 |*order_ref*: `LOCATABLE_REF`
-a|EHR system order reference.
+a|EHR system order reference. When referencing an openEHR order, this will be a reference to the initial Instruction defining the order.
 |===

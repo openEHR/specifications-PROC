@@ -34,10 +34,4 @@ a|Optional wait specification for a Task. If not set, the Task is immediately av
 h|*0..1*
 |*review_dataset*: `List<REVIEW_DATASET_SPEC>`
 a|Optional data-set to review prior to / as part of performing the Plan element.
-
-h|*0..1*
-|*order_tags*: `List<String>`
-a|References to order(s) being created and / or tracked by this Plan item. The value(s) must match `ORDER_REF._order_tag_` values from the list `WORK_PLAN._order_list_`.
-
-Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.
 |===
