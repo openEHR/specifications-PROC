@@ -1,0 +1,70 @@
+== Plan Structure
+
+The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Within a Work Plan, two distinct lists of Task Plans are maintained: 
+
+* `_plans_`: references all Task Plans; 
+* `_top_level_plans_`: 'entry point' Task Plans that will be _active at Work Plan activation_ (often limited to only one). 
+
+Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.
+
+[.text-center]
+.Work Plan top level structure
+image::{diagrams_uri}/work_task_plans.svg[id=work_task_plans, align="center", width=50%]
+
+A Work Plan has a number of global attributes, as follows:
+
+* `_context_`: a data context for the Plan as a whole, which enables external variables (such as patient data items) to be tracked and updated;
+* `_calendar_`: a global calendar containing entries that relate to this Work Plan, e.g. appointments, holidays etc;
+* `_timeline_`: the global timeline for the Plan (and hence the subject) into which planned Tasks are fixed, with times specified as offsets from the zero point;
+* `_event_wait_states_`: a reference list of all Event wait instances defined in the Plan;
+* `_order_list_`: a table of references to orders being tracked in the Plan (described in <<_order_tracking>> below).
+
+Both `WORK_PLAN` and `TASK_PLAN` are descendants of `CONTENT_ITEM`, which makes them a type of content that may occur in an openEHR `COMPOSITION`. Compositions used for this purpose have their `_category_` attribute set to the openEHR coded term `|Work Plan|`. This enables Work Plans to be committed to the openEHR EHR.
+
+Plan internal structure is specified by the `_definition_` attribute of a `TASK_PLAN` is a `TASK_GROUP`, which has as its `_members_` any number of `PLAN_ITEMs`, which resolve either to more `TASK_GROUPs` (and some specialisations described below), or `TASK` entities.
+
+=== The Plan Calendar
+
+The Work Plan `_calendar_` consists of Plan-related entries fixed in time, as per the usual notion of a person's or organisational calendar. These will normally be a small subset of entries from a/the work management calendar of the organisation in whose IT system the Work Plans are used. A Plan calendar event can be used as the basis for a wait state (`TASK_WAIT._events_`) for Tasks in the Plan, either to indicate that something should be done on the date/time of the calendar event, or with a certain delay. Calendar events may include organisational events, national holidays and patient appointments. Wait states of the form '2 weeks after Easter Sunday' and '24 week ante-natal review (10 Feb 2019)' can therefore be defined in a Plan.
+
+=== Plan Items
+
+The `PLAN_ITEM` class is the parent of all fine-grained elements of a Task Plan. It has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. 
+
+`PLAN_ITEM` also has two optional attributes that control the timing behaviour of Task Plan elements: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above under <<_time_and_wait_states>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
+
+The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
+
+The optional `_period_` attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.
+
+=== References to Clinical Quality Artefacts
+
+The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
+
+* In `WORK_PLAN`:
+** `_care_plan_`: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
+** `_care_pathway_`: references to a care pathway from which this Task Plan was derived, if any;
+* In `TASK_PLAN`:
+** `_guideline_`: reference to a published guideline from which this particular Task Plan was derived, if any;
+** `_best_practice_ref_`: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;
+** `_order_set_`: the identifier of an Order Set which this Task Plan uses, if any;
+** `_workflow_id_`: an identifier shared among orders (`INSTRUCTIONs` and `ACTIONs`) from the Order Set instance used in this Task Plan, if any.
+
+=== Class Definitions
+
+include::{uml_export_dir}/classes/work_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_calendar.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_timeline.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/calendar_entry.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_item.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
+

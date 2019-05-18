@@ -6,13 +6,13 @@
 
 4+^h|*PROC Release 1.?.?*
 
-|[[latest_issue]]1.3.0
+|[[latest_issue]]1.4.0
 |{spec_tickets}/SPECPROC-24[SPECPROC-24^]. Add Order tracking to model.
 |M Kejžar, +
  M Polajnar, +
  T Beale, +
  B Naess
-|[[latest_issue_date]]17 May 2019
+|[[latest_issue_date]]18 May 2019
 
 |1.3.0
 |{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Enable Callbacks to be manually notified.

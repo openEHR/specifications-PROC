@@ -1,0 +1,89 @@
+== Task Plan Structure
+
+The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
+
+The Task Group construct enables two important ways to relate Tasks together:
+
+* as a _module_ of work consisting of a series of Tasks, achieved by a Task Group with `_execution_type_ = sequential`;
+* as a set of possible or mandatory _concurrent threads of work_, achieved by a Task Group with `_execution_type_ = parallel`.
+
+A sequential Task Group corresponds to a single thread of processing at execution time, in which each of the Tasks becomes available to the worker (i.e. Task Plan's `_principal_performer_`) _in order_, and according to the specific conditions associated with each Task. The following illustrates a sequential Task Group.
+
+[.text-center]
+.Sequential Task Group
+image::{diagrams_uri}/task_group_sequential.svg[id=task_group_sequential, align="center", width=45%]
+
+=== Parallel Task Groups and Concurrency
+
+The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired _split_ and _join_ points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).
+
+[.text-center]
+.Parallel Task Group
+image::{diagrams_uri}/task_group_parallel.svg[id=task_group_parallel, align="center", width=25%]
+
+The type of split and join (i.e. AND, OR, XOR, or other) depends on additional rules for concurrent processing, represented by the attribute `_concurrency_mode_`, whose possible values define the type of split and join, as shown below. The concurrency mode is important because it tells the execution engine at runtime under what conditions to consider the group has completed. The AND cases is the simplest, since there is no conditional processing - all paths must be followed. The XOR case represents a 1/N choice, so completion is also trivial to determine. However the OR case is more complicated. It might initially seem as if the Group may be considered completed when the first path completes (i.e. 'quickest path wins'). However, an alternative reasonable approach is to wait for all paths that were commenced to complete. Both possibilities are catered for.
+
+[cols="1,1,1,1,3", options="header"]
+|===
+|Concurrency mode    |TP-VML |Split/ +
+                              join logic |Conditionality     |Semantics
+
+|`and_all_paths`     
+a|image::{diagrams_uri}/task_group_parallel_and.svg[id=task_group_parallel_and]
+|AND                |(none)             |All parallel paths are followed.
+
+|`xor_one_path`     
+a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=task_group_parallel_xor]
+|XOR                |1/N                |Only one parallel path is followed.
+
+|`or_first_completed`
+a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=task_group_parallel_or_first]
+|OR                 |N/M                |One or more paths may be commenced, and the Group is complete as soon as one path completes.
+
+|`or_all_started`    
+a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=task_group_parallel_or_all]
+|OR                 |N/M                |One or more paths may be commenced, and the Group is complete when all paths commenced complete.
+
+|===
+
+The parallel / concurrent semantics attached to the Task Group do not indicate anything about conditional processing, i.e. conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined _by the performer, not the system_. In order to specify conditions on paths, the `TASK_GROUP` the conditional subtypes <<_conditional_structures, described below>> are used.
+
+=== Hierarachical Nesting
+
+Task Groups of sequential and parallel types may be mixed in a hierarchical fashion. One structure is such that the overall work of a Task Plan is defined as a sequential Group in which some members are a parallel Group, as shown below.
+
+[.text-center]
+.Nested Task grouping - sequential structure
+image::{diagrams_uri}/task_grouping.svg[id=task_grouping, align="center", width=75%]
+
+Similarly, the outermost Group may be parallel, with the work being defined as sections of sequential work situated within a parallel Task Group, as shown below.
+
+[.text-center]
+.Nested Task grouping - parallel chains
+image::{diagrams_uri}/task_grouping2.svg[id=task_grouping2, align="center", width=75%]
+
+=== Generic Execution-time Semantics
+
+The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes defined on `TASK` and its descendant types enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.
+
+=== Well-formedness
+
+A significant consequence of the Task Group construct in the TP model is that each Task Group forms a sub-network within its container, where a _network_ is understood in the graph theory sense of a directed graph with a start `s` and terminal node `t`, containing paths from `s` to `t` n which all member elements are found. This holds for descendant types of `TASK_GROUP`, including the <<_conditional_structures, Conditional Structures>> described below. This is a more limited form of connectivity than allowed in YAWL or BPMN, which do not require matched split and join points.
+
+=== Training Level
+
+One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks. 
+
+To enable a single Plan to be used in both ways, the concept of 'training level' is included in the model, on the `TASK_GROUP` class. This enables any Group of Tasks to be marked as having a specific training level, where a higher number corresponds to less experience. At execution time, the training level of the allocated performer can be obtained, and then used in comparison to the training level indicated on each Group (including the top-level Group of the whole Plan). If the user training level is higher, then the Group may be shown only as a single step (using its `_description_`, inherited from `PLAN_ITEM`); otherwise it may be shown as the set of sub-steps. This provides a simple way for the same Plan to be presented in different forms matching different performer experience levels.
+
+The default value of `_training_level_` is 0.
+
+=== Class Definitions
+
+include::{uml_export_dir}/classes/task_group.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/concurrency_mode.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]

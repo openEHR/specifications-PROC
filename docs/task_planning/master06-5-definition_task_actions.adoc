@@ -1,0 +1,151 @@
+== Task Actions
+
+The specific definition of the work of Tasks is provided by `TASK._action_`, of type `TASK_ACTION` and its subtypes. Two abstract sub-types `DISPATCHABLE_ACTION` and `PERFORMABLE_ACTION` distinguish the _dispatchable_ and _performable_ flavours of Task Action, corresponding to the two `TASK` subtypes. The following UML diagram shows `TASK_ACTION` and its subtypes in detail.
+
+[.text-center]
+.proc.task_planning.definition model - Task Actions
+image::{uml_diagrams_uri}/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
+
+`TASK_ACTION` includes two attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
+
+A subject precondition is formally represented as a `BOOLEAN_CONTEXT_EXPRESSION`, whose `_expression_` value is a string in {openehr_expression_language}[openEHR Expression Language^] syntax.
+
+Pre-conditions are evaluated at the point at which the Task to which they are attached becomes available during execution. If any pre-condition evaluates to False, the Task is in theory unable to be performed. A clinical professional may override at execution time, since it may always be the case that particular circumstances obviate the need for a particular pre-condition that normally applies.
+
+The second generally applicable attribute is `_costing_data_`, since cost information may clearly be relevant to any Plan item. Costing is dealt with in detail below.
+
+Performable Actions have two attributes. The `_other_participations_` and `_resources_` attributes allow other performers and passive resources to be defined for an Action. Both are subject to an allocation process at execution time, similar to that of the `_principal_performer_`. 
+
+The subtypes of `TASK_ACTION` consist of the following:
+
+[cols="1,1,5", options="header"]
+|===
+|Type   |TP-VML |Description
+
+|`DEFINED_ACTION`
+a|image::{diagrams_uri}/task-defined_task.svg[id=task_defined_task]
+|An inline-defined Task to be performed by the principal performer of the Group (see below for details);
+
+|`SUB_PLAN`
+a|image::{diagrams_uri}/task-sub_plan.svg[id=task_sub_plan]
+|A kind of Task that stands for another Task Plan (identified by the inherited `LINKED_PLAN._target_` attribute) to be performed by the current performer - usually a fine-grained set of steps designed to achieve the result of this Task.
+
+|`SYSTEM_REQUEST`
+a|image::{diagrams_uri}/task-system_request.svg[id=task_system_request]
+|A kind of Task that consists of a request to a computational system, such as a data retrieval or procedure call, on behalf of the current performer;
+
+|`HAND_OFF`
+a|image::{diagrams_uri}/task-hand_off.svg[id=task_hand_off]
+|A kind of Task that hands off to another Task Plan in the same Work Plan, having a different performer (identified via the `_target_` attribute inherited from `LINKED_PLAN`);
+
+|`EXTERNAL_REQUEST`
+a|image::{diagrams_uri}/task-external_request.svg[id=task_external_request]
+|A Task type that consists of a request to an external organisational entity that is outside the current Work Plan and its execution environment, on behalf of the current performer;
+
+|===
+
+The following sections provide more detail on some of these model features.
+
+=== Performable Actions
+
+==== Sub-plans and Re-use
+
+As described above, multiple Task Plans may be used to define a single logical plan of work. This occurs for two main reasons:
+
+* _re-use_: Task Plans that can be used on their own, e.g. 'set up IV drip', are combined within a larger plan;
+* _level of granularity_: a Task Plan can contain Tasks that can be represented as finer-grained Task Plans, which may potentially be used or passed over depending on the level of experience, known here as _training level_ of the performer.
+
+The following instance diagram illustrates.
+
+[.text-center]
+.Task Plan linking
+image::{diagrams_uri}/task_linking.svg[id=task_linking, align="center"]
+
+This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the `SUB_PLAN` class. Since a Sub-plan is a kind of Task, it has a _description_ and could be performed and signed off as if it were a normal inline `DEFINED_ACTION` by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The `PLAN_ITME._training_level_` attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.
+
+==== Inline Defined Actions
+
+Tasks whose definitions are stated within a Task Plan are modelled using the `DEFINED_ACTION` type. A detailed specification of the work to be done in a Defined Action  may be stated via optional atttribute `_prototype_` of type `ENTRY`, which enables the details of a Task to be specified in terms of a descendant of the `ENTRY` class. This is typically an `ACTION` instance but could be an `OBSERVATION`, `ADMIN_ENTRY` or other descendant. The following view of the UML illustrates.
+
+[.text-center]
+.proc.task_planning.definition - Definition Task
+image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center", width=50%]
+
+The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of `DEFINED_ACTIONs`, each having a protoype of an `ACTION` instance based on the `openEHR-EHR-ACTION.medication.v1` archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an `ACTION` instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.
+
+The following illustrates Task definitions using prototypes.
+
+[.text-center]
+.Task definition
+image::{diagrams_uri}/task_definition.svg[id=task_definition, align="center", width=55%]
+
+Assuming that the Task Plan is archetyped in the same way as Entries and other elements of the EHR, this scheme supports various modes of design-time specification. The `_prototype_` attribute in a `TASK_PLAN` archetype will usually be represented by an archetype slot or external reference, which specifies identifiers of permitted archetypes (or templates) of the target type, i.e. `ACTION` or other Entry. This can be used in various ways, as follows:
+
+* {openehr_am_adl2}#_external_references[external reference]: specifies a fixed archetype identifier which will be substituted in the templated form of the Task Plan. This has the effect of creating `ACTION` or other prototype instances in the `TASK_PLAN` structure;
+* {openehr_am_adl2}#_archetype_slots[archetype slot]: specified using a slot constraint that is satisfied by one or more archetypes that may be specified by a template, or left open until runtime.
+
+In the latter case, the slot may be filled in the Task Plan template with an `ACTION` or other Entry archetype, allowing the Tasks to be fully specified inline as in the external reference case. Alternatively, it may be left unresolved, which would allow the workflow application to choose the exact Task definition archetype at runtime.
+
+One reason to allow a Task to contain a `_prototype_` reference that remains unresolved until runtime is if the Task represents the act of making an observation, for example, taking a blood pressure. In such cases, no prototype at all may be needed, and the Task `_description_` attribute (inherited from `PLAN_ITEM`) may be sufficient information for the performer. On the other hand, a prototype `OBSERVATION` could be specified in the `TASK_PLAN` template, which defines a particular form of the observation, e.g. a blood pressure which only records mean arterial pressure and cuff size.
+
+To allow further flexibility, The multiplicity of the `_prototype_` attribute is unlimited, to allow for the possibility of one Task being prototyped by more than one Entry instance, e.g. an `ACTION` and an `OBSERVATION`, two `ADMIN_ENTRY` instances and so on.
+
+=== Dispatchable Actions
+
+The type `DISPATCHABLE_ACTION` is the abstract parent of various Action subtypes that represent work requested to be done by some other agent, i.e. external to the current Task Plan. The three sub-types correspond to 3 different types of other performer, i.e.:
+
+* `HAND_OFF`: another principle performer in the same Work Plan;
+* `EXTERNAL_REQUEST`: a performer outside the current Work Plan computational environment.
+* `SYSTEM_REQUEST`: a computation to be performed by a system call;
+
+The general execution scheme for such Actions is as follows:
+
+* _dispatch_ the work request to a target actor or service;
+* _block or continue_, according to the `_wait_` flag, which determines switch or fork behaviour; and
+* process any _callback notification_, specified via the `_callback_` attribute.
+
+The following sub-sections described the various subtypes of `DISPATCHABLE_ACTION`, while callbacks are described in detail further down.
+
+==== Hand-offs and Coordinated Teamwork
+
+Work Plans may be designed to contain multiple Task Plans, each corresponding to a team worker. In the execution of such a Work Plan, the performer of any Task Plan may at some point need to hand off to another performer, i.e. one of the other Task Plans in the same Work Plan. As described above, the original worker may wait or continue, and in both cases, receipt of a callback notification from the other Task Plan may cause a change in the execution path of the first Plan.
+
+The following illustrates, using the example of an acute stroke management care process.
+
+[.text-center]
+.Task coordination
+image::{diagrams_uri}/task_coordination.svg[id=task_coordination, align="center"]
+
+In this Work Plan, three Task Plans are used to perform (parts of) the clinical work coordinated for managing an acute stroke, as per a Care Pathway. There are two Hand-offs, the first synchronous (`_wait_` = `True`; callback wait resumes at the next Task) and the second an asynchronous fork (`_wait_` = `False`).
+
+==== External Request
+
+The Task sub-type `EXTERNAL_REQUEST` represents a request by the current performer to an external entity completely outside of the current Work Plan computational context, to request some work on behalf of the performer. This is typically an organisation of which routine requests can be made (e.g. pathology laboratory). The request has to be defined generically, in terms of an organisation identifier, a request identifier (i.e. a name or type of job) and a list of other details, represented by the standard archetypable `ITEM_STRUCTURE`.
+
+==== System Request
+
+The Task sub-type `SYSTEM_REQUEST` represents a request to a _system_ with a computational interface on behalf of the performer, such as a logging facility or a decision support system. The request is defined in terms of a `SYSTEM_CALL` instance.
+
+=== Class Definitions
+
+include::{uml_export_dir}/classes/task_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/subject_precondition.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/performable_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/resource_participation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/defined_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/sub_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/dispatchable_action.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/hand_off.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/external_request.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/system_request.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/linked_plan.adoc[leveloffset=+1]

@@ -1,0 +1,50 @@
+== Order Tracking
+
+A small number of features in the model are designed to support the tracking of orders from a Work Plan. The following UML view shows the relevant classes and properties. 
+[.text-center]
+.Order tracking
+image::{uml_diagrams_uri}/PROC-task_planning.definition-order_tracking.svg[id=proc_definition_order_tracking, align="center"]
+
+The facilities consist of the following:
+
+* the `ORDER_REF` class, representing an 'order reference', keyed by the `_order_tag_` attribute;
+* `WORK_PLAN._order_list_` is a table of Order Refs being tracked by the current Plan;
+* `TASK._order_tags_` allows any Task to reference one or more `ORDER_REF` instances in the Work Plan `_order_list_`.
+
+These features enable the creation and/or tracking of orders in an EHR system, according to various scenarios described below. Orders as described here are usually represented as openEHR Instructions and Actions committed to an openEHR EHR (within Compositions), but may in fact be any object(s) that can be referred to by a `LOCTABLE_REF`, which contains a URI. The following sub-sections assume openEHR Instructions and Actions for simplicity of explanation.
+
+A key property in all scenarios is `_order_tag_`, used to _identify_ an order tracking reference (i.e. an `ORDER_REF`), and `TASK._order_tags_` to refer to one or more such references from any Task in the Plan. An order tag may take any String value not containing white space characters. The recommended approach is to use strings meaningful and unique within the Plan context, such that every order is distinguished, including distinct instances. For example, the value `"hypertension_medication"` may be sufficient within one Plan to identify and track an order for such medication, but if the Plan potentially may track two or more such medications, more unique values will be required, e.g. `"beta_blocker_medication"`, `"ACE_inhibitor_medication"` etc. Similarly, orders for different types of insulin (typical for diabetics) would need to be distinguished.
+
+Multiple order tags may be used in a `TASK` for the case where a single Task causes creation of multiple orders, or a single Task waits on events (Action commits) from multiple orders.
+
+For Plans in which repetition occurs (`PLAN_ITEM._repeat_spec_`), order tags may be constructed using the format `"xxxx@n"`, e.g. `"doxorubicin@1"`, `"doxorubicin_admin@2"` to refer to the orders for Doxorubicin in two distinct cycles of chemtherapy mentioned in the same Work Plan.
+
+=== Tracking an Existing Order
+
+In this scenario, at Work Plan design time, an order _already exists_ in the form of an Instruction committed to a patient EHR. This might be a standing order, e.g. for insulin for a diabetic, or any other long-running medication or therapy for a sufferer of a chronic illness. The Plan might be used to track patient or healthcare professional administrations of such a medication.
+
+Since it is possible to construct a `LOCATABLE_REF` to the `INSTRUCTION` (and indeed, to a contained `ACTIVITY`), it may be referenced from a Work Plan using an `ORDER_REF` instance, via the `_order_ref_` property. The corresponding Instruction archetype identifier may also be recorded, enabling direct lookup by the TP engine, for use within the Plan modelling environment. The `_order_tag_` field will be set to a value that refers to the order in a sufficiently precise way as to be unique within the Work Plan.
+
+This scheme allows Tasks to be defined within the Plan that have a Task Wait (`PLAN_ITEM._wait_spec_`) that wait on an event (e.g. `SYSTEM_NOTIFICATION` or `MANUAL_NOTIFICATION`) that is generated due to subsequent commits to the EHR of `ACTIONs` for the original order (e.g. drug administration events, cancellation or suspension of medication by the doctor etc).
+
+[.tbd]
+TBD: could also use Dispatchable Task approach as per below, to wait on an existing order.
+
+=== Creating and Tracking an Order
+
+In this scenario, the Work Plan is the creator of the order(s) of interest. At Work Plan _design time_, there is no order (i.e. `INSTRUCTION`) in the EHR (this will only occur at Plan execution time), so  `ORDER_REF._order_ref_` cannot initially be populated. An `ORDER_REF` can nevertheless be created for the order at Plan design time, with the `_order_tag_` being used to refer to the order from within the Work Plan. A typical Plan structure in this case might contain the following, for each order:
+
+* a `PERFORMABLE_TASK<DEFINED_ACTION>` with associated `_capture_dataset_`, representing the entry of routine data and creation of the order, resulting in a commit to the EHR system of a Composition containing an Instruction for the order;
+* a subsequent `DISPATCHABLE_TASK<SYSTEM_REQUEST>` (or `DISPATCHABLE_TASK<EXTERNAL_REQUEST>`) that causes the appropriate API call or message to be generated and sent to the filler of the order (e.g. pharmacy, laboratory etc); this Task may include a callback wait state (`DISPATCHABLE_TASK._callback_`) so that it blocks and waits for a result within a certain time-frame.
+
+Both the Performable and Dispatchable Tasks would use `TASK._order_tags_` to logically refer to the same order. (Note that any number of pairs of Performable and Dispatchable Tasks may be defined to create and react to different orders being processed within the same Work Plan).
+
+A concrete callback event can be arranged to occur when an `ACTION` for the order of interest is committed to the EHR. This relies on the population of the relevant Work Plan `CONTEXT_REF._order_ref_` attribute within the TP engine execution environment, at the moment the order is created in the EHR system. This then allows commits of `ACTIONs` for that order (among others, generally) to be matched with the Dispatchable Task(s) waiting on them. The callback processing for the Dispatchable Task follows the `order tracking` callback model described in <<_callback_processing_for_blocking_tasks>> below.
+
+The Dispatchable Task might be located in a repeating section of the Plan, if the intention is to await multiple Actions for the same Instruction.
+
+An example of a Work Plan representing this scenario is available in the {openehr_tp_examples}#_order_coordination[Task Planning Examples^] document.
+
+=== Class Definitions
+
+include::{uml_export_dir}/classes/order_ref.adoc[leveloffset=+1]
