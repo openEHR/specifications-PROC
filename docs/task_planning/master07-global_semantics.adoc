@@ -2,57 +2,6 @@
 
 This section describes the global semantics of the model in execution, taking into account all elements described above.
 
-== Aggregate Lifecycle State
-
-A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.
-
-Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.
-
-=== Task Group Lifecycle State
-
-The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.
-
-[source, java]
---------
-//
-// Infer the state of a collection whose members have states in source_states.
-// The order of if/else evaluation determines the correct result.
-//
-Task_state inferred_state (Set<Task_state> source_states) {
-    
-    if (source_states.contains(Abandoned))
-        return Abandoned;
-    else if (source_states.contains(Available))
-        return Available;
-    else if (source_states.contains(Planned))
-        return Planned;
-    else if (source_states.contains(Suspended))
-        return Suspended;
-    else if (source_states.contains(Underway))
-        return Underway;
-    else if (source_states.contains(Completed))
-        return Completed;
-    else if (source_states.contains(Cancelled))
-        return Cancelled;
-    else
-        return Initial;
-}
---------
-
-One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.
-
-Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (`TASK_PLAN._definition_`).
-
-If `TASK_GROUP._execution_type_` is `parallel`, then the value of `_concurrency_mode_` will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.
-
-Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.
-
-If the `abandoned` state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be `abandoned`. 
-
-=== Work Group Lifecycle State
-
-In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.
-
 == Control Flow
 
 === Graph Structure
@@ -61,13 +10,13 @@ The execution graph structure of a Work Plan consists of its top-level Task Plan
 
 [.text-center]
 .Work Plan control path graph structure
-image::{diagrams_uri}/wp_tp_hierarchy.svg[id=wp_tp_hierarchy, align="center", width=70%]
+image::{diagrams_uri}/wp_tp_hierarchy.svg[id=wp_tp_hierarchy, align="center", width=55%]
 
 === General Scheme
 
 When a materialised Work Plan is activated (<<_activation,see below>>), its top-level Task Plans are active, meaning that their initial Task(s) are in the `available` lifecycle state, as <<_task_lifecycle,described above>>. 
 
-In a Task Plan, the _execution path_ follows the chain of Tasks defined in the `_definition_` of the Plan, which is a `TASK_GROUP`. It descends into and exits any other `TASK_GROUPs` encountered within the Plan as Tasks are executed and completed or cancelled by their workers. A Task becomes `available` based on a combination of completion (or skipping) of previous Tasks and other conditions, according to the Task lifecycle logic <<_task_lifecycle,described above>>.
+In a Task Plan, the _execution path_ follows the chain of Tasks defined in the `_definition_` of the Plan, which is a `TASK_GROUP`. It descends into and exits any other `TASK_GROUPs` encountered within the Plan as Tasks are executed and completed or cancelled by their workers. A Task becomes `available` based on a combination of completion (or skipping) of previous Tasks and other conditions, according to the Task lifecycle logic <<_task_lifecycle_2,described above>>.
 
 The currently `available` Task in a Task Plan corresponds to the _current execution point_ of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.
 
@@ -128,4 +77,54 @@ The last possibility implies the need to _retry_ Tasks already performed, which 
 
 This doesn't address what should happen at execution time when conditions or wait states at intermediate nodes from the most recent common point to the resume point cannot be met. The simplest approach is that they are manually overridden, as may already be done in normal path processing. This has the effect that such overrides are  at least recorded in the execution history.
 
-== Appointments
+== Aggregate Lifecycle State
+
+A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.
+
+Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.
+
+=== Task Group Lifecycle State
+
+The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.
+
+[source, java]
+--------
+//
+// Infer the state of a collection whose members have states in source_states.
+// The order of if/else evaluation determines the correct result.
+//
+Task_state inferred_state (Set<Task_state> source_states) {
+    
+    if (source_states.contains(Abandoned))
+        return Abandoned;
+    else if (source_states.contains(Available))
+        return Available;
+    else if (source_states.contains(Planned))
+        return Planned;
+    else if (source_states.contains(Suspended))
+        return Suspended;
+    else if (source_states.contains(Underway))
+        return Underway;
+    else if (source_states.contains(Completed))
+        return Completed;
+    else if (source_states.contains(Cancelled))
+        return Cancelled;
+    else
+        return Initial;
+}
+--------
+
+One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.
+
+Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (`TASK_PLAN._definition_`).
+
+If `TASK_GROUP._execution_type_` is `parallel`, then the value of `_concurrency_mode_` will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.
+
+Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.
+
+If the `abandoned` state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be `abandoned`. 
+
+=== Work Group Lifecycle State
+
+In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.
+

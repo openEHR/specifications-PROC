@@ -1,6 +1,11 @@
-== Task Plan Structure
+== Task Structure
 
-The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is controlled by the `_execution_type_` and `_execution_rules_` attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
+The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is primarily controlled by the `_execution_type_` and `_concurrency_mode_` attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of `and` and `or` parallel processing logic (described in the next section), common to workflow formalisms.
+
+[.tbd]
+TBD for more exotic situations, the `_execution_rules_` attribute can be used to state other execution rules.
+
+`TASK_GROUP` also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
 
 The Task Group construct enables two important ways to relate Tasks together:
 
@@ -15,7 +20,7 @@ image::{diagrams_uri}/task_group_sequential.svg[id=task_group_sequential, align=
 
 === Parallel Task Groups and Concurrency
 
-The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired _split_ and _join_ points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).
+The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired _split_ and _join_ points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey the idea of multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).
 
 [.text-center]
 .Parallel Task Group

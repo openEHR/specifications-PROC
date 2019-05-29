@@ -1,9 +1,9 @@
-=== CALLBACK_WAIT<> Class
+=== CALLBACK_WAIT Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*CALLBACK_WAIT<>*
+2+^h|*CALLBACK_WAIT*
 
 h|*Description*
 2+a|Specialised descendant of `EVENT_WAIT <CALL_BACK_NOTIFICATION>` that adds a fail action. Used for representing post-callback actions.

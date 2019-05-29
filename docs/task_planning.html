@@ -203,7 +203,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_task_plan_structure">6.3. Task Plan Structure</a>
+<li><a href="#_task_structure">6.3. Task Structure</a>
 <ul class="sectlevel3">
 <li><a href="#_parallel_task_groups_and_concurrency">6.3.1. Parallel Task Groups and Concurrency</a></li>
 <li><a href="#_hierarachical_nesting">6.3.2. Hierarachical Nesting</a></li>
@@ -350,7 +350,7 @@
 <li><a href="#_event_wait_p_class">6.9.5.12. EVENT_WAIT&lt;P&gt; Class</a></li>
 <li><a href="#_timer_wait_class">6.9.5.13. TIMER_WAIT Class</a></li>
 <li><a href="#_reminder_class">6.9.5.14. REMINDER Class</a></li>
-<li><a href="#_callback_wait_class">6.9.5.15. CALLBACK_WAIT&lt;&gt; Class</a></li>
+<li><a href="#_callback_wait_class">6.9.5.15. CALLBACK_WAIT Class</a></li>
 <li><a href="#_event_action_class">6.9.5.16. EVENT_ACTION Class</a></li>
 <li><a href="#_resume_action_class">6.9.5.17. RESUME_ACTION Class</a></li>
 </ul>
@@ -370,28 +370,27 @@
 </li>
 <li><a href="#_global_semantics">7. Global Semantics</a>
 <ul class="sectlevel2">
-<li><a href="#_aggregate_lifecycle_state">7.1. Aggregate Lifecycle State</a>
+<li><a href="#_control_flow">7.1. Control Flow</a>
 <ul class="sectlevel3">
-<li><a href="#_task_group_lifecycle_state">7.1.1. Task Group Lifecycle State</a></li>
-<li><a href="#_work_group_lifecycle_state">7.1.2. Work Group Lifecycle State</a></li>
+<li><a href="#_graph_structure_2">7.1.1. Graph Structure</a></li>
+<li><a href="#_general_scheme">7.1.2. General Scheme</a></li>
+<li><a href="#_conditional_nodes">7.1.3. Conditional Nodes</a></li>
 </ul>
 </li>
-<li><a href="#_control_flow">7.2. Control Flow</a>
+<li><a href="#_task_dispatching">7.2. Task Dispatching</a>
 <ul class="sectlevel3">
-<li><a href="#_graph_structure_2">7.2.1. Graph Structure</a></li>
-<li><a href="#_general_scheme">7.2.2. General Scheme</a></li>
-<li><a href="#_conditional_nodes">7.2.3. Conditional Nodes</a></li>
+<li><a href="#_hand_offs">7.2.1. Hand-offs</a></li>
+<li><a href="#_external_requests">7.2.2. External Requests</a></li>
+<li><a href="#_system_requests">7.2.3. System Requests</a></li>
+<li><a href="#_resume_semantics">7.2.4. Resume Semantics</a></li>
 </ul>
 </li>
-<li><a href="#_task_dispatching">7.3. Task Dispatching</a>
+<li><a href="#_aggregate_lifecycle_state">7.3. Aggregate Lifecycle State</a>
 <ul class="sectlevel3">
-<li><a href="#_hand_offs">7.3.1. Hand-offs</a></li>
-<li><a href="#_external_requests">7.3.2. External Requests</a></li>
-<li><a href="#_system_requests">7.3.3. System Requests</a></li>
-<li><a href="#_resume_semantics">7.3.4. Resume Semantics</a></li>
+<li><a href="#_task_group_lifecycle_state">7.3.1. Task Group Lifecycle State</a></li>
+<li><a href="#_work_group_lifecycle_state">7.3.2. Work Group Lifecycle State</a></li>
 </ul>
 </li>
-<li><a href="#_appointments">7.4. Appointments</a></li>
 </ul>
 </li>
 <li><a href="#_execution">8. Execution</a>
@@ -572,7 +571,7 @@
  M Polajnar,<br>
  T Beale,<br>
  B Naess</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 May 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 May 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
@@ -4133,9 +4132,15 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_task_plan_structure"><a class="anchor" href="#_task_plan_structure"></a>6.3. Task Plan Structure</h3>
+<h3 id="_task_structure"><a class="anchor" href="#_task_structure"></a>6.3. Task Structure</h3>
 <div class="paragraph">
-<p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> type, which has three key attributes. Execution of a Group is controlled by the <code><em>execution_type</em></code> and <code><em>execution_rules</em></code> attributes, which express sequential or parallel processing, and optionally other execution rules. It also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
+<p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> type, which has three key attributes. Execution of a Group is primarily controlled by the <code><em>execution_type</em></code> and <code><em>concurrency_mode</em></code> attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of <code>and</code> and <code>or</code> parallel processing logic (described in the next section), common to workflow formalisms.</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD for more exotic situations, the <code><em>execution_rules</em></code> attribute can be used to state other execution rules.</p>
+</div>
+<div class="paragraph">
+<p><code>TASK_GROUP</code> also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
 </div>
 <div class="paragraph">
 <p>The Task Group construct enables two important ways to relate Tasks together:</p>
@@ -4162,7 +4167,7 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_parallel_task_groups_and_concurrency"><a class="anchor" href="#_parallel_task_groups_and_concurrency"></a>6.3.1. Parallel Task Groups and Concurrency</h4>
 <div class="paragraph">
-<p>The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired <em>split</em> and <em>join</em> points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).</p>
+<p>The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired <em>split</em> and <em>join</em> points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey the idea of multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).</p>
 </div>
 <div id="task_group_parallel" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -4670,6 +4675,12 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="paragraph">
 <p>Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Inv_order_tags</em></strong>: <code>order_tags /= Void implies not order_tags.is_empy</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6234,7 +6245,7 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>the <code>ORDER_REF</code> class, representing an 'order reference', keyed by the <code><em>order_tag</em></code> attribute;</p>
+<p>the <code>ORDER_REF</code> class, representing an 'order reference';</p>
 </li>
 <li>
 <p><code>WORK_PLAN.<em>order_list</em></code> is a table of Order Refs being tracked by the current Plan;</p>
@@ -6245,10 +6256,13 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>These features enable the creation and/or tracking of orders in an EHR system, according to various scenarios described below. Orders as described here are usually represented as openEHR Instructions and Actions committed to an openEHR EHR (within Compositions), but may in fact be any object(s) that can be referred to by a <code>LOCTABLE_REF</code>, which contains a URI. The following sub-sections assume openEHR Instructions and Actions for simplicity of explanation.</p>
+<p>These features enable the creation and/or tracking of orders in an EHR system, according to various scenarios described below. Orders as described here are usually represented as openEHR Instructions and Actions committed to an openEHR EHR (within Compositions), but may in fact be any object(s) that can be referred to by a <code>LOCATABLE_REF</code>(which contains a URI). The following sub-sections assume openEHR Instructions and Actions for simplicity of explanation.</p>
 </div>
 <div class="paragraph">
-<p>A key property in all scenarios is <code><em>order_tag</em></code>, used to <em>identify</em> an order tracking reference (i.e. an <code>ORDER_REF</code>), and <code>TASK.<em>order_tags</em></code> to refer to one or more such references from any Task in the Plan. An order tag may take any String value not containing white space characters. The recommended approach is to use strings meaningful and unique within the Plan context, such that every order is distinguished, including distinct instances. For example, the value <code>"hypertension_medication"</code> may be sufficient within one Plan to identify and track an order for such medication, but if the Plan potentially may track two or more such medications, more unique values will be required, e.g. <code>"beta_blocker_medication"</code>, <code>"ACE_inhibitor_medication"</code> etc. Similarly, orders for different types of insulin (typical for diabetics) would need to be distinguished.</p>
+<p>Two key attributes are used to connect Tasks in a Work Plan to Instructions in the EHR. The first is the <code>ORDER_REF.<em>order_ref</em></code> attribute, which represents a reference to the Instruction in the EHR. Subsequent Actions that are committed for a given Instruction contain references to the Instruction, which can be matched to the <code><em>order_ref</em></code> value.</p>
+</div>
+<div class="paragraph">
+<p>The second attribute is <code>ORDER_REF.<em>order_tag</em></code>, used to logically identify an order tracking reference (i.e. an <code>ORDER_REF</code>) within a Work Plan. Any <code>TASK</code> that wants to refer to one or more orders records these same references in its <code>TASK.<em>order_tags</em></code> attribute. An order tag may take any String value not containing white space characters. The recommended approach is to use strings meaningful and unique within the Plan context, such that every order is distinguished, including distinct instances. For example, the value <code>"hypertension_medication"</code> may be sufficient within one Plan to identify and track an order for such medication, but if the Plan potentially may track two or more such medications, more unique values will be required, e.g. <code>"beta_blocker_medication"</code>, <code>"ACE_inhibitor_medication"</code> etc. Similarly, orders for different types of insulin (typical for diabetics) would need to be distinguished.</p>
 </div>
 <div class="paragraph">
 <p>Multiple order tags may be used in a <code>TASK</code> for the case where a single Task causes creation of multiple orders, or a single Task waits on events (Action commits) from multiple orders.</p>
@@ -6265,7 +6279,7 @@ The following UML diagram illustrates.</p>
 <p>Since it is possible to construct a <code>LOCATABLE_REF</code> to the <code>INSTRUCTION</code> (and indeed, to a contained <code>ACTIVITY</code>), it may be referenced from a Work Plan using an <code>ORDER_REF</code> instance, via the <code><em>order_ref</em></code> property. The corresponding Instruction archetype identifier may also be recorded, enabling direct lookup by the TP engine, for use within the Plan modelling environment. The <code><em>order_tag</em></code> field will be set to a value that refers to the order in a sufficiently precise way as to be unique within the Work Plan.</p>
 </div>
 <div class="paragraph">
-<p>This scheme allows Tasks to be defined within the Plan that have a Task Wait (<code>PLAN_ITEM.<em>wait_spec</em></code>) that wait on an event (e.g. <code>SYSTEM_NOTIFICATION</code> or <code>MANUAL_NOTIFICATION</code>) that is generated due to subsequent commits to the EHR of <code>ACTIONs</code> for the original order (e.g. drug administration events, cancellation or suspension of medication by the doctor etc).</p>
+<p>This scheme allows Tasks to be defined within the Plan that have a Task Wait (<code>PLAN_ITEM.<em>wait_spec</em></code>) that wait on an event (e.g. <code>SYSTEM_NOTIFICATION</code> or <code>MANUAL_NOTIFICATION</code>) that is generated due to a subsequent commit to the EHR of <code>ACTIONs</code> for the original order (e.g. drug administration events, cancellation or suspension of medication by the doctor etc).</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: could also use Dispatchable Task approach as per below, to wait on an existing order.</p>
@@ -6287,7 +6301,7 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Both the Performable and Dispatchable Tasks would use <code>TASK.<em>order_tags</em></code> to logically refer to the same order. (Note that any number of pairs of Performable and Dispatchable Tasks may be defined to create and react to different orders being processed within the same Work Plan).</p>
+<p>Both the Performable and Dispatchable Tasks use <code>TASK.<em>order_tags</em></code> to logically refer to the same order. Any number of pairs of Performable and Dispatchable Tasks may be defined to create and react to different orders being processed within the same Work Plan.</p>
 </div>
 <div class="paragraph">
 <p>A concrete callback event can be arranged to occur when an <code>ACTION</code> for the order of interest is committed to the EHR. This relies on the population of the relevant Work Plan <code>CONTEXT_REF.<em>order_ref</em></code> attribute within the TP engine execution environment, at the moment the order is created in the EHR system. This then allows commits of <code>ACTIONs</code> for that order (among others, generally) to be matched with the Dispatchable Task(s) waiting on them. The callback processing for the Dispatchable Task follows the <code>order tracking</code> callback model described in <a href="#_callback_processing_for_blocking_tasks">Section 6.9.4.1</a> below.</p>
@@ -6569,6 +6583,9 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>The execution processing associated with a Reminder is that one or more Reminder events is generated by the system for a Task which is already <code>available</code>. Each of Reminder event will normally cause a communication to the principle performer via the message defined in its <code><em>success_action</em></code>. The performer responds by performing the work of the Task, and progressing it to a final state, in the normal way (possibly via the <code>underway</code> state, for a long-running Task). As soon as the Task is progressed beyond the <code>available</code> state, no further Reminders occur.</p>
 </div>
+<div class="paragraph tbd">
+<p>TBD: need to define Plan level timeout behaviour, for case when no activity.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_lifecycle_transition_override"><a class="anchor" href="#_lifecycle_transition_override"></a>6.9.3.3. Lifecycle Transition Override</h5>
@@ -6602,7 +6619,7 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>A Callback Wait thus has three standard Event responders: <code><em>success_action</em></code>, <code><em>fail_action</em></code> and <code><em>timeout</em></code>, and additionally any number of customer responders can be defined, via <code><em>custom_actions</em></code>, described later.</p>
+<p>A Callback Wait thus has three standard Event responders: <code><em>success_action</em></code>, <code><em>fail_action</em></code> and <code><em>timeout</em></code>, and additionally any number of custom responders definable via <code><em>custom_actions</em></code>, described later.</p>
 </div>
 <div class="paragraph">
 <p>A callback at execution time is achieved either internally in the TP system, or externally in the real world (e.g. by the subject returning to a clinic reception), which requires it to be manually signalled to the TP engine. The notification route is indicated by the attribute <code>CALLBACK_NOTIFICATION.<em>manually_notified</em></code>. In both cases, the <code>CALLBACK_NOTIFICATION</code> event carries the details of the event to be matched. In the manual notification, matching of <code><em>subject_id</em></code> etc will be carried out manually, e.g. by staff identifying the patient.</p>
@@ -6665,16 +6682,16 @@ The following UML diagram illustrates.</p>
 <p>Each model corresponds to a different set of possible callback statuses returned by the TP engine with the callback notification to represent the state of the remote Task execution. In the <code>standard</code> model it is a generic success | fail | timeout approach. Under the <code>order tracking</code> model (<a href="#_order_tracking">Section 6.8</a>, above), the return statuses are states from the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_the_standard_instruction_state_machine_ism">openEHR Instruction State Machine</a>. Under the <code>custom</code> model, they are specific to the context.</p>
 </div>
 <div class="paragraph">
-<p>Under each model, the next lifecycle state of the Dispatchable Task is determined by the callback status in a specific way. For each possible status under each model, a specific callback handler may be set, defined in terms of the <code>CALLBACK</code> properties <code><em>success_action</em></code>, <code><em>fail_action</em></code>, <code><em>timeout.success_action</em></code>. Any of these (see class <code>EVENT_ACTION</code>) if set may override the default next state setting, and also may generate a system call and/or a message for the performer.</p>
+<p>Under each model, the next lifecycle state of the Dispatchable Task is determined by the callback status in a specific way. For each possible status under each model, a specific callback handler may be set, defined in terms of the <code>CALLBACK</code> properties <code><em>success_action</em></code>, <code><em>fail_action</em></code>, <code><em>timeout.success_action</em></code>. Any of these (see class <code>EVENT_ACTION</code>) if set may override the default next state, and also may generate a system call and/or a message for the performer.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: It would be reasonable to design an implementation with a default message of the form <code>"Task $task_name[id=$task_id] completed with $state"</code>, and a global flag <code><em>default_messages_on</em></code> to obviate the need to always set basic messages in <code>EVENT_ACTION</code>.</p>
 </div>
 <div class="paragraph">
-<p>In special cases, it may also cause execution to resume in another place (see <a href="#_resume_semantics">Section 7.3.4</a>).</p>
+<p>In special cases, it may also cause execution to resume in another place (see <a href="#_resume_semantics">Section 7.2.4</a>).</p>
 </div>
 <div class="paragraph">
-<p>A common approach to timeout processing applies to all models. If no callback occurs, and <code>CALLBACK.<em>timeout.success_action</em></code> is set, its timer will be used to generate the timeout, and also to determine the next state, message etc. If it is not set, the Work Plan level timeout will be triggered to unblock the Task and transition it to the <code>abandoned</code> state.</p>
+<p>A common approach to timeout processing applies to all models. If no callback occurs, and <code>CALLBACK.<em>timeout.success_action</em></code> is set, its timer will be used to generate the timeout, and also to determine the next state, message etc. If it is not set, the Work Plan global timeout will be triggered to unblock the Task and transition it to the <code>abandoned</code> state.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: need to define Plan level timeout.</p>
@@ -6764,7 +6781,7 @@ The following UML diagram illustrates.</p>
 <p><code>suspended</code> &#8594; <code>suspended</code><br></p>
 </li>
 <li>
-<p><code>aborted</code> &#8594; <code>abandoned</code><br></p>
+<p><code>aborted</code> &#8594; <code>cancelled</code><br></p>
 </li>
 <li>
 <p><code>completed</code> &#8594; <code>completed</code><br></p>
@@ -6829,7 +6846,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 37. Standard callback example</div>
 </div>
 <div class="paragraph">
-<p>The following diagram illustrates a custom callback.</p>
+<p>The following TP-VML definition illustrates a custom callback.</p>
 </div>
 <div id="timing_callback_pattern_2" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -6856,7 +6873,7 @@ The following UML diagram illustrates.</p>
 <div class="sect4">
 <h5 id="_callback_with_custom_resume_behaviour"><a class="anchor" href="#_callback_with_custom_resume_behaviour"></a>6.9.4.3. Callback with Custom Resume Behaviour</h5>
 <div class="paragraph">
-<p>The attribute <code>EVENT_ACTION.<em>resume_action</em></code> of type <code>RESUME_ACTION</code>, and its attribute <code><em>resume_location</em></code> enable custom post-callback behaviour to be stated. The default is to process the <code>EVENT_ACTION</code> (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration <code>RESUME_TYPE</code>. This kind of resumption is described below in the section on <a href="#_resume_semantics">Section 7.3.4</a>.</p>
+<p>The attribute <code>EVENT_ACTION.<em>resume_action</em></code> of type <code>RESUME_ACTION</code>, and its attribute <code><em>resume_location</em></code> enable custom post-callback behaviour to be stated. The default is to process the <code>EVENT_ACTION</code> (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration <code>RESUME_TYPE</code>. This kind of resumption is described below in the section on <a href="#_resume_semantics">Section 7.2.4</a>.</p>
 </div>
 </div>
 </div>
@@ -7526,7 +7543,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.9.5.15. CALLBACK_WAIT&lt;&gt; Class</h5>
+<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.9.5.15. CALLBACK_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7536,7 +7553,7 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_WAIT&lt;&gt;</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_WAIT</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -7769,89 +7786,26 @@ The following UML diagram illustrates.</p>
 <p>This section describes the global semantics of the model in execution, taking into account all elements described above.</p>
 </div>
 <div class="sect2">
-<h3 id="_aggregate_lifecycle_state"><a class="anchor" href="#_aggregate_lifecycle_state"></a>7.1. Aggregate Lifecycle State</h3>
-<div class="paragraph">
-<p>A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.</p>
-</div>
-<div class="paragraph">
-<p>Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.</p>
-</div>
+<h3 id="_control_flow"><a class="anchor" href="#_control_flow"></a>7.1. Control Flow</h3>
 <div class="sect3">
-<h4 id="_task_group_lifecycle_state"><a class="anchor" href="#_task_group_lifecycle_state"></a>7.1.1. Task Group Lifecycle State</h4>
-<div class="paragraph">
-<p>The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span class="tok-c1">//</span>
-<span class="tok-c1">// Infer the state of a collection whose members have states in source_states.</span>
-<span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
-<span class="tok-c1">//</span>
-<span class="tok-n">Task_state</span> <span class="tok-nf">inferred_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_state</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-
-    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span>
-        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-o">;</span>
-<span class="tok-o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.</p>
-</div>
-<div class="paragraph">
-<p>Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (<code>TASK_PLAN.<em>definition</em></code>).</p>
-</div>
-<div class="paragraph">
-<p>If <code>TASK_GROUP.<em>execution_type</em></code> is <code>parallel</code>, then the value of <code><em>concurrency_mode</em></code> will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (<code>TASK_GROUP.<em>execution_rules</em></code>) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.</p>
-</div>
-<div class="paragraph">
-<p>Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.</p>
-</div>
-<div class="paragraph">
-<p>If the <code>abandoned</code> state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be <code>abandoned</code>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_work_group_lifecycle_state"><a class="anchor" href="#_work_group_lifecycle_state"></a>7.1.2. Work Group Lifecycle State</h4>
-<div class="paragraph">
-<p>In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_control_flow"><a class="anchor" href="#_control_flow"></a>7.2. Control Flow</h3>
-<div class="sect3">
-<h4 id="_graph_structure_2"><a class="anchor" href="#_graph_structure_2"></a>7.2.1. Graph Structure</h4>
+<h4 id="_graph_structure_2"><a class="anchor" href="#_graph_structure_2"></a>7.1.1. Graph Structure</h4>
 <div class="paragraph">
 <p>The execution graph structure of a Work Plan consists of its top-level Task Plan(s) (<code>WORK_PLAN.<em>top_level_plans</em></code>) and subordinate Task Plans linked from Hand-offs and sub-plans (i.e. <code>DISPATCHABLE_TASK&lt;HAND_OFF&gt;</code> and <code>DISPATCHABLE_TASK&lt;SUB_PLAN&gt;</code>) Task types. Top-level Task Plans are those that do not have prior executable Tasks, and are thus active at activation time. The following illustrates a typical structure.</p>
 </div>
 <div id="wp_tp_hierarchy" class="imageblock text-center" style="text-align: center">
 <div class="content">
-<img src="task_planning/diagrams/wp_tp_hierarchy.svg" alt="wp tp hierarchy" width="70%">
+<img src="task_planning/diagrams/wp_tp_hierarchy.svg" alt="wp tp hierarchy" width="55%">
 </div>
 <div class="title">Figure 40. Work Plan control path graph structure</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_general_scheme"><a class="anchor" href="#_general_scheme"></a>7.2.2. General Scheme</h4>
+<h4 id="_general_scheme"><a class="anchor" href="#_general_scheme"></a>7.1.2. General Scheme</h4>
 <div class="paragraph">
 <p>When a materialised Work Plan is activated (<a href="#_activation">see below</a>), its top-level Task Plans are active, meaning that their initial Task(s) are in the <code>available</code> lifecycle state, as <a href="#_task_lifecycle">described above</a>.</p>
 </div>
 <div class="paragraph">
-<p>In a Task Plan, the <em>execution path</em> follows the chain of Tasks defined in the <code><em>definition</em></code> of the Plan, which is a <code>TASK_GROUP</code>. It descends into and exits any other <code>TASK_GROUPs</code> encountered within the Plan as Tasks are executed and completed or cancelled by their workers. A Task becomes <code>available</code> based on a combination of completion (or skipping) of previous Tasks and other conditions, according to the Task lifecycle logic <a href="#_task_lifecycle">described above</a>.</p>
+<p>In a Task Plan, the <em>execution path</em> follows the chain of Tasks defined in the <code><em>definition</em></code> of the Plan, which is a <code>TASK_GROUP</code>. It descends into and exits any other <code>TASK_GROUPs</code> encountered within the Plan as Tasks are executed and completed or cancelled by their workers. A Task becomes <code>available</code> based on a combination of completion (or skipping) of previous Tasks and other conditions, according to the Task lifecycle logic <a href="#_task_lifecycle_2">described above</a>.</p>
 </div>
 <div class="paragraph">
 <p>The currently <code>available</code> Task in a Task Plan corresponds to the <em>current execution point</em> of the Plan. For parallel execution Task Groups, more than one Task can be available simultaneously, meaning there is more than one thread of execution. As Tasks complete, and timing and other events occur, making new Tasks available, each thread of execution advances through the Task Plan graph.</p>
@@ -7861,7 +7815,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_conditional_nodes"><a class="anchor" href="#_conditional_nodes"></a>7.2.3. Conditional Nodes</h4>
+<h4 id="_conditional_nodes"><a class="anchor" href="#_conditional_nodes"></a>7.1.3. Conditional Nodes</h4>
 <div class="paragraph">
 <p>The various kinds of conditional nodes represent different ways of controlling execution of a Task Plan.</p>
 </div>
@@ -7883,27 +7837,27 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_task_dispatching"><a class="anchor" href="#_task_dispatching"></a>7.3. Task Dispatching</h3>
+<h3 id="_task_dispatching"><a class="anchor" href="#_task_dispatching"></a>7.2. Task Dispatching</h3>
 <div class="sect3">
-<h4 id="_hand_offs"><a class="anchor" href="#_hand_offs"></a>7.3.1. Hand-offs</h4>
+<h4 id="_hand_offs"><a class="anchor" href="#_hand_offs"></a>7.2.1. Hand-offs</h4>
 <div class="paragraph tbd">
 <p>TBD:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_external_requests"><a class="anchor" href="#_external_requests"></a>7.3.2. External Requests</h4>
+<h4 id="_external_requests"><a class="anchor" href="#_external_requests"></a>7.2.2. External Requests</h4>
 <div class="paragraph tbd">
 <p>TBD:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_system_requests"><a class="anchor" href="#_system_requests"></a>7.3.3. System Requests</h4>
+<h4 id="_system_requests"><a class="anchor" href="#_system_requests"></a>7.2.3. System Requests</h4>
 <div class="paragraph tbd">
 <p>TBD:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_resume_semantics"><a class="anchor" href="#_resume_semantics"></a>7.3.4. Resume Semantics</h4>
+<h4 id="_resume_semantics"><a class="anchor" href="#_resume_semantics"></a>7.2.4. Resume Semantics</h4>
 <div class="paragraph">
 <p>The <code><em>resume_type</em></code> and <code><em>resume_location</em></code> attributes of the <code>RESUME_ACTION</code> class constitute the possibility of an uncontrolled jump or 'goto' within the Task execution structure. If allowed without limitation, it is likely to lead to undecidable situations in Plan execution, and unreliable execution histories. For example, if the execution history shows that some Task Y was performed, then it would normally be assumed that the preceding Task X had also been performed (even if cancelled), and by extension that any wait state such as an Event Branch had been satisifed by the relevant event being received. If however, a jump to Task Y from some Task A on a completely separate path were allowed, no such inference can be made, without appropriate processing rules regarding such jumps.</p>
 </div>
@@ -7954,8 +7908,67 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_appointments"><a class="anchor" href="#_appointments"></a>7.4. Appointments</h3>
+<h3 id="_aggregate_lifecycle_state"><a class="anchor" href="#_aggregate_lifecycle_state"></a>7.3. Aggregate Lifecycle State</h3>
+<div class="paragraph">
+<p>A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.</p>
+</div>
+<div class="sect3">
+<h4 id="_task_group_lifecycle_state"><a class="anchor" href="#_task_group_lifecycle_state"></a>7.3.1. Task Group Lifecycle State</h4>
+<div class="paragraph">
+<p>The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span class="tok-c1">//</span>
+<span class="tok-c1">// Infer the state of a collection whose members have states in source_states.</span>
+<span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
+<span class="tok-c1">//</span>
+<span class="tok-n">Task_state</span> <span class="tok-nf">inferred_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_state</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
 
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span>
+        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-o">;</span>
+<span class="tok-o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.</p>
+</div>
+<div class="paragraph">
+<p>Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (<code>TASK_PLAN.<em>definition</em></code>).</p>
+</div>
+<div class="paragraph">
+<p>If <code>TASK_GROUP.<em>execution_type</em></code> is <code>parallel</code>, then the value of <code><em>concurrency_mode</em></code> will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (<code>TASK_GROUP.<em>execution_rules</em></code>) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.</p>
+</div>
+<div class="paragraph">
+<p>Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.</p>
+</div>
+<div class="paragraph">
+<p>If the <code>abandoned</code> state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be <code>abandoned</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_work_group_lifecycle_state"><a class="anchor" href="#_work_group_lifecycle_state"></a>7.3.2. Work Group Lifecycle State</h4>
+<div class="paragraph">
+<p>In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -9103,7 +9116,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-18 11:42:58 BST
+Last updated 2019-05-18 07:42:58 -03
 </div>
 </div>
 </body>
