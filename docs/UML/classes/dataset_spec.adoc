@@ -8,6 +8,9 @@ h|*Class*
 h|*Description*
 2+a|Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.
 
+h|*Inherit*
+2+|`LOCATABLE`
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
@@ -23,4 +26,15 @@ a|Template identifier in String form of an `ARCHETYPE_HRID`. If used with no `_f
 h|*0..1*
 |*other_details*: `ITEM_STRUCTURE`
 a|Other data-set related details.
+
+h|*0..1*
+|*populating_call*: `SYSTEM_CALL`
+a|Optional system call that will populate this data-set.
+
+h|*0..1*
+|*form_section_path*: `String`
+a|Optional path to a sub-section of the form identified by `_form_id_`. The format of the path is the same as a template or AQL path.
+
+h|*Invariants*
+2+a|*_Inv_validity_*: `form_id /= Void or template_id /= Void`
 |===

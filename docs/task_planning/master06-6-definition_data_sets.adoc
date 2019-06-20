@@ -2,18 +2,26 @@
 
 In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.
 
-The following UML diagram shows the data-set related classes in detail.
+To achieve this, the Task Planning model formalises the relationship between a 'data set' and a Task that may use it. A 'data-set' in openEHR is a template, normally displayed as a form within an application. In the Task Planning context, a data set may also be a sub-section of a template or form, specified by a path, to allow more than one Task to be used to construct each section of a form. The following UML diagram shows the data-set related classes in detail.
 
 [.text-center]
 .proc.task_planning.definition model overview
 image::{uml_diagrams_uri}/PROC-task_planning.definition-dataset.svg[id=proc_definition_dataset, align="center"]
 
-A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A _review data-set_ may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute `PLAN_ITEM._review_dataset_`, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.
+Two variants of data-set are defined, as follows:
 
-Related to this is the `_capture_dataset_` attribute of the `PERFORMABLE_TASK` type, which enables the association of a dataset or form for inputting data with a performable Task.
+* _data display_: a `REVIEW_DATASET_SPEC` represents a template or part thereof that is to be displayed in order for the Task performer to do the work of the Task;
+* _data capture_: a `CAPTURE_DATASET-SPEC` represents a template or part thereof that is to be populated by the work of the Task.
 
-[.tbd]
-TBD: describe how this relates to the data set(s) of `PERFORMABLE_ACTION._prototype_` .
+Either a template or form identifier (or both) maybe be used to specify a data-set. The `_populating_call_` attribute may be used to define a system call that will pre-populate either kind of data-set. The `_form_section_path_` attribute is populated if a data-set section (i.e. part of a form) needs to be specified.
+
+A review data-set may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute `PLAN_ITEM._review_dataset_`, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.
+
+A capture data-set may be specified for a `PERFORMABLE_TASK` only (since the work of the Task in this case is what achieves the desired data capture), via the `_capture_dataset_` attribute.
+
+For reference, any review data-set may have any number of capture data-sets used to capture the data associated with it, via the `REVIEW_DATASET_SPEC._capture_datasets_` attribute. This enables the relationship between potentially numerous (typically small) forms/dialogs used to obtain data from users and the commonly larger forms used to display such data.
+
+Both kinds of data sets described here may be the same as or related to templates and/or forms used in the generation of Task EHR data, mentioned in `PERFORMABLE_ACTION._prototype_` .
 
 === Class Definitions
 

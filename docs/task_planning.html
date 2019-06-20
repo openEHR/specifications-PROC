@@ -565,13 +565,20 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.?.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-26" target="_blank" rel="noopener">SPECPROC-26</a>. Dataset improvements: make <code>DATASET_SPEC</code> inherit from <code>LOCATABLE</code>; support form sub-sections.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>20 Jun 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-24" target="_blank" rel="noopener">SPECPROC-24</a>. Add Order tracking to model.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  M Polajnar,<br>
  T Beale,<br>
  B Naess</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 May 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">29 May 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
@@ -5243,7 +5250,7 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype</strong>: <code>List&lt;ENTRY&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Prototype instance of one or more Entries that express the specific work of the Task. Normally one Entry would be used, typically an <code>ACTION</code>, but more than one may sometimes make sense, e.g. an <code>ACTION</code> and an <code>OBSERVATION</code>.</p>
+<p>Prototype instance of one or more openEHR EHR Entries that express the specific work of the Task. Normally one Entry would be used, typically an <code>ACTION</code>, but more than one may sometimes make sense, e.g. an <code>ACTION</code> and an <code>OBSERVATION</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5481,7 +5488,7 @@ The following UML diagram illustrates.</p>
 <p>In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.</p>
 </div>
 <div class="paragraph">
-<p>The following UML diagram shows the data-set related classes in detail.</p>
+<p>To achieve this, the Task Planning model formalises the relationship between a 'data set' and a Task that may use it. A 'data-set' in openEHR is a template, normally displayed as a form within an application. In the Task Planning context, a data set may also be a sub-section of a template or form, specified by a path, to allow more than one Task to be used to construct each section of a form. The following UML diagram shows the data-set related classes in detail.</p>
 </div>
 <div id="proc_definition_dataset" class="imageblock text-center" style="text-align: center">
 <div class="content">
@@ -5490,13 +5497,32 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 26. proc.task_planning.definition model overview</div>
 </div>
 <div class="paragraph">
-<p>A 'data-set' in openEHR is a template, normally displayed as a form within an application. Either a template or form identifier (or both) maybe be used to specify a data-set. A <em>review data-set</em> may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute <code>PLAN_ITEM.<em>review_dataset</em></code>, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.</p>
+<p>Two variants of data-set are defined, as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>data display</em>: a <code>REVIEW_DATASET_SPEC</code> represents a template or part thereof that is to be displayed in order for the Task performer to do the work of the Task;</p>
+</li>
+<li>
+<p><em>data capture</em>: a <code>CAPTURE_DATASET-SPEC</code> represents a template or part thereof that is to be populated by the work of the Task.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Related to this is the <code><em>capture_dataset</em></code> attribute of the <code>PERFORMABLE_TASK</code> type, which enables the association of a dataset or form for inputting data with a performable Task.</p>
+<p>Either a template or form identifier (or both) maybe be used to specify a data-set. The <code><em>populating_call</em></code> attribute may be used to define a system call that will pre-populate either kind of data-set. The <code><em>form_section_path</em></code> attribute is populated if a data-set section (i.e. part of a form) needs to be specified.</p>
 </div>
-<div class="paragraph tbd">
-<p>TBD: describe how this relates to the data set(s) of <code>PERFORMABLE_ACTION.<em>prototype</em></code> .</p>
+<div class="paragraph">
+<p>A review data-set may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute <code>PLAN_ITEM.<em>review_dataset</em></code>, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.</p>
+</div>
+<div class="paragraph">
+<p>A capture data-set may be specified for a <code>PERFORMABLE_TASK</code> only (since the work of the Task in this case is what achieves the desired data capture), via the <code><em>capture_dataset</em></code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>For reference, any review data-set may have any number of capture data-sets used to capture the data associated with it, via the <code>REVIEW_DATASET_SPEC.<em>capture_datasets</em></code> attribute. This enables the relationship between potentially numerous (typically small) forms/dialogs used to obtain data from users and the commonly larger forms used to display such data.</p>
+</div>
+<div class="paragraph">
+<p>Both kinds of data sets described here may be the same as or related to templates and/or forms used in the generation of Task EHR data, mentioned in <code>PERFORMABLE_ACTION.<em>prototype</em></code> .</p>
 </div>
 <div class="sect3">
 <h4 id="_class_definitions_5"><a class="anchor" href="#_class_definitions_5"></a>6.6.1. Class Definitions</h4>
@@ -5518,6 +5544,10 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.</p>
 </div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5543,6 +5573,26 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Other data-set related details.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional system call that will populate this data-set.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_section_path</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional path to a sub-section of the form identified by <code><em>form_id</em></code>. The format of the path is the same as a template or AQL path.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Inv_validity</em></strong>: <code>form_id /= Void or template_id /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5601,13 +5651,6 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code>SYSTEM_CALL</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Optional system call that will populate this data-set.</p>
-</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>

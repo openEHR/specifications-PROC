@@ -16,10 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*populating_call*: `SYSTEM_CALL`
-a|Optional system call that will populate this data-set.
-
-h|*0..1*
 |*capture_datasets*: `List<CAPTURE_DATASET_SPEC>`
 a|Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.
 |===
