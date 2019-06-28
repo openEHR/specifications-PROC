@@ -24,8 +24,8 @@ h|*0..1*
 a|Optional specification of repetitions.
 
 h|*0..1*
-|*other_details*: `ITEM_STRUCTURE`
-a|Archetypable structure for recording non hard-modelled information.
+|*classification*: `ITEM_STRUCTURE`
+a|Archetypable structure for recording classification of Task Groups or Tasks, e.g. business process category, administrative category etc.
 
 h|*0..1*
 |*wait_spec*: `TASK_WAIT`
@@ -34,4 +34,8 @@ a|Optional wait specification for a Task. If not set, the Task is immediately av
 h|*0..1*
 |*review_dataset*: `List<REVIEW_DATASET_SPEC>`
 a|Optional data-set to review prior to / as part of performing the Plan element.
+
+h|*0..1*
+|*other_details*: `ITEM_STRUCTURE`
+a|Archetypable structure for recording non hard-modelled information.
 |===

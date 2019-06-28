@@ -37,6 +37,10 @@ The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as r
 
 The optional `_period_` attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.
 
+Two archetypable structure attributes are defined on `PLAN_ITEM`. The first, `_classification_`, is designed to allow any Task Group or Task to be tagged with one or more classifications, e.g. business category, administrative category etc. The most common structure is likely to be a logical list (i.e. `ITEM_TREE` instance of linear list form), such that the `_archetype_node_id_` attribute (inherited from `LOCATABLE`) acts as the name of the category, and an `ELEMENT` containing a `DV_TEXT` providing the actual category value (e.g. 'inventory management').
+
+The second, `other_details` is provided to support extensions, in the same manner as elsewhere in openEHR information models.
+
 === References to Clinical Quality Artefacts
 
 The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:

@@ -8,9 +8,10 @@
 
 |[[latest_issue]]1.4.1
 |{spec_tickets}/SPECPROC-26[SPECPROC-26^]. Dataset improvements: make `DATASET_SPEC` inherit from `LOCATABLE`; support form sub-sections.
+ {spec_tickets}/SPECPROC-27[SPECPROC-27^]. Add `_classification_` attribute to `PLAN_ITEM`.
 |M Kejžar, +
  T Beale
-|[[latest_issue_date]]20 Jun 2019
+|[[latest_issue_date]]28 Jun 2019
 
 |1.4.0
 |{spec_tickets}/SPECPROC-24[SPECPROC-24^]. Add Order tracking to model.
