@@ -3,7 +3,7 @@
 The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Within a Work Plan, two distinct lists of Task Plans are maintained: 
 
 * `_plans_`: references all Task Plans; 
-* `_top_level_plans_`: 'entry point' Task Plans that will be _active at Work Plan activation_ (often limited to only one). 
+* `_top_level_plans_`: 'entry point' Task Plans that will be _unconditionally active at Work Plan activation_ (often limited to only one). 
 
 Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.
 
@@ -11,13 +11,18 @@ Non-top-level plans are those used as sub-plans within the hierarchy of a top-le
 .Work Plan top level structure
 image::{diagrams_uri}/work_task_plans.svg[id=work_task_plans, align="center", width=50%]
 
-A Work Plan has a number of global attributes, as follows:
+`WORK_PLAN` has a number of attributes relating to formal Plan representation, as follows:
 
 * `_context_`: a data context for the Plan as a whole, which enables external variables (such as patient data items) to be tracked and updated;
 * `_calendar_`: a global calendar containing entries that relate to this Work Plan, e.g. appointments, holidays etc;
 * `_timeline_`: the global timeline for the Plan (and hence the subject) into which planned Tasks are fixed, with times specified as offsets from the zero point;
 * `_event_wait_states_`: a reference list of all Event wait instances defined in the Plan;
 * `_order_list_`: a table of references to orders being tracked in the Plan (described in <<_order_tracking>> below).
+
+Additionally, there are the following meta-data attributes:
+
+* `_indications_`: record clinical indications (including codes for diagnoses) for which the Work Plan can be / should be used;
+* `_classification_`: record one or more classifications of the Work Plan as a whole, e.g. business category, administrative category etc. The most common structure is likely to be a logical list (i.e. `ITEM_TREE` instance of linear list form), such that the `_archetype_node_id_` attribute (inherited from `LOCATABLE`) acts as the name of the category (e.g. 'org unit'), and an `ELEMENT` containing a `DV_TEXT` providing the actual category value (e.g. 'inventory management').
 
 Both `WORK_PLAN` and `TASK_PLAN` are descendants of `CONTENT_ITEM`, which makes them a type of content that may occur in an openEHR `COMPOSITION`. Compositions used for this purpose have their `_category_` attribute set to the openEHR coded term `|Work Plan|`. This enables Work Plans to be committed to the openEHR EHR.
 
@@ -37,7 +42,7 @@ The second attribute, `_repeat_spec_`, enables a Task or Group to be marked as r
 
 The optional `_period_` attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.
 
-Two archetypable structure attributes are defined on `PLAN_ITEM`. The first, `_classification_`, is designed to allow any Task Group or Task to be tagged with one or more classifications, e.g. business category, administrative category etc. The most common structure is likely to be a logical list (i.e. `ITEM_TREE` instance of linear list form), such that the `_archetype_node_id_` attribute (inherited from `LOCATABLE`) acts as the name of the category, and an `ELEMENT` containing a `DV_TEXT` providing the actual category value (e.g. 'inventory management').
+Two archetypable structure attributes are defined on `PLAN_ITEM`. The first, `_classification_`, is designed to allow any Task Group or Task to be tagged with one or more classifications, and has the same structural definition at `WORK_PLAN._classification_`.
 
 The second, `other_details` is provided to support extensions, in the same manner as elsewhere in openEHR information models.
 
@@ -46,13 +51,21 @@ The second, `other_details` is provided to support extensions, in the same manne
 The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
 
 * In `WORK_PLAN`:
-** `_care_plan_`: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
-** `_care_pathway_`: references to a care pathway from which this Task Plan was derived, if any;
+** `_care_pathway_`: a reference to a published care pathway from which this Work Plan was derived, if any;
+** `_care_plan_`: a machine reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
 * In `TASK_PLAN`:
-** `_guideline_`: reference to a published guideline from which this particular Task Plan was derived, if any;
+** `_guideline_`: reference to a published guideline (used by `WORK_PLAN._care_pathway_`, if set) from which this particular Task Plan was derived, if any;
 ** `_best_practice_ref_`: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;
-** `_order_set_`: the identifier of an Order Set which this Task Plan uses, if any;
-** `_workflow_id_`: an identifier shared among orders (`INSTRUCTIONs` and `ACTIONs`) from the Order Set instance used in this Task Plan, if any.
+* In `PLAN_ITEM`:
+** `_guideline_step_`: reference to a step within the `_guideline_` referenced by the current Task Plan or the `_care_pathway_` of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.
+
+In addition, where a Task Plan is driven by an order set, two attributes are provided to record the details:
+
+* In `TASK_PLAN`:
+** `_order_set_type`: the identifier of a type of Order Set which this Task Plan uses, if any;
+** `_order_set_id`: the identifier of a specific Order Set which this Task Plan uses, if any.
+
+Lastly, the `_workflow_id_` attribute defined in `ENTRY` may be set within `INSTRUCTION` and `ACTION` to refer to the Order Set instance used in this Task Plan, if set.
 
 === Class Definitions
 

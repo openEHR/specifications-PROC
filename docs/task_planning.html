@@ -161,8 +161,7 @@
 <ul class="sectlevel4">
 <li><a href="#_time_specifier_class">5.5.1.1. TIME_SPECIFIER Class</a></li>
 <li><a href="#_clock_time_class">5.5.1.2. CLOCK_TIME Class</a></li>
-<li><a href="#_calendar_time_class">5.5.1.3. CALENDAR_TIME Class</a></li>
-<li><a href="#_customary_time_class">5.5.1.4. CUSTOMARY_TIME Class</a></li>
+<li><a href="#_customary_time_class">5.5.1.3. CUSTOMARY_TIME Class</a></li>
 </ul>
 </li>
 </ul>
@@ -175,6 +174,7 @@
 <li><a href="#_resume_type_enumeration">5.6.1.2. RESUME_TYPE Enumeration</a></li>
 <li><a href="#_temporal_relation_enumeration">5.6.1.3. TEMPORAL_RELATION Enumeration</a></li>
 <li><a href="#_execution_type_enumeration">5.6.1.4. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_plan_time_origin_enumeration">5.6.1.5. PLAN_TIME_ORIGIN Enumeration</a></li>
 </ul>
 </li>
 </ul>
@@ -313,46 +313,52 @@
 </li>
 <li><a href="#_events">6.9. Events</a>
 <ul class="sectlevel3">
-<li><a href="#_event_types">6.9.1. Event Types</a></li>
-<li><a href="#_general_facilities">6.9.2. General Facilities</a>
+<li><a href="#_overview_2">6.9.1. Overview</a></li>
+<li><a href="#_event_types">6.9.2. Event Types</a>
 <ul class="sectlevel4">
-<li><a href="#_timers">6.9.2.1. Timers</a></li>
-<li><a href="#_event_wait_state">6.9.2.2. Event Wait State</a></li>
+<li><a href="#_timeline_moment">6.9.2.1. TIMELINE_MOMENT</a></li>
+<li><a href="#_delay_event">6.9.2.2. DELAY_EVENT</a></li>
 </ul>
 </li>
-<li><a href="#_task_wait_state">6.9.3. Task Wait State</a>
+<li><a href="#_general_facilities">6.9.3. General Facilities</a>
 <ul class="sectlevel4">
-<li><a href="#_time_out">6.9.3.1. Time-out</a></li>
-<li><a href="#_reminder">6.9.3.2. Reminder</a></li>
-<li><a href="#_lifecycle_transition_override">6.9.3.3. Lifecycle Transition Override</a></li>
+<li><a href="#_timers">6.9.3.1. Timers</a></li>
+<li><a href="#_event_wait_state">6.9.3.2. Event Wait State</a></li>
 </ul>
 </li>
-<li><a href="#_callbacks">6.9.4. Callbacks</a>
+<li><a href="#_task_wait_state">6.9.4. Task Wait State</a>
 <ul class="sectlevel4">
-<li><a href="#_callback_processing_for_blocking_tasks">6.9.4.1. Callback Processing for Blocking Tasks</a></li>
-<li><a href="#_callback_processing_for_non_blocking_tasks">6.9.4.2. Callback Processing for Non-blocking Tasks</a></li>
-<li><a href="#_callback_with_custom_resume_behaviour">6.9.4.3. Callback with Custom Resume Behaviour</a></li>
+<li><a href="#_time_out">6.9.4.1. Time-out</a></li>
+<li><a href="#_reminder">6.9.4.2. Reminder</a></li>
+<li><a href="#_lifecycle_transition_override">6.9.4.3. Lifecycle Transition Override</a></li>
 </ul>
 </li>
-<li><a href="#_class_definitions_8">6.9.5. Class Definitions</a>
+<li><a href="#_callbacks">6.9.5. Callbacks</a>
 <ul class="sectlevel4">
-<li><a href="#_task_wait_class">6.9.5.1. TASK_WAIT Class</a></li>
-<li><a href="#_plan_event_class">6.9.5.2. PLAN_EVENT&lt;&gt; Class</a></li>
-<li><a href="#_delay_event_class">6.9.5.3. DELAY_EVENT Class</a></li>
-<li><a href="#_manual_notification_class">6.9.5.4. MANUAL_NOTIFICATION Class</a></li>
-<li><a href="#_system_notification_class">6.9.5.5. SYSTEM_NOTIFICATION Class</a></li>
-<li><a href="#_callback_notification_class">6.9.5.6. CALLBACK_NOTIFICATION Class</a></li>
-<li><a href="#_state_trigger_class">6.9.5.7. STATE_TRIGGER Class</a></li>
-<li><a href="#_timer_event_class">6.9.5.8. TIMER_EVENT Class</a></li>
-<li><a href="#_calendar_event_class">6.9.5.9. CALENDAR_EVENT Class</a></li>
-<li><a href="#_timeline_moment_class">6.9.5.10. TIMELINE_MOMENT Class</a></li>
-<li><a href="#_task_transition_class">6.9.5.11. TASK_TRANSITION Class</a></li>
-<li><a href="#_event_wait_p_class">6.9.5.12. EVENT_WAIT&lt;P&gt; Class</a></li>
-<li><a href="#_timer_wait_class">6.9.5.13. TIMER_WAIT Class</a></li>
-<li><a href="#_reminder_class">6.9.5.14. REMINDER Class</a></li>
-<li><a href="#_callback_wait_class">6.9.5.15. CALLBACK_WAIT Class</a></li>
-<li><a href="#_event_action_class">6.9.5.16. EVENT_ACTION Class</a></li>
-<li><a href="#_resume_action_class">6.9.5.17. RESUME_ACTION Class</a></li>
+<li><a href="#_callback_processing_for_blocking_tasks">6.9.5.1. Callback Processing for Blocking Tasks</a></li>
+<li><a href="#_callback_processing_for_non_blocking_tasks">6.9.5.2. Callback Processing for Non-blocking Tasks</a></li>
+<li><a href="#_callback_with_custom_resume_behaviour">6.9.5.3. Callback with Custom Resume Behaviour</a></li>
+</ul>
+</li>
+<li><a href="#_class_definitions_8">6.9.6. Class Definitions</a>
+<ul class="sectlevel4">
+<li><a href="#_task_wait_class">6.9.6.1. TASK_WAIT Class</a></li>
+<li><a href="#_plan_event_class">6.9.6.2. PLAN_EVENT&lt;&gt; Class</a></li>
+<li><a href="#_delay_event_class">6.9.6.3. DELAY_EVENT Class</a></li>
+<li><a href="#_manual_notification_class">6.9.6.4. MANUAL_NOTIFICATION Class</a></li>
+<li><a href="#_system_notification_class">6.9.6.5. SYSTEM_NOTIFICATION Class</a></li>
+<li><a href="#_callback_notification_class">6.9.6.6. CALLBACK_NOTIFICATION Class</a></li>
+<li><a href="#_state_trigger_class">6.9.6.7. STATE_TRIGGER Class</a></li>
+<li><a href="#_timer_event_class">6.9.6.8. TIMER_EVENT Class</a></li>
+<li><a href="#_calendar_event_class">6.9.6.9. CALENDAR_EVENT Class</a></li>
+<li><a href="#_timeline_moment_class">6.9.6.10. TIMELINE_MOMENT Class</a></li>
+<li><a href="#_task_transition_class">6.9.6.11. TASK_TRANSITION Class</a></li>
+<li><a href="#_event_wait_p_class">6.9.6.12. EVENT_WAIT&lt;P&gt; Class</a></li>
+<li><a href="#_timer_wait_class">6.9.6.13. TIMER_WAIT Class</a></li>
+<li><a href="#_reminder_class">6.9.6.14. REMINDER Class</a></li>
+<li><a href="#_callback_wait_class">6.9.6.15. CALLBACK_WAIT Class</a></li>
+<li><a href="#_event_action_class">6.9.6.16. EVENT_ACTION Class</a></li>
+<li><a href="#_resume_action_class">6.9.6.17. RESUME_ACTION Class</a></li>
 </ul>
 </li>
 </ul>
@@ -415,7 +421,7 @@
 </li>
 <li><a href="#_materialised_model">9. Materialised Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_2">9.1. Overview</a></li>
+<li><a href="#_overview_3">9.1. Overview</a></li>
 <li><a href="#_class_descriptions_5">9.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_m_work_plan_class">9.2.1. M_WORK_PLAN Class</a></li>
@@ -430,7 +436,7 @@
 </li>
 <li><a href="#_plan_execution_history">10. Plan Execution History</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_3">10.1. Overview</a></li>
+<li><a href="#_overview_4">10.1. Overview</a></li>
 <li><a href="#_class_descriptions_6">10.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_task_plan_execution_history_class">10.2.1. TASK_PLAN_EXECUTION_HISTORY Class</a></li>
@@ -444,7 +450,7 @@
 </li>
 <li><a href="#_transactional_service_model">11. Transactional Service Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_4">11.1. Overview</a></li>
+<li><a href="#_overview_5">11.1. Overview</a></li>
 <li><a href="#_definition_interface">11.2. Definition Interface</a></li>
 <li><a href="#_execution_time_interface">11.3. Execution-time Interface</a></li>
 <li><a href="#_class_descriptions_7">11.4. Class Descriptions</a>
@@ -459,7 +465,7 @@
 </li>
 <li><a href="#_relationship_with_other_openehr_ehr_artefacts">12. Relationship with other openEHR EHR Artefacts</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_5">12.1. Overview</a></li>
+<li><a href="#_overview_6">12.1. Overview</a></li>
 <li><a href="#_execution_time_ehr_structures">12.2. Execution-time EHR Structures</a></li>
 </ul>
 </li>
@@ -565,12 +571,20 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.?.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-26" target="_blank" rel="noopener">SPECPROC-26</a>. Dataset improvements: make <code>DATASET_SPEC</code> inherit from <code>LOCATABLE</code>; support form sub-sections.
- <a href="https://specifications.openehr.org/tickets/SPECPROC-27" target="_blank" rel="noopener">SPECPROC-27</a>. Add <code><em>classification</em></code> attribute to <code>PLAN_ITEM</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-28" target="_blank" rel="noopener">SPECPROC-28</a>. Improve definition of <code>TIMELINE_MOMENT</code> and <code>TIMER_EVENT</code>; add <code>PLAN_TIME_ORIGIN</code> enum; remove <code>CALENDAR_TIME</code> class.
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-29" target="_blank" rel="noopener">SPECPROC-29</a>. Add guideline_step to <code>PLAN_ITEM</code>; make Work Plan and Task Plan guideline refs more flexible.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>28 Jun 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>09 Aug 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-26" target="_blank" rel="noopener">SPECPROC-26</a>. Dataset improvements: make <code>DATASET_SPEC</code> inherit from <code>LOCATABLE</code>; support form sub-sections.
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-27" target="_blank" rel="noopener">SPECPROC-27</a>. Add <code><em>classification</em></code> attribute to <code>WORK_PLAN</code> and <code>PLAN_ITEM</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22 Jul 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4.0</p></td>
@@ -3113,7 +3127,7 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Abstract parent of types used to specify a point in time.</p>
+<p>Abstract parent of types used to specify a point in time during a day.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3158,45 +3172,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_time_class"><a class="anchor" href="#_calendar_time_class"></a>5.5.1.3. CALENDAR_TIME Class</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALENDAR_TIME</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>An absolute point in time., i.e. date + time, locatable on a calendar.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TIME_SPECIFIER</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>Iso8601_date_time</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Time expressed as an absolute date/time.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_customary_time_class"><a class="anchor" href="#_customary_time_class"></a>5.5.1.4. CUSTOMARY_TIME Class</h5>
+<h5 id="_customary_time_class"><a class="anchor" href="#_customary_time_class"></a>5.5.1.3. CUSTOMARY_TIME Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3212,6 +3188,9 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Time specified in some customary way, such as 'morning', 'afternoon', etc, that must be interpreted to determine an equivalent format time.</p>
+</div>
+<div class="paragraph">
+<p>Resolution to computable times is assumed to be done via call to a service or resource available within the operational environment.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3462,6 +3441,61 @@ The following UML diagram illustrates.</p>
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_plan_time_origin_enumeration"><a class="anchor" href="#_plan_time_origin_enumeration"></a>5.6.1.5. PLAN_TIME_ORIGIN Enumeration</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PLAN_TIME_ORIGIN</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p>Enumeration of types of origin for time offsets within a Work Plan.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_task_plan</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Time offset is relative to the moment of activation of the Task Plan within which the offset occurs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_work_plan</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Time offset is relative to the moment of activation of the Work Plan within which the offset occurs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inner_repeat_section</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Time offset is relative to the moment of activation of the innermost Repeat Section (Task Group or Task with a <code>REPEAT_SPEC</code>) within which the offset occurs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">outer_repeat_section</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Time offset is relative to the moment of activation of the outermost Repeat Section (Task Group or Task with a <code>REPEAT_SPEC</code>) within which the offset occurs.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -3495,7 +3529,7 @@ The following UML diagram illustrates.</p>
 <p><code><em>plans</em></code>: references all Task Plans;</p>
 </li>
 <li>
-<p><code><em>top_level_plans</em></code>: 'entry point' Task Plans that will be <em>active at Work Plan activation</em> (often limited to only one).</p>
+<p><code><em>top_level_plans</em></code>: 'entry point' Task Plans that will be <em>unconditionally active at Work Plan activation</em> (often limited to only one).</p>
 </li>
 </ul>
 </div>
@@ -3509,7 +3543,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 15. Work Plan top level structure</div>
 </div>
 <div class="paragraph">
-<p>A Work Plan has a number of global attributes, as follows:</p>
+<p><code>WORK_PLAN</code> has a number of attributes relating to formal Plan representation, as follows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3527,6 +3561,19 @@ The following UML diagram illustrates.</p>
 </li>
 <li>
 <p><code><em>order_list</em></code>: a table of references to orders being tracked in the Plan (described in <a href="#_order_tracking">Section 6.8</a> below).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally, there are the following meta-data attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>indications</em></code>: record clinical indications (including codes for diagnoses) for which the Work Plan can be / should be used;</p>
+</li>
+<li>
+<p><code><em>classification</em></code>: record one or more classifications of the Work Plan as a whole, e.g. business category, administrative category etc. The most common structure is likely to be a logical list (i.e. <code>ITEM_TREE</code> instance of linear list form), such that the <code><em>archetype_node_id</em></code> attribute (inherited from <code>LOCATABLE</code>) acts as the name of the category (e.g. 'org unit'), and an <code>ELEMENT</code> containing a <code>DV_TEXT</code> providing the actual category value (e.g. 'inventory management').</p>
 </li>
 </ul>
 </div>
@@ -3557,7 +3604,7 @@ The following UML diagram illustrates.</p>
 <p>The optional <code><em>period</em></code> attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.</p>
 </div>
 <div class="paragraph">
-<p>Two archetypable structure attributes are defined on <code>PLAN_ITEM</code>. The first, <code><em>classification</em></code>, is designed to allow any Task Group or Task to be tagged with one or more classifications, e.g. business category, administrative category etc. The most common structure is likely to be a logical list (i.e. <code>ITEM_TREE</code> instance of linear list form), such that the <code><em>archetype_node_id</em></code> attribute (inherited from <code>LOCATABLE</code>) acts as the name of the category, and an <code>ELEMENT</code> containing a <code>DV_TEXT</code> providing the actual category value (e.g. 'inventory management').</p>
+<p>Two archetypable structure attributes are defined on <code>PLAN_ITEM</code>. The first, <code><em>classification</em></code>, is designed to allow any Task Group or Task to be tagged with one or more classifications, and has the same structural definition at <code>WORK_PLAN.<em>classification</em></code>.</p>
 </div>
 <div class="paragraph">
 <p>The second, <code>other_details</code> is provided to support extensions, in the same manner as elsewhere in openEHR information models.</p>
@@ -3575,10 +3622,10 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>care_plan</em></code>: a reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;</p>
+<p><code><em>care_pathway</em></code>: a reference to a published care pathway from which this Work Plan was derived, if any;</p>
 </li>
 <li>
-<p><code><em>care_pathway</em></code>: references to a care pathway from which this Task Plan was derived, if any;</p>
+<p><code><em>care_plan</em></code>: a machine reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;</p>
 </li>
 </ul>
 </div>
@@ -3588,21 +3635,48 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>guideline</em></code>: reference to a published guideline from which this particular Task Plan was derived, if any;</p>
+<p><code><em>guideline</em></code>: reference to a published guideline (used by <code>WORK_PLAN.<em>care_pathway</em></code>, if set) from which this particular Task Plan was derived, if any;</p>
 </li>
 <li>
 <p><code><em>best_practice_ref</em></code>: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;</p>
 </li>
-<li>
-<p><code><em>order_set</em></code>: the identifier of an Order Set which this Task Plan uses, if any;</p>
+</ul>
+</div>
 </li>
 <li>
-<p><code><em>workflow_id</em></code>: an identifier shared among orders (<code>INSTRUCTIONs</code> and <code>ACTIONs</code>) from the Order Set instance used in this Task Plan, if any.</p>
+<p>In <code>PLAN_ITEM</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>guideline_step</em></code>: reference to a step within the <code><em>guideline</em></code> referenced by the current Task Plan or the <code><em>care_pathway</em></code> of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>In addition, where a Task Plan is driven by an order set, two attributes are provided to record the details:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In <code>TASK_PLAN</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_order_set_type</code>: the identifier of a type of Order Set which this Task Plan uses, if any;</p>
+</li>
+<li>
+<p><code>_order_set_id</code>: the identifier of a specific Order Set which this Task Plan uses, if any.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lastly, the <code><em>workflow_id</em></code> attribute defined in <code>ENTRY</code> may be set within <code>INSTRUCTION</code> and <code>ACTION</code> to refer to the Order Set instance used in this Task Plan, if set.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3624,6 +3698,9 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
 <p>Top-level object of any logical work plan. References one or more <code>TASK_PLANs</code> that described the work, typically of each performer, although a single <code>TASK_PLAN</code> may also have multiple performers.</p>
+</div>
+<div class="paragraph">
+<p>The attribute <code><em>care_pathway</em></code> and `<em>care_plan</em>`provide a way of associating a Work Plan with a published care pathway, and an operational care plan from within the EHR, if available.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3637,23 +3714,26 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>care_pathway</strong>: <code>DV_IDENTIFIER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>care_pathway</strong>: <code>ITEM_STRUCTURE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, MI etc.</p>
+<p>Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.</p>
 </div>
 <div class="paragraph">
-<p>It is currently assumed that there is no reliable machine identifier system for care pathways. A <code>DV_IDENTIFIER</code> allows things like:</p>
+<p>The <code>ITEM_STRUCTURE</code> type is used to allow population at runtime with an archetype based on e.g. BibTex publication reference fields, such as the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>issuer = "NICE"</code>;</p>
+<p><code>title = "NICE Sepsis care pathway"</code>;</p>
 </li>
 <li>
-<p><code>id = "https://pathways.nice.org.uk/pathways/sepsis"</code>;</p>
+<p><code>publisher = "National Institute of Health and Care Excellence (UK)"</code>;</p>
 </li>
 <li>
-<p><code>type = "NICE Sepsis care pathway"</code>.</p>
+<p><code>year = 2016</code>;</p>
+</li>
+<li>
+<p><code>url = "https://pathways.nice.org.uk/pathways/sepsis"</code>.</p>
 </li>
 </ul>
 </div></div></td>
@@ -3722,6 +3802,16 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code>Hash&lt;String,ORDER_REF&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Orders tracked by Tasks in this Work Plan.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>classification</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Archetypable structure for recording classification of Work Plans, e.g. business process category, administrative category etc.</p>
+</div>
+<div class="paragraph">
+<p>Note that the same kind of classifications can be applied to Tasks and Groups via <code>PLAN_ITEM.<em>classification</em></code>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3849,7 +3939,7 @@ The following UML diagram illustrates.</p>
 <p>It has an associated <code><em>execution_history</em></code> that can be used to record work events in time.</p>
 </div>
 <div class="paragraph">
-<p>The attributes <code><em>care_plan</em></code> and <code><em>guideline_id</em></code> provide a way of associating a Task Plan with an operational care plan, and also a published guideline or protocol on which the Task Plan may be based.</p>
+<p>The <code><em>guideline</em></code> attribute provides a way of associating a Task Plan with a published guideline on which the Task Plan may be based; this may be used by <code>WORK_PLAN.<em>care_pathway</em></code> if set.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3877,23 +3967,29 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline</strong>: <code>DV_IDENTIFIER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline</strong>: <code>ITEM_STRUCTURE</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Identifier of guideline on which this Task Plan is based, if such exists. A 'guideline' is understood here as a published standard for performing a detailed Task.</p>
 </div>
 <div class="paragraph">
-<p>It is currently assumed that there is no reliable machine identifier system for guidelines. A <code>DV_IDENTIFIER</code> allows things like:</p>
+<p>Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ITEM_STRUCTURE</code> type is used to allow population at runtime with an archetype based on e.g. BibTex publication reference fields, such as the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>issuer = "NICE"</code>;</p>
+<p><code>title = "NHS guideline for Atrial fibrillation: management"</code>;</p>
 </li>
 <li>
-<p><code>id = "https://www.nice.org.uk/guidance/cg180"</code>;</p>
+<p><code>publisher = "National Institute of Health and Care Excellence (UK)"</code>;</p>
 </li>
 <li>
-<p><code>type = "NHS guideline for Atrial fibrillation: management"</code>.</p>
+<p><code>year = 2016</code>;</p>
+</li>
+<li>
+<p><code>url = "https://www.nice.org.uk/guidance/cg180"</code>.</p>
 </li>
 </ul>
 </div></div></td>
@@ -4087,6 +4183,16 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code>List&lt;REVIEW_DATASET_SPEC&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Optional data-set to review prior to / as part of performing the Plan element.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline_step</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Optional reference to a step within the <code><em>guideline</em></code> referenced by the current Task Plan (if set) or else the <code><em>care_pathway</em></code> of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.</p>
+</div>
+<div class="paragraph">
+<p>The reference may take the form of a plain text section or item name within the referenced guideline, e.g. '"Check heart rate"' or be a URI or path reference, if the guideline has an online machine-representation.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6361,7 +6467,7 @@ The following UML diagram illustrates.</p>
 <p>Both the Performable and Dispatchable Tasks use <code>TASK.<em>order_tags</em></code> to logically refer to the same order. Any number of pairs of Performable and Dispatchable Tasks may be defined to create and react to different orders being processed within the same Work Plan.</p>
 </div>
 <div class="paragraph">
-<p>A concrete callback event can be arranged to occur when an <code>ACTION</code> for the order of interest is committed to the EHR. This relies on the population of the relevant Work Plan <code>CONTEXT_REF.<em>order_ref</em></code> attribute within the TP engine execution environment, at the moment the order is created in the EHR system. This then allows commits of <code>ACTIONs</code> for that order (among others, generally) to be matched with the Dispatchable Task(s) waiting on them. The callback processing for the Dispatchable Task follows the <code>order tracking</code> callback model described in <a href="#_callback_processing_for_blocking_tasks">Section 6.9.4.1</a> below.</p>
+<p>A concrete callback event can be arranged to occur when an <code>ACTION</code> for the order of interest is committed to the EHR. This relies on the population of the relevant Work Plan <code>CONTEXT_REF.<em>order_ref</em></code> attribute within the TP engine execution environment, at the moment the order is created in the EHR system. This then allows commits of <code>ACTIONs</code> for that order (among others, generally) to be matched with the Dispatchable Task(s) waiting on them. The callback processing for the Dispatchable Task follows the <code>order tracking</code> callback model described in <a href="#_callback_processing_for_blocking_tasks">Section 6.9.5.1</a> below.</p>
 </div>
 <div class="paragraph">
 <p>The Dispatchable Task might be located in a repeating section of the Plan, if the intention is to await multiple Actions for the same Instruction.</p>
@@ -6436,7 +6542,7 @@ The following UML diagram illustrates.</p>
 <div class="sect2">
 <h3 id="_events"><a class="anchor" href="#_events"></a>6.9. Events</h3>
 <div class="sect3">
-<h4 id="_event_types"><a class="anchor" href="#_event_types"></a>6.9.1. Event Types</h4>
+<h4 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.9.1. Overview</h4>
 <div class="paragraph">
 <p>Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the <em>reaching</em> of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of <em>wait states</em> that may be used to intercept them.</p>
 </div>
@@ -6446,6 +6552,9 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="title">Figure 32. proc.task_planning model - Events</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_event_types"><a class="anchor" href="#_event_types"></a>6.9.2. Event Types</h4>
 <div class="paragraph">
 <p>The various Event types are shown below, with their TP-VML representations.</p>
 </div>
@@ -6470,7 +6579,7 @@ The following UML diagram illustrates.</p>
 <img src="task_planning/diagrams/event_timer.svg" alt="event timer">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by the expiry of a Timer that was launched at some earlier time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by the expiry of a Timer that was launched at some earlier time; if attached to a Task wait state, the timer is launched at the moment execution reaches the Task.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TIMELINE_MOMENT</code></p></td>
@@ -6479,7 +6588,7 @@ The following UML diagram illustrates.</p>
 <img src="task_planning/diagrams/event_timeline_moment.svg" alt="event timeline moment">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching a fixed time-point on the Work Plan timeline, specified by an offset from the Work Plan '0-point' plus an optional fixed time in the day. The latter enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as <code>P2D</code>, <code>13:30:00</code> can thus be used to state a time like '13:30 on day 2 of the plan'.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching a fixed time-point on the Work Plan timeline, specified by an offset from the Work Plan origin (overridable) plus an optional fixed time in the day. The latter enables fixed points in time such as a particular hour of day or customary time such as 'afternoon' to be specified. A combination of the two such as <code>P2D</code>, <code>13:30:00</code> can thus be used to state a time like '13:30 on day 2 of the plan'.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALENDAR_EVENT</code></p></td>
@@ -6488,7 +6597,7 @@ The following UML diagram illustrates.</p>
 <img src="task_planning/diagrams/event_calendar_event.svg" alt="event calendar event">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching an event in the global Plan calendar, which is specified in absolute time, independent of the Work Plan timeline.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching an event in the global Plan calendar, which is specified in absolute time, independent of the Work Plan timeline. The value of the <code><em>time</em></code> attribute is obtained from the calendar.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TASK_TRANSITION</code></p></td>
@@ -6497,7 +6606,8 @@ The following UML diagram illustrates.</p>
 <img src="task_planning/diagrams/event_task_transition.svg" alt="event task transition">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by the lifecycle transition of a Task, such as transition to <code>cancelled</code> or <code>done</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by the lifecycle transition of another Task, such as transition to <code>cancelled</code> or <code>done</code>.<br>
+ NOTE: not needed for transition of the preceding Task to a terminal state, since in this case, execution automatically proceeds to the current Task.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>STATE_TRIGGER</code></p></td>
@@ -6549,20 +6659,54 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>Instances of all of these types on their own only identify the type and source of an event - a wait state is required to catch an event. There are three types of wait state used in a TP definition: Task Wait, Timer Wait and Callback Wait. These are described below.</p>
 </div>
+<div class="paragraph">
+<p>The following Event types require further explanation.</p>
+</div>
+<div class="sect4">
+<h5 id="_timeline_moment"><a class="anchor" href="#_timeline_moment"></a>6.9.2.1. TIMELINE_MOMENT</h5>
+<div class="paragraph">
+<p>The <code>TIMELINE_MOMENT</code> event type represents an event generated by the system when a point in time on the execution clock is reached. The time point is specified by two attributes, <code><em>timeline_offset</em></code> and <code><em>fixed_time</em></code>, with the time origin (default: Work Plan activation) being optionally specified by <code><em>offset_origin</em></code>. At least one of the first two attributes must be set.</p>
+</div>
+<div class="paragraph">
+<p>If <code><em>fixed_time</em></code> is set using an instance of <code>CLOCK_TIME</code>, it refers to the first moment at which the time occurs during the day, <em>after any offset has elapsed</em>. The following diagram shows how this works for two instances of <code>TIMELINE_MOMENT</code>, both having a <code><em>fixed_time</em></code> of <code>07:30</code> and a <code><em>timeline_offset</em></code> of <code>P1d</code> (one day), when the timeline origin is different (i.e. the Work Plan was started at different times).</p>
+</div>
+<div id="timeline_moment_semantics" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="task_planning/diagrams/timeline_moment_semantics.svg" alt="timeline moment semantics">
+</div>
+<div class="title">Figure 33. <code>TIMELINE_MOMENT</code> semantics</div>
+</div>
+<div class="paragraph">
+<p>The <code><em>fixed_time</em></code> attribute may also be set using an instance of <code>CUSTOMARY_TIME</code>, to allow the time to be specified using coded terms like <code>morning</code>, <code>afternoon</code>, <code>evening</code> and so on. Such terms are assumed to define time ranges such as <code>07:00:00 - 11:30:00</code> etc, which are typically culturally specific, and/or specific to hospital or other institutional norms. Consequently, such terms have to be resolved to computable intervals by some means (e.g. a locale service API call), left up to the TP execution system. Where such an interval is used to define a time, the event is generated at the earliest time of the interval (e.g. <code>07:00:00</code> for 'morning')</p>
+</div>
+<div class="paragraph">
+<p>If <code><em>fixed_time</em></code> is not set, it refers to the first moment in time directly after the offset, if any, has elapsed (i.e. a Void <code><em>fixed_time</em></code> is intepreted as "don&#8217;t care"). If <code><em>timeline_offset</em></code> is not set, <code><em>fixed_time</em></code> is resolved to the first occurrence of the specified time directly from the time origin.</p>
+</div>
+<div class="paragraph">
+<p>A <code>TIMELINE_MOMENT</code> with neithre of <code><em>timeline_offset</em></code> or <code><em>fixed_time</em></code> set is not considered meaningful, since it is equivalent to no <code>TIMELINE_MOMENT</code> event at all.</p>
+</div>
+<div class="paragraph">
+<p>The timeline origin defaults to the moment of Work Plan activiation, but may be overridden via the <code><em>offset_origin</em></code> to the moment of activation of the current Task Plan, or the entry into a repeating section (a Task Group or Task with <code><em>repeat_spec</em></code> set).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_delay_event"><a class="anchor" href="#_delay_event"></a>6.9.2.2. DELAY_EVENT</h5>
+
+</div>
 </div>
 <div class="sect3">
-<h4 id="_general_facilities"><a class="anchor" href="#_general_facilities"></a>6.9.2. General Facilities</h4>
+<h4 id="_general_facilities"><a class="anchor" href="#_general_facilities"></a>6.9.3. General Facilities</h4>
 <div class="sect4">
-<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.9.2.1. Timers</h5>
+<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.9.3.1. Timers</h5>
 <div class="paragraph">
-<p>A generic timer can be specified using the Event type <code>TIMER_EVENT</code>. This is either attached to a <code>TASK_WAIT</code> wait state, which controls when a Task becomes available, or to a <code>TIMER_WAIT</code> wait state, which is used to represent a timeout on another wait state. <code>TIMER_WAIT</code> is based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code> and provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance).  A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
+<p>A generic timer can be specified using the Event type <code>TIMER_EVENT</code>. This is either attached to a <code>TASK_WAIT</code> wait state, which controls when a Task becomes available, or to a <code>TIMER_WAIT</code> wait state, which is used to represent a timeout on another wait state. <code>TIMER_WAIT</code> is based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code> and provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance).  A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after Task activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
 </div>
 <div class="paragraph">
 <p>The timer represented by a <code>TIMER_EVENT</code> is started when the wait state to which it is attached is reached in the execution.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.9.2.2. Event Wait State</h5>
+<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.9.3.2. Event Wait State</h5>
 <div class="paragraph">
 <p>The class <code>EVENT_WAIT&lt;T&gt;</code> defines a generic model of a general-purpose event wait state that may be specialised for particular purposes. Its attributes are as follows:</p>
 </div>
@@ -6598,7 +6742,7 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.9.3. Task Wait State</h4>
+<h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.9.4. Task Wait State</h4>
 <div class="paragraph">
 <p>The principal way to wait for events is via the <code>TASK_WAIT</code> attachable to any <code>PLAN_ITEM</code> via the <code><em>wait_spec</em></code> attribute. The <code>TASK_WAIT</code> class represents a wait state that defines when a Task should enter the <code>available</code> state from the <code>planned</code> state in terms of Events of the types described above. Its <code><em>events</em></code> attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional <code><em>event_relation</em></code> attribute allows the Task to be specified as commencing <code>before</code>, <code>with</code> or <code>after</code> the trigger event (such as a meal).</p>
 </div>
@@ -6609,10 +6753,10 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state.svg" alt="task wait state">
 </div>
-<div class="title">Figure 33. Task wait state</div>
+<div class="title">Figure 34. Task wait state</div>
 </div>
 <div class="sect4">
-<h5 id="_time_out"><a class="anchor" href="#_time_out"></a>6.9.3.1. Time-out</h5>
+<h5 id="_time_out"><a class="anchor" href="#_time_out"></a>6.9.4.1. Time-out</h5>
 <div class="paragraph">
 <p>A timeout can be set on a Task Wait state by setting <code>TASK_WAIT.<em>timeout</em></code> with a <code>TIMER_WAIT</code> instance, which is activated when the Task Wait state is reached in the execution. This is useful in cases where Event receipt is not certain. The <code>TIMER_WAIT</code> generates a timer event if no other event is received; conversely, receipt of any other event cancels the timeout timer. The <code>TIMER_EVENT</code> attached to <code>TIMER_WAIT.<em>event</em></code> indicates the duration of the timer. The <code><em>success_action</em></code> of the <code>TIMER_WAIT</code> indicates actions to execute if the timer fires. The following Plan fragment illustrates.</p>
 </div>
@@ -6620,14 +6764,14 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_timing_1.svg" alt="uc task timing 1">
 </div>
-<div class="title">Figure 34. Timing patterns</div>
+<div class="title">Figure 35. Timing patterns</div>
 </div>
 <div class="paragraph">
 <p>A Timeout can be also be used on a callback, via <code>CALLBACK_WAIT.<em>timeout</em></code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.9.3.2. Reminder</h5>
+<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.9.4.2. Reminder</h5>
 <div class="paragraph">
 <p>When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. If <code>REMINDER.<em>repeats</em></code> is non-zero, more than one reminder event may be generated. An example is illustrated below.</p>
 </div>
@@ -6635,7 +6779,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state_reminder.svg" alt="task wait state reminder">
 </div>
-<div class="title">Figure 35. Task wait state with reminder</div>
+<div class="title">Figure 36. Task wait state with reminder</div>
 </div>
 <div class="paragraph">
 <p>The execution processing associated with a Reminder is that one or more Reminder events is generated by the system for a Task which is already <code>available</code>. Each of Reminder event will normally cause a communication to the principle performer via the message defined in its <code><em>success_action</em></code>. The performer responds by performing the work of the Task, and progressing it to a final state, in the normal way (possibly via the <code>underway</code> state, for a long-running Task). As soon as the Task is progressed beyond the <code>available</code> state, no further Reminders occur.</p>
@@ -6645,14 +6789,14 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_lifecycle_transition_override"><a class="anchor" href="#_lifecycle_transition_override"></a>6.9.3.3. Lifecycle Transition Override</h5>
+<h5 id="_lifecycle_transition_override"><a class="anchor" href="#_lifecycle_transition_override"></a>6.9.4.3. Lifecycle Transition Override</h5>
 <div class="paragraph">
 <p>In some cases, it may be necessary to progress a Task to a state other than <code>available</code>. This may be achieved by specifying <code>TASK_WAIT.<em>next_state</em></code>.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_callbacks"><a class="anchor" href="#_callbacks"></a>6.9.4. Callbacks</h4>
+<h4 id="_callbacks"><a class="anchor" href="#_callbacks"></a>6.9.5. Callbacks</h4>
 <div class="paragraph">
 <p>A callback is the mechanism to state what happens when control returns to a Dispatchable Task (such as a Hand-off or External Request) from its target. It is defined in the model by <code>CALLBACK_WAIT</code>, a specialisation of <code>EVENT_WAIT&lt;CALLBACK_NOTIFICATION&gt;</code>, which represents a wait state to receive notifications of Dispatch completion, as well as timeout if no response is received. The callback event is formally represented by the <code>CALLBACK_NOTIFICATION</code> class. These classes are shown in the following view of the UML model.</p>
 </div>
@@ -6660,7 +6804,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-callback_wait.svg" alt="PROC task planning.definition callback wait">
 </div>
-<div class="title">Figure 36. Callback Wait</div>
+<div class="title">Figure 37. Callback Wait</div>
 </div>
 <div class="paragraph">
 <p>In order to define the processing on receipt of a callback event, <code>CALLBACK_WAIT</code> adds two attributes to <code>EVENT_WAIT&lt;T&gt;</code>:</p>
@@ -6718,7 +6862,7 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 <div class="sect4">
-<h5 id="_callback_processing_for_blocking_tasks"><a class="anchor" href="#_callback_processing_for_blocking_tasks"></a>6.9.4.1. Callback Processing for Blocking Tasks</h5>
+<h5 id="_callback_processing_for_blocking_tasks"><a class="anchor" href="#_callback_processing_for_blocking_tasks"></a>6.9.5.1. Callback Processing for Blocking Tasks</h5>
 <div class="paragraph">
 <p>For a <code>DISPATCHABLE_TASK</code> that blocks and waits in the <code>underway</code> state, there are three callback processing models:</p>
 </div>
@@ -6900,7 +7044,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_1.svg" alt="uc task callback 1">
 </div>
-<div class="title">Figure 37. Standard callback example</div>
+<div class="title">Figure 38. Standard callback example</div>
 </div>
 <div class="paragraph">
 <p>The following TP-VML definition illustrates a custom callback.</p>
@@ -6909,11 +7053,11 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_2.svg" alt="uc task callback 2">
 </div>
-<div class="title">Figure 38. Custom callback example</div>
+<div class="title">Figure 39. Custom callback example</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_callback_processing_for_non_blocking_tasks"><a class="anchor" href="#_callback_processing_for_non_blocking_tasks"></a>6.9.4.2. Callback Processing for Non-blocking Tasks</h5>
+<h5 id="_callback_processing_for_non_blocking_tasks"><a class="anchor" href="#_callback_processing_for_non_blocking_tasks"></a>6.9.5.2. Callback Processing for Non-blocking Tasks</h5>
 <div class="paragraph">
 <p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>done</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the enclosing Task Group</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code> is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
 </div>
@@ -6924,20 +7068,20 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/dispatchable_no_wait_callback.svg" alt="dispatchable no wait callback">
 </div>
-<div class="title">Figure 39. Non-blocking callback example</div>
+<div class="title">Figure 40. Non-blocking callback example</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_callback_with_custom_resume_behaviour"><a class="anchor" href="#_callback_with_custom_resume_behaviour"></a>6.9.4.3. Callback with Custom Resume Behaviour</h5>
+<h5 id="_callback_with_custom_resume_behaviour"><a class="anchor" href="#_callback_with_custom_resume_behaviour"></a>6.9.5.3. Callback with Custom Resume Behaviour</h5>
 <div class="paragraph">
 <p>The attribute <code>EVENT_ACTION.<em>resume_action</em></code> of type <code>RESUME_ACTION</code>, and its attribute <code><em>resume_location</em></code> enable custom post-callback behaviour to be stated. The default is to process the <code>EVENT_ACTION</code> (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration <code>RESUME_TYPE</code>. This kind of resumption is described below in the section on <a href="#_resume_semantics">Section 7.2.4</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions_8"><a class="anchor" href="#_class_definitions_8"></a>6.9.5. Class Definitions</h4>
+<h4 id="_class_definitions_8"><a class="anchor" href="#_class_definitions_8"></a>6.9.6. Class Definitions</h4>
 <div class="sect4">
-<h5 id="_task_wait_class"><a class="anchor" href="#_task_wait_class"></a>6.9.5.1. TASK_WAIT Class</h5>
+<h5 id="_task_wait_class"><a class="anchor" href="#_task_wait_class"></a>6.9.6.1. TASK_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7018,7 +7162,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.9.5.2. PLAN_EVENT&lt;&gt; Class</h5>
+<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.9.6.2. PLAN_EVENT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7054,7 +7198,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.9.5.3. DELAY_EVENT Class</h5>
+<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.9.6.3. DELAY_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7099,7 +7243,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.9.5.4. MANUAL_NOTIFICATION Class</h5>
+<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.9.6.4. MANUAL_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7137,7 +7281,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.9.5.5. SYSTEM_NOTIFICATION Class</h5>
+<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.9.6.5. SYSTEM_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7189,7 +7333,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.9.5.6. CALLBACK_NOTIFICATION Class</h5>
+<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.9.6.6. CALLBACK_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7251,7 +7395,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.9.5.7. STATE_TRIGGER Class</h5>
+<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.9.6.7. STATE_TRIGGER Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7289,7 +7433,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.9.5.8. TIMER_EVENT Class</h5>
+<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.9.6.8. TIMER_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7304,7 +7448,7 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
-<p>Timer expiry event generated by Task Plan engine.</p>
+<p>Timer expiry event generated by Task Plan engine, after the <code><em>duration</em></code> period has elapsed from the moment of execution reaching the Task to which this Event is attached.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7334,7 +7478,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.9.5.9. CALENDAR_EVENT Class</h5>
+<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.9.6.9. CALENDAR_EVENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7379,7 +7523,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.9.5.10. TIMELINE_MOMENT Class</h5>
+<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.9.6.10. TIMELINE_MOMENT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7397,10 +7541,13 @@ The following UML diagram illustrates.</p>
 <p>Specifies a time event generated during execution when the Plan clock reaches a specific point defined in the global Plan Timeline. The time of this timeline moment is calculated as the <code><em>fixed_time</em></code> in the day, e.g. <code>14:30:00</code>, no matter when the Plan is activated.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>timeline_offset</em></code> attribute can be used to specify a particular offset with respect to the plan time origin. The <code><em>fixed_time</em></code> then corresponds to the first occurrence of that time on the clock <em>after</em> the <code><em>timeline_offset</em></code> is passed.</p>
+<p>The <code><em>timeline_offset</em></code> attribute can be used to specify a particular offset with respect to a time origin, by default, the origin of the Work Plan. The <code><em>fixed_time</em></code> then corresponds to the first occurrence of that time on the clock <em>after</em> the <code><em>timeline_offset</em></code> is passed.</p>
 </div>
 <div class="paragraph">
 <p>This can be used to specify particular times on particular days, e.g.: <code>07:30:00 on day 3</code>, <code>14:00:00 on day 5</code> and so on by setting <code><em>timeline_offset</em></code> to numbers of days, e.g. <code>P3D</code>, <code>P5D</code> etc. Note that a value of <code>P1D</code> means the first 24h period after Plan activation, whereas if <code><em>timeline_offset</em></code> is not set, the <code><em>fixed_time</em></code> is understood to specify the first moment after Plan activation that this time is reached on the Plan clock.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>timeline_origin</em></code> can be set to specify another time origin, such as the start of execution of the Task Plan, or of a repeat section.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7426,11 +7573,24 @@ The following UML diagram illustrates.</p>
 <p>Fixed time specifier, used to expressed a fixed moment in the day.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_origin</strong>: <code>PLAN_TIME_ORIGIN</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Relative origin for <code><em>timeline_offset</em></code>. If not set, Work Plan activation is assumed as the time origin.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div><div class="paragraph">
+<p><strong><em>Inv_validity</em></strong>: <code>timeline_offset /= Void or fixed_time /= Void</code></p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.9.5.11. TASK_TRANSITION Class</h5>
+<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.9.6.11. TASK_TRANSITION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7475,7 +7635,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.9.5.12. EVENT_WAIT&lt;P&gt; Class</h5>
+<h5 id="_event_wait_p_class"><a class="anchor" href="#_event_wait_p_class"></a>6.9.6.12. EVENT_WAIT&lt;P&gt; Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7523,7 +7683,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.9.5.13. TIMER_WAIT Class</h5>
+<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.9.6.13. TIMER_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7562,7 +7722,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.9.5.14. REMINDER Class</h5>
+<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.9.6.14. REMINDER Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7600,7 +7760,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.9.5.15. CALLBACK_WAIT Class</h5>
+<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.9.6.15. CALLBACK_WAIT Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7669,7 +7829,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.9.5.16. EVENT_ACTION Class</h5>
+<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.9.6.16. EVENT_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7752,7 +7912,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.9.5.17. RESUME_ACTION Class</h5>
+<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.9.6.17. RESUME_ACTION Class</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7853,7 +8013,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/wp_tp_hierarchy.svg" alt="wp tp hierarchy" width="55%">
 </div>
-<div class="title">Figure 40. Work Plan control path graph structure</div>
+<div class="title">Figure 41. Work Plan control path graph structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -8191,7 +8351,7 @@ The following UML diagram illustrates.</p>
 <h2 id="_materialised_model"><a class="anchor" href="#_materialised_model"></a>9. Materialised Model</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>9.1. Overview</h3>
+<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>9.1. Overview</h3>
 <div class="paragraph">
 <p>The <a href="#proc_task_planning_overview">Model overview figure</a> shows a package <code>proc.task_planning.materialised</code>. This is a partial specification of classes that could be instantiated at Task Plan execution time to track Plan execution, and is provided as a guide to implementing a materialised form for runtime use. A minimal materialised model is described here, as a means of indicating some of the general issues that will be encountered in representation of the runtime form of a Plan definition. <strong>It should not be considered either normative or complete</strong>. The model is shown below.</p>
 </div>
@@ -8199,7 +8359,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 41. proc.task_planning.materialised package</div>
+<div class="title">Figure 42. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -8531,7 +8691,7 @@ The following UML diagram illustrates.</p>
 <h2 id="_plan_execution_history"><a class="anchor" href="#_plan_execution_history"></a>10. Plan Execution History</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>10.1. Overview</h3>
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>10.1. Overview</h3>
 <div class="paragraph">
 <p>The history of execution events from a Work Plan execution is represented in the runtime instances of classes defined in the <code>proc.task_planning.history</code> package, of which <code>EXECUTION_HISTORY</code> is the root.</p>
 </div>
@@ -8539,7 +8699,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 42. proc.task_planning.history package</div>
+<div class="title">Figure 43. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -8857,7 +9017,7 @@ The following UML diagram illustrates.</p>
 <h2 id="_transactional_service_model"><a class="anchor" href="#_transactional_service_model"></a>11. Transactional Service Model</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>11.1. Overview</h3>
+<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>11.1. Overview</h3>
 <div class="paragraph">
 <p>The information structures required to represent planned Tasks and references at design and runtime are non-trivial. For this reason, an abstract service is defined, with a transactional interface that converts calls into correct underlying information structures. The following UML diagram illustrates the services.</p>
 </div>
@@ -8865,7 +9025,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 43. proc.task_planning.service package</div>
+<div class="title">Figure 44. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -9059,7 +9219,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <h2 id="_relationship_with_other_openehr_ehr_artefacts"><a class="anchor" href="#_relationship_with_other_openehr_ehr_artefacts"></a>12. Relationship with other openEHR EHR Artefacts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>12.1. Overview</h3>
+<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>12.1. Overview</h3>
 <div class="paragraph">
 <p>One of the side-effects of distinct state machines for <code>INSTRUCTIONs</code> and Task Plans is that not all careflow steps and states in the former need to be represented as Tasks in a Task Plan. For example, a significant number of careflow steps defined in <code>ACTION</code> archetypes are for non-Active states, e.g. Planning, Postponement, Suspension etc. These steps do not need to have Tasks defined for them, since by definition they are nearly all unplanned.</p>
 </div>
@@ -9092,7 +9252,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 44. Runtime planning structures</div>
+<div class="title">Figure 45. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>
@@ -9173,7 +9333,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-18 07:42:58 -03
+Last updated 2019-05-18 11:42:58 BST
 </div>
 </div>
 </body>

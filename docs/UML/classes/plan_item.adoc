@@ -36,6 +36,12 @@ h|*0..1*
 a|Optional data-set to review prior to / as part of performing the Plan element.
 
 h|*0..1*
+|*guideline_step*: `String`
+a|Optional reference to a step within the `_guideline_` referenced by the current Task Plan (if set) or else the `_care_pathway_` of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.
+
+The reference may take the form of a plain text section or item name within the referenced guideline, e.g. '"Check heart rate"' or be a URI or path reference, if the guideline has an online machine-representation.
+
+h|*0..1*
 |*other_details*: `ITEM_STRUCTURE`
 a|Archetypable structure for recording non hard-modelled information.
 |===

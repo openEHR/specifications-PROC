@@ -1,0 +1,30 @@
+=== PLAN_TIME_ORIGIN Enumeration
+
+[cols="^1,3,5"]
+|===
+h|*Enumeration*
+2+^h|*PLAN_TIME_ORIGIN*
+
+h|*Description*
+2+a|Enumeration of types of origin for time offsets within a Work Plan.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|current_task_plan
+a|Time offset is relative to the moment of activation of the Task Plan within which the offset occurs.
+
+h|
+|current_work_plan
+a|Time offset is relative to the moment of activation of the Work Plan within which the offset occurs.
+
+h|
+|inner_repeat_section
+a|Time offset is relative to the moment of activation of the innermost Repeat Section (Task Group or Task with a `REPEAT_SPEC`) within which the offset occurs.
+
+h|
+|outer_repeat_section
+a|Time offset is relative to the moment of activation of the outermost Repeat Section (Task Group or Task with a `REPEAT_SPEC`) within which the offset occurs.
+|===

@@ -8,6 +8,8 @@ h|*Class*
 h|*Description*
 2+a|Time specified in some customary way, such as 'morning', 'afternoon', etc, that must be interpreted to determine an equivalent format time.
 
+Resolution to computable times is assumed to be done via call to a service or resource available within the operational environment.
+
 h|*Inherit*
 2+|`TIME_SPECIFIER`
 

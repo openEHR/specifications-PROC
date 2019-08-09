@@ -206,11 +206,7 @@ Generic classes for specifying time formally and in customary form such as 'afte
 === Class Descriptions
 
 include::{uml_export_dir}/classes/time_specifier.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/clock_time.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/calendar_time.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/customary_time.adoc[leveloffset=+1]
 
 == Enumerated Types
@@ -220,9 +216,7 @@ Various enumerated types are defined in the `definitions` package, for use by th
 === Class Descriptions
 
 include::{uml_export_dir}/classes/task_lifecycle.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/resume_type.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/temporal_relation.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/plan_time_origin.adoc[leveloffset=+1]

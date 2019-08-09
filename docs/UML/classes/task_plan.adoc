@@ -12,7 +12,7 @@ A Task Plan specifies a `_principal_performer_`, representing a kind of actor wh
 
 It has an associated `_execution_history_` that can be used to record work events in time.
 
-The attributes `_care_plan_` and `_guideline_id_` provide a way of associating a Task Plan with an operational care plan, and also a published guideline or protocol on which the Task Plan may be based.
+The `_guideline_` attribute provides a way of associating a Task Plan with a published guideline on which the Task Plan may be based; this may be used by `WORK_PLAN._care_pathway_` if set.
 
 h|*Inherit*
 2+|`CONTENT_ITEM`
@@ -30,14 +30,17 @@ h|*0..1*
 a|Optional indicator of subject of Task Plan, which is normally the subject of the EHR. If this is not the case, this attribute states with respect to whom the Plan is to be performed.
 
 h|*0..1*
-|*guideline*: `DV_IDENTIFIER`
+|*guideline*: `ITEM_STRUCTURE`
 a|Identifier of guideline on which this Task Plan is based, if such exists. A 'guideline' is understood here as a published standard for performing a detailed Task.
 
-It is currently assumed that there is no reliable machine identifier system for guidelines. A `DV_IDENTIFIER` allows things like:
+Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.
 
-* `issuer = "NICE"`;
-* `id = "https://www.nice.org.uk/guidance/cg180"`;
-* `type = "NHS guideline for Atrial fibrillation: management"`.
+The `ITEM_STRUCTURE` type is used to allow population at runtime with an archetype based on e.g. BibTex publication reference fields, such as the following:
+
+* `title = "NHS guideline for Atrial fibrillation: management"`;
+* `publisher = "National Institute of Health and Care Excellence (UK)"`;
+* `year = 2016`;
+* `url = "https://www.nice.org.uk/guidance/cg180"`.
 
 h|*1..1*
 |*definition*: `TASK_GROUP`

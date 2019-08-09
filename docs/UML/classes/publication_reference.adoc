@@ -1,0 +1,50 @@
+=== PUBLICATION_REFERENCE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PUBLICATION_REFERENCE*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*title*: `String`
+a|
+
+h|*1..1*
+|*author*: `String`
+a|
+
+h|*1..1*
+|*publisher*: `String`
+a|
+
+h|*0..1*
+|*address*: `String`
+a|
+
+h|*0..1*
+|*edition*: `String`
+a|
+
+h|*1..1*
+|*year*: `String`
+a|
+
+h|*0..1*
+|*journal*: `String`
+a|
+
+h|*0..1*
+|*url*: `String`
+a|
+
+h|*0..1*
+|*section*: `String`
+a|
+|===

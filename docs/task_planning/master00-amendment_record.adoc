@@ -6,12 +6,19 @@
 
 4+^h|*PROC Release 1.?.?*
 
-|[[latest_issue]]1.4.1
-|{spec_tickets}/SPECPROC-26[SPECPROC-26^]. Dataset improvements: make `DATASET_SPEC` inherit from `LOCATABLE`; support form sub-sections.
- {spec_tickets}/SPECPROC-27[SPECPROC-27^]. Add `_classification_` attribute to `PLAN_ITEM`.
+|[[latest_issue]]1.4.2
+|{spec_tickets}/SPECPROC-28[SPECPROC-28^]. Improve definition of `TIMELINE_MOMENT` and `TIMER_EVENT`; add `PLAN_TIME_ORIGIN` enum; remove `CALENDAR_TIME` class.
+ {spec_tickets}/SPECPROC-29[SPECPROC-29^]. Add guideline_step to `PLAN_ITEM`; make Work Plan and Task Plan guideline refs more flexible.
 |M Kejžar, +
  T Beale
-|[[latest_issue_date]]28 Jun 2019
+|[[latest_issue_date]]09 Aug 2019
+
+|1.4.1
+|{spec_tickets}/SPECPROC-26[SPECPROC-26^]. Dataset improvements: make `DATASET_SPEC` inherit from `LOCATABLE`; support form sub-sections.
+ {spec_tickets}/SPECPROC-27[SPECPROC-27^]. Add `_classification_` attribute to `WORK_PLAN` and `PLAN_ITEM`.
+|M Kejžar, +
+ T Beale
+|22 Jul 2019
 
 |1.4.0
 |{spec_tickets}/SPECPROC-24[SPECPROC-24^]. Add Order tracking to model.

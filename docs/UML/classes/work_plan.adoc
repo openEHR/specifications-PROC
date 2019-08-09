@@ -8,6 +8,8 @@ h|*Class*
 h|*Description*
 2+a|Top-level object of any logical work plan. References one or more `TASK_PLANs` that described the work, typically of each performer, although a single `TASK_PLAN` may also have multiple performers.
 
+The attribute `_care_pathway_` and `_care_plan_`provide a way of associating a Work Plan with a published care pathway, and an operational care plan from within the EHR, if available.
+
 h|*Inherit*
 2+|`AUTHORED_RESOURCE`, `CONTENT_ITEM`
 
@@ -16,14 +18,15 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*care_pathway*: `DV_IDENTIFIER`
-a|Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, MI etc.
+|*care_pathway*: `ITEM_STRUCTURE`
+a|Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.
 
-It is currently assumed that there is no reliable machine identifier system for care pathways. A `DV_IDENTIFIER` allows things like:
+The `ITEM_STRUCTURE` type is used to allow population at runtime with an archetype based on e.g. BibTex publication reference fields, such as the following:
 
-* `issuer = "NICE"`;
-* `id = "https://pathways.nice.org.uk/pathways/sepsis"`;
-* `type = "NICE Sepsis care pathway"`.
+* `title = "NICE Sepsis care pathway"`;
+* `publisher = "National Institute of Health and Care Excellence (UK)"`;
+* `year = 2016`;
+* `url = "https://pathways.nice.org.uk/pathways/sepsis"`.
 
 h|*1..1*
 |*plans*: `List<UID_BASED_ID>`
@@ -62,4 +65,10 @@ a|Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischa
 h|*0..1*
 |*order_list*: `Hash<String,ORDER_REF>`
 a|Orders tracked by Tasks in this Work Plan.
+
+h|*0..1*
+|*classification*: `ITEM_STRUCTURE`
+a|Archetypable structure for recording classification of Work Plans, e.g. business process category, administrative category etc.
+
+Note that the same kind of classifications can be applied to Tasks and Groups via `PLAN_ITEM._classification_`.
 |===
