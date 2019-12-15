@@ -62,8 +62,8 @@ The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to extern
 In addition, where a Task Plan is driven by an order set, two attributes are provided to record the details:
 
 * In `TASK_PLAN`:
-** `_order_set_type`: the identifier of a type of Order Set which this Task Plan uses, if any;
-** `_order_set_id`: the identifier of a specific Order Set which this Task Plan uses, if any.
+** `_order_set_type_`: the identifier of a type of Order Set which this Task Plan uses, if any;
+** `_order_set_id_`: the identifier of a specific Order Set which this Task Plan uses, if any.
 
 Lastly, the `_workflow_id_` attribute defined in `ENTRY` may be set within `INSTRUCTION` and `ACTION` to refer to the Order Set instance used in this Task Plan, if set.
 

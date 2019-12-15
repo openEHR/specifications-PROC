@@ -7,11 +7,16 @@
 4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.4.2
+|{spec_tickets}/SPECPUB-7[SPECPUB-7^]: Convert citations to bibtex form.
+|T Beale
+|[[latest_issue_date]]15 Dec 2019
+
+|
 |{spec_tickets}/SPECPROC-28[SPECPROC-28^]. Improve definition of `TIMELINE_MOMENT` and `TIMER_EVENT`; add `PLAN_TIME_ORIGIN` enum; remove `CALENDAR_TIME` class.
- {spec_tickets}/SPECPROC-29[SPECPROC-29^]. Add guideline_step to `PLAN_ITEM`; make Work Plan and Task Plan guideline refs more flexible.
+ {spec_tickets}/SPECPROC-29[SPECPROC-29^]. Add `_guideline_step_` to `PLAN_ITEM`; make Work Plan and Task Plan guideline refs more flexible.
 |M Kejžar, +
  T Beale
-|[[latest_issue_date]]09 Aug 2019
+|09 Aug 2019
 
 |1.4.1
 |{spec_tickets}/SPECPROC-26[SPECPROC-26^]. Dataset improvements: make `DATASET_SPEC` inherit from `LOCATABLE`; support form sub-sections.
