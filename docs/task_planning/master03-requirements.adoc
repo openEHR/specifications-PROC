@@ -50,7 +50,7 @@ A plan for a clinical intervention will typically need to encompass more than on
 
 (Extract from https://en.wikipedia.org/wiki/CHOP[Wikipedia].)
 
-A more general notion is of a protocol or guideline, which is a full set of actions to be performed to achieve a goal. Some of the actions will have corresponding orders, but others, such as making intermediate observations, may not. Examples can be found at sites such as the https://pathways.nice.org.uk/[UK National Institute for Care and Excellence (NICE)].
+A more general notion is of a protocol or guideline, which is a full set of actions to be performed to achieve a goal. Some of the actions will have corresponding orders, but others, such as making intermediate observations, may not. Examples can be found at sites such as the https://pathways.nice.org.uk/[UK National Institute for Care and Excellence (NICE)^].
 
 == Lookahead Plan
 
@@ -85,7 +85,7 @@ Task plans derived from semi-formal care pathways or guidelines (and potentially
 * *decision point*: a step containing a variable assignment of the form `$v := expression`;
 * *subordinate decision paths*: groups of tasks each group of which has attached a variable test of the form `$v rel_op value`, where `rel_op` is one of `=`, `/=`, `<`, `>`, `\<=` or `>=`.
 
-An example of decision points is shown below, in an extract from the https://intermountainhealthcare.org/ext/Dcmnt?ncid=520500199[Intermountain Healthcare Care Process Module (CPM) for Ischemic Stroke Management]:
+An example of decision points is shown below, in an extract from the https://intermountainhealthcare.org/ext/Dcmnt?ncid=520500199[Intermountain Healthcare Care Process Module (CPM) for Ischemic Stroke Management^]:
 
 [.text-center]
 .Decision pathway example (Intermountain Healthcare Acute Stroke CPM)
