@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="description" content="openEHR TP Visual Modelling Language">
 <meta name="keywords" content="task, planning, visual language, workflow">
 <title>Task Planning Visual Modelling Language (TP-VML)</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -66,7 +65,7 @@
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="https://specifications.openehr.org/images/openEHR_logo_RGB.svg" alt="openEHR logo">
 </div>
@@ -76,7 +75,7 @@
 <h1 id="_task_planning_visual_modelling_language_tp_vml" class="sect0">Task Planning Visual Modelling Language (TP-VML)</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -100,12 +99,12 @@
 </tr>
 </tbody>
 </table>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <object type="image/svg+xml" data="openehr_block_diagram.svg" width="60%"><span class="alt">openEHR components</span></object>
 </div>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -135,7 +134,7 @@
 <div class="sect1">
 <h2 id="_amendment_record">Amendment Record</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 9.0909%;">
 <col style="width: 54.5454%;">
@@ -352,7 +351,7 @@
 <div class="paragraph">
 <p>TP-VML icons for <code>WORK_PLAN</code> and <code>TASK_PLAN</code> are used (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_plan_structure">TP plan structure</a>), enabling some of the relevant meta-data to be visualised.</p>
 </div>
-<div id="tp_vml_plans" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_plans" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-plans.svg" alt="TP VML plans">
 </div>
@@ -367,7 +366,7 @@
 <div class="paragraph">
 <p>Since Tasks and other Task Groups within any Task Group are included by ordered containment (i.e. 'list' semantics) rather than chaining, contained items are shown connected with dashed arrows, indicating the implied ordered.</p>
 </div>
-<div id="tp_vml_task_groups" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_task_groups" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-task_groups.svg" alt="TP VML task groups">
 </div>
@@ -379,19 +378,19 @@
 <div class="paragraph">
 <p><a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_conditional_structures_2">TP conditional structures</a> follow the same structural logic as Task Groups, with the addition of various specific meta-data as per the specificaion.</p>
 </div>
-<div id="tp_vml_conditionals_condition" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_conditionals_condition" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-conditionals_condition.svg" alt="TP VML conditionals condition">
 </div>
 <div class="title">Figure 3. Conditional structures - CONDITION_GROUP</div>
 </div>
-<div id="tp_vml_conditionals_decision" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_conditionals_decision" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-conditionals_decision.svg" alt="TP VML conditionals decision">
 </div>
 <div class="title">Figure 4. Conditional structures - DECISION_GROUP</div>
 </div>
-<div id="tp_vml_conditionals_event" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_conditionals_event" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-conditionals_event.svg" alt="TP VML conditionals event">
 </div>
@@ -412,7 +411,7 @@
 <div class="paragraph">
 <p>Performable Tasks may have one or more associated <code><em>capture_datasets</em></code>. Dispatchable Tasks may have an associated callback wait state (<code>CALLBACK_WAIT</code>).</p>
 </div>
-<div id="tp_vml_tasks" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_tasks" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-tasks.svg" alt="TP VML tasks">
 </div>
@@ -440,7 +439,7 @@
 <div class="paragraph">
 <p>Events are specified as triggers for the wait states <code>TASK_WAIT</code>, <code>TIMER_WAIT</code> and <code>CALLBACK_WAIT</code>.</p>
 </div>
-<div id="tp_vml_events" class="imageblock text-center" style="text-align: center">
+<div id="tp_vml_events" class="imageblock text-center text-center">
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-events.svg" alt="TP VML events">
 </div>
@@ -453,7 +452,7 @@
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-08 10:23:06 -03
+Last updated 2019-12-11 18:36:46 UTC
 </div>
 </div>
 </body>
