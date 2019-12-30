@@ -29,7 +29,7 @@ a|Archetypable structure for recording classification of Task Groups or Tasks, e
 
 h|*0..1*
 |*wait_spec*: `TASK_WAIT`
-a|Optional wait specification for a Task. If not set, the Task is immediately available once execution reaches it. If set, the Task becomes available when an Event linked to the `_wait_spec_` occurs.
+a|Optional wait specification for Plan Item (Task or Group) initiation. If not set, the Plan Item is immediately `available` once execution reaches it. If set, it becomes `available` when any Event in `_events_` occurs.
 
 h|*0..1*
 |*review_dataset*: `List<REVIEW_DATASET_SPEC>`
@@ -44,4 +44,8 @@ The reference may take the form of a plain text section or item name within the 
 h|*0..1*
 |*other_details*: `ITEM_STRUCTURE`
 a|Archetypable structure for recording non hard-modelled information.
+
+h|*0..1*
+|*reminder*: `REMINDER_CHAIN`
+a|Time window after moment of initial availability during which the action may be started, i.e. an 'acceptable delay'. Allows approximate times to be used operationally.
 |===

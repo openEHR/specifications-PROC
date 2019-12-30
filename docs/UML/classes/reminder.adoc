@@ -6,16 +6,25 @@ h|*Class*
 2+^h|*REMINDER*
 
 h|*Description*
-2+a|Specialised Timer configured to generate a reminder or alert to performer or other user.
+2+a|Specialised Event wait state activated when its `_event_` fires. This is often a `TIMER_EVENT`, but may be any other kind of event. The `_cancel_events_` list contains references to other events which if they occur prior to the activation event, will cancel the reminder.
+
+If the reminder is activated, its `_success_action_` should be configured to generate a reminder or alert to performer or other user.
 
 h|*Inherit*
-2+|`TIMER_WAIT`
+2+|`EVENT_WAIT`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
-|*repeats*: `Integer`
-a|Default value of 0 means no repeats, i.e. one reminder Event is generated. A negative value means repeat forever.
+h|*1..1 +
+(redefined)*
+|*event*: `PLAN_EVENT`
+a|The event that will generate the reminder. This could be a timer, or it may be a timeline moment, calendar time, or a non-deterministic event, e.g. state trigger.
+
+h|*Invariants*
+2+a|*_Inv_no_timeout_*: `timeout = Void`
+
+h|
+2+a|*_Inv_has_action_*: `success_action /= Void`
 |===

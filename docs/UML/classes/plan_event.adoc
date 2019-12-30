@@ -18,4 +18,8 @@ h|*Attributes*
 h|*0..1*
 |*other_details*: `ITEM_STRUCTURE`
 a|
+
+h|*0..1*
+|*delay*: `Iso8601_duration`
+a|Length of the delay.
 |===

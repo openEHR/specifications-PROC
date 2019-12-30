@@ -23,7 +23,7 @@ For Plans in which repetition occurs (`PLAN_ITEM._repeat_spec_`), order tags may
 
 === Tracking an Existing Order
 
-In this scenario, at Work Plan design time, an order _already exists_ in the form of an Instruction committed to a patient EHR. This might be a standing order, e.g. for insulin for a diabetic, or any other long-running medication or therapy for a sufferer of a chronic illness. The Plan might be used to track patient or healthcare professional administrations of such a medication.
+In this scenario, at Work Plan design time, an order _already exists_ in the form of an Instruction committed to a patient EHR. This might be a standing order, e.g. for insulin. The Plan might be used to track patient or healthcare professional administrations of such a medication.
 
 Since it is possible to construct a `LOCATABLE_REF` to the `INSTRUCTION` (and indeed, to a contained `ACTIVITY`), it may be referenced from a Work Plan using an `ORDER_REF` instance, via the `_order_ref_` property. The corresponding Instruction archetype identifier may also be recorded, enabling direct lookup by the TP engine, for use within the Plan modelling environment. The `_order_tag_` field will be set to a value that refers to the order in a sufficiently precise way as to be unique within the Work Plan.
 

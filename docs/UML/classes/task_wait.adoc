@@ -11,8 +11,7 @@ h|*Description*
 * clock time: event = `TIMELINE_MOMENT`, `CALENDAR_EVENT`;
 * notification-based: event = `MANUAL_NOTIFICATION`, `CALLBACK_NOTIFICATION` or `SYSTEM_NOTIFICATION`;
 * task-linked: event = `TASK_TRANSITION`, e.g. 1hr after previous Task done;
-* state-linked: event = `STATE_TRIGGER`, e.g. 'when systolic BP > 165';
-* any event with added delay: `DELAY_EVENT`.
+* state-linked: event = `STATE_TRIGGER`, e.g. 'when systolic BP > 165'.
 
 h|*Attributes*
 ^h|*Signature*
@@ -27,14 +26,10 @@ h|*0..1*
 a|Temporal relation to the event of the point or period in time being defined by this Timing Spec.
 
 h|*0..1*
-|*start_window*: `REMINDER`
-a|Time window after an initial time during which the action should start. Allows for approximate times to be used operationally.
-
-h|*0..1*
 |*timeout*: `TIMER_WAIT`
 a|Timeout handler to use if no other Event is received within a certain time.
 
 h|*0..1*
 |*next_state*: `TASK_LIFECYCLE`
-a|Override for next state to enter on receipt of any Event in `_events`. Default processing is to enter the `available` state.
+a|Override for next state to enter on receipt of any Event in `_events_`. Default processing is to enter the `available` state.
 |===
