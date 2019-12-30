@@ -8,9 +8,6 @@ h|*Class*
 h|*Description*
 2+a|Event generated at a time delay after another Event.
 
-h|*Inherit*
-2+|`PLAN_EVENT`
-
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
@@ -18,8 +15,4 @@ h|*Attributes*
 h|*1..1*
 |*source*: `PLAN_EVENT`
 a|Reference to source Event.
-
-h|*1..1*
-|*delay*: `Iso8601_duration`
-a|Length of the delay.
 |===

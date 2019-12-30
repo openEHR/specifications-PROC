@@ -25,7 +25,4 @@ h|*0..1 +
 (redefined)*
 |*members*: `List<DECISION_BRANCH>`
 a|Set of branches in this Decision Group.
-
-h|*Invariants*
-2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
 |===

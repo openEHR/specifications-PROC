@@ -9,7 +9,7 @@ h|*Description*
 2+a|A specialised kind of `TASK_GROUP` representing a branch in an Event Group.
 
 h|*Inherit*
-2+|`BLOCKING_BRANCH`
+2+|`CHOICE_BRANCH`
 
 
 h|*Invariants*

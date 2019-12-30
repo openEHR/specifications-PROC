@@ -59,10 +59,6 @@ include::{uml_export_dir}/classes/decision_group.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/decision_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/blocking_group.adoc[leveloffset=+1]
-
-include::{uml_export_dir}/classes/blocking_branch.adoc[leveloffset=+1]
-
 include::{uml_export_dir}/classes/adhoc_group.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/adhoc_branch.adoc[leveloffset=+1]

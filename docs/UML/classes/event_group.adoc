@@ -8,8 +8,10 @@ h|*Class*
 h|*Description*
 2+a|Special kind of Task Group whose members are `EVENT_BRANCH` instances each representing a mutually exclusive Event Wait, the first of which occurs determines the execution path.
 
+NOTE: at least one of the branches should have a timeout set, i.e. `_wait_spec.timeout_ /= Void` to ensure the Event group does not block indefinitely. If no such timeout is set, the Plan global timeout will eventually fire.
+
 h|*Inherit*
-2+|`BLOCKING_GROUP`
+2+|`CHOICE_GROUP`
 
 h|*Attributes*
 ^h|*Signature*

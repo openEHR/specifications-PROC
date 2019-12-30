@@ -15,9 +15,13 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
+h|*0..1*
 |*override_type*: `OVERRIDE_TYPE`
-a|Indicates kind of user override that would be accepted at runtime.
+a|Indicates kind of user override that would be accepted at runtime. If set to a value other than `prohibited`, user interaction is assumed, and runtime processing must enter a
+
+h|*0..1*
+|*timeout*: `TIMER_WAIT`
+a|Timeout handler to use if `CHOICE_GROUP` blocks unexpectedly, e.g. due to absent user, unavailable external data item.
 
 h|*0..1 +
 (redefined)*

@@ -32,7 +32,7 @@ A `DECISION_GROUP / DECISION_BRANCH` structure is processed like a case (aka swi
 
 The other two types of Choice Group are blocking.
 
-An `ADHOC_GROUP / ADHOC_BRANCH` structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited `BLOCKING_GROUP._timeout_` attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.
+An `ADHOC_GROUP / ADHOC_BRANCH` structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited `CHOICE_GROUP._timeout_` attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.
 
 Finally the `EVENT_GROUP / EVENT_BRANCH` structure is blocking due to `TASK_WAIT` states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the `_timeout_` on the group to fire. As for the Ad hoc case, a timeout may be set in order to force processing if none of the specified events occurs, and if not set, a global timeout will break the wait state if nothing else happens.
 
