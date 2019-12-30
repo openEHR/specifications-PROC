@@ -289,12 +289,10 @@
 <li><a href="#_condition_branch_class">6.7.1.5. CONDITION_BRANCH Class</a></li>
 <li><a href="#_decision_group_class">6.7.1.6. DECISION_GROUP Class</a></li>
 <li><a href="#_decision_branch_class">6.7.1.7. DECISION_BRANCH Class</a></li>
-<li><a href="#_blocking_group_class">6.7.1.8. BLOCKING_GROUP Class</a></li>
-<li><a href="#_blocking_branch_class">6.7.1.9. BLOCKING_BRANCH Class</a></li>
-<li><a href="#_adhoc_group_class">6.7.1.10. ADHOC_GROUP Class</a></li>
-<li><a href="#_adhoc_branch_class">6.7.1.11. ADHOC_BRANCH Class</a></li>
-<li><a href="#_event_group_class">6.7.1.12. EVENT_GROUP Class</a></li>
-<li><a href="#_event_branch_class">6.7.1.13. EVENT_BRANCH Class</a></li>
+<li><a href="#_adhoc_group_class">6.7.1.8. ADHOC_GROUP Class</a></li>
+<li><a href="#_adhoc_branch_class">6.7.1.9. ADHOC_BRANCH Class</a></li>
+<li><a href="#_event_group_class">6.7.1.10. EVENT_GROUP Class</a></li>
+<li><a href="#_event_branch_class">6.7.1.11. EVENT_BRANCH Class</a></li>
 </ul>
 </li>
 </ul>
@@ -316,19 +314,19 @@
 <li><a href="#_event_types">6.9.2. Event Types</a>
 <ul class="sectlevel4">
 <li><a href="#_timeline_moment">6.9.2.1. TIMELINE_MOMENT</a></li>
-<li><a href="#_delay_event">6.9.2.2. DELAY_EVENT</a></li>
 </ul>
 </li>
 <li><a href="#_general_facilities">6.9.3. General Facilities</a>
 <ul class="sectlevel4">
-<li><a href="#_timers">6.9.3.1. Timers</a></li>
-<li><a href="#_event_wait_state">6.9.3.2. Event Wait State</a></li>
+<li><a href="#_event_wait_state">6.9.3.1. Event Wait State</a></li>
+<li><a href="#_timers">6.9.3.2. Timers</a></li>
+<li><a href="#_reminder">6.9.3.3. Reminder</a></li>
 </ul>
 </li>
 <li><a href="#_task_wait_state">6.9.4. Task Wait State</a>
 <ul class="sectlevel4">
-<li><a href="#_time_out">6.9.4.1. Time-out</a></li>
-<li><a href="#_reminder">6.9.4.2. Reminder</a></li>
+<li><a href="#_time_outs">6.9.4.1. Time-outs</a></li>
+<li><a href="#_reminder_2">6.9.4.2. Reminder</a></li>
 <li><a href="#_lifecycle_transition_override">6.9.4.3. Lifecycle Transition Override</a></li>
 </ul>
 </li>
@@ -342,22 +340,21 @@
 <li><a href="#_class_definitions_8">6.9.6. Class Definitions</a>
 <ul class="sectlevel4">
 <li><a href="#_task_wait_class">6.9.6.1. TASK_WAIT Class</a></li>
-<li><a href="#_plan_event_class">6.9.6.2. PLAN_EVENT&lt;&gt; Class</a></li>
-<li><a href="#_delay_event_class">6.9.6.3. DELAY_EVENT Class</a></li>
-<li><a href="#_manual_notification_class">6.9.6.4. MANUAL_NOTIFICATION Class</a></li>
-<li><a href="#_system_notification_class">6.9.6.5. SYSTEM_NOTIFICATION Class</a></li>
-<li><a href="#_callback_notification_class">6.9.6.6. CALLBACK_NOTIFICATION Class</a></li>
-<li><a href="#_state_trigger_class">6.9.6.7. STATE_TRIGGER Class</a></li>
-<li><a href="#_timer_event_class">6.9.6.8. TIMER_EVENT Class</a></li>
-<li><a href="#_calendar_event_class">6.9.6.9. CALENDAR_EVENT Class</a></li>
-<li><a href="#_timeline_moment_class">6.9.6.10. TIMELINE_MOMENT Class</a></li>
-<li><a href="#_task_transition_class">6.9.6.11. TASK_TRANSITION Class</a></li>
-<li><a href="#_event_waitp_class">6.9.6.12. EVENT_WAIT&lt;P&gt; Class</a></li>
-<li><a href="#_timer_wait_class">6.9.6.13. TIMER_WAIT Class</a></li>
-<li><a href="#_reminder_class">6.9.6.14. REMINDER Class</a></li>
-<li><a href="#_callback_wait_class">6.9.6.15. CALLBACK_WAIT Class</a></li>
-<li><a href="#_event_action_class">6.9.6.16. EVENT_ACTION Class</a></li>
-<li><a href="#_resume_action_class">6.9.6.17. RESUME_ACTION Class</a></li>
+<li><a href="#_event_waitp_class">6.9.6.2. EVENT_WAIT&lt;P&gt; Class</a></li>
+<li><a href="#_timer_wait_class">6.9.6.3. TIMER_WAIT Class</a></li>
+<li><a href="#_reminder_class">6.9.6.4. REMINDER Class</a></li>
+<li><a href="#_callback_wait_class">6.9.6.5. CALLBACK_WAIT Class</a></li>
+<li><a href="#_event_action_class">6.9.6.6. EVENT_ACTION Class</a></li>
+<li><a href="#_resume_action_class">6.9.6.7. RESUME_ACTION Class</a></li>
+<li><a href="#_plan_event_class">6.9.6.8. PLAN_EVENT&lt;&gt; Class</a></li>
+<li><a href="#_timer_event_class">6.9.6.9. TIMER_EVENT Class</a></li>
+<li><a href="#_calendar_event_class">6.9.6.10. CALENDAR_EVENT Class</a></li>
+<li><a href="#_timeline_moment_class">6.9.6.11. TIMELINE_MOMENT Class</a></li>
+<li><a href="#_task_transition_class">6.9.6.12. TASK_TRANSITION Class</a></li>
+<li><a href="#_manual_notification_class">6.9.6.13. MANUAL_NOTIFICATION Class</a></li>
+<li><a href="#_system_notification_class">6.9.6.14. SYSTEM_NOTIFICATION Class</a></li>
+<li><a href="#_callback_notification_class">6.9.6.15. CALLBACK_NOTIFICATION Class</a></li>
+<li><a href="#_state_trigger_class">6.9.6.16. STATE_TRIGGER Class</a></li>
 </ul>
 </li>
 </ul>
@@ -523,7 +520,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2019 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2020 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -566,10 +563,22 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.?.?</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.4.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-30" target="_blank" rel="noopener">SPECPROC-30</a>. Adjustments to Events model.<br>
+ change <code>TASK_WAIT.<em>start_window</em>: REMINDER[0..1]</code> to <code>PLAN_ITEM.<em>reminders</em>: REMINDER[*]</code>;<br>
+ add invariant to <code>TIMER_WAIT</code> to prevent it having a timeout;<br>
+ make <code>REMINDER</code> a generic <code>EVENT_WAIT</code> to allow it to be fired by any deterministic event, not just a timer event;<br>
+ remove <code>DELAY_EVENT</code>; move its <code><em>delay</em></code> attribute to <code>PLAN_EVENT</code>,<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-31" target="_blank" rel="noopener">SPECPROC-31</a>. Simplifications to Conditional structures: remove <code>BLOCKING_GROUP</code>, <code>BLOCKING_BRANCH</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 Dec 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Dec 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -4176,7 +4185,7 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait_spec</strong>: <code>TASK_WAIT</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional wait specification for a Task. If not set, the Task is immediately available once execution reaches it. If set, the Task becomes available when an Event linked to the <code><em>wait_spec</em></code> occurs.</p>
+<p>Optional wait specification for Plan Item (Task or Group) initiation. If not set, the Plan Item is immediately <code>available</code> once execution reaches it. If set, it becomes <code>available</code> when any Event in <code><em>events</em></code> occurs.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4201,6 +4210,13 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetypable structure for recording non hard-modelled information.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reminder</strong>: <code>REMINDER_CHAIN</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Time window after moment of initial availability during which the action may be started, i.e. an 'acceptable delay'. Allows approximate times to be used operationally.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5888,10 +5904,17 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>override_type</strong>: <code>OVERRIDE_TYPE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Indicates kind of user override that would be accepted at runtime.</p>
+<p>Indicates kind of user override that would be accepted at runtime. If set to a value other than <code>prohibited</code>, user interaction is assumed, and runtime processing must enter a</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code>TIMER_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Timeout handler to use if <code>CHOICE_GROUP</code> blocks unexpectedly, e.g. due to absent user, unavailable external data item.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6030,12 +6053,6 @@ The following UML diagram illustrates.</p>
 <p>Set of Tasks to perform. Execution order is defined by the <code><em>execution_type</em></code> setting, either sequential or parallel (no order).</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -6129,12 +6146,6 @@ The following UML diagram illustrates.</p>
 <p>Set of branches in this Decision Group.</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -6183,79 +6194,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_blocking_group_class"><a class="anchor" href="#_blocking_group_class"></a>6.7.1.8. BLOCKING_GROUP Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>BLOCKING_GROUP (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Type of Choice Group that causes blocking during execution. May include a timeout and</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code>TIMER_WAIT</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Timer to start on entry into Event Group. If no events are received within this time, a branch with a Timer Expiry event type can be entered. If no such branch is defined, the Timer Expiry may be used to display a message to the performer.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;BLOCKING_BRANCH&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Set of Tasks to perform. Execution order is defined by the <code><em>execution_type</em></code> setting, either sequential or parallel (no order).</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_blocking_branch_class"><a class="anchor" href="#_blocking_branch_class"></a>6.7.1.9. BLOCKING_BRANCH Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>BLOCKING_BRANCH (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Type of Choice Branch that is a member of a Blocking Group.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.7.1.10. ADHOC_GROUP Class</h5>
+<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.7.1.8. ADHOC_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6275,7 +6214,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BLOCKING_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6294,7 +6233,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.7.1.11. ADHOC_BRANCH Class</h5>
+<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.7.1.9. ADHOC_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6314,13 +6253,19 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BLOCKING_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.7.1.12. EVENT_GROUP Class</h5>
+<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.7.1.10. EVENT_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6336,11 +6281,23 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p>Special kind of Task Group whose members are <code>EVENT_BRANCH</code> instances each representing a mutually exclusive Event Wait, the first of which occurs determines the execution path.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+at least one of the branches should have a timeout set, i.e. <code><em>wait_spec.timeout</em> /= Void</code> to ensure the Event group does not block indefinitely. If no such timeout is set, the Plan global timeout will eventually fire.
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BLOCKING_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6359,7 +6316,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.7.1.13. EVENT_BRANCH Class</h5>
+<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.7.1.11. EVENT_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6379,7 +6336,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BLOCKING_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
@@ -6437,7 +6394,7 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_tracking_an_existing_order"><a class="anchor" href="#_tracking_an_existing_order"></a>6.8.1. Tracking an Existing Order</h4>
 <div class="paragraph">
-<p>In this scenario, at Work Plan design time, an order <em>already exists</em> in the form of an Instruction committed to a patient EHR. This might be a standing order, e.g. for insulin for a diabetic, or any other long-running medication or therapy for a sufferer of a chronic illness. The Plan might be used to track patient or healthcare professional administrations of such a medication.</p>
+<p>In this scenario, at Work Plan design time, an order <em>already exists</em> in the form of an Instruction committed to a patient EHR. This might be a standing order, e.g. for insulin. The Plan might be used to track patient or healthcare professional administrations of such a medication.</p>
 </div>
 <div class="paragraph">
 <p>Since it is possible to construct a <code>LOCATABLE_REF</code> to the <code>INSTRUCTION</code> (and indeed, to a contained <code>ACTIVITY</code>), it may be referenced from a Work Plan using an <code>ORDER_REF</code> instance, via the <code><em>order_ref</em></code> property. The corresponding Instruction archetype identifier may also be recorded, enabling direct lookup by the TP engine, for use within the Plan modelling environment. The <code><em>order_tag</em></code> field will be set to a value that refers to the order in a sufficiently precise way as to be unique within the Work Plan.</p>
@@ -6545,13 +6502,29 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.9.1. Overview</h4>
 <div class="paragraph">
-<p>Work plans inevitably interact with events in the external world, as well being driven by time. In this model, points in time are modelled in terms of Events that represent the <em>reaching</em> of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in the latter form. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of <em>wait states</em> that may be used to intercept them.</p>
+<p>Work plans interact with events in the external world, as well being driven by time. In this model, moments in time are modelled in terms of Events that represent the <em>reaching</em> of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in terms of 'events'. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of <em>wait states</em> that may be used to intercept them.</p>
 </div>
 <div id="proc_task_planning_definition_event" class="imageblock text-center text-center">
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-event.svg" alt="PROC task planning.definition event">
 </div>
 <div class="title">Figure 32. proc.task_planning model - Events</div>
+</div>
+<div class="paragraph">
+<p>Two general classes of Events are distinguished:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>deterministic</em>: Events guaranteed to occur at a knowable point in time (shown on the lower left in light pink);</p>
+</li>
+<li>
+<p><em>non-deterministic</em>: Events that might never occur (shown on the lower right in magenta).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For non-deterministic events, a timeout handler is generally needed.</p>
 </div>
 </div>
 <div class="sect3">
@@ -6573,6 +6546,9 @@ The following UML diagram illustrates.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>Deterministic Events</strong></p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TIMER_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="event_timer" class="imageblock">
@@ -6599,6 +6575,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Event generated by system clock reaching an event in the global Plan calendar, which is specified in absolute time, independent of the Work Plan timeline. The value of the <code><em>time</em></code> attribute is obtained from the calendar.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>Non-deterministic Events</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TASK_TRANSITION</code></p></td>
@@ -6636,15 +6615,6 @@ The following UML diagram illustrates.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An event that is notified to the Plan execution engine by a system.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELAY_EVENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="event_delay" class="imageblock">
-<div class="content">
-<img src="task_planning/diagrams/event_delay.svg" alt="event delay">
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A special kind of event is used to represent any other event with an added delay.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALLBACK_NOTIFICATION</code></p></td>
@@ -6690,24 +6660,11 @@ The following UML diagram illustrates.</p>
 <p>The timeline origin defaults to the moment of Work Plan activiation, but may be overridden via the <code><em>offset_origin</em></code> to the moment of activation of the current Task Plan, or the entry into a repeating section (a Task Group or Task with <code><em>repeat_spec</em></code> set).</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_delay_event"><a class="anchor" href="#_delay_event"></a>6.9.2.2. DELAY_EVENT</h5>
-
-</div>
 </div>
 <div class="sect3">
 <h4 id="_general_facilities"><a class="anchor" href="#_general_facilities"></a>6.9.3. General Facilities</h4>
 <div class="sect4">
-<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.9.3.1. Timers</h5>
-<div class="paragraph">
-<p>A generic timer can be specified using the Event type <code>TIMER_EVENT</code>. This is either attached to a <code>TASK_WAIT</code> wait state, which controls when a Task becomes available, or to a <code>TIMER_WAIT</code> wait state, which is used to represent a timeout on another wait state. <code>TIMER_WAIT</code> is based on the generic type <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code> and provides a way to specify a Timer (the <code>TIMER_EVENT</code> instance) and listen for it (the <code>TIMER_WAIT</code> instance).  A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after Task activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
-</div>
-<div class="paragraph">
-<p>The timer represented by a <code>TIMER_EVENT</code> is started when the wait state to which it is attached is reached in the execution.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.9.3.2. Event Wait State</h5>
+<h5 id="_event_wait_state"><a class="anchor" href="#_event_wait_state"></a>6.9.3.1. Event Wait State</h5>
 <div class="paragraph">
 <p>The class <code>EVENT_WAIT&lt;T&gt;</code> defines a generic model of a general-purpose event wait state that may be specialised for particular purposes. Its attributes are as follows:</p>
 </div>
@@ -6741,6 +6698,21 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_timers"><a class="anchor" href="#_timers"></a>6.9.3.2. Timers</h5>
+<div class="paragraph">
+<p>A generic timer can be specified using <code>TIMER_WAIT</code>, a specialisation of <code>EVENT_WAIT&lt;TIMER_EVENT&gt;</code> based on the Event type <code>TIMER_EVENT</code>. This provides a way to specify a Timer (the <code>TIMER_EVENT</code>) and listen for it (the <code>TIMER_WAIT</code>).  A <code>TIMER_WAIT</code> creates a separate Event wait state that listens for a Timer event launched some duration after Task activation, and may result in specific actions, specified via the inherited <code>EVENT_WAIT.<em>success_action</em></code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>The timer represented by a <code>TIMER_EVENT</code> is started when the wait state to which it is attached is reached in the execution.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.9.3.3. Reminder</h5>
+<div class="paragraph">
+<p>A reminder can be specified using <code>REMINDER</code>, a specialisation of <code>EVENT_WAIT&lt;PLAN_EVENT&gt;</code>. Conceptually, a reminder is a wait state that is activated if a secondary event (represented by the <code><em>event</em></code> attribute inherited from <code>EVENT_WAIT&lt;T&gt;</code>) occurs in the absence of some other waited-on primary event(s) (represented by <code>REMINDER.<em>cancel_events</em></code>). Usually the secondary event is a <code>TIMER_EVENT</code>, but it could be anything else. If any of the primary events occurs, the reminder is cancelled. Primary events are usually <code>TASK_TRANSITION</code> events, representing that the performer has progressed the work of the Task.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.9.4. Task Wait State</h4>
@@ -6757,7 +6729,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 34. Task wait state</div>
 </div>
 <div class="sect4">
-<h5 id="_time_out"><a class="anchor" href="#_time_out"></a>6.9.4.1. Time-out</h5>
+<h5 id="_time_outs"><a class="anchor" href="#_time_outs"></a>6.9.4.1. Time-outs</h5>
 <div class="paragraph">
 <p>A timeout can be set on a Task Wait state by setting <code>TASK_WAIT.<em>timeout</em></code> with a <code>TIMER_WAIT</code> instance, which is activated when the Task Wait state is reached in the execution. This is useful in cases where Event receipt is not certain. The <code>TIMER_WAIT</code> generates a timer event if no other event is received; conversely, receipt of any other event cancels the timeout timer. The <code>TIMER_EVENT</code> attached to <code>TIMER_WAIT.<em>event</em></code> indicates the duration of the timer. The <code><em>success_action</em></code> of the <code>TIMER_WAIT</code> indicates actions to execute if the timer fires. The following Plan fragment illustrates.</p>
 </div>
@@ -6767,26 +6739,23 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="title">Figure 35. Timing patterns</div>
 </div>
-<div class="paragraph">
-<p>A Timeout can be also be used on a callback, via <code>CALLBACK_WAIT.<em>timeout</em></code>.</p>
-</div>
 </div>
 <div class="sect4">
-<h5 id="_reminder"><a class="anchor" href="#_reminder"></a>6.9.4.2. Reminder</h5>
+<h5 id="_reminder_2"><a class="anchor" href="#_reminder_2"></a>6.9.4.2. Reminder</h5>
 <div class="paragraph">
-<p>When an event specified by a Task Wait state fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be notified, and / or to indicate what delay before commencement is regarded as acceptable, the <code>TASK_WAIT.<em>start_window</em></code> attribute may be used to specify a <code>REMINDER</code> notification, which specifies a duration from the moment of first becoming available, optionally with a notification, specified via the inherited <code><em>success_action</em></code> attribute. If <code>REMINDER.<em>repeats</em></code> is non-zero, more than one reminder event may be generated. An example is illustrated below.</p>
+<p>When an event specified by a <code>TASK_WAIT.<em>events</em></code> fires, it puts the Task into the <code>available</code> lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be reminded, the <code>PLAN_ITEM.<em>reminders</em></code> attribute may be used to specify one or more <code>REMINDER</code> wait states. Each of these will have a <code>TIMER_EVENT</code> (or other event) as its firing <code><em>event</em></code>, and will contain in its <code><em>cancel_events</em></code> list a <code>TASK_TRANSITION</code> event representing any transition out of the <code>available</code> state for the current Task, indicating the performer has done some work.</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD: cancelling a reminder chain; need a controller object.</p>
+</div>
+<div class="paragraph">
+<p>If a Reminder is activated, it will generate a notification, specified via the inherited <code><em>success_action</em></code> attribute. If still no activity occurs for some time, additional reminders may fire, and generate new notifications. As soon as the performer progresses the Task to a new state, any reminder for which such a transition is cancelling, will be cancelled. An example is illustrated below.</p>
 </div>
 <div id="task_wait_state_reminder" class="imageblock text-center text-center">
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state_reminder.svg" alt="task wait state reminder">
 </div>
 <div class="title">Figure 36. Task wait state with reminder</div>
-</div>
-<div class="paragraph">
-<p>The execution processing associated with a Reminder is that one or more Reminder events is generated by the system for a Task which is already <code>available</code>. Each of Reminder event will normally cause a communication to the principle performer via the message defined in its <code><em>success_action</em></code>. The performer responds by performing the work of the Task, and progressing it to a final state, in the normal way (possibly via the <code>underway</code> state, for a long-running Task). As soon as the Task is progressed beyond the <code>available</code> state, no further Reminders occur.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: need to define Plan level timeout behaviour, for case when no activity.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6870,7 +6839,7 @@ The following UML diagram illustrates.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>standard</code>: generic success | fail | timeout model;</p>
+<p><code>standard</code>: generic <code>success | fail | timeout</code> model;</p>
 </li>
 <li>
 <p><code>order tracking</code>: used if <code>DISPATCHABLE_TASK.<em>order_tags</em></code> is set;</p>
@@ -6881,7 +6850,7 @@ The following UML diagram illustrates.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each model corresponds to a different set of possible callback statuses returned by the TP engine with the callback notification to represent the state of the remote Task execution. In the <code>standard</code> model it is a generic success | fail | timeout approach. Under the <code>order tracking</code> model (<a href="#_order_tracking">Section 6.8</a>, above), the return statuses are states from the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_the_standard_instruction_state_machine_ism">openEHR Instruction State Machine</a>. Under the <code>custom</code> model, they are specific to the context.</p>
+<p>Each model corresponds to a different set of possible callback statuses returned by the TP engine with the callback notification to represent the state of the remote Task execution. In the <code>standard</code> model it is a generic <code>success | fail | timeout</code> approach. Under the <code>order tracking</code> model (<a href="#_order_tracking">Section 6.8</a>, above), the return statuses are states from the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_the_standard_instruction_state_machine_ism">openEHR Instruction State Machine</a>. Under the <code>custom</code> model, they are specific to the context.</p>
 </div>
 <div class="paragraph">
 <p>Under each model, the next lifecycle state of the Dispatchable Task is determined by the callback status in a specific way. For each possible status under each model, a specific callback handler may be set, defined in terms of the <code>CALLBACK</code> properties <code><em>success_action</em></code>, <code><em>fail_action</em></code>, <code><em>timeout.success_action</em></code>. Any of these (see class <code>EVENT_ACTION</code>) if set may override the default next state, and also may generate a system call and/or a message for the performer.</p>
@@ -6961,7 +6930,8 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Action ISM state<br>
  | <em>timeout</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no callback handlers (except optionally <code><em>timeout.success_action</em></code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no callback handlers<br>
+ (except optionally <code><em>timeout.success_action</em></code>)</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
@@ -7060,7 +7030,7 @@ The following UML diagram illustrates.</p>
 <div class="sect4">
 <h5 id="_callback_processing_for_non_blocking_tasks"><a class="anchor" href="#_callback_processing_for_non_blocking_tasks"></a>6.9.5.2. Callback Processing for Non-blocking Tasks</h5>
 <div class="paragraph">
-<p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>done</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the enclosing Task Group</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code> is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
+<p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>completed</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the enclosing Task Group</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code> is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
 </div>
 <div class="paragraph">
 <p>The following illustrates a non-blocking callback in TP-VML.</p>
@@ -7111,10 +7081,7 @@ The following UML diagram illustrates.</p>
 <p>task-linked: event = <code>TASK_TRANSITION</code>, e.g. 1hr after previous Task done;</p>
 </li>
 <li>
-<p>state-linked: event = <code>STATE_TRIGGER</code>, e.g. 'when systolic BP &gt; 165';</p>
-</li>
-<li>
-<p>any event with added delay: <code>DELAY_EVENT</code>.</p>
+<p>state-linked: event = <code>STATE_TRIGGER</code>, e.g. 'when systolic BP &gt; 165'.</p>
 </li>
 </ul>
 </div></div></td>
@@ -7140,13 +7107,6 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_window</strong>: <code>REMINDER</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Time window after an initial time during which the action should start. Allows for approximate times to be used operationally.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code>TIMER_WAIT</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Timeout handler to use if no other Event is received within a certain time.</p>
@@ -7156,487 +7116,14 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Override for next state to enter on receipt of any Event in <code>_events</code>. Default processing is to enter the <code>available</code> state.</p>
+<p>Override for next state to enter on receipt of any Event in <code><em>events</em></code>. Default processing is to enter the <code>available</code> state.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.9.6.2. PLAN_EVENT&lt;&gt; Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>PLAN_EVENT&lt;&gt; (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Entity representing an Event generated during system execution. Descendants define details of each kind of Event known in the system.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_delay_event_class"><a class="anchor" href="#_delay_event_class"></a>6.9.6.3. DELAY_EVENT Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DELAY_EVENT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Event generated at a time delay after another Event.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>source</strong>: <code>PLAN_EVENT</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Reference to source Event.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>delay</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Length of the delay.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.9.6.4. MANUAL_NOTIFICATION Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>MANUAL_NOTIFICATION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Event type representing the manual notification of a real-world event to the system, such as arrival of a test result, manually taken vital sign value over a threshold.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Natural language or processable description of the event. Needs to be sufficiently detailed to distinguish it from other similar events.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.9.6.5. SYSTEM_NOTIFICATION Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>SYSTEM_NOTIFICATION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Event type representing a notification from a system of some event, represented by notification type and reference identifier.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of system that will generate notification.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>notification_type</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Type of notification, i.e. among types generated by the source system.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Reference identifier, typically a request identifier from a previous request.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.9.6.6. CALLBACK_NOTIFICATION Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_NOTIFICATION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Event generated on receipt of notification of completion of the work of the target of a Dispatchable Task.</p>
-</div>
-<div class="paragraph">
-<p>If <code><em>manually_notified</em></code> is set, the callback will be notified in the real world rather than by the system.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of originating Task.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of original request, may be matchable with <code>EXTERNAL_REQUEST.<em>request_id</em></code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of subject to which callback relates.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>manually_notified</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If True, callback will be manually notified, e.g. by return of ambulatory subject, manual provision of tissue sample, etc.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.9.6.7. STATE_TRIGGER Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_TRIGGER</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Type of event representing an expression referring to one or more tracked variables, reaching a value or passing a threshold value.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean-returning expression that mentions one or more tracked variables, e.g. <code>heart_rate &gt; 120 bpm</code>. Evaluation controlled by Plan variable context.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.9.6.8. TIMER_EVENT Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TIMER_EVENT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Timer expiry event generated by Task Plan engine, after the <code><em>duration</em></code> period has elapsed from the moment of execution reaching the Task to which this Event is attached.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>duration</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Delay from activation time to receive the event notification.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional explanatory purpose of Timer.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.9.6.9. CALENDAR_EVENT Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALENDAR_EVENT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Specifies an event generated during execution when the Plan clock reaches a corresponding entry in the global calendar.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entry_id</strong>: <code>UID_BASED_ID</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of entry within global Plan calendar.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>Iso8601_date_time</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Time of entry in calendar.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.9.6.10. TIMELINE_MOMENT Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TIMELINE_MOMENT</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Specifies a time event generated during execution when the Plan clock reaches a specific point defined in the global Plan Timeline. The time of this timeline moment is calculated as the <code><em>fixed_time</em></code> in the day, e.g. <code>14:30:00</code>, no matter when the Plan is activated.</p>
-</div>
-<div class="paragraph">
-<p>The <code><em>timeline_offset</em></code> attribute can be used to specify a particular offset with respect to a time origin, by default, the origin of the Work Plan. The <code><em>fixed_time</em></code> then corresponds to the first occurrence of that time on the clock <em>after</em> the <code><em>timeline_offset</em></code> is passed.</p>
-</div>
-<div class="paragraph">
-<p>This can be used to specify particular times on particular days, e.g.: <code>07:30:00 on day 3</code>, <code>14:00:00 on day 5</code> and so on by setting <code><em>timeline_offset</em></code> to numbers of days, e.g. <code>P3D</code>, <code>P5D</code> etc. Note that a value of <code>P1D</code> means the first 24h period after Plan activation, whereas if <code><em>timeline_offset</em></code> is not set, the <code><em>fixed_time</em></code> is understood to specify the first moment after Plan activation that this time is reached on the Plan clock.</p>
-</div>
-<div class="paragraph">
-<p>The <code><em>timeline_origin</em></code> can be set to specify another time origin, such as the start of execution of the Task Plan, or of a repeat section.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_offset</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>fixed_time</strong>: <code>TIME_SPECIFIER</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Fixed time specifier, used to expressed a fixed moment in the day.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_origin</strong>: <code>PLAN_TIME_ORIGIN</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Relative origin for <code><em>timeline_offset</em></code>. If not set, Work Plan activation is assumed as the time origin.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_validity</em></strong>: <code>timeline_offset /= Void or fixed_time /= Void</code></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.9.6.11. TASK_TRANSITION Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK_TRANSITION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Event type for Task transitions, specified in terms of target state reached by the associated Task.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of Task with which this event is associated.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transitions</strong>: <code>List&lt;TASK_LIFECYCLE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One or more Task lifecycle transition(s) that defines this event; if more than one, the logical relation is 'OR'.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_event_waitp_class"><a class="anchor" href="#_event_waitp_class"></a>6.9.6.12. EVENT_WAIT&lt;P&gt; Class</h5>
+<h5 id="_event_waitp_class"><a class="anchor" href="#_event_waitp_class"></a>6.9.6.2. EVENT_WAIT&lt;P&gt; Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7684,7 +7171,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.9.6.13. TIMER_WAIT Class</h5>
+<h5 id="_timer_wait_class"><a class="anchor" href="#_timer_wait_class"></a>6.9.6.3. TIMER_WAIT Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7719,11 +7206,23 @@ The following UML diagram illustrates.</p>
 <p>Redefined from <code>EVENT_WAIT</code>.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><strong><em>Inv_no_timeout</em></strong>: <code>timeout = Void</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><strong><em>Inv_has_action</em></strong>: <code>success_action /= Void</code></p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.9.6.14. REMINDER Class</h5>
+<h5 id="_reminder_class"><a class="anchor" href="#_reminder_class"></a>6.9.6.4. REMINDER Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7738,12 +7237,15 @@ The following UML diagram illustrates.</p>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Specialised Timer configured to generate a reminder or alert to performer or other user.</p>
+<p>Specialised Event wait state activated when its <code><em>event</em></code> fires. This is often a <code>TIMER_EVENT</code>, but may be any other kind of event. The <code><em>cancel_events</em></code> list contains references to other events which if they occur prior to the activation event, will cancel the reminder.</p>
+</div>
+<div class="paragraph">
+<p>If the reminder is activated, its <code><em>success_action</em></code> should be configured to generate a reminder or alert to performer or other user.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TIMER_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_WAIT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7751,17 +7253,30 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeats</strong>: <code>Integer</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code>PLAN_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Default value of 0 means no repeats, i.e. one reminder Event is generated. A negative value means repeat forever.</p>
+<p>The event that will generate the reminder. This could be a timer, or it may be a timeline moment, calendar time, or a non-deterministic event, e.g. state trigger.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><strong><em>Inv_no_timeout</em></strong>: <code>timeout = Void</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><strong><em>Inv_has_action</em></strong>: <code>success_action /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.9.6.15. CALLBACK_WAIT Class</h5>
+<h5 id="_callback_wait_class"><a class="anchor" href="#_callback_wait_class"></a>6.9.6.5. CALLBACK_WAIT Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7830,7 +7345,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.9.6.16. EVENT_ACTION Class</h5>
+<h5 id="_event_action_class"><a class="anchor" href="#_event_action_class"></a>6.9.6.6. EVENT_ACTION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7856,7 +7371,7 @@ The following UML diagram illustrates.</p>
 <p>a system call;</p>
 </li>
 <li>
-<p>the next state of the Task or other resume location (<code>_receiver_thread_next_state</code>);</p>
+<p>the next state of the Task or other resume location (<code><em>receiver_thread_next_state</em></code>);</p>
 </li>
 <li>
 <p>a specific resume action indicating to resume in a specific location in the Plan.</p>
@@ -7897,7 +7412,7 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_thread_next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Next state of the receiver thread of control. In the blocking case, this is the original blocking Task of this callback notification; in the non-blocking (context fork) case, it will be the <em>enclosing _Task Group</em> of the original dispatching Task.</p>
+<p>Next state of the receiver thread of control. In the blocking case, this is the original Task of this callback notification; in the non-blocking (context fork) case, it will be the <em>enclosing  Task Group</em> of the original dispatching Task.</p>
 </div>
 <div class="paragraph">
 <p>If not set, default processing will be performed, which for a Task is to enter the <code>available</code> state.</p>
@@ -7913,7 +7428,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.9.6.17. RESUME_ACTION Class</h5>
+<h5 id="_resume_action_class"><a class="anchor" href="#_resume_action_class"></a>6.9.6.7. RESUME_ACTION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7954,6 +7469,441 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="paragraph">
 <p>If not set, the following Task is assumed. It set, is typically an earlier Task, in situations where the current Task(s) are no longer needed once the external action has been completed.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.9.6.8. PLAN_EVENT&lt;&gt; Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>PLAN_EVENT&lt;&gt; (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Entity representing an Event generated during system execution. Descendants define details of each kind of Event known in the system.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>delay</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Length of the delay.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.9.6.9. TIMER_EVENT Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TIMER_EVENT</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Timer expiry event generated by Task Plan engine, after the <code><em>duration</em></code> period has elapsed from the moment of execution reaching the Task to which this Event is attached.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>duration</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Delay from activation time to receive the event notification.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional explanatory purpose of Timer.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.9.6.10. CALENDAR_EVENT Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALENDAR_EVENT</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specifies an event generated during execution when the Plan clock reaches a corresponding entry in the global calendar.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entry_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of entry within global Plan calendar.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>Iso8601_date_time</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Time of entry in calendar.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.9.6.11. TIMELINE_MOMENT Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TIMELINE_MOMENT</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specifies a time event generated during execution when the Plan clock reaches a specific point defined in the global Plan Timeline. The time of this timeline moment is calculated as the <code><em>fixed_time</em></code> in the day, e.g. <code>14:30:00</code>, no matter when the Plan is activated.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>timeline_offset</em></code> attribute can be used to specify a particular offset with respect to a time origin, by default, the origin of the Work Plan. The <code><em>fixed_time</em></code> then corresponds to the first occurrence of that time on the clock <em>after</em> the <code><em>timeline_offset</em></code> is passed.</p>
+</div>
+<div class="paragraph">
+<p>This can be used to specify particular times on particular days, e.g.: <code>07:30:00 on day 3</code>, <code>14:00:00 on day 5</code> and so on by setting <code><em>timeline_offset</em></code> to numbers of days, e.g. <code>P3D</code>, <code>P5D</code> etc. Note that a value of <code>P1D</code> means the first 24h period after Plan activation, whereas if <code><em>timeline_offset</em></code> is not set, the <code><em>fixed_time</em></code> is understood to specify the first moment after Plan activation that this time is reached on the Plan clock.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>timeline_origin</em></code> can be set to specify another time origin, such as the start of execution of the Task Plan, or of a repeat section.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_offset</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>fixed_time</strong>: <code>TIME_SPECIFIER</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Fixed time specifier, used to expressed a fixed moment in the day.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_origin</strong>: <code>PLAN_TIME_ORIGIN</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Relative origin for <code><em>timeline_offset</em></code>. If not set, Work Plan activation is assumed as the time origin.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><strong><em>Inv_validity</em></strong>: <code>timeline_offset /= Void or fixed_time /= Void</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.9.6.12. TASK_TRANSITION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK_TRANSITION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Event type for Task transitions, specified in terms of target state reached by the associated Task.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of Task with which this event is associated.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transitions</strong>: <code>List&lt;TASK_LIFECYCLE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>One or more Task lifecycle transition(s) that defines this event; if more than one, the logical relation is 'OR'.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.9.6.13. MANUAL_NOTIFICATION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>MANUAL_NOTIFICATION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Event type representing the manual notification of a real-world event to the system, such as arrival of a test result, manually taken vital sign value over a threshold.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Natural language or processable description of the event. Needs to be sufficiently detailed to distinguish it from other similar events.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.9.6.14. SYSTEM_NOTIFICATION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>SYSTEM_NOTIFICATION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Event type representing a notification from a system of some event, represented by notification type and reference identifier.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of system that will generate notification.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>notification_type</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Type of notification, i.e. among types generated by the source system.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reference identifier, typically a request identifier from a previous request.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.9.6.15. CALLBACK_NOTIFICATION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_NOTIFICATION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Event generated on receipt of notification of completion of the work of the target of a Dispatchable Task.</p>
+</div>
+<div class="paragraph">
+<p>If <code><em>manually_notified</em></code> is set, the callback will be notified in the real world rather than by the system.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of originating Task.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of original request, may be matchable with <code>EXTERNAL_REQUEST.<em>request_id</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of subject to which callback relates.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>manually_notified</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If True, callback will be manually notified, e.g. by return of ambulatory subject, manual provision of tissue sample, etc.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.9.6.16. STATE_TRIGGER Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_TRIGGER</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Type of event representing an expression referring to one or more tracked variables, reaching a value or passing a threshold value.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean-returning expression that mentions one or more tracked variables, e.g. <code>heart_rate &gt; 120 bpm</code>. Evaluation controlled by Plan variable context.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -8047,7 +7997,7 @@ The following UML diagram illustrates.</p>
 <p>The other two types of Choice Group are blocking.</p>
 </div>
 <div class="paragraph">
-<p>An <code>ADHOC_GROUP / ADHOC_BRANCH</code> structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited <code>BLOCKING_GROUP.<em>timeout</em></code> attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.</p>
+<p>An <code>ADHOC_GROUP / ADHOC_BRANCH</code> structure is processed using an implicit wait state, since it requires user input. It will thus block until input is supplied. The inherited <code>CHOICE_GROUP.<em>timeout</em></code> attribute can be used to defined actions if no user input supplied. When this is not defined, a global timeout is triggered, breaking the wait state.</p>
 </div>
 <div class="paragraph">
 <p>Finally the <code>EVENT_GROUP / EVENT_BRANCH</code> structure is blocking due to <code>TASK_WAIT</code> states set on each branch. It is processed by waiting for one of the events on the branches to occur, or else for the <code><em>timeout</em></code> on the group to fire. As for the Ad hoc case, a timeout may be set in order to force processing if none of the specified events occurs, and if not set, a global timeout will break the wait state if nothing else happens.</p>
