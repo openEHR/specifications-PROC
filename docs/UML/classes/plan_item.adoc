@@ -46,6 +46,6 @@ h|*0..1*
 a|Archetypable structure for recording non hard-modelled information.
 
 h|*0..1*
-|*reminder*: `REMINDER_CHAIN`
-a|Time window after moment of initial availability during which the action may be started, i.e. an 'acceptable delay'. Allows approximate times to be used operationally.
+|*reminders*: `REMINDER`
+a|One or more wait states that may be used to remind the Task performer to do something based on a Timer or other Event. Will be cancelled by the Task transitioning to a terminal state.
 |===

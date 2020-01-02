@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*REMINDER*
 
 h|*Description*
-2+a|Specialised Event wait state activated when its `_event_` fires. This is often a `TIMER_EVENT`, but may be any other kind of event. The `_cancel_events_` list contains references to other events which if they occur prior to the activation event, will cancel the reminder.
+2+a|Specialised Event wait state activated when its `_event_` fires. This is often a `TIMER_EVENT`, but may be any other kind of event. Will be cancelled when/if its owning Task enters a terminal state (i.e. completes or is cancelled or the Plan abandoned).
 
 If the reminder is activated, its `_success_action_` should be configured to generate a reminder or alert to performer or other user.
 
@@ -16,6 +16,10 @@ h|*Inherit*
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
+
+h|*0..1*
+|*transitions*: `List<TASK_LIFECYCLE>`
+a|Specific cancelling transitions; if Void, any transition will cancel this Reminder.
 
 h|*1..1 +
 (redefined)*

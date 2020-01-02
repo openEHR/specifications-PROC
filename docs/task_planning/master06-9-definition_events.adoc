@@ -108,7 +108,7 @@ The timer represented by a `TIMER_EVENT` is started when the wait state to which
 
 ==== Reminder
 
-A reminder can be specified using `REMINDER`, a specialisation of `EVENT_WAIT<PLAN_EVENT>`. Conceptually, a reminder is a wait state that is activated if a secondary event (represented by the `_event_` attribute inherited from `EVENT_WAIT<T>`) occurs in the absence of some other waited-on primary event(s) (represented by `REMINDER._cancel_events_`). Usually the secondary event is a `TIMER_EVENT`, but it could be anything else. If any of the primary events occurs, the reminder is cancelled. Primary events are usually `TASK_TRANSITION` events, representing that the performer has progressed the work of the Task.
+A reminder can be specified using `REMINDER`, a specialisation of `EVENT_WAIT<PLAN_EVENT>`. Conceptually, a reminder is a wait state that is activated if a secondary event (represented by the `_event_` attribute inherited from `EVENT_WAIT<T>`) occurs in the absence of waited-on primary event(s), i.e. expected lifecycle transitions of the owning Task. Usually the secondary event is a `TIMER_EVENT`, but it could be anything else. If any of the primary events occurs, the reminder is cancelled.
 
 === Task Wait State
 
@@ -130,12 +130,12 @@ image::{diagrams_uri}/uc_task_timing_1.svg[id=timing_patterns_1, align="center"]
 
 ==== Reminder
 
-When an event specified by a `TASK_WAIT._events_` fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be reminded, the `PLAN_ITEM._reminders_` attribute may be used to specify one or more `REMINDER` wait states. Each of these will have a `TIMER_EVENT` (or other event) as its firing `_event_`, and will contain in its `_cancel_events_` list a `TASK_TRANSITION` event representing any transition out of the `available` state for the current Task, indicating the performer has done some work.
+When an event specified by a `TASK_WAIT._events_` fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be reminded, the `PLAN_ITEM._reminders_` attribute may be used to specify one or more `REMINDER` wait states. Each of these will have a `TIMER_EVENT` (or other event) as its firing `_event_`.
 
 [.tbd]
-TBD: cancelling a reminder chain; need a controller object.
+TBD: what about transition to `underway`?
 
-If a Reminder is activated, it will generate a notification, specified via the inherited `_success_action_` attribute. If still no activity occurs for some time, additional reminders may fire, and generate new notifications. As soon as the performer progresses the Task to a new state, any reminder for which such a transition is cancelling, will be cancelled. An example is illustrated below.
+If a Reminder is activated, it will generate a notification, specified via the inherited `_success_action_` attribute. If still no activity occurs for some time, additional reminders may fire (due to Timer events with longer times), and generate new notifications. As soon as the performer progresses the Task to a new state, any reminder for which such a transition is cancelling, will be cancelled. An example is illustrated below.
 
 [.text-center]
 .Task wait state with reminder
