@@ -567,12 +567,12 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-30" target="_blank" rel="noopener">SPECPROC-30</a>. Adjustments to Events model.<br>
  change <code>TASK_WAIT.<em>start_window</em>: REMINDER[0..1]</code> to <code>PLAN_ITEM.<em>reminders</em>: REMINDER[*]</code>;<br>
  add invariant to <code>TIMER_WAIT</code> to prevent it having a timeout;<br>
- make <code>REMINDER</code> a generic <code>EVENT_WAIT</code> to allow it to be fired by any deterministic event, not just a timer event;<br>
+ make <code>REMINDER</code> a generic <code>EVENT_WAIT</code> to allow it to be fired by any event, not just a timer event;<br>
  remove <code>DELAY_EVENT</code>; move its <code><em>delay</em></code> attribute to <code>PLAN_EVENT</code>,<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-31" target="_blank" rel="noopener">SPECPROC-31</a>. Simplifications to Conditional structures: remove <code>BLOCKING_GROUP</code>, <code>BLOCKING_BRANCH</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 Dec 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>03 Jan 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4.2</p></td>
@@ -4214,9 +4214,9 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reminders</strong>: <code>REMINDER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reminders</strong>: <code>List&lt;REMINDER&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One or more wait states that may be used to remind the Task performer to do something based on a Timer or other Event. Will be cancelled by the Task transitioning to a terminal state.</p>
+<p>Optional wait state(s) that may be used to remind the Task performer to do something based on a Timer or other Event. Will be cancelled by the Task transitioning to any new state from the <code>available</code> state, due to performer activity.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5244,7 +5244,7 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer.</p>
+<p>Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer, e.g. 'patient no allergic to penicillin'.</p>
 </div>
 <div class="paragraph">
 <p>Evaluated when encountered.</p>
@@ -5254,7 +5254,7 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A Boolean expression that can be evaluated at runtime to determine availability.</p>
+<p>An optional formal Boolean expression that can be machine-evaluated at runtime to determine availability, if the relevant variables exist.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7251,13 +7251,6 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transitions</strong>: <code>List&lt;TASK_LIFECYCLE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Specific cancelling transitions; if Void, any transition will cancel this Reminder.</p>
-</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
