@@ -14,11 +14,11 @@ h|*Attributes*
 
 h|*1..1*
 |*description*: `String`
-a|Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer.
+a|Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer, e.g. 'patient no allergic to penicillin'.
 
 Evaluated when encountered.
 
 h|*0..1*
 |*expression*: `BOOLEAN_CONTEXT_EXPRESSION`
-a|A Boolean expression that can be evaluated at runtime to determine availability.
+a|An optional formal Boolean expression that can be machine-evaluated at runtime to determine availability, if the relevant variables exist.
 |===

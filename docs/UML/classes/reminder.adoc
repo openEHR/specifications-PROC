@@ -17,10 +17,6 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
-|*transitions*: `List<TASK_LIFECYCLE>`
-a|Specific cancelling transitions; if Void, any transition will cancel this Reminder.
-
 h|*1..1 +
 (redefined)*
 |*event*: `PLAN_EVENT`

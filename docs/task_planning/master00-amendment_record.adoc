@@ -10,12 +10,12 @@
 |{spec_tickets}/SPECPROC-30[SPECPROC-30^]. Adjustments to Events model. +
  change `TASK_WAIT._start_window_: REMINDER[0..1]` to `PLAN_ITEM._reminders_: REMINDER[*]`; +
  add invariant to `TIMER_WAIT` to prevent it having a timeout; +
- make `REMINDER` a generic `EVENT_WAIT` to allow it to be fired by any deterministic event, not just a timer event; +
+ make `REMINDER` a generic `EVENT_WAIT` to allow it to be fired by any event, not just a timer event; +
  remove `DELAY_EVENT`; move its `_delay_` attribute to `PLAN_EVENT`, +
  {spec_tickets}/SPECPROC-31[SPECPROC-31^]. Simplifications to Conditional structures: remove `BLOCKING_GROUP`, `BLOCKING_BRANCH`. 
 |M Polajnar, +
  T Beale
-|[[latest_issue_date]]30 Dec 2019
+|[[latest_issue_date]]03 Jan 2020
 
 |1.4.2
 |{spec_tickets}/SPECPUB-7[SPECPUB-7^]: Convert citations to bibtex form.
