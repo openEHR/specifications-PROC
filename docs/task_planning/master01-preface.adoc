@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document describes the openEHR Task Planning Model, which is a formal specification of information representing Planned Tasks. It is designed as a formal extension to the openEHR EHR Information Model, and assumes the types described in that specification.
+This specification of the openEHR Task Planning facility addresses requirements in the area of automated clinical process support in which some form of granular planning of clinical work is required. The central concept is that of a _plan_ (or set of plans) designed to achieve a _goal_ and that relate to an _active biological subject_.
 
 The intended audience includes:
 

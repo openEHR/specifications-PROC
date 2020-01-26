@@ -38,21 +38,38 @@
 </li>
 <li><a href="#_background">2. Background</a>
 <ul class="sectlevel2">
-<li><a href="#_survey_of_requirements">2.1. Survey of Requirements</a></li>
-<li><a href="#_limitations_of_the_openehr_standard_entry_model">2.2. Limitations of the openEHR standard Entry Model</a></li>
-<li><a href="#_care_pathways_and_task_planning">2.3. Care Pathways and Task Planning</a></li>
-<li><a href="#_work_plans_versus_task_lists_todo_lists">2.4. Work Plans versus Task Lists (TODO Lists)</a></li>
-<li><a href="#_execution_environment">2.5. Execution Environment</a>
+<li><a href="#_survey_of_requirements">2.1. Survey of Requirements</a>
 <ul class="sectlevel3">
-<li><a href="#_general_paradigm">2.5.1. General Paradigm</a></li>
-<li><a href="#_distributed_plans">2.5.2. Distributed Plans</a></li>
-<li><a href="#_time_and_work_in_the_real_world">2.5.3. Time and Work in the Real World</a></li>
+<li><a href="#_how_can_computers_improve_clinical_care">2.1.1. How Can Computers Improve Clinical Care?</a></li>
+<li><a href="#_cognitive_model">2.1.2. Cognitive Model</a>
+<ul class="sectlevel4">
+<li><a href="#_the_co_pilot_paradigm">2.1.2.1. The Co-pilot Paradigm</a></li>
+<li><a href="#_voice_based_hci">2.1.2.2. Voice-based HCI</a></li>
 </ul>
 </li>
-<li><a href="#_relationship_to_workflow_formalisms_and_systems">2.6. Relationship to Workflow Formalisms and Systems</a></li>
+<li><a href="#_care_pathways">2.1.3. Care Pathways</a></li>
+<li><a href="#_order_sets">2.1.4. Order Sets</a></li>
+<li><a href="#_time_and_work_in_the_real_world">2.1.5. Time and Work in the Real World</a></li>
 </ul>
 </li>
-<li><a href="#_requirements">3. Requirements</a>
+<li><a href="#_execution_environment">2.2. Execution Environment</a>
+<ul class="sectlevel3">
+<li><a href="#_general_paradigm">2.2.1. General Paradigm</a></li>
+<li><a href="#_distributed_plans">2.2.2. Distributed Plans</a></li>
+</ul>
+</li>
+<li><a href="#_what_task_planning_does_not_do">2.3. What Task Planning Does Not Do</a>
+<ul class="sectlevel3">
+<li><a href="#_work_plans_versus_task_lists_todo_lists">2.3.1. Work Plans versus Task Lists (TODO Lists)</a></li>
+<li><a href="#_appointment_booking_and_management">2.3.2. Appointment Booking and Management</a></li>
+</ul>
+</li>
+<li><a href="#_clinical_decision_support_cds">2.4. Clinical Decision Support (CDS)</a></li>
+<li><a href="#_relationship_to_workflow_formalisms_and_systems">2.5. Relationship to Workflow Formalisms and Systems</a></li>
+<li><a href="#_limitations_of_the_openehr_standard_entry_model">2.6. Limitations of the openEHR standard Entry Model</a></li>
+</ul>
+</li>
+<li><a href="#_technical_requirements">3. Technical Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_flexible_allocation_of_workers">3.1. Flexible Allocation of Workers</a></li>
 <li><a href="#_coordinated_teamwork">3.2. Coordinated Teamwork</a></li>
@@ -824,6 +841,9 @@
 <div class="ulist">
 <ul>
 <li>
+<p>Danielle Santos Alves, RN, midwife, Federal University of Pernambuco (UFPE), Brazil</p>
+</li>
+<li>
 <p>Borut Fabjan, Program Manager, Marand, Slovenia</p>
 </li>
 <li>
@@ -842,7 +862,7 @@
 <p>Bjørn Næss, DIPS, Norway</p>
 </li>
 <li>
-<p>Pablo Pazos Gutierrez, CaboLabs, Uruguay</p>
+<p>Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay</p>
 </li>
 <li>
 <p>Pekka Pesola, Engineer, Tieto, Finland</p>
@@ -908,7 +928,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document describes the openEHR Task Planning Model, which is a formal specification of information representing Planned Tasks. It is designed as a formal extension to the openEHR EHR Information Model, and assumes the types described in that specification.</p>
+<p>This specification of the openEHR Task Planning facility addresses requirements in the area of automated clinical process support in which some form of granular planning of clinical work is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active biological subject</em>.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -1000,72 +1020,103 @@
 <div class="sect2">
 <h3 id="_survey_of_requirements"><a class="anchor" href="#_survey_of_requirements"></a>2.1. Survey of Requirements</h3>
 <div class="paragraph">
-<p>This specification for a Task Planning facility for openEHR addresses requirements in a number of areas in which some form of granular planning of clinical tasks is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active biological subject</em> (normally a human or animal patient), rather than a passive object, such as a parcel or tissue sample. The requirements covered include one-off scheduled tasks (e.g. surgical procedure), long-running scheduled tasks (e.g. drug administration), recurring tasks (e.g. monitoring), and coordinated teamwork (e.g. acute stroke management). Related requirements of individual worker task lists are discussed below.</p>
+<p>The following sections discuss the requirements for a category of computational system that supports the execution of clinical processes by their performers. The general concept of 'work plans' consisting of 'sub-plans', 'tasks', decision points etc is assumed.</p>
+</div>
+<div class="sect3">
+<h4 id="_how_can_computers_improve_clinical_care"><a class="anchor" href="#_how_can_computers_improve_clinical_care"></a>2.1.1. How Can Computers Improve Clinical Care?</h4>
+<div class="paragraph">
+<p>Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself <em>perform</em> the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since a clinical process is not the same thing as the work undertaken by one of its performers.</p>
 </div>
 <div class="paragraph">
-<p>In more sophisticated environments (generally hospitals), much task planning relates to guideline-based orders and medication administration. There are various levels at which to understand this, from care pathways (potentially covering management of a complex condition like sepsis) to specific workflows for particular elements of care within a pathway. One common conceptual entity is the so-called <em>order set</em>, which is generally understood as:</p>
+<p>To understand the form a clinical workflow / planning system must take to be useful, we need to consider clinical work is performed in the real world.</p>
+</div>
+<div class="paragraph">
+<p>The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically-driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
+</div>
+<div class="paragraph">
+<p>The second aspect to consider is that clinical professionals don&#8217;t need to be told how to do their routine work. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>a set of orders for medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;</p>
+<p><em>following care pathways and guidelines</em> for complex conditions e.g. acute stroke, sepsis, complex childbirth; also guidelines that incorporate changing <em>policy</em> on the use of specific types of test whose costs and risks change over time (e.g. CT scan, MRI, certain drugs);</p>
 </li>
 <li>
-<p>potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;</p>
+<p><em>clinical check lists</em> for multi-step procedures, including surgery, to prevent busy or tired personnel forgetting common steps;</p>
 </li>
 <li>
-<p>descriptive meta-data, including authors, history, evidence base, etc.</p>
+<p><em>decision support</em> to determine appropriate treatments, medications from among numerous and/or changing possibilities;</p>
+</li>
+<li>
+<p><em>verification (signing off)</em> of tasks performed for medico-legal reasons, process improvement (including <em>process mining</em>).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In openEHR, the first item corresponds to a set of openEHR Instructions, while the second is a candidate for representation in openEHR via the Task Planning facility documented in this specification. Hence, the addition of Task Planning to openEHR provides an important element enabling the order set notion to be formalised in openEHR.</p>
+<p>In general, the above capabilities address three human fallibilities: limited capacity to deal with complexity (often denoted as <a href="https://en.wikipedia.org/wiki//The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>); the inability to keep up with change (new medications, research etc); and the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.</p>
 </div>
 <div class="paragraph">
-<p>The specification addresses the lack of fine-grained task planning facilities in the basic openEHR specifications, which are limited to the Instruction and Action concepts. These provide ways of stating orders and recording actions performed after the fact, but no way of representing or sharing plans for actions before they are performed. This limitation is described in more detail below.</p>
-</div>
-<div class="paragraph">
-<p>The approach followed here is to specify representations of task plans at various stages in the planning lifecycle, i.e.:</p>
+<p>Automated support for the above would significantly aid the short-term, single clinician/patient situation, but much clinical care today is team-based, and also unfolds over a longer time than a single work shift or day. Therefore another important kind of help is needed:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>design time</strong>: templates or prototypes of standard task plans are developed and published;</p>
+<p><em>coordination</em> of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>team members across departments (via e.g. plan-generated notifications); example: acute stroke care;</p>
 </li>
 <li>
-<p><strong>runtime - planning</strong>: task plan prototypes are turned into concrete plans for specific work items for specific patients and activated;</p>
+<p>workers undertaking care spanning multiple shifts and personnel, e.g. chemotherapy administration.</p>
 </li>
-<li>
-<p><strong>runtime - work execution</strong>: task plans are executed by clinical performers and the plan maintained up to date in real time;</p>
-</li>
-<li>
-<p><strong>runtime - work completion</strong>: as each task is performed, standard clinical statements (openEHR Entries) are committed to the EHR to record what was done.</p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The models described here are thus designed to support both design-time modelling (via archetypes, terminology subsetting) and runtime execution with modifications and abandonment possible while the work is being performed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_limitations_of_the_openehr_standard_entry_model"><a class="anchor" href="#_limitations_of_the_openehr_standard_entry_model"></a>2.2. Limitations of the openEHR standard Entry Model</h3>
-<div class="paragraph">
-<p>The Entry model described in the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html">openEHR EHR IM</a> defines a way to record clinical statements representing real observations, decisions, orders and actions that have occurred, in the EHR. In this scheme, Instructions represent orders for certain kinds of Actions to be performed. Actions and Observations represent events that have subsequently occurred in the real world - a real drug administration or an actual blood sugar measurement.</p>
+<p>Another type of support that process automation can provide is to enable <em>on-the-fly interaction with the EHR</em>, including retrieval and recording. The idea here is to <em>integrate</em> EHR recording (well known as a time-consuming activity <em>additional</em> to clinical care) with execution of clinical work, such that when the work is done, the EHR is up-to-date, or very close to it.</p>
 </div>
 <div class="paragraph">
-<p>There is however a common additional need to concretely plan individual Actions and sometimes Observations ahead of time, as a set of 'tasks', often known as a 'task list'. Here we will use the more general term <em>task plan</em> to mean a specification of a set of actions to be performed by actors (usually human, but potentially machine as well) providing care.</p>
+<p>A final category of requirement for clinical process automation is <em>training</em>. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one&#8217;s professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.</p>
 </div>
 <div class="paragraph">
-<p>A set of planned tasks need not all relate to a single order, or indeed any order. The general picture is that a task plan corresponds to some self-standing healthcare job to be done, which may include tasks designed to fulfill multiple orders, and also tasks not defined by orders.</p>
+<p>The sections below elucidate some of the topics mentioned above.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cognitive_model"><a class="anchor" href="#_cognitive_model"></a>2.1.2. Cognitive Model</h4>
+<div class="sect4">
+<h5 id="_the_co_pilot_paradigm"><a class="anchor" href="#_the_co_pilot_paradigm"></a>2.1.2.1. The Co-pilot Paradigm</h5>
+<div class="paragraph">
+<p>Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, but does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time <em>override</em> system-proposed tasks or decisions.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_voice_based_hci"><a class="anchor" href="#_voice_based_hci"></a>2.1.2.2. Voice-based HCI</h5>
+<div class="paragraph">
+<p>One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home AV systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>by replacing physical keyboard interaction with voice, it enables interaction with the system to occur in <em>parallel</em>, and therefore in real-time, with clinical work that typically already occupies the worker&#8217;s hands and eyes;</p>
+</li>
+<li>
+<p>it largely removes the problem of maintaining the <em>sterile field</em> around a patient that would otherwise be jeapordised by multiple workers touching keyboards and touchscreens.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>To meet this need, a further kind of content can be recorded in the EHR, representing task plans containing tasks. Here we understand the word 'task' to mean 'definition of a planned task', i.e. a description of something to be performed in the future.</p>
+<p>Voice control is also likely to be crucial to enabling a clinical process support system to operate as an intelligent co-pilot rather than an overbearing presence in the work environment, since it starts to emulate the normal conversational abilities of human workers, via which any principal worker may ask for help as needed, but also limit system intervention when it is not needed.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_care_pathways_and_task_planning"><a class="anchor" href="#_care_pathways_and_task_planning"></a>2.3. Care Pathways and Task Planning</h3>
+</div>
+<div class="sect3">
+<h4 id="_care_pathways"><a class="anchor" href="#_care_pathways"></a>2.1.3. Care Pathways</h4>
 <div class="paragraph">
-<p>In order to respond to the need to formally represent clinical Task Plans, and to close the gap between orders and reported actions in openEHR, this specification provides a model of a <em>task planning</em> facility, which is conceptually situated in a larger semantic framework that includes entities at multiple levels, i.e.:</p>
+<p>The <em>task planning</em> model described in this specification is conceptually situated in a larger semantic framework that includes entities at multiple levels, i.e.:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1081,7 +1132,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>These entities and their relationships can be envisaged as follows.</p>
+<p>These entities and their relationships can be visualised as follows.</p>
 </div>
 <div id="pathway_plan_triad" class="imageblock text-center text-center">
 <div class="content">
@@ -1090,42 +1141,93 @@
 <div class="title">Figure 1. The care pathway / care plan / task plan triad</div>
 </div>
 <div class="paragraph">
-<p>The above diagram shows task plans as a concrete planning artefact that results from a care plan for a specific patient, and may be partly based on published care pathways and clinical guidelines, each of which can be thought of as a basis for task plans for an ideal patient for a given condition (e.g. pregnancy, sepsis, stroke etc). Where care pathways (or parts thereof) can be represented as formal artefacts, they can act as prototypes for task pan structures. However, a care pathway for a model patient is not the same thing as a task plan(s) for an actual patient, since each real patient has his/her own specific combination of conditions, preferences and ultimately phenotypic specificities. Thus, where task plans are based on care pathways, the latter act as prototypes whose ideal form may be modified by the specific care plan and/or as the care team deems appropriate.</p>
+<p>The above diagram shows task plans as concrete planning artefacts that result from one or more care plans for a specific patient, and may be partly based on published care pathways and/or clinical guidelines, each of which can be thought of as a basis for task plans for an ideal patient for a given condition (e.g. pregnancy, sepsis, stroke etc). Where care pathways (or parts thereof) can be represented as formal artefacts, they can act as prototypes for task pan structures. However, a care pathway for a model patient is not the same thing as a task plan(s) for an actual patient, since each real patient has his/her own specific combination of conditions, history, preferences and phenotype. Thus, where task plans are based on care pathways, the latter act as prototypes whose ideal form may be modified by the specific care plan and/or as the care team deems appropriate.</p>
 </div>
 <div class="paragraph">
-<p>This specification addresses the representation and semantics of concrete task plans. It does not address the representation of the care plan and it does not say anything directly about formal care pathway representation, although it may be surmised for the future that the formal form of a care pathway may have significant commonality with the task plan model presented here, which may provide a useful guide for future work in care pathway representation.</p>
+<p>This specification addresses the representation and semantics of concrete task plans. It does not address the representation of care plans, which normally contain recommendations for prescriptions, rather than granular task plans. However it is likely to be very close to a formal model of care pathways, although further research will be needed to verify this.</p>
 </div>
 <div class="paragraph">
-<p>The task plan model does however assume that a task plan may be <em>created</em> due to a care plan of some kind, and that the care plan may in turn have been derived from one or more care pathways or guidelines; accordingly, the means to identify the plan and pathway / guideline are provided.</p>
-</div>
-<div class="paragraph">
-<p>In the following, the term 'task' denotes the definition of an action to be performed, the report of which is normally documented in openEHR by the <code>ACTION</code> Entry subtype. However, 'task' is also understood more generally, so that it may also when performed, result in an openEHR <code>OBSERVATION</code> or other Entry subtype where appropriate. In the great majority of cases therefore, the term 'task' as it appears here equates to openEHR Actions and Observations.</p>
-</div>
-<div class="paragraph">
-<p>For the sake of brevity, 'Action' below is intended to imply an openEHR <code>ACTION</code>, <code>OBSERVATION</code> or potentially other Entry sub-type, unless otherwise stated.</p>
+<p>The task plan model does however assume that a task plan may be <em>created</em> due to a care plan, and that the care plan may in turn have been derived from one or more care pathways or guidelines; accordingly, the means to identify the plan and pathway / guideline are provided.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_work_plans_versus_task_lists_todo_lists"><a class="anchor" href="#_work_plans_versus_task_lists_todo_lists"></a>2.4. Work Plans versus Task Lists (TODO Lists)</h3>
-<div class="paragraph">
-<p>The specification is based around the concept of a <em>work plan</em>, which is designed to achieve a goal, and at execution time is applied to a <em>subject</em>, i.e. human or other subject of care. The plan notion is thus goal- and subject-centric.</p>
-</div>
-<div class="paragraph">
-<p>A related concept is that of the <em>task list</em> (aka 'TODO list'), which is a logical list of tasks for a worker to perform. The task list is thus worker-centric, not subject-centric, and as such, task lists must be <em>derived</em> from task plans. Conceptually this is done by processing all extant task plans for some organisational unit (say a hospital department) and allocating particular tasks to particular actors. Allocation may happen in a just-in-time fashion, and may be modified (e.g. due to unforeseen unavailability of workers), such that a task list is essentially a dynamic personal calendar view for the short term (typically days or weeks) whereas task plans may correspond to any length of time, from a few minutes to years.</p>
-</div>
-<div class="paragraph">
-<p>This specification does not cover the model of worker task lists or extracted calendar views, although it provides some guidance on how to generate task lists for workers.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_execution_environment"><a class="anchor" href="#_execution_environment"></a>2.5. Execution Environment</h3>
 <div class="sect3">
-<h4 id="_general_paradigm"><a class="anchor" href="#_general_paradigm"></a>2.5.1. General Paradigm</h4>
+<h4 id="_order_sets"><a class="anchor" href="#_order_sets"></a>2.1.4. Order Sets</h4>
 <div class="paragraph">
-<p>As soon as the notion of planning is assumed, we enter the workflow space, and it becomes essential to describe the intended paradigm of the human / machine execution environment. This is due to the fact that any description of planned tasks acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the executing actors (generally human, although they may also be devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.</p>
+<p>One common conceptual entity is the so-called <em>order set</em>, which is generally understood as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a set of orders for medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;</p>
+</li>
+<li>
+<p>potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;</p>
+</li>
+<li>
+<p>descriptive meta-data, including authors, history, evidence base, etc.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Although the task plan facility described in this specification is relatively simple compared to some workflow tools, we can nevertheless distinguish the following entities in the environment:</p>
+<p>In most EHR/EMR architectures (including openEHR), the first item corresponds to a set of 'orders' or 'prescriptions' (in openEHR, 'Instructions'), while the second is a candidate for representation via the Task Planning facility described in this specification.</p>
+</div>
+<div class="paragraph">
+<p>This specification addresses the lack of fine-grained task planning facilities in most EHR/EMR architectures and products, which are limited to Prescription, Order and Action concepts. These provide ways of stating orders and recording actions performed after the fact, but no way of representing or sharing plans for actions before they are performed. This limitation as it applies to openEHR is described in more detail below.</p>
+</div>
+<div class="paragraph">
+<p>The approach followed here is to specify representations of task plans at various stages in the planning lifecycle, i.e.:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>design time</em>: templates or prototypes of standard task plans are developed and published;</p>
+</li>
+<li>
+<p><em>runtime - planning</em>: task plan prototypes are turned into concrete plans for specific work items for specific patients and activated;</p>
+</li>
+<li>
+<p><em>runtime - work execution</em>: task plans are executed by clinical performers and the plan maintained up to date in real time;</p>
+</li>
+<li>
+<p><em>runtime - work completion</em>: as each task is performed, standard clinical statements (openEHR Entries) are committed to the EHR to record what was done.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The models described here are thus designed to support both design-time modelling (via archetypes, terminology subsetting) and runtime execution with modifications and abandonment possible while the work is being performed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_time_and_work_in_the_real_world"><a class="anchor" href="#_time_and_work_in_the_real_world"></a>2.1.5. Time and Work in the Real World</h4>
+<div class="paragraph">
+<p>One of the key characteristics of work in the real world is the passage of time, and how it relates to workers. In general human workers are present for a <em>shift</em> or <em>work day</em> of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during normal working hours. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).</p>
+</div>
+<div class="paragraph">
+<p>A similar kind of pattern, although usually with longer periods, applies to machines that may be active parties in organised work (e.g. robotic surgery devices), since all machines eventually need to be serviced, and in the long term, obsoleted and replaced. Service patterns may be a combination of regular planned down-times and unplanned failures.</p>
+</div>
+<div class="paragraph">
+<p>The general picture of workers is therefore one of repeating cycles of presence and thus <em>availability</em> (shifts, work days, in-service periods) during normal 'at-work' periods, punctuated by variable absences for holidays, sickness, downtime, and bounded by commencement and completions of appointments.</p>
+</div>
+<div class="paragraph">
+<p>In contrast to this, the 'work to be done', whether a well-defined procedure (e.g. GP encounter, surgery) or open-ended care situation (diabetes, post-trauma therapy) will usually have its own natural temporal extension. The presence of the patient as the subject in healthcare usually follows this, although may not, such as in the case of pathology and microbiology lab testing, in which tissue samples are proximate subject of the work. Consequently, there are a variety of relationships between the innate temporal structure of the planned work, and that of the work execution by its performers.</p>
+</div>
+<div class="paragraph">
+<p>In some cases, an entire piece of work may be completable within a work <em>session</em>, during which the workers do not change. Most doctor&#8217;s appointments and single surgeries are of this nature. In other cases, an overall task takes some days or weeks, i.e. many shifts and work days. Open-ended care processes will run through shifts, work-days and also longer absences, as well as permanent employment changes. To make things more difficult, it should always be remembered that no process, short or long, is guaranteed to be conveniently contained within a shift or non-holiday period - unplanned worker absence may occur at any time and any point within an executing process.</p>
+</div>
+<div class="paragraph">
+<p>Two conclusions can be drawn from the above. The first is that variable worker availability is a fact of life, and any machine-based process execution engine must deal with it. The second is that, for long running processes, the executing task plan is likely to be the <em>only</em> coherent single record of planned and performed actions on the subject, as shifts and holidays pass, new workers commence, and others leave or retire.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execution_environment"><a class="anchor" href="#_execution_environment"></a>2.2. Execution Environment</h3>
+<div class="sect3">
+<h4 id="_general_paradigm"><a class="anchor" href="#_general_paradigm"></a>2.2.1. General Paradigm</h4>
+<div class="paragraph">
+<p>As soon as the notion of <em>planning</em> is assumed, we enter the workflow space, and it becomes essential to describe the intended paradigm of the human / machine execution environment. This is due to the fact that any description of planned tasks acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the performing actors (generally human, although they may also be autonomous devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.</p>
+</div>
+<div class="paragraph">
+<p>Firstly, we distinguish the following entities in the work environment:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1147,7 +1249,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>performing actor</strong>, i.e. a human, machine or software application that performs tasks in the real world as part of a procedure designed to achieve a goal;</p>
+<p><strong>performing actor</strong>: an autonomous human, machine or software application that performs tasks in the real world as part of a procedure designed to achieve a goal;</p>
 </li>
 </ul>
 </div>
@@ -1155,26 +1257,26 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, ordering of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a challenge of <em>synchronisation</em> of the two.</p>
+<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a work plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, coherent sequencing of tasks and so on. A workflow application provides help by maintaining a representation of the work plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given work plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the work plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a challenge of <em>synchronisation</em> of the two.</p>
 </div>
 <div class="paragraph">
-<p>There is also a question of communication between the workflow application and the real world actors, which we can think of as consisting of:</p>
+<p>There is also a question of the nature of the communication between the workflow application and the real world actors, which we can think of as consisting of:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>commands</strong>: signals from the work plan system to a real world actor to do something;</p>
+<p><em>commands</em>: signals from the work plan system to a real world actor to do something;</p>
 </li>
 <li>
-<p><strong>notifications</strong>: signals to and from the work plan system and the real world actors on the status of work, e.g. 'new work item', 'item completed' etc;</p>
+<p><em>notifications</em>: signals to and from the work plan system and the real world actors on the status of work, e.g. 'new work item', 'item completed' etc;</p>
 </li>
 <li>
-<p><strong>data</strong>: data collection from actors and presentation to actors from the system.</p>
+<p><em>data</em>: data collection from actors and presentation to actors from the system.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This environment can be illustrated as follows.</p>
+<p>This view of the environment can be illustrated as follows.</p>
 </div>
 <div id="workflow_execution_paradigm" class="imageblock text-center text-center">
 <div class="content">
@@ -1184,7 +1286,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_distributed_plans"><a class="anchor" href="#_distributed_plans"></a>2.5.2. Distributed Plans</h4>
+<h4 id="_distributed_plans"><a class="anchor" href="#_distributed_plans"></a>2.2.2. Distributed Plans</h4>
 <div class="paragraph">
 <p>There is a potentially complicated relationship between IT environments in which computable plans execute and the work-places where the human actors are found. This is because 'systems' in a concrete sense are part of IT installations owned by organisations that may or may not be the employers of the workers, while plans may logically span more than one distinct work-place. For example a clinical plan for diagnosing and resolving angina may contain steps that are performed by:</p>
 </div>
@@ -1197,7 +1299,7 @@
 <p>a general practitioner (in a separate health clinic);</p>
 </li>
 <li>
-<p>a cardiologist (within a hospital, quite often a different one);</p>
+<p>a cardiologist (within a hospital, possibly a different one to the original ED attendance);</p>
 </li>
 <li>
 <p>a radiology department (usually within a hospital, possibly also different, for reasons of availability, machine type etc).</p>
@@ -1226,47 +1328,102 @@
 <p>One of the challenges in such distributed work environments, which are the norm in healthcare, is the ownership, creation, maintenance and sharing of work plan definitions that implicate workers across enterprises.</p>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_what_task_planning_does_not_do"><a class="anchor" href="#_what_task_planning_does_not_do"></a>2.3. What Task Planning Does Not Do</h3>
+<div class="paragraph">
+<p>Some common capabilities related to clinical process management are not directly covered by this specification, as described in the following sub-sections.</p>
+</div>
 <div class="sect3">
-<h4 id="_time_and_work_in_the_real_world"><a class="anchor" href="#_time_and_work_in_the_real_world"></a>2.5.3. Time and Work in the Real World</h4>
+<h4 id="_work_plans_versus_task_lists_todo_lists"><a class="anchor" href="#_work_plans_versus_task_lists_todo_lists"></a>2.3.1. Work Plans versus Task Lists (TODO Lists)</h4>
 <div class="paragraph">
-<p>One of the key characteristics of work in the real world is the passage of time, and how it relates to workers. In general human workers are present for a <em>shift</em> or <em>work day</em> of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during a work day. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).</p>
+<p>The specification is based around the concept of a <em>work plan</em>, which is designed to achieve a goal, and at execution time is applied to a <em>subject</em>, i.e. human or other subject of care. The plan notion is thus goal- and subject-centric.</p>
 </div>
 <div class="paragraph">
-<p>A similar kind of pattern, although usually with longer periods, applies to machines that may be active parties in organised work (e.g. robotic surgery devices), since all machines eventually need to be serviced, and in the long term, obsoleted and replaced. Service patterns may be a combination of regular planned down-times and unplanned failures.</p>
+<p>A related concept is that of the <em>task list</em> (aka 'TODO list'), which is a logical list of tasks for a worker to perform. The task list is thus worker-centric, not subject-centric, and as such, task lists must be <em>derived</em> from task plans. Conceptually this is done by processing all extant task plans for some organisational unit (say a hospital department) and allocating particular tasks to particular actors. Allocation may happen in a just-in-time fashion, and may be modified (e.g. due to unforeseen unavailability of workers), such that a task list is essentially a dynamic personal calendar view for the short term (typically days or weeks) whereas task plans may correspond to any length of time, from a few minutes to years.</p>
 </div>
 <div class="paragraph">
-<p>The general picture of workers is therefore one of repeating cycles of presence and thus <em>availability</em> (shifts, work days, in-service periods) during normal 'at-work' periods, punctuated by variable absences for holidays, sickness, downtime, and bounded by commencement and completions of appointments.</p>
+<p>This specification does not cover the model of worker task lists or extracted calendar views, although it provides some guidance on how to generate task lists for workers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_appointment_booking_and_management"><a class="anchor" href="#_appointment_booking_and_management"></a>2.3.2. Appointment Booking and Management</h4>
+<div class="paragraph">
+<p>The planning paradigm envisaged by this specification does not try to directly address the problem of concretely creating and managing bookings for appointments, which, while conceptually simple, in real life unavoidably entails the complexity of ad hoc communication, cancellations, rebooking and so on. Instead it assumes that the existing systems designed to help perform this mostly administrative work will manage to get patients to intended appointments.</p>
 </div>
 <div class="paragraph">
-<p>In contrast to this, the 'work to be done', whether a well-defined procedure (e.g. GP encounter, surgery) or open-ended care situation (diabetes, post-trauma therapy) will usually have its own natural temporal extension. The presence of the patient as the subject in healthcare usually follows this, although may not, such as in the case of pathology and microbiology lab testing, in which tissue samples are proximate subject of the main work. Consequently, there are a variety of relationships between the innate temporal structure of the planned work, and that of the work provision.</p>
-</div>
-<div class="paragraph">
-<p>In some cases, an entire piece of work may be completable within a work <em>session</em>, during which the workers do not change. Most doctor&#8217;s appointments and single surgeries are of this nature. In other cases, an overall task takes some days or weeks, i.e. many shifts and work days. Open-ended care processes will run through shifts, work-days and also longer absences, as well as permanent employment changes. To make things more difficult, it should always be remembered that no process, short or long, is guaranteed to be conveniently contained within a shift or non-holiday period - unplanned worker absence may occur at any time and any point within an executing process.</p>
-</div>
-<div class="paragraph">
-<p>Two conclusions can be drawn from the above. The first is that variable worker availability is a fact of life, and any machine-based process execution engine must deal with it. The second is that, for long running processes, the executing task plan is likely to be the <em>only</em> coherent single record of planned and performed actions on the subject, as shifts and holidays pass, new workers commence, and others leave or retire.</p>
+<p>However, since the timing of visits is usually clinically determined, it would be reasonable for a task within a plan to <em>request an appointment</em> be created for a visit at some nominal time for some purpose, e.g. week 22 ante-natal review, in next 8 days. Another part of the same plan may have a wait state whose trigger event is the patient turning up for the nominated purpose. However, all of the administrative activity that occurs in order to ensure the patient appears is assumed to be external to the task planning system.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_relationship_to_workflow_formalisms_and_systems"><a class="anchor" href="#_relationship_to_workflow_formalisms_and_systems"></a>2.6. Relationship to Workflow Formalisms and Systems</h3>
+<h3 id="_clinical_decision_support_cds"><a class="anchor" href="#_clinical_decision_support_cds"></a>2.4. Clinical Decision Support (CDS)</h3>
 <div class="paragraph">
-<p>This specification describes a model for a 'task plan' concept that incudes support for work distribution across multiple performers, nested task plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a> and <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), as well as emerging case-based standards such as <a href="https://www.omg.org//spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org//spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
+<p>While this specification covers the computable representation of decisions in a work plan, it is not intended to replace CDS systems that perform complex pure decision analysis, typically via access to specialist knowledge bases. Instead, it is assumed that the plans running in the task planning system will make requests of various CDS systems to provide specific answers, e.g. to check medications interactions for a proposed prescription, or propose a type of treatment for a hypertensive patient.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_relationship_to_workflow_formalisms_and_systems"><a class="anchor" href="#_relationship_to_workflow_formalisms_and_systems"></a>2.5. Relationship to Workflow Formalisms and Systems</h3>
+<div class="paragraph">
+<p>This specification describes a model for a task plan concept that incudes support for work distribution across multiple performers, nested task plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a> and <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), as well as emerging case-based standards such as <a href="https://www.omg.org//spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org//spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
 </div>
 <div class="paragraph">
-<p>While the model described here takes ideas from these languages, there are some key differencs as well. The primary conceptual difference is that the subject (i.e. 'case') here is assumed to be a) an intentional agent (generally a human patient) that makes choices, and b) an active biological organism, which reacts to drugs and other interventions. In other words, an entity that cannot be considered a passive object (such as a package or blood sample), as is the case for most logistic workflows, for which languages such as BPMN are designed. (Note that even the patient can be a passive object in some circumstances, such as radiology.) Other departures include the use of a declarative rather than prescriptive means of defining the plan graph structure, and the formalisation of all elements of a plan and its execution.</p>
+<p>While the model described here takes ideas from these languages, there are some key differences as well. The primary conceptual difference is that the subject (i.e. 'case') here is assumed to be a) an intentional agent (generally a human patient) that makes choices, and b) an active biological organism, which reacts to drugs and other interventions. In other words, an entity that cannot be considered a passive object (such as a package or blood sample), as is the case for most logistic workflows, for which languages such as BPMN are designed. (Note that even the patient can be a passive object in some circumstances, such as radiology.) Other departures include the use of a declarative rather than prescriptive means of defining the plan graph structure, and the formalisation of all elements of a plan and its execution.</p>
 </div>
 <div class="paragraph">
 <p>The main consequence of this is that the design of a task plan is not taken to be a highly deterministic description whose exceptions are generally knowable in advance as they would be for a logistic system whose subjects are passive objects. Instead, tasks and groups of tightly-coupled tasks are specified in a more self-standing way, using preconditions rather than logical join and split operators.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_limitations_of_the_openehr_standard_entry_model"><a class="anchor" href="#_limitations_of_the_openehr_standard_entry_model"></a>2.6. Limitations of the openEHR standard Entry Model</h3>
+<div class="paragraph">
+<p>The Entry model described in the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html">openEHR EHR IM</a> defines a way to record clinical statements representing real observations, decisions, orders and actions that have occurred, in the EHR. In this scheme, Instructions represent orders for certain kinds of Actions to be performed. Actions and Observations represent events that have subsequently occurred in the real world - a real drug administration or an actual blood sugar measurement.</p>
+</div>
+<div class="paragraph">
+<p>There is however a common additional need to concretely plan individual Actions and sometimes Observations ahead of time, as a set of 'tasks', often known as a 'task list'. Here we will use the more general term <em>task plan</em> to mean a specification of a set of actions to be performed by actors (usually human, but potentially machine as well) providing care.</p>
+</div>
+<div class="paragraph">
+<p>A set of planned tasks need not all relate to a single order, or indeed any order. The general picture is that a task plan corresponds to some self-standing healthcare job to be done, which may include tasks designed to fulfill multiple orders, and also tasks not defined by orders.</p>
+</div>
+<div class="paragraph">
+<p>To meet this need, a further kind of content can be recorded in the EHR, representing task plans containing tasks. Here we understand the word 'task' to mean 'definition of a planned task', i.e. a description of something to be performed in the future.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_requirements"><a class="anchor" href="#_requirements"></a>3. Requirements</h2>
+<h2 id="_technical_requirements"><a class="anchor" href="#_technical_requirements"></a>3. Technical Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Task planning is applicable to numerous clinical scenarios, exemplified by the following:</p>
+<p>The discussion above provides a guide as to what should potentially be modelled in a task plan. Rather than necessarily 'everything' (i.e. every possible step as per the medical textbook), it is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>long term <em>clinical timing plans</em>;</p>
+</li>
+<li>
+<p>reminders / checklist items for basic <em>actions that are often missed</em> or forgotten due to busy workplace and fatigue;</p>
+</li>
+<li>
+<p>complex sets of actions defined by <em>clinical pathways</em>;</p>
+</li>
+<li>
+<p>decision points that determine which path from alternatives to follow;</p>
+</li>
+<li>
+<p><em>actions requiring sign-off</em> in some way;</p>
+</li>
+<li>
+<p>actions that result in <em>recording</em> something in the EHR;</p>
+</li>
+<li>
+<p>actions of varying levels of granularity that are needed in a <em>training</em> mode.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Task planning is accordingly applicable to numerous clinical scenarios, exemplified by the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1294,7 +1451,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Within these and many other similar clinical procedures, a number of commonly occurring generic requirements appear, as described below.</p>
+<p>Within these and many other similar clinical procedures, a number of commonly occurring technical requirements appear, as described below.</p>
 </div>
 <div class="sect2">
 <h3 id="_flexible_allocation_of_workers"><a class="anchor" href="#_flexible_allocation_of_workers"></a>3.1. Flexible Allocation of Workers</h3>
@@ -1470,7 +1627,7 @@
 <p>Tasks in a plan can be cancelled before being attempted for two types of reasons. One case is when the performer or the system realises the task can&#8217;t be performed (perhaps for lack of resources), and it is cancelled from the plan ahead of time. The other case is when the performer or system realises that the task isn&#8217;t needed, and can be cancelled as unnecessary, or already done by an external agent (e.g. an examination done at a night clinic).</p>
 </div>
 <div class="paragraph">
-<p>In the first, case, the cancellation can be understood as a 'failed' task, whereas in the second, it is equivalent to a successful task. These two flavours of cancellation should be understood by the system so that plan success or failure can be reliably determiined.</p>
+<p>In the first, case, the cancellation can be understood as a 'failed' task, whereas in the second, it is equivalent to a successful task. These two flavours of cancellation should be understood by the system so that plan success or failure can be reliably determined.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1549,7 +1706,7 @@
 <p>A basic choice in the architecture presented here is that it is <em>executable</em> in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, team.</p>
 </div>
 <div class="paragraph">
-<p>This follows the YAWL <a href="#Hofstede_van_der_Aalst_2009">[Hofstede_van_der_Aalst_2009]</a> approach, such that no Plan defined according to this specification has ambiguous meaning.</p>
+<p>This follows the YAWL approach (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), such that no Plan defined according to this specification has ambiguous meaning.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2657,12 +2814,12 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="ts"><span></span>    <span class="tok-nx">cds_calc_risk</span> <span class="tok-p">(</span>
-        <span class="tok-nx">riskType</span>:    <span class="tok-kt">String</span><span class="tok-p">;</span>
-        <span class="tok-nx">sex</span>:         <span class="tok-kt">CodedText</span><span class="tok-p">;</span>
-        <span class="tok-nx">dateOfBirth</span>: <span class="tok-kt">Iso8601Date</span><span class="tok-p">;</span>
-        <span class="tok-nx">isSmoker</span>:    <span class="tok-kt">Boolean</span><span class="tok-p">;</span>
-    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Real</span></code></pre>
+<pre class="highlight"><code class="language-ts" data-lang="ts">    cds_calc_risk (
+        riskType:    String;
+        sex:         CodedText;
+        dateOfBirth: Iso8601Date;
+        isSmoker:    Boolean;
+    ): Real</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2670,13 +2827,13 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="json"><span></span>    <span class="tok-p">{</span>
-        <span class="tok-nt">&quot;parameter_map&quot;</span><span class="tok-p">:</span> <span class="tok-p">[</span>
-            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_sex&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;sex&quot;</span><span class="tok-p">},</span>
-            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_dob&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;dateOfBirth&quot;</span><span class="tok-p">},</span>
-            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;tobacco_use_status&quot;</span><span class="tok-p">,</span> <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;isSmoker&quot;</span><span class="tok-p">}</span>
-        <span class="tok-p">]</span>
-    <span class="tok-p">}</span></code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">    {
+        "parameter_map": [
+            {"context_name": "subject_sex",        "name": "sex"},
+            {"context_name": "subject_dob",        "name": "dateOfBirth"},
+            {"context_name": "tobacco_use_status", "name": "isSmoker"}
+        ]
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2699,17 +2856,17 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="typescript"><span></span>    <span class="tok-c1">// ad hoc query call</span>
-    <span class="tok-nx">execute_ad_hoc_query</span> <span class="tok-p">(</span>
-        <span class="tok-nx">query_text</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
-        <span class="tok-nx">parameters</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
-    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span>
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">    // ad hoc query call
+    execute_ad_hoc_query (
+        query_text: String;
+        parameters: Hash&lt;String, String&gt;;
+    ): Result
 
-    <span class="tok-c1">// stored query call</span>
-    <span class="tok-nx">execute_stored_query</span> <span class="tok-p">(</span>
-        <span class="tok-nx">query_id</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
-        <span class="tok-nx">parameters</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
-    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span></code></pre>
+    // stored query call
+    execute_stored_query (
+        query_id: String;
+        parameters: Hash&lt;String, String&gt;;
+    ): Result</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2765,20 +2922,10 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>call_name</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of call in API.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>BMM_FUNCTION</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Signature definition of call.</p>
-</div>
-<div class="paragraph">
-<p>TODO: to be defined.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -8090,29 +8237,29 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-c1">//</span>
-<span class="tok-c1">// Infer the state of a collection whose members have states in source_states.</span>
-<span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
-<span class="tok-c1">//</span>
-<span class="tok-n">Task_state</span> <span class="tok-nf">inferred_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_state</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+<pre class="highlight"><code class="language-java" data-lang="java">//
+// Infer the state of a collection whose members have states in source_states.
+// The order of if/else evaluation determines the correct result.
+//
+Task_state inferred_state (Set&lt;Task_state&gt; source_states) {
 
-    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
-        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-o">;</span>
-    <span class="tok-k">else</span>
-        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-o">;</span>
-<span class="tok-o">}</span></code></pre>
+    if (source_states.contains(Abandoned))
+        return Abandoned;
+    else if (source_states.contains(Available))
+        return Available;
+    else if (source_states.contains(Planned))
+        return Planned;
+    else if (source_states.contains(Suspended))
+        return Suspended;
+    else if (source_states.contains(Underway))
+        return Underway;
+    else if (source_states.contains(Completed))
+        return Completed;
+    else if (source_states.contains(Cancelled))
+        return Cancelled;
+    else
+        return Initial;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8587,7 +8734,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions</strong>: <code>List&lt;ASSERTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions</strong>: <code>List&lt;BMM_ASSERTION&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Run-time form of preconditions on corresponding TASK in Task Plan definition.</p>
 </div></div></td>
@@ -9238,9 +9385,8 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-12-15 23:33:21 UTC
+Last updated 2020-01-24 19:39:57 UTC
 </div>
 </div>
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-murphy.css">
 </body>
 </html>

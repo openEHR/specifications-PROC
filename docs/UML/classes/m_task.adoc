@@ -24,7 +24,7 @@ h|*0..1*
 a|List of references to run-time events that have occurred on this Task.
 
 h|*0..1*
-|*preconditions*: `List<ASSERTION>`
+|*preconditions*: `List<BMM_ASSERTION>`
 a|Run-time form of preconditions on corresponding TASK in Task Plan definition.
 
 h|*1..1 +

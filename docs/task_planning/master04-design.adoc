@@ -6,7 +6,7 @@ The following sections describe the design key ideas used in the Task Planning m
 
 A basic choice in the architecture presented here is that it is _executable_ in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, team.
 
-This follows the YAWL <<Hofstede_van_der_Aalst_2009>> approach, such that no Plan defined according to this specification has ambiguous meaning.
+This follows the YAWL approach cite:[Hofstede_van_der_Aalst2009], such that no Plan defined according to this specification has ambiguous meaning.
 
 == Computation Context
 

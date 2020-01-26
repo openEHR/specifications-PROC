@@ -1,6 +1,16 @@
-= Requirements
+= Technical Requirements
 
-Task planning is applicable to numerous clinical scenarios, exemplified by the following:
+The discussion above provides a guide as to what should potentially be modelled in a task plan. Rather than necessarily 'everything' (i.e. every possible step as per the medical textbook), it is:
+
+* long term _clinical timing plans_;
+* reminders / checklist items for basic _actions that are often missed_ or forgotten due to busy workplace and fatigue;
+* complex sets of actions defined by _clinical pathways_;
+* decision points that determine which path from alternatives to follow;
+* _actions requiring sign-off_ in some way;
+* actions that result in _recording_ something in the EHR;
+* actions of varying levels of granularity that are needed in a _training_ mode.
+
+Task planning is accordingly applicable to numerous clinical scenarios, exemplified by the following:
 
 * routine simple medication administration, e.g. for post-operative pain - tasks extend across worker shifts;
 * complex drug administration e.g. multi-drug chemotherapy over multiple days;
@@ -10,7 +20,7 @@ Task planning is applicable to numerous clinical scenarios, exemplified by the f
 * surgery planning - one time event;
 * acute stroke management - multiple sets of tasks coordinated across multiple performers.
 
-Within these and many other similar clinical procedures, a number of commonly occurring generic requirements appear, as described below.
+Within these and many other similar clinical procedures, a number of commonly occurring technical requirements appear, as described below.
 
 == Flexible Allocation of Workers
 
@@ -99,7 +109,7 @@ The ability to include decision pathways enables conditional sections of care pa
 
 Tasks in a plan can be cancelled before being attempted for two types of reasons. One case is when the performer or the system realises the task can't be performed (perhaps for lack of resources), and it is cancelled from the plan ahead of time. The other case is when the performer or system realises that the task isn't needed, and can be cancelled as unnecessary, or already done by an external agent (e.g. an examination done at a night clinic).
 
-In the first, case, the cancellation can be understood as a 'failed' task, whereas in the second, it is equivalent to a successful task. These two flavours of cancellation should be understood by the system so that plan success or failure can be reliably determiined.
+In the first, case, the cancellation can be understood as a 'failed' task, whereas in the second, it is equivalent to a successful task. These two flavours of cancellation should be understood by the system so that plan success or failure can be reliably determined.
 
 == Changes and Abandonment
 
