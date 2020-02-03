@@ -4,7 +4,7 @@
 
 The following sections discuss the requirements for a category of computational system that supports the execution of clinical processes by their performers. The general concept of 'work plans' consisting of 'sub-plans', 'tasks', decision points etc is assumed.
 
-=== How Can Computers Improve Clinical Care?
+=== How Can Computers Improve Clinical Care Process?
 
 Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself _perform_ the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since a clinical process is not the same thing as the work undertaken by one of its performers.
 
