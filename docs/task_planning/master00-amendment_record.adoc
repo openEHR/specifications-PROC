@@ -7,10 +7,17 @@
 4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.5.0
+|{spec_tickets}/SPECPROC-33[SPECPROC-33^]. Support partial data set creation.
+|M Kejžar, +
+ M Polajnar, +
+ T Beale
+|[[latest_issue_date]]04 Feb 2020
+
+|
 |{spec_tickets}/SPECPROC-32[SPECPROC-32^]. Improve Introduction and Requirements Discussion.
 |D Santos Alves, +
  T Beale
-|[[latest_issue_date]]26 Jan 2020
+|26 Jan 2020
 
 |
 |{spec_tickets}/SPECPROC-30[SPECPROC-30^]. Adjustments to Events model. +
