@@ -1,0 +1,21 @@
+= Requirements
+
+The requirements of openEHR DL fall into a number of categories, described below.
+
+== Caller Interaction
+
+* the ability to capture the reasoning chain for presentation to a caller as a justification;
+* the ability to provide a decision and its possible outcomes, with the current recommendation indicated;
+
+== Representation
+
+* multi-lingual translations for symbolic variables, in a similar way to the {openehr_am_adl2}[openEHR Archetype Definition Language (ADL2)^];
+
+== Binding to Data Context
+
+* bindings that connect variables to external data sources;
+
+== Type System
+
+* an ability to use externally defined information models that supply types that may be used in DL statements.
+

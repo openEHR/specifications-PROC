@@ -1,0 +1,76 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
+
+//
+// Document-specific attributes
+//
+:copyright_year: 2020
+:spec_status: DEVELOPMENT
+
+//
+// HTML-only attributes
+//
+:linkcss:
+:keywords: openehr, expressions, rules
+:description: openEHR Decision Language specification
+
+include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+image::{openehr_logo}["openEHR logo",align="center"]
+
+= Decision Language (DL) and Model (DM)
+
+include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
+include::{ref_dir}/docs/references/reference_definitions.adoc[]
+
+//
+// ============================================= Asciidoc BODY ===============================================
+//
+
+include::master00-amendment_record.adoc[leveloffset=+1]
+
+//
+// --------------------------------------------- Preface -----------------------------------------------
+//
+
+== Acknowledgements
+
+=== Primary Author
+
+* Thomas Beale, Ars Semantica; openEHR Foundation Management Board.
+
+//
+// --------------------------------------------- TOC -----------------------------------------------
+//
+//toc::[left]
+
+//
+// --------------------------------------------- CHAPTERS -----------------------------------------------
+//
+:sectanchors:
+:sectnums:
+include::master01-preface.adoc[leveloffset=+1]
+include::master02-overview.adoc[leveloffset=+1]
+include::master03-requirements.adoc[leveloffset=+1]
+include::master04-conceptual_model.adoc[leveloffset=+1]
+include::master05-execution_model.adoc[leveloffset=+1]
+//include::master05-dl_statements.adoc[leveloffset=+1]
+//include::master06-dl_module.adoc[leveloffset=+1]
+//include::master07-terminology.adoc[leveloffset=+1]
+//include::master08-data_context.adoc[leveloffset=+1]
+//include::master09-computing_context.adoc[leveloffset=+1]
+
+
+//
+// --------------------------------------------- REFERENCES -----------------------------------------------
+//
+:sectnums!:
+== References
+
+bibliography::[]

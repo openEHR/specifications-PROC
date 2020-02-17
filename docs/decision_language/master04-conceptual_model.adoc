@@ -1,0 +1,45 @@
+= Conceptual Model
+
+== Representation
+
+A simple language would be a like a programming language. This will be limited in utility, since we need access to partial executions, possible executions (i.e. recommendations), justification chains (i.e. 'here is the logic chain behind this decision') and so on.
+
+[.text-center]
+.Naive representation
+image::{diagrams_uri}/representation_naive.svg[id=representation_naive, align="center"]
+
+A more advanced form of the language would distinguish between:
+
+* _definitions_ - domain constants);
+* _conditions_ - domain-specified criteria;
+* _decisions_ - domain-specified decision structures.
+
+[.text-center]
+.Basic representation
+image::{diagrams_uri}/representation_basic.svg[id=representation_basic, align="center"]
+
+== Interaction Style
+
+At least two interaction styles between the Plan engine and the Decision engine are possible.
+
+Decision-based - use decisions defined within the decision logic modules; perform a 'switch' on the output values.
+
+Useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.
+
+[.text-center]
+.Decision-based
+image::{diagrams_uri}/conceptual_decision_based.svg[id=conceptual_decision_based, align="center"]
+
+Condition-based - use conditions defined within the logic modules but create the decision structure within the Plan only, i.e. it is a novel use of existing conditions.
+
+[.text-center]
+.Condition-based
+image::{diagrams_uri}/conceptual_condition_based.svg[id=conceptual_condition_based, align="center"]
+
+== Service Model
+
+The following shows an outline idea of a service interface. This could be made to cater for talking to some DMN service. It could also incorporate the CDS-hooks idea - this is just a recommendation structure.
+
+[.text-center]
+.Service Model
+image::{diagrams_uri}/conceptual_service_model.svg[id=conceptual_service_model, align="center"]

@@ -1,0 +1,36 @@
+= Overview
+
+The openEHR Decision Language (DL) and Decision Model (DM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement.
+
+For example, a simple decision function can be written to infer from the input variables `_heart-rate_` and `_heart-rhythm_` whether a patient has atrial fibrillation, or other forms of arrhythmia. Decision functions may be represented in other ways as well, including _decision tables_, which are widely used in many industries.
+
+Regardless of the structual form, decision logic typically contains numerous _conditions_ i.e. Boolean-returning expressions such as `_heart-rate_ >= 120 /min and _heart-rhythm_ = |irregular|` that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition `_blood-glucose_[2h post 75g glucose challenge] > 6.5 mmol/ml` is the diagnostic standard for diabetes in a patient.
+
+Such conditions and larger logic modules that may include them constitute fragments of logic that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).
+
+The following diagram illustrates the artefacts covered by this specification.
+
+[.text-center]
+.Conceptual framework
+image::{diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
+
+In the above, three logical components of the Decision Language are identified:
+
+* *Decision Logic Module (DLM)*: a module containing decision functions that map input variables to inferences;
+* *Data Proxy*: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM;
+* *Data Access Binding*: bindings of concrete data access methods to the logical data elements in a Data proxy.
+
+== Prior Art
+
+The openEHR DL formalism is a small language that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DL adds constructs for representing statements, including control structures, modules, importation and binding.
+
+openEHR DL may be compared to other languages developed in the health arena for expressing 'medical logic', including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as decision support languages such as {hl7v3_gello}[HL7 Gello^]. These languages were not directly used, for various reasons including:
+
+* none have an easily extensible value referencing mechanism;
+* some are too procedural (Arden, GLIF);
+* current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);
+* the maintenance and support is unclear and/or limited.
+
+Nevertheless, various elements of Arden and ProForma provided useful inspiration for the formalism described here.
+
+Other relevant formalisms include the OMG {omg_bpmn}[BPMN^], {omg_cmmn}[CMMN^] and {omg_dmn}[DMN^] standards, and the {hl7_cql}[HL7 CQL standard^]. The former group of standards are just now finding use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses many of the same issues as openEHR DL/EL and provided useful ideas.
