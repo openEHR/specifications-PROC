@@ -2,35 +2,57 @@
 
 == Representation
 
-A simple language would be a like a programming language. This will be limited in utility, since we need access to partial executions, possible executions (i.e. recommendations), justification chains (i.e. 'here is the logic chain behind this decision') and so on.
+=== Decision Logic
+
+A simple language would be a like a programming language, as illustrated below.
 
 [.text-center]
 .Naive representation
 image::{diagrams_uri}/representation_naive.svg[id=representation_naive, align="center"]
 
-A more advanced form of the language would distinguish between:
+This will be limited in utility, since we need access to partial executions, possible executions (i.e. recommendations), justification chains (i.e. 'here is the logic chain behind this decision') and so on. A more advanced form of the language would distinguish between:
 
-* _definitions_ - domain constants);
-* _conditions_ - domain-specified criteria;
-* _decisions_ - domain-specified decision structures.
+* _definitions_ - domain constants;
+* _conditions_ - Boolean-returning domain-specified criteria;
+* _decisions_ - domain-specified decision structures, which may return any type.
+
+An example of a basic formalism supporting these concepts is shown below.
 
 [.text-center]
 .Basic representation
 image::{diagrams_uri}/representation_basic.svg[id=representation_basic, align="center"]
 
-== Interaction Style
+=== External Data
 
-At least two interaction styles between the Plan engine and the Decision engine are possible.
+For decision logic to be useful, it must be able to refer to data from the outside world, particularly state data of the case, e.g. the patient, specific devices and so on, in a clinical execution context. The general case is that state and event occurrences of any real world entity may be referred to. The approach taken in openEHR DL is that any such entity is represented by an abstract _proxy object_ that defines its state as a set of properties and potentially structure. From a data perspective, any such set of properties will relate to a particular use. For example, the properties for a leukaemia patient are likely to include `white_cell_count`, `platelets` and so on, while a proxy object for ante-natal use will contain obstetric properties. A core set of properties for any patient would include clinical basics such as date of birth, sex, and typical vital signs.
 
-Decision-based - use decisions defined within the decision logic modules; perform a 'switch' on the output values.
+TBC
 
-Useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.
+== Artefact Scheme
+
+In order to support justifications, recommendations and other advanced functionality requiring transparent access to the logic structures in a Decision Logic Model, a high-level language will be needed that can be either compiled or interpreted such that advanced functions are available without having to specify them mechanically. An artefact scheme based on cross-compilation to executable code is as follows:
+
+[.text-center]
+.Artefact scheme
+image::{diagrams_uri}/artefact_scheme.svg[id=artefact_scheme, align="center"]
+
+Here, decisions defined in the source model are compiled to simple executable form, an executable form with justification (attached rule chain leading to the result), and a recommendation structure.
+
+== Usage
+
+At least two usage styles between the Plan engine and the Decision engine are possible.
+
+=== Decision-based
+
+In this style, decisions are defined within the decision logic modules; the Plan performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.
 
 [.text-center]
 .Decision-based
 image::{diagrams_uri}/conceptual_decision_based.svg[id=conceptual_decision_based, align="center"]
 
-Condition-based - use conditions defined within the logic modules but create the decision structure within the Plan only, i.e. it is a novel use of existing conditions.
+=== Condition-based
+
+In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel use of existing conditions.
 
 [.text-center]
 .Condition-based
@@ -38,7 +60,7 @@ image::{diagrams_uri}/conceptual_condition_based.svg[id=conceptual_condition_bas
 
 == Service Model
 
-The following shows an outline idea of a service interface. This could be made to cater for talking to some DMN service. It could also incorporate the CDS-hooks idea - this is just a recommendation structure.
+The following shows an outline idea of a service interface. This could be made to cater for talking to some DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.
 
 [.text-center]
 .Service Model

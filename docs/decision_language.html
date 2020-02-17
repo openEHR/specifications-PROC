@@ -47,10 +47,21 @@
 </li>
 <li><a href="#_conceptual_model">4. Conceptual Model</a>
 <ul class="sectlevel2">
-<li><a href="#_representation_2">4.1. Representation</a></li>
-<li><a href="#_interaction_style">4.2. Interaction Style</a></li>
-<li><a href="#_service_model">4.3. Service Model</a></li>
-<li><a href="#_execution_model">4.4. Execution Model</a></li>
+<li><a href="#_representation_2">4.1. Representation</a>
+<ul class="sectlevel3">
+<li><a href="#_decision_logic">4.1.1. Decision Logic</a></li>
+<li><a href="#_external_data">4.1.2. External Data</a></li>
+</ul>
+</li>
+<li><a href="#_artefact_scheme">4.2. Artefact Scheme</a></li>
+<li><a href="#_usage">4.3. Usage</a>
+<ul class="sectlevel3">
+<li><a href="#_decision_based">4.3.1. Decision-based</a></li>
+<li><a href="#_condition_based">4.3.2. Condition-based</a></li>
+</ul>
+</li>
+<li><a href="#_service_model">4.4. Service Model</a></li>
+<li><a href="#_execution_model">4.5. Execution Model</a></li>
 </ul>
 </li>
 <li><a href="#_references">References</a></li>
@@ -303,7 +314,7 @@
 <div class="sect2">
 <h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>2.1. Prior Art</h3>
 <div class="paragraph">
-<p>The openEHR DL formalism is a small language that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DL adds constructs for representing statements, including control structures, modules, importation and binding.</p>
+<p>The openEHR DL formalism is a small language that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DL adds constructs for representing conditions, decisions, modules, importation and binding.</p>
 </div>
 <div class="paragraph">
 <p>openEHR DL may be compared to other languages developed in the health arena for expressing 'medical logic', including <a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">HL7 Arden Syntax</a>, Guideline Interchange Format (<a href="#GLIF">Ohno-Machado et al.&#44; 1998</a>), ProForma (<a href="#SuttonFox2003">Sutton &amp; Fox&#44; 2003</a>), as well as decision support languages such as <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" target="_blank" rel="noopener">HL7 Gello</a>. These languages were not directly used, for various reasons including:</p>
@@ -389,8 +400,10 @@
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_representation_2"><a class="anchor" href="#_representation_2"></a>4.1. Representation</h3>
+<div class="sect3">
+<h4 id="_decision_logic"><a class="anchor" href="#_decision_logic"></a>4.1.1. Decision Logic</h4>
 <div class="paragraph">
-<p>A simple language would be a like a programming language. This will be limited in utility, since we need access to partial executions, possible executions (i.e. recommendations), justification chains (i.e. 'here is the logic chain behind this decision') and so on.</p>
+<p>A simple language would be a like a programming language, as illustrated below.</p>
 </div>
 <div id="representation_naive" class="imageblock text-center text-center">
 <div class="content">
@@ -399,20 +412,23 @@
 <div class="title">Figure 2. Naive representation</div>
 </div>
 <div class="paragraph">
-<p>A more advanced form of the language would distinguish between:</p>
+<p>This will be limited in utility, since we need access to partial executions, possible executions (i.e. recommendations), justification chains (i.e. 'here is the logic chain behind this decision') and so on. A more advanced form of the language would distinguish between:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>definitions</em> - domain constants);</p>
+<p><em>definitions</em> - domain constants;</p>
 </li>
 <li>
-<p><em>conditions</em> - domain-specified criteria;</p>
+<p><em>conditions</em> - Boolean-returning domain-specified criteria;</p>
 </li>
 <li>
-<p><em>decisions</em> - domain-specified decision structures.</p>
+<p><em>decisions</em> - domain-specified decision structures, which may return any type.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>An example of a basic formalism supporting these concepts is shown below.</p>
 </div>
 <div id="representation_basic" class="imageblock text-center text-center">
 <div class="content">
@@ -421,47 +437,75 @@
 <div class="title">Figure 3. Basic representation</div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_external_data"><a class="anchor" href="#_external_data"></a>4.1.2. External Data</h4>
+<div class="paragraph">
+<p>For decision logic to be useful, it must be able to refer to data from the outside world, particularly state data of the case, e.g. the patient, specific devices and so on, in a clinical execution context. The general case is that state and event occurrences of any real world entity may be referred to. The approach taken in openEHR DL is that any such entity is represented by an abstract <em>proxy object</em> that defines its state as a set of properties and potentially structure. From a data perspective, any such set of properties will relate to a particular use. For example, the properties for a leukaemia patient are likely to include <code>white_cell_count</code>, <code>platelets</code> and so on, while a proxy object for ante-natal use will contain obstetric properties. A core set of properties for any patient would include clinical basics such as date of birth, sex, and typical vital signs.</p>
+</div>
+<div class="paragraph">
+<p>TBC</p>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_interaction_style"><a class="anchor" href="#_interaction_style"></a>4.2. Interaction Style</h3>
+<h3 id="_artefact_scheme"><a class="anchor" href="#_artefact_scheme"></a>4.2. Artefact Scheme</h3>
 <div class="paragraph">
-<p>At least two interaction styles between the Plan engine and the Decision engine are possible.</p>
+<p>In order to support justifications, recommendations and other advanced functionality requiring transparent access to the logic structures in a Decision Logic Model, a high-level language will be needed that can be either compiled or interpreted such that advanced functions are available without having to specify them mechanically. An artefact scheme based on cross-compilation to executable code is as follows:</p>
+</div>
+<div id="artefact_scheme" class="imageblock text-center text-center">
+<div class="content">
+<img src="decision_language/diagrams/artefact_scheme.svg" alt="artefact scheme">
+</div>
+<div class="title">Figure 4. Artefact scheme</div>
 </div>
 <div class="paragraph">
-<p>Decision-based - use decisions defined within the decision logic modules; perform a 'switch' on the output values.</p>
+<p>Here, decisions defined in the source model are compiled to simple executable form, an executable form with justification (attached rule chain leading to the result), and a recommendation structure.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_usage"><a class="anchor" href="#_usage"></a>4.3. Usage</h3>
 <div class="paragraph">
-<p>Useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.</p>
+<p>At least two usage styles between the Plan engine and the Decision engine are possible.</p>
+</div>
+<div class="sect3">
+<h4 id="_decision_based"><a class="anchor" href="#_decision_based"></a>4.3.1. Decision-based</h4>
+<div class="paragraph">
+<p>In this style, decisions are defined within the decision logic modules; the Plan performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.</p>
 </div>
 <div id="conceptual_decision_based" class="imageblock text-center text-center">
 <div class="content">
 <img src="decision_language/diagrams/conceptual_decision_based.svg" alt="conceptual decision based">
 </div>
-<div class="title">Figure 4. Decision-based</div>
+<div class="title">Figure 5. Decision-based</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_condition_based"><a class="anchor" href="#_condition_based"></a>4.3.2. Condition-based</h4>
 <div class="paragraph">
-<p>Condition-based - use conditions defined within the logic modules but create the decision structure within the Plan only, i.e. it is a novel use of existing conditions.</p>
+<p>In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel use of existing conditions.</p>
 </div>
 <div id="conceptual_condition_based" class="imageblock text-center text-center">
 <div class="content">
 <img src="decision_language/diagrams/conceptual_condition_based.svg" alt="conceptual condition based">
 </div>
-<div class="title">Figure 5. Condition-based</div>
+<div class="title">Figure 6. Condition-based</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_service_model"><a class="anchor" href="#_service_model"></a>4.3. Service Model</h3>
+<h3 id="_service_model"><a class="anchor" href="#_service_model"></a>4.4. Service Model</h3>
 <div class="paragraph">
-<p>The following shows an outline idea of a service interface. This could be made to cater for talking to some DMN service. It could also incorporate the CDS-hooks idea - this is just a recommendation structure.</p>
+<p>The following shows an outline idea of a service interface. This could be made to cater for talking to some DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.</p>
 </div>
 <div id="conceptual_service_model" class="imageblock text-center text-center">
 <div class="content">
 <img src="decision_language/diagrams/conceptual_service_model.svg" alt="conceptual service model">
 </div>
-<div class="title">Figure 6. Service Model</div>
+<div class="title">Figure 7. Service Model</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_execution_model"><a class="anchor" href="#_execution_model"></a>4.4. Execution Model</h3>
+<h3 id="_execution_model"><a class="anchor" href="#_execution_model"></a>4.5. Execution Model</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
