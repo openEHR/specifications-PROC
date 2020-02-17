@@ -28,6 +28,10 @@ For decision logic to be useful, it must be able to refer to data from the outsi
 
 TBC
 
+[.text-center]
+.Abstract proxy
+image::{diagrams_uri}/conceptual_proxy.svg[id=conceptual_proxy, align="center"]
+
 == Artefact Scheme
 
 In order to support justifications, recommendations and other advanced functionality requiring transparent access to the logic structures in a Decision Logic Model, a high-level language will be needed that can be either compiled or interpreted such that advanced functions are available without having to specify them mechanically. An artefact scheme based on cross-compilation to executable code is as follows:
