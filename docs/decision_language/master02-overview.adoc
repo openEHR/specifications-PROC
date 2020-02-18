@@ -14,7 +14,7 @@ The following diagram illustrates the artefacts covered by this specification.
 .Conceptual framework
 image::{diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
 
-In the above, three logical components of the Decision Language are identified:
+In the above, three logical components of the environment are identified:
 
 * *Decision Logic Module (DLM)*: a module containing decision functions that map input variables to inferences;
 * *Data Proxy*: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM;
@@ -22,7 +22,7 @@ In the above, three logical components of the Decision Language are identified:
 
 == Prior Art
 
-The openEHR DL formalism is a small language that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DL adds constructs for representing conditions, decisions, modules, importation and binding.
+The openEHR DL formalism is a small language that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DL adds constructs for representing conditions, decisions, modules. A small extra meta-model and syntax covers proxy definition, and the importation and binding semantics in the binding objects.
 
 openEHR DL may be compared to other languages developed in the health arena for expressing 'medical logic', including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as decision support languages such as {hl7v3_gello}[HL7 Gello^]. These languages were not directly used, for various reasons including:
 
