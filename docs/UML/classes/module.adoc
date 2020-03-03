@@ -1,0 +1,33 @@
+=== MODULE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_MODULE (abstract)_*
+
+h|*Description*
+2+a|A limited module concept, similar to `BMM_CLASS`.
+
+h|*Inherit*
+2+|`BMM_DECLARATION`, `AUTHORED_RESOURCE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*ancestors*: `List<MODULE>`
+a|Inheritance ancestors.
+
+h|*0..1*
+|*used_models*: `List<DL_MODEL_REF>`
+a|Externally defined BMM models used by this EL Module.
+
+h|*0..1*
+|*functions*: `List<BMM_FUNCTION>`
+a|Utility functions for this module.
+
+h|*0..1*
+|*definitions*: `List<BMM_CONSTANT>`
+a|Constant definitions needed by module.
+|===

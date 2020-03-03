@@ -1,0 +1,45 @@
+= The Decision Language Object Model (DLOM)
+
+== Overview
+
+The `org.openehr.proc.dlom` package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the openEHR BMM.
+
+The structure of the `dlom` packages is shown below.
+
+[.text-center]
+.proc.dlom Package
+image::{uml_diagrams_uri}/PROC-dlom-packages.svg[id=dlom_packages, align="center", width="50%"]
+
+The packages are described below.
+
+== DL Module Package
+
+The top-level construct of the DLOM is the `DL_MODULE`, representing a standalone decision logic module. It is shown below.
+
+[.text-center]
+.proc.dlom.module Package
+image::{uml_diagrams_uri}/PROC-dlom.module.svg[id=dlom_module, align="center"]
+
+[.tbd]
+TBD: to be continued. 
+
+== Class Descriptions
+
+include::{uml_export_dir}/classes/module.adoc[]
+include::{uml_export_dir}/classes/dl_module.adoc[]
+include::{uml_export_dir}/classes/dl_model_ref.adoc[]
+include::{uml_export_dir}/classes/dl_condition_def.adoc[]
+include::{uml_export_dir}/classes/dl_rule.adoc[]
+include::{uml_export_dir}/classes/dl_condition_chain.adoc[]
+include::{uml_export_dir}/classes/dl_condition_rule.adoc[]
+
+== Proxy Module Package
+
+The class `PROXY_MODULE` represents an object proxy, i.e. source of real-world data.
+
+[.tbd]
+TBD: to be continued. 
+
+== Class Descriptions
+
+include::{uml_export_dir}/classes/proxy_module.adoc[]

@@ -1,0 +1,14 @@
+=== DL_RULE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_DL_RULE (abstract)_*
+
+h|*Description*
+2+a|Abstract parent of DL rule types. All rules have a `_name_` (inherited from `BMM_DECLARATION`), a `_signature_()` function (`BMM_CLASS_ENTITY`) and a `_type_` (`BMM_TYPED`).
+
+h|*Inherit*
+2+|`BMM_CLASS_ENTITY`, `BMM_TYPED`
+
+|===

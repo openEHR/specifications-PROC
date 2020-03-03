@@ -1,0 +1,40 @@
+=== DL_MODULE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DL_MODULE*
+
+h|*Description*
+2+a|A container for a set of statements along with related BMM definitions, meta-data, terminology and bindings.
+
+h|*Inherit*
+2+|`MODULE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*conditions*: `List<DL_CONDITION_DEF>`
+a|Boolean conditions defined by module for use in rules.
+
+h|*0..1*
+|*rules*: `List<DL_RULE>`
+a|Ruleset consisting of rules of various types.
+
+h|*0..1*
+|*proxy_properties*: `List<BMM_PROPERTY>`
+a|Properties representing real-world objects, such as the patient state, the patient history (logical EHR) etc.
+
+h|*1..1*
+|*proxy_objects[*]*: `PROXY_MODULE`
+a|Imported proxy modules
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|*execution_result* (): `Boolean`
+a|Execution result of the whole rule set. Determined by the and-ing of result values of Assertions in the rule set.
+|===

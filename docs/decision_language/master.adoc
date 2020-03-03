@@ -24,7 +24,7 @@ include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
 image::{openehr_logo}["openEHR logo",align="center"]
 
-= Decision Language (DL) and Model (DM)
+= Decision Language (DL) and Model
 
 include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
 include::{ref_dir}/docs/references/reference_definitions.adoc[]
@@ -60,6 +60,8 @@ include::master02-overview.adoc[leveloffset=+1]
 include::master03-requirements.adoc[leveloffset=+1]
 include::master04-conceptual_model.adoc[leveloffset=+1]
 include::master05-execution_model.adoc[leveloffset=+1]
+include::master10-dlom.adoc[leveloffset=+1]
+
 //include::master05-dl_statements.adoc[leveloffset=+1]
 //include::master06-dl_module.adoc[leveloffset=+1]
 //include::master07-terminology.adoc[leveloffset=+1]
