@@ -3,16 +3,8 @@
 //
 include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 
-//
-// Document-specific attributes
-//
 :copyright_year: 2017
 :spec_status: TRIAL
-
-//
-// HTML-only attributes
-//
-:linkcss:
 :keywords: workflow, task, planning, EHR, EMR, reference model, openehr
 :description: openEHR Task Planning Specification
 
@@ -89,7 +81,6 @@ Lastly, a review of research literature and standards was conducted. Many of the
 //
 // --------------------------------------------- CHAPTERS -----------------------------------------------
 //
-:sectanchors:
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-background.adoc[leveloffset=+1]

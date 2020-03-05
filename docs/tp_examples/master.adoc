@@ -3,19 +3,10 @@
 //
 include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 
-//
-// Document-specific attributes
-//
 :copyright_year: 2017
 :spec_status: TRIAL
-
-//
-// HTML-only attributes
-//
-:linkcss:
 :keywords: task, planning, examples, workflow
 :description: openEHR Task Planning (TP) Examples
-:linkattrs:
 
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
@@ -67,7 +58,6 @@ The work reported in this specification has been funded by the following organis
 //
 // --------------------------------------------- CHAPTERS -----------------------------------------------
 //
-:sectanchors:
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
