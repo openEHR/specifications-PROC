@@ -56,7 +56,7 @@
 <li><a href="#_artefact_scheme">4.2. Artefact Scheme</a></li>
 <li><a href="#_usage">4.3. Usage</a>
 <ul class="sectlevel3">
-<li><a href="#_decision_based">4.3.1. Decision-based</a></li>
+<li><a href="#_rule_based">4.3.1. Rule-based</a></li>
 <li><a href="#_condition_based">4.3.2. Condition-based</a></li>
 </ul>
 </li>
@@ -67,22 +67,42 @@
 <li><a href="#_the_decision_language_object_model_dlom">5. The Decision Language Object Model (DLOM)</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">5.1. Overview</a></li>
-<li><a href="#_dl_module_package">5.2. DL Module Package</a></li>
-<li><a href="#_class_descriptions">5.3. Class Descriptions</a>
+<li><a href="#_dl_module_package">5.2. DL Module Package</a>
 <ul class="sectlevel3">
-<li><a href="#_module_class">5.3.1. MODULE Class</a></li>
-<li><a href="#_dl_module_class">5.3.2. DL_MODULE Class</a></li>
-<li><a href="#_dl_model_ref_class">5.3.3. DL_MODEL_REF Class</a></li>
-<li><a href="#_dl_condition_def_class">5.3.4. DL_CONDITION_DEF Class</a></li>
-<li><a href="#_dl_rule_class">5.3.5. DL_RULE Class</a></li>
-<li><a href="#_dl_condition_chain_class">5.3.6. DL_CONDITION_CHAIN Class</a></li>
-<li><a href="#_dl_condition_rule_class">5.3.7. DL_CONDITION_RULE Class</a></li>
+<li><a href="#_class_descriptions">5.2.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_module_class">5.2.1.1. MODULE Class</a></li>
+<li><a href="#_dl_module_class">5.2.1.2. DL_MODULE Class</a></li>
+<li><a href="#_dl_model_ref_class">5.2.1.3. DL_MODEL_REF Class</a></li>
+<li><a href="#_dl_condition_def_class">5.2.1.4. DL_CONDITION_DEF Class</a></li>
 </ul>
 </li>
-<li><a href="#_proxy_module_package">5.4. Proxy Module Package</a></li>
-<li><a href="#_class_descriptions_2">5.5. Class Descriptions</a>
+</ul>
+</li>
+<li><a href="#_dl_rules_package">5.3. DL Rules Package</a>
 <ul class="sectlevel3">
-<li><a href="#_proxy_module_class">5.5.1. PROXY_MODULE Class</a></li>
+<li><a href="#_condition_chain_rule">5.3.1. Condition Chain Rule</a></li>
+<li><a href="#_case_rule">5.3.2. Case Rule</a></li>
+<li><a href="#_class_descriptions_2">5.3.3. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_dl_rule_class">5.3.3.1. DL_RULE Class</a></li>
+<li><a href="#_dl_condition_rule_class">5.3.3.2. DL_CONDITION_RULE Class</a></li>
+<li><a href="#_dl_condition_chain_class">5.3.3.3. DL_CONDITION_CHAIN Class</a></li>
+<li><a href="#_dl_condition_branch_class">5.3.3.4. DL_CONDITION_BRANCH Class</a></li>
+<li><a href="#_dl_case_rule_class">5.3.3.5. DL_CASE_RULE Class</a></li>
+<li><a href="#_dl_case_group_class">5.3.3.6. DL_CASE_GROUP Class</a></li>
+<li><a href="#_dl_case_branch_class">5.3.3.7. DL_CASE_BRANCH Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_proxy_module_package">5.4. Proxy Module Package</a>
+<ul class="sectlevel3">
+<li><a href="#_class_descriptions_3">5.4.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_proxy_module_class">5.4.1.1. PROXY_MODULE Class</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -103,7 +123,7 @@
 </div>
 </div>
 </div>
-<h1 id="_decision_language_dl_and_model" class="sect0">Decision Language (DL) and Model</h1>
+<h1 id="_decision_language_dl_and_model" class="sect0"><a class="anchor" href="#_decision_language_dl_and_model"></a>Decision Language (DL) and Model</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all fit-content spread">
@@ -163,7 +183,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_amendment_record">Amendment Record</h2>
+<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -197,10 +217,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_acknowledgements">Acknowledgements</h2>
+<h2 id="_acknowledgements"><a class="anchor" href="#_acknowledgements"></a>Acknowledgements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_primary_author">Primary Author</h3>
+<h3 id="_primary_author"><a class="anchor" href="#_primary_author"></a>Primary Author</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -446,7 +466,7 @@
 <p><em>conditions</em> - Boolean-returning domain-specified criteria;</p>
 </li>
 <li>
-<p><em>decisions</em> - domain-specified decision structures, which may return any type.</p>
+<p><em>rules</em> - domain-specified rules structures based on condition/action structures, which may return any type.</p>
 </li>
 </ul>
 </div>
@@ -497,9 +517,9 @@
 <p>At least two usage styles between the Plan engine and the Decision engine are possible.</p>
 </div>
 <div class="sect3">
-<h4 id="_decision_based"><a class="anchor" href="#_decision_based"></a>4.3.1. Decision-based</h4>
+<h4 id="_rule_based"><a class="anchor" href="#_rule_based"></a>4.3.1. Rule-based</h4>
 <div class="paragraph">
-<p>In this style, decisions are defined within the decision logic modules; the Plan performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.</p>
+<p>In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DLM 'rule' is likely to be intentionally designed to reflect published clinical best practice.</p>
 </div>
 <div id="conceptual_decision_based" class="imageblock text-center text-center">
 <div class="content">
@@ -511,7 +531,7 @@
 <div class="sect3">
 <h4 id="_condition_based"><a class="anchor" href="#_condition_based"></a>4.3.2. Condition-based</h4>
 <div class="paragraph">
-<p>In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel use of existing conditions.</p>
+<p>In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel or ad hoc use of existing conditions. Semantically the</p>
 </div>
 <div id="conceptual_condition_based" class="imageblock text-center text-center">
 <div class="content">
@@ -588,11 +608,10 @@ to be rewritten
 <div class="paragraph tbd">
 <p>TBD: to be continued.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>5.3. Class Descriptions</h3>
 <div class="sect3">
-<h4 id="_module_class"><a class="anchor" href="#_module_class"></a>5.3.1. MODULE Class</h4>
+<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>5.2.1. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_module_class"><a class="anchor" href="#_module_class"></a>5.2.1.1. MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -623,7 +642,7 @@ to be rewritten
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ancestors</strong>: <code>List&lt;MODULE&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Inheritance ancestors.</p>
+<p>Extension ancestors.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -631,13 +650,6 @@ to be rewritten
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>used_models</strong>: <code>List&lt;DL_MODEL_REF&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Externally defined BMM models used by this EL Module.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>functions</strong>: <code>List&lt;BMM_FUNCTION&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Utility functions for this module.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -650,8 +662,8 @@ to be rewritten
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_dl_module_class"><a class="anchor" href="#_dl_module_class"></a>5.3.2. DL_MODULE Class</h4>
+<div class="sect4">
+<h5 id="_dl_module_class"><a class="anchor" href="#_dl_module_class"></a>5.2.1.2. DL_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -713,16 +725,29 @@ to be rewritten
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_result</strong> (): <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>create_bmm_class</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Execution result of the whole rule set. Determined by the and-ing of result values of Assertions in the rule set.</p>
+<p>Generate a <code>BMM_CLASS</code> structure in which:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>constants</em></code> = <code><em>this.definitions</em></code>;</p>
+</li>
+<li>
+<p><code><em>this.conditions</em></code> are converted to <code>Boolean</code>-returning functions with no parameters whose <code><em>body</em></code> is a single assignment statement of the form <code>Result</code> = <code>DL_CONDITION_DEF.<em>definition</em></code>;</p>
+</li>
+<li>
+<p><code><em>this.rules</em></code> are converted to <code>Boolean</code>-returning functions with no parameters whose <code><em>body</em></code> consists of the <code>DL_CONDITION_RULE.<em>body</em></code>.</p>
+</li>
+</ul>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_dl_model_ref_class"><a class="anchor" href="#_dl_model_ref_class"></a>5.3.3. DL_MODEL_REF Class</h4>
+<div class="sect4">
+<h5 id="_dl_model_ref_class"><a class="anchor" href="#_dl_model_ref_class"></a>5.2.1.3. DL_MODEL_REF Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -753,8 +778,8 @@ to be rewritten
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_dl_condition_def_class"><a class="anchor" href="#_dl_condition_def_class"></a>5.3.4. DL_CONDITION_DEF Class</h4>
+<div class="sect4">
+<h5 id="_dl_condition_def_class"><a class="anchor" href="#_dl_condition_def_class"></a>5.2.1.4. DL_CONDITION_DEF Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -791,8 +816,50 @@ to be rewritten
 </tbody>
 </table>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dl_rules_package"><a class="anchor" href="#_dl_rules_package"></a>5.3. DL Rules Package</h3>
+<div class="paragraph">
+<p>Specific Rule types are defined as descendants of <code>DL_RULE</code>, which may be understood as a pseudo form of the <code>BMM_FUNCTION</code> meta-type, i.e. a particular kind of function with a <code><em>body</em></code>. The following UML view illustrates.</p>
+</div>
+<div id="dlom_rules" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/PROC-dlom.rules.svg" alt="PROC dlom.rules">
+</div>
+<div class="title">Figure 11. proc.dlom.rules Package</div>
+</div>
+<div class="paragraph">
+<p>Some specific rule types are described below.</p>
+</div>
 <div class="sect3">
-<h4 id="_dl_rule_class"><a class="anchor" href="#_dl_rule_class"></a>5.3.5. DL_RULE Class</h4>
+<h4 id="_condition_chain_rule"><a class="anchor" href="#_condition_chain_rule"></a>5.3.1. Condition Chain Rule</h4>
+<div class="paragraph">
+<p>A DL <em>condition chain rule</em> is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.</p>
+</div>
+<div id="dlom_rules_condition_chain" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/PROC-dlom.rules-condition_chain.svg" alt="PROC dlom.rules condition chain">
+</div>
+<div class="title">Figure 12. Condition chain rule</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>5.3.2. Case Rule</h4>
+<div class="paragraph">
+<p>A DL <em>case rule</em> is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages.</p>
+</div>
+<div id="dlom_rules_case" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/PROC-dlom.rules-case.svg" alt="PROC dlom.rules case">
+</div>
+<div class="title">Figure 13. Case rule</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.3.3. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_dl_rule_class"><a class="anchor" href="#_dl_rule_class"></a>5.3.3.1. DL_RULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -807,18 +874,67 @@ to be rewritten
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Abstract parent of DL rule types. All rules have a <code><em>name</em></code> (inherited from <code>BMM_DECLARATION</code>), a <code><em>signature</em>()</code> function (<code>BMM_CLASS_ENTITY</code>) and a <code><em>type</em></code> (<code>BMM_TYPED</code>).</p>
+<p>Abstract parent of DL rule types. All rules have a <code><em>name</em></code> (inherited from <code>BMM_DECLARATION</code>), and a <code><em>type</em></code> (from <code>BMM_TYPED</code>).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_CLASS_ENTITY</code>, <code>BMM_TYPED</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_TYPED</code>, <code>BMM_CLASS_ENTITY</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>body</strong>: <code>BMM_STATEMENT_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_dl_condition_chain_class"><a class="anchor" href="#_dl_condition_chain_class"></a>5.3.6. DL_CONDITION_CHAIN Class</h4>
+<div class="sect4">
+<h5 id="_dl_condition_rule_class"><a class="anchor" href="#_dl_condition_rule_class"></a>5.3.3.2. DL_CONDITION_RULE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_CONDITION_RULE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>A kind of rule consisting of a chain of Condition/action branches.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DL_RULE</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>body</strong>: <code>DL_CONDITION_CHAIN</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The body of the rule.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_dl_condition_chain_class"><a class="anchor" href="#_dl_condition_chain_class"></a>5.3.3.3. DL_CONDITION_CHAIN Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -838,7 +954,7 @@ to be rewritten
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DL_RULE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_STATEMENT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -847,19 +963,23 @@ to be rewritten
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>branches</strong>: <code>List&lt;DL_CONDITION_RULE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;DL_CONDITION_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Items in the chain.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_branch</strong>: <code>EL_INSTANCE_REF</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_result</strong>: <code>EL_INSTANCE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Result to use if logical 'else' branch is followed.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_dl_condition_rule_class"><a class="anchor" href="#_dl_condition_rule_class"></a>5.3.7. DL_CONDITION_RULE Class</h4>
+<div class="sect4">
+<h5 id="_dl_condition_branch_class"><a class="anchor" href="#_dl_condition_branch_class"></a>5.3.3.4. DL_CONDITION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -869,17 +989,13 @@ to be rewritten
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_CONDITION_RULE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_CONDITION_BRANCH</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A simple rule consisting of a condition / result pair (sometimes known as a 'when/then rule').</p>
+<p>A condition / result pair (sometimes known as a 'when/then rule').</p>
 </div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DL_RULE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -903,6 +1019,139 @@ to be rewritten
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_dl_case_rule_class"><a class="anchor" href="#_dl_case_rule_class"></a>5.3.3.5. DL_CASE_RULE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_CASE_RULE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>A case rule.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DL_RULE</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>body</strong>: <code>DL_CASE_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The body of the rule.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_dl_case_group_class"><a class="anchor" href="#_dl_case_group_class"></a>5.3.3.6. DL_CASE_GROUP Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_CASE_GROUP</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Body of case rule construct.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_STATEMENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>DL_CASE_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Branches of the case rule.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_result</strong>: <code>EL_INSTANCE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Result to use if logical 'else' is followed.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>EL_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The value-generating expression that is the basis for the decision structure to be evaluated.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_dl_case_branch_class"><a class="anchor" href="#_dl_case_branch_class"></a>5.3.3.7. DL_CASE_BRANCH Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_CASE_BRANCH</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>One branch of a case rule.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>condition</strong>: <code>C_PRIMITIVE_OBJECT</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Constraint expression constraining the value of a decision branch.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>result</strong>: <code>EL_INSTANCE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The rule result, in the form of a terminal expression of the form of a literal value, module definition (i.e. constant), or function call.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_proxy_module_package"><a class="anchor" href="#_proxy_module_package"></a>5.4. Proxy Module Package</h3>
@@ -912,11 +1161,10 @@ to be rewritten
 <div class="paragraph tbd">
 <p>TBD: to be continued.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.5. Class Descriptions</h3>
 <div class="sect3">
-<h4 id="_proxy_module_class"><a class="anchor" href="#_proxy_module_class"></a>5.5.1. PROXY_MODULE Class</h4>
+<h4 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>5.4.1. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_proxy_module_class"><a class="anchor" href="#_proxy_module_class"></a>5.4.1.1. PROXY_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -945,13 +1193,6 @@ to be rewritten
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>statements</strong>: <code>List&lt;DL_STATEMENT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The full set of statements in this module&#8217;s definition.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>external_defs</strong>: <code>List&lt;BMM_PARAMETER&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>External variable definitions.</p>
@@ -976,25 +1217,9 @@ to be rewritten
 <p>Data bindings.</p>
 </div></div></td>
 </tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>module_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_result</strong> (): <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Execution result of the whole rule set. Determined by the and-ing of result values of Assertions in the rule set.</p>
-</div></div></td>
-</tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -1013,7 +1238,7 @@ to be rewritten
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-03 15:12:51 UTC
+Last updated 2020-03-04 21:27:30 UTC
 </div>
 </div>
 </body>

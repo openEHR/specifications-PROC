@@ -14,7 +14,7 @@ This will be limited in utility, since we need access to partial executions, pos
 
 * _definitions_ - domain constants;
 * _conditions_ - Boolean-returning domain-specified criteria;
-* _decisions_ - domain-specified decision structures, which may return any type.
+* _rules_ - domain-specified rules structures based on condition/action structures, which may return any type.
 
 An example of a basic formalism supporting these concepts is shown below.
 
@@ -46,9 +46,9 @@ Here, decisions defined in the source model are compiled to simple executable fo
 
 At least two usage styles between the Plan engine and the Decision engine are possible.
 
-=== Decision-based
+=== Rule-based
 
-In this style, decisions are defined within the decision logic modules; the Plan performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges.
+In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DLM 'rule' is likely to be intentionally designed to reflect published clinical best practice.
 
 [.text-center]
 .Decision-based
@@ -56,7 +56,7 @@ image::{diagrams_uri}/conceptual_decision_based.svg[id=conceptual_decision_based
 
 === Condition-based
 
-In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel use of existing conditions.
+In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel or ad hoc use of existing conditions. Semantically the 
 
 [.text-center]
 .Condition-based

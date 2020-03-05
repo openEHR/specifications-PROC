@@ -6,9 +6,16 @@ h|*Class*
 2+^h|*_DL_RULE (abstract)_*
 
 h|*Description*
-2+a|Abstract parent of DL rule types. All rules have a `_name_` (inherited from `BMM_DECLARATION`), a `_signature_()` function (`BMM_CLASS_ENTITY`) and a `_type_` (`BMM_TYPED`).
+2+a|Abstract parent of DL rule types. All rules have a `_name_` (inherited from `BMM_DECLARATION`), and a `_type_` (from `BMM_TYPED`).
 
 h|*Inherit*
-2+|`BMM_CLASS_ENTITY`, `BMM_TYPED`
+2+|`BMM_TYPED`, `BMM_CLASS_ENTITY`
 
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*body*: `BMM_STATEMENT_ITEM`
+a|
 |===

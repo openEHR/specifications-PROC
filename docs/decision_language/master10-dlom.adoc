@@ -23,15 +23,49 @@ image::{uml_diagrams_uri}/PROC-dlom.module.svg[id=dlom_module, align="center"]
 [.tbd]
 TBD: to be continued. 
 
-== Class Descriptions
+=== Class Descriptions
 
-include::{uml_export_dir}/classes/module.adoc[]
-include::{uml_export_dir}/classes/dl_module.adoc[]
-include::{uml_export_dir}/classes/dl_model_ref.adoc[]
-include::{uml_export_dir}/classes/dl_condition_def.adoc[]
-include::{uml_export_dir}/classes/dl_rule.adoc[]
-include::{uml_export_dir}/classes/dl_condition_chain.adoc[]
-include::{uml_export_dir}/classes/dl_condition_rule.adoc[]
+include::{uml_export_dir}/classes/module.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_module.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/dl_model_ref.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_condition_def.adoc[leveloffset=+1]
+
+== DL Rules Package
+
+Specific Rule types are defined as descendants of `DL_RULE`, which may be understood as a pseudo form of the `BMM_FUNCTION` meta-type, i.e. a particular kind of function with a `_body_`. The following UML view illustrates.
+
+[.text-center]
+.proc.dlom.rules Package
+image::{uml_diagrams_uri}/PROC-dlom.rules.svg[id=dlom_rules, align="center"]
+
+Some specific rule types are described below.
+
+=== Condition Chain Rule
+
+A DL _condition chain rule_ is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.
+
+[.text-center]
+.Condition chain rule
+image::{uml_diagrams_uri}/PROC-dlom.rules-condition_chain.svg[id=dlom_rules_condition_chain, align="center"]
+
+=== Case Rule
+
+A DL _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages.
+
+[.text-center]
+.Case rule
+image::{uml_diagrams_uri}/PROC-dlom.rules-case.svg[id=dlom_rules_case, align="center"]
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/dl_rule.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_condition_rule.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_condition_chain.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_condition_branch.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/dl_case_rule.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_case_group.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/dl_case_branch.adoc[leveloffset=+1]
 
 == Proxy Module Package
 
@@ -40,6 +74,6 @@ The class `PROXY_MODULE` represents an object proxy, i.e. source of real-world d
 [.tbd]
 TBD: to be continued. 
 
-== Class Descriptions
+=== Class Descriptions
 
-include::{uml_export_dir}/classes/proxy_module.adoc[]
+include::{uml_export_dir}/classes/proxy_module.adoc[leveloffset=+1]

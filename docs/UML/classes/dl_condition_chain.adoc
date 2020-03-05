@@ -9,17 +9,17 @@ h|*Description*
 2+a|Rule type that returns a result based on one or more conditions.
 
 h|*Inherit*
-2+|`DL_RULE`
+2+|`BMM_STATEMENT`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*branches*: `List<DL_CONDITION_RULE>`
-a|
+|*items*: `List<DL_CONDITION_BRANCH>`
+a|Items in the chain.
 
 h|*0..1*
-|*else_branch*: `EL_INSTANCE_REF`
-a|
+|*else_result*: `EL_INSTANCE_REF`
+a|Result to use if logical 'else' branch is followed.
 |===

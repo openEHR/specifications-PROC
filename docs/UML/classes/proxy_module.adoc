@@ -16,10 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*statements*: `List<DL_STATEMENT>`
-a|The full set of statements in this module's definition.
-
-h|*0..1*
 |*external_defs*: `List<BMM_PARAMETER>`
 a|External variable definitions.
 
@@ -34,15 +30,4 @@ a|
 h|*1..1*
 |*data_binding*: `DL_DATA_BINDING`
 a|Data bindings.
-
-h|*1..1*
-|*module_id*: `String`
-a|
-h|*Functions*
-^h|*Signature*
-^h|*Meaning*
-
-h|
-|*execution_result* (): `Boolean`
-a|Execution result of the whole rule set. Determined by the and-ing of result values of Assertions in the rule set.
 |===

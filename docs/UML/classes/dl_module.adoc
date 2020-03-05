@@ -35,6 +35,10 @@ h|*Functions*
 ^h|*Meaning*
 
 h|
-|*execution_result* (): `Boolean`
-a|Execution result of the whole rule set. Determined by the and-ing of result values of Assertions in the rule set.
+|*create_bmm_class*
+a|Generate a `BMM_CLASS` structure in which:
+
+* `_constants_` = `_this.definitions_`;
+* `_this.conditions_` are converted to `Boolean`-returning functions with no parameters whose `_body_` is a single assignment statement of the form `Result` = `DL_CONDITION_DEF._definition_`;
+* `_this.rules_` are converted to `Boolean`-returning functions with no parameters whose `_body_` consists of the `DL_CONDITION_RULE._body_`.
 |===
