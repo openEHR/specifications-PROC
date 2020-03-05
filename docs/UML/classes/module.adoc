@@ -17,15 +17,11 @@ h|*Attributes*
 
 h|*0..1*
 |*ancestors*: `List<MODULE>`
-a|Inheritance ancestors.
+a|Extension ancestors.
 
 h|*0..1*
 |*used_models*: `List<DL_MODEL_REF>`
 a|Externally defined BMM models used by this EL Module.
-
-h|*0..1*
-|*functions*: `List<BMM_FUNCTION>`
-a|Utility functions for this module.
 
 h|*0..1*
 |*definitions*: `List<BMM_CONSTANT>`
