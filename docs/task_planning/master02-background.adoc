@@ -8,9 +8,9 @@ The following sections discuss the requirements for a category of computational 
 
 Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself _perform_ the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since a clinical process is not the same thing as the work undertaken by one of its performers.
 
-To understand the form a clinical workflow / planning system must take to be useful, we need to consider clinical work is performed in the real world.
+To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.
 
-The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically-driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
+The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
 
 The second aspect to consider is that clinical professionals don't need to be told how to do their routine work. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:
 
@@ -19,7 +19,11 @@ The second aspect to consider is that clinical professionals don't need to be to
 * _decision support_ to determine appropriate treatments, medications from among numerous and/or changing possibilities;
 * _verification (signing off)_ of tasks performed for medico-legal reasons, process improvement (including _process mining_).
 
-In general, the above capabilities address three human fallibilities: limited capacity to deal with complexity (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^]); the inability to keep up with change (new medications, research etc); and the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.
+In general, the above capabilities address three human fallibilities:
+
+* limited capacity to deal with complexity (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^]); 
+* the inability to keep up with change (new medications, research etc); and
+* the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.
 
 Automated support for the above would significantly aid the short-term, single clinician/patient situation, but much clinical care today is team-based, and also unfolds over a longer time than a single work shift or day. Therefore another important kind of help is needed:
 
@@ -37,11 +41,11 @@ The sections below elucidate some of the topics mentioned above.
 
 ==== The Co-pilot Paradigm
 
-Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, but does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions.
+Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs. 
 
 ==== Voice-based HCI
 
-One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home AV systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:
+One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home audio-visual systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:
 
 * by replacing physical keyboard interaction with voice, it enables interaction with the system to occur in _parallel_, and therefore in real-time, with clinical work that typically already occupies the worker's hands and eyes;
 * it largely removes the problem of maintaining the _sterile field_ around a patient that would otherwise be jeapordised by multiple workers touching keyboards and touchscreens.

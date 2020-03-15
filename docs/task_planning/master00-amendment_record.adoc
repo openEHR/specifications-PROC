@@ -50,7 +50,7 @@
 |22 Jul 2019
 
 |1.4.0
-|{spec_tickets}/SPECPROC-24[SPECPROC-24^]. Add Order tracking to model.
+|{spec_tickets}/SPECPROC-24[SPECPROC-24^]. Add Order tracking to model: add class `ORDER_REF`; add `WORK_PLAN._order_list_`; add `TASK_PLAN._order_tags_`.
 |M Kejžar, +
  M Polajnar, +
  T Beale, +
@@ -58,7 +58,7 @@
 |29 May 2019
 
 |1.3.0
-|{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Enable Callbacks to be manually notified.
+|{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Enable Callbacks to be manually notified - add `_manually_notified_: Boolean` to `CALLBACK_NOTIFICATION`.
 |T Beale
 |01 May 2019
 
@@ -82,7 +82,7 @@
 |
 |{spec_tickets}/SPECPROC-18[SPECPROC-18^]. Support custom actions for callback receipt of events; +
  Improve diagrams and explanation on Task wait states and Events; +
- Add `EVENT_ACTION._custom_actions_`; +
+ Add `CALLBACK_WAIT._custom_actions_`; +
  Add `REMINDER._repeats_`; +
  Add `TASK_WAIT._next_state_`
 |T Beale, +

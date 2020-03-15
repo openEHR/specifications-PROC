@@ -20,9 +20,15 @@ h|*1..1*
 |*system_id*: `String`
 a|Identifier of target system, typically a domain name.
 
+h|*1..1*
+|*call_name*: `String`
+a|Name of call in API.
+
 h|*0..1*
-|*definition*: `BMM_FUNCTION`
+|*definition*: 
 a|Signature definition of call.
+
+TODO: to be defined.
 
 h|*0..1*
 |*parameter_map*: `List<PARAMETER_MAPPING>`

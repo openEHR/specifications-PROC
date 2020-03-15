@@ -40,7 +40,7 @@
 <ul class="sectlevel2">
 <li><a href="#_survey_of_requirements">2.1. Survey of Requirements</a>
 <ul class="sectlevel3">
-<li><a href="#_how_can_computers_improve_clinical_care">2.1.1. How Can Computers Improve Clinical Care?</a></li>
+<li><a href="#_how_can_computers_improve_clinical_care_process">2.1.1. How Can Computers Improve Clinical Care Process?</a></li>
 <li><a href="#_cognitive_model">2.1.2. Cognitive Model</a>
 <ul class="sectlevel4">
 <li><a href="#_the_co_pilot_paradigm">2.1.2.1. The Co-pilot Paradigm</a></li>
@@ -498,7 +498,7 @@
 </div>
 </div>
 </div>
-<h1 id="_task_planning_specification" class="sect0">Task Planning Specification</h1>
+<h1 id="_task_planning_specification" class="sect0"><a class="anchor" href="#_task_planning_specification"></a>Task Planning Specification</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all fit-content spread">
@@ -558,7 +558,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_amendment_record">Amendment Record</h2>
+<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -581,10 +581,18 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support partial data set creation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Feb 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-32" target="_blank" rel="noopener">SPECPROC-32</a>. Improve Introduction and Requirements Discussion.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D Santos Alves,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>26 Jan 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 Jan 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -622,7 +630,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-24" target="_blank" rel="noopener">SPECPROC-24</a>. Add Order tracking to model.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-24" target="_blank" rel="noopener">SPECPROC-24</a>. Add Order tracking to model: add class <code>ORDER_REF</code>; add <code>WORK_PLAN.<em>order_list</em></code>; add <code>TASK_PLAN.<em>order_tags</em></code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  M Polajnar,<br>
  T Beale,<br>
@@ -631,7 +639,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Enable Callbacks to be manually notified.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Enable Callbacks to be manually notified - add <code><em>manually_notified</em>: Boolean</code> to <code>CALLBACK_NOTIFICATION</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">01 May 2019</p></td>
 </tr>
@@ -659,7 +667,7 @@
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-18" target="_blank" rel="noopener">SPECPROC-18</a>. Support custom actions for callback receipt of events;<br>
  Improve diagrams and explanation on Task wait states and Events;<br>
- Add <code>EVENT_ACTION.<em>custom_actions</em></code>;<br>
+ Add <code>CALLBACK_WAIT.<em>custom_actions</em></code>;<br>
  Add <code>REMINDER.<em>repeats</em></code>;<br>
  Add <code>TASK_WAIT.<em>next_state</em></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
@@ -828,10 +836,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_acknowledgements">Acknowledgements</h2>
+<h2 id="_acknowledgements"><a class="anchor" href="#_acknowledgements"></a>Acknowledgements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_primary_author">Primary Author</h3>
+<h3 id="_primary_author"><a class="anchor" href="#_primary_author"></a>Primary Author</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -841,7 +849,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_contributors">Contributors</h3>
+<h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
 <div class="paragraph">
 <p>This specification benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.</p>
 </div>
@@ -881,7 +889,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_support">Support</h3>
+<h3 id="_support"><a class="anchor" href="#_support"></a>Support</h3>
 <div class="paragraph">
 <p>The work reported in this specification has been funded by the following organisations:</p>
 </div>
@@ -903,7 +911,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_intellectual_origins">Intellectual Origins</h3>
+<h3 id="_intellectual_origins"><a class="anchor" href="#_intellectual_origins"></a>Intellectual Origins</h3>
 <div class="paragraph">
 <p>Many of the design ideas presented in this specification came from analysis of use cases from industry sources. In particular, the openEHR implementers Marand and DIPS provided significant detailed requirements, use cases, and design ideas.</p>
 </div>
@@ -915,7 +923,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_trademarks">Trademarks</h3>
+<h3 id="_trademarks"><a class="anchor" href="#_trademarks"></a>Trademarks</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1004,7 +1012,7 @@
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="http://lists.openehr.org/mailman/listinfo/openehr-technical_lists.openehr.org" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://forums.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/PROC/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -1030,15 +1038,15 @@
 <p>The following sections discuss the requirements for a category of computational system that supports the execution of clinical processes by their performers. The general concept of 'work plans' consisting of 'sub-plans', 'tasks', decision points etc is assumed.</p>
 </div>
 <div class="sect3">
-<h4 id="_how_can_computers_improve_clinical_care"><a class="anchor" href="#_how_can_computers_improve_clinical_care"></a>2.1.1. How Can Computers Improve Clinical Care?</h4>
+<h4 id="_how_can_computers_improve_clinical_care_process"><a class="anchor" href="#_how_can_computers_improve_clinical_care_process"></a>2.1.1. How Can Computers Improve Clinical Care Process?</h4>
 <div class="paragraph">
 <p>Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself <em>perform</em> the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since a clinical process is not the same thing as the work undertaken by one of its performers.</p>
 </div>
 <div class="paragraph">
-<p>To understand the form a clinical workflow / planning system must take to be useful, we need to consider clinical work is performed in the real world.</p>
+<p>To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.</p>
 </div>
 <div class="paragraph">
-<p>The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically-driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
+<p>The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
 </div>
 <div class="paragraph">
 <p>The second aspect to consider is that clinical professionals don&#8217;t need to be told how to do their routine work. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:</p>
@@ -1060,7 +1068,20 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>In general, the above capabilities address three human fallibilities: limited capacity to deal with complexity (often denoted as <a href="https://en.wikipedia.org/wiki//The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>); the inability to keep up with change (new medications, research etc); and the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.</p>
+<p>In general, the above capabilities address three human fallibilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>limited capacity to deal with complexity (often denoted as <a href="https://en.wikipedia.org/wiki//The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>);</p>
+</li>
+<li>
+<p>the inability to keep up with change (new medications, research etc); and</p>
+</li>
+<li>
+<p>the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Automated support for the above would significantly aid the short-term, single clinician/patient situation, but much clinical care today is team-based, and also unfolds over a longer time than a single work shift or day. Therefore another important kind of help is needed:</p>
@@ -1097,13 +1118,13 @@
 <div class="sect4">
 <h5 id="_the_co_pilot_paradigm"><a class="anchor" href="#_the_co_pilot_paradigm"></a>2.1.2.1. The Co-pilot Paradigm</h5>
 <div class="paragraph">
-<p>Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, but does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time <em>override</em> system-proposed tasks or decisions.</p>
+<p>Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time <em>override</em> system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_voice_based_hci"><a class="anchor" href="#_voice_based_hci"></a>2.1.2.2. Voice-based HCI</h5>
 <div class="paragraph">
-<p>One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home AV systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:</p>
+<p>One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home audio-visual systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2821,12 +2842,12 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">    cds_calc_risk (
-        riskType:    String;
-        sex:         CodedText;
-        dateOfBirth: Iso8601Date;
-        isSmoker:    Boolean;
-    ): Real</code></pre>
+<pre class="pygments highlight"><code data-lang="ts"><span></span>    <span class="tok-nx">cds_calc_risk</span> <span class="tok-p">(</span>
+        <span class="tok-nx">riskType</span>:    <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">sex</span>:         <span class="tok-kt">CodedText</span><span class="tok-p">;</span>
+        <span class="tok-nx">dateOfBirth</span>: <span class="tok-kt">Iso8601Date</span><span class="tok-p">;</span>
+        <span class="tok-nx">isSmoker</span>:    <span class="tok-kt">Boolean</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Real</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2834,13 +2855,13 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">    {
-        "parameter_map": [
-            {"context_name": "subject_sex",        "name": "sex"},
-            {"context_name": "subject_dob",        "name": "dateOfBirth"},
-            {"context_name": "tobacco_use_status", "name": "isSmoker"}
-        ]
-    }</code></pre>
+<pre class="pygments highlight"><code data-lang="json"><span></span>    <span class="tok-p">{</span>
+        <span class="tok-nt">&quot;parameter_map&quot;</span><span class="tok-p">:</span> <span class="tok-p">[</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_sex&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;sex&quot;</span><span class="tok-p">},</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_dob&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;dateOfBirth&quot;</span><span class="tok-p">},</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;tobacco_use_status&quot;</span><span class="tok-p">,</span> <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;isSmoker&quot;</span><span class="tok-p">}</span>
+        <span class="tok-p">]</span>
+    <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2863,17 +2884,17 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">    // ad hoc query call
-    execute_ad_hoc_query (
-        query_text: String;
-        parameters: Hash&lt;String, String&gt;;
-    ): Result
+<pre class="pygments highlight"><code data-lang="typescript"><span></span>    <span class="tok-c1">// ad hoc query call</span>
+    <span class="tok-nx">execute_ad_hoc_query</span> <span class="tok-p">(</span>
+        <span class="tok-nx">query_text</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">parameters</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span>
 
-    // stored query call
-    execute_stored_query (
-        query_id: String;
-        parameters: Hash&lt;String, String&gt;;
-    ): Result</code></pre>
+    <span class="tok-c1">// stored query call</span>
+    <span class="tok-nx">execute_stored_query</span> <span class="tok-p">(</span>
+        <span class="tok-nx">query_id</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">parameters</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2929,10 +2950,20 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>call_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of call in API.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>BMM_FUNCTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>:</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Signature definition of call.</p>
+</div>
+<div class="paragraph">
+<p>TODO: to be defined.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5912,6 +5943,21 @@ The following UML diagram illustrates.</p>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>commit_group</strong>: <code>DATASPEC_COMMIT_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional meta-data to include this data set as part of a 'commit group'.</p>
+</div>
+<div class="paragraph">
+<p>If Void, the current data set is assumed to stand alone, i.e. usually correspond to a single form.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -8094,6 +8140,23 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <p>TODO: to be developed.</p>
 </div></div></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_call</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Call to resource costing system to convert Task classification to cost.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -8244,29 +8307,29 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">//
-// Infer the state of a collection whose members have states in source_states.
-// The order of if/else evaluation determines the correct result.
-//
-Task_state inferred_state (Set&lt;Task_state&gt; source_states) {
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-c1">//</span>
+<span class="tok-c1">// Infer the state of a collection whose members have states in source_states.</span>
+<span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
+<span class="tok-c1">//</span>
+<span class="tok-n">Task_state</span> <span class="tok-nf">inferred_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_state</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
 
-    if (source_states.contains(Abandoned))
-        return Abandoned;
-    else if (source_states.contains(Available))
-        return Available;
-    else if (source_states.contains(Planned))
-        return Planned;
-    else if (source_states.contains(Suspended))
-        return Suspended;
-    else if (source_states.contains(Underway))
-        return Underway;
-    else if (source_states.contains(Completed))
-        return Completed;
-    else if (source_states.contains(Cancelled))
-        return Cancelled;
-    else
-        return Initial;
-}</code></pre>
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span>
+        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-o">;</span>
+<span class="tok-o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8741,10 +8804,15 @@ Task_state inferred_state (Set&lt;Task_state&gt; source_states) {
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions</strong>: <code>List&lt;BMM_ASSERTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions</strong>: <code>List&lt;EL_ASSERTION&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Run-time form of preconditions on corresponding TASK in Task Plan definition.</p>
 </div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ad_hoc_tasks</strong>: <code>List&lt;M_ADHOC_TASK_SET&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
@@ -9392,8 +9460,9 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-01-24 19:39:57 UTC
+Last updated 2020-03-04 21:27:12 UTC
 </div>
 </div>
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-murphy.css">
 </body>
 </html>
