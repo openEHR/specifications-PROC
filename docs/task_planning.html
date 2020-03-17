@@ -204,45 +204,48 @@
 <ul class="sectlevel3">
 <li><a href="#_the_plan_calendar">6.2.1. The Plan Calendar</a></li>
 <li><a href="#_plan_items">6.2.2. Plan Items</a></li>
-<li><a href="#_references_to_clinical_quality_artefacts">6.2.3. References to Clinical Quality Artefacts</a></li>
-<li><a href="#_class_definitions">6.2.4. Class Definitions</a>
+<li><a href="#_lifecycle_state">6.2.3. Lifecycle State</a>
 <ul class="sectlevel4">
-<li><a href="#_work_plan_class">6.2.4.1. WORK_PLAN Class</a></li>
-<li><a href="#_plan_calendar_class">6.2.4.2. PLAN_CALENDAR Class</a></li>
-<li><a href="#_plan_timeline_class">6.2.4.3. PLAN_TIMELINE Class</a></li>
-<li><a href="#_calendar_entry_class">6.2.4.4. CALENDAR_ENTRY Class</a></li>
-<li><a href="#_task_plan_class">6.2.4.5. TASK_PLAN Class</a></li>
-<li><a href="#_task_participation_class">6.2.4.6. TASK_PARTICIPATION Class</a></li>
-<li><a href="#_plan_item_class">6.2.4.7. PLAN_ITEM Class</a></li>
-<li><a href="#_task_repeat_class">6.2.4.8. TASK_REPEAT Class</a></li>
+<li><a href="#_task_availability">6.2.3.1. Task Availability</a></li>
+<li><a href="#_aggregate_process_state">6.2.3.2. Aggregate Process State</a></li>
+</ul>
+</li>
+<li><a href="#_references_to_clinical_quality_artefacts">6.2.4. References to Clinical Quality Artefacts</a></li>
+<li><a href="#_class_definitions">6.2.5. Class Definitions</a>
+<ul class="sectlevel4">
+<li><a href="#_work_plan_class">6.2.5.1. WORK_PLAN Class</a></li>
+<li><a href="#_plan_calendar_class">6.2.5.2. PLAN_CALENDAR Class</a></li>
+<li><a href="#_plan_timeline_class">6.2.5.3. PLAN_TIMELINE Class</a></li>
+<li><a href="#_calendar_entry_class">6.2.5.4. CALENDAR_ENTRY Class</a></li>
+<li><a href="#_task_plan_class">6.2.5.5. TASK_PLAN Class</a></li>
+<li><a href="#_task_participation_class">6.2.5.6. TASK_PARTICIPATION Class</a></li>
+<li><a href="#_plan_item_class">6.2.5.7. PLAN_ITEM Class</a></li>
+<li><a href="#_task_repeat_class">6.2.5.8. TASK_REPEAT Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_task_structure">6.3. Task Structure</a>
+<li><a href="#_task_group_structure">6.3. Task Group Structure</a>
 <ul class="sectlevel3">
-<li><a href="#_parallel_task_groups_and_concurrency">6.3.1. Parallel Task Groups and Concurrency</a></li>
-<li><a href="#_hierarachical_nesting">6.3.2. Hierarachical Nesting</a></li>
-<li><a href="#_generic_execution_time_semantics">6.3.3. Generic Execution-time Semantics</a></li>
-<li><a href="#_well_formedness">6.3.4. Well-formedness</a></li>
-<li><a href="#_training_level">6.3.5. Training Level</a></li>
-<li><a href="#_class_definitions_2">6.3.6. Class Definitions</a>
+<li><a href="#_sequential_task_groups">6.3.1. Sequential Task Groups</a></li>
+<li><a href="#_parallel_task_groups_and_concurrency">6.3.2. Parallel Task Groups and Concurrency</a></li>
+<li><a href="#_hierarchical_nesting">6.3.3. Hierarchical Nesting</a></li>
+<li><a href="#_generic_execution_time_semantics">6.3.4. Generic Execution-time Semantics</a></li>
+<li><a href="#_well_formedness">6.3.5. Well-formedness</a></li>
+<li><a href="#_training_level">6.3.6. Training Level</a></li>
+<li><a href="#_class_definitions_2">6.3.7. Class Definitions</a>
 <ul class="sectlevel4">
-<li><a href="#_task_group_class">6.3.6.1. TASK_GROUP Class</a></li>
-<li><a href="#_execution_type_enumeration_2">6.3.6.2. EXECUTION_TYPE Enumeration</a></li>
-<li><a href="#_concurrency_mode_enumeration">6.3.6.3. CONCURRENCY_MODE Enumeration</a></li>
-<li><a href="#_execution_rule_class">6.3.6.4. EXECUTION_RULE Class</a></li>
+<li><a href="#_task_group_class">6.3.7.1. TASK_GROUP Class</a></li>
+<li><a href="#_execution_type_enumeration_2">6.3.7.2. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_concurrency_mode_enumeration">6.3.7.3. CONCURRENCY_MODE Enumeration</a></li>
+<li><a href="#_execution_rule_class">6.3.7.4. EXECUTION_RULE Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_general_task_semantics">6.4. General Task Semantics</a>
 <ul class="sectlevel3">
-<li><a href="#_task_lifecycle_2">6.4.1. Task Lifecycle</a>
-<ul class="sectlevel4">
-<li><a href="#_task_availability">6.4.1.1. Task Availability</a></li>
-</ul>
-</li>
+<li><a href="#_dispatchable_and_performable_tasks">6.4.1. Dispatchable and Performable Tasks</a></li>
 <li><a href="#_class_definitions_3">6.4.2. Class Definitions</a>
 <ul class="sectlevel4">
 <li><a href="#_taskta_class">6.4.2.1. TASK&lt;TA&gt; Class</a></li>
@@ -295,21 +298,25 @@
 </li>
 </ul>
 </li>
-<li><a href="#_conditional_structures_2">6.7. Conditional Structures</a>
+<li><a href="#_decision_structures">6.7. Decision Structures</a>
 <ul class="sectlevel3">
-<li><a href="#_class_definitions_6">6.7.1. Class Definitions</a>
+<li><a href="#_overview_2">6.7.1. Overview</a></li>
+<li><a href="#_condition_group_ifelseifelse">6.7.2. Condition Group (if/elseif/else)</a></li>
+<li><a href="#_decision_group_switch">6.7.3. Decision Group (switch)</a></li>
+<li><a href="#_event_group">6.7.4. Event Group</a></li>
+<li><a href="#_class_definitions_6">6.7.5. Class Definitions</a>
 <ul class="sectlevel4">
-<li><a href="#_choice_group_class">6.7.1.1. CHOICE_GROUP Class</a></li>
-<li><a href="#_override_type_enumeration">6.7.1.2. OVERRIDE_TYPE Enumeration</a></li>
-<li><a href="#_choice_branch_class">6.7.1.3. CHOICE_BRANCH Class</a></li>
-<li><a href="#_condition_group_class">6.7.1.4. CONDITION_GROUP Class</a></li>
-<li><a href="#_condition_branch_class">6.7.1.5. CONDITION_BRANCH Class</a></li>
-<li><a href="#_decision_group_class">6.7.1.6. DECISION_GROUP Class</a></li>
-<li><a href="#_decision_branch_class">6.7.1.7. DECISION_BRANCH Class</a></li>
-<li><a href="#_adhoc_group_class">6.7.1.8. ADHOC_GROUP Class</a></li>
-<li><a href="#_adhoc_branch_class">6.7.1.9. ADHOC_BRANCH Class</a></li>
-<li><a href="#_event_group_class">6.7.1.10. EVENT_GROUP Class</a></li>
-<li><a href="#_event_branch_class">6.7.1.11. EVENT_BRANCH Class</a></li>
+<li><a href="#_choice_group_class">6.7.5.1. CHOICE_GROUP Class</a></li>
+<li><a href="#_override_type_enumeration">6.7.5.2. OVERRIDE_TYPE Enumeration</a></li>
+<li><a href="#_choice_branch_class">6.7.5.3. CHOICE_BRANCH Class</a></li>
+<li><a href="#_condition_group_class">6.7.5.4. CONDITION_GROUP Class</a></li>
+<li><a href="#_condition_branch_class">6.7.5.5. CONDITION_BRANCH Class</a></li>
+<li><a href="#_decision_group_class">6.7.5.6. DECISION_GROUP Class</a></li>
+<li><a href="#_decision_branch_class">6.7.5.7. DECISION_BRANCH Class</a></li>
+<li><a href="#_adhoc_group_class">6.7.5.8. ADHOC_GROUP Class</a></li>
+<li><a href="#_adhoc_branch_class">6.7.5.9. ADHOC_BRANCH Class</a></li>
+<li><a href="#_event_group_class">6.7.5.10. EVENT_GROUP Class</a></li>
+<li><a href="#_event_branch_class">6.7.5.11. EVENT_BRANCH Class</a></li>
 </ul>
 </li>
 </ul>
@@ -327,7 +334,7 @@
 </li>
 <li><a href="#_events">6.9. Events</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_2">6.9.1. Overview</a></li>
+<li><a href="#_overview_3">6.9.1. Overview</a></li>
 <li><a href="#_event_types">6.9.2. Event Types</a>
 <ul class="sectlevel4">
 <li><a href="#_timeline_moment">6.9.2.1. TIMELINE_MOMENT</a></li>
@@ -406,8 +413,9 @@
 </li>
 <li><a href="#_aggregate_lifecycle_state">7.3. Aggregate Lifecycle State</a>
 <ul class="sectlevel3">
-<li><a href="#_task_group_lifecycle_state">7.3.1. Task Group Lifecycle State</a></li>
-<li><a href="#_work_group_lifecycle_state">7.3.2. Work Group Lifecycle State</a></li>
+<li><a href="#_sequential_groups">7.3.1. Sequential Groups</a></li>
+<li><a href="#_parallel_groups">7.3.2. Parallel Groups</a></li>
+<li><a href="#_work_plan_2">7.3.3. Work Plan</a></li>
 </ul>
 </li>
 </ul>
@@ -434,7 +442,7 @@
 </li>
 <li><a href="#_materialised_model">9. Materialised Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_3">9.1. Overview</a></li>
+<li><a href="#_overview_4">9.1. Overview</a></li>
 <li><a href="#_class_descriptions_5">9.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_m_work_plan_class">9.2.1. M_WORK_PLAN Class</a></li>
@@ -449,7 +457,7 @@
 </li>
 <li><a href="#_plan_execution_history">10. Plan Execution History</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_4">10.1. Overview</a></li>
+<li><a href="#_overview_5">10.1. Overview</a></li>
 <li><a href="#_class_descriptions_6">10.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_task_plan_execution_history_class">10.2.1. TASK_PLAN_EXECUTION_HISTORY Class</a></li>
@@ -463,7 +471,7 @@
 </li>
 <li><a href="#_transactional_service_model">11. Transactional Service Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_5">11.1. Overview</a></li>
+<li><a href="#_overview_6">11.1. Overview</a></li>
 <li><a href="#_definition_interface">11.2. Definition Interface</a></li>
 <li><a href="#_execution_time_interface">11.3. Execution-time Interface</a></li>
 <li><a href="#_class_descriptions_7">11.4. Class Descriptions</a>
@@ -478,7 +486,7 @@
 </li>
 <li><a href="#_relationship_with_other_openehr_ehr_artefacts">12. Relationship with other openEHR EHR Artefacts</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_6">12.1. Overview</a></li>
+<li><a href="#_overview_7">12.1. Overview</a></li>
 <li><a href="#_execution_time_ehr_structures">12.2. Execution-time EHR Structures</a></li>
 </ul>
 </li>
@@ -581,11 +589,11 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support partial data set creation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Feb 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Mar 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -3787,7 +3795,7 @@ The following UML diagram illustrates.</p>
 <div class="sect3">
 <h4 id="_plan_items"><a class="anchor" href="#_plan_items"></a>6.2.2. Plan Items</h4>
 <div class="paragraph">
-<p>The <code>PLAN_ITEM</code> class is the parent of all fine-grained elements of a Task Plan. It has a mandatory <code><em>description</em></code> attribute, which represents a natural language specification of the work of the Task.</p>
+<p>The <code>PLAN_ITEM</code> class is the parent of all fine-grained elements of a Task Plan, which are either <code>TASKs</code> or <code>TASK_GROUPs</code>. It has a mandatory <code><em>description</em></code> attribute, which represents a natural language specification of the work of the Task.</p>
 </div>
 <div class="paragraph">
 <p><code>PLAN_ITEM</code> also has two optional attributes that control the timing behaviour of Task Plan elements: <code><em>wait_spec</em></code> and <code><em>repeat_spec</em></code>. The first enables a wait state (described above under <a href="#_time_and_wait_states">Section 4.3.8</a>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.</p>
@@ -3806,7 +3814,112 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_references_to_clinical_quality_artefacts"><a class="anchor" href="#_references_to_clinical_quality_artefacts"></a>6.2.3. References to Clinical Quality Artefacts</h4>
+<h4 id="_lifecycle_state"><a class="anchor" href="#_lifecycle_state"></a>6.2.3. Lifecycle State</h4>
+<div class="paragraph">
+<p>At execution time, every Plan Item (i.e. Task and Group) notionally has a <em>lifecycle state</em>, represented by a state machine, containing states and transitions reflecting possible actions by the performer. The lifecycle state of a Task is set by the TP engine and affected directly by performer actions and other logic, while the lifecycle state of a Group is aggregated from the state values of its member Tasks and Groups.</p>
+</div>
+<div class="paragraph">
+<p>The lifecycle state does not appear directly as a data attribute on the <code>PLAN_ITEM</code> or <code>TASK</code> classes since it is a runtime variable for a Task. Accordingly, it appears in the materialised model, <a href="#_materialised_model">described below</a>. It is however useful to decribe the lifecycle state here, since it represents a key part of Task Plan semantics, and influences whether Tasks (and thus Groups) fail or complete, and potentially whether the Plan continues in execution.</p>
+</div>
+<div class="paragraph">
+<p>The lifecycle states are as follows (terminal states are marked with '(T)'):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>initial</code>: initial pseudo-state, not used in operation;</p>
+</li>
+<li>
+<p><code>planned</code>: defined, but not yet available for execution;</p>
+</li>
+<li>
+<p><code>available</code>: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;</p>
+</li>
+<li>
+<p><code>cancelled</code> (T): cancelled prior or during execution as not needed for success of the Plan;</p>
+</li>
+<li>
+<p><code>completed</code> (T): performed to completion;</p>
+</li>
+<li>
+<p><code>abandoned</code> (T): execution of current Task Plan was stopped before or after commencement due to completion being impossible;</p>
+</li>
+<li>
+<p><code>underway</code>: indicates that a Task execution has been commenced;</p>
+</li>
+<li>
+<p><code>suspended</code>: indicates that a Task execution has been suspended.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The state machine is shown below.</p>
+</div>
+<div id="task_state_machine" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
+</div>
+<div class="title">Figure 16. Task lifecycle state machine</div>
+</div>
+<div class="paragraph">
+<p>The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is <code>available</code> &#8658; <code>completed</code> or <code>abandoned</code> or <code>cancelled</code>, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathways through the states <code>underway</code> and <code>suspended</code> are provided to represent in-execution states, which are needed for two cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>longer-running atomic Tasks;</p>
+</li>
+<li>
+<p>dispatchable Tasks that are blocked waiting on another performer.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Task lifecycle only accounts for the states of a Task itself; states of an order (e.g. prescription, lab request) with which the Task may be associated will be visible in the documentation for those objects, e.g. openEHR <code>ACTION</code> or other Entry objects.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_task_availability"><a class="anchor" href="#_task_availability"></a>6.2.3.1. Task Availability</h5>
+<div class="paragraph">
+<p>Each Task in a new Plan execution starts in the <code>initial</code> state. Following the design principle <a href="#_allocation">described earlier</a>, the execution engine executing a Task Plan can determine the <em>availability</em> i.e., when the transition <code>planned</code> &#8658; <code>available</code> may occur for any Task as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>control-flow</em>: preceding Tasks / Groups within the owning Task Group are in the <code>completed</code> or <code>cancelled</code> state;</p>
+</li>
+<li>
+<p><em>wait state</em>: any Task or Group wait state has been exited due to the arrival of the relevant events (including time-related);</p>
+</li>
+<li>
+<p><em>subject preconditions</em>: subject preconditions attached to the current Task Action are satisfied.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A Task is considered <code>available</code> according to this logic even if performer and/or resources have not been allocated. Availability in this sense is the equivalent of the 'enabled' state of a task within a Workflow Net, described in <a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a>, section 2.3.2.</p>
+</div>
+<div class="paragraph">
+<p>The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, forcing the lifecycle transition <code><em>override</em></code> from <code>planned</code> to <code>available</code>. A corresponding <code>TASK_EVENT_RECORD</code> is created recording the use of the override.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_aggregate_process_state"><a class="anchor" href="#_aggregate_process_state"></a>6.2.3.2. Aggregate Process State</h5>
+<div class="paragraph">
+<p>The effective state of a Task Group, Task Plan and Work Plan can be inferred from the lifecycle states of the Tasks, according to logic described in <a href="#_aggregate_lifecycle_state">Section 7.3</a>. This includes availability of Task Groups containing parallel paths with associated OR logic, i.e. the equivalent of the OR-join in YAWL (<a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a>, section 3.2).</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_references_to_clinical_quality_artefacts"><a class="anchor" href="#_references_to_clinical_quality_artefacts"></a>6.2.4. References to Clinical Quality Artefacts</h4>
 <div class="paragraph">
 <p>The classes <code>WORK_PLAN</code> and <code>TASK_PLAN</code> may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:</p>
 </div>
@@ -3875,9 +3988,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions"><a class="anchor" href="#_class_definitions"></a>6.2.4. Class Definitions</h4>
+<h4 id="_class_definitions"><a class="anchor" href="#_class_definitions"></a>6.2.5. Class Definitions</h4>
 <div class="sect4">
-<h5 id="_work_plan_class"><a class="anchor" href="#_work_plan_class"></a>6.2.4.1. WORK_PLAN Class</h5>
+<h5 id="_work_plan_class"><a class="anchor" href="#_work_plan_class"></a>6.2.5.1. WORK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4013,7 +4126,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.2.4.2. PLAN_CALENDAR Class</h5>
+<h5 id="_plan_calendar_class"><a class="anchor" href="#_plan_calendar_class"></a>6.2.5.2. PLAN_CALENDAR Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4047,7 +4160,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.2.4.3. PLAN_TIMELINE Class</h5>
+<h5 id="_plan_timeline_class"><a class="anchor" href="#_plan_timeline_class"></a>6.2.5.3. PLAN_TIMELINE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4088,7 +4201,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.2.4.4. CALENDAR_ENTRY Class</h5>
+<h5 id="_calendar_entry_class"><a class="anchor" href="#_calendar_entry_class"></a>6.2.5.4. CALENDAR_ENTRY Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4110,7 +4223,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.2.4.5. TASK_PLAN Class</h5>
+<h5 id="_task_plan_class"><a class="anchor" href="#_task_plan_class"></a>6.2.5.5. TASK_PLAN Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4256,7 +4369,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.2.4.6. TASK_PARTICIPATION Class</h5>
+<h5 id="_task_participation_class"><a class="anchor" href="#_task_participation_class"></a>6.2.5.6. TASK_PARTICIPATION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4318,7 +4431,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.2.4.7. PLAN_ITEM Class</h5>
+<h5 id="_plan_item_class"><a class="anchor" href="#_plan_item_class"></a>6.2.5.7. PLAN_ITEM Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4408,7 +4521,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.2.4.8. TASK_REPEAT Class</h5>
+<h5 id="_task_repeat_class"><a class="anchor" href="#_task_repeat_class"></a>6.2.5.8. TASK_REPEAT Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4461,12 +4574,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_task_structure"><a class="anchor" href="#_task_structure"></a>6.3. Task Structure</h3>
+<h3 id="_task_group_structure"><a class="anchor" href="#_task_group_structure"></a>6.3. Task Group Structure</h3>
 <div class="paragraph">
-<p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> type, which has three key attributes. Execution of a Group is primarily controlled by the <code><em>execution_type</em></code> and <code><em>concurrency_mode</em></code> attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of <code>and</code> and <code>or</code> parallel processing logic (described in the next section), common to workflow formalisms.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD for more exotic situations, the <code><em>execution_rules</em></code> attribute can be used to state other execution rules.</p>
+<p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> class, which has three key attributes. Execution of a Group is primarily controlled by the <code><em>execution_type</em></code> and <code><em>concurrency_mode</em></code> attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of <code>and</code> and <code>or</code> parallel processing logic (described in the next section), common to workflow formalisms. For more exotic situations, the <code><em>execution_rules</em></code> attribute can be used.</p>
 </div>
 <div class="paragraph">
 <p><code>TASK_GROUP</code> also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
@@ -4484,45 +4594,77 @@ The following UML diagram illustrates.</p>
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="_sequential_task_groups"><a class="anchor" href="#_sequential_task_groups"></a>6.3.1. Sequential Task Groups</h4>
 <div class="paragraph">
-<p>A sequential Task Group corresponds to a single thread of processing at execution time, in which each of the Tasks becomes available to the worker (i.e. Task Plan&#8217;s <code><em>principal_performer</em></code>) <em>in order</em>, and according to the specific conditions associated with each Task. The following illustrates a sequential Task Group.</p>
+<p>A sequential Task Group corresponds to a single thread of processing at execution time, in which each of the Tasks becomes available to the worker (i.e. Task Plan&#8217;s <code><em>principal_performer</em></code>) <em>in order</em>, and according to the specific conditions associated with each Task. The following illustrates a sequential Task Group in TP-VML. Note that although there is visually an end-group icon (right hand end), there is no separate class or instance in the model - both the start-group and end-group icons visually represent the <code>TASK_GROUP</code> as a logical container.</p>
 </div>
 <div id="task_group_sequential" class="imageblock text-center text-center">
 <div class="content">
 <img src="task_planning/diagrams/task_group_sequential.svg" alt="task group sequential" width="45%">
 </div>
-<div class="title">Figure 16. Sequential Task Group</div>
+<div class="title">Figure 17. Sequential Task Group</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_parallel_task_groups_and_concurrency"><a class="anchor" href="#_parallel_task_groups_and_concurrency"></a>6.3.1. Parallel Task Groups and Concurrency</h4>
+<h4 id="_parallel_task_groups_and_concurrency"><a class="anchor" href="#_parallel_task_groups_and_concurrency"></a>6.3.2. Parallel Task Groups and Concurrency</h4>
 <div class="paragraph">
-<p>The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired <em>split</em> and <em>join</em> points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey the idea of multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).</p>
+<p>The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired <em>split</em> and <em>join</em> points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey the idea of multiple possible branches (the limitation of 3 points is purely visual, semantically, any number of branches is supported).</p>
 </div>
 <div id="task_group_parallel" class="imageblock text-center text-center">
 <div class="content">
 <img src="task_planning/diagrams/task_group_parallel.svg" alt="task group parallel" width="25%">
 </div>
-<div class="title">Figure 17. Parallel Task Group</div>
+<div class="title">Figure 18. Parallel Task Group</div>
 </div>
 <div class="paragraph">
-<p>The type of split and join (i.e. AND, OR, XOR, or other) depends on additional rules for concurrent processing, represented by the attribute <code><em>concurrency_mode</em></code>, whose possible values define the type of split and join, as shown below. The concurrency mode is important because it tells the execution engine at runtime under what conditions to consider the group has completed. The AND cases is the simplest, since there is no conditional processing - all paths must be followed. The XOR case represents a 1/N choice, so completion is also trivial to determine. However the OR case is more complicated. It might initially seem as if the Group may be considered completed when the first path completes (i.e. 'quickest path wins'). However, an alternative reasonable approach is to wait for all paths that were commenced to complete. Both possibilities are catered for.</p>
+<p>The first difference between a parallel Group and a sequential one is that when a parallel Group is arrived at in the control flow, once any wait state is satisfied, the first Task in <em>all of the outgoing branches</em> is made available. Subsequent execution behaviour depends on the type of split and join logic (i.e. AND, OR, XOR, or other) which is represented by the attribute <code>TASK_GROUP.<em>concurrency_mode</em></code>, whose possible values indicate to the execution engine three things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>how many branches may be commenced;</p>
+</li>
+<li>
+<p>how commencing a branches affects other branches;</p>
+</li>
+<li>
+<p>under what conditions to consider the group has completed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here, the notion of 'completion' corresponds to the <code>completed</code> state in the Task lifecycle state machine described earlier, inferred from the completion states of the items in the branches. The detail of how Task Group lifecycle state is aggregated from contained items is described in detail in <a href="#_aggregate_lifecycle_state">Section 7.3</a>. Here we describe only the logic determining the <code>completed</code> state, for the sake of simplicity.</p>
+</div>
+<div class="paragraph">
+<p>The AND case is the simplest, since there is no conditional processing - all paths must be followed. An AND Group essentially represents work that should be performed, but for which the ordering is more relaxed than for a strict sequential Group.</p>
+</div>
+<div class="paragraph">
+<p>The XOR case represents a 1/N choice, and is understood in this specification as representing the <em>intent</em> that only one path can sensibly be followed, usually because the branches are mutually exclusive alternatives in reality. In this case also, completion is also trivial to determine.</p>
+</div>
+<div class="paragraph">
+<p>However the OR case is more complicated. A minimal interpretation of 'OR' logic is that as soon as one branch in the Group completes, the Group is considered <code>completed</code>, and no more Tasks from other branches are available to perform. A maximal interpretation is that Group completion is achieved only when every path commenced completes. The model represents these two cases explicitly, via the values <code>or_first_completed</code> and <code>or_all_started</code> respectively of <code>TASK_GROUP.<em>concurrency_mode</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>The following table summarises the semantics of the four concurrency modes.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 14.2857%;">
-<col style="width: 14.2857%;">
-<col style="width: 14.2857%;">
-<col style="width: 42.8572%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Concurrency mode</th>
 <th class="tableblock halign-left valign-top">TP-VML</th>
-<th class="tableblock halign-left valign-top">Split/<br>
-                              join logic</th>
-<th class="tableblock halign-left valign-top">Conditionality</th>
-<th class="tableblock halign-left valign-top">Semantics</th>
+<th class="tableblock halign-left valign-top">Logic</th>
+<th class="tableblock halign-left valign-top">Split<br>
+                                     behaviour</th>
+<th class="tableblock halign-left valign-top">Join<br>
+                                                behaviour</th>
 </tr>
 </thead>
 <tbody>
@@ -4534,8 +4676,8 @@ The following UML diagram illustrates.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AND</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(none)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">All parallel paths are followed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All branches are followed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Group completes when all branches complete.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xor_one_path</code></p></td>
@@ -4545,8 +4687,8 @@ The following UML diagram illustrates.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">XOR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1/N</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Only one parallel path is followed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only one branch can be started; once a branch is commenced, the first Task in remaining branches is transitioned to <code>cancelled</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Group completes when the started branch completes; equivalent to a sequential Group, once a branch is chosen.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
@@ -4556,8 +4698,8 @@ The following UML diagram illustrates.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/M</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One or more paths may be commenced, and the Group is complete as soon as one path completes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One or more branches may be commenced.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Group is complete when one branch completes.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
@@ -4566,18 +4708,18 @@ The following UML diagram illustrates.</p>
 <img src="task_planning/diagrams/task_group_parallel_or_all.svg" alt="task group parallel or all">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/M</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One or more paths may be commenced, and the Group is complete when all paths commenced complete.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">partial AND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One or more branches may be commence.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Group is complete when all branches commenced have completed; equivalent to an AND consisting of all commenced branches.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The parallel / concurrent semantics attached to the Task Group do not indicate anything about conditional processing, i.e. conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined <em>by the performer, not the system</em>. In order to specify conditions on paths, the <code>TASK_GROUP</code> the conditional subtypes <a href="#_conditional_structures">described below</a> are used.</p>
+<p>The parallel / concurrent semantics attached to the Task Group do not indicate anything about decisional processing, i.e. the conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined <em>by the performer, not the system</em>. In order to specify conditions on paths, the <code>TASK_GROUP</code> the conditional subtypes <a href="#_decision_structures">described below</a> are used.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hierarachical_nesting"><a class="anchor" href="#_hierarachical_nesting"></a>6.3.2. Hierarachical Nesting</h4>
+<h4 id="_hierarchical_nesting"><a class="anchor" href="#_hierarchical_nesting"></a>6.3.3. Hierarchical Nesting</h4>
 <div class="paragraph">
 <p>Task Groups of sequential and parallel types may be mixed in a hierarchical fashion. One structure is such that the overall work of a Task Plan is defined as a sequential Group in which some members are a parallel Group, as shown below.</p>
 </div>
@@ -4585,7 +4727,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_grouping.svg" alt="task grouping" width="75%">
 </div>
-<div class="title">Figure 18. Nested Task grouping - sequential structure</div>
+<div class="title">Figure 19. Nested Task grouping - sequential structure</div>
 </div>
 <div class="paragraph">
 <p>Similarly, the outermost Group may be parallel, with the work being defined as sections of sequential work situated within a parallel Task Group, as shown below.</p>
@@ -4594,23 +4736,23 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="task_planning/diagrams/task_grouping2.svg" alt="task grouping2" width="75%">
 </div>
-<div class="title">Figure 19. Nested Task grouping - parallel chains</div>
+<div class="title">Figure 20. Nested Task grouping - parallel chains</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_generic_execution_time_semantics"><a class="anchor" href="#_generic_execution_time_semantics"></a>6.3.3. Generic Execution-time Semantics</h4>
+<h4 id="_generic_execution_time_semantics"><a class="anchor" href="#_generic_execution_time_semantics"></a>6.3.4. Generic Execution-time Semantics</h4>
 <div class="paragraph">
 <p>The combination of the Task Group / Task hierachical pattern, which implicitly defines the graph structure of the 'normal flow' of a Task Plan, and the generic control attributes defined on <code>TASK</code> and its descendant types enable a significant amount of execution-time Plan processing to be implemented independently of any specific Task semantics.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_well_formedness"><a class="anchor" href="#_well_formedness"></a>6.3.4. Well-formedness</h4>
+<h4 id="_well_formedness"><a class="anchor" href="#_well_formedness"></a>6.3.5. Well-formedness</h4>
 <div class="paragraph">
-<p>A significant consequence of the Task Group construct in the TP model is that each Task Group forms a sub-network within its container, where a <em>network</em> is understood in the graph theory sense of a directed graph with a start <code>s</code> and terminal node <code>t</code>, containing paths from <code>s</code> to <code>t</code> n which all member elements are found. This holds for descendant types of <code>TASK_GROUP</code>, including the <a href="#_conditional_structures">Conditional Structures</a> described below. This is a more limited form of connectivity than allowed in YAWL or BPMN, which do not require matched split and join points.</p>
+<p>A significant consequence of the Task Group construct in the TP model is that each Task Group forms a sub-network within its container, where a <em>network</em> is understood in the graph theory sense of a directed graph with a start <code>s</code> and terminal node <code>t</code>, containing paths from <code>s</code> to <code>t</code> n which all member elements are found. This holds for descendant types of <code>TASK_GROUP</code>, including the <a href="#_decision_structures">Decision Structures</a> described below. This is a more limited form of connectivity than allowed in YAWL or BPMN, which do not require matched split and join points.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_training_level"><a class="anchor" href="#_training_level"></a>6.3.5. Training Level</h4>
+<h4 id="_training_level"><a class="anchor" href="#_training_level"></a>6.3.6. Training Level</h4>
 <div class="paragraph">
 <p>One challenge with creating Task Plan definitions is the level of detail to use, with respect to the variable level of skill of different performers. For a senior nurse, a briefer version of the Plan would be preferable with actions such as 'set up IV with catheter' being a single atom, whereas a trainee may need to see a more detailed set of sub-tasks.</p>
 </div>
@@ -4622,9 +4764,9 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions_2"><a class="anchor" href="#_class_definitions_2"></a>6.3.6. Class Definitions</h4>
+<h4 id="_class_definitions_2"><a class="anchor" href="#_class_definitions_2"></a>6.3.7. Class Definitions</h4>
 <div class="sect4">
-<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.3.6.1. TASK_GROUP Class</h5>
+<h5 id="_task_group_class"><a class="anchor" href="#_task_group_class"></a>6.3.7.1. TASK_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4709,7 +4851,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.3.6.2. EXECUTION_TYPE Enumeration</h5>
+<h5 id="_execution_type_enumeration_2"><a class="anchor" href="#_execution_type_enumeration_2"></a>6.3.7.2. EXECUTION_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4750,7 +4892,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_concurrency_mode_enumeration"><a class="anchor" href="#_concurrency_mode_enumeration"></a>6.3.6.3. CONCURRENCY_MODE Enumeration</h5>
+<h5 id="_concurrency_mode_enumeration"><a class="anchor" href="#_concurrency_mode_enumeration"></a>6.3.7.3. CONCURRENCY_MODE Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4805,7 +4947,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.3.6.4. EXECUTION_RULE Class</h5>
+<h5 id="_execution_rule_class"><a class="anchor" href="#_execution_rule_class"></a>6.3.7.4. EXECUTION_RULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -4833,6 +4975,8 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="sect2">
 <h3 id="_general_task_semantics"><a class="anchor" href="#_general_task_semantics"></a>6.4. General Task Semantics</h3>
+<div class="sect3">
+<h4 id="_dispatchable_and_performable_tasks"><a class="anchor" href="#_dispatchable_and_performable_tasks"></a>6.4.1. Dispatchable and Performable Tasks</h4>
 <div class="paragraph">
 <p>Tasks are represented by the <code>TASK</code> class whose two concrete sub-types distinguish the two basic flavours of Task, namely <em>dispatchable</em> and <em>performable</em>. <code>TASK</code> is a generic (i.e. templated) class, whose generic parameter is constrained to the type <code>TASK_ACTION</code>, the latter of whose subtypes defined the particular kinds of Tasks available.</p>
 </div>
@@ -4869,95 +5013,6 @@ The following UML diagram illustrates.</p>
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="_task_lifecycle_2"><a class="anchor" href="#_task_lifecycle_2"></a>6.4.1. Task Lifecycle</h4>
-<div class="paragraph">
-<p>At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: The lifecycle does not appear in the definition model <code>TASK</code> class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <a href="#_materialised_model">described below</a>.</p>
-</div>
-<div class="paragraph">
-<p>It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.</p>
-</div>
-<div class="paragraph">
-<p>The lifecycle only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR <code>ACTION</code> or other Entry objects. The Task lifecycle states are as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>initial</code>: initial pseudo-state, not used in operation;</p>
-</li>
-<li>
-<p><code>planned</code>: defined, but not yet available for execution;</p>
-</li>
-<li>
-<p><code>available</code>: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;</p>
-</li>
-<li>
-<p><code>cancelled</code> (T): cancelled prior or during execution as not needed for success of the Plan;</p>
-</li>
-<li>
-<p><code>completed</code> (T): performed to completion;</p>
-</li>
-<li>
-<p><code>abandoned</code> (T): execution of current Task Plan was stopped before or after commencement due to completion being impossible;</p>
-</li>
-<li>
-<p><code>underway</code>: indicates that a Task execution has been commenced;</p>
-</li>
-<li>
-<p><code>suspended</code>: indicates that a Task execution has been suspended.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In the above, the terminal states are marked with '(T)'. The state machine is shown below.</p>
-</div>
-<div id="task_state_machine" class="imageblock text-center text-center">
-<div class="content">
-<img src="UML/diagrams/PROC-TaskStateMachine.svg" alt="PROC TaskStateMachine" width="80%">
-</div>
-<div class="title">Figure 20. Task lifecycle state machine</div>
-</div>
-<div class="paragraph">
-<p>The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is <code>available</code> &#8658; <code>completed</code> or <code>abandoned</code> or <code>cancelled</code>, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathways through the states <code>underway</code> and <code>suspended</code> are provided to represent in-execution states, which are needed for two cases:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>longer-running atomic Tasks;</p>
-</li>
-<li>
-<p>dispatchable Tasks that are blocked waiting on another performer.</p>
-</li>
-</ul>
-</div>
-<div class="sect4">
-<h5 id="_task_availability"><a class="anchor" href="#_task_availability"></a>6.4.1.1. Task Availability</h5>
-<div class="paragraph">
-<p>Each Task in a new Plan execution starts in the <code>initial</code> state. Following the design principle <a href="#_allocation">described earlier</a>, the execution engine executing a Task Plan can determine the <em>availability</em> i.e., when the transition <code>planned</code> &#8658; <code>available</code> may occur for any Task as follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>control-flow</em>: preceding Tasks / Groups within the owning Task Group are in the <code>completed</code> or <code>cancelled</code> state;</p>
-</li>
-<li>
-<p><em>wait state</em>: any Task or Group wait state has been exited due to the arrival of the relevant events (including time-related);</p>
-</li>
-<li>
-<p><em>subject preconditions</em>: subject preconditions attached to the current Task Action are satisfied.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A Task is considered <code>available</code> according to this logic even if performer and/or resources have not been allocated.</p>
-</div>
-<div class="paragraph">
-<p>The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, causing the lifecycle transition <code><em>override</em></code> from <code>planned</code> to <code>available</code>. A corresponding <code>TASK_EVENT_RECORD</code> is created recording the use of the override.</p>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_class_definitions_3"><a class="anchor" href="#_class_definitions_3"></a>6.4.2. Class Definitions</h4>
@@ -6002,9 +6057,11 @@ The following UML diagram illustrates.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conditional_structures_2"><a class="anchor" href="#_conditional_structures_2"></a>6.7. Conditional Structures</h3>
+<h3 id="_decision_structures"><a class="anchor" href="#_decision_structures"></a>6.7. Decision Structures</h3>
+<div class="sect3">
+<h4 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.7.1. Overview</h4>
 <div class="paragraph">
-<p>More advanced applications of Task Plans include four conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of <code>TASK_GROUP</code> and are illustrated in the following UML model.</p>
+<p>More advanced applications of Task Plans include decision structures, in which one of multiple branches may be taken depending on specific conditions. There are four varieties of such structure, which are defined as specific descendants of the <code>TASK_GROUP</code> class, as shown in the following UML model.</p>
 </div>
 <div id="proc_task_planning_definition_decision" class="imageblock text-center text-center">
 <div class="content">
@@ -6013,13 +6070,10 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 27. proc.task_planning package definition model (decision view)</div>
 </div>
 <div class="paragraph">
-<p>The <code>CHOICE_GROUP</code> class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single choice) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a <code>CHOICE_GROUP</code> is thus an 'XOR gate'.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: we can theoretically relax the invariant to allow multiple paths to be chosen - this corresponds to conditional-OR processing in traditional workflow.</p>
+<p>The <code>CHOICE_GROUP</code> class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single path) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a <code>CHOICE_GROUP</code> is thus an 'XOR gate'.</p>
 </div>
 <div class="paragraph">
-<p>The specific sub-types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the <code>CHOICE_GROUP</code> and <code>CHOICE_BRANCH</code> classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.</p>
+<p>The specific sub-types are based on the design principles <a href="#_conditional_structures">described earlier</a>, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the <code>CHOICE_GROUP</code> and <code>CHOICE_BRANCH</code> classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6038,8 +6092,11 @@ The following UML diagram illustrates.</p>
 <p>In the override and adhoc cases, a justification may be provided at execution-time for having overridden or made a particular adhoc choice. This is represented in the materialised model, and therefore does not appear in the definition model.</p>
 </div>
 <div class="paragraph">
-<p>The three fully defined decision patterns are as follows.</p>
+<p>The three fully defined decision patterns are described below.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_condition_group_ifelseifelse"><a class="anchor" href="#_condition_group_ifelseifelse"></a>6.7.2. Condition Group (if/elseif/else)</h4>
 <div class="paragraph">
 <p>The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes <code>CONDITION_GROUP</code> and <code>CONDITION_BRANCH</code> provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the <code><em>execution_type</em></code> is constrained to <code>sequential</code>.</p>
 </div>
@@ -6052,6 +6109,9 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="title">Figure 28. Condition structure</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_decision_group_switch"><a class="anchor" href="#_decision_group_switch"></a>6.7.3. Decision Group (switch)</h4>
 <div class="paragraph">
 <p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (<code><em>execution_type</em></code> is constrained to <code>sequential</code>), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.</p>
 </div>
@@ -6064,6 +6124,9 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="title">Figure 29. Decision structure</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_event_group"><a class="anchor" href="#_event_group"></a>6.7.4. Event Group</h4>
 <div class="paragraph">
 <p>The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes <code>EVENT_GROUP</code> and <code>EVENT_BRANCH</code>, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.</p>
 </div>
@@ -6073,10 +6136,11 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="title">Figure 30. Event structure</div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_class_definitions_6"><a class="anchor" href="#_class_definitions_6"></a>6.7.1. Class Definitions</h4>
+<h4 id="_class_definitions_6"><a class="anchor" href="#_class_definitions_6"></a>6.7.5. Class Definitions</h4>
 <div class="sect4">
-<h5 id="_choice_group_class"><a class="anchor" href="#_choice_group_class"></a>6.7.1.1. CHOICE_GROUP Class</h5>
+<h5 id="_choice_group_class"><a class="anchor" href="#_choice_group_class"></a>6.7.5.1. CHOICE_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6141,7 +6205,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_override_type_enumeration"><a class="anchor" href="#_override_type_enumeration"></a>6.7.1.2. OVERRIDE_TYPE Enumeration</h5>
+<h5 id="_override_type_enumeration"><a class="anchor" href="#_override_type_enumeration"></a>6.7.5.2. OVERRIDE_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6189,7 +6253,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_choice_branch_class"><a class="anchor" href="#_choice_branch_class"></a>6.7.1.3. CHOICE_BRANCH Class</h5>
+<h5 id="_choice_branch_class"><a class="anchor" href="#_choice_branch_class"></a>6.7.5.3. CHOICE_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6215,7 +6279,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_condition_group_class"><a class="anchor" href="#_condition_group_class"></a>6.7.1.4. CONDITION_GROUP Class</h5>
+<h5 id="_condition_group_class"><a class="anchor" href="#_condition_group_class"></a>6.7.5.4. CONDITION_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6257,7 +6321,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_condition_branch_class"><a class="anchor" href="#_condition_branch_class"></a>6.7.1.5. CONDITION_BRANCH Class</h5>
+<h5 id="_condition_branch_class"><a class="anchor" href="#_condition_branch_class"></a>6.7.5.5. CONDITION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6301,7 +6365,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_decision_group_class"><a class="anchor" href="#_decision_group_class"></a>6.7.1.6. DECISION_GROUP Class</h5>
+<h5 id="_decision_group_class"><a class="anchor" href="#_decision_group_class"></a>6.7.5.6. DECISION_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6350,7 +6414,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_decision_branch_class"><a class="anchor" href="#_decision_branch_class"></a>6.7.1.7. DECISION_BRANCH Class</h5>
+<h5 id="_decision_branch_class"><a class="anchor" href="#_decision_branch_class"></a>6.7.5.7. DECISION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6394,7 +6458,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.7.1.8. ADHOC_GROUP Class</h5>
+<h5 id="_adhoc_group_class"><a class="anchor" href="#_adhoc_group_class"></a>6.7.5.8. ADHOC_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6433,7 +6497,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.7.1.9. ADHOC_BRANCH Class</h5>
+<h5 id="_adhoc_branch_class"><a class="anchor" href="#_adhoc_branch_class"></a>6.7.5.9. ADHOC_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6465,7 +6529,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.7.1.10. EVENT_GROUP Class</h5>
+<h5 id="_event_group_class"><a class="anchor" href="#_event_group_class"></a>6.7.5.10. EVENT_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6516,7 +6580,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.7.1.11. EVENT_BRANCH Class</h5>
+<h5 id="_event_branch_class"><a class="anchor" href="#_event_branch_class"></a>6.7.5.11. EVENT_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6700,7 +6764,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect2">
 <h3 id="_events"><a class="anchor" href="#_events"></a>6.9. Events</h3>
 <div class="sect3">
-<h4 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.9.1. Overview</h4>
+<h4 id="_overview_3"><a class="anchor" href="#_overview_3"></a>6.9.1. Overview</h4>
 <div class="paragraph">
 <p>Work plans interact with events in the external world, as well being driven by time. In this model, moments in time are modelled in terms of Events that represent the <em>reaching</em> of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in terms of 'events'. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of <em>wait states</em> that may be used to intercept them.</p>
 </div>
@@ -7004,7 +7068,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <p>the Task starts in the <code>planned</code> state, as for any Task in a Plan;</p>
 </li>
 <li>
-<p>when the execution point reaches the Task, and any Task Wait state has been exited, the Task becomes <code>available</code> (refer above to <a href="#_task_availability">Section 6.4.1.1</a>);</p>
+<p>when the execution point reaches the Task, and any Task Wait state has been exited, the Task becomes <code>available</code> (refer above to <a href="#_task_availability">Section 6.2.3.1</a>);</p>
 </li>
 <li>
 <p>the Task dispatch operation is performed either automatically, or in the case of an External Request, manually;</p>
@@ -8295,23 +8359,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect2">
 <h3 id="_aggregate_lifecycle_state"><a class="anchor" href="#_aggregate_lifecycle_state"></a>7.3. Aggregate Lifecycle State</h3>
 <div class="paragraph">
-<p>A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.</p>
-</div>
-<div class="paragraph">
-<p>Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.</p>
+<p>During a Work Plan execution, the lifecycle state described above on each Task is recursively aggregated up to owning Task Groups (including Choice Groups, described below in <a href="#_decision_structures">Section 6.7</a>), to the top Task Group (i.e. <code>TASK_PLAN.<em>definition</em></code>). Consequently, the aggregate lifecycle state of a Task Plan as a whole is just the lifecycle state of its <code><em>definition</em></code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_task_group_lifecycle_state"><a class="anchor" href="#_task_group_lifecycle_state"></a>7.3.1. Task Group Lifecycle State</h4>
+<h4 id="_sequential_groups"><a class="anchor" href="#_sequential_groups"></a>7.3.1. Sequential Groups</h4>
 <div class="paragraph">
-<p>The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.</p>
+<p>The following algorithm is used to compute the runtime lifecycle state of a Task Group for which <code><em>execution_type</em></code> is <code>sequential</code> from the set of states of its members.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-c1">//</span>
-<span class="tok-c1">// Infer the state of a collection whose members have states in source_states.</span>
+<span class="tok-c1">// Aggregate lifecycle state algorithm.</span>
+<span class="tok-c1">// Infer the state of a collection whose members&#39; states are in source_states.</span>
 <span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
 <span class="tok-c1">//</span>
-<span class="tok-n">Task_state</span> <span class="tok-nf">inferred_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_state</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+<span class="tok-n">Task_lifecycle</span> <span class="tok-nf">aggregate_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_lifecycle</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
 
     <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">source_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
         <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
@@ -8333,25 +8395,114 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </div>
 </div>
 <div class="paragraph">
-<p>One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.</p>
+<p>Consequences of the above algorithm include:</p>
 </div>
-<div class="paragraph">
-<p>Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (<code>TASK_PLAN.<em>definition</em></code>).</p>
-</div>
-<div class="paragraph">
-<p>If <code>TASK_GROUP.<em>execution_type</em></code> is <code>parallel</code>, then the value of <code><em>concurrency_mode</em></code> will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (<code>TASK_GROUP.<em>execution_rules</em></code>) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.</p>
-</div>
-<div class="paragraph">
-<p>Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.</p>
-</div>
-<div class="paragraph">
-<p>If the <code>abandoned</code> state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be <code>abandoned</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>a Task Group at runtime is in a terminal state only if all recursively contained Tasks and/or other Task Groups are in terminal states;</p>
+</li>
+<li>
+<p>completing a Task Group will ripple back up the Task Group hierarchy to a point where the completing Group is not the last remaining uncompleted Task or Group in the parent;</p>
+</li>
+<li>
+<p>if the <code>abandoned</code> state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be <code>abandoned</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_work_group_lifecycle_state"><a class="anchor" href="#_work_group_lifecycle_state"></a>7.3.2. Work Group Lifecycle State</h4>
+<h4 id="_parallel_groups"><a class="anchor" href="#_parallel_groups"></a>7.3.2. Parallel Groups</h4>
 <div class="paragraph">
-<p>In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.</p>
+<p>If <code>TASK_GROUP.<em>execution_type</em></code> is <code>parallel</code>, then the value of <code><em>concurrency_mode</em></code> will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. The following table indicates the computation for Task Group state at any time during and after execution of its branches. Note that all decision structures, i.e. <code>CHOICE_GROUPs</code>, are equivalent to <code>xor_one_path</code> Task Groups, and are thus solved by the second entry in the table below.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 23.0769%;">
+<col style="width: 15.3846%;">
+<col style="width: 61.5385%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concurrency mode</th>
+<th class="tableblock halign-left valign-top">TP-VML</th>
+<th class="tableblock halign-left valign-top">Lifecycle state rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>and_all_paths</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_and" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_and.svg" alt="task group parallel and">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to each branch; re-apply the algorithm using all branch results as the input set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xor_one_path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_xor" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_xor.svg" alt="task group parallel xor">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to the chosen branch.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_or_first" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to each commenced branch; apply the OR-join algorithm below to this set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_or_all" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_or_all.svg" alt="task group parallel or all">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to each commenced branch; re-apply the algorithm using these branch results as the input set.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-c1">//</span>
+<span class="tok-c1">// OR-join algorithm: apply to Aggregate lifcycle algorithm results</span>
+<span class="tok-c1">// obtained from all commenced branches.</span>
+<span class="tok-c1">//</span>
+<span class="tok-n">Task_lifecycle</span> <span class="tok-nf">or_join_state</span> <span class="tok-o">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_lifecycle</span><span class="tok-o">&gt;</span> <span class="tok-n">branch_states</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Abandoned</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Completed</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Underway</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Suspended</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Available</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Planned</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">branch_states</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-n">Cancelled</span><span class="tok-o">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-o">;</span>
+    <span class="tok-k">else</span>
+        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-o">;</span>
+<span class="tok-o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the Task Group has more complex execution rules (<code>TASK_GROUP.<em>execution_rules</em></code>) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to these rules.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_work_plan_2"><a class="anchor" href="#_work_plan_2"></a>7.3.3. Work Plan</h4>
+<div class="paragraph">
+<p>The lifecycle state of a Work Plan is determined from the states of its top-level Task Plans in the same way as for a parallel AND Task Group, i.e. by re-applying the algorithm to all the Task Plans.</p>
 </div>
 </div>
 </div>
@@ -8519,7 +8670,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h2 id="_materialised_model"><a class="anchor" href="#_materialised_model"></a>9. Materialised Model</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>9.1. Overview</h3>
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>9.1. Overview</h3>
 <div class="paragraph">
 <p>The <a href="#proc_task_planning_overview">Model overview figure</a> shows a package <code>proc.task_planning.materialised</code>. This is a partial specification of classes that could be instantiated at Task Plan execution time to track Plan execution, and is provided as a guide to implementing a materialised form for runtime use. A minimal materialised model is described here, as a means of indicating some of the general issues that will be encountered in representation of the runtime form of a Plan definition. <strong>It should not be considered either normative or complete</strong>. The model is shown below.</p>
 </div>
@@ -8864,7 +9015,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h2 id="_plan_execution_history"><a class="anchor" href="#_plan_execution_history"></a>10. Plan Execution History</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>10.1. Overview</h3>
+<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>10.1. Overview</h3>
 <div class="paragraph">
 <p>The history of execution events from a Work Plan execution is represented in the runtime instances of classes defined in the <code>proc.task_planning.history</code> package, of which <code>EXECUTION_HISTORY</code> is the root.</p>
 </div>
@@ -9190,7 +9341,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h2 id="_transactional_service_model"><a class="anchor" href="#_transactional_service_model"></a>11. Transactional Service Model</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>11.1. Overview</h3>
+<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>11.1. Overview</h3>
 <div class="paragraph">
 <p>The information structures required to represent planned Tasks and references at design and runtime are non-trivial. For this reason, an abstract service is defined, with a transactional interface that converts calls into correct underlying information structures. The following UML diagram illustrates the services.</p>
 </div>
@@ -9392,7 +9543,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <h2 id="_relationship_with_other_openehr_ehr_artefacts"><a class="anchor" href="#_relationship_with_other_openehr_ehr_artefacts"></a>12. Relationship with other openEHR EHR Artefacts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>12.1. Overview</h3>
+<h3 id="_overview_7"><a class="anchor" href="#_overview_7"></a>12.1. Overview</h3>
 <div class="paragraph">
 <p>One of the side-effects of distinct state machines for <code>INSTRUCTIONs</code> and Task Plans is that not all careflow steps and states in the former need to be represented as Tasks in a Task Plan. For example, a significant number of careflow steps defined in <code>ACTION</code> archetypes are for non-Active states, e.g. Planning, Postponement, Suspension etc. These steps do not need to have Tasks defined for them, since by definition they are nearly all unplanned.</p>
 </div>
@@ -9450,7 +9601,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a id="Hofstede_van_der_Aalst2009"></a>Hofstede, A. H. M. T., Aalst, W. M. P. van der, Adams, M., &amp; Russell, N. (2010). <em>Modern Business Process Automation: YAWL and Its Support Environment</em>. <em>Modern Business Process Automation: YAWL and its Support Environment</em>.</p>
+<p><a id="Hofstede_van_der_Aalst2009"></a>Hofstede, A. H. M. T., Aalst, W. M. P. van der, Adams, M., &amp; Russell, N. (2010). <em>Modern Business Process Automation: YAWL and its Support Environment</em>. Springer-Verlag.</p>
 </div>
 <div class="paragraph">
 <p><a id="Schrijvers_et_al2012"></a>Schrijvers, G., Hoorn, A. van, &amp; Huiskes, N. (2012). The care pathway: concepts and theories: an introduction. In <em>International journal of integrated care</em>.</p>

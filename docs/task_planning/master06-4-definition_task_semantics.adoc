@@ -1,5 +1,7 @@
 == General Task Semantics
 
+=== Dispatchable and Performable Tasks
+
 Tasks are represented by the `TASK` class whose two concrete sub-types distinguish the two basic flavours of Task, namely _dispatchable_ and _performable_. `TASK` is a generic (i.e. templated) class, whose generic parameter is constrained to the type `TASK_ACTION`, the latter of whose subtypes defined the particular kinds of Tasks available. 
 
 The `DISPATCHABLE_TASK<T>` class has two attributes to do with managing context change and callback. The `_wait_` flag indicates whether the current Task waits (i.e. blocks) while the dispatched work is performed, or whether it continues on asynchronously. The first constitutes a context switch, the second a context fork. The `_callback_` attribute attaches a special kind of Event wait state that is triggered on receipt of a callback. How callbacks function in detail is <<_callbacks,described below>>.
@@ -14,49 +16,6 @@ There are some key differences between the two kinds of Task as shown in the fol
 |_Dispatchable_ |A Task whose work is dispatched for execution to another performer or system. |_wait_ = `True`: Advanced by receipt of callback notification +
                                                                                                 _wait_ = `False`: Automatically advanced to `completed`
 |===
-
-=== Task Lifecycle
-
-At runtime, it is the Tasks in a Plan that can be directly performed. Accordingly, it is the Task that has a lifecycle attached to it, containing states and transitions reflecting possible actions by the performer. 
-
-[.tbd]
-TBD: The lifecycle does not appear in the definition model `TASK` class as a data attribute since it is a runtime variable for a Task; hence it appears in the materialised model, <<Materialised Model,described below>>.
-
-It is however useful to decribe the lifecycle here, since it represents a key part of Task semantics, and the occurrence of certain kinds of events influence whether a Task fails or completes, and potentially whether the Plan continues in execution.
-
-The lifecycle only has to take account of the states a Task itself can pass through: states of an order (i.e. prescription, lab request) with which the Task may be associated will be visible in the documentation of the Task execution, i.e. separate openEHR `ACTION` or other Entry objects. The Task lifecycle states are as follows:
-
-* `initial`: initial pseudo-state, not used in operation;
-* `planned`: defined, but not yet available for execution;
-* `available`: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;
-* `cancelled` (T): cancelled prior or during execution as not needed for success of the Plan;
-* `completed` (T): performed to completion;
-* `abandoned` (T): execution of current Task Plan was stopped before or after commencement due to completion being impossible;
-* `underway`: indicates that a Task execution has been commenced;
-* `suspended`: indicates that a Task execution has been suspended.
-
-In the above, the terminal states are marked with '(T)'. The state machine is shown below.
-
-[.text-center]
-.Task lifecycle state machine
-image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
-
-The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathways through the states `underway` and `suspended` are provided to represent in-execution states, which are needed for two cases:
-
-* longer-running atomic Tasks;
-* dispatchable Tasks that are blocked waiting on another performer.
-
-==== Task Availability
-
-Each Task in a new Plan execution starts in the `initial` state. Following the design principle <<Allocation,described earlier>>, the execution engine executing a Task Plan can determine the _availability_ i.e., when the transition `planned` => `available` may occur for any Task as follows:
-
-* _control-flow_: preceding Tasks / Groups within the owning Task Group are in the `completed` or `cancelled` state;
-* _wait state_: any Task or Group wait state has been exited due to the arrival of the relevant events (including time-related);
-* _subject preconditions_: subject preconditions attached to the current Task Action are satisfied.
-
-A Task is considered `available` according to this logic even if performer and/or resources have not been allocated.
-
-The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, causing the lifecycle transition `_override_` from `planned` to `available`. A corresponding `TASK_EVENT_RECORD` is created recording the use of the override.
 
 === Class Definitions
 

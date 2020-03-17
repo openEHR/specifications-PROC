@@ -1,17 +1,16 @@
-== Conditional Structures
+== Decision Structures
 
-More advanced applications of Task Plans include four conditional structures, which may be considered as specific patterns based on the core classes. They are expressed in terms of descendants of `TASK_GROUP` and are illustrated in the following UML model. 
+=== Overview
+
+More advanced applications of Task Plans include decision structures, in which one of multiple branches may be taken depending on specific conditions. There are four varieties of such structure, which are defined as specific descendants of the `TASK_GROUP` class, as shown in the following UML model. 
 
 [.text-center]
 .proc.task_planning package definition model (decision view)
 image::{uml_diagrams_uri}/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
 
-The `CHOICE_GROUP` class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single choice) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a `CHOICE_GROUP` is thus an 'XOR gate'.
+The `CHOICE_GROUP` class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single path) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a `CHOICE_GROUP` is thus an 'XOR gate'.
 
-[.tbd]
-TBD: we can theoretically relax the invariant to allow multiple paths to be chosen - this corresponds to conditional-OR processing in traditional workflow.
-
-The specific sub-types are based on the design principles described earlier, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the `CHOICE_GROUP` and `CHOICE_BRANCH` classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.
+The specific sub-types are based on the design principles <<_conditional_structures,described earlier>>, which distinguished both different conditional structural types, and three different levels of system support, i.e. 'automated', 'decision support' and 'ad hoc'. The combination of structural types and levels of system/user interaction levels is realised in terms of variations on the `CHOICE_GROUP` and `CHOICE_BRANCH` classes shown above, which define a generic notion of a decision point from which multiple branches emanate. The variations in system support manifest as follows.
 
 * _fully automated_: three kinds of fully defined decision structures, namely the `CONDITION_XX`, `DECISION_XX` and `EVENT_XX` classes shown in the UML diagram;
 * _decision support_: where instances of the above structures should be considered recommendations only, the `_override_type_` attribute defined on `CHOICE_GROUP` may be used on any `XX_GROUP` to indicate that user override is allowed;
@@ -19,7 +18,9 @@ The specific sub-types are based on the design principles described earlier, whi
 
 In the override and adhoc cases, a justification may be provided at execution-time for having overridden or made a particular adhoc choice. This is represented in the materialised model, and therefore does not appear in the definition model.
 
-The three fully defined decision patterns are as follows.
+The three fully defined decision patterns are described below.
+
+=== Condition Group (if/elseif/else)
 
 The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes `CONDITION_GROUP` and `CONDITION_BRANCH` provide this structure, which is  equivalent to an if/then/else structure in a programming language. Semantically, the branches are evaluated in order, in the matter of an if/then/else structure, and the final member may be a catch-all branch that matches if nothing else does. Accordingly, the `_execution_type_` is constrained to `sequential`.
 
@@ -29,6 +30,8 @@ The following diagram shows a typical condition structure.
 .Condition structure
 image::{diagrams_uri}/condition_structure.svg[id=condition_structure, align="center"]
 
+=== Decision Group (switch)
+
 The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. However, as with the Condition Group, the branches are processed in order stated in the definition (`_execution_type_` is constrained to `sequential`), which enables overlapping value constraints on the branches, and also a final catch-all 'else' branch, if needed. The latter would have an open value constraint of the correct type.
 
 The following diagram shows a typical decision structure.
@@ -36,6 +39,8 @@ The following diagram shows a typical decision structure.
 [.text-center]
 .Decision structure
 image::{diagrams_uri}/decision_structure.svg[id=decision_structure, align="center"]
+
+=== Event Group
 
 The final structure is a wait state at which multiple branches correspond to the receipt of different events. Taken together, the events constitute a set of logical alternatives at the relevant point in the Plan. This structure is modelled using the classes `EVENT_GROUP` and `EVENT_BRANCH`, and is equivalent to a when / then / else  rules structure in a rule-based programming environment.
 

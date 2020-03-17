@@ -79,21 +79,20 @@ This doesn't address what should happen at execution time when conditions or wai
 
 == Aggregate Lifecycle State
 
-A Work Plan is structurally a list (in simple cases) or a hierarchy of Task Plans, each of which is a hierarchical structure consisting of one or more Task Groups, and ultimately Tasks, each of which has a lifecycle state machine. A way of aggregating Task state to owning Task Groups is needed so that each Task Group can be considered as a unit within its parent for the purpose of determining control flow, and also the state of the enclosing Task Plan.
+During a Work Plan execution, the lifecycle state described above on each Task is recursively aggregated up to owning Task Groups (including Choice Groups, described below in <<Decision Structures>>), to the top Task Group (i.e. `TASK_PLAN._definition_`). Consequently, the aggregate lifecycle state of a Task Plan as a whole is just the lifecycle state of its `_definition_`.
 
-Similarly, the state of Task Plans can be aggregated to determine the state of a Work Plan.
+=== Sequential Groups
 
-=== Task Group Lifecycle State
-
-The following algorithm is used to compute the runtime lifecycle state of a Task Group from the set of states of its members.
+The following algorithm is used to compute the runtime lifecycle state of a Task Group for which `_execution_type_` is `sequential` from the set of states of its members.
 
 [source, java]
 --------
 //
-// Infer the state of a collection whose members have states in source_states.
+// Aggregate lifecycle state algorithm.
+// Infer the state of a collection whose members' states are in source_states.
 // The order of if/else evaluation determines the correct result.
 //
-Task_state inferred_state (Set<Task_state> source_states) {
+Task_lifecycle aggregate_state (Set<Task_lifecycle> source_states) {
     
     if (source_states.contains(Abandoned))
         return Abandoned;
@@ -114,17 +113,68 @@ Task_state inferred_state (Set<Task_state> source_states) {
 }
 --------
 
-One of the consequences of the above algorithm is that a Task Group at runtime is in a terminal state only if all recursively contained Tasks are in terminal states.
+Consequences of the above algorithm include:
 
-Because a (materialised) Task Group is also the top-level structure of each Task Plan, the inferred state of a Task Plan as a whole is also provided by this algorithm applied to the top Group (`TASK_PLAN._definition_`).
+* a Task Group at runtime is in a terminal state only if all recursively contained Tasks and/or other Task Groups are in terminal states;
+* completing a Task Group will ripple back up the Task Group hierarchy to a point where the completing Group is not the last remaining uncompleted Task or Group in the parent;
+* if the `abandoned` state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be `abandoned`.
 
-If `TASK_GROUP._execution_type_` is `parallel`, then the value of `_concurrency_mode_` will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to the particular rules.
+=== Parallel Groups
 
-Completing a Task Group will ripple back up the Task Group hierarchy to a point where the completed Group is not the final outstanding Task or Group in the parent.
+If `TASK_GROUP._execution_type_` is `parallel`, then the value of `_concurrency_mode_` will also affect computation of Task Group lifecycle state, since in some modes, some Tasks will be ignored. The following table indicates the computation for Task Group state at any time during and after execution of its branches. Note that all decision structures, i.e. `CHOICE_GROUPs`, are equivalent to `xor_one_path` Task Groups, and are thus solved by the second entry in the table below.
 
-If the `abandoned` state is entered for a Task, the effect is to cause the current run of the enclosing Task Plan to be `abandoned`. 
+[cols="3,2,8", options="header"]
+|===
+|Concurrency mode    |TP-VML |Lifecycle state rule
 
-=== Work Group Lifecycle State
+|`and_all_paths`     
+a|image::{diagrams_uri}/task_group_parallel_and.svg[id=lifecycle_and]
+|Apply the algorithm to each branch; re-apply the algorithm using all branch results as the input set.
 
-In a similar fashion to Task Group lifecycle state, aggregate lifecycle state can be computed up any chain of constituent Task Groups, using the same algorithm as above, applied to the hierarchy of Task Plans within a Work Plan.
+|`xor_one_path`     
+a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=lifecycle_xor]
+|Apply the algorithm to the chosen branch.
+
+|`or_first_completed`
+a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=lifecycle_or_first]
+|Apply the algorithm to each commenced branch; apply the OR-join algorithm below to this set.
+
+|`or_all_started`    
+a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=lifecycle_or_all]
+|Apply the algorithm to each commenced branch; re-apply the algorithm using these branch results as the input set.
+
+|===
+
+[source, java]
+--------
+//
+// OR-join algorithm: apply to Aggregate lifcycle algorithm results
+// obtained from all commenced branches.
+//
+Task_lifecycle or_join_state (Set<Task_lifecycle> branch_states) {
+    
+    if (branch_states.contains(Abandoned))
+        return Abandoned;
+    else if (branch_states.contains(Completed))
+        return Completed;
+    else if (branch_states.contains(Underway))
+        return Underway;
+    else if (branch_states.contains(Suspended))
+        return Suspended;
+    else if (branch_states.contains(Available))
+        return Available;
+    else if (branch_states.contains(Planned))
+        return Planned;
+    else if (branch_states.contains(Cancelled))
+        return Cancelled;
+    else
+        return Initial;
+}
+--------
+
+If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to these rules.
+
+=== Work Plan
+
+The lifecycle state of a Work Plan is determined from the states of its top-level Task Plans in the same way as for a parallel AND Task Group, i.e. by re-applying the algorithm to all the Task Plans.
 

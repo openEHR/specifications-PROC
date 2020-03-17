@@ -7,11 +7,11 @@
 4+^h|*PROC Release 1.?.?*
 
 |[[latest_issue]]1.5.0
-|{spec_tickets}/SPECPROC-33[SPECPROC-33^]. Support partial data set creation.
-|M Kejžar, +
+|{spec_tickets}/SPECPROC-12[SPECPROC-12^]. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).
+|B Naess, +
  M Polajnar, +
  T Beale
-|[[latest_issue_date]]04 Feb 2020
+|[[latest_issue_date]]17 Mar 2020
 
 |
 |{spec_tickets}/SPECPROC-32[SPECPROC-32^]. Improve Introduction and Requirements Discussion.

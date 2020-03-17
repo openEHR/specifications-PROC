@@ -34,7 +34,7 @@ The Work Plan `_calendar_` consists of Plan-related entries fixed in time, as pe
 
 === Plan Items
 
-The `PLAN_ITEM` class is the parent of all fine-grained elements of a Task Plan. It has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. 
+The `PLAN_ITEM` class is the parent of all fine-grained elements of a Task Plan, which are either `TASKs` or `TASK_GROUPs`. It has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task. 
 
 `PLAN_ITEM` also has two optional attributes that control the timing behaviour of Task Plan elements: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above under <<_time_and_wait_states>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
 
@@ -45,6 +45,52 @@ The optional `_period_` attribute defines the period of repetition. If not defin
 Two archetypable structure attributes are defined on `PLAN_ITEM`. The first, `_classification_`, is designed to allow any Task Group or Task to be tagged with one or more classifications, and has the same structural definition at `WORK_PLAN._classification_`.
 
 The second, `other_details` is provided to support extensions, in the same manner as elsewhere in openEHR information models.
+
+=== Lifecycle State
+
+At execution time, every Plan Item (i.e. Task and Group) notionally has a _lifecycle state_, represented by a state machine, containing states and transitions reflecting possible actions by the performer. The lifecycle state of a Task is set by the TP engine and affected directly by performer actions and other logic, while the lifecycle state of a Group is aggregated from the state values of its member Tasks and Groups.
+
+The lifecycle state does not appear directly as a data attribute on the `PLAN_ITEM` or `TASK` classes since it is a runtime variable for a Task. Accordingly, it appears in the materialised model, <<Materialised Model,described below>>. It is however useful to decribe the lifecycle state here, since it represents a key part of Task Plan semantics, and influences whether Tasks (and thus Groups) fail or complete, and potentially whether the Plan continues in execution.
+
+The lifecycle states are as follows (terminal states are marked with '(T)'):
+
+* `initial`: initial pseudo-state, not used in operation;
+* `planned`: defined, but not yet available for execution;
+* `available`: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;
+* `cancelled` (T): cancelled prior or during execution as not needed for success of the Plan;
+* `completed` (T): performed to completion;
+* `abandoned` (T): execution of current Task Plan was stopped before or after commencement due to completion being impossible;
+* `underway`: indicates that a Task execution has been commenced;
+* `suspended`: indicates that a Task execution has been suspended.
+
+The state machine is shown below.
+
+[.text-center]
+.Task lifecycle state machine
+image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
+
+The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathways through the states `underway` and `suspended` are provided to represent in-execution states, which are needed for two cases:
+
+* longer-running atomic Tasks;
+* dispatchable Tasks that are blocked waiting on another performer.
+
+NOTE: Task lifecycle only accounts for the states of a Task itself; states of an order (e.g. prescription, lab request) with which the Task may be associated will be visible in the documentation for those objects, e.g. openEHR `ACTION` or other Entry objects.
+
+==== Task Availability
+
+Each Task in a new Plan execution starts in the `initial` state. Following the design principle <<Allocation,described earlier>>, the execution engine executing a Task Plan can determine the _availability_ i.e., when the transition `planned` => `available` may occur for any Task as follows:
+
+* _control-flow_: preceding Tasks / Groups within the owning Task Group are in the `completed` or `cancelled` state;
+* _wait state_: any Task or Group wait state has been exited due to the arrival of the relevant events (including time-related);
+* _subject preconditions_: subject preconditions attached to the current Task Action are satisfied.
+
+A Task is considered `available` according to this logic even if performer and/or resources have not been allocated. Availability in this sense is the equivalent of the 'enabled' state of a task within a Workflow Net, described in citenp:[Hofstede_van_der_Aalst2009], section 2.3.2.
+
+The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, forcing the lifecycle transition `_override_` from `planned` to `available`. A corresponding `TASK_EVENT_RECORD` is created recording the use of the override.
+
+==== Aggregate Process State
+
+The effective state of a Task Group, Task Plan and Work Plan can be inferred from the lifecycle states of the Tasks, according to logic described in <<Aggregate Lifecycle State>>. This includes availability of Task Groups containing parallel paths with associated OR logic, i.e. the equivalent of the OR-join in YAWL (citenp:[Hofstede_van_der_Aalst2009], section 3.2).
 
 === References to Clinical Quality Artefacts
 
@@ -84,4 +130,3 @@ include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/plan_item.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
-

@@ -1,9 +1,6 @@
-== Task Structure
+== Task Group Structure
 
-The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` type, which has three key attributes. Execution of a Group is primarily controlled by the `_execution_type_` and `_concurrency_mode_` attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of `and` and `or` parallel processing logic (described in the next section), common to workflow formalisms.
-
-[.tbd]
-TBD for more exotic situations, the `_execution_rules_` attribute can be used to state other execution rules.
+The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` class, which has three key attributes. Execution of a Group is primarily controlled by the `_execution_type_` and `_concurrency_mode_` attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of `and` and `or` parallel processing logic (described in the next section), common to workflow formalisms. For more exotic situations, the `_execution_rules_` attribute can be used.
 
 `TASK_GROUP` also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
 
@@ -12,7 +9,9 @@ The Task Group construct enables two important ways to relate Tasks together:
 * as a _module_ of work consisting of a series of Tasks, achieved by a Task Group with `_execution_type_ = sequential`;
 * as a set of possible or mandatory _concurrent threads of work_, achieved by a Task Group with `_execution_type_ = parallel`.
 
-A sequential Task Group corresponds to a single thread of processing at execution time, in which each of the Tasks becomes available to the worker (i.e. Task Plan's `_principal_performer_`) _in order_, and according to the specific conditions associated with each Task. The following illustrates a sequential Task Group.
+=== Sequential Task Groups
+
+A sequential Task Group corresponds to a single thread of processing at execution time, in which each of the Tasks becomes available to the worker (i.e. Task Plan's `_principal_performer_`) _in order_, and according to the specific conditions associated with each Task. The following illustrates a sequential Task Group in TP-VML. Note that although there is visually an end-group icon (right hand end), there is no separate class or instance in the model - both the start-group and end-group icons visually represent the `TASK_GROUP` as a logical container.
 
 [.text-center]
 .Sequential Task Group
@@ -20,40 +19,55 @@ image::{diagrams_uri}/task_group_sequential.svg[id=task_group_sequential, align=
 
 === Parallel Task Groups and Concurrency
 
-The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired _split_ and _join_ points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey the idea of multiple possible paths (the limitation of 3 points is purely visual, semantically, any number of paths is supported).
+The parallel Task Group represents a different degree of complexity, since it enables concurrent threads of work at execution time. In terms of YAWL and Petri net workflow theory, a parallel Task Group corresponds to paired _split_ and _join_ points. The following illustrates a parallel Task Group in TP-VML. The multi-point shape of the exit and entry elements is intended to convey the idea of multiple possible branches (the limitation of 3 points is purely visual, semantically, any number of branches is supported).
 
 [.text-center]
 .Parallel Task Group
 image::{diagrams_uri}/task_group_parallel.svg[id=task_group_parallel, align="center", width=25%]
 
-The type of split and join (i.e. AND, OR, XOR, or other) depends on additional rules for concurrent processing, represented by the attribute `_concurrency_mode_`, whose possible values define the type of split and join, as shown below. The concurrency mode is important because it tells the execution engine at runtime under what conditions to consider the group has completed. The AND cases is the simplest, since there is no conditional processing - all paths must be followed. The XOR case represents a 1/N choice, so completion is also trivial to determine. However the OR case is more complicated. It might initially seem as if the Group may be considered completed when the first path completes (i.e. 'quickest path wins'). However, an alternative reasonable approach is to wait for all paths that were commenced to complete. Both possibilities are catered for.
+The first difference between a parallel Group and a sequential one is that when a parallel Group is arrived at in the control flow, once any wait state is satisfied, the first Task in _all of the outgoing branches_ is made available. Subsequent execution behaviour depends on the type of split and join logic (i.e. AND, OR, XOR, or other) which is represented by the attribute `TASK_GROUP._concurrency_mode_`, whose possible values indicate to the execution engine three things:
 
-[cols="1,1,1,1,3", options="header"]
+* how many branches may be commenced;
+* how commencing a branches affects other branches;
+* under what conditions to consider the group has completed.
+
+Here, the notion of 'completion' corresponds to the `completed` state in the Task lifecycle state machine described earlier, inferred from the completion states of the items in the branches. The detail of how Task Group lifecycle state is aggregated from contained items is described in detail in <<Aggregate Lifecycle State>>. Here we describe only the logic determining the `completed` state, for the sake of simplicity.
+
+The AND case is the simplest, since there is no conditional processing - all paths must be followed. An AND Group essentially represents work that should be performed, but for which the ordering is more relaxed than for a strict sequential Group.
+
+The XOR case represents a 1/N choice, and is understood in this specification as representing the _intent_ that only one path can sensibly be followed, usually because the branches are mutually exclusive alternatives in reality. In this case also, completion is also trivial to determine. 
+
+However the OR case is more complicated. A minimal interpretation of 'OR' logic is that as soon as one branch in the Group completes, the Group is considered `completed`, and no more Tasks from other branches are available to perform. A maximal interpretation is that Group completion is achieved only when every path commenced completes. The model represents these two cases explicitly, via the values `or_first_completed` and `or_all_started` respectively of `TASK_GROUP._concurrency_mode_`.
+
+The following table summarises the semantics of the four concurrency modes.
+
+[cols="2,1,1,3,3", options="header"]
 |===
-|Concurrency mode    |TP-VML |Split/ +
-                              join logic |Conditionality     |Semantics
+|Concurrency mode    |TP-VML |Logic |Split +
+                                     behaviour |Join +
+                                                behaviour
 
 |`and_all_paths`     
 a|image::{diagrams_uri}/task_group_parallel_and.svg[id=task_group_parallel_and]
-|AND                |(none)             |All parallel paths are followed.
+|AND                |All branches are followed. |Group completes when all branches complete.
 
 |`xor_one_path`     
 a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=task_group_parallel_xor]
-|XOR                |1/N                |Only one parallel path is followed.
+|XOR                |Only one branch can be started; once a branch is commenced, the first Task in remaining branches is transitioned to `cancelled`. |Group completes when the started branch completes; equivalent to a sequential Group, once a branch is chosen.
 
 |`or_first_completed`
 a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=task_group_parallel_or_first]
-|OR                 |N/M                |One or more paths may be commenced, and the Group is complete as soon as one path completes.
+|OR                 |One or more branches may be commenced. |The Group is complete when one branch completes.
 
 |`or_all_started`    
 a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=task_group_parallel_or_all]
-|OR                 |N/M                |One or more paths may be commenced, and the Group is complete when all paths commenced complete.
+|partial AND        |One or more branches may be commence. |The Group is complete when all branches commenced have completed; equivalent to an AND consisting of all commenced branches.
 
 |===
 
-The parallel / concurrent semantics attached to the Task Group do not indicate anything about conditional processing, i.e. conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined _by the performer, not the system_. In order to specify conditions on paths, the `TASK_GROUP` the conditional subtypes <<_conditional_structures, described below>> are used.
+The parallel / concurrent semantics attached to the Task Group do not indicate anything about decisional processing, i.e. the conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined _by the performer, not the system_. In order to specify conditions on paths, the `TASK_GROUP` the conditional subtypes <<_decision_structures, described below>> are used.
 
-=== Hierarachical Nesting
+=== Hierarchical Nesting
 
 Task Groups of sequential and parallel types may be mixed in a hierarchical fashion. One structure is such that the overall work of a Task Plan is defined as a sequential Group in which some members are a parallel Group, as shown below.
 
@@ -73,7 +87,7 @@ The combination of the Task Group / Task hierachical pattern, which implicitly d
 
 === Well-formedness
 
-A significant consequence of the Task Group construct in the TP model is that each Task Group forms a sub-network within its container, where a _network_ is understood in the graph theory sense of a directed graph with a start `s` and terminal node `t`, containing paths from `s` to `t` n which all member elements are found. This holds for descendant types of `TASK_GROUP`, including the <<_conditional_structures, Conditional Structures>> described below. This is a more limited form of connectivity than allowed in YAWL or BPMN, which do not require matched split and join points.
+A significant consequence of the Task Group construct in the TP model is that each Task Group forms a sub-network within its container, where a _network_ is understood in the graph theory sense of a directed graph with a start `s` and terminal node `t`, containing paths from `s` to `t` n which all member elements are found. This holds for descendant types of `TASK_GROUP`, including the <<_decision_structures, Decision Structures>> described below. This is a more limited form of connectivity than allowed in YAWL or BPMN, which do not require matched split and join points.
 
 === Training Level
 
