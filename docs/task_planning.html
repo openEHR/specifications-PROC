@@ -2959,20 +2959,10 @@ The following UML diagram illustrates.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>call_name</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of call in API.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>BMM_FUNCTION</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Signature definition of call.</p>
-</div>
-<div class="paragraph">
-<p>TODO: to be defined.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3802,10 +3792,7 @@ The following UML diagram illustrates.</p>
 <p><code>PLAN_ITEM</code> also has two optional attributes that control the timing behaviour of Task Plan elements: <code><em>wait_spec</em></code> and <code><em>repeat_spec</em></code>. The first enables a wait state (described above under <a href="#_time_and_wait_states">Section 4.3.8</a>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.</p>
 </div>
 <div class="paragraph">
-<p>The second attribute, <code><em>repeat_spec</em></code>, enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
-</div>
-<div class="paragraph">
-<p>The optional <code><em>period</em></code> attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.</p>
+<p>The second attribute, <code><em>repeat_spec</em></code> of type <code>TASK_REPEAT</code> enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan. Repeat behaviour is specified in terms of the attributes <code><em>repeats</em></code>, <code><em>period</em></code> and <code><em>terminate_condition</em></code>. The first indicates the minimum and maximum number of repeats that may occur. The optional <code><em>period</em></code> attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one. If <code><em>terminate_condition</em></code> is set, it is used prior to each repeat iteration. It takes precedence over the <code><em>repeats</em></code> attribute, i.e. if the terminate condition is true, no further repeats occur, even if the total number of repeats so far is less than the lower bound specified in <code><em>repeats</em></code>.</p>
 </div>
 <div class="paragraph">
 <p>Two archetypable structure attributes are defined on <code>PLAN_ITEM</code>. The first, <code><em>classification</em></code>, is designed to allow any Task Group or Task to be tagged with one or more classifications, and has the same structural definition at <code>WORK_PLAN.<em>classification</em></code>.</p>
@@ -4540,7 +4527,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute provides a constraint on a number of times. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. By default, it is tested before each execution, making the Task Repeat act like a 'while/do' loop coming after the original execution.</p>
+<p>The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. It is tested before each execution, making the Task Repeat act like a 'while/do' loop coming after the original execution. It takes precedence over the range expressed in <code><em>repeats</em></code> if there is a conflict.</p>
 </div>
 <div class="paragraph">
 <p>If <code><em>period</em></code> is set, this defines the duration between the start of each iteration at execution time. It has the effect at runtime of adding a <code><em>wait_spec</em></code> with a <code>TIMELINE_MOMENT</code> event to each <code>PLAN_ITEM</code> copy in the materialised form, i.e. creating the same structure as would have been created if the repetitions had been manually specified.</p>
