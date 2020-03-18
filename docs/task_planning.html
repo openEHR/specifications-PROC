@@ -589,11 +589,12 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3);<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order for <code>REPEAT_SPEC.<em>terminate_condition</em></code> to 'pre'.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>17 Mar 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Mar 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -4536,7 +4537,10 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute provides a constraint on a number of times. If not set, any number of repeats is allowed. The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable.</p>
+<p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute provides a constraint on a number of times. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. By default, it is tested before each execution, making the Task Repeat act like a 'while/do' loop coming after the original execution.</p>
 </div>
 <div class="paragraph">
 <p>If <code><em>period</em></code> is set, this defines the duration between the start of each iteration at execution time. It has the effect at runtime of adding a <code><em>wait_spec</em></code> with a <code>TIMELINE_MOMENT</code> event to each <code>PLAN_ITEM</code> copy in the materialised form, i.e. creating the same structure as would have been created if the repetitions had been manually specified.</p>
@@ -4558,7 +4562,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code>PLAN_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>States a condition for when repetition should stop.</p>
+<p>States a condition for when repetition should stop. Tested prior to each repetition.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -8496,7 +8500,10 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </div>
 </div>
 <div class="paragraph">
-<p>If the Task Group has more complex execution rules (<code>TASK_GROUP.<em>execution_rules</em></code>) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to these rules.</p>
+<p>The logic of the OR-join algorithm is to treat <em>any</em> finishing branch (<code>abandoned</code> or <code>completed</code>) as finishing the group, and otherwise to report the progress of the most advanced branch (i.e. <code>underway</code>, then <code>suspended</code> etc) as the progress of the Group.</p>
+</div>
+<div class="paragraph">
+<p>If the Task Group has more complex execution rules (<code>TASK_GROUP.<em>execution_rules</em></code>), then its lifecycle state will also be affected according to these rules.</p>
 </div>
 </div>
 <div class="sect3">

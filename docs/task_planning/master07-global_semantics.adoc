@@ -172,7 +172,9 @@ Task_lifecycle or_join_state (Set<Task_lifecycle> branch_states) {
 }
 --------
 
-If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`) such as 'exit on first Task to complete', then its lifecycle state will also be affected according to these rules.
+The logic of the OR-join algorithm is to treat _any_ finishing branch (`abandoned` or `completed`) as finishing the group, and otherwise to report the progress of the most advanced branch (i.e. `underway`, then `suspended` etc) as the progress of the Group.
+
+If the Task Group has more complex execution rules (`TASK_GROUP._execution_rules_`), then its lifecycle state will also be affected according to these rules.
 
 === Work Plan
 
