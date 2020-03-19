@@ -594,7 +594,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Mar 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 Mar 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -4609,7 +4609,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="title">Figure 18. Parallel Task Group</div>
 </div>
 <div class="paragraph">
-<p>The first difference between a parallel Group and a sequential one is that when a parallel Group is arrived at in the control flow, once any wait state is satisfied, the first Task in <em>all of the outgoing branches</em> is made available. Subsequent execution behaviour depends on the type of split and join logic (i.e. AND, OR, XOR, or other) which is represented by the attribute <code>TASK_GROUP.<em>concurrency_mode</em></code>, whose possible values indicate to the execution engine three things:</p>
+<p>The first difference between a parallel Group and a sequential one is that when a parallel Group is arrived at in the control flow, once any wait state is satisfied, the first Task in <em>all of the outgoing branches</em> is made <code>available</code>. Subsequent execution behaviour depends on the type of split and join logic (i.e. AND, OR, XOR, or other) which is represented by the attribute <code>TASK_GROUP.<em>concurrency_mode</em></code>, whose possible values indicate to the execution engine three things:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4631,7 +4631,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>The AND case is the simplest, since there is no conditional processing - all paths must be followed. An AND Group essentially represents work that should be performed, but for which the ordering is more relaxed than for a strict sequential Group.</p>
 </div>
 <div class="paragraph">
-<p>The XOR case represents a 1/N choice, and is understood in this specification as representing the <em>intent</em> that only one path can sensibly be followed, usually because the branches are mutually exclusive alternatives in reality. In this case also, completion is also trivial to determine.</p>
+<p>The XOR case represents a 1/N choice, and is understood in this specification as representing the <em>intent</em> that only one path can sensibly be followed, usually because the branches are mutually exclusive alternatives in reality. Consequently, in execution, an XOR Group is processed such that as soon as one branch is chosen by a performer transitioning a Task from the <code>available</code> state, <em>the first Task in all remaining branches is transitioned to `cancelled`</em>, effectively cancelling the non-chosen branches. In this case completion is also trivial to determine.</p>
 </div>
 <div class="paragraph">
 <p>However the OR case is more complicated. A minimal interpretation of 'OR' logic is that as soon as one branch in the Group completes, the Group is considered <code>completed</code>, and no more Tasks from other branches are available to perform. A maximal interpretation is that Group completion is achieved only when every path commenced completes. The model represents these two cases explicitly, via the values <code>or_first_completed</code> and <code>or_all_started</code> respectively of <code>TASK_GROUP.<em>concurrency_mode</em></code>.</p>
@@ -4682,17 +4682,6 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <td class="tableblock halign-left valign-top"><p class="tableblock">Group completes when the started branch completes; equivalent to a sequential Group, once a branch is chosen.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="task_group_parallel_or_first" class="imageblock">
-<div class="content">
-<img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One or more branches may be commenced.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Group is complete when one branch completes.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="task_group_parallel_or_all" class="imageblock">
 <div class="content">
@@ -4703,10 +4692,21 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <td class="tableblock halign-left valign-top"><p class="tableblock">One or more branches may be commence.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Group is complete when all branches commenced have completed; equivalent to an AND consisting of all commenced branches.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="task_group_parallel_or_first" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One or more branches may be commenced.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Group is complete when one branch completes.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The parallel / concurrent semantics attached to the Task Group do not indicate anything about decisional processing, i.e. the conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined <em>by the performer, not the system</em>. In order to specify conditions on paths, the <code>TASK_GROUP</code> the conditional subtypes <a href="#_decision_structures">described below</a> are used.</p>
+<p>The parallel / concurrent semantics attached to the Task Group do not indicate anything about decisional processing, i.e. the conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined <em>by the performer, not the system</em>. In order to specify conditions on paths, the conditional subtypes <a href="#_decision_structures">described below</a> are used.</p>
 </div>
 </div>
 <div class="sect3">
@@ -8440,15 +8440,6 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to the chosen branch.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_or_first" class="imageblock">
-<div class="content">
-<img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to each commenced branch; apply the OR-join algorithm below to this set.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_all_started</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_or_all" class="imageblock">
 <div class="content">
@@ -8456,6 +8447,15 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to each commenced branch; re-apply the algorithm using these branch results as the input set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_first_completed</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div id="lifecycle_or_first" class="imageblock">
+<div class="content">
+<img src="task_planning/diagrams/task_group_parallel_or_first.svg" alt="task group parallel or first">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apply the algorithm to each commenced branch; apply the OR-join algorithm below to this set.</p></td>
 </tr>
 </tbody>
 </table>

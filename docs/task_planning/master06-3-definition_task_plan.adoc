@@ -25,7 +25,7 @@ The parallel Task Group represents a different degree of complexity, since it en
 .Parallel Task Group
 image::{diagrams_uri}/task_group_parallel.svg[id=task_group_parallel, align="center", width=25%]
 
-The first difference between a parallel Group and a sequential one is that when a parallel Group is arrived at in the control flow, once any wait state is satisfied, the first Task in _all of the outgoing branches_ is made available. Subsequent execution behaviour depends on the type of split and join logic (i.e. AND, OR, XOR, or other) which is represented by the attribute `TASK_GROUP._concurrency_mode_`, whose possible values indicate to the execution engine three things:
+The first difference between a parallel Group and a sequential one is that when a parallel Group is arrived at in the control flow, once any wait state is satisfied, the first Task in _all of the outgoing branches_ is made `available`. Subsequent execution behaviour depends on the type of split and join logic (i.e. AND, OR, XOR, or other) which is represented by the attribute `TASK_GROUP._concurrency_mode_`, whose possible values indicate to the execution engine three things:
 
 * how many branches may be commenced;
 * how commencing a branches affects other branches;
@@ -35,7 +35,7 @@ Here, the notion of 'completion' corresponds to the `completed` state in the Tas
 
 The AND case is the simplest, since there is no conditional processing - all paths must be followed. An AND Group essentially represents work that should be performed, but for which the ordering is more relaxed than for a strict sequential Group.
 
-The XOR case represents a 1/N choice, and is understood in this specification as representing the _intent_ that only one path can sensibly be followed, usually because the branches are mutually exclusive alternatives in reality. In this case also, completion is also trivial to determine. 
+The XOR case represents a 1/N choice, and is understood in this specification as representing the _intent_ that only one path can sensibly be followed, usually because the branches are mutually exclusive alternatives in reality. Consequently, in execution, an XOR Group is processed such that as soon as one branch is chosen by a performer transitioning a Task from the `available` state, _the first Task in all remaining branches is transitioned to `cancelled`_, effectively cancelling the non-chosen branches. In this case completion is also trivial to determine. 
 
 However the OR case is more complicated. A minimal interpretation of 'OR' logic is that as soon as one branch in the Group completes, the Group is considered `completed`, and no more Tasks from other branches are available to perform. A maximal interpretation is that Group completion is achieved only when every path commenced completes. The model represents these two cases explicitly, via the values `or_first_completed` and `or_all_started` respectively of `TASK_GROUP._concurrency_mode_`.
 
@@ -55,17 +55,17 @@ a|image::{diagrams_uri}/task_group_parallel_and.svg[id=task_group_parallel_and]
 a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=task_group_parallel_xor]
 |XOR                |Only one branch can be started; once a branch is commenced, the first Task in remaining branches is transitioned to `cancelled`. |Group completes when the started branch completes; equivalent to a sequential Group, once a branch is chosen.
 
-|`or_first_completed`
-a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=task_group_parallel_or_first]
-|OR                 |One or more branches may be commenced. |The Group is complete when one branch completes.
-
 |`or_all_started`    
 a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=task_group_parallel_or_all]
 |partial AND        |One or more branches may be commence. |The Group is complete when all branches commenced have completed; equivalent to an AND consisting of all commenced branches.
 
+|`or_first_completed`
+a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=task_group_parallel_or_first]
+|OR                 |One or more branches may be commenced. |The Group is complete when one branch completes.
+
 |===
 
-The parallel / concurrent semantics attached to the Task Group do not indicate anything about decisional processing, i.e. the conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined _by the performer, not the system_. In order to specify conditions on paths, the `TASK_GROUP` the conditional subtypes <<_decision_structures, described below>> are used.
+The parallel / concurrent semantics attached to the Task Group do not indicate anything about decisional processing, i.e. the conditions that might be used to choose outgoing paths from the split point represented by a Task Group in the XOR and OR logic cases. Consequently, the choice of path(s) to follow in the parallel case is determined _by the performer, not the system_. In order to specify conditions on paths, the conditional subtypes <<_decision_structures, described below>> are used.
 
 === Hierarchical Nesting
 

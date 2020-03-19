@@ -135,13 +135,13 @@ a|image::{diagrams_uri}/task_group_parallel_and.svg[id=lifecycle_and]
 a|image::{diagrams_uri}/task_group_parallel_xor.svg[id=lifecycle_xor]
 |Apply the algorithm to the chosen branch.
 
-|`or_first_completed`
-a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=lifecycle_or_first]
-|Apply the algorithm to each commenced branch; apply the OR-join algorithm below to this set.
-
 |`or_all_started`    
 a|image::{diagrams_uri}/task_group_parallel_or_all.svg[id=lifecycle_or_all]
 |Apply the algorithm to each commenced branch; re-apply the algorithm using these branch results as the input set.
+
+|`or_first_completed`
+a|image::{diagrams_uri}/task_group_parallel_or_first.svg[id=lifecycle_or_first]
+|Apply the algorithm to each commenced branch; apply the OR-join algorithm below to this set.
 
 |===
 

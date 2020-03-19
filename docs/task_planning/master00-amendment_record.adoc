@@ -12,7 +12,7 @@
 |B Naess, +
  M Polajnar, +
  T Beale
-|[[latest_issue_date]]18 Mar 2020
+|[[latest_issue_date]]19 Mar 2020
 
 |
 |{spec_tickets}/SPECPROC-32[SPECPROC-32^]. Improve Introduction and Requirements Discussion.
