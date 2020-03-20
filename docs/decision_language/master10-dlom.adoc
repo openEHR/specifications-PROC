@@ -50,7 +50,7 @@ image::{uml_diagrams_uri}/PROC-dlom.rules-condition_chain.svg[id=dlom_rules_cond
 
 === Case Rule
 
-A DL _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages.
+A DL _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of `C_PRIMITIVE` constraint types, from the {openehr_am}[openEHR AOM2 model].
 
 [.text-center]
 .Case rule

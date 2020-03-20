@@ -1,0 +1,22 @@
+=== DATASPEC_COMMIT_GROUP Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DATASPEC_COMMIT_GROUP*
+
+h|*Description*
+2+a|Specification of a 'commit group', i.e. a complete data set (usually a multi-part form) that is progressively built and committed in the `incomplete` lifecycle state, with a final `complete` state commit.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*group_id*: `String`
+a|Unique identifier of this commit group within scope of a single Task Plan.
+
+h|*1..1*
+|*completion_step*: `Boolean`
+a|If True, the Task to which this Dataset Spec is attached is the one that puts it into the `complete` lifecycle state.
+|===

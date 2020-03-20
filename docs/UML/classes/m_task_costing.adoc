@@ -1,0 +1,11 @@
+=== M_TASK_COSTING Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*M_TASK_COSTING*
+
+h|*Description*
+2+a|
+
+|===
