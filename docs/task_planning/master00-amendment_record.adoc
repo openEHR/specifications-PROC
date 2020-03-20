@@ -4,7 +4,7 @@
 |===
 |Issue|Details|Raiser|Completed
 
-4+^h|*PROC Release 1.?.?*
+4+^h|*PROC Release 1.5.0*
 
 |[[latest_issue]]1.5.0
 |{spec_tickets}/SPECPROC-12[SPECPROC-12^]. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3); +

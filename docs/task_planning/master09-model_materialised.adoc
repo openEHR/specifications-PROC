@@ -14,6 +14,8 @@ include::{uml_export_dir}/classes/m_work_plan.adoc[]
 
 include::{uml_export_dir}/classes/m_task_plan.adoc[]
 
+include::{uml_export_dir}/classes/m_performer_allocation.adoc[]
+
 include::{uml_export_dir}/classes/m_plan_item.adoc[]
 
 include::{uml_export_dir}/classes/m_task_group.adoc[]
@@ -21,3 +23,7 @@ include::{uml_export_dir}/classes/m_task_group.adoc[]
 include::{uml_export_dir}/classes/m_task.adoc[]
 
 include::{uml_export_dir}/classes/m_task_action.adoc[]
+
+include::{uml_export_dir}/classes/m_dispatchable_action.adoc[]
+
+include::{uml_export_dir}/classes/m_performable_action.adoc[]

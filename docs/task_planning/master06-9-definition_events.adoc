@@ -130,7 +130,7 @@ image::{diagrams_uri}/uc_task_timing_1.svg[id=timing_patterns_1, align="center"]
 
 ==== Reminder
 
-When an event specified by a `TASK_WAIT._events_` fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be reminded, the `PLAN_ITEM._reminders_` attribute may be used to specify one or more `REMINDER` wait states. Each of these will have a `TIMER_EVENT` (or other event) as its firing `_event_`.
+When an event specified in `TASK_WAIT._events_` fires, it puts the Task into the `available` lifecycle state. In typical real world situations, the performer may not realise, or may be busy on something else. To enable the performer to be reminded, the `PLAN_ITEM._reminders_` attribute may be used to specify one or more `REMINDER` wait states. Each of these will have a `TIMER_EVENT` (or other event) as its firing `_event_`.
 
 [.tbd]
 TBD: what about transition to `underway`?
