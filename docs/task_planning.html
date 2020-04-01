@@ -931,7 +931,7 @@
 <p>Additionally the Activity-Based Design (ABD) project at Intermountain Healthcare (2015-), on which the primary author worked part time proved an important source of cross-fertilisation. The latter project is led by David Edwards and Alan James (chief architect), within the clinical quality program, under Dr Brent James, Chief Quality Officer at Intermountain Healthcare. ABD has a sophisticated architecture based on a custom archetype / template framework, adaptive workflow concepts, application generation and real-time speech recognition. It has pioneered a number of concepts used in the current specification, including the separation of definition, materialised and runtime levels of representation.</p>
 </div>
 <div class="paragraph">
-<p>Lastly, a review of research literature and standards was conducted. Many of the ideas in YAWL (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>) and its underlying research influenced this specification. The authors also reviewed various standards, including the OMG&#8217;s <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a> and <a href="https://www.omg.org//spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a>.</p>
+<p>Lastly, a review of research literature and standards was conducted. Many of the ideas in YAWL (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>) and its underlying research influenced this specification. The authors also reviewed various standards, including the OMG&#8217;s <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a> and <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1085,7 +1085,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>limited capacity to deal with complexity (often denoted as <a href="https://en.wikipedia.org/wiki//The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>);</p>
+<p>limited capacity to deal with complexity (often denoted as <a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>);</p>
 </li>
 <li>
 <p>the inability to keep up with change (new medications, research etc); and</p>
@@ -1405,7 +1405,7 @@
 <div class="sect2">
 <h3 id="_relationship_to_workflow_formalisms_and_systems"><a class="anchor" href="#_relationship_to_workflow_formalisms_and_systems"></a>2.5. Relationship to Workflow Formalisms and Systems</h3>
 <div class="paragraph">
-<p>This specification describes a model for a task plan concept that incudes support for work distribution across multiple performers, nested task plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a> and <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), as well as emerging case-based standards such as <a href="https://www.omg.org//spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org//spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
+<p>This specification describes a model for a task plan concept that incudes support for work distribution across multiple performers, nested task plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a> and <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), as well as emerging case-based standards such as <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
 </div>
 <div class="paragraph">
 <p>While the model described here takes ideas from these languages, there are some key differences as well. The primary conceptual difference is that the subject (i.e. 'case') here is assumed to be a) an intentional agent (generally a human patient) that makes choices, and b) an active biological organism, which reacts to drugs and other interventions. In other words, an entity that cannot be considered a passive object (such as a package or blood sample), as is the case for most logistic workflows, for which languages such as BPMN are designed. (Note that even the patient can be a passive object in some circumstances, such as radiology.) Other departures include the use of a declarative rather than prescriptive means of defining the plan graph structure, and the formalisation of all elements of a plan and its execution.</p>
@@ -6889,7 +6889,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect4">
 <h5 id="_timeline_moment"><a class="anchor" href="#_timeline_moment"></a>6.9.2.1. TIMELINE_MOMENT</h5>
 <div class="paragraph">
-<p>The <code>TIMELINE_MOMENT</code> event type represents an event generated by the system when a point in time on the execution clock is reached. The time point is specified by two attributes, <code><em>timeline_offset</em></code> and <code><em>fixed_time</em></code>, with the time origin (default: Work Plan activation) being optionally specified by <code><em>offset_origin</em></code>. At least one of the first two attributes must be set.</p>
+<p>The <code>TIMELINE_MOMENT</code> event type represents an event generated by the system when a point in time on the execution clock is reached. The time point is specified by two attributes, <code><em>timeline_offset</em></code> and <code><em>fixed_time</em></code>, with the time origin (default: Work Plan activation) being optionally specified by <code><em>timeline_origin</em></code>. At least one of the first two attributes must be set.</p>
 </div>
 <div class="paragraph">
 <p>If <code><em>fixed_time</em></code> is set using an instance of <code>CLOCK_TIME</code>, it refers to the first moment at which the time occurs during the day, <em>after any offset has elapsed</em>. The following diagram shows how this works for two instances of <code>TIMELINE_MOMENT</code>, both having a <code><em>fixed_time</em></code> of <code>07:30</code> and a <code><em>timeline_offset</em></code> of <code>P1d</code> (one day), when the timeline origin is different (i.e. the Work Plan was started at different times).</p>
@@ -6910,7 +6910,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <p>A <code>TIMELINE_MOMENT</code> with neithre of <code><em>timeline_offset</em></code> or <code><em>fixed_time</em></code> set is not considered meaningful, since it is equivalent to no <code>TIMELINE_MOMENT</code> event at all.</p>
 </div>
 <div class="paragraph">
-<p>The timeline origin defaults to the moment of Work Plan activiation, but may be overridden via the <code><em>offset_origin</em></code> to the moment of activation of the current Task Plan, or the entry into a repeating section (a Task Group or Task with <code><em>repeat_spec</em></code> set).</p>
+<p>The timeline origin defaults to the moment of Work Plan activiation, but may be overridden via the <code><em>timeline_origin</em></code> attribute to be the moment of activation of the current Task Plan, or the entry into a repeating section (a Task Group or Task with <code><em>repeat_spec</em></code> set).</p>
 </div>
 </div>
 </div>
