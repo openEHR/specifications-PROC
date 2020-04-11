@@ -21,8 +21,8 @@ h|*1..1 +
 a|Redefined from `EVENT_WAIT`.
 
 h|*Invariants*
-2+a|*_Inv_no_timeout_*: `timeout = Void`
+2+a|_Inv_no_timeout_: `timeout = Void`
 
 h|
-2+a|*_Inv_has_action_*: `success_action /= Void`
+2+a|_Inv_has_action_: `success_action /= Void`
 |===

@@ -13,5 +13,5 @@ h|*Inherit*
 
 
 h|*Invariants*
-2+a|*_Inv_no_wait_condition_*: `wait_spec = Void`
+2+a|_Inv_no_wait_condition_: `wait_spec = Void`
 |===

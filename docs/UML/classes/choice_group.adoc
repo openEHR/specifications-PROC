@@ -29,8 +29,8 @@ h|*0..1 +
 a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
 
 h|*Invariants*
-2+a|*_Inv_parallel_*: `execution_type = EXECUTION_TYPE.parallel`
+2+a|_Inv_parallel_: `execution_type = EXECUTION_TYPE.parallel`
 
 h|
-2+a|*_Inv_xor_concurrency_*: `concurrency_mode = CONCURRENCY_MODE.xor_one_path`
+2+a|_Inv_xor_concurrency_: `concurrency_mode = CONCURRENCY_MODE.xor_one_path`
 |===

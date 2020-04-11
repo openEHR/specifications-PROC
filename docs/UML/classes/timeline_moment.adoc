@@ -34,5 +34,5 @@ h|*0..1*
 a|Relative origin for `_timeline_offset_`. If not set, Work Plan activation is assumed as the time origin.
 
 h|*Invariants*
-2+a|*_Inv_validity_*: `timeline_offset /= Void or fixed_time /= Void`
+2+a|_Inv_validity_: `timeline_offset /= Void or fixed_time /= Void`
 |===

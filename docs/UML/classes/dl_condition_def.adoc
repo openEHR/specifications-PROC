@@ -17,5 +17,5 @@ h|*1..1*
 a|
 
 h|*Invariants*
-2+a|*_Inv_boolean_definition_*: `definition.is_boolean()`
+2+a|_Inv_boolean_definition_: `definition.is_boolean()`
 |===

@@ -26,5 +26,5 @@ a|References to order(s) being created and / or tracked by this Task. The value(
 Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.
 
 h|*Invariants*
-2+a|*_Inv_order_tags_*: `order_tags /= Void implies not order_tags.is_empy`
+2+a|_Inv_order_tags_: `order_tags /= Void implies not order_tags.is_empy`
 |===

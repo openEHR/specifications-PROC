@@ -23,8 +23,8 @@ h|*1..1 +
 a|The event that will generate the reminder. This could be a timer, or it may be a timeline moment, calendar time, or a non-deterministic event, e.g. state trigger.
 
 h|*Invariants*
-2+a|*_Inv_no_timeout_*: `timeout = Void`
+2+a|_Inv_no_timeout_: `timeout = Void`
 
 h|
-2+a|*_Inv_has_action_*: `success_action /= Void`
+2+a|_Inv_has_action_: `success_action /= Void`
 |===

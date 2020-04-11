@@ -36,5 +36,5 @@ h|*0..1*
 a|Optional path to a sub-section of the form identified by `_form_id_`. The format of the path is the same as a template or AQL path.
 
 h|*Invariants*
-2+a|*_Inv_validity_*: `form_id /= Void or template_id /= Void`
+2+a|_Inv_validity_: `form_id /= Void or template_id /= Void`
 |===
