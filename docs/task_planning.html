@@ -203,7 +203,13 @@
 <li><a href="#_plan_structure">6.2. Plan Structure</a>
 <ul class="sectlevel3">
 <li><a href="#_the_plan_calendar">6.2.1. The Plan Calendar</a></li>
-<li><a href="#_plan_items">6.2.2. Plan Items</a></li>
+<li><a href="#_plan_items">6.2.2. Plan Items</a>
+<ul class="sectlevel4">
+<li><a href="#_wait_states">6.2.2.1. Wait States</a></li>
+<li><a href="#_repetition">6.2.2.2. Repetition</a></li>
+<li><a href="#_other_attributes">6.2.2.3. Other Attributes</a></li>
+</ul>
+</li>
 <li><a href="#_lifecycle_state">6.2.3. Lifecycle State</a>
 <ul class="sectlevel4">
 <li><a href="#_task_availability">6.2.3.1. Task Availability</a></li>
@@ -3801,17 +3807,32 @@ The following UML diagram illustrates.</p>
 <div class="paragraph">
 <p>The <code>PLAN_ITEM</code> class is the parent of all fine-grained elements of a Task Plan, which are either <code>TASKs</code> or <code>TASK_GROUPs</code>. It has a mandatory <code><em>description</em></code> attribute, which represents a natural language specification of the work of the Task.</p>
 </div>
+<div class="sect4">
+<h5 id="_wait_states"><a class="anchor" href="#_wait_states"></a>6.2.2.1. Wait States</h5>
 <div class="paragraph">
 <p><code>PLAN_ITEM</code> also has two optional attributes that control the timing behaviour of Task Plan elements: <code><em>wait_spec</em></code> and <code><em>repeat_spec</em></code>. The first enables a wait state (described above under <a href="#_time_and_wait_states">Section 4.3.8</a>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.</p>
 </div>
-<div class="paragraph">
-<p>The second attribute, <code><em>repeat_spec</em></code> of type <code>TASK_REPEAT</code> enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan. Repeat behaviour is specified in terms of the attributes <code><em>repeats</em></code>, <code><em>period</em></code> and <code><em>terminate_condition</em></code>. The first indicates the minimum and maximum number of repeats that may occur. The optional <code><em>period</em></code> attribute defines the period of repetition. If not defined, each repetition commences according to the application of Task availability rules already defined on the individuals Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one. If <code><em>terminate_condition</em></code> is set, it is used prior to each repeat iteration. It takes precedence over the <code><em>repeats</em></code> attribute, i.e. if the terminate condition is true, no further repeats occur, even if the total number of repeats so far is less than the lower bound specified in <code><em>repeats</em></code>.</p>
 </div>
+<div class="sect4">
+<h5 id="_repetition"><a class="anchor" href="#_repetition"></a>6.2.2.2. Repetition</h5>
+<div class="paragraph">
+<p>The second attribute, <code><em>repeat_spec</em></code> of type <code>TASK_REPEAT</code> enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
+</div>
+<div class="paragraph">
+<p>Repeat behaviour is specified in terms of the attributes <code><em>repeats</em></code>, <code><em>period</em></code> and <code><em>terminate_condition</em></code>. The first indicates the minimum and maximum number of repeats that may occur. The optional <code><em>period</em></code> attribute defines the period of repetition. If the latter is not defined, each repetition commences according to the application of Task availability rules already defined on the individual Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.</p>
+</div>
+<div class="paragraph">
+<p>If <code><em>terminate_condition</em></code> is set, it is used <em>prior</em> to each repeat iteration. It takes precedence over the <code><em>repeats</em></code> attribute, i.e. if the terminate condition is true, no further repeats occur, even if the total number of repeats so far is less than the lower bound specified in <code><em>repeats</em></code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_other_attributes"><a class="anchor" href="#_other_attributes"></a>6.2.2.3. Other Attributes</h5>
 <div class="paragraph">
 <p>Two archetypable structure attributes are defined on <code>PLAN_ITEM</code>. The first, <code><em>classification</em></code>, is designed to allow any Task Group or Task to be tagged with one or more classifications, and has the same structural definition at <code>WORK_PLAN.<em>classification</em></code>.</p>
 </div>
 <div class="paragraph">
 <p>The second, <code>other_details</code> is provided to support extensions, in the same manner as elsewhere in openEHR information models.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -5068,7 +5089,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_order_tags</em></strong>: <code>order_tags /= Void implies not order_tags.is_empy</code></p>
+<p><em>Inv_order_tags</em>: <code>order_tags /= Void implies not order_tags.is_empy</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5973,7 +5994,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_validity</em></strong>: <code>form_id /= Void or template_id /= Void</code></p>
+<p><em>Inv_validity</em>: <code>form_id /= Void or template_id /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6181,13 +6202,13 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_parallel</em></strong>: <code>execution_type = EXECUTION_TYPE.parallel</code></p>
+<p><em>Inv_parallel</em>: <code>execution_type = EXECUTION_TYPE.parallel</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_xor_concurrency</em></strong>: <code>concurrency_mode = CONCURRENCY_MODE.xor_one_path</code></p>
+<p><em>Inv_xor_concurrency</em>: <code>concurrency_mode = CONCURRENCY_MODE.xor_one_path</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6347,7 +6368,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
+<p><em>Inv_no_wait_condition</em>: <code>wait_spec = Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6440,7 +6461,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
+<p><em>Inv_no_wait_condition</em>: <code>wait_spec = Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6511,7 +6532,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_wait_condition</em></strong>: <code>wait_spec = Void</code></p>
+<p><em>Inv_no_wait_condition</em>: <code>wait_spec = Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6594,7 +6615,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Wait_spec_not_void</em></strong>: <code>wait_spec /= Void</code></p>
+<p><em>Wait_spec_not_void</em>: <code>wait_spec /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7462,13 +7483,13 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_timeout</em></strong>: <code>timeout = Void</code></p>
+<p><em>Inv_no_timeout</em>: <code>timeout = Void</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_has_action</em></strong>: <code>success_action /= Void</code></p>
+<p><em>Inv_has_action</em>: <code>success_action /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7516,13 +7537,13 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_no_timeout</em></strong>: <code>timeout = Void</code></p>
+<p><em>Inv_no_timeout</em>: <code>timeout = Void</code></p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_has_action</em></strong>: <code>success_action /= Void</code></p>
+<p><em>Inv_has_action</em>: <code>success_action /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7674,7 +7695,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_custom_actions_next_state</em></strong>: <code>custom_actions.for_all ((ev:EVENT_ACTION) {ev.receiver_thread_next_state /= Void})</code></p>
+<p><em>Inv_custom_actions_next_state</em>: <code>custom_actions.for_all ((ev:EVENT_ACTION) {ev.receiver_thread_next_state /= Void})</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -7921,7 +7942,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><strong><em>Inv_validity</em></strong>: <code>timeline_offset /= Void or fixed_time /= Void</code></p>
+<p><em>Inv_validity</em>: <code>timeline_offset /= Void or fixed_time /= Void</code></p>
 </div></div></td>
 </tr>
 </tbody>
