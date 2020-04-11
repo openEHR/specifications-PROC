@@ -1,0 +1,7 @@
+= Service Model
+
+The following shows an outline idea of a DLM service interface. This could be made to cater for talking to a DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.
+
+[.text-center]
+.Service Model
+image::{diagrams_uri}/conceptual_service_model.svg[id=conceptual_service_model, align="center"]

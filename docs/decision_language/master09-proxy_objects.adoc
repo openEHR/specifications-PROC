@@ -1,0 +1,9 @@
+= Proxy Objects
+
+For decision logic to be useful, it must be able to refer to data from the outside world, particularly state data of the case, e.g. the patient, specific devices and so on, in a clinical execution context. The general case is that state and event occurrences of any real world entity may be referred to. The approach taken in openEHR DL is that any such entity is represented by an abstract _proxy object_ that defines its state as a set of properties and potentially structure. From a data perspective, any such set of properties will relate to a particular use. For example, the properties for a leukaemia patient are likely to include `white_cell_count`, `platelets` and so on, while a proxy object for ante-natal use will contain obstetric properties. A core set of properties for any patient would include clinical basics such as date of birth, sex, and typical vital signs.
+
+TBC
+
+[.text-center]
+.Abstract proxy
+image::{diagrams_uri}/conceptual_proxy.svg[id=conceptual_proxy, align="center"]

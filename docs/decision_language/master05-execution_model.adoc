@@ -1,6 +1,0 @@
-== Execution Model
-
-NOTE: to be rewritten
-
-The assumed execution model of the Decision Language is that DL functions are evaluated by an _evaluator_ against a _data context_, which determines the truth values of the expression(s). The data context is the origin for some or all of the variables mentioned in the expressions, which may be read from and written to. It may concretely be a retrieved data structure, or data via an API call to the EHR, demographics, laboratory system etc.
-
