@@ -365,6 +365,7 @@
 <li><a href="#_callback_processing_for_blocking_tasks">6.9.5.1. Callback Processing for Blocking Tasks</a></li>
 <li><a href="#_callback_processing_for_non_blocking_tasks">6.9.5.2. Callback Processing for Non-blocking Tasks</a></li>
 <li><a href="#_callback_with_custom_resume_behaviour">6.9.5.3. Callback with Custom Resume Behaviour</a></li>
+<li><a href="#_manually_notified_pseudo_callback">6.9.5.4. Manually-notified Pseudo-callback</a></li>
 </ul>
 </li>
 <li><a href="#_class_definitions_8">6.9.6. Class Definitions</a>
@@ -598,12 +599,19 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Change method of 'manual notification' for callbacks; remove <code><em>manually_notified</em>: Boolean</code> from <code>CALLBACK_NOTIFICATION</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Apr 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3);<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order for <code>REPEAT_SPEC.<em>terminate_condition</em></code> to 'pre'.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>19 Mar 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19 Mar 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -6077,7 +6085,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-decision.svg" alt="PROC task planning.definition decision">
 </div>
-<div class="title">Figure 27. proc.task_planning package definition model (decision view)</div>
+<div class="title">Figure 27. proc.task_planning.choice package - decision structures</div>
 </div>
 <div class="paragraph">
 <p>The <code>CHOICE_GROUP</code> class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single path) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a <code>CHOICE_GROUP</code> is thus an 'XOR gate'.</p>
@@ -7064,10 +7072,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </ul>
 </div>
 <div class="paragraph">
-<p>A Callback Wait thus has three standard Event responders: <code><em>success_action</em></code>, <code><em>fail_action</em></code> and <code><em>timeout</em></code>, and additionally any number of custom responders definable via <code><em>custom_actions</em></code>, described later.</p>
-</div>
-<div class="paragraph">
-<p>A callback at execution time is achieved either internally in the TP system, or externally in the real world (e.g. by the subject returning to a clinic reception), which requires it to be manually signalled to the TP engine. The notification route is indicated by the attribute <code>CALLBACK_NOTIFICATION.<em>manually_notified</em></code>. In both cases, the <code>CALLBACK_NOTIFICATION</code> event carries the details of the event to be matched. In the manual notification, matching of <code><em>subject_id</em></code> etc will be carried out manually, e.g. by staff identifying the patient.</p>
+<p>A Callback Wait thus has three standard Event responders: <code><em>success_action</em></code>, <code><em>fail_action</em></code> and <code><em>timeout</em></code>, and additionally any number of custom responders definable via <code><em>custom_actions</em></code>, described below.</p>
 </div>
 <div class="paragraph">
 <p>Task lifecycle state processing for a Dispatchable Task occurs both at the point of dispatch and return and/or timeout. The general model is as follows:</p>
@@ -7320,6 +7325,18 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h5 id="_callback_with_custom_resume_behaviour"><a class="anchor" href="#_callback_with_custom_resume_behaviour"></a>6.9.5.3. Callback with Custom Resume Behaviour</h5>
 <div class="paragraph">
 <p>The attribute <code>EVENT_ACTION.<em>resume_action</em></code> of type <code>RESUME_ACTION</code>, and its attribute <code><em>resume_location</em></code> enable custom post-callback behaviour to be stated. The default is to process the <code>EVENT_ACTION</code> (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration <code>RESUME_TYPE</code>. This kind of resumption is described below in the section on <a href="#_resume_semantics">Section 7.2.4</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_manually_notified_pseudo_callback"><a class="anchor" href="#_manually_notified_pseudo_callback"></a>6.9.5.4. Manually-notified Pseudo-callback</h5>
+<div class="paragraph">
+<p>A callback at execution time is achieved via notification within the TP system. However, in some cases, the effect of a callback is required where the means of notification is the subject (i.e. the patient, in a clinical system) being sent to another department or room, and the current performer&#8217;s execution blocking for that subject until he/she returns. This effect can be achieved by the task patturn shown below, consisting of a Hand-off followed by a normal Task that waits on a Manual notification event. This pattern is not a true callback.</p>
+</div>
+<div id="manual_callback" class="imageblock text-center text-center">
+<div class="content">
+<img src="task_planning/diagrams/manual_callback.svg" alt="manual callback">
+</div>
+<div class="title">Figure 41. Pattern to achieve effect of 'manual callback'</div>
 </div>
 </div>
 </div>
@@ -8100,9 +8117,6 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p>Event generated on receipt of notification of completion of the work of the target of a Dispatchable Task.</p>
-</div>
-<div class="paragraph">
-<p>If <code><em>manually_notified</em></code> is set, the callback will be notified in the real world rather than by the system.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -8133,13 +8147,6 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of subject to which callback relates.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>manually_notified</strong>: <code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If True, callback will be manually notified, e.g. by return of ambulatory subject, manual provision of tissue sample, etc.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -8238,7 +8245,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/wp_tp_hierarchy.svg" alt="wp tp hierarchy" width="55%">
 </div>
-<div class="title">Figure 41. Work Plan control path graph structure</div>
+<div class="title">Figure 42. Work Plan control path graph structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -8674,7 +8681,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 42. proc.task_planning.materialised package</div>
+<div class="title">Figure 43. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -9114,7 +9121,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 43. proc.task_planning.history package</div>
+<div class="title">Figure 44. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -9440,7 +9447,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 44. proc.task_planning.service package</div>
+<div class="title">Figure 45. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -9667,7 +9674,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 45. Runtime planning structures</div>
+<div class="title">Figure 46. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>

@@ -158,9 +158,7 @@ In order to define the processing on receipt of a callback event, `CALLBACK_WAIT
 * `_fail_action_`: enables a different `EVENT_ACTION` to be specified on receipt of a callback with a 'fail' status;
 * `_custom_actions_`: enables a custom set of `EVENT_ACTIONs` to be specified, in the form of a Hash table, with a specific Event Action for each key; the keys are assumed to represent specific return statuses of the remote Task.
 
-A Callback Wait thus has three standard Event responders: `_success_action_`, `_fail_action_` and `_timeout_`, and additionally any number of custom responders definable via `_custom_actions_`, described later.
-
-A callback at execution time is achieved either internally in the TP system, or externally in the real world (e.g. by the subject returning to a clinic reception), which requires it to be manually signalled to the TP engine. The notification route is indicated by the attribute `CALLBACK_NOTIFICATION._manually_notified_`. In both cases, the `CALLBACK_NOTIFICATION` event carries the details of the event to be matched. In the manual notification, matching of `_subject_id_` etc will be carried out manually, e.g. by staff identifying the patient.
+A Callback Wait thus has three standard Event responders: `_success_action_`, `_fail_action_` and `_timeout_`, and additionally any number of custom responders definable via `_custom_actions_`, described below.
 
 Task lifecycle state processing for a Dispatchable Task occurs both at the point of dispatch and return and/or timeout. The general model is as follows:
 
@@ -287,6 +285,14 @@ image::{diagrams_uri}/dispatchable_no_wait_callback.svg[id=dispatchable_no_wait_
 ==== Callback with Custom Resume Behaviour
 
 The attribute `EVENT_ACTION._resume_action_` of type `RESUME_ACTION`, and its attribute `_resume_location_` enable custom post-callback behaviour to be stated. The default is to process the `EVENT_ACTION` (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration `RESUME_TYPE`. This kind of resumption is described below in the section on <<_resume_semantics>>.
+
+==== Manually-notified Pseudo-callback
+
+A callback at execution time is achieved via notification within the TP system. However, in some cases, the effect of a callback is required where the means of notification is the subject (i.e. the patient, in a clinical system) being sent to another department or room, and the current performer's execution blocking for that subject until he/she returns. This effect can be achieved by the task patturn shown below, consisting of a Hand-off followed by a normal Task that waits on a Manual notification event. This pattern is not a true callback.
+
+[.text-center]
+.Pattern to achieve effect of 'manual callback'
+image::{diagrams_uri}/manual_callback.svg[id=manual_callback, align="center"]
 
 === Class Definitions
 

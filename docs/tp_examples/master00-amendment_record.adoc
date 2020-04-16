@@ -6,10 +6,16 @@
 
 4+^h|*PROC Release 1.0.0*
 
-|[[latest_issue]]0.1.0
+|[[latest_issue]]0.1.1
+|Replace 'manual notification' callback by normal Handoff followed by manual notification Task wait state.
+|M Polajnar, +
+ T Beale
+|[[latest_issue_date]]16 Apr 2020
+
+|0.1.0
 |Initial writing.
 |T Beale, +
  B Næss
-|[[latest_issue_date]]25 Apr 2019
+|25 Apr 2019
 
 |===
