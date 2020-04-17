@@ -233,7 +233,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document specifies the openEHR Decision Model (DM) and an abstract syntax, denoted the openEHR Decision Language (openEHR DL). The DOM defines the semantics of a first order predicate style logic that can be used to write clinical Decision Logic Models (DLMs).</p>
+<p>This document specifies the openEHR Decision Model (DM) and an abstract syntax, denoted the openEHR Decision Language (openEHR DL). The DOM defines the semantics of a first order predicate style logic that can be used to write clinical Decision Logic Models (DLMs) that may be used standalone or with a Process / Plan oriented system such as <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning</a>.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -265,12 +265,12 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Releated documents include:</p>
+<p>Related documents include:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://specifications.openehr.org/releases/AM/latest/AOM2.html" target="_blank" rel="noopener">Archetype Object Model 2 (AOM2)</a>, Assertions section.</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning specification</a>;</p>
 </li>
 <li>
 <p>The <a href="https://specifications.openehr.org/releases/CDS/latest/GDL.html" target="_blank" rel="noopener">Guideline Definition Language (GDL)</a>.</p>
@@ -314,7 +314,10 @@
 <h2 id="_requirements"><a class="anchor" href="#_requirements"></a>2. Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The requirements of openEHR DL fall into a number of categories, described below.</p>
+<p>The requirements of openEHR Decision Language fall into a number of categories, described below.</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD: this section only very rough for now.</p>
 </div>
 <div class="sect2">
 <h3 id="_caller_interaction"><a class="anchor" href="#_caller_interaction"></a>2.1. Caller Interaction</h3>
@@ -367,19 +370,19 @@
 <div class="sect2">
 <h3 id="_conceptual_model"><a class="anchor" href="#_conceptual_model"></a>3.1. Conceptual Model</h3>
 <div class="paragraph">
-<p>The openEHR Decision Language (DL) and Decision Model (DM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement.</p>
+<p>The openEHR Decision Language (DL) and Decision Model (DM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement. We consider decision logic to consist of <em>definitions</em> and <em>functions</em>, the latter of which can be abstractly understood as <em>rules</em>, <em>conditions</em>, <em>decision tables</em> and potentially other varieties of function.</p>
 </div>
 <div class="paragraph">
-<p>For example, a simple decision function can be written to infer from the input variables <code><em>heart-rate</em></code> and <code><em>heart-rhythm</em></code> whether a patient has atrial fibrillation, or other forms of arrhythmia. Decision functions may be represented in other ways as well, including <em>decision tables</em>, which are widely used in many industries.</p>
+<p>For example, a rule can be written to infer from the input variables <code><em>heart_rate</em></code> and <code><em>heart_rhythm</em></code> whether a patient has atrial fibrillation, or other forms of arrhythmia. A decision table can be considered to be a convenient way of representing a 'rule-set', i.e. a set of related rules driven by a common set of input variables.</p>
 </div>
 <div class="paragraph">
-<p>Regardless of the structual form, decision logic typically contains numerous <em>conditions</em> i.e. Boolean-returning expressions such as <code><em>heart-rate</em> &gt;= 120 /min and <em>heart-rhythm</em> = |irregular|</code> that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition <code><em>blood-glucose</em>[2h post 75g glucose challenge] &gt; 6.5 mmol/ml</code> is the diagnostic standard for diabetes in a patient.</p>
+<p>Rules typically contain numerous <em>conditions</em> i.e. Boolean-returning expressions such as <code><em>heart_rate</em> &gt;= 120 /min and <em>heart_rhythm</em> = |irregular|</code> that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term, evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition <code><em>blood_glucose</em>[2h post 75g glucose challenge] &gt; 6.5 mmol/ml</code> is the diagnostic standard for diabetes in a patient.</p>
 </div>
 <div class="paragraph">
-<p>Such conditions and larger logic modules that may include them constitute fragments of logic that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).</p>
+<p>Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).</p>
 </div>
 <div class="paragraph">
-<p>The following diagram illustrates the artefacts covered by this specification.</p>
+<p>The following diagram illustrates the artefacts covered by this specification within a larger computational context.</p>
 </div>
 <div id="conceptual_framework_overview" class="imageblock text-center text-center">
 <div class="content">
@@ -388,26 +391,32 @@
 <div class="title">Figure 1. Conceptual framework</div>
 </div>
 <div class="paragraph">
-<p>In the above, three logical components of the environment are identified:</p>
+<p>In the above, the top part illustrates the notion of process and plan definitions (of which the <em>care pathway</em> is a specific example in clinical medicine), which in openEHR are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. In other environments, OMG BPMN/CMMN representation may be used.</p>
+</div>
+<div class="paragraph">
+<p>Below the process component, two components of the DL framework are shown:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Decision Logic Module (DLM)</strong>: a module containing decision functions that map input variables to inferences;</p>
+<p><strong>Decision Logic Module (DLM)</strong>: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about (e.g. patient cardiac state etc);</p>
 </li>
 <li>
-<p><strong>Data Proxy</strong>: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM;</p>
-</li>
-<li>
-<p><strong>Data Access Binding</strong>: bindings of concrete data access methods to the logical data elements in a Data proxy.</p>
+<p><strong>Data Proxy</strong>: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The last component (shown at bottom left) is tje <em>Data Access Object (DAO)</em>, i.e. concrete data access methods via which data may be obtained from various sources, such as patient health records. Such data are extracted to become the logical data elements in a Data proxy.</p>
+</div>
+<div class="paragraph">
+<p>In this environment, the Process Definition component may be understood as a primary user of Data proxies and DLMs, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>3.2. Prior Art</h3>
 <div class="paragraph">
-<p>The openEHR DL formalism is a small language that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DL adds constructs for representing conditions, decisions, modules. A small extra meta-model and syntax covers proxy definition, and the importation and binding semantics in the binding objects.</p>
+<p>The openEHR DL formalism is a small formalism that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects.</p>
 </div>
 <div class="paragraph">
 <p>openEHR DL may be compared to other languages developed in the health arena for expressing 'medical logic', including <a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">HL7 Arden Syntax</a>, Guideline Interchange Format (<a href="#GLIF">Ohno-Machado et al.&#44; 1998</a>), ProForma (<a href="#SuttonFox2003">Sutton &amp; Fox&#44; 2003</a>), as well as decision support languages such as <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" target="_blank" rel="noopener">HL7 Gello</a>. These languages were not directly used, for various reasons including:</p>
@@ -432,7 +441,7 @@
 <p>Nevertheless, various elements of Arden and ProForma provided useful inspiration for the formalism described here.</p>
 </div>
 <div class="paragraph">
-<p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are just now finding use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses many of the same issues as openEHR DL/EL and provided useful ideas.</p>
+<p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are just now finding use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a> addresses some of the same issues as openEHR DL/EL and provided useful ideas.</p>
 </div>
 </div>
 </div>
@@ -718,8 +727,8 @@ rules
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_objects[</strong>]*: <code>PROXY_MODULE</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_objects</strong>: <code>List&lt;PROXY_MODULE&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Imported proxy modules</p>
 </div></div></td>

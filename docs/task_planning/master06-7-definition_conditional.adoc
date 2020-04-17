@@ -5,7 +5,7 @@
 More advanced applications of Task Plans include decision structures, in which one of multiple branches may be taken depending on specific conditions. There are four varieties of such structure, which are defined as specific descendants of the `TASK_GROUP` class, as shown in the following UML model. 
 
 [.text-center]
-.proc.task_planning package definition model (decision view)
+.proc.task_planning.choice package - decision structures
 image::{uml_diagrams_uri}/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
 
 The `CHOICE_GROUP` class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single path) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a `CHOICE_GROUP` is thus an 'XOR gate'.

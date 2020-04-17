@@ -2,29 +2,34 @@
 
 == Conceptual Model
 
-The openEHR Decision Language (DL) and Decision Model (DM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement.
+The openEHR Decision Language (DL) and Decision Model (DM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement. We consider decision logic to consist of _definitions_ and _functions_, the latter of which can be abstractly understood as _rules_, _conditions_, _decision tables_ and potentially other varieties of function.
 
-For example, a simple decision function can be written to infer from the input variables `_heart-rate_` and `_heart-rhythm_` whether a patient has atrial fibrillation, or other forms of arrhythmia. Decision functions may be represented in other ways as well, including _decision tables_, which are widely used in many industries.
+For example, a rule can be written to infer from the input variables `_heart_rate_` and `_heart_rhythm_` whether a patient has atrial fibrillation, or other forms of arrhythmia. A decision table can be considered to be a convenient way of representing a 'rule-set', i.e. a set of related rules driven by a common set of input variables.
 
-Regardless of the structual form, decision logic typically contains numerous _conditions_ i.e. Boolean-returning expressions such as `_heart-rate_ >= 120 /min and _heart-rhythm_ = |irregular|` that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition `_blood-glucose_[2h post 75g glucose challenge] > 6.5 mmol/ml` is the diagnostic standard for diabetes in a patient.
+Rules typically contain numerous _conditions_ i.e. Boolean-returning expressions such as `_heart_rate_ >= 120 /min and _heart_rhythm_ = |irregular|` that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term, evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition `_blood_glucose_[2h post 75g glucose challenge] > 6.5 mmol/ml` is the diagnostic standard for diabetes in a patient.
 
-Such conditions and larger logic modules that may include them constitute fragments of logic that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).
+Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).
 
-The following diagram illustrates the artefacts covered by this specification.
+The following diagram illustrates the artefacts covered by this specification within a larger computational context.
 
 [.text-center]
 .Conceptual framework
 image::{diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
 
-In the above, three logical components of the environment are identified:
+In the above, the top part illustrates the notion of process and plan definitions (of which the _care pathway_ is a specific example in clinical medicine), which in openEHR are expressed as Work Plans, defined by the {openehr_task_planning}[openEHR Task Planning model^]. In other environments, OMG BPMN/CMMN representation may be used.
 
-* *Decision Logic Module (DLM)*: a module containing decision functions that map input variables to inferences;
-* *Data Proxy*: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM;
-* *Data Access Binding*: bindings of concrete data access methods to the logical data elements in a Data proxy.
+Below the process component, two components of the DL framework are shown:
+
+* *Decision Logic Module (DLM)*: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about (e.g. patient cardiac state etc);
+* *Data Proxy*: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM.
+
+The last component (shown at bottom left) is tje _Data Access Object (DAO)_, i.e. concrete data access methods via which data may be obtained from various sources, such as patient health records. Such data are extracted to become the logical data elements in a Data proxy.
+
+In this environment, the Process Definition component may be understood as a primary user of Data proxies and DLMs, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.
 
 == Prior Art
 
-The openEHR DL formalism is a small language that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DL adds constructs for representing conditions, decisions, modules. A small extra meta-model and syntax covers proxy definition, and the importation and binding semantics in the binding objects.
+The openEHR DL formalism is a small formalism that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects.
 
 openEHR DL may be compared to other languages developed in the health arena for expressing 'medical logic', including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as decision support languages such as {hl7v3_gello}[HL7 Gello^]. These languages were not directly used, for various reasons including:
 
@@ -35,4 +40,4 @@ openEHR DL may be compared to other languages developed in the health arena for 
 
 Nevertheless, various elements of Arden and ProForma provided useful inspiration for the formalism described here.
 
-Other relevant formalisms include the OMG {omg_bpmn}[BPMN^], {omg_cmmn}[CMMN^] and {omg_dmn}[DMN^] standards, and the {hl7_cql}[HL7 CQL standard^]. The former group of standards are just now finding use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses many of the same issues as openEHR DL/EL and provided useful ideas.
+Other relevant formalisms include the OMG {omg_bpmn}[BPMN^], {omg_cmmn}[CMMN^] and {omg_dmn}[DMN^] standards, and the {hl7_cql}[HL7 CQL standard^]. The former group of standards are just now finding use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The {hl7_cql}[HL7 CQL standard^] addresses some of the same issues as openEHR DL/EL and provided useful ideas.

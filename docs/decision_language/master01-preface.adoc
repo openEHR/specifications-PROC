@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document specifies the openEHR Decision Model (DM) and an abstract syntax, denoted the openEHR Decision Language (openEHR DL). The DOM defines the semantics of a first order predicate style logic that can be used to write clinical Decision Logic Models (DLMs).
+This document specifies the openEHR Decision Model (DM) and an abstract syntax, denoted the openEHR Decision Language (openEHR DL). The DOM defines the semantics of a first order predicate style logic that can be used to write clinical Decision Logic Models (DLMs) that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
 
 The intended audience includes:
 
@@ -16,9 +16,9 @@ Prerequisite documents for reading this document include:
 
 * The {openehr_overview}[openEHR Architecture Overview^].
 
-Releated documents include:
+Related documents include:
 
-* The {openehr_am_aom2}[Archetype Object Model 2 (AOM2)^], Assertions section.
+* The {openehr_task_planning}[openEHR Task Planning specification^];
 * The {openehr_cds_gdl}[Guideline Definition Language (GDL)^].
 
 == Status
