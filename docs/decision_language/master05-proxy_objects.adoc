@@ -1,0 +1,20 @@
+= Proxy Objects
+
+== Overview
+
+For decision logic to be useful, it must be able to refer to states and events of entities in the outside world, e.g. the patient vital signs in both steady state (oxygen saturation) and important transitions (e.g. critical low oxygen saturation). The approach taken in openEHR DL is that any such entity is represented by an abstract _data proxy object (DPO)_ that defines state variables and event conditions as formal  features, along with certain meta-data, e.g. _currency_, defining the worst-case latency of sampling of a variable from its real-world source.
+
+From a semantic perspective, DPO state variables and events represent properties and events occurring in _ontic (real-world) entities_, such as the patient's heart. They are typically populated via the patient record and real-time devices (e.g. pulse-oximeter, accelerometer). Consequently, they are understood as being temporally situated on a 'world time' rather than a 'system time' timeline, where the latter corresponds to data commit and availability time. 
+
+From a data perspective, the set of features defined in a DPO will relate to a particular use. For example, the properties for a leukaemia patient are likely to include `white_cell_count`, `platelets` and so on, while a DPO for ante-natal use will contain obstetric properties. A core set of DPO features for any patient would include clinical basics such as date of birth, sex, and typical vital signs. In general, the collection of features in a DPO will be a somewhat arbitrary 'slice' of all possible variables and events characterising a real-world entity. 
+
+The following illustrates two DPOs, one a specialisation of the other.
+
+[.text-center]
+.Abstract proxy
+image::{diagrams_uri}/conceptual_proxy.svg[id=conceptual_proxy, align="center"]
+
+== Variable Naming
+
+[.tbd]
+TBD: basic question of variable like 'Apgar 5min heartrate' - represent in a structure, and reference like `apgar_result.5min.heart_rate`, or just use flat pre-coord approach: `apgar_result_5min_heart_rate`? Structuring probably makes authoring easier.

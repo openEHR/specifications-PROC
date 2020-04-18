@@ -43,26 +43,41 @@
 <li><a href="#_overview">3. Overview</a>
 <ul class="sectlevel2">
 <li><a href="#_conceptual_model">3.1. Conceptual Model</a></li>
-<li><a href="#_prior_art">3.2. Prior Art</a></li>
+<li><a href="#_representation_scheme">3.2. Representation Scheme</a></li>
+<li><a href="#_prior_art">3.3. Prior Art</a></li>
 </ul>
 </li>
-<li><a href="#_representation_scheme">4. Representation Scheme</a>
+<li><a href="#_decision_logic_language">4. Decision Logic Language</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">4.1. Overview</a></li>
-<li><a href="#_decision_logic_language">4.2. Decision Logic Language</a></li>
+<li><a href="#_structure">4.2. Structure</a></li>
+<li><a href="#_definitions">4.3. Definitions</a></li>
+<li><a href="#_conditions">4.4. Conditions</a></li>
+<li><a href="#_rules">4.5. Rules</a></li>
+<li><a href="#_rule_sets">4.6. Rule-sets</a></li>
 </ul>
 </li>
-<li><a href="#_service_model">5. Service Model</a></li>
-<li><a href="#_usage">6. Usage</a>
+<li><a href="#_proxy_objects">5. Proxy Objects</a>
 <ul class="sectlevel2">
-<li><a href="#_rule_based">6.1. Rule-based</a></li>
-<li><a href="#_condition_based">6.2. Condition-based</a></li>
+<li><a href="#_overview_3">5.1. Overview</a></li>
+<li><a href="#_variable_naming">5.2. Variable Naming</a></li>
 </ul>
 </li>
-<li><a href="#_proxy_objects">7. Proxy Objects</a></li>
+<li><a href="#_plan_dlm_interaction">6. Plan / DLM Interaction</a>
+<ul class="sectlevel2">
+<li><a href="#_data_sharing">6.1. Data-sharing</a></li>
+<li><a href="#_plan_structure_references_to_dlm_features">6.2. Plan Structure References to DLM Features</a>
+<ul class="sectlevel3">
+<li><a href="#_rule_based">6.2.1. Rule-based</a></li>
+<li><a href="#_condition_based">6.2.2. Condition-based</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_dlm_service_model">7. DLM Service Model</a></li>
 <li><a href="#_the_decision_language_object_model_dlom">8. The Decision Language Object Model (DLOM)</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_3">8.1. Overview</a></li>
+<li><a href="#_overview_4">8.1. Overview</a></li>
 <li><a href="#_dl_module_package">8.2. DL Module Package</a>
 <ul class="sectlevel3">
 <li><a href="#_class_descriptions">8.2.1. Class Descriptions</a>
@@ -391,7 +406,7 @@
 <div class="title">Figure 1. Conceptual framework</div>
 </div>
 <div class="paragraph">
-<p>In the above, the top part illustrates the notion of process and plan definitions (of which the <em>care pathway</em> is a specific example in clinical medicine), which in openEHR are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. In other environments, OMG BPMN/CMMN representation may be used.</p>
+<p>In the above, the top part illustrates the category of process and plan definitions, of which the <em>care pathway</em> is a specific example in clinical medicine. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. In other environments, OMG BPMN/CMMN representation might be used.</p>
 </div>
 <div class="paragraph">
 <p>Below the process component, two components of the DL framework are shown:</p>
@@ -402,19 +417,37 @@
 <p><strong>Decision Logic Module (DLM)</strong>: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about (e.g. patient cardiac state etc);</p>
 </li>
 <li>
-<p><strong>Data Proxy</strong>: a definition of input variables corresponding to a type of real-world entity (e.g. car, cardiology patient) in a convenient form for use in a DLM.</p>
+<p><strong>Data Proxy Object (DPO)</strong>: a definition of state variables and events characterising a real-world entity (e.g. cardiology patient) in a convenient form for use in a DLM.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The last component (shown at bottom left) is tje <em>Data Access Object (DAO)</em>, i.e. concrete data access methods via which data may be obtained from various sources, such as patient health records. Such data are extracted to become the logical data elements in a Data proxy.</p>
+<p>The last component (shown at bottom left) is the <em>Data Access Binding (DAB)</em>, which are bindings to data sources and repositories, such as patient health records and monitoring devices. Such data are extracted to become the logical data elements in a Data Proxy.</p>
 </div>
 <div class="paragraph">
 <p>In this environment, the Process Definition component may be understood as a primary user of Data proxies and DLMs, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>3.2. Prior Art</h3>
+<h3 id="_representation_scheme"><a class="anchor" href="#_representation_scheme"></a>3.2. Representation Scheme</h3>
+<div class="paragraph">
+<p>The general approach to representation for Decision Logic Modules (DLMs) and Data Proxy Objects (DPOs) is to support two forms. The first is an optional high-level language form called Decision Logic Language (DLL) suitable for domain specialist authors, which abstracts away detail typically required by a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DLL texts are assumed to be written by hand, with the aid of a syntax mode for typical editors, or a light-weight UI tool.</p>
+</div>
+<div class="paragraph">
+<p>The second form is an expression in a standard programming language which is either generated from the first form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DLM.</p>
+</div>
+<div class="paragraph">
+<p>The two types of artefacts are shown below.</p>
+</div>
+<div id="artefact_scheme" class="imageblock text-center text-center">
+<div class="content">
+<img src="decision_language/diagrams/artefact_scheme.svg" alt="artefact scheme">
+</div>
+<div class="title">Figure 2. Representation scheme</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>3.3. Prior Art</h3>
 <div class="paragraph">
 <p>The openEHR DL formalism is a small formalism that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects.</p>
 </div>
@@ -433,60 +466,48 @@
 <p>current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);</p>
 </li>
 <li>
+<p>none of them have a clear separation of the semantics of process representation, decision logic, proxy data and data access;</p>
+</li>
+<li>
 <p>the maintenance and support is unclear and/or limited.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Nevertheless, various elements of Arden and ProForma provided useful inspiration for the formalism described here.</p>
+<p>Nevertheless, various elements of Arden provided useful inspiration for the formalism described here. The Data Access Binding described here may be understood as a solution to the so-called 'curly braces problem' of Arden (<a href="#Samwald_arden_2012">Samwald&#44; Fehre&#44; de Bruin&#44; &amp; Adlassnig&#44; 2012</a>), i.e. the need to be able to bind rule logic to real-world variables.</p>
 </div>
 <div class="paragraph">
-<p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are just now finding use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a> addresses some of the same issues as openEHR DL/EL and provided useful ideas.</p>
+<p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are starting (as of 2020) to find use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses some of the same issues as openEHR DL/EL.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_representation_scheme"><a class="anchor" href="#_representation_scheme"></a>4. Representation Scheme</h2>
+<h2 id="_decision_logic_language"><a class="anchor" href="#_decision_logic_language"></a>4. Decision Logic Language</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
 <div class="paragraph">
-<p>The general approach to representation for Decision Logic Modules (DLMs) and Proxy Objects (POs) is to support two forms. The first is an optional high-level language form called Decision Logic Language (DLL) suitable for domain specialist authors, which abstracts away detail typically required for a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DLL texts are assumed to be written by hand (possibly with the aid of a syntax mode for typical editors) or a light-weight UI tool.</p>
-</div>
-<div class="paragraph">
-<p>The second form is an expression in a standard programming language which is either generated from the first form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DLM.</p>
-</div>
-<div class="paragraph">
-<p>The two types of artefacts are shown below.</p>
-</div>
-<div id="artefact_scheme" class="imageblock text-center text-center">
-<div class="content">
-<img src="decision_language/diagrams/artefact_scheme.svg" alt="artefact scheme">
-</div>
-<div class="title">Figure 2. Artefact scheme</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_decision_logic_language"><a class="anchor" href="#_decision_logic_language"></a>4.2. Decision Logic Language</h3>
-<div class="paragraph">
-<p>The Decision Logic Language is a high-level programming language in which modules containing the following elements may be written:</p>
+<p>The Decision Logic Language is a high-level language in which modules containing the following elements may be written:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>definitions</em> - domain constants;</p>
+<p><em>definitions</em>: domain constants;</p>
 </li>
 <li>
-<p><em>conditions</em> - Boolean-returning domain-specified criteria;</p>
+<p><em>conditions</em>: Boolean-returning domain-specified criteria;</p>
 </li>
 <li>
-<p><em>rules</em> - domain-specified rules structures based on condition/action structures, which may return any type.</p>
+<p><em>rules</em>: domain-specified rules structures based on condition/action structures, which may return any type;</p>
+</li>
+<li>
+<p><em>rule-sets</em>: related sets of rules in various forms, including decision tables.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>An example of a basic formalism supporting these concepts is shown below.</p>
+<p>An example of a basic DLL text is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -523,10 +544,113 @@ rules
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_structure"><a class="anchor" href="#_structure"></a>4.2. Structure</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_definitions"><a class="anchor" href="#_definitions"></a>4.3. Definitions</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conditions"><a class="anchor" href="#_conditions"></a>4.4. Conditions</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rules"><a class="anchor" href="#_rules"></a>4.5. Rules</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rule_sets"><a class="anchor" href="#_rule_sets"></a>4.6. Rule-sets</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_service_model"><a class="anchor" href="#_service_model"></a>5. Service Model</h2>
+<h2 id="_proxy_objects"><a class="anchor" href="#_proxy_objects"></a>5. Proxy Objects</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>5.1. Overview</h3>
+<div class="paragraph">
+<p>For decision logic to be useful, it must be able to refer to states and events of entities in the outside world, e.g. the patient vital signs in both steady state (oxygen saturation) and important transitions (e.g. critical low oxygen saturation). The approach taken in openEHR DL is that any such entity is represented by an abstract <em>data proxy object (DPO)</em> that defines state variables and event conditions as formal  features, along with certain meta-data, e.g. <em>currency</em>, defining the worst-case latency of sampling of a variable from its real-world source.</p>
+</div>
+<div class="paragraph">
+<p>From a semantic perspective, DPO state variables and events represent properties and events occurring in <em>ontic (real-world) entities</em>, such as the patient&#8217;s heart. They are typically populated via the patient record and real-time devices (e.g. pulse-oximeter, accelerometer). Consequently, they are understood as being temporally situated on a 'world time' rather than a 'system time' timeline, where the latter corresponds to data commit and availability time.</p>
+</div>
+<div class="paragraph">
+<p>From a data perspective, the set of features defined in a DPO will relate to a particular use. For example, the properties for a leukaemia patient are likely to include <code>white_cell_count</code>, <code>platelets</code> and so on, while a DPO for ante-natal use will contain obstetric properties. A core set of DPO features for any patient would include clinical basics such as date of birth, sex, and typical vital signs. In general, the collection of features in a DPO will be a somewhat arbitrary 'slice' of all possible variables and events characterising a real-world entity.</p>
+</div>
+<div class="paragraph">
+<p>The following illustrates two DPOs, one a specialisation of the other.</p>
+</div>
+<div id="conceptual_proxy" class="imageblock text-center text-center">
+<div class="content">
+<img src="decision_language/diagrams/conceptual_proxy.svg" alt="conceptual proxy">
+</div>
+<div class="title">Figure 3. Abstract proxy</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_variable_naming"><a class="anchor" href="#_variable_naming"></a>5.2. Variable Naming</h3>
+<div class="paragraph tbd">
+<p>TBD: basic question of variable like 'Apgar 5min heartrate' - represent in a structure, and reference like <code>apgar_result.5min.heart_rate</code>, or just use flat pre-coord approach: <code>apgar_result_5min_heart_rate</code>? Structuring probably makes authoring easier.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_plan_dlm_interaction"><a class="anchor" href="#_plan_dlm_interaction"></a>6. Plan / DLM Interaction</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_data_sharing"><a class="anchor" href="#_data_sharing"></a>6.1. Data-sharing</h3>
+<div class="paragraph tbd">
+<p>TBD: how to transmit arguments: assume all available in data sources? Need to allow calls to DLM using arguments?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_plan_structure_references_to_dlm_features"><a class="anchor" href="#_plan_structure_references_to_dlm_features"></a>6.2. Plan Structure References to DLM Features</h3>
+<div class="paragraph">
+<p>At least two usage styles between the Plan engine and the Decision engine are possible.</p>
+</div>
+<div class="sect3">
+<h4 id="_rule_based"><a class="anchor" href="#_rule_based"></a>6.2.1. Rule-based</h4>
+<div class="paragraph">
+<p>In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DLM 'rule' is likely to be intentionally designed to reflect published clinical best practice.</p>
+</div>
+<div id="conceptual_decision_based" class="imageblock text-center text-center">
+<div class="content">
+<img src="decision_language/diagrams/conceptual_decision_based.svg" alt="conceptual decision based">
+</div>
+<div class="title">Figure 4. Rule-based interface</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_condition_based"><a class="anchor" href="#_condition_based"></a>6.2.2. Condition-based</h4>
+<div class="paragraph">
+<p>In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel or ad hoc use of existing conditions. Semantically the</p>
+</div>
+<div id="conceptual_condition_based" class="imageblock text-center text-center">
+<div class="content">
+<img src="decision_language/diagrams/conceptual_condition_based.svg" alt="conceptual condition based">
+</div>
+<div class="title">Figure 5. Condition-based interface</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dlm_service_model"><a class="anchor" href="#_dlm_service_model"></a>7. DLM Service Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following shows an outline idea of a DLM service interface. This could be made to cater for talking to a DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.</p>
@@ -535,66 +659,20 @@ rules
 <div class="content">
 <img src="decision_language/diagrams/conceptual_service_model.svg" alt="conceptual service model">
 </div>
-<div class="title">Figure 3. Service Model</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_usage"><a class="anchor" href="#_usage"></a>6. Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>At least two usage styles between the Plan engine and the Decision engine are possible.</p>
-</div>
-<div class="sect2">
-<h3 id="_rule_based"><a class="anchor" href="#_rule_based"></a>6.1. Rule-based</h3>
-<div class="paragraph">
-<p>In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DLM 'rule' is likely to be intentionally designed to reflect published clinical best practice.</p>
-</div>
-<div id="conceptual_decision_based" class="imageblock text-center text-center">
-<div class="content">
-<img src="decision_language/diagrams/conceptual_decision_based.svg" alt="conceptual decision based">
-</div>
-<div class="title">Figure 4. Decision-based</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_condition_based"><a class="anchor" href="#_condition_based"></a>6.2. Condition-based</h3>
-<div class="paragraph">
-<p>In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel or ad hoc use of existing conditions. Semantically the</p>
-</div>
-<div id="conceptual_condition_based" class="imageblock text-center text-center">
-<div class="content">
-<img src="decision_language/diagrams/conceptual_condition_based.svg" alt="conceptual condition based">
-</div>
-<div class="title">Figure 5. Condition-based</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_proxy_objects"><a class="anchor" href="#_proxy_objects"></a>7. Proxy Objects</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>For decision logic to be useful, it must be able to refer to data from the outside world, particularly state data of the case, e.g. the patient, specific devices and so on, in a clinical execution context. The general case is that state and event occurrences of any real world entity may be referred to. The approach taken in openEHR DL is that any such entity is represented by an abstract <em>proxy object</em> that defines its state as a set of properties and potentially structure. From a data perspective, any such set of properties will relate to a particular use. For example, the properties for a leukaemia patient are likely to include <code>white_cell_count</code>, <code>platelets</code> and so on, while a proxy object for ante-natal use will contain obstetric properties. A core set of properties for any patient would include clinical basics such as date of birth, sex, and typical vital signs.</p>
-</div>
-<div class="paragraph">
-<p>TBC</p>
-</div>
-<div id="conceptual_proxy" class="imageblock text-center text-center">
-<div class="content">
-<img src="decision_language/diagrams/conceptual_proxy.svg" alt="conceptual proxy">
-</div>
-<div class="title">Figure 6. Abstract proxy</div>
+<div class="title">Figure 6. Service Model</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_the_decision_language_object_model_dlom"><a class="anchor" href="#_the_decision_language_object_model_dlom"></a>8. The Decision Language Object Model (DLOM)</h2>
 <div class="sectionbody">
+<div class="paragraph tbd">
+<p>TBD: this section is a rough draft at the moment</p>
+</div>
 <div class="sect2">
-<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>8.1. Overview</h3>
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>8.1. Overview</h3>
 <div class="paragraph">
-<p>The <code>org.openehr.proc.dlom</code> package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the openEHR BMM.</p>
+<p>The <code>org.openehr.proc.dlom</code> package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
 <div class="paragraph">
 <p>The structure of the <code>dlom</code> packages is shown below.</p>
@@ -1246,6 +1324,9 @@ rules
 <p><a id="GLIF"></a>Ohno-Machado, L., Gennari, J. H., Murphy, S. N., Jain, N. L., Tu, S. W., Oliver, D. E., Pattison-Gordon, E., et al. (1998). The GuideLine Interchange Format - A Model for Representing Guidelines. <em>J Am Med Inform Assoc</em>, 357–372.</p>
 </div>
 <div class="paragraph">
+<p><a id="Samwald_arden_2012"></a>Samwald, M., Fehre, K., Bruin, J. de, &amp; Adlassnig, K.-P. (2012). The Arden Syntax standard for clinical decision support: Experiences and directions. <em>Journal of Biomedical Informatics</em>, <em>45</em>, 711–718. Retrieved from <a href="https://www.sciencedirect.com/science/article/pii/S1532046412000226" class="bare">https://www.sciencedirect.com/science/article/pii/S1532046412000226</a></p>
+</div>
+<div class="paragraph">
 <p><a id="SuttonFox2003"></a>Sutton, D. R., &amp; Fox, J. (2003). The syntax and semantics of the PROforma guideline modeling language. <em>J Am Med Inform Assoc.</em>, <em>10(5)</em>, 433–443. Retrieved from <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/" class="bare">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/</a></p>
 </div>
 </div>
@@ -1253,7 +1334,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-09 21:35:11 +0100
+Last updated 2020-04-18 14:26:16 +0100
 </div>
 </div>
 </body>

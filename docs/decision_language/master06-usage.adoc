@@ -1,20 +1,27 @@
-= Usage
+= Plan / DLM Interaction
+
+== Data-sharing
+
+[.tbd]
+TBD: how to transmit arguments: assume all available in data sources? Need to allow calls to DLM using arguments?
+
+== Plan Structure References to DLM Features
 
 At least two usage styles between the Plan engine and the Decision engine are possible.
 
-== Rule-based
+=== Rule-based
 
 In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DLM 'rule' is likely to be intentionally designed to reflect published clinical best practice.
 
 [.text-center]
-.Decision-based
+.Rule-based interface
 image::{diagrams_uri}/conceptual_decision_based.svg[id=conceptual_decision_based, align="center"]
 
-== Condition-based
+=== Condition-based
 
 In this style, only conditions defined within the logic modules are called, and the Plan defines the decision structure, i.e. it is a novel or ad hoc use of existing conditions. Semantically the 
 
 [.text-center]
-.Condition-based
+.Condition-based interface
 image::{diagrams_uri}/conceptual_condition_based.svg[id=conceptual_condition_based, align="center"]
 

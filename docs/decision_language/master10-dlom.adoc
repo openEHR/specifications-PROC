@@ -1,8 +1,11 @@
 = The Decision Language Object Model (DLOM)
 
+[.tbd]
+TBD: this section is a rough draft at the moment
+
 == Overview
 
-The `org.openehr.proc.dlom` package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the openEHR BMM.
+The `org.openehr.proc.dlom` package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the {openehr_bmm}[openEHR BMM^].
 
 The structure of the `dlom` packages is shown below.
 
