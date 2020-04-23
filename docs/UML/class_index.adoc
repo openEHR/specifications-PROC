@@ -3,8 +3,15 @@
 
 === Model org.openehr.proc
 
+==== Package binding
+
+[.xcode]
+* link:/releases/PROC/{proc_release}/binding.html#_dl_data_binding_class[DL_DATA_BINDING^]
+
 ==== Package dlom
 
+[.xcode]
+* link:/releases/PROC/{proc_release}/dlom.html#_decision_module_class[DECISION_MODULE^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/dlom.html#_dl_assignment_class[DL_ASSIGNMENT^]
 [.xcode]
@@ -24,19 +31,11 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/dlom.html#_dl_condition_rule_class[DL_CONDITION_RULE^]
 [.xcode]
-* link:/releases/PROC/{proc_release}/dlom.html#_dl_data_binding_class[DL_DATA_BINDING^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/dlom.html#_dl_model_ref_class[DL_MODEL_REF^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/dlom.html#_dl_module_class[DL_MODULE^]
-[.xcode]
 * link:/releases/PROC/{proc_release}/dlom.html#_dl_procedure_call_class[DL_PROCEDURE_CALL^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/dlom.html#_dl_rule_class[DL_RULE^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/dlom.html#_dl_statement_class[DL_STATEMENT^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/dlom.html#_module_class[MODULE^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/dlom.html#_pl_assertion_class[PL_ASSERTION^]
 [.xcode]
@@ -51,7 +50,13 @@
 ==== Package proxy
 
 [.xcode]
+* link:/releases/PROC/{proc_release}/proxy.html#_event_condition_class[EVENT_CONDITION^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/proxy.html#_module_feature_class[MODULE_FEATURE^]
+[.xcode]
 * link:/releases/PROC/{proc_release}/proxy.html#_proxy_module_class[PROXY_MODULE^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/proxy.html#_state_variable_class[STATE_VARIABLE^]
 
 ==== Package task_planning
 

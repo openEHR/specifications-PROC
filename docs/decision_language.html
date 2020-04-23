@@ -75,43 +75,48 @@
 </ul>
 </li>
 <li><a href="#_dlm_service_model">7. DLM Service Model</a></li>
-<li><a href="#_the_decision_language_object_model_dlom">8. The Decision Language Object Model (DLOM)</a>
+<li><a href="#_full_example">8. Full Example</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_4">8.1. Overview</a></li>
-<li><a href="#_dl_module_package">8.2. DL Module Package</a>
+<li><a href="#_proxy_module">8.1. Proxy Module</a></li>
+<li><a href="#_decision_module">8.2. Decision Module</a></li>
+</ul>
+</li>
+<li><a href="#_the_decision_language_object_model_dlom">9. The Decision Language Object Model (DLOM)</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_4">9.1. Overview</a></li>
+<li><a href="#_dl_module_package">9.2. DL Module Package</a>
 <ul class="sectlevel3">
-<li><a href="#_class_descriptions">8.2.1. Class Descriptions</a>
+<li><a href="#_class_descriptions">9.2.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_module_class">8.2.1.1. MODULE Class</a></li>
-<li><a href="#_dl_module_class">8.2.1.2. DL_MODULE Class</a></li>
-<li><a href="#_dl_model_ref_class">8.2.1.3. DL_MODEL_REF Class</a></li>
-<li><a href="#_dl_condition_def_class">8.2.1.4. DL_CONDITION_DEF Class</a></li>
+<li><a href="#_module_feature_class">9.2.1.1. MODULE_FEATURE Class</a></li>
+<li><a href="#_decision_module_class">9.2.1.2. DECISION_MODULE Class</a></li>
+<li><a href="#_dl_condition_def_class">9.2.1.3. DL_CONDITION_DEF Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_dl_rules_package">8.3. DL Rules Package</a>
+<li><a href="#_dl_rules_package">9.3. DL Rules Package</a>
 <ul class="sectlevel3">
-<li><a href="#_condition_chain_rule">8.3.1. Condition Chain Rule</a></li>
-<li><a href="#_case_rule">8.3.2. Case Rule</a></li>
-<li><a href="#_class_descriptions_2">8.3.3. Class Descriptions</a>
+<li><a href="#_condition_chain_rule">9.3.1. Condition Chain Rule</a></li>
+<li><a href="#_case_rule">9.3.2. Case Rule</a></li>
+<li><a href="#_class_descriptions_2">9.3.3. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_dl_rule_class">8.3.3.1. DL_RULE Class</a></li>
-<li><a href="#_dl_condition_rule_class">8.3.3.2. DL_CONDITION_RULE Class</a></li>
-<li><a href="#_dl_condition_chain_class">8.3.3.3. DL_CONDITION_CHAIN Class</a></li>
-<li><a href="#_dl_condition_branch_class">8.3.3.4. DL_CONDITION_BRANCH Class</a></li>
-<li><a href="#_dl_case_rule_class">8.3.3.5. DL_CASE_RULE Class</a></li>
-<li><a href="#_dl_case_group_class">8.3.3.6. DL_CASE_GROUP Class</a></li>
-<li><a href="#_dl_case_branch_class">8.3.3.7. DL_CASE_BRANCH Class</a></li>
+<li><a href="#_dl_rule_class">9.3.3.1. DL_RULE Class</a></li>
+<li><a href="#_dl_condition_rule_class">9.3.3.2. DL_CONDITION_RULE Class</a></li>
+<li><a href="#_dl_condition_chain_class">9.3.3.3. DL_CONDITION_CHAIN Class</a></li>
+<li><a href="#_dl_condition_branch_class">9.3.3.4. DL_CONDITION_BRANCH Class</a></li>
+<li><a href="#_dl_case_rule_class">9.3.3.5. DL_CASE_RULE Class</a></li>
+<li><a href="#_dl_case_group_class">9.3.3.6. DL_CASE_GROUP Class</a></li>
+<li><a href="#_dl_case_branch_class">9.3.3.7. DL_CASE_BRANCH Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_proxy_module_package">8.4. Proxy Module Package</a>
+<li><a href="#_proxy_module_package">9.4. Proxy Module Package</a>
 <ul class="sectlevel3">
-<li><a href="#_class_descriptions_3">8.4.1. Class Descriptions</a>
+<li><a href="#_class_descriptions_3">9.4.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_proxy_module_class">8.4.1.1. PROXY_MODULE Class</a></li>
+<li><a href="#_proxy_module_class">9.4.1.1. PROXY_MODULE Class</a></li>
 </ul>
 </li>
 </ul>
@@ -511,7 +516,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>module
+<pre>decision_module
     Cardiology_basic
 
 data_source
@@ -532,10 +537,10 @@ conditions
 
 rules
     heart_assessment: DvCodedText {
-        condition has_atrial_fibrillation
+        if has_atrial_fibrillation
             Result &lt;- |atrial fibrillation|49436004
 
-        condition has_tachycardia
+        elseif has_tachycardia
             Result &lt;- |tachycardia|11092001
 
         else
@@ -664,13 +669,79 @@ rules
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_decision_language_object_model_dlom"><a class="anchor" href="#_the_decision_language_object_model_dlom"></a>8. The Decision Language Object Model (DLOM)</h2>
+<h2 id="_full_example"><a class="anchor" href="#_full_example"></a>8. Full Example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A full proxy + decision module for obstetric care is shown below.</p>
+</div>
+<div class="sect2">
+<h3 id="_proxy_module"><a class="anchor" href="#_proxy_module"></a>8.1. Proxy Module</h3>
+<div class="listingblock">
+<div class="content">
+<pre>proxy_module
+    Pregnant_patient
+
+state
+
+
+events
+
+
+classification
+
+    is_diabetic: Boolean
+
+historical</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_decision_module"><a class="anchor" href="#_decision_module"></a>8.2. Decision Module</h3>
+<div class="listingblock">
+<div class="content">
+<pre>decision_module
+    Obstetric_pregnancy
+
+data_source
+    Patient: Pregnant_patient
+
+definitions
+    xxx: DvQuantity = 120 /min
+    xxx: DvQuantity = 100 /min
+
+conditions
+    xxx:
+        Patient.heart_rhythm = |erratic|286761003 and
+            Patient.heart_rate &gt;= Afib_heart_rate
+
+    xxx:
+        Patient.heart_rate &gt;= High_heart_rate and
+              Patient.exertion = |at rest|263678003
+
+rules
+    xxx: DvCodedText {
+        if xxx
+            Result &lt;- |atrial fibrillation|49436004
+
+        elseif xxx
+            Result &lt;- |tachycardia|11092001
+
+        else
+            Result &lt;- |normal|76863003
+    }</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_decision_language_object_model_dlom"><a class="anchor" href="#_the_decision_language_object_model_dlom"></a>9. The Decision Language Object Model (DLOM)</h2>
 <div class="sectionbody">
 <div class="paragraph tbd">
 <p>TBD: this section is a rough draft at the moment</p>
 </div>
 <div class="sect2">
-<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>8.1. Overview</h3>
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>9.1. Overview</h3>
 <div class="paragraph">
 <p>The <code>org.openehr.proc.dlom</code> package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
@@ -688,7 +759,7 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dl_module_package"><a class="anchor" href="#_dl_module_package"></a>8.2. DL Module Package</h3>
+<h3 id="_dl_module_package"><a class="anchor" href="#_dl_module_package"></a>9.2. DL Module Package</h3>
 <div class="paragraph">
 <p>The top-level construct of the DLOM is the <code>DL_MODULE</code>, representing a standalone decision logic module. It is shown below.</p>
 </div>
@@ -702,9 +773,9 @@ rules
 <p>TBD: to be continued.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>8.2.1. Class Descriptions</h4>
+<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>9.2.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_module_class"><a class="anchor" href="#_module_class"></a>8.2.1.1. MODULE Class</h5>
+<h5 id="_module_feature_class"><a class="anchor" href="#_module_feature_class"></a>9.2.1.1. MODULE_FEATURE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -714,17 +785,15 @@ rules
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>MODULE (abstract)</em></strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>MODULE_FEATURE (abstract)</em></strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A limited module concept, similar to <code>BMM_CLASS</code>.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_DECLARATION</code>, <code>AUTHORED_RESOURCE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_DECLARATION</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -732,31 +801,18 @@ rules
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ancestors</strong>: <code>List&lt;MODULE&gt;</code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scope</strong>: <code>BMM_MODULE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Extension ancestors.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>used_models</strong>: <code>List&lt;DL_MODEL_REF&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Externally defined BMM models used by this EL Module.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definitions</strong>: <code>List&lt;BMM_CONSTANT&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Constant definitions needed by module.</p>
+<p>Model element within which an element is declared.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_module_class"><a class="anchor" href="#_dl_module_class"></a>8.2.1.2. DL_MODULE Class</h5>
+<h5 id="_decision_module_class"><a class="anchor" href="#_decision_module_class"></a>9.2.1.2. DECISION_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -766,7 +822,7 @@ rules
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_MODULE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DECISION_MODULE</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
@@ -776,7 +832,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>MODULE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_MODULE</code>, <code>AUTHORED_RESOURCE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -812,6 +868,13 @@ rules
 </div></div></td>
 </tr>
 <tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definitions</strong>: <code>List&lt;BMM_CONSTANT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Constant definitions needed by module.</p>
+</div></div></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
@@ -840,39 +903,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_model_ref_class"><a class="anchor" href="#_dl_model_ref_class"></a>8.2.1.3. DL_MODEL_REF Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DL_MODEL_REF</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A reference to an included BMM Model, providing types.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>model</strong>: <code>BMM_MODEL</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_dl_condition_def_class"><a class="anchor" href="#_dl_condition_def_class"></a>8.2.1.4. DL_CONDITION_DEF Class</h5>
+<h5 id="_dl_condition_def_class"><a class="anchor" href="#_dl_condition_def_class"></a>9.2.1.3. DL_CONDITION_DEF Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -912,7 +943,7 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dl_rules_package"><a class="anchor" href="#_dl_rules_package"></a>8.3. DL Rules Package</h3>
+<h3 id="_dl_rules_package"><a class="anchor" href="#_dl_rules_package"></a>9.3. DL Rules Package</h3>
 <div class="paragraph">
 <p>Specific Rule types are defined as descendants of <code>DL_RULE</code>, which may be understood as a pseudo form of the <code>BMM_FUNCTION</code> meta-type, i.e. a particular kind of function with a <code><em>body</em></code>. The following UML view illustrates.</p>
 </div>
@@ -926,7 +957,7 @@ rules
 <p>Some specific rule types are described below.</p>
 </div>
 <div class="sect3">
-<h4 id="_condition_chain_rule"><a class="anchor" href="#_condition_chain_rule"></a>8.3.1. Condition Chain Rule</h4>
+<h4 id="_condition_chain_rule"><a class="anchor" href="#_condition_chain_rule"></a>9.3.1. Condition Chain Rule</h4>
 <div class="paragraph">
 <p>A DL <em>condition chain rule</em> is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.</p>
 </div>
@@ -938,7 +969,7 @@ rules
 </div>
 </div>
 <div class="sect3">
-<h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>8.3.2. Case Rule</h4>
+<h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>9.3.2. Case Rule</h4>
 <div class="paragraph">
 <p>A DL <em>case rule</em> is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of <code>C_PRIMITIVE</code> constraint types, from the <a href="https://specifications.openehr.org/releases/AM/latest/index">openEHR AOM2 model</a>.</p>
 </div>
@@ -950,9 +981,9 @@ rules
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>8.3.3. Class Descriptions</h4>
+<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>9.3.3. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_dl_rule_class"><a class="anchor" href="#_dl_rule_class"></a>8.3.3.1. DL_RULE Class</h5>
+<h5 id="_dl_rule_class"><a class="anchor" href="#_dl_rule_class"></a>9.3.3.1. DL_RULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -988,7 +1019,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_condition_rule_class"><a class="anchor" href="#_dl_condition_rule_class"></a>8.3.3.2. DL_CONDITION_RULE Class</h5>
+<h5 id="_dl_condition_rule_class"><a class="anchor" href="#_dl_condition_rule_class"></a>9.3.3.2. DL_CONDITION_RULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1027,7 +1058,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_condition_chain_class"><a class="anchor" href="#_dl_condition_chain_class"></a>8.3.3.3. DL_CONDITION_CHAIN Class</h5>
+<h5 id="_dl_condition_chain_class"><a class="anchor" href="#_dl_condition_chain_class"></a>9.3.3.3. DL_CONDITION_CHAIN Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1072,7 +1103,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_condition_branch_class"><a class="anchor" href="#_dl_condition_branch_class"></a>8.3.3.4. DL_CONDITION_BRANCH Class</h5>
+<h5 id="_dl_condition_branch_class"><a class="anchor" href="#_dl_condition_branch_class"></a>9.3.3.4. DL_CONDITION_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1113,7 +1144,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_case_rule_class"><a class="anchor" href="#_dl_case_rule_class"></a>8.3.3.5. DL_CASE_RULE Class</h5>
+<h5 id="_dl_case_rule_class"><a class="anchor" href="#_dl_case_rule_class"></a>9.3.3.5. DL_CASE_RULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1152,7 +1183,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_case_group_class"><a class="anchor" href="#_dl_case_group_class"></a>8.3.3.6. DL_CASE_GROUP Class</h5>
+<h5 id="_dl_case_group_class"><a class="anchor" href="#_dl_case_group_class"></a>9.3.3.6. DL_CASE_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1204,7 +1235,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dl_case_branch_class"><a class="anchor" href="#_dl_case_branch_class"></a>8.3.3.7. DL_CASE_BRANCH Class</h5>
+<h5 id="_dl_case_branch_class"><a class="anchor" href="#_dl_case_branch_class"></a>9.3.3.7. DL_CASE_BRANCH Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1247,7 +1278,7 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_proxy_module_package"><a class="anchor" href="#_proxy_module_package"></a>8.4. Proxy Module Package</h3>
+<h3 id="_proxy_module_package"><a class="anchor" href="#_proxy_module_package"></a>9.4. Proxy Module Package</h3>
 <div class="paragraph">
 <p>The class <code>PROXY_MODULE</code> represents an object proxy, i.e. source of real-world data.</p>
 </div>
@@ -1255,9 +1286,9 @@ rules
 <p>TBD: to be continued.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>8.4.1. Class Descriptions</h4>
+<h4 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>9.4.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_proxy_module_class"><a class="anchor" href="#_proxy_module_class"></a>8.4.1.1. PROXY_MODULE Class</h5>
+<h5 id="_proxy_module_class"><a class="anchor" href="#_proxy_module_class"></a>9.4.1.1. PROXY_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1272,12 +1303,12 @@ rules
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A module for defining a collection of properties representing real-world values.</p>
+<p>A module for defining a collection of properties representing real-world state values and events, defined in terms of conditions.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>MODULE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_MODULE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1286,29 +1317,18 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>external_defs</strong>: <code>List&lt;BMM_PARAMETER&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>External variable definitions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>local_defs</strong>: <code>List&lt;BMM_LOCAL&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Local variable definitions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>procedure_defs</strong>: <code>List&lt;BMM_PROCEDURE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_variables</strong>: <code>List&lt;STATE_VARIABLE&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data_binding</strong>: <code>DL_DATA_BINDING</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Data bindings.</p>
-</div></div></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event_conditions</strong>: <code>List&lt;EVENT_CONDITION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ancestors</strong>: <code>List&lt;PROXY_MODULE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 </tbody>
 </table>
@@ -1334,7 +1354,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-18 14:26:16 +0100
+Last updated 2020-04-23 12:55:50 +0100
 </div>
 </div>
 </body>

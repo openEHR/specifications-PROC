@@ -12,7 +12,7 @@ The Decision Logic Language is a high-level language in which modules containing
 An example of a basic DLL text is shown below.
 
 ----
-module 
+decision_module 
     Cardiology_basic
 
 data_source
@@ -33,10 +33,10 @@ conditions
 
 rules
     heart_assessment: DvCodedText {
-        condition has_atrial_fibrillation
+        if has_atrial_fibrillation
             Result <- |atrial fibrillation|49436004
 
-        condition has_tachycardia
+        elseif has_tachycardia
             Result <- |tachycardia|11092001
 
         else 

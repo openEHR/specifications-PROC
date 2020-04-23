@@ -6,28 +6,24 @@ h|*Class*
 2+^h|*PROXY_MODULE*
 
 h|*Description*
-2+a|A module for defining a collection of properties representing real-world values.
+2+a|A module for defining a collection of properties representing real-world state values and events, defined in terms of conditions.
 
 h|*Inherit*
-2+|`MODULE`
+2+|`BMM_MODULE`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*external_defs*: `List<BMM_PARAMETER>`
-a|External variable definitions.
-
-h|*0..1*
-|*local_defs*: `List<BMM_LOCAL>`
-a|Local variable definitions.
-
-h|*0..1*
-|*procedure_defs*: `List<BMM_PROCEDURE>`
+|*state_variables*: `List<STATE_VARIABLE>`
 a|
 
-h|*1..1*
-|*data_binding*: `DL_DATA_BINDING`
-a|Data bindings.
+h|*0..1*
+|*event_conditions*: `List<EVENT_CONDITION>`
+a|
+
+h|*0..1*
+|*ancestors*: `List<PROXY_MODULE>`
+a|
 |===
