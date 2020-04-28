@@ -148,7 +148,7 @@
 <li><a href="#_local_variablett_class">5.2.1.6. LOCAL_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_event_variablett_class">5.2.1.7. EVENT_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_continuous_event_variablett_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE&lt;TT&gt; Class</a></li>
-<li><a href="#_state_variablett_class">5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</a></li>
+<li><a href="#_state_variable_class">5.2.1.9. STATE_VARIABLE Class</a></li>
 <li><a href="#_context_expressiontt_class">5.2.1.10. CONTEXT_EXPRESSION&lt;TT&gt; Class</a></li>
 <li><a href="#_boolean_context_expression_class">5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
@@ -2737,7 +2737,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variablett_class"><a class="anchor" href="#_state_variablett_class"></a>5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</h5>
+<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.9. STATE_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2747,17 +2747,15 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>MODULE_FEATURE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2766,10 +2764,8 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 </tbody>
 </table>
@@ -3830,7 +3826,7 @@ The following UML diagram illustrates.</p>
 <p>Repeat behaviour is specified in terms of the attributes <code><em>repeats</em></code>, <code><em>period</em></code> and <code><em>terminate_condition</em></code>. The first indicates the minimum and maximum number of repeats that may occur. The optional <code><em>period</em></code> attribute defines the period of repetition. If the latter is not defined, each repetition commences according to the application of Task availability rules already defined on the individual Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.</p>
 </div>
 <div class="paragraph">
-<p>If <code><em>terminate_condition</em></code> is set, it is used <em>prior</em> to each repeat iteration. It takes precedence over the <code><em>repeats</em></code> attribute, i.e. if the terminate condition is true, no further repeats occur, even if the total number of repeats so far is less than the lower bound specified in <code><em>repeats</em></code>.</p>
+<p>If <code><em>terminate_condition</em></code> is set, it is used <em>post</em> each repeat iteration. It takes precedence over the <code><em>repeats</em></code> attribute, i.e. if the terminate condition is true, no further repeats occur, even if the total number of repeats so far is less than the lower bound specified in <code><em>repeats</em></code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -4569,7 +4565,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute provides a constraint on a number of times. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. It is tested before each execution, making the Task Repeat act like a 'while/do' loop coming after the original execution. It takes precedence over the range expressed in <code><em>repeats</em></code> if there is a conflict.</p>
+<p>The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. It is tested after each execution, making the Task Repeat act like a 'do/until' loop coming after the original execution. It takes precedence over the range expressed in <code><em>repeats</em></code> if there is a conflict.</p>
 </div>
 <div class="paragraph">
 <p>If <code><em>period</em></code> is set, this defines the duration between the start of each iteration at execution time. It has the effect at runtime of adding a <code><em>wait_spec</em></code> with a <code>TIMELINE_MOMENT</code> event to each <code>PLAN_ITEM</code> copy in the materialised form, i.e. creating the same structure as would have been created if the repetitions had been manually specified.</p>
@@ -4591,7 +4587,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code>PLAN_EVENT</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>States a condition for when repetition should stop. Tested prior to each repetition.</p>
+<p>States a condition for when repetition should stop. Tested post each repetition.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7330,7 +7326,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect4">
 <h5 id="_manually_notified_pseudo_callback"><a class="anchor" href="#_manually_notified_pseudo_callback"></a>6.9.5.4. Manually-notified Pseudo-callback</h5>
 <div class="paragraph">
-<p>A callback at execution time is achieved via notification within the TP system. However, in some cases, the effect of a callback is required where the means of notification is the subject (i.e. the patient, in a clinical system) being sent to another department or room, and the current performer&#8217;s execution blocking for that subject until he/she returns. This effect can be achieved by the task patturn shown below, consisting of a Hand-off followed by a normal Task that waits on a Manual notification event. This pattern is not a true callback.</p>
+<p>A callback at execution time is achieved via notification within the TP system. However, in some cases, the effect of a callback is required where the means of notification is the subject (i.e. the patient, in a clinical system) being sent to another department or room, and the current performer&#8217;s execution blocking for that subject until he/she returns. This effect can be achieved by the task pattern shown below, consisting of a Hand-off followed by a normal Task that waits on a Manual notification event. This pattern is not a true callback.</p>
 </div>
 <div id="manual_callback" class="imageblock text-center text-center">
 <div class="content">

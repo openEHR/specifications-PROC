@@ -288,7 +288,7 @@ The attribute `EVENT_ACTION._resume_action_` of type `RESUME_ACTION`, and its at
 
 ==== Manually-notified Pseudo-callback
 
-A callback at execution time is achieved via notification within the TP system. However, in some cases, the effect of a callback is required where the means of notification is the subject (i.e. the patient, in a clinical system) being sent to another department or room, and the current performer's execution blocking for that subject until he/she returns. This effect can be achieved by the task patturn shown below, consisting of a Hand-off followed by a normal Task that waits on a Manual notification event. This pattern is not a true callback.
+A callback at execution time is achieved via notification within the TP system. However, in some cases, the effect of a callback is required where the means of notification is the subject (i.e. the patient, in a clinical system) being sent to another department or room, and the current performer's execution blocking for that subject until he/she returns. This effect can be achieved by the task pattern shown below, consisting of a Hand-off followed by a normal Task that waits on a Manual notification event. This pattern is not a true callback.
 
 [.text-center]
 .Pattern to achieve effect of 'manual callback'
