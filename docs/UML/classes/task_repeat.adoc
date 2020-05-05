@@ -22,7 +22,7 @@ a|Range of repetitions. If the lower limit is greater than zero, at least one re
 
 h|*0..1*
 |*terminate_condition*: `PLAN_EVENT`
-a|States a condition for when repetition should stop. Tested post each repetition.
+a|States a condition for when repetition should stop. If set, tested prior to each further potential repetition once the minimum number have been executed.
 
 h|*0..1*
 |*period*: `Iso8601_duration`
