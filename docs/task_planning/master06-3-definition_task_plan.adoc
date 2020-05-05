@@ -2,7 +2,7 @@
 
 The set of Tasks in a Task Plan is represented within a containment structure created using instances of the `TASK_GROUP` class, which has three key attributes. Execution of a Group is primarily controlled by the `_execution_type_` and `_concurrency_mode_` attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of `and` and `or` parallel processing logic (described in the next section), common to workflow formalisms. For more exotic situations, the `_execution_rules_` attribute can be used.
 
-`TASK_GROUP` also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.
+`TASK_GROUP` also has a `_training_level_` attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully <<_training_level,below>>.
 
 The Task Group construct enables two important ways to relate Tasks together:
 

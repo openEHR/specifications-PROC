@@ -61,7 +61,7 @@ The following instance diagram illustrates.
 .Task Plan linking
 image::{diagrams_uri}/task_linking.svg[id=task_linking, align="center"]
 
-This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the `SUB_PLAN` class. Since a Sub-plan is a kind of Task, it has a _description_ and could be performed and signed off as if it were a normal inline `DEFINED_ACTION` by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The `PLAN_ITME._training_level_` attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.
+This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the `SUB_PLAN` class. Since a Sub-plan is a kind of Task, it has a _description_ and could be performed and signed off as if it were a normal inline `DEFINED_ACTION` by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The `TASK_GROUP._training_level_` attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using this setting.
 
 ==== Inline Defined Actions
 

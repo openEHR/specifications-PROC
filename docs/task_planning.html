@@ -4614,7 +4614,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>The set of Tasks in a Task Plan is represented within a containment structure created using instances of the <code>TASK_GROUP</code> class, which has three key attributes. Execution of a Group is primarily controlled by the <code><em>execution_type</em></code> and <code><em>concurrency_mode</em></code> attributes, which respectively indicate sequential or parallel processing, and for the latter case, various modes of <code>and</code> and <code>or</code> parallel processing logic (described in the next section), common to workflow formalisms. For more exotic situations, the <code><em>execution_rules</em></code> attribute can be used.</p>
 </div>
 <div class="paragraph">
-<p><code>TASK_GROUP</code> also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully below.</p>
+<p><code>TASK_GROUP</code> also has a <code><em>training_level</em></code> attribute which enables different visibility of Sub-Plans to users with different experience levels. This is described more fully <a href="#_training_level">below</a>.</p>
 </div>
 <div class="paragraph">
 <p>The Task Group construct enables two important ways to relate Tasks together:</p>
@@ -5313,7 +5313,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="title">Figure 22. Task Plan linking</div>
 </div>
 <div class="paragraph">
-<p>This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the <code>SUB_PLAN</code> class. Since a Sub-plan is a kind of Task, it has a <em>description</em> and could be performed and signed off as if it were a normal inline <code>DEFINED_ACTION</code> by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The <code>PLAN_ITME.<em>training_level</em></code> attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using these settings.</p>
+<p>This shows a Plan for dialysis with a single performer, 'dialysis nurse', and several sub-plans, each referred to by an instance of the <code>SUB_PLAN</code> class. Since a Sub-plan is a kind of Task, it has a <em>description</em> and could be performed and signed off as if it were a normal inline <code>DEFINED_ACTION</code> by an experienced performer (training level high), or it might be entered into by a performer such as a trainee nurse. The <code>TASK_GROUP.<em>training_level</em></code> attribute can be used to set the experience level of sub-plans if required; implementing this behaviour at execution time would rely in the Plan execution engine using this setting.</p>
 </div>
 </div>
 <div class="sect4">
