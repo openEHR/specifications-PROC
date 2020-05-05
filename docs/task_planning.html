@@ -148,7 +148,7 @@
 <li><a href="#_local_variablett_class">5.2.1.6. LOCAL_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_event_variablett_class">5.2.1.7. EVENT_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_continuous_event_variablett_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE&lt;TT&gt; Class</a></li>
-<li><a href="#_state_variable_class">5.2.1.9. STATE_VARIABLE Class</a></li>
+<li><a href="#_state_variablett_class">5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_context_expressiontt_class">5.2.1.10. CONTEXT_EXPRESSION&lt;TT&gt; Class</a></li>
 <li><a href="#_boolean_context_expression_class">5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
@@ -599,15 +599,21 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Change method of 'manual notification' for callbacks; remove <code><em>manually_notified</em>: Boolean</code> from <code>CALLBACK_NOTIFICATION</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order and semantics of <code>REPEAT_SPEC</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Apr 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>05 May 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3);<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order for <code>REPEAT_SPEC.<em>terminate_condition</em></code> to 'pre'.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Change method of 'manual notification' for callbacks; remove <code><em>manually_notified</em>: Boolean</code> from <code>CALLBACK_NOTIFICATION</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 Apr 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
  M Polajnar,<br>
  T Beale</p></td>
@@ -2737,7 +2743,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.9. STATE_VARIABLE Class</h5>
+<h5 id="_state_variablett_class"><a class="anchor" href="#_state_variablett_class"></a>5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2747,15 +2753,17 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>MODULE_FEATURE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2764,8 +2772,10 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3820,13 +3830,13 @@ The following UML diagram illustrates.</p>
 <div class="sect4">
 <h5 id="_repetition"><a class="anchor" href="#_repetition"></a>6.2.2.2. Repetition</h5>
 <div class="paragraph">
-<p>The second attribute, <code><em>repeat_spec</em></code> of type <code>TASK_REPEAT</code> enables a Task or Group to be marked as repeating. This is not primarily intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
+<p>The second attribute, <code><em>repeat_spec</em></code> of type <code>TASK_REPEAT</code> enables a Task or Group to be marked as repeating. This is not intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.</p>
 </div>
 <div class="paragraph">
-<p>Repeat behaviour is specified in terms of the attributes <code><em>repeats</em></code>, <code><em>period</em></code> and <code><em>terminate_condition</em></code>. The first indicates the minimum and maximum number of repeats that may occur. The optional <code><em>period</em></code> attribute defines the period of repetition. If the latter is not defined, each repetition commences according to the application of Task availability rules already defined on the individual Tasks and/or Groups. If defined, the period should be greater than the duration of a single iteration. At execution time, a new iteration can only begin after completion of the previous one.</p>
+<p>Repeat behaviour is specified in terms of the attributes <code><em>repeats</em></code>, <code><em>terminate_condition</em></code> and <code><em>period</em></code>. The first indicates the minimum and maximum number of repeats that may occur. Repetition occurs until the minimum number of repeats (i.e. <code><em>repeats.lower</em></code>) is reached. Following that, if <code><em>terminate_condition</em></code> is set, it is evaluated <em>prior</em> to each further potential iteration. Repetition will cease when <code><em>terminate_condition</em></code> becomes True or else when <code><em>repeats.upper</em></code> is reached (assuming no plan abandonment or other exceptions).</p>
 </div>
 <div class="paragraph">
-<p>If <code><em>terminate_condition</em></code> is set, it is used <em>post</em> each repeat iteration. It takes precedence over the <code><em>repeats</em></code> attribute, i.e. if the terminate condition is true, no further repeats occur, even if the total number of repeats so far is less than the lower bound specified in <code><em>repeats</em></code>.</p>
+<p>The optional <code><em>period</em></code> attribute defines the period of repetition. If the latter is not defined, each repetition commences according to the application of Task availability rules already defined on the individual Tasks and/or Groups; this will typically lead to each repeat executing as soon as the preceding one has completed. If set, the <code><em>period</em></code> will have the effect of spacing iterations out over time. Its value should be greater than the duration of a single iteration, since at execution time, a new iteration can only begin after completion of the previous one.</p>
 </div>
 </div>
 <div class="sect4">
@@ -4562,10 +4572,10 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute provides a constraint on a number of times. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed.</p>
+<p>Definition of repetition for a Plan Item. The <code><em>repeats</em></code> attribute states the number of repeats. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed. The minimum number of repeats is set by the lower bound of <code><em>repeats</em></code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>terminate_condition</em></code> attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. It is tested after each execution, making the Task Repeat act like a 'do/until' loop coming after the original execution. It takes precedence over the range expressed in <code><em>repeats</em></code> if there is a conflict.</p>
+<p>If set, the <code><em>terminate_condition</em></code> attribute defines when repetition should cease, once the minimum number of repeats has occurred according to <code><em>repeats</em></code>. It is expressed in terms of a condition, typically a subject-related variable. It is tested after prior to each new potential execution following the minimum number.</p>
 </div>
 <div class="paragraph">
 <p>If <code><em>period</em></code> is set, this defines the duration between the start of each iteration at execution time. It has the effect at runtime of adding a <code><em>wait_spec</em></code> with a <code>TIMELINE_MOMENT</code> event to each <code>PLAN_ITEM</code> copy in the materialised form, i.e. creating the same structure as would have been created if the repetitions had been manually specified.</p>
@@ -9708,6 +9718,6 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 Last updated 2020-03-04 21:27:12 UTC
 </div>
 </div>
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-murphy.css">
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
 </body>
 </html>

@@ -7,14 +7,19 @@
 4+^h|*PROC Release 1.5.0*
 
 |[[latest_issue]]1.5.0
+|{spec_tickets}/SPECPROC-34[SPECPROC-34^]. Clarify evaluate order and semantics of `REPEAT_SPEC`.
+|M Polajnar, +
+ T Beale
+|[[latest_issue_date]]05 May 2020
+
+|
 |{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Change method of 'manual notification' for callbacks; remove `_manually_notified_: Boolean` from `CALLBACK_NOTIFICATION`.
 |M Polajnar, +
  T Beale
-|[[latest_issue_date]]16 Apr 2020
+|16 Apr 2020
 
 |
-|{spec_tickets}/SPECPROC-12[SPECPROC-12^]. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3); +
- {spec_tickets}/SPECPROC-34[SPECPROC-34^]. Clarify evaluate order for `REPEAT_SPEC._terminate_condition_` to 'pre'.
+|{spec_tickets}/SPECPROC-12[SPECPROC-12^]. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).
 |B Naess, +
  M Polajnar, +
  T Beale

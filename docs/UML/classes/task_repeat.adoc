@@ -6,9 +6,9 @@ h|*Class*
 2+^h|*TASK_REPEAT*
 
 h|*Description*
-2+a|Definition of repetition for a Plan Item. The `_repeats_` attribute provides a constraint on a number of times. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed.
+2+a|Definition of repetition for a Plan Item. The `_repeats_` attribute states the number of repeats. Here, 'repeats' means additional executions, i.e. not counting the original execution. If not set, any number of repeats is allowed. The minimum number of repeats is set by the lower bound of `_repeats_`.
 
-The `_terminate_condition_` attribute defines when repetition should cease in terms of a condition, typically a subject-related variable. It is tested after each execution, making the Task Repeat act like a 'do/until' loop coming after the original execution. It takes precedence over the range expressed in `_repeats_` if there is a conflict.
+If set, the `_terminate_condition_` attribute defines when repetition should cease, once the minimum number of repeats has occurred according to `_repeats_`. It is expressed in terms of a condition, typically a subject-related variable. It is tested after prior to each new potential execution following the minimum number.
 
 If `_period_` is set, this defines the duration between the start of each iteration at execution time. It has the effect at runtime of adding a `_wait_spec_` with a `TIMELINE_MOMENT` event to each `PLAN_ITEM` copy in the materialised form, i.e. creating the same structure as would have been created if the repetitions had been manually specified.
 
