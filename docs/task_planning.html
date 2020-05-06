@@ -295,18 +295,22 @@
 </li>
 <li><a href="#_data_sets_and_application_interaction">6.6. Data-sets and Application Interaction</a>
 <ul class="sectlevel3">
-<li><a href="#_class_definitions_5">6.6.1. Class Definitions</a>
+<li><a href="#_overview_2">6.6.1. Overview</a></li>
+<li><a href="#_display_and_capture_data_sets">6.6.2. Display and Capture Data-sets</a></li>
+<li><a href="#_progressive_data_capture">6.6.3. Progressive Data Capture</a></li>
+<li><a href="#_class_definitions_5">6.6.4. Class Definitions</a>
 <ul class="sectlevel4">
-<li><a href="#_dataset_spec_class">6.6.1.1. DATASET_SPEC Class</a></li>
-<li><a href="#_capture_dataset_spec_class">6.6.1.2. CAPTURE_DATASET_SPEC Class</a></li>
-<li><a href="#_review_dataset_spec_class">6.6.1.3. REVIEW_DATASET_SPEC Class</a></li>
+<li><a href="#_dataset_spec_class">6.6.4.1. DATASET_SPEC Class</a></li>
+<li><a href="#_capture_dataset_spec_class">6.6.4.2. CAPTURE_DATASET_SPEC Class</a></li>
+<li><a href="#_review_dataset_spec_class">6.6.4.3. REVIEW_DATASET_SPEC Class</a></li>
+<li><a href="#_dataset_commit_group_class">6.6.4.4. DATASET_COMMIT_GROUP Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_decision_structures">6.7. Decision Structures</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_2">6.7.1. Overview</a></li>
+<li><a href="#_overview_3">6.7.1. Overview</a></li>
 <li><a href="#_condition_group_ifelseifelse">6.7.2. Condition Group (if/elseif/else)</a></li>
 <li><a href="#_decision_group_switch">6.7.3. Decision Group (switch)</a></li>
 <li><a href="#_event_group">6.7.4. Event Group</a></li>
@@ -340,7 +344,7 @@
 </li>
 <li><a href="#_events">6.9. Events</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_3">6.9.1. Overview</a></li>
+<li><a href="#_overview_4">6.9.1. Overview</a></li>
 <li><a href="#_event_types">6.9.2. Event Types</a>
 <ul class="sectlevel4">
 <li><a href="#_timeline_moment">6.9.2.1. TIMELINE_MOMENT</a></li>
@@ -449,7 +453,7 @@
 </li>
 <li><a href="#_materialised_model">9. Materialised Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_4">9.1. Overview</a></li>
+<li><a href="#_overview_5">9.1. Overview</a></li>
 <li><a href="#_class_descriptions_5">9.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_m_work_plan_class">9.2.1. M_WORK_PLAN Class</a></li>
@@ -467,7 +471,7 @@
 </li>
 <li><a href="#_plan_execution_history">10. Plan Execution History</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_5">10.1. Overview</a></li>
+<li><a href="#_overview_6">10.1. Overview</a></li>
 <li><a href="#_class_descriptions_6">10.2. Class Descriptions</a>
 <ul class="sectlevel3">
 <li><a href="#_task_plan_execution_history_class">10.2.1. TASK_PLAN_EXECUTION_HISTORY Class</a></li>
@@ -481,7 +485,7 @@
 </li>
 <li><a href="#_transactional_service_model">11. Transactional Service Model</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_6">11.1. Overview</a></li>
+<li><a href="#_overview_7">11.1. Overview</a></li>
 <li><a href="#_definition_interface">11.2. Definition Interface</a></li>
 <li><a href="#_execution_time_interface">11.3. Execution-time Interface</a></li>
 <li><a href="#_class_descriptions_7">11.4. Class Descriptions</a>
@@ -496,7 +500,7 @@
 </li>
 <li><a href="#_relationship_with_other_openehr_ehr_artefacts">12. Relationship with other openEHR EHR Artefacts</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_7">12.1. Overview</a></li>
+<li><a href="#_overview_8">12.1. Overview</a></li>
 <li><a href="#_execution_time_ehr_structures">12.2. Execution-time EHR Structures</a></li>
 </ul>
 </li>
@@ -531,7 +535,7 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: PROC Release-1.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: PROC latest</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: TRIAL</p></td>
 </tr>
 <tr>
@@ -595,14 +599,24 @@
 </thead>
 <tbody>
 <tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 2.0.0 (unreleased)</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>06 May 2020</p></td>
+</tr>
+<tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.5.0</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order and semantics of <code>REPEAT_SPEC</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>05 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">05 May 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"></td>
@@ -1021,7 +1035,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://specifications.openehr.org/releases/PROC/Release-1.5.0/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a>;</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a>;</p>
 </li>
 <li>
 <p>The <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html" target="_blank" rel="noopener">openEHR EHR Information Model</a>;</p>
@@ -2391,7 +2405,7 @@
 <h2 id="_task_planning_model_overview"><a class="anchor" href="#_task_planning_model_overview"></a>5. Task Planning Model Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section and the following one describe the Task Planning model in technical detail. Most of the emphasis is on the 'definition' level of expression, with most details of the 'materialised' and 'runtime' expressions left to implementers. Throughout these sections, a version of the <a href="https://specifications.openehr.org/releases/PROC/Release-1.5.0/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a> is used to illustrate instance structures. This visual language is designed to be formally aligned to the semantics of the model.</p>
+<p>This section and the following one describe the Task Planning model in technical detail. Most of the emphasis is on the 'definition' level of expression, with most details of the 'materialised' and 'runtime' expressions left to implementers. Throughout these sections, a version of the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a> is used to illustrate instance structures. This visual language is designed to be formally aligned to the semantics of the model.</p>
 </div>
 <div class="paragraph">
 <p>The following UML diagram shows the <code>rm.task_planning</code> package in overview form, showing the constituent packages, <code>definition</code>, <code>materialised</code>, and <code>history</code>. The first of these packages contains the class model for the <em>definition model</em> expression of a Work Plan, i.e. the workflow structure intentionally designed to achive a goal.</p>
@@ -5896,8 +5910,10 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </div>
 <div class="sect2">
 <h3 id="_data_sets_and_application_interaction"><a class="anchor" href="#_data_sets_and_application_interaction"></a>6.6. Data-sets and Application Interaction</h3>
+<div class="sect3">
+<h4 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.6.1. Overview</h4>
 <div class="paragraph">
-<p>In order for performers to execute Task Groups and individual Tasks with a Plan, specific data must often be reviewed to enable the performer to know how to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.</p>
+<p>In order for performers to execute Task Groups and individual Tasks within a Plan, specific data must often be reviewed to enable the performer to proceed. This is generally the case for Tasks that involve administering drugs to a patient, where the dose depends on one or more variables relating to the patient state, such as ECG data, INR, heart rate etc.</p>
 </div>
 <div class="paragraph">
 <p>To achieve this, the Task Planning model formalises the relationship between a 'data set' and a Task that may use it. A 'data-set' in openEHR is a template, normally displayed as a form within an application. In the Task Planning context, a data set may also be a sub-section of a template or form, specified by a path, to allow more than one Task to be used to construct each section of a form. The following UML diagram shows the data-set related classes in detail.</p>
@@ -5908,6 +5924,9 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </div>
 <div class="title">Figure 26. proc.task_planning.definition model overview</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_display_and_capture_data_sets"><a class="anchor" href="#_display_and_capture_data_sets"></a>6.6.2. Display and Capture Data-sets</h4>
 <div class="paragraph">
 <p>Two variants of data-set are defined, as follows:</p>
 </div>
@@ -5917,7 +5936,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p><em>data display</em>: a <code>REVIEW_DATASET_SPEC</code> represents a template or part thereof that is to be displayed in order for the Task performer to do the work of the Task;</p>
 </li>
 <li>
-<p><em>data capture</em>: a <code>CAPTURE_DATASET-SPEC</code> represents a template or part thereof that is to be populated by the work of the Task.</p>
+<p><em>data capture</em>: a <code>CAPTURE_DATASET_SPEC</code> represents a template or part thereof that is to be populated by the work of the Task.</p>
 </li>
 </ul>
 </div>
@@ -5925,7 +5944,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>Either a template or form identifier (or both) maybe be used to specify a data-set. The <code><em>populating_call</em></code> attribute may be used to define a system call that will pre-populate either kind of data-set. The <code><em>form_section_path</em></code> attribute is populated if a data-set section (i.e. part of a form) needs to be specified.</p>
 </div>
 <div class="paragraph">
-<p>A review data-set may be specified on any Plan Item (i.e. Task Group of Task, of any kind) via the attribute <code>PLAN_ITEM.<em>review_dataset</em></code>, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.</p>
+<p>A review data-set may be specified on any Plan Item (i.e. Task Group or Task, of any kind) via the attribute <code>PLAN_ITEM.<em>review_dataset</em></code>, in order to signal to the runtime system to request the display of data at the start of that part of the Plan.</p>
 </div>
 <div class="paragraph">
 <p>A capture data-set may be specified for a <code>PERFORMABLE_TASK</code> only (since the work of the Task in this case is what achieves the desired data capture), via the <code><em>capture_dataset</em></code> attribute.</p>
@@ -5934,12 +5953,25 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>For reference, any review data-set may have any number of capture data-sets used to capture the data associated with it, via the <code>REVIEW_DATASET_SPEC.<em>capture_datasets</em></code> attribute. This enables the relationship between potentially numerous (typically small) forms/dialogs used to obtain data from users and the commonly larger forms used to display such data.</p>
 </div>
 <div class="paragraph">
-<p>Both kinds of data sets described here may be the same as or related to templates and/or forms used in the generation of Task EHR data, mentioned in <code>PERFORMABLE_ACTION.<em>prototype</em></code> .</p>
+<p>Both kinds of data sets described here may be the same as or related to templates and/or forms used in the generation of Task EHR data, mentioned in <code>PERFORMABLE_ACTION.<em>prototype</em></code>.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_class_definitions_5"><a class="anchor" href="#_class_definitions_5"></a>6.6.1. Class Definitions</h4>
+<h4 id="_progressive_data_capture"><a class="anchor" href="#_progressive_data_capture"></a>6.6.3. Progressive Data Capture</h4>
+<div class="paragraph">
+<p>Where Tasks involved data entry as part of the work, the data capture may occur over more than one Task, to be committed at some final Task when the data-set is deemed complete by the user. To support such progressive data capture, the notion of a <em>commit group</em> is used. This is an identifier for a logical data-set that might be entered in one or more forms over a number of Tasks. It is formally represented by the optional <code><em>commit_group</em></code> attribute in <code>CAPTURE_DATASET_SPEC</code>, of type <code>DATASET_COMMIT_GROUP</code>. To represent a progressively entered data-set, an instance of this type is used on each Task contributing to the data-set (need not be contiguous), with all but the final instance having the Boolean attribute <code><em>completion_step</em></code> set to False. The final Task in the series is marked by setting this flag True, at which point the execution engine may perform a standard commit action. The following diagram illustrates a typical instance of this structure.</p>
+</div>
+<div id="progressive_data_capture" class="imageblock text-center text-center">
+<div class="content">
+<img src="task_planning/diagrams/progressive_data_capture.svg" alt="progressive data capture">
+</div>
+<div class="title">Figure 27. Progressive data capture structure</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_definitions_5"><a class="anchor" href="#_class_definitions_5"></a>6.6.4. Class Definitions</h4>
 <div class="sect4">
-<h5 id="_dataset_spec_class"><a class="anchor" href="#_dataset_spec_class"></a>6.6.1.1. DATASET_SPEC Class</h5>
+<h5 id="_dataset_spec_class"><a class="anchor" href="#_dataset_spec_class"></a>6.6.4.1. DATASET_SPEC Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6011,7 +6043,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </table>
 </div>
 <div class="sect4">
-<h5 id="_capture_dataset_spec_class"><a class="anchor" href="#_capture_dataset_spec_class"></a>6.6.1.2. CAPTURE_DATASET_SPEC Class</h5>
+<h5 id="_capture_dataset_spec_class"><a class="anchor" href="#_capture_dataset_spec_class"></a>6.6.4.2. CAPTURE_DATASET_SPEC Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6033,11 +6065,21 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
 </tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>commit_group</strong>: <code>DATASET_COMMIT_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_review_dataset_spec_class"><a class="anchor" href="#_review_dataset_spec_class"></a>6.6.1.3. REVIEW_DATASET_SPEC Class</h5>
+<h5 id="_review_dataset_spec_class"><a class="anchor" href="#_review_dataset_spec_class"></a>6.6.4.3. REVIEW_DATASET_SPEC Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -6074,12 +6116,53 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_dataset_commit_group_class"><a class="anchor" href="#_dataset_commit_group_class"></a>6.6.4.4. DATASET_COMMIT_GROUP Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DATASET_COMMIT_GROUP</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specification of a 'commit group', i.e. a complete data set (usually a multi-part form) that is progressively built and committed in the <code>incomplete</code> lifecycle state, with a final <code>complete</code> state commit.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>group_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Unique identifier of this commit group within scope of a single Task Plan.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>completion_step</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If True, the Task to which this Dataset Spec is attached is the one that puts it into the <code>complete</code> lifecycle state.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_decision_structures"><a class="anchor" href="#_decision_structures"></a>6.7. Decision Structures</h3>
 <div class="sect3">
-<h4 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.7.1. Overview</h4>
+<h4 id="_overview_3"><a class="anchor" href="#_overview_3"></a>6.7.1. Overview</h4>
 <div class="paragraph">
 <p>More advanced applications of Task Plans include decision structures, in which one of multiple branches may be taken depending on specific conditions. There are four varieties of such structure, which are defined as specific descendants of the <code>TASK_GROUP</code> class, as shown in the following UML model.</p>
 </div>
@@ -6087,7 +6170,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-decision.svg" alt="PROC task planning.definition decision">
 </div>
-<div class="title">Figure 27. proc.task_planning.choice package - decision structures</div>
+<div class="title">Figure 28. proc.task_planning.choice package - decision structures</div>
 </div>
 <div class="paragraph">
 <p>The <code>CHOICE_GROUP</code> class defines the essential semantics for all conditional structure types, which is that they conform to a parallel, XOR-logic (i.e. single path) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a <code>CHOICE_GROUP</code> is thus an 'XOR gate'.</p>
@@ -6127,7 +6210,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="content">
 <img src="task_planning/diagrams/condition_structure.svg" alt="condition structure">
 </div>
-<div class="title">Figure 28. Condition structure</div>
+<div class="title">Figure 29. Condition structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -6142,7 +6225,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="content">
 <img src="task_planning/diagrams/decision_structure.svg" alt="decision structure">
 </div>
-<div class="title">Figure 29. Decision structure</div>
+<div class="title">Figure 30. Decision structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -6154,7 +6237,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="content">
 <img src="task_planning/diagrams/event_structure.svg" alt="event structure">
 </div>
-<div class="title">Figure 30. Event structure</div>
+<div class="title">Figure 31. Event structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -6642,7 +6725,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-order_tracking.svg" alt="PROC task planning.definition order tracking">
 </div>
-<div class="title">Figure 31. Order tracking</div>
+<div class="title">Figure 32. Order tracking</div>
 </div>
 <div class="paragraph">
 <p>The facilities consist of the following:</p>
@@ -6715,7 +6798,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <p>The Dispatchable Task might be located in a repeating section of the Plan, if the intention is to await multiple Actions for the same Instruction.</p>
 </div>
 <div class="paragraph">
-<p>An example of a Work Plan representing this scenario is available in the <a href="https://specifications.openehr.org/releases/PROC/Release-1.5.0/tp_examples.html#_order_coordination" target="_blank" rel="noopener">Task Planning Examples</a> document.</p>
+<p>An example of a Work Plan representing this scenario is available in the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_examples.html#_order_coordination" target="_blank" rel="noopener">Task Planning Examples</a> document.</p>
 </div>
 </div>
 <div class="sect3">
@@ -6784,7 +6867,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect2">
 <h3 id="_events"><a class="anchor" href="#_events"></a>6.9. Events</h3>
 <div class="sect3">
-<h4 id="_overview_3"><a class="anchor" href="#_overview_3"></a>6.9.1. Overview</h4>
+<h4 id="_overview_4"><a class="anchor" href="#_overview_4"></a>6.9.1. Overview</h4>
 <div class="paragraph">
 <p>Work plans interact with events in the external world, as well being driven by time. In this model, moments in time are modelled in terms of Events that represent the <em>reaching</em> of certain points in time or an entry in a calendar, as time passes. Consequently, specifying a time for a Task to be performed and waiting for certain Events before it can be performed are both specified in terms of 'events'. The relevant part of the model, shown below, consists of various types of Events, and additionally, various types of <em>wait states</em> that may be used to intercept them.</p>
 </div>
@@ -6792,7 +6875,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-event.svg" alt="PROC task planning.definition event">
 </div>
-<div class="title">Figure 32. proc.task_planning model - Events</div>
+<div class="title">Figure 33. proc.task_planning model - Events</div>
 </div>
 <div class="paragraph">
 <p>Two general classes of Events are distinguished:</p>
@@ -6929,7 +7012,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/timeline_moment_semantics.svg" alt="timeline moment semantics">
 </div>
-<div class="title">Figure 33. <code>TIMELINE_MOMENT</code> semantics</div>
+<div class="title">Figure 34. <code>TIMELINE_MOMENT</code> semantics</div>
 </div>
 <div class="paragraph">
 <p>The <code><em>fixed_time</em></code> attribute may also be set using an instance of <code>CUSTOMARY_TIME</code>, to allow the time to be specified using coded terms like <code>morning</code>, <code>afternoon</code>, <code>evening</code> and so on. Such terms are assumed to define time ranges such as <code>07:00:00 - 11:30:00</code> etc, which are typically culturally specific, and/or specific to hospital or other institutional norms. Consequently, such terms have to be resolved to computable intervals by some means (e.g. a locale service API call), left up to the TP execution system. Where such an interval is used to define a time, the event is generated at the earliest time of the interval (e.g. <code>07:00:00</code> for 'morning')</p>
@@ -7010,7 +7093,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state.svg" alt="task wait state">
 </div>
-<div class="title">Figure 34. Task wait state</div>
+<div class="title">Figure 35. Task wait state</div>
 </div>
 <div class="sect4">
 <h5 id="_time_outs"><a class="anchor" href="#_time_outs"></a>6.9.4.1. Time-outs</h5>
@@ -7021,7 +7104,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/uc_task_timing_1.svg" alt="uc task timing 1">
 </div>
-<div class="title">Figure 35. Timing patterns</div>
+<div class="title">Figure 36. Timing patterns</div>
 </div>
 </div>
 <div class="sect4">
@@ -7039,7 +7122,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/task_wait_state_reminder.svg" alt="task wait state reminder">
 </div>
-<div class="title">Figure 36. Task wait state with reminder</div>
+<div class="title">Figure 37. Task wait state with reminder</div>
 </div>
 </div>
 <div class="sect4">
@@ -7058,7 +7141,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-callback_wait.svg" alt="PROC task planning.definition callback wait">
 </div>
-<div class="title">Figure 37. Callback Wait</div>
+<div class="title">Figure 38. Callback Wait</div>
 </div>
 <div class="paragraph">
 <p>In order to define the processing on receipt of a callback event, <code>CALLBACK_WAIT</code> adds two attributes to <code>EVENT_WAIT&lt;T&gt;</code>:</p>
@@ -7296,7 +7379,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_1.svg" alt="uc task callback 1">
 </div>
-<div class="title">Figure 38. Standard callback example</div>
+<div class="title">Figure 39. Standard callback example</div>
 </div>
 <div class="paragraph">
 <p>The following TP-VML definition illustrates a custom callback.</p>
@@ -7305,7 +7388,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/uc_task_callback_2.svg" alt="uc task callback 2">
 </div>
-<div class="title">Figure 39. Custom callback example</div>
+<div class="title">Figure 40. Custom callback example</div>
 </div>
 </div>
 <div class="sect4">
@@ -7320,7 +7403,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/dispatchable_no_wait_callback.svg" alt="dispatchable no wait callback">
 </div>
-<div class="title">Figure 40. Non-blocking callback example</div>
+<div class="title">Figure 41. Non-blocking callback example</div>
 </div>
 </div>
 <div class="sect4">
@@ -7338,7 +7421,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/manual_callback.svg" alt="manual callback">
 </div>
-<div class="title">Figure 41. Pattern to achieve effect of 'manual callback'</div>
+<div class="title">Figure 42. Pattern to achieve effect of 'manual callback'</div>
 </div>
 </div>
 </div>
@@ -8247,7 +8330,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="task_planning/diagrams/wp_tp_hierarchy.svg" alt="wp tp hierarchy" width="55%">
 </div>
-<div class="title">Figure 42. Work Plan control path graph structure</div>
+<div class="title">Figure 43. Work Plan control path graph structure</div>
 </div>
 </div>
 <div class="sect3">
@@ -8675,7 +8758,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h2 id="_materialised_model"><a class="anchor" href="#_materialised_model"></a>9. Materialised Model</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>9.1. Overview</h3>
+<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>9.1. Overview</h3>
 <div class="paragraph">
 <p>The <a href="#proc_task_planning_overview">Model overview figure</a> shows a package <code>proc.task_planning.materialised</code>. This is a partial specification of classes that could be instantiated at Task Plan execution time to track Plan execution, and is provided as a guide to implementing a materialised form for runtime use. A minimal materialised model is described here, as a means of indicating some of the general issues that will be encountered in representation of the runtime form of a Plan definition. <strong>It should not be considered either normative or complete</strong>. The model is shown below.</p>
 </div>
@@ -8683,7 +8766,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.materialised.svg" alt="PROC task planning.materialised">
 </div>
-<div class="title">Figure 43. proc.task_planning.materialised package</div>
+<div class="title">Figure 44. proc.task_planning.materialised package</div>
 </div>
 </div>
 <div class="sect2">
@@ -9115,7 +9198,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h2 id="_plan_execution_history"><a class="anchor" href="#_plan_execution_history"></a>10. Plan Execution History</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_5"><a class="anchor" href="#_overview_5"></a>10.1. Overview</h3>
+<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>10.1. Overview</h3>
 <div class="paragraph">
 <p>The history of execution events from a Work Plan execution is represented in the runtime instances of classes defined in the <code>proc.task_planning.history</code> package, of which <code>EXECUTION_HISTORY</code> is the root.</p>
 </div>
@@ -9123,7 +9206,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.history.svg" alt="PROC task planning.history">
 </div>
-<div class="title">Figure 44. proc.task_planning.history package</div>
+<div class="title">Figure 45. proc.task_planning.history package</div>
 </div>
 <div class="paragraph">
 <p>As shown above, two types of execution event are defined:</p>
@@ -9441,7 +9524,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <h2 id="_transactional_service_model"><a class="anchor" href="#_transactional_service_model"></a>11. Transactional Service Model</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_6"><a class="anchor" href="#_overview_6"></a>11.1. Overview</h3>
+<h3 id="_overview_7"><a class="anchor" href="#_overview_7"></a>11.1. Overview</h3>
 <div class="paragraph">
 <p>The information structures required to represent planned Tasks and references at design and runtime are non-trivial. For this reason, an abstract service is defined, with a transactional interface that converts calls into correct underlying information structures. The following UML diagram illustrates the services.</p>
 </div>
@@ -9449,7 +9532,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.service.svg" alt="PROC task planning.service">
 </div>
-<div class="title">Figure 45. proc.task_planning.service package</div>
+<div class="title">Figure 46. proc.task_planning.service package</div>
 </div>
 </div>
 <div class="sect2">
@@ -9643,7 +9726,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <h2 id="_relationship_with_other_openehr_ehr_artefacts"><a class="anchor" href="#_relationship_with_other_openehr_ehr_artefacts"></a>12. Relationship with other openEHR EHR Artefacts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_7"><a class="anchor" href="#_overview_7"></a>12.1. Overview</h3>
+<h3 id="_overview_8"><a class="anchor" href="#_overview_8"></a>12.1. Overview</h3>
 <div class="paragraph">
 <p>One of the side-effects of distinct state machines for <code>INSTRUCTIONs</code> and Task Plans is that not all careflow steps and states in the former need to be represented as Tasks in a Task Plan. For example, a significant number of careflow steps defined in <code>ACTION</code> archetypes are for non-Active states, e.g. Planning, Postponement, Suspension etc. These steps do not need to have Tasks defined for them, since by definition they are nearly all unplanned.</p>
 </div>
@@ -9676,7 +9759,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <div class="content">
 <img src="task_planning/diagrams/planning_runtime_structures.svg" alt="planning runtime structures" width="80%">
 </div>
-<div class="title">Figure 46. Runtime planning structures</div>
+<div class="title">Figure 47. Runtime planning structures</div>
 </div>
 <div class="paragraph">
 <p>Various links can be recorded at execution time, as follows:</p>

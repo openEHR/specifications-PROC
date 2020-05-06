@@ -1,9 +1,9 @@
-=== DATASPEC_COMMIT_GROUP Class
+=== DATASET_COMMIT_GROUP Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DATASPEC_COMMIT_GROUP*
+2+^h|*DATASET_COMMIT_GROUP*
 
 h|*Description*
 2+a|Specification of a 'commit group', i.e. a complete data set (usually a multi-part form) that is progressively built and committed in the `incomplete` lifecycle state, with a final `complete` state commit.

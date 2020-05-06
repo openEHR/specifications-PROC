@@ -4,13 +4,21 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*PROC Release 2.0.0 (unreleased)*
+
+|[[latest_issue]]1.5.1
+|{spec_tickets}/SPECPROC-33[SPECPROC-33^]. Support progressive data set creation.
+|M Kejžar, +
+ T Beale
+|[[latest_issue_date]]06 May 2020
+
 4+^h|*PROC Release 1.5.0*
 
-|[[latest_issue]]1.5.0
+|1.5.0
 |{spec_tickets}/SPECPROC-34[SPECPROC-34^]. Clarify evaluate order and semantics of `REPEAT_SPEC`.
 |M Polajnar, +
  T Beale
-|[[latest_issue_date]]05 May 2020
+|05 May 2020
 
 |
 |{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Change method of 'manual notification' for callbacks; remove `_manually_notified_: Boolean` from `CALLBACK_NOTIFICATION`.
