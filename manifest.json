@@ -9,7 +9,13 @@
             "title": "Task Planning (TP) Specification",
             "title_short": "Task Planning (TP)",
             "description": "openEHR Task Planning specification",
-            "summary": "An adaptive, executable, team-based model of clinical workflow - Work Plan, Task Plan, Event",
+            "summary": "A major extension to the openEHR EHR specifications that defines a formal model for Task Plans and clinical workflow.",
+            "micro_summary": "An adaptive, executable, team-based model of clinical workflow",
+            "classes": [
+                "WORK_PLAN",
+                "TASK_PLAN",
+                "PLAN_EVENT"
+            ],
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
 			"keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
@@ -19,7 +25,8 @@
             "title": "Task Planning Visual Modelling Language (TP-VML)",
             "title_short": "TP Visual Modelling Language (TP_VML)",
             "description": "openEHR Task Planning Visual Modelling Language",
-            "summary": "A visual modelling language for clinical plans and workflows.",
+            "summary": "Task Planning Visual Modelling Language - a visual modelling language for Task Planning.",
+            "micro_summary": "A visual modelling language for clinical plans and workflows.",
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
 			"keywords": "task planning, visual language, workflow"
@@ -30,6 +37,7 @@
             "title_short": "TP Examples",
             "description": "openEHR Task Planning Examples",
             "summary": "Real world detailed examples using Task Planning.",
+            "micro_summary": "Real-world worked TP examples.",
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
 			"keywords": "task planning, examples, workflow"
@@ -39,7 +47,8 @@
             "title": "Decision Language (DL) and Model",
             "title_short": "Decision Language (DL)",
             "description": "openEHR Decision Language specification",
-            "summary": "Language for use with GDL, TP.",
+            "summary": "Language for use with Guideline definition Language (GDL), Task Planning (TP).",
+            "micro_summary": "Language for use with GDL, TP.",
             "copyright_year": "2020",
             "spec_status": "DEVELOPMENT",
             "keywords": "expressions, rules, workflow"
