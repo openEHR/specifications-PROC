@@ -10,7 +10,7 @@ Naive approaches to the use of IT to support clinical care process generally ass
 
 To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.
 
-The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
+The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
 
 The second aspect to consider is that clinical professionals don't need to be told how to do their routine work. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:
 
@@ -23,13 +23,13 @@ In general, the above capabilities address three human fallibilities:
 
 * limited capacity to deal with complexity (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^]); 
 * the inability to keep up with change (new medications, research etc); and
-* the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.
+* the failure to perform a simple routine step in an activity due to fatigue, being under pressure or an unexpected change of personnel in the middle of a procedure.
 
 Automated support for the above would significantly aid the short-term, single clinician/patient situation, but much clinical care today is team-based, and also unfolds over a longer time than a single work shift or day. Therefore another important kind of help is needed:
 
 * _coordination_ of:
 ** team members across departments (via e.g. plan-generated notifications); example: acute stroke care;
-** workers undertaking care spanning multiple shifts and personnel, e.g. chemotherapy administration.
+** workers undertaking care spanning multiple shifts and personnel, e.g. multi-day chemotherapy administration.
 
 Another type of support that process automation can provide is to enable _on-the-fly interaction with the EHR_, including retrieval and recording. The idea here is to _integrate_ EHR recording (well known as a time-consuming activity _additional_ to clinical care) with execution of clinical work, such that when the work is done, the EHR is up-to-date, or very close to it.
 

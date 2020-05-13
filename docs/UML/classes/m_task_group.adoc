@@ -27,7 +27,7 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*lifecycle_state* (): `TASK_LIFECYCLE`
 a|Effective lifecycle state, computed from the states of members of the group.
 |===

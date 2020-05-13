@@ -148,7 +148,7 @@
 <li><a href="#_local_variablett_class">5.2.1.6. LOCAL_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_event_variablett_class">5.2.1.7. EVENT_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_continuous_event_variablett_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE&lt;TT&gt; Class</a></li>
-<li><a href="#_state_variable_class">5.2.1.9. STATE_VARIABLE Class</a></li>
+<li><a href="#_state_variablett_class">5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_context_expressiontt_class">5.2.1.10. CONTEXT_EXPRESSION&lt;TT&gt; Class</a></li>
 <li><a href="#_boolean_context_expression_class">5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
@@ -186,11 +186,10 @@
 <ul class="sectlevel3">
 <li><a href="#_class_descriptions_4">5.6.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_task_lifecycle_enumeration">5.6.1.1. TASK_LIFECYCLE Enumeration</a></li>
-<li><a href="#_resume_type_enumeration">5.6.1.2. RESUME_TYPE Enumeration</a></li>
-<li><a href="#_temporal_relation_enumeration">5.6.1.3. TEMPORAL_RELATION Enumeration</a></li>
-<li><a href="#_execution_type_enumeration">5.6.1.4. EXECUTION_TYPE Enumeration</a></li>
-<li><a href="#_plan_time_origin_enumeration">5.6.1.5. PLAN_TIME_ORIGIN Enumeration</a></li>
+<li><a href="#_resume_type_enumeration">5.6.1.1. RESUME_TYPE Enumeration</a></li>
+<li><a href="#_temporal_relation_enumeration">5.6.1.2. TEMPORAL_RELATION Enumeration</a></li>
+<li><a href="#_execution_type_enumeration">5.6.1.3. EXECUTION_TYPE Enumeration</a></li>
+<li><a href="#_plan_time_origin_enumeration">5.6.1.4. PLAN_TIME_ORIGIN Enumeration</a></li>
 </ul>
 </li>
 </ul>
@@ -212,8 +211,9 @@
 </li>
 <li><a href="#_lifecycle_state">6.2.3. Lifecycle State</a>
 <ul class="sectlevel4">
-<li><a href="#_task_availability">6.2.3.1. Task Availability</a></li>
-<li><a href="#_aggregate_process_state">6.2.3.2. Aggregate Process State</a></li>
+<li><a href="#_task_lifecycle_enumeration">6.2.3.1. TASK_LIFECYCLE Enumeration</a></li>
+<li><a href="#_task_availability">6.2.3.2. Task Availability</a></li>
+<li><a href="#_aggregate_process_state">6.2.3.3. Aggregate Process State</a></li>
 </ul>
 </li>
 <li><a href="#_references_to_clinical_quality_artefacts">6.2.4. References to Clinical Quality Artefacts</a></li>
@@ -603,10 +603,11 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation.<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>06 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 May 2020</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.5.0</strong></p></th>
@@ -1092,7 +1093,7 @@
 <p>To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.</p>
 </div>
 <div class="paragraph">
-<p>The first aspect to consider is that a large proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
+<p>The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. However, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
 </div>
 <div class="paragraph">
 <p>The second aspect to consider is that clinical professionals don&#8217;t need to be told how to do their routine work. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:</p>
@@ -1125,7 +1126,7 @@
 <p>the inability to keep up with change (new medications, research etc); and</p>
 </li>
 <li>
-<p>the failure to perform a simple routine step in an activity due to fatigue, being rushed, or under pressure.</p>
+<p>the failure to perform a simple routine step in an activity due to fatigue, being under pressure or an unexpected change of personnel in the middle of a procedure.</p>
 </li>
 </ul>
 </div>
@@ -1142,7 +1143,7 @@
 <p>team members across departments (via e.g. plan-generated notifications); example: acute stroke care;</p>
 </li>
 <li>
-<p>workers undertaking care spanning multiple shifts and personnel, e.g. chemotherapy administration.</p>
+<p>workers undertaking care spanning multiple shifts and personnel, e.g. multi-day chemotherapy administration.</p>
 </li>
 </ul>
 </div>
@@ -2757,7 +2758,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.9. STATE_VARIABLE Class</h5>
+<h5 id="_state_variablett_class"><a class="anchor" href="#_state_variablett_class"></a>5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2767,15 +2768,17 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>MODULE_FEATURE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2784,8 +2787,10 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3454,95 +3459,12 @@ The following UML diagram illustrates.</p>
 <div class="sect2">
 <h3 id="_enumerated_types"><a class="anchor" href="#_enumerated_types"></a>5.6. Enumerated Types</h3>
 <div class="paragraph">
-<p>Various enumerated types are defined in the <code>definitions</code> package, for use by the definition, materialised and runtime models.</p>
+<p>Various enumerated types are defined in the <code>definitions</code> package, for use by the definition, materialised and runtime models. The <code>TASK_LIFECYCLE</code> enumeration is included in <a href="#_lifecycle_state">Section 6.2.3</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_class_descriptions_4"><a class="anchor" href="#_class_descriptions_4"></a>5.6.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_task_lifecycle_enumeration"><a class="anchor" href="#_task_lifecycle_enumeration"></a>5.6.1.1. TASK_LIFECYCLE Enumeration</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK_LIFECYCLE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Enumeration representing possible lifecycle states for a Task lifecycle transition, for example, "not needed".</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">planned</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task is planned for the future.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">available</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task is available for execution by performer.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cancelled</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task was cancelled without commencing.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">abandoned</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task was aborted after commencement, i.e. ended prematurely without meeting normal conditions of completion.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">completed</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task was completed in the intended way.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">suspended</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task is waiting for completion of a handoff or external request.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">underway</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task has been commenced.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">resumed</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task has been resumed from <code>suspend</code> state.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_resume_type_enumeration"><a class="anchor" href="#_resume_type_enumeration"></a>5.6.1.2. RESUME_TYPE Enumeration</h5>
+<h5 id="_resume_type_enumeration"><a class="anchor" href="#_resume_type_enumeration"></a>5.6.1.1. RESUME_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3590,7 +3512,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_temporal_relation_enumeration"><a class="anchor" href="#_temporal_relation_enumeration"></a>5.6.1.3. TEMPORAL_RELATION Enumeration</h5>
+<h5 id="_temporal_relation_enumeration"><a class="anchor" href="#_temporal_relation_enumeration"></a>5.6.1.2. TEMPORAL_RELATION Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3638,7 +3560,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_execution_type_enumeration"><a class="anchor" href="#_execution_type_enumeration"></a>5.6.1.4. EXECUTION_TYPE Enumeration</h5>
+<h5 id="_execution_type_enumeration"><a class="anchor" href="#_execution_type_enumeration"></a>5.6.1.3. EXECUTION_TYPE Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3679,7 +3601,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_time_origin_enumeration"><a class="anchor" href="#_plan_time_origin_enumeration"></a>5.6.1.5. PLAN_TIME_ORIGIN Enumeration</h5>
+<h5 id="_plan_time_origin_enumeration"><a class="anchor" href="#_plan_time_origin_enumeration"></a>5.6.1.4. PLAN_TIME_ORIGIN Enumeration</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -3868,37 +3790,6 @@ The following UML diagram illustrates.</p>
 <p>The lifecycle state does not appear directly as a data attribute on the <code>PLAN_ITEM</code> or <code>TASK</code> classes since it is a runtime variable for a Task. Accordingly, it appears in the materialised model, <a href="#_materialised_model">described below</a>. It is however useful to decribe the lifecycle state here, since it represents a key part of Task Plan semantics, and influences whether Tasks (and thus Groups) fail or complete, and potentially whether the Plan continues in execution.</p>
 </div>
 <div class="paragraph">
-<p>The lifecycle states are as follows (terminal states are marked with '(T)'):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>initial</code>: initial pseudo-state, not used in operation;</p>
-</li>
-<li>
-<p><code>planned</code>: defined, but not yet available for execution;</p>
-</li>
-<li>
-<p><code>available</code>: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;</p>
-</li>
-<li>
-<p><code>cancelled</code> (T): cancelled prior or during execution as not needed for success of the Plan;</p>
-</li>
-<li>
-<p><code>completed</code> (T): performed to completion;</p>
-</li>
-<li>
-<p><code>abandoned</code> (T): execution of current Task Plan was stopped before or after commencement due to completion being impossible;</p>
-</li>
-<li>
-<p><code>underway</code>: indicates that a Task execution has been commenced;</p>
-</li>
-<li>
-<p><code>suspended</code>: indicates that a Task execution has been suspended.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
 <p>The state machine is shown below.</p>
 </div>
 <div id="task_state_machine" class="imageblock text-center text-center">
@@ -3932,8 +3823,96 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The lifecycle states are described by the <code>TASK_LIFECYCLE</code> enumeration below.</p>
+</div>
 <div class="sect4">
-<h5 id="_task_availability"><a class="anchor" href="#_task_availability"></a>6.2.3.1. Task Availability</h5>
+<h5 id="_task_lifecycle_enumeration"><a class="anchor" href="#_task_lifecycle_enumeration"></a>6.2.3.1. TASK_LIFECYCLE Enumeration</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TASK_LIFECYCLE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Enumeration representing possible lifecycle states for a Task lifecycle transition, for example, "not needed".</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">planned</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task is defined, but not yet available for execution.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">available</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task is available for execution by the performer, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancelled</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task was cancelled prior to or during execution as not needed for success of the Plan.</p>
+</div>
+<div class="paragraph">
+<p>Terminal state.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">abandoned</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task was aborted due to completion being impossible, i.e. ended prematurely without meeting normal conditions of completion.</p>
+</div>
+<div class="paragraph">
+<p>Terminal state.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">completed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task was completed in the intended way.</p>
+</div>
+<div class="paragraph">
+<p>Terminal state.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suspended</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task is suspended, waiting for completion of a handoff or external request.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">underway</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task has been commenced or resumed from 'suspend' state.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_task_availability"><a class="anchor" href="#_task_availability"></a>6.2.3.2. Task Availability</h5>
 <div class="paragraph">
 <p>Each Task in a new Plan execution starts in the <code>initial</code> state. Following the design principle <a href="#_allocation">described earlier</a>, the execution engine executing a Task Plan can determine the <em>availability</em> i.e., when the transition <code>planned</code> &#8658; <code>available</code> may occur for any Task as follows:</p>
 </div>
@@ -3958,7 +3937,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </div>
 </div>
 <div class="sect4">
-<h5 id="_aggregate_process_state"><a class="anchor" href="#_aggregate_process_state"></a>6.2.3.2. Aggregate Process State</h5>
+<h5 id="_aggregate_process_state"><a class="anchor" href="#_aggregate_process_state"></a>6.2.3.3. Aggregate Process State</h5>
 <div class="paragraph">
 <p>The effective state of a Task Group, Task Plan and Work Plan can be inferred from the lifecycle states of the Tasks, according to logic described in <a href="#_aggregate_lifecycle_state">Section 7.3</a>. This includes availability of Task Groups containing parallel paths with associated OR logic, i.e. the equivalent of the OR-join in YAWL (<a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a>, section 3.2).</p>
 </div>
@@ -7168,7 +7147,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <p>the Task starts in the <code>planned</code> state, as for any Task in a Plan;</p>
 </li>
 <li>
-<p>when the execution point reaches the Task, and any Task Wait state has been exited, the Task becomes <code>available</code> (refer above to <a href="#_task_availability">Section 6.2.3.1</a>);</p>
+<p>when the execution point reaches the Task, and any Task Wait state has been exited, the Task becomes <code>available</code> (refer above to <a href="#_task_availability">Section 6.2.3.2</a>);</p>
 </li>
 <li>
 <p>the Task dispatch operation is performed either automatically, or in the case of an External Request, manually;</p>
@@ -8898,7 +8877,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong> (): <code>TASK_LIFECYCLE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Lifecycle state of Task Plan, derived as a copy of the <code><em>lifecycle_state()</em></code> of the definition <code>TASK_GROUP</code>.</p>
@@ -9038,7 +9017,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong> (): <code>TASK_LIFECYCLE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Effective lifecycle state, computed from the states of members of the group.</p>
@@ -9574,14 +9553,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong> (): <code>List&lt;UID_BASED_ID&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of Task Plan ids for this Work Plan.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plan</strong> (<br>
 a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 ): <code>List&lt;I_TASK_PLAN_DEFINITION&gt;</code></p></td>
@@ -9617,17 +9596,17 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>materialise</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>activate</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
@@ -9659,14 +9638,14 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong> (): <code>List&lt;UID_BASED_ID&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of Task Plan ids for this Work Plan.</p>
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plan</strong> (<br>
 a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 ): <code>List&lt;I_TASK_PLAN_DEFINITION&gt;</code></p></td>
@@ -9702,17 +9681,17 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>materialise</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>activate</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>

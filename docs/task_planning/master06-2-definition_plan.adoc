@@ -60,17 +60,6 @@ At execution time, every Plan Item (i.e. Task and Group) notionally has a _lifec
 
 The lifecycle state does not appear directly as a data attribute on the `PLAN_ITEM` or `TASK` classes since it is a runtime variable for a Task. Accordingly, it appears in the materialised model, <<Materialised Model,described below>>. It is however useful to decribe the lifecycle state here, since it represents a key part of Task Plan semantics, and influences whether Tasks (and thus Groups) fail or complete, and potentially whether the Plan continues in execution.
 
-The lifecycle states are as follows (terminal states are marked with '(T)'):
-
-* `initial`: initial pseudo-state, not used in operation;
-* `planned`: defined, but not yet available for execution;
-* `available`: available for execution, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time;
-* `cancelled` (T): cancelled prior or during execution as not needed for success of the Plan;
-* `completed` (T): performed to completion;
-* `abandoned` (T): execution of current Task Plan was stopped before or after commencement due to completion being impossible;
-* `underway`: indicates that a Task execution has been commenced;
-* `suspended`: indicates that a Task execution has been suspended.
-
 The state machine is shown below.
 
 [.text-center]
@@ -83,6 +72,10 @@ The state machine is designed to represent both stateless and stateful views of 
 * dispatchable Tasks that are blocked waiting on another performer.
 
 NOTE: Task lifecycle only accounts for the states of a Task itself; states of an order (e.g. prescription, lab request) with which the Task may be associated will be visible in the documentation for those objects, e.g. openEHR `ACTION` or other Entry objects.
+
+The lifecycle states are described by the `TASK_LIFECYCLE` enumeration below.
+
+include::{uml_export_dir}/classes/task_lifecycle.adoc[leveloffset=+1]
 
 ==== Task Availability
 

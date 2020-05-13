@@ -12,27 +12,27 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*0..1*
 |*create_work_plan*
 a|
 
-h|
+h|*0..1*
 |*create_task_plan*
 a|
 
-h|
+h|*0..1*
 |*add_task*
 a|
 
-h|
+h|*0..1*
 |*remove_task*
 a|
 
-h|
+h|*0..1*
 |*link_perfomed_action*
 a|
 
-h|
+h|*0..1*
 |*etc*
 a|
 |===

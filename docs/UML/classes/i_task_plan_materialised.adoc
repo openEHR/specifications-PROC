@@ -12,15 +12,15 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*0..1*
 |*materialise*
 a|
 
-h|
+h|*0..1*
 |*activate*
 a|
 
-h|
+h|*0..1*
 |*terminate*
 a|
 |===

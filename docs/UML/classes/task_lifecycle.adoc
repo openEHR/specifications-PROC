@@ -14,33 +14,35 @@ h|*Attributes*
 
 h|
 |planned
-a|Task is planned for the future.
+a|Task is defined, but not yet available for execution.
 
 h|
 |available
-a|Task is available for execution by performer.
+a|Task is available for execution by the performer, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time.
 
 h|
 |cancelled
-a|Task was cancelled without commencing.
+a|Task was cancelled prior to or during execution as not needed for success of the Plan.
+
+Terminal state.
 
 h|
 |abandoned
-a|Task was aborted after commencement, i.e. ended prematurely without meeting normal conditions of completion.
+a|Task was aborted due to completion being impossible, i.e. ended prematurely without meeting normal conditions of completion.
+
+Terminal state.
 
 h|
 |completed
 a|Task was completed in the intended way.
 
+Terminal state.
+
 h|
 |suspended
-a|Task is waiting for completion of a handoff or external request.
+a|Task is suspended, waiting for completion of a handoff or external request.
 
 h|
 |underway
-a|Task has been commenced.
-
-h|
-|resumed
-a|Task has been resumed from `suspend` state.
+a|Task has been commenced or resumed from 'suspend' state.
 |===

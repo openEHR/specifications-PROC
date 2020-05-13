@@ -12,11 +12,11 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*0..1*
 |*plans* (): `List<UID_BASED_ID>`
 a|List of Task Plan ids for this Work Plan.
 
-h|
+h|*0..1*
 |*plan* ( +
 a_task_plan_id: `UID_BASED_ID[1]` +
 ): `List<I_TASK_PLAN_DEFINITION>`

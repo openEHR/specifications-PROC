@@ -35,7 +35,7 @@ h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|
+h|*1..1*
 |*lifecycle_state* (): `TASK_LIFECYCLE`
 a|Lifecycle state of Task Plan, derived as a copy of the `_lifecycle_state()_` of the definition `TASK_GROUP`.
 |===

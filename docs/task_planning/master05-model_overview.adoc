@@ -211,11 +211,10 @@ include::{uml_export_dir}/classes/customary_time.adoc[leveloffset=+1]
 
 == Enumerated Types
 
-Various enumerated types are defined in the `definitions` package, for use by the definition, materialised and runtime models.
+Various enumerated types are defined in the `definitions` package, for use by the definition, materialised and runtime models. The `TASK_LIFECYCLE` enumeration is included in <<_lifecycle_state>>.
 
 === Class Descriptions
 
-include::{uml_export_dir}/classes/task_lifecycle.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/resume_type.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/temporal_relation.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
