@@ -604,7 +604,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.5.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation.<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration.</p></td>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
  T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 May 2020</p></td>
@@ -2283,10 +2283,10 @@
 <div class="sect3">
 <h4 id="_task_lifecycle"><a class="anchor" href="#_task_lifecycle"></a>4.5.3. Task Lifecycle</h4>
 <div class="paragraph">
-<p>Every Task in a Plan has a lifecycle described by a state machine. The states represent the state of a real world item of work, <em>as known by the Plan execution system</em>; setting them is entirely reliant on the system receiving input from performers. The successful execution path is through the states <code>planned</code> &#8658; <code>available</code> &#8658; <code>completed</code>, with other terminal states <code>cancelled</code> and <code>aborted</code> available for cases where a Task is cancelled and aborted respectively. Here, <code>cancelled</code> means 'not needed', i.e. the principal performer determined Task could be cancelled before or during execution, without compromising the Plan. Conversely, the <code>aborted</code> state indicates that the performer cannot do or complete the Task, or the rest of the Plan. Thus, <code>aborted</code> for a Task means abandonment of the current Task Plan.</p>
+<p>Every Task in a Plan has a lifecycle described by a state machine. The states represent the state of a real world item of work, <em>as known by the Plan execution system</em>; setting them is entirely reliant on the system receiving input from performers. The successful execution path is through the states <code>planned</code> &#8658; <code>available</code> &#8658; <code>completed</code>, with other terminal states <code>cancelled</code> and <code>abandoned</code> available for cases where a Task is cancelled and abandoned respectively. Here, <code>cancelled</code> means 'not needed', i.e. the principal performer determined Task could be cancelled before or during execution, without compromising the Plan. Conversely, the <code>abandoned</code> state indicates that the performer cannot do or complete the Task, or the rest of the Plan. Thus, <code>abandoned</code> for a Task means abandonment of the current Task Plan.</p>
 </div>
 <div class="paragraph">
-<p>From the viewpoint of Plan execution, the final state of a Task execution determines whether the Plan remaints in the <code>active</code> state, or whether it enters the <code>terminated</code> state. If the Task terminates with <code>completed</code> or <code>cancelled</code> state, it is considered to have <em>succeeded</em>, and the Plan remains <code>active</code>. If the Task is <code>aborted</code>, it is considered as <em>failed</em>, and the Plan terminates with a failure status.</p>
+<p>From the viewpoint of Plan execution, the final state of a Task execution determines whether the Plan remaints in the <code>active</code> state, or whether it enters the <code>terminated</code> state. If the Task terminates with <code>completed</code> or <code>cancelled</code> state, it is considered to have <em>succeeded</em>, and the Plan remains <code>active</code>. If the Task is <code>abandoned</code>, it is considered as <em>failed</em>, and the Plan terminates with a failure status.</p>
 </div>
 <div class="paragraph">
 <p>A special transition <code><em>override</em></code> is used to force a Task to into the <code>available</code> state; this represents a performer explicitly overriding preconditions or subject preconditions.</p>
@@ -2323,7 +2323,7 @@
 <p>Since the Task Plan cannot presume to have perfect knowledge of the real world situation, the performer is always allowed to override the external and subject pre-conditions, due to better knowledge. In such cases, the control flow requirement still holds - since this can already be 'overridden' by the performing cancelling preceding Tasks where appropriate.</p>
 </div>
 <div class="paragraph">
-<p>When a Task does become available for execution, nothing will happen until a performer is allocated to do it. When an available worker is allocated, the Task may be commenced, and further life-cycle states can be reached, i.e. <code>completed</code>, <code>aborted</code> etc.</p>
+<p>When a Task does become available for execution, nothing will happen until a performer is allocated to do it. When an available worker is allocated, the Task may be commenced, and further life-cycle states can be reached, i.e. <code>completed</code>, <code>abandoned</code> etc.</p>
 </div>
 <div class="paragraph">
 <p>The following diagram illustrates these concepts.</p>
@@ -2343,7 +2343,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><em>logical deletion</em>: Tasks can be skipped by two types of cancellation in the lifecycle: <code>cancelled</code> (not needed) and <code>aborted</code> (abandon current Task Plan); if <code>cancelled</code> is used, this has the benign effect of skipping past a Task;</p>
+<p><em>logical deletion</em>: Tasks can be skipped by two types of cancellation in the lifecycle: <code>cancelled</code> (not needed) and <code>abandoned</code> (abandon current Task Plan); if <code>cancelled</code> is used, this has the benign effect of skipping past a Task;</p>
 </li>
 <li>
 <p><em>logical addition</em>: work items that are not represented as Tasks in a Task Plan can always be done, such as making extra patient observations or performing unplanned patient actions (e.g. refit a catheter, change a dressing); in openEHR they will always be recorded in the normal manner via Observation and Action Entries;</p>
@@ -7294,9 +7294,6 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </li>
 <li>
 <p><code>suspended</code> &#8594; <code>suspended</code><br></p>
-</li>
-<li>
-<p><code>aborted</code> &#8594; <code>cancelled</code><br></p>
 </li>
 <li>
 <p><code>completed</code> &#8594; <code>completed</code><br></p>

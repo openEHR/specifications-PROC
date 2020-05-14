@@ -231,7 +231,6 @@ a|
 * `scheduled` -> `underway` +
 * `active` -> `underway` +
 * `suspended` -> `suspended` +
-* `aborted` -> `cancelled` +
 * `completed` -> `completed` +
 * _timeout_ -> `abandoned`
 |May catch multiple callbacks via use of `underway` target state. +
