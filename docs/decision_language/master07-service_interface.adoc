@@ -1,6 +1,6 @@
-= DLM Service Model
+= DSM Service Model
 
-The following shows an outline idea of a DLM service interface. This could be made to cater for talking to a DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.
+The following shows an outline idea of a DSM service interface. This could be made to cater for talking to an OMG DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.
 
 [.text-center]
 .Service Model

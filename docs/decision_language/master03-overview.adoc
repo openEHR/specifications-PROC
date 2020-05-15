@@ -2,7 +2,7 @@
 
 == Conceptual Model
 
-The openEHR Decision Language (DL) and Decision Model (DM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement. We consider decision logic to consist of _definitions_ and _functions_, the latter of which can be abstractly understood as _rules_, _conditions_, _decision tables_ and potentially other varieties of function.
+The openEHR Decision Support Language (DSL) and Decision Support Object Model (DSOM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision support logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement. We consider decision logic to consist of _definitions_ and _functions_, the latter of which can be abstractly understood as _rules_, _conditions_, _decision tables_ and potentially other varieties of function.
 
 For example, a rule can be written to infer from the input variables `_heart_rate_` and `_heart_rhythm_` whether a patient has atrial fibrillation, or other forms of arrhythmia. A decision table can be considered to be a convenient way of representing a 'rule-set', i.e. a set of related rules driven by a common set of input variables.
 
@@ -14,24 +14,24 @@ The following diagram illustrates the artefacts covered by this specification wi
 
 [.text-center]
 .Conceptual framework
-image::{diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
+image::{common_diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
 
 In the above, the top part illustrates the category of process and plan definitions, of which the _care pathway_ is a specific example in clinical medicine. In openEHR these are expressed as Work Plans, defined by the {openehr_task_planning}[openEHR Task Planning model^]. In other environments, OMG BPMN/CMMN representation might be used.
 
 Below the process component, two components of the DL framework are shown:
 
-* *Decision Logic Module (DLM)*: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about (e.g. patient cardiac state etc);
-* *Data Proxy Object (DPO)*: a definition of state variables and events characterising a real-world entity (e.g. cardiology patient) in a convenient form for use in a DLM.
+* *Decision Support Module (DSM)*: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about (e.g. patient cardiac state etc);
+* *Subject Proxy Object (SPO)*: a definition of state variables and events characterising a real-world entity (e.g. cardiology patient) in a convenient form for use in a DSM.
 
 The last component (shown at bottom left) is the _Data Access Binding (DAB)_, which are bindings to data sources and repositories, such as patient health records and monitoring devices. Such data are extracted to become the logical data elements in a Data Proxy.
 
-In this environment, the Process Definition component may be understood as a primary user of Data proxies and DLMs, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.
+In this environment, the Process Definition component may be understood as a primary user of Data proxies and DSMs, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.
 
 == Representation Scheme
 
-The general approach to representation for Decision Logic Modules (DLMs) and Data Proxy Objects (DPOs) is to support two forms. The first is an optional high-level language form called Decision Logic Language (DLL) suitable for domain specialist authors, which abstracts away detail typically required by a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DLL texts are assumed to be written by hand, with the aid of a syntax mode for typical editors, or a light-weight UI tool.
+The general approach to representation for Decision Logic Modules (DSMs) and Subject Proxy Objects (SPOs) is to support two forms. The first is an optional high-level language form called Decision Logic Language (DLL) suitable for domain specialist authors, which abstracts away detail typically required by a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DLL texts are assumed to be written by hand, with the aid of a syntax mode for typical editors, or a light-weight UI tool.
 
-The second form is an expression in a standard programming language which is either generated from the first form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DLM.
+The second form is an expression in a standard programming language which is either generated from the first form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DSM.
 
 The two types of artefacts are shown below.
 
@@ -41,9 +41,9 @@ image::{diagrams_uri}/artefact_scheme.svg[id=artefact_scheme, align="center"]
 
 == Prior Art
 
-The openEHR DL formalism is a small formalism that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects.
+The openEHR DSL formalism is a small formalism that builds upon the {openehr_expression_language}[openEHR Expression Language^], whose meta-model is defined in the {openehr_bmm}[openEHR Basic Meta-Model (BMM)^]. DSL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects.
 
-openEHR DL may be compared to other languages developed in the health arena for expressing 'medical logic', including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as decision support languages such as {hl7v3_gello}[HL7 Gello^]. These languages were not directly used, for various reasons including:
+openEHR DSL may be compared to other languages developed in the health arena for expressing 'medical logic', including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as decision support languages such as {hl7v3_gello}[HL7 Gello^]. These languages were not directly used, for various reasons including:
 
 * none have an easily extensible value referencing mechanism;
 * some are too procedural (Arden, GLIF);

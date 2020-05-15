@@ -1,9 +1,9 @@
-=== DL_CASE_BRANCH Class
+=== DS_CASE_BRANCH Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DL_CASE_BRANCH*
+2+^h|*DS_CASE_BRANCH*
 
 h|*Description*
 2+a|One branch of a case rule.

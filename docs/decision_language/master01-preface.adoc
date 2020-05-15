@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document specifies the openEHR Decision Model (DM) and an abstract syntax, denoted the openEHR Decision Language (openEHR DL). The DOM defines the semantics of a first order predicate style logic that can be used to write clinical Decision Logic Models (DLMs) that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
+This document specifies the openEHR Decision Support Language (DSL), in both abstract syntax form and as a related model, the Decision Supoort Object Model (DSOM). The latter defines the semantics of a first order predicate style logic that can be used to write clinical Decision Support Models (DSMs) that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
 
 The intended audience includes:
 
@@ -23,7 +23,7 @@ Related documents include:
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {openehr_decision_language}[{openehr_decision_language}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_decision_language}[{openehr_proc_latest_decision_language}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]

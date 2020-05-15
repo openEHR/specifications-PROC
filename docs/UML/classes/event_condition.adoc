@@ -1,9 +1,9 @@
-=== STATE_VARIABLE Class
+=== EVENT_CONDITION Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*STATE_VARIABLE*
+2+^h|*EVENT_CONDITION*
 
 h|*Description*
 2+a|
@@ -15,7 +15,7 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
-|*currency*: `Iso8601_duration`
+h|*1..1*
+|*condition*: `DS_CONDITION_DEF`
 a|
 |===

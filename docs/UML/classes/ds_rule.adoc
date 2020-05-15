@@ -1,9 +1,9 @@
-=== DL_RULE Class
+=== DS_RULE Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_DL_RULE (abstract)_*
+2+^h|*_DS_RULE (abstract)_*
 
 h|*Description*
 2+a|Abstract parent of DL rule types. All rules have a `_name_` (inherited from `BMM_DECLARATION`), and a `_type_` (from `BMM_TYPED`).

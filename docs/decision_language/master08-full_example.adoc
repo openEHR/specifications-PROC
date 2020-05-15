@@ -1,0 +1,248 @@
+= Examples
+
+== Basic patient
+
+----
+proxy
+    Core_patient
+
+definitions
+    Critical_high_bp:   Quantity = 180 mm[Hg]
+    Low_oxygen_sat:     Proportion = 92%
+
+admin
+    date_of_birth:  Date
+    sex:            Terminology_term
+
+state
+    systolic_blood_pressure:    Quantity {currency = 1min}
+    diastolic_blood_pressure:   Quantity {currency = 1min}
+    heart_rate:                 Quantity {currency = 30s}
+    oxygen_sat:                 Proportion {currency = 30s}
+    blood_glucose:              Quantity
+
+events
+    critical_high_bp_event:
+        systolic_blood_pressure > Critical_high_bp
+
+    low_oxygen_sat_event:
+        oxygen_sat < Low_oxygen_sat
+    ...
+    
+----
+
+== Perinatal Care
+
+=== Proxy Module
+
+----
+proxy
+    Pregnant_patient
+    
+inherit
+    Core_patient
+    
+historical
+    is_type1_diabetic:          Boolean
+    previous_obstetric_hypertension: Boolean
+    previous_preeclampsia:      Boolean
+    previous_eclampsia:         Boolean
+
+episode -- current pregnancy
+    has_pregnancy_diabetes:     Boolean
+    has_pregnancy_hypertension: Boolean 
+    has_anaemia:                Boolean
+    has_preeclampsia:           Boolean
+    has_eclampsia:              Boolean
+    anaemia_result:             Terminology_term
+    
+state
+    amniotic_fluid_state:       Terminology_term
+    uterine_fundal_height:      Quantity
+    vaginal_blood_flow:         Quantity
+    
+events
+    haemorrhage:
+        vaginal_blood_flow > 500 mL
+        
+    contractions_commenced:
+        
+    braxton_hicks_contraction:
+    
+----
+
+=== Decision Module
+
+----
+decision support module 
+    Obstetric_pregnancy
+
+proxy
+    P: Pregnant_patient
+
+definitions
+
+conditions
+
+rules
+    risk_evaluation: Terminology_term
+        ....
+        
+    amniotic_fluid_risk: Terminology_term
+        Result <- 
+            map P.hypertension_state
+                {[|premature rupture|], [|polyhydramnios|]} -> |obstetric emergency|9999
+                {[|oligohydramnios|]}                       -> |refer high risk care|1111
+                {*}                                         -> |normal|0000
+    
+    hypertension_risk: Terminology_term
+        if P.has_preeclampsia or P.has_eclampsia
+            Result <- |obstetric emergency|9999
+        elseif P.previous_obstetric_hypertension or P.previous_preeclampsia or 
+                P.previous_eclampsia or P.has_pregnancy_hypertension
+            Result <- |refer high risk antenatal care|1111
+        else
+            Result <- |normal|0000
+            
+    diabetes_risk: Terminology_term
+        if P.has_pregnancy_diabetes
+            Result <- |refer high risk antenatal care|1111
+        else
+            Result <- |normal|0000
+            
+    anaemia_risk: Terminology_term
+        Result <- 
+            map P.anaemia_result
+                {[|severe anaemia of pregnancy|]} -> |obstetric emergency|9999
+                {[|anaemia of pregnancy|]}        -> |refer high risk care|1111
+                {*}                               -> |normal|0000
+    
+    
+----
+
+== Breast Cancer Decision Protocol
+
+=== proxy module
+
+----
+proxy module
+    Breast_cancer_patient
+    
+inherit
+    Basic_patient
+    
+state
+    tnm_t: String {P60D}
+    tnm_n: String {P60D}
+    tnm_m: String {P60D}
+    tnm_g: String {P60D}
+
+    metastases:             Terminology_term «pos_neg_vs» {P60D}
+    estrogen_receptor:      Terminology_term «pos_neg_vs» {P60D}
+    progesterone_receptor:  Terminology_term «pos_neg_vs» {P60D}
+    her2_expression:        Terminology_term «pos_neg_vs» {P60D}
+    
+    ki67:               Quantity {P60D}
+    ejection_fraction:  Quantity {P30D}
+    
+derived
+    metastatic:
+        metastases = |positive|
+
+    er_negative:
+        estrogen_receptor = |negative|
+
+    er_positive:
+        estrogen_receptor = |positive|
+        
+    pr_negative:
+        progesterone_receptor = |negative|
+
+    pr_positive:
+        progesterone_receptor = |positive|
+        
+    her2_negative:
+        her2_expression = |negative|
+
+    her2_positive:
+        her2_expression = |positive|
+
+----
+
+=== Decision Module
+
+----
+decision module 
+    Oncology_breast_cancer
+
+proxy
+    P: Breast_cancer_patient
+
+definitions
+    ki67_threshold: Quantity = 14%
+    
+conditions
+    ki67_high:
+        P.ki67 >= ki67_threshold
+        
+    anthracyclines_contraindicated:
+        P.has_diagnosis (|Transmural MI|) or
+        P.ejection_fraction < 40% or
+        P.has_diagnosis ({|heart failure (class II)|, 
+                          |heart failure (class III)|,
+                          |heart failure (class IV)|})
+                                
+    taxanes_contraindicated:
+        P.is_type1_diabetic or
+        P.has_allergy (|taxanes|) or 
+        P.has_intolerance (|taxanes|)
+        
+rules
+    molecular_subtype: Terminology_term
+        if P.er_positive and P.her2_negative and not ki67_high
+            Result <- |Luminal A|
+
+        elseif P.er_positive and P.her2_negative and ki67_high
+            Result <- |Luminal B (HER2 negative)|
+
+        elseif P.er_positive and P.her2_positive
+            Result <- |Luminal B (HER2 positive)|
+
+        elseif P.er_negative and P.pr_negative and P.her2_positive and ki67_high
+            Result <- |HER2|
+
+        elseif P.er_negative and P.pr_negative and P.her2_negative and ki67_high
+            Result <- |Triple negative|
+            
+        else 
+            Result <- |none|
+    
+    chemotherapy_regime: Terminology_term
+        if not P.metastatic 
+            if molecular_subtype in {|Luminal B (HER2 negative)|, |Triple negative|} and
+                    (P.tnm_t > '1a' or P.tnm_n > '0')
+                Result <- |taxanes|
+            
+            elseif molecular_subtype = |Luminal A| and 
+                    (P.tnm_t >= '3' or P.tnm_n >= '2' or P.tnm_g >= '3')
+                Result <- |anthracyclines|
+            
+            elseif molecular_subtype = |Luminal B (HER2 positive)| and 
+                    (P.tnm_t = '1b' or P.tnm_t = '1c' and P.tnm_n = '0')
+                    or
+                    molecular_subtype = |HER2| and 
+                    (P.tnm_t = '1b' and P.tnm_n = '0')
+                Result <- |paditaxel + trastuzumab|
+            else ...
+                Result <-
+            
+        else -- metastatic
+            if ...
+                Result <-
+            elseif ...
+                Result <-
+            else
+                Result <-
+            
+        
+----

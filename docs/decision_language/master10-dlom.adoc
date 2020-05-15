@@ -1,27 +1,27 @@
-= The Decision Language Object Model (DLOM)
+= The Decision Support Object Model (DSOM)
 
 [.tbd]
 TBD: this section is a rough draft at the moment
 
 == Overview
 
-The `org.openehr.proc.dlom` package defines the Decision Language Object Model (DLOM), a structural model of the openEHR Decision language. It relies on the {openehr_bmm}[openEHR BMM^].
+The `org.openehr.proc.dsom` package defines the Decision Support Object Model (DSOM), a structural model of the openEHR Decision Support language. It relies on the {openehr_bmm}[openEHR BMM^].
 
-The structure of the `dlom` packages is shown below.
+The structure of the `dsom` packages is shown below.
 
 [.text-center]
-.proc.dlom Package
-image::{uml_diagrams_uri}/PROC-dlom-packages.svg[id=dlom_packages, align="center", width="50%"]
+.proc.dsom Package
+image::{uml_diagrams_uri}/PROC-dsom-packages.svg[id=dsom_packages, align="center", width="50%"]
 
 The packages are described below.
 
-== DL Module Package
+== DS Module Package
 
-The top-level construct of the DLOM is the `DL_MODULE`, representing a standalone decision logic module. It is shown below.
+The top-level construct of the DSOM is the `DS_MODULE`, representing a standalone decision support module. It is shown below.
 
 [.text-center]
-.proc.dlom.module Package
-image::{uml_diagrams_uri}/PROC-dlom.module.svg[id=dlom_module, align="center"]
+.proc.dsom.module Package
+image::{uml_diagrams_uri}/PROC-dsom.module.svg[id=dsom_module, align="center"]
 
 [.tbd]
 TBD: to be continued. 
@@ -30,44 +30,44 @@ TBD: to be continued.
 
 include::{uml_export_dir}/classes/module_feature.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/decision_module.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/dl_condition_def.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_condition_def.adoc[leveloffset=+1]
 
-== DL Rules Package
+== DS Rules Package
 
-Specific Rule types are defined as descendants of `DL_RULE`, which may be understood as a pseudo form of the `BMM_FUNCTION` meta-type, i.e. a particular kind of function with a `_body_`. The following UML view illustrates.
+Specific Rule types are defined as descendants of `DS_RULE`, which may be understood as a pseudo form of the `BMM_FUNCTION` meta-type, i.e. a particular kind of function with a `_body_`. The following UML view illustrates.
 
 [.text-center]
-.proc.dlom.rules Package
-image::{uml_diagrams_uri}/PROC-dlom.rules.svg[id=dlom_rules, align="center"]
+.proc.dsom.rules Package
+image::{uml_diagrams_uri}/PROC-dsom.rules.svg[id=dsom_rules, align="center"]
 
 Some specific rule types are described below.
 
 === Condition Chain Rule
 
-A DL _condition chain rule_ is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.
+A DS _condition chain rule_ is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.
 
 [.text-center]
 .Condition chain rule
-image::{uml_diagrams_uri}/PROC-dlom.rules-condition_chain.svg[id=dlom_rules_condition_chain, align="center"]
+image::{uml_diagrams_uri}/PROC-dsom.rules-condition_chain.svg[id=dsom_rules_condition_chain, align="center"]
 
 === Case Rule
 
-A DL _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of `C_PRIMITIVE` constraint types, from the {openehr_am}[openEHR AOM2 model].
+A DS _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of `C_PRIMITIVE` constraint types, from the {openehr_am}[openEHR AOM2 model].
 
 [.text-center]
 .Case rule
-image::{uml_diagrams_uri}/PROC-dlom.rules-case.svg[id=dlom_rules_case, align="center"]
+image::{uml_diagrams_uri}/PROC-dsom.rules-case.svg[id=dsom_rules_case, align="center"]
 
 === Class Descriptions
 
-include::{uml_export_dir}/classes/dl_rule.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/dl_condition_rule.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/dl_condition_chain.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/dl_condition_branch.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_rule.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_condition_rule.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_condition_chain.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_condition_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/dl_case_rule.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/dl_case_group.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/dl_case_branch.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_case_rule.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_case_group.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/ds_case_branch.adoc[leveloffset=+1]
 
 == Proxy Module Package
 

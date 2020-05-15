@@ -1,15 +1,15 @@
-=== DL_CONDITION_RULE Class
+=== DS_CONDITION_RULE Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DL_CONDITION_RULE*
+2+^h|*DS_CONDITION_RULE*
 
 h|*Description*
 2+a|A kind of rule consisting of a chain of Condition/action branches.
 
 h|*Inherit*
-2+|`DL_RULE`
+2+|`DS_RULE`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*body*: `DL_CONDITION_CHAIN`
+|*body*: `DS_CONDITION_CHAIN`
 a|The body of the rule.
 |===

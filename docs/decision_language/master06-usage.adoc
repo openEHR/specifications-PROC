@@ -1,17 +1,17 @@
-= Plan / DLM Interaction
+= Plan / DSM Interaction
 
 == Data-sharing
 
 [.tbd]
-TBD: how to transmit arguments: assume all available in data sources? Need to allow calls to DLM using arguments?
+TBD: how to transmit arguments: assume all available in data sources? Need to allow calls to DSM using arguments?
 
-== Plan Structure References to DLM Features
+== Plan Structure References to DSM Features
 
 At least two usage styles between the Plan engine and the Decision engine are possible.
 
 === Rule-based
 
-In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DLM 'rule' is likely to be intentionally designed to reflect published clinical best practice.
+In this style, rules are defined within the decision logic modules and the Plan just performs a 'switch' on the output values. This would be useful for non-Boolean decisions, e.g. generating coded terms; also for functions generating many possible values or value ranges. A DSM 'rule' is likely to be intentionally designed to reflect published clinical best practice.
 
 [.text-center]
 .Rule-based interface

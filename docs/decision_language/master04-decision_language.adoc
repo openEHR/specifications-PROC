@@ -1,15 +1,15 @@
-= Decision Logic Language
+= Decision Support Language
 
 == Overview
 
-The Decision Logic Language is a high-level language in which modules containing the following elements may be written:
+The Decision Support Language is a high-level language in which modules containing the following elements may be written:
 
 * _definitions_: domain constants;
 * _conditions_: Boolean-returning domain-specified criteria;
 * _rules_: domain-specified rules structures based on condition/action structures, which may return any type;
 * _rule-sets_: related sets of rules in various forms, including decision tables.
 
-An example of a basic DLL text is shown below.
+An example of a basic DSL text is shown below.
 
 ----
 decision_module 

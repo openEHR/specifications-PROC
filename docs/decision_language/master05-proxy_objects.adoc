@@ -2,13 +2,18 @@
 
 == Overview
 
-For decision logic to be useful, it must be able to refer to states and events of entities in the outside world, e.g. the patient vital signs in both steady state (oxygen saturation) and important transitions (e.g. critical low oxygen saturation). The approach taken in openEHR DL is that any such entity is represented by an abstract _data proxy object (DPO)_ that defines state variables and event conditions as formal  features, along with certain meta-data, e.g. _currency_, defining the worst-case latency of sampling of a variable from its real-world source.
+For decision logic to be useful, it must be able to refer to data elements within _proxy views_ of various entities in the external world, including:
 
-From a semantic perspective, DPO state variables and events represent properties and events occurring in _ontic (real-world) entities_, such as the patient's heart. They are typically populated via the patient record and real-time devices (e.g. pulse-oximeter, accelerometer). Consequently, they are understood as being temporally situated on a 'world time' rather than a 'system time' timeline, where the latter corresponds to data commit and availability time. 
+* the subject (i.e. patient) in real time;
+* historical recordings about the subject, i.e. the patient record.
 
-From a data perspective, the set of features defined in a DPO will relate to a particular use. For example, the properties for a leukaemia patient are likely to include `white_cell_count`, `platelets` and so on, while a DPO for ante-natal use will contain obstetric properties. A core set of DPO features for any patient would include clinical basics such as date of birth, sex, and typical vital signs. In general, the collection of features in a DPO will be a somewhat arbitrary 'slice' of all possible variables and events characterising a real-world entity. 
+e.g. the patient vital signs in both steady state (oxygen saturation) and important transitions (e.g. critical low oxygen saturation). The approach taken in openEHR DSL is that any such entity is represented by an abstract _subject proxy object (SPO)_ that defines state variables and event conditions as formal  features, along with certain meta-data, e.g. _currency_, defining the worst-case latency of sampling of a variable from its real-world source.
 
-The following illustrates two DPOs, one a specialisation of the other.
+From a semantic perspective, SPO state variables and events represent properties and events occurring in _ontic (real-world) entities_, such as the patient or the patient's heart. They are typically populated via the patient record and real-time devices (e.g. pulse-oximeter, accelerometer). Consequently, they are understood as being temporally situated on a 'world time' rather than a 'system time' timeline, where the latter corresponds to data commit and availability time. 
+
+From a data perspective, the set of features defined in a DPO will relate to a particular use. For example, the properties for a leukaemia patient are likely to include `white_cell_count`, `platelets` and so on, while an SPO for ante-natal use will contain obstetric properties. A core set of SPO features for any patient would include clinical basics such as date of birth, sex, and typical vital signs. In general, the collection of features in an SPO will be a somewhat arbitrary 'slice' of all possible variables and events characterising a real-world entity. 
+
+The following illustrates two SPOs, one a specialisation of the other.
 
 [.text-center]
 .Abstract proxy

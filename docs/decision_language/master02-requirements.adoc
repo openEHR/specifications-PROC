@@ -1,6 +1,6 @@
 = Requirements
 
-The requirements of openEHR Decision Language fall into a number of categories, described below.
+The requirements of openEHR Decision Support Language fall into a number of categories, described below.
 
 [.tbd]
 TBD: this section only very rough for now.

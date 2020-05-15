@@ -1,9 +1,9 @@
-=== DL_CASE_GROUP Class
+=== DS_CASE_GROUP Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DL_CASE_GROUP*
+2+^h|*DS_CASE_GROUP*
 
 h|*Description*
 2+a|Body of case rule construct.
@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*items*: `DL_CASE_BRANCH`
+|*items*: `DS_CASE_BRANCH`
 a|Branches of the case rule.
 
 h|*0..1*

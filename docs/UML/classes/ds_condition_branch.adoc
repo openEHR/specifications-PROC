@@ -1,9 +1,9 @@
-=== DL_CONDITION_BRANCH Class
+=== DS_CONDITION_BRANCH Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DL_CONDITION_BRANCH*
+2+^h|*DS_CONDITION_BRANCH*
 
 h|*Description*
 2+a|A condition / result pair (sometimes known as a 'when/then rule').
@@ -13,7 +13,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*condition*: `DL_CONDITION_DEF`
+|*condition*: `DS_CONDITION_DEF`
 a|The rule condition.
 
 h|*1..1*

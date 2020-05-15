@@ -6,7 +6,7 @@ include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
 :copyright_year: 2020
 :spec_status: DEVELOPMENT
 :keywords: openehr, expressions, rules
-:description: openEHR Decision Language specification
+:description: openEHR Decision Support Language specification
 
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
@@ -16,7 +16,7 @@ include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
 image::{openehr_logo}["openEHR logo",align="center"]
 
-= Decision Language (DL) and Model
+= Decision Support Language (DSL) and Model
 
 include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
 include::{ref_dir}/docs/references/reference_definitions.adoc[]
