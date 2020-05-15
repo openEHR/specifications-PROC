@@ -1,18 +1,32 @@
 = Design Principles
 
-The following sections describe the design key ideas used in the Task Planning model defined in this specification.
+The following sections describe the key design paradigms underpinning the Task Planning model defined in this specification.
+
+== Conceptual Basis
+
+At the coarsest conceptual level, _plans_ are one of a small number of distinct categories of computational entity which together must work together at execution time. In addition to plans is _decision support logic_, and both rely on being able to reference values characterising the patient, including state and events - both current and historical. Such values may be represented as variable references and function calls defined on _proxy_ objects representing the subject (i.e. patient), and potentially other specific real-world things, such as 'medications list'. Proxy objects may be understood as providing a _virtual subject_ view. The job of decision logic is to generate deductive inferences from the state of the subject for use in plans and elsewhere. Underpinning proxy objects is a layer of _data access objects_, whose job is to convert _epistemic_ artefacts (information recorded about or generated from the subject, such as the EHR, vital signs devices etc) into the virtual _ontic_ (reality-based) view of the subject in the form of the proxy objects.
+
+The following diagram illustrates these artefacts, with plans proper shown at the top.
+
+[.text-center]
+.Conceptual framework
+image::{common_diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
+
+One important consequence of this separation of concerns is that the Task Plan model described here uses _symbolic references_ to refer to both proxy values (patient state, previous diagnoses etc) and decision logic functions, rather than including expressions inline, in the manner of most workflow languages. All 'expressions' are thus represented externally, either within decision logic modules or proxies. Both of the latter are maintained as independent knowledge artefacts and _used_ by plans.
+
+In terms of development, Plans, Decision support modules, Proxies and Data access bindings are co-developed artefacts. The latter are described in related specifications while the scope of this specification is limited to Plans.
 
 == Computational Basis
 
-A basic choice in the architecture presented here is that it is _executable_ in the sense of all elements used in creating Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication and coordination into an efficient, integrated, team.
+A basic choice in the architecture presented here is that it is _executable_ in the sense that Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication into an integrated, coordinated team.
 
 This follows the YAWL approach cite:[Hofstede_van_der_Aalst2009], such that no Plan defined according to this specification has ambiguous meaning.
 
 == Computation Context
 
-This specification describes the models and semantics for task plans and their execution by a notional openEHR Task Planning execution engine ('TP engine'). This is assumed to operate in a server computing environment in which other systems exist with which the TP engine communicates. A key system is the openEHR EHR system, via which openEHR EHRs are accessible to the TP Engine. 
+This specification describes the models and semantics for task plans and their execution by an abstract openEHR Task Planning execution engine ('TP engine'). The TP engine executes both Plans and related Decision support modules. It obtains information on the patient via the Subject proxy, which as described above, converts data available from the EHR and elsewhere to a virtual view of the patient. It is assumed to operate in a back-end computing environment in which other systems exist with which the TP engine communicates. A key system is the openEHR EHR system, via which openEHR EHRs are accessible to the TP Engine. 
 
-Outside of the environment exist other organisations with which TP engine communicates by generic means (ultimately, email, phone calls, etc), mediated by an appropriate communications / notification system within the environment.
+Outside of the environment exist other organisations with which the TP engine communicates by generic means (ultimately, email, phone calls, etc), mediated by an appropriate communications / notification system within the environment.
 
 Users who act as performers of tasks are connected to the engine via applications that communicate to the TP engine via the API of the TP Engine. These applications may be dedicated to Task Planning or a combined openEHR application context containing Task Planning components or forms. Users who act as plan designers are connected to a task planning designer system via a dedicated designer application.
 
@@ -281,9 +295,9 @@ As per YAWL, more sophisticated implementations of Task Planning may offer numer
 
 === Task Lifecycle
 
-Every Task in a Plan has a lifecycle described by a state machine. The states represent the state of a real world item of work, _as known by the Plan execution system_; setting them is entirely reliant on the system receiving input from performers. The successful execution path is through the states `planned` => `available` => `completed`, with other terminal states `cancelled` and `aborted` available for cases where a Task is cancelled and aborted respectively. Here, `cancelled` means 'not needed', i.e. the principal performer determined Task could be cancelled before or during execution, without compromising the Plan. Conversely, the `aborted` state indicates that the performer cannot do or complete the Task, or the rest of the Plan. Thus, `aborted` for a Task means abandonment of the current Task Plan.
+Every Task in a Plan has a lifecycle described by a state machine. The states represent the state of a real world item of work, _as known by the Plan execution system_; setting them is entirely reliant on the system receiving input from performers. The successful execution path is through the states `planned` => `available` => `completed`, with other terminal states `cancelled` and `abandoned` available for cases where a Task is cancelled and abandoned respectively. Here, `cancelled` means 'not needed', i.e. the principal performer determined Task could be cancelled before or during execution, without compromising the Plan. Conversely, the `abandoned` state indicates that the performer cannot do or complete the Task, or the rest of the Plan. Thus, `abandoned` for a Task means abandonment of the current Task Plan.
 
-From the viewpoint of Plan execution, the final state of a Task execution determines whether the Plan remaints in the `active` state, or whether it enters the `terminated` state. If the Task terminates with `completed` or `cancelled` state, it is considered to have _succeeded_, and the Plan remains `active`. If the Task is `aborted`, it is considered as _failed_, and the Plan terminates with a failure status.
+From the viewpoint of Plan execution, the final state of a Task execution determines whether the Plan remaints in the `active` state, or whether it enters the `terminated` state. If the Task terminates with `completed` or `cancelled` state, it is considered to have _succeeded_, and the Plan remains `active`. If the Task is `abandoned`, it is considered as _failed_, and the Plan terminates with a failure status.
 
 A special transition `_override_` is used to force a Task to into the `available` state; this represents a performer explicitly overriding preconditions or subject preconditions.
 
@@ -303,7 +317,7 @@ If the control flow and external preconditions are met, a Task will still not be
 
 Since the Task Plan cannot presume to have perfect knowledge of the real world situation, the performer is always allowed to override the external and subject pre-conditions, due to better knowledge. In such cases, the control flow requirement still holds - since this can already be 'overridden' by the performing cancelling preceding Tasks where appropriate.
 
-When a Task does become available for execution, nothing will happen until a performer is allocated to do it. When an available worker is allocated, the Task may be commenced, and further life-cycle states can be reached, i.e. `completed`, `aborted` etc.
+When a Task does become available for execution, nothing will happen until a performer is allocated to do it. When an available worker is allocated, the Task may be commenced, and further life-cycle states can be reached, i.e. `completed`, `abandoned` etc.
 
 The following diagram illustrates these concepts.
 
@@ -315,7 +329,7 @@ image::{diagrams_uri}/task_availability.svg[id=task_availability, align="center"
 
 One of the major challenges for any workflow system is that of being able to handle unplanned exceptions at runtime and adapt. The Task Planning model makes a key assumption that simplifies deviations at runtime, which is that the human (or other) performer always knows best. This means that Tasks posted to be done by the system are always advisory, and their details (such as time) are advisory. Accordingly, the model provides the following support for execution-time adaption:
 
-* _logical deletion_: Tasks can be skipped by two types of cancellation in the lifecycle: `cancelled` (not needed) and `aborted` (abandon current Task Plan); if `cancelled` is used, this has the benign effect of skipping past a Task;
+* _logical deletion_: Tasks can be skipped by two types of cancellation in the lifecycle: `cancelled` (not needed) and `abandoned` (abandon current Task Plan); if `cancelled` is used, this has the benign effect of skipping past a Task;
 * _logical addition_: work items that are not represented as Tasks in a Task Plan can always be done, such as making extra patient observations or performing unplanned patient actions (e.g. refit a catheter, change a dressing); in openEHR they will always be recorded in the normal manner via Observation and Action Entries;
 * _overrides_: various aspects of a Plan definition can be overridden at runtime, such as Task execution time and subject preconditions (such as BP < 160 mm[Hg]). Override is represented in the system as an alternative lifecycle transition that puts a Task into the `available` state even if not all conditions have been met for availability.
 

@@ -16,9 +16,12 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*test*: `BOOLEAN_CONTEXT_EXPRESSION`
+|*condition*: `EL_SCOPED_REF`
 a|Boolean-valued test expression which if True indicates that this Branch is to be followed during execution.
 
 h|*Invariants*
+2+a|_Inv_boolean_condition_: `condition.is_boolean()`
+
+h|
 2+a|_Inv_no_wait_condition_: `wait_spec = Void`
 |===

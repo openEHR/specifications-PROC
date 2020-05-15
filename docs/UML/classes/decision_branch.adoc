@@ -16,8 +16,8 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*value_constraint*: `BOOLEAN_CONTEXT_EXPRESSION`
-a|Constraint on result value of the owning Decision Group `_test_` expression, for this branch.
+|*value_constraint*: `C_PRIMITIVE_OBJECT`
+a|Constraint on result value of the owning Decision Group `_value_`, for this branch.
 
 h|*Invariants*
 2+a|_Inv_no_wait_condition_: `wait_spec = Void`

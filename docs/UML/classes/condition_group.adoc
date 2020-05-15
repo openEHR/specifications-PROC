@@ -17,6 +17,10 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
+h|*1..1*
+|*else_branch*: `ADHOC_BRANCH`
+a|Mandatory catch-all branch corresponding to a `True` condition.
+
 h|*0..1 +
 (redefined)*
 |*members*: `List<CONDITION_BRANCH>`
