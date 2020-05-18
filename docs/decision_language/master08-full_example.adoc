@@ -39,35 +39,66 @@ events
 proxy
     Pregnant_patient
     
-inherit
+extend
     Core_patient
     
 historical
     is_type1_diabetic:          Boolean
+        Result <- has_diagnosis (73211009|diabetes mellitus|, 
+            |<Current_episode.start|)
+        
     previous_obstetric_hypertension: Boolean
-    previous_preeclampsia:      Boolean
+        Result <- has_diagnosis (367390009|hypertension in obstetric context|, 
+            |< Current_episode.start|)
+        
+    previous_pre_eclampsia:     Boolean
+        Result <- has_diagnosis (398254007|pre-eclampsia|, 
+            |< Current_episode.start|)
+        
     previous_eclampsia:         Boolean
-
+        Result <- has_diagnosis (15938005|eclampsia|, 
+            |< Current_episode.start|)
+        
 episode -- current pregnancy
-    has_pregnancy_diabetes:     Boolean
+    has_gestational_diabetes:   Boolean
+        Result <- has_diagnosis (11687002|Gestational diabetes mellitus|, 
+            |>= Current_episode.start|)
+ 
     has_pregnancy_hypertension: Boolean 
-    has_anaemia:                Boolean
-    has_preeclampsia:           Boolean
+        Result <- has_diagnosis (367390009|hypertension in obstetric context|, 
+            |>= Current_episode.start|)
+
+    has_pre_eclampsia:          Boolean
+        Result <- has_diagnosis (398254007|pre-eclampsia|, 
+            |>= Current_episode.start|)
+
     has_eclampsia:              Boolean
-    anaemia_result:             Terminology_term
-    
+        Result <- has_diagnosis (15938005|eclampsia|, 
+            |>= Current_episode.start|)
+
+    anaemia_type:               Terminology_code
+        Result <- 
+            if not has_diagnosis (87522002|anaemia|, |>= Current_episode.start|)
+                |excluded|
+            else
+                diagnosis (87522002|anaemia|, |>= Current_episode.start|)
+
 state
     amniotic_fluid_state:       Terminology_term
-    uterine_fundal_height:      Quantity
-    vaginal_blood_flow:         Quantity
     
+    uterine_fundal_height:      Quantity
+    
+    vaginal_blood_flow:         Quantity
+        
 events
     haemorrhage:
         vaginal_blood_flow > 500 mL
         
     contractions_commenced:
+        <asserted>
         
     braxton_hicks_contraction:
+        <asserted>
     
 ----
 
@@ -91,45 +122,47 @@ rules
     amniotic_fluid_risk: Terminology_term
         Result <- 
             map P.hypertension_state
-                {[|premature rupture|], [|polyhydramnios|]} -> |obstetric emergency|9999
-                {[|oligohydramnios|]}                       -> |refer high risk care|1111
-                {*}                                         -> |normal|0000
+                {44223004|premature rupture|, 86203003|polyhydramnios|} -> |obstetric emergency|9999
+                {59566000|oligohydramnios|}                             -> |refer high risk care|1111
+                {*}                                                     -> |normal|0000
     
     hypertension_risk: Terminology_term
-        if P.has_preeclampsia or P.has_eclampsia
+        if P.has_pre_eclampsia or P.has_eclampsia
             Result <- |obstetric emergency|9999
-        elseif P.previous_obstetric_hypertension or P.previous_preeclampsia or 
+            
+        elseif P.previous_obstetric_hypertension or P.previous_pre_eclampsia or 
                 P.previous_eclampsia or P.has_pregnancy_hypertension
             Result <- |refer high risk antenatal care|1111
+            
         else
             Result <- |normal|0000
             
     diabetes_risk: Terminology_term
-        if P.has_pregnancy_diabetes
+        if P.has_gestational_diabetes
             Result <- |refer high risk antenatal care|1111
         else
             Result <- |normal|0000
             
     anaemia_risk: Terminology_term
         Result <- 
-            map P.anaemia_result
-                {[|severe anaemia of pregnancy|]} -> |obstetric emergency|9999
-                {[|anaemia of pregnancy|]}        -> |refer high risk care|1111
-                {*}                               -> |normal|0000
+            map P.anaemia_type
+                {[27342004|anaemia of pregnancy|], |severe|}    -> |obstetric emergency|9999
+                {[27342004|anaemia of pregnancy|]}              -> |refer high risk care|1111
+                {*}                                             -> |normal|0000
     
     
 ----
 
 == Breast Cancer Decision Protocol
 
-=== proxy module
+=== Proxy module
 
 ----
 proxy module
     Breast_cancer_patient
     
-inherit
-    Basic_patient
+extend
+    Core_patient
     
 state
     tnm_t: String {P60D}
@@ -172,7 +205,7 @@ derived
 === Decision Module
 
 ----
-decision module 
+decision support module 
     Oncology_breast_cancer
 
 proxy
