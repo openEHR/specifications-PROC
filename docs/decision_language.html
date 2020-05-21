@@ -820,9 +820,10 @@ rules
     amniotic_fluid_risk: Terminology_term
         Result &lt;-
             map P.hypertension_state
-                {44223004|premature rupture|, 86203003|polyhydramnios|} -&gt; |obstetric emergency|9999
-                {59566000|oligohydramnios|}                             -&gt; |refer high risk care|1111
-                {*}                                                     -&gt; |normal|0000
+                {44223004|premature rupture|,
+                 86203003|polyhydramnios|}      -&gt; |obstetric emergency|9999
+                {59566000|oligohydramnios|}     -&gt; |refer high risk care|1111
+                {*}                             -&gt; |normal|0000
 
     hypertension_risk: Terminology_term
         if P.has_pre_eclampsia or P.has_eclampsia
@@ -844,9 +845,10 @@ rules
     anaemia_risk: Terminology_term
         Result &lt;-
             map P.anaemia_type
-                {[27342004|anaemia of pregnancy|], |severe|}    -&gt; |obstetric emergency|9999
-                {[27342004|anaemia of pregnancy|]}              -&gt; |refer high risk care|1111
-                {*}                                             -&gt; |normal|0000</pre>
+                {27342004|anaemia of pregnancy|,
+                 |severe|}                          -&gt; |obstetric emergency|9999
+                {27342004|anaemia of pregnancy|}    -&gt; |refer high risk care|1111
+                {*}                                 -&gt; |normal|0000</pre>
 </div>
 </div>
 </div>
