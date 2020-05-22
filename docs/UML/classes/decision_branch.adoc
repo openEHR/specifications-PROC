@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*value_constraint*: `C_PRIMITIVE_OBJECT`
+|*value_constraint*: `BOOLEAN_CONTEXT_EXPRESSION`
 a|Constraint on result value of the owning Decision Group `_value_`, for this branch.
 
 h|*Invariants*

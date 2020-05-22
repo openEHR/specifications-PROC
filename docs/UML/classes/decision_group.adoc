@@ -18,12 +18,12 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*value*: `EL_SCOPED_REF`
+|*value*: `CONTEXT_EXPRESSION`
 a|Reference to an Expression Language terminal that may be a function call or property reference. The Result value is compared to `_value_constraint_` sub-ranges in each of the various output branches, in the manner of a case statement.
 
-h|*1..1*
+h|*0..1*
 |*else_branch*: `ADHOC_BRANCH`
-a|Mandatory catch-all branch to ensure exhaustive coverage of the test `_value_`.
+a|Optional catch-all branch to ensure exhaustive coverage of the test `_value_` if not already covered by existing branches in `_members_`.
 
 h|*0..1 +
 (redefined)*
