@@ -76,7 +76,7 @@ episode -- current pregnancy
         Result <- has_diagnosis (15938005|eclampsia|, 
             |>= Current_episode.start|)
 
-    anaemia_type:               Terminology_code
+    anaemia_type:               Terminology_term
         Result <- 
             if not has_diagnosis (87522002|anaemia|, |>= Current_episode.start|)
                 |excluded|

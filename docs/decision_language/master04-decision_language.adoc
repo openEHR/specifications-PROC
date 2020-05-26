@@ -16,23 +16,23 @@ decision_module
     Cardiology_basic
 
 data_source
-    Patient: HeartPatient
+    P: HeartPatient
 
 definitions
-    Afib_heart_rate: DvQuantity = 120 /min
-    High_heart_rate: DvQuantity = 100 /min
+    Afib_heart_rate: Quantity = 120 /min
+    High_heart_rate: Quantity = 100 /min
 
 conditions
     has_atrial_fibrillation:
-        Patient.heart_rhythm = |erratic|286761003 and 
-            Patient.heart_rate >= Afib_heart_rate
+        P.heart_rhythm = |erratic|286761003 and 
+            P.heart_rate >= Afib_heart_rate
 
     has_tachycardia:
-        Patient.heart_rate >= High_heart_rate and 
-              Patient.exertion = |at rest|263678003
+        P.heart_rate >= High_heart_rate and 
+              P.exertion = |at rest|263678003
 
 rules
-    heart_assessment: DvCodedText {
+    heart_assessment: Terminology_term
         if has_atrial_fibrillation
             Result <- |atrial fibrillation|49436004
 
@@ -41,7 +41,7 @@ rules
 
         else 
             Result <- |normal|76863003
-    }
+
 ----
 
 == Structure

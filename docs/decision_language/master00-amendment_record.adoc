@@ -7,7 +7,7 @@
 4+^h|*PROC Release 2.0.0 (unreleased)*
 
 |[[latest_issue]]0.5.0
-|{spec_tickets}/SPECPROC-X[SPECPROC-X^]. Add Decision Language specification.
+|{spec_tickets}/SPECPROC-41[SPECPROC-41^]. Add Decision Language specification.
 |T Beale
 |[[latest_issue_date]]13 Feb 2020
 

@@ -45,6 +45,7 @@
 <li><a href="#_conceptual_model">3.1. Conceptual Model</a></li>
 <li><a href="#_representation_scheme">3.2. Representation Scheme</a></li>
 <li><a href="#_prior_art">3.3. Prior Art</a></li>
+<li><a href="#_other_standards">3.4. Other Standards</a></li>
 </ul>
 </li>
 <li><a href="#_decision_support_language">4. Decision Support Language</a>
@@ -234,7 +235,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECPROC-X" target="_blank" rel="noopener">SPECPROC-X</a>. Add Decision Language specification.</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECPROC-41" target="_blank" rel="noopener">SPECPROC-41</a>. Add Decision Language specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Feb 2020</p></td>
@@ -401,19 +402,7 @@
 <div class="sect2">
 <h3 id="_conceptual_model"><a class="anchor" href="#_conceptual_model"></a>3.1. Conceptual Model</h3>
 <div class="paragraph">
-<p>The openEHR Decision Support Language (DSL) and Decision Support Object Model (DSOM) define a formalism for expressing decision logic used in healthcare and biomedical research. The essential characterisation of 'decision support logic' understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis) from input data, generally obtained from real world observation and measurement. We consider decision logic to consist of <em>definitions</em> and <em>functions</em>, the latter of which can be abstractly understood as <em>rules</em>, <em>conditions</em>, <em>decision tables</em> and potentially other varieties of function.</p>
-</div>
-<div class="paragraph">
-<p>For example, a rule can be written to infer from the input variables <code><em>heart_rate</em></code> and <code><em>heart_rhythm</em></code> whether a patient has atrial fibrillation, or other forms of arrhythmia. A decision table can be considered to be a convenient way of representing a 'rule-set', i.e. a set of related rules driven by a common set of input variables.</p>
-</div>
-<div class="paragraph">
-<p>Rules typically contain numerous <em>conditions</em> i.e. Boolean-returning expressions such as <code><em>heart_rate</em> &gt;= 120 /min and <em>heart_rhythm</em> = |irregular|</code> that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term, evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition <code><em>blood_glucose</em>[2h post 75g glucose challenge] &gt; 6.5 mmol/ml</code> is the diagnostic standard for diabetes in a patient.</p>
-</div>
-<div class="paragraph">
-<p>Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).</p>
-</div>
-<div class="paragraph">
-<p>The following diagram illustrates the artefacts covered by this specification within a larger computational context.</p>
+<p>The openEHR Decision Support Language (DSL) and Decision Support Object Model (DSOM) define a formalism for expressing decision logic used in healthcare and biomedical research. Decision logic usually sits within a larger environment of plans, workflows and also data sources such as the EHR. The following diagram illustrates the artefacts covered by this specification within the wider computational context.</p>
 </div>
 <div id="conceptual_framework_overview" class="imageblock text-center text-center">
 <div class="content">
@@ -422,35 +411,69 @@
 <div class="title">Figure 1. Conceptual framework</div>
 </div>
 <div class="paragraph">
-<p>In the above, the top part illustrates the category of process and plan definitions, of which the <em>care pathway</em> is a specific example in clinical medicine. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. In other environments, OMG BPMN/CMMN representation might be used.</p>
+<p>In the above, the top part illustrates process and plan definitions, of which the <em>care pathway</em> is a specific example in clinical medicine. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. In other environments, OMG BPMN/CMMN representation might be used.</p>
 </div>
 <div class="paragraph">
-<p>Below the process component, two components of the DL framework are shown:</p>
+<p>Below the process component, the two components of the DSL framework decribed in this specification are shown:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Decision Support Module (DSM)</strong>: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about (e.g. patient cardiac state etc);</p>
+<p><strong>Decision Support Module (DSM)</strong>: modules containing decision functions that generate inferences from input variables representing real world entities being reasoned about;</p>
 </li>
 <li>
-<p><strong>Subject Proxy Object (SPO)</strong>: a definition of state variables and events characterising a real-world entity (e.g. cardiology patient) in a convenient form for use in a DSM.</p>
+<p><strong>Subject Proxy Object (SPO)</strong>: a definition of state variables and events characterising a real-world entity in a convenient form for use in a DSM.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The last component (shown at bottom left) is the <em>Data Access Binding (DAB)</em>, which are bindings to data sources and repositories, such as patient health records and monitoring devices. Such data are extracted to become the logical data elements in a Data Proxy.</p>
+<p>The last component (shown at bottom left) is the <em>Data Access Binding (DAB)</em>, which is bindings to data sources and repositories, such as patient health records and monitoring devices. Such data are extracted to become the logical data elements in a Data Proxy.</p>
 </div>
 <div class="paragraph">
-<p>In this environment, the Process Definition component may be understood as a primary user of Data proxies and DSMs, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.</p>
+<p>In this environment, the Process Definition component may be understood as a primary user of DSMs and subject proxies, providing it respectively with access to real world state (e.g. patient vital signs) and the results of inferencing on such state variables. As a consequence (and unlike BPMN or CMMN), formal decision / condition expressions do not appear in process definitions expressed as Task Plans.</p>
+</div>
+<div class="paragraph">
+<p>The essential characterisation of <em>decision support logic</em> understood in this specification is a function-oriented logic that generates deductive inferences, such as clinical classification of patients (including diagnosis), from input variables representing known facts about the patient. These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnosis and records of previous procedures. This specification considers decision support logic to consist of <em>definitions</em>, as well as various logical elements, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>conditions</em>: Boolean-valued simple rules;</p>
+</li>
+<li>
+<p><em>rules</em>: rules generating non-Boolean values;</p>
+</li>
+<li>
+<p><em>rule-sets</em>: collections of rules that operate on a common set of input variables to generate a common set of output values.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Rule-sets may come in various forms, including the <em>decision table</em>, a common way of documenting a set of related rules using a 2-dimensional table.</p>
+</div>
+<div class="paragraph">
+<p>Rules typically contain <em>conditions</em> i.e. Boolean-returning expressions such as <code><em>heart_rate</em> &gt;= 120 /min and <em>heart_rhythm</em> = |irregular|</code> that are used as criteria for choosing decision paths within a function. In many domains, including healthcare, such conditions are often determined by long-term, evidence-based research, and may be well-known within a domain. For example, the innocuous-looking condition <code><em>blood_glucose</em>[2h post 75g glucose challenge] &gt; 6.5 mmol/ml</code> is the diagnostic standard for type I diabetes.</p>
+</div>
+<div class="paragraph">
+<p>Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).</p>
+</div>
+<div class="paragraph">
+<p>Decision support logic necessarily requires a way of defining and expressing its 'input variables'. This is not just a question of creating typed variables, but one of semantics. The 'variables' used in rules represent an <em>ontic</em> view of the subject, that a true description of its state in reality. For example, a rule for inferring atrial fibrillation and other forms of arrhythmia may refer to the input variables <code><em>heart_rate</em></code> and <code><em>heart_rhythm</em></code>. The meaning of these variables is that they represent the real heart rate and rhythm of the patient, rather than being just any heart rate, e.g. from a measurement 3 years ago. Similarly, a variable <code><em>is_type1_diabetic</em></code> represents a proposition about the patient in reality.</p>
+</div>
+<div class="paragraph">
+<p>A second requirement of variables that may be mentioned within rules is that they are close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional instantly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code>.</p>
+</div>
+<div class="paragraph">
+<p>In order to support the definition of such variables, a connection is of course needed to the technical representation of data found within EHRs, documents, lab messages, real-time devices and other sources. These latter constitute the <em>epistemic</em> knowledge base for extracting the ontic view. They also tend to be highly variable, due to different concrete standards, products and databases. The ability to write decision logic in a natural yet computable way thus requires support for various levels of representation above the purely technical data items and APIs found in healthcare information systems. The Subject Proxy component in the scheme illustrated above constitutes the top-most reification of underlying data in the form of domain-comprehensible ontic variables.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_representation_scheme"><a class="anchor" href="#_representation_scheme"></a>3.2. Representation Scheme</h3>
 <div class="paragraph">
-<p>The general approach to representation for Decision Logic Modules (DSMs) and Subject Proxy Objects (SPOs) is to support two forms. The first is an optional high-level language form called Decision Logic Language (DLL) suitable for domain specialist authors, which abstracts away detail typically required by a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DLL texts are assumed to be written by hand, with the aid of a syntax mode for typical editors, or a light-weight UI tool.</p>
+<p>The general approach to representation for Decision Logic Modules (DSMs) and Subject Proxy Objects (SPOs) is to support two forms. The first is using Decision Support Language, designed for use by domain experts DSL is a small formalism that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DSL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects. DSL abstracts away detail typically required by a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DSL texts are assumed to be written by hand, with the aid of a syntax mode for typical editors, or a light-weight UI tool.</p>
 </div>
 <div class="paragraph">
-<p>The second form is an expression in a standard programming language which is either generated from the first form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DSM.</p>
+<p>The second form is an expression in a standard programming language which is either generated from the DSL form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DSM.</p>
 </div>
 <div class="paragraph">
 <p>The two types of artefacts are shown below.</p>
@@ -465,13 +488,13 @@
 <div class="sect2">
 <h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>3.3. Prior Art</h3>
 <div class="paragraph">
-<p>The openEHR DSL formalism is a small formalism that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DSL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects.</p>
-</div>
-<div class="paragraph">
 <p>openEHR DSL may be compared to other languages developed in the health arena for expressing 'medical logic', including <a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">HL7 Arden Syntax</a>, Guideline Interchange Format (<a href="#GLIF">Ohno-Machado et al.&#44; 1998</a>), ProForma (<a href="#SuttonFox2003">Sutton &amp; Fox&#44; 2003</a>), as well as decision support languages such as <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" target="_blank" rel="noopener">HL7 Gello</a>. These languages were not directly used, for various reasons including:</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>they do not support any distinction of ontic versus epistemic variables;</p>
+</li>
 <li>
 <p>none have an easily extensible value referencing mechanism;</p>
 </li>
@@ -492,6 +515,9 @@
 <div class="paragraph">
 <p>Nevertheless, various elements of Arden provided useful inspiration for the formalism described here. The Data Access Binding described here may be understood as a solution to the so-called 'curly braces problem' of Arden (<a href="#Samwald_arden_2012">Samwald&#44; Fehre&#44; de Bruin&#44; &amp; Adlassnig&#44; 2012</a>), i.e. the need to be able to bind rule logic to real-world variables.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_other_standards"><a class="anchor" href="#_other_standards"></a>3.4. Other Standards</h3>
 <div class="paragraph">
 <p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are starting (as of 2020) to find use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses some of the same issues as openEHR DL/EL.</p>
 </div>
@@ -531,23 +557,23 @@
     Cardiology_basic
 
 data_source
-    Patient: HeartPatient
+    P: HeartPatient
 
 definitions
-    Afib_heart_rate: DvQuantity = 120 /min
-    High_heart_rate: DvQuantity = 100 /min
+    Afib_heart_rate: Quantity = 120 /min
+    High_heart_rate: Quantity = 100 /min
 
 conditions
     has_atrial_fibrillation:
-        Patient.heart_rhythm = |erratic|286761003 and
-            Patient.heart_rate &gt;= Afib_heart_rate
+        P.heart_rhythm = |erratic|286761003 and
+            P.heart_rate &gt;= Afib_heart_rate
 
     has_tachycardia:
-        Patient.heart_rate &gt;= High_heart_rate and
-              Patient.exertion = |at rest|263678003
+        P.heart_rate &gt;= High_heart_rate and
+              P.exertion = |at rest|263678003
 
 rules
-    heart_assessment: DvCodedText {
+    heart_assessment: Terminology_term
         if has_atrial_fibrillation
             Result &lt;- |atrial fibrillation|49436004
 
@@ -555,8 +581,7 @@ rules
             Result &lt;- |tachycardia|11092001
 
         else
-            Result &lt;- |normal|76863003
-    }</pre>
+            Result &lt;- |normal|76863003</pre>
 </div>
 </div>
 </div>
@@ -773,7 +798,7 @@ episode -- current pregnancy
         Result &lt;- has_diagnosis (15938005|eclampsia|,
             |&gt;= Current_episode.start|)
 
-    anaemia_type:               Terminology_code
+    anaemia_type:               Terminology_term
         Result &lt;-
             if not has_diagnosis (87522002|anaemia|, |&gt;= Current_episode.start|)
                 |excluded|

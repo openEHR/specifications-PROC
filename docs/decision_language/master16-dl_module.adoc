@@ -204,7 +204,7 @@ use_model
     org.openehr.rm
     
 data_context
-    in $cancer_diagnosis: Terminology_code
+    in $cancer_diagnosis: Terminology_term
     in $has_metastasis, $er_positive, $pr_positive, $her2_positive: Boolean
     in $ki67: Real
     in $tnm_t, $tnm_n, $tnm_g: String
@@ -217,7 +217,7 @@ preconditions
     $cancer_diagnosis = [ICD_10::C50|Breast cancer|]
     
 definition
-    tumor_molecular_subtype (is_er_positive, is_pr_positive, is_her2_positive: Boolean; ki67_level: Real): Terminology_code 
+    tumor_molecular_subtype (is_er_positive, is_pr_positive, is_her2_positive: Boolean; ki67_level: Real): Terminology_term 
     {
         if is_er_positive and not is_her2_positive and ki67_level < 0.20 then
             return [1111|luminal A|]
