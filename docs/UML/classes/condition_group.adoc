@@ -20,5 +20,5 @@ h|*Attributes*
 h|*0..1 +
 (redefined)*
 |*members*: `List<CONDITION_BRANCH>`
-a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+a|Set of branches in this condition group.
 |===

@@ -18,5 +18,5 @@ h|*Attributes*
 h|*0..1 +
 (redefined)*
 |*members*: `List<ADHOC_BRANCH>`
-a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+a|Branches of this choice group.
 |===
