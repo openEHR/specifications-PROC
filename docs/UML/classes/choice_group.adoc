@@ -26,7 +26,7 @@ a|Timeout handler to use if `CHOICE_GROUP` blocks unexpectedly, e.g. due to abse
 h|*0..1 +
 (redefined)*
 |*members*: `List<CHOICE_BRANCH>`
-a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+a|Set of branches in this choice.
 
 h|*Invariants*
 2+a|_Inv_parallel_: `execution_type = EXECUTION_TYPE.parallel`
