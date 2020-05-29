@@ -121,6 +121,8 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/task_planning.html#_dispatchable_task_class[DISPATCHABLE_TASK^]
 [.xcode]
+* link:/releases/PROC/{proc_release}/task_planning.html#_event_class[EVENT^]
+[.xcode]
 * link:/releases/PROC/{proc_release}/task_planning.html#_event_action_class[EVENT_ACTION^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/task_planning.html#_event_branch_class[EVENT_BRANCH^]

@@ -382,15 +382,16 @@
 <li><a href="#_callback_wait_class">6.9.6.5. CALLBACK_WAIT Class</a></li>
 <li><a href="#_event_action_class">6.9.6.6. EVENT_ACTION Class</a></li>
 <li><a href="#_resume_action_class">6.9.6.7. RESUME_ACTION Class</a></li>
-<li><a href="#_plan_event_class">6.9.6.8. PLAN_EVENT&lt;&gt; Class</a></li>
-<li><a href="#_timer_event_class">6.9.6.9. TIMER_EVENT Class</a></li>
-<li><a href="#_calendar_event_class">6.9.6.10. CALENDAR_EVENT Class</a></li>
-<li><a href="#_timeline_moment_class">6.9.6.11. TIMELINE_MOMENT Class</a></li>
-<li><a href="#_task_transition_class">6.9.6.12. TASK_TRANSITION Class</a></li>
-<li><a href="#_manual_notification_class">6.9.6.13. MANUAL_NOTIFICATION Class</a></li>
-<li><a href="#_system_notification_class">6.9.6.14. SYSTEM_NOTIFICATION Class</a></li>
-<li><a href="#_callback_notification_class">6.9.6.15. CALLBACK_NOTIFICATION Class</a></li>
+<li><a href="#_event_class">6.9.6.8. EVENT Class</a></li>
+<li><a href="#_plan_event_class">6.9.6.9. PLAN_EVENT&lt;&gt; Class</a></li>
+<li><a href="#_timer_event_class">6.9.6.10. TIMER_EVENT Class</a></li>
+<li><a href="#_calendar_event_class">6.9.6.11. CALENDAR_EVENT Class</a></li>
+<li><a href="#_timeline_moment_class">6.9.6.12. TIMELINE_MOMENT Class</a></li>
+<li><a href="#_task_transition_class">6.9.6.13. TASK_TRANSITION Class</a></li>
+<li><a href="#_manual_notification_class">6.9.6.14. MANUAL_NOTIFICATION Class</a></li>
+<li><a href="#_system_notification_class">6.9.6.15. SYSTEM_NOTIFICATION Class</a></li>
 <li><a href="#_state_trigger_class">6.9.6.16. STATE_TRIGGER Class</a></li>
+<li><a href="#_callback_notification_class">6.9.6.17. CALLBACK_NOTIFICATION Class</a></li>
 </ul>
 </li>
 </ul>
@@ -604,12 +605,14 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.6.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-42" target="_blank" rel="noopener">SPECPROC-42</a>. Add 'else' paths to Decision and Condition structures;<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-43" target="_blank" rel="noopener">SPECPROC-43</a>. Add inheritance to separate <code>CALLBACK_NOTIFICATION</code> from other Plan Event types;<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-42" target="_blank" rel="noopener">SPECPROC-42</a>. Add 'else' paths to Decision and Condition structures;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ M Kejžar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>22 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 May 2020</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.5.0</strong></p></th>
@@ -6916,7 +6919,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect3">
 <h4 id="_event_types"><a class="anchor" href="#_event_types"></a>6.9.2. Event Types</h4>
 <div class="paragraph">
-<p>The various Event types are shown below, with their TP-VML representations.</p>
+<p>The various Event types are described below, with their TP-VML representations.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -7001,6 +7004,9 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An event that is notified to the Plan execution engine by a system.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>Non-deterministic Events (system)</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>CALLBACK_NOTIFICATION</code></p></td>
@@ -7103,7 +7109,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect3">
 <h4 id="_task_wait_state"><a class="anchor" href="#_task_wait_state"></a>6.9.4. Task Wait State</h4>
 <div class="paragraph">
-<p>The principal way to wait for events is via the <code>TASK_WAIT</code> attachable to any <code>PLAN_ITEM</code> via the <code><em>wait_spec</em></code> attribute. The <code>TASK_WAIT</code> class represents a wait state that defines when a Task should enter the <code>available</code> state from the <code>planned</code> state in terms of Events of the types described above. Its <code><em>events</em></code> attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional <code><em>event_relation</em></code> attribute allows the Task to be specified as commencing <code>before</code>, <code>with</code> or <code>after</code> the trigger event (such as a meal).</p>
+<p>The principal way to wait for events is via the <code>TASK_WAIT</code> attachable to any <code>PLAN_ITEM</code> via the <code><em>wait_spec</em></code> attribute. The <code>TASK_WAIT</code> class represents a wait state that defines when a Task should enter the <code>available</code> state from the <code>planned</code> state in terms of descendant types of <code>PLAN_EVENT</code> (i.e. all Events described above other than <code>CALLBACK_NOTIFICATION</code>). Its <code><em>events</em></code> attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional <code><em>event_relation</em></code> attribute allows the Task to be specified as commencing <code>before</code>, <code>with</code> or <code>after</code> the trigger event (such as a meal).</p>
 </div>
 <div class="paragraph">
 <p>The following figure illustrates typical uses of <code>TASK_WAIT</code>.</p>
@@ -7410,7 +7416,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <div class="sect4">
 <h5 id="_callback_processing_for_non_blocking_tasks"><a class="anchor" href="#_callback_processing_for_non_blocking_tasks"></a>6.9.5.2. Callback Processing for Non-blocking Tasks</h5>
 <div class="paragraph">
-<p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>completed</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the enclosing Task Group</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code> is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
+<p>In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to <code>completed</code>. The next Task(s) become <code>available</code> in the normal way, and processing continues. At some later point in time, a callback notification may be received from the remote Task, or else a timeout. These will be processed similarly to the above, with the exception that the next state processing, <em>if explicit next states are set</em>, is  <em>with respect to the Task Group enclosing the current point of execution</em>, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn&#8217;t care what happens to the remote thread. However, if <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code> is set from the return status of the remote Task, the execution of the Task Group containing the source Task may be ended (<code>cancel</code>) or the whole Plan abandoned (<code>abandon</code>). Such a transition might even be set on <code>success</code>, which provides a way to model 'first one wins' logic.</p>
 </div>
 <div class="paragraph">
 <p>The following illustrates a non-blocking callback in TP-VML.</p>
@@ -7867,7 +7873,33 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.9.6.8. PLAN_EVENT&lt;&gt; Class</h5>
+<h5 id="_event_class"><a class="anchor" href="#_event_class"></a>6.9.6.8. EVENT Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>EVENT (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Entity representing an Event generated during system execution. Descendants define details of each kind of Event known in the system.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_plan_event_class"><a class="anchor" href="#_plan_event_class"></a>6.9.6.9. PLAN_EVENT&lt;&gt; Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7882,12 +7914,12 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Entity representing an Event generated during system execution. Descendants define details of each kind of Event known in the system.</p>
+<p>Any kind of Event defined as part of a Plan definition.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7910,7 +7942,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.9.6.9. TIMER_EVENT Class</h5>
+<h5 id="_timer_event_class"><a class="anchor" href="#_timer_event_class"></a>6.9.6.10. TIMER_EVENT Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -7955,7 +7987,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.9.6.10. CALENDAR_EVENT Class</h5>
+<h5 id="_calendar_event_class"><a class="anchor" href="#_calendar_event_class"></a>6.9.6.11. CALENDAR_EVENT Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -8000,7 +8032,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.9.6.11. TIMELINE_MOMENT Class</h5>
+<h5 id="_timeline_moment_class"><a class="anchor" href="#_timeline_moment_class"></a>6.9.6.12. TIMELINE_MOMENT Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -8067,7 +8099,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.9.6.12. TASK_TRANSITION Class</h5>
+<h5 id="_task_transition_class"><a class="anchor" href="#_task_transition_class"></a>6.9.6.13. TASK_TRANSITION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -8112,7 +8144,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.9.6.13. MANUAL_NOTIFICATION Class</h5>
+<h5 id="_manual_notification_class"><a class="anchor" href="#_manual_notification_class"></a>6.9.6.14. MANUAL_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -8150,7 +8182,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.9.6.14. SYSTEM_NOTIFICATION Class</h5>
+<h5 id="_system_notification_class"><a class="anchor" href="#_system_notification_class"></a>6.9.6.15. SYSTEM_NOTIFICATION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -8202,58 +8234,6 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </table>
 </div>
 <div class="sect4">
-<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.9.6.15. CALLBACK_NOTIFICATION Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_NOTIFICATION</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Event generated on receipt of notification of completion of the work of the target of a Dispatchable Task.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of originating Task.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of original request, may be matchable with <code>EXTERNAL_REQUEST.<em>request_id</em></code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Identifier of subject to which callback relates.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
 <h5 id="_state_trigger_class"><a class="anchor" href="#_state_trigger_class"></a>6.9.6.16. STATE_TRIGGER Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -8286,6 +8266,58 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Boolean-returning expression that mentions one or more tracked variables, e.g. <code>heart_rate &gt; 120 bpm</code>. Evaluation controlled by Plan variable context.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_callback_notification_class"><a class="anchor" href="#_callback_notification_class"></a>6.9.6.17. CALLBACK_NOTIFICATION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>CALLBACK_NOTIFICATION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>System-generated Event created on receipt of notification of completion of the work of the target of a Dispatchable Task.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of originating Task.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of original request, may be matchable with <code>EXTERNAL_REQUEST.<em>request_id</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of subject to which callback relates.</p>
 </div></div></td>
 </tr>
 </tbody>

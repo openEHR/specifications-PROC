@@ -6,10 +6,10 @@ h|*Class*
 2+^h|*CALLBACK_NOTIFICATION*
 
 h|*Description*
-2+a|Event generated on receipt of notification of completion of the work of the target of a Dispatchable Task.
+2+a|System-generated Event created on receipt of notification of completion of the work of the target of a Dispatchable Task.
 
 h|*Inherit*
-2+|`PLAN_EVENT`
+2+|`EVENT`
 
 h|*Attributes*
 ^h|*Signature*

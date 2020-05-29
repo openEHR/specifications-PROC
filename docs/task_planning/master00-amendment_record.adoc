@@ -7,12 +7,14 @@
 4+^h|*PROC Release 1.6.0 (unreleased)*
 
 |[[latest_issue]]1.6.0
-|{spec_tickets}/SPECPROC-42[SPECPROC-42^]. Add 'else' paths to Decision and Condition structures; +
+|{spec_tickets}/SPECPROC-43[SPECPROC-43^]. Add inheritance to separate `CALLBACK_NOTIFICATION` from other Plan Event types; +
+ {spec_tickets}/SPECPROC-42[SPECPROC-42^]. Add 'else' paths to Decision and Condition structures; +
  {spec_tickets}/SPECPROC-33[SPECPROC-33^]. Support progressive data set creation; +
  {spec_tickets}/SPECPROC-39[SPECPROC-39^]. Correct error in `TASK_LIFECYCLE` state enumeration: remove `resumed` state; also correct mentions of `aborted` state to `abandoned`.
-|M Kejžar, +
+|M Polajnar, +
+ M Kejžar, +
  T Beale
-|[[latest_issue_date]]22 May 2020
+|[[latest_issue_date]]29 May 2020
 
 4+^h|*PROC Release 1.5.0*
 

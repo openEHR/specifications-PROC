@@ -17,7 +17,7 @@ For non-deterministic events, a timeout handler is generally needed.
 
 === Event Types
 
-The various Event types are shown below, with their TP-VML representations.
+The various Event types are described below, with their TP-VML representations.
 
 [cols="1,<2,4", options="header"]
 |===
@@ -55,6 +55,8 @@ a|image::{diagrams_uri}/event_manual_notification.svg[id=event_manual_notificati
 |`SYSTEM_NOTIFICATION`
 a|image::{diagrams_uri}/event_system_notification.svg[id=event_system_notification]
 |An event that is notified to the Plan execution engine by a system.
+
+3+|*Non-deterministic Events (system)*
 
 |`CALLBACK_NOTIFICATION`
 a|image::{diagrams_uri}/event_callback.svg[id=event_callback]
@@ -112,7 +114,7 @@ A reminder can be specified using `REMINDER`, a specialisation of `EVENT_WAIT<PL
 
 === Task Wait State
 
-The principal way to wait for events is via the `TASK_WAIT` attachable to any `PLAN_ITEM` via the `_wait_spec_` attribute. The `TASK_WAIT` class represents a wait state that defines when a Task should enter the `available` state from the `planned` state in terms of Events of the types described above. Its `_events_` attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). 
+The principal way to wait for events is via the `TASK_WAIT` attachable to any `PLAN_ITEM` via the `_wait_spec_` attribute. The `TASK_WAIT` class represents a wait state that defines when a Task should enter the `available` state from the `planned` state in terms of descendant types of `PLAN_EVENT` (i.e. all Events described above other than `CALLBACK_NOTIFICATION`). Its `_events_` attribute enables multiple Events to be used as triggers, with an assumed logical OR relation among them. This enables the specification of triggers such as 'at 8pm on day 1, OR when oxygen saturation drops below 90% (whichever comes first)'. The optional `_event_relation_` attribute allows the Task to be specified as commencing `before`, `with` or `after` the trigger event (such as a meal). 
 
 The following figure illustrates typical uses of `TASK_WAIT`.
 
@@ -273,7 +275,7 @@ image::{diagrams_uri}/uc_task_callback_2.svg[id=timing_callback_pattern_2, align
 
 ==== Callback Processing for Non-blocking Tasks
 
-In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to `completed`. The next Task(s) become `available` in the normal way, and processing continues. At some later point in time, a status notification of timeout may be received from the remote Task. This will be processed similarly to the above, with the exception that the next state processing, _if explicit next states are set_, is  _with respect to the enclosing Task Group_, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment, or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn't care what happens to the remote thread. However, if `EVENT_ACTION._receiver_thread_next_state_` is set for an execution status of the remote Task, the execution of the Task Group containing the source Task may be ended (`cancel`) or the whole Plan abandoned (`abandon`). Such a transition might even be set on `success`, which provides a way to model 'first one wins' logic.
+In the case of a context fork, the source Task has performed its work as soon as the dispatch has occurred, and its state is set to `completed`. The next Task(s) become `available` in the normal way, and processing continues. At some later point in time, a callback notification may be received from the remote Task, or else a timeout. These will be processed similarly to the above, with the exception that the next state processing, _if explicit next states are set_, is  _with respect to the Task Group enclosing the current point of execution_, which may be the top-level Group of the Task Plan. This allows the possibility of the callback processing to cause the local execution pathway to stop with abandonment or cancellation. The default next-state processing is 'no change', i.e. the current execution path doesn't care what happens to the remote thread. However, if `EVENT_ACTION._receiver_thread_next_state_` is set from the return status of the remote Task, the execution of the Task Group containing the source Task may be ended (`cancel`) or the whole Plan abandoned (`abandon`). Such a transition might even be set on `success`, which provides a way to model 'first one wins' logic.
 
 The following illustrates a non-blocking callback in TP-VML.
 
@@ -304,6 +306,7 @@ include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
 
+include::{uml_export_dir}/classes/event.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/plan_event.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/timer_event.adoc[leveloffset=+1]
@@ -313,5 +316,6 @@ include::{uml_export_dir}/classes/timeline_moment.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/task_transition.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/manual_notification.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/system_notification.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/callback_notification.adoc[leveloffset=+1]
 include::{uml_export_dir}/classes/state_trigger.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/callback_notification.adoc[leveloffset=+1]

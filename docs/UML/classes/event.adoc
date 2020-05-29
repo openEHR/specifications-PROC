@@ -1,0 +1,14 @@
+=== EVENT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_EVENT (abstract)_*
+
+h|*Description*
+2+a|Entity representing an Event generated during system execution. Descendants define details of each kind of Event known in the system.
+
+h|*Inherit*
+2+|`LOCATABLE`
+
+|===
