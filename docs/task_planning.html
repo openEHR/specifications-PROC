@@ -149,7 +149,7 @@
 <li><a href="#_local_variablett_class">5.2.1.6. LOCAL_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_event_variablett_class">5.2.1.7. EVENT_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_continuous_event_variablett_class">5.2.1.8. CONTINUOUS_EVENT_VARIABLE&lt;TT&gt; Class</a></li>
-<li><a href="#_state_variable_class">5.2.1.9. STATE_VARIABLE Class</a></li>
+<li><a href="#_state_variablett_class">5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</a></li>
 <li><a href="#_context_expressiontt_class">5.2.1.10. CONTEXT_EXPRESSION&lt;TT&gt; Class</a></li>
 <li><a href="#_boolean_context_expression_class">5.2.1.11. BOOLEAN_CONTEXT_EXPRESSION Class</a></li>
 </ul>
@@ -2784,7 +2784,7 @@ The following UML diagram illustrates.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>5.2.1.9. STATE_VARIABLE Class</h5>
+<h5 id="_state_variablett_class"><a class="anchor" href="#_state_variablett_class"></a>5.2.1.9. STATE_VARIABLE&lt;TT&gt; Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -2794,15 +2794,17 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>MODULE_FEATURE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2811,8 +2813,10 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code>Iso8601_duration</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -6275,7 +6279,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>override_type</strong>: <code>OVERRIDE_TYPE</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Indicates kind of user override that would be accepted at runtime. If set to a value other than <code>prohibited</code>, user interaction is assumed, and runtime processing must enter a</p>
+<p>Indicates kind of user override that would be accepted at runtime. If set to a value other than <code>prohibited</code>, user interaction is assumed, and runtime processing must enter a wait state.</p>
 </div></div></td>
 </tr>
 <tr>
