@@ -17,7 +17,7 @@ h|*Attributes*
 
 h|*0..1*
 |*override_type*: `OVERRIDE_TYPE`
-a|Indicates kind of user override that would be accepted at runtime. If set to a value other than `prohibited`, user interaction is assumed, and runtime processing must enter a
+a|Indicates kind of user override that would be accepted at runtime. If set to a value other than `prohibited`, user interaction is assumed, and runtime processing must enter a wait state.
 
 h|*0..1*
 |*timeout*: `TIMER_WAIT`
@@ -26,7 +26,7 @@ a|Timeout handler to use if `CHOICE_GROUP` blocks unexpectedly, e.g. due to abse
 h|*0..1 +
 (redefined)*
 |*members*: `List<CHOICE_BRANCH>`
-a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
+a|Set of branches in this Choice Group.
 
 h|*Invariants*
 2+a|_Inv_parallel_: `execution_type = EXECUTION_TYPE.parallel`
