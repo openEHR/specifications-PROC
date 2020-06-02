@@ -7,28 +7,80 @@ proxy
     Core_patient
 
 definitions
-    Critical_high_bp:   Quantity = 180 mm[Hg]
-    Low_oxygen_sat:     Proportion = 92%
+    Critical_high_bp: Quantity = 180 mm[Hg]
+    
+    Low_oxygen_sat: Proportion = 92%
 
 admin
-    date_of_birth:  Date
-    sex:            Terminology_term
+    date_of_birth: Date
+    
+    sex: Terminology_term
 
 state
-    systolic_blood_pressure:    Quantity {currency = 1min}
-    diastolic_blood_pressure:   Quantity {currency = 1min}
-    heart_rate:                 Quantity {currency = 30s}
-    oxygen_sat:                 Proportion {currency = 30s}
-    blood_glucose:              Quantity
-
-events
-    critical_high_bp_event:
-        systolic_blood_pressure > Critical_high_bp
-
-    low_oxygen_sat_event:
-        oxygen_sat < Low_oxygen_sat
-    ...
+    weight: Quantity
+        currency
+            3d
+            
+    height: Quantity
+        currency
+            1y
     
+    systolic_blood_pressure: Quantity
+        currency
+            1min
+        range
+            critical_high:  >= Critical_high_bp
+
+    diastolic_blood_pressure: Quantity
+        currency
+            1min
+
+    heart_rate: Quantity
+        currency
+            30s
+            
+    oxygen_sat: Proportion
+        currency
+            30s
+        range
+            low:  < Low_oxygen_sat
+            
+    blood_glucose: Quantity
+        currency
+            2h
+            
+    // Eastern Cooperative Oncology Group score
+    ecog: Integer
+        currency
+            1w
+    
+derived
+    age: Duration
+        Result <- {Env}.current_date() - date_of_birth
+    
+----
+
+== Cancer patient
+
+----
+proxy module
+    Cancer_patient
+    
+extend
+    Core_patient
+    
+state
+    staging: Terminology_term «ann_arbor_staging» 
+        currency
+            30days
+
+    metastases: Terminology_term «pos_neg_vs» 
+        currency
+            30days
+
+derived
+    metastatic:
+        metastases = |positive|
 ----
 
 == Perinatal Care
@@ -84,15 +136,19 @@ episode -- current pregnancy
                 diagnosis (87522002|anaemia|, |>= Current_episode.start|)
 
 state
-    amniotic_fluid_state:       Terminology_term
+    amniotic_fluid_state: Terminology_term
     
-    uterine_fundal_height:      Quantity
+    uterine_fundal_height: Quantity
     
-    vaginal_blood_flow:         Quantity
-        
+    vaginal_blood_flow: Quantity
+        currency
+            30mins
+        range
+            critical_high: > 500 mL/hr
+
 events
     haemorrhage:
-        vaginal_blood_flow > 500 mL
+        vaginal_blood_flow<critical_high>
         
     contractions_commenced:
         <asserted>
@@ -159,12 +215,14 @@ rules
 
 === Proxy module
 
+Breast cancer specific Proxy.
+
 ----
 proxy module
     Breast_cancer_patient
     
 extend
-    Core_patient
+    Cancer_patient
     
 state
     tnm_t: String {P60D}
@@ -172,7 +230,6 @@ state
     tnm_m: String {P60D}
     tnm_g: String {P60D}
 
-    metastases:             Terminology_term «pos_neg_vs» {P60D}
     estrogen_receptor:      Terminology_term «pos_neg_vs» {P60D}
     progesterone_receptor:  Terminology_term «pos_neg_vs» {P60D}
     her2_expression:        Terminology_term «pos_neg_vs» {P60D}
@@ -181,9 +238,6 @@ state
     ejection_fraction:  Quantity {P30D}
     
 derived
-    metastatic:
-        metastases = |positive|
-
     er_negative:
         estrogen_receptor = |negative|
 
@@ -278,6 +332,5 @@ rules
                 Result <-
             else
                 Result <-
-            
-        
+
 ----

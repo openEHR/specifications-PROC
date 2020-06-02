@@ -1,0 +1,213 @@
+= Multi-drug Chemotherapy
+
+This section illustrates multi-drug chemotherapy with complex dosing and timing arrangements.
+
+This example is based on the version of RCHOPS-21 documented by http://nssg.oxford-haematology.org.uk/lymphoma/documents/lymphoma-chemo-protocols/L-80-r-chop-21.pdf[NHS Lymphoma Group].
+
+== Limitations
+
+The following elements of the plan are not yet included (mainly for brevity of the example):
+
+* Vincristine dose modification due to hepatic impairment;
+* Concurrent meds only shown in summarised form;
+* Exception pathways to handle patient reactions not shown.
+
+== Plan Definition
+
+The following shows the pre-medication phase.
+
+[.text-center]
+.RCHOPS21 pre-med phase
+image::{diagrams_uri}/RCHOPS21-pre.svg[id=rchops_pre, align="center"]
+
+The following shows the main regime, including conditional addition of Rituximab / methotrexate for high IPI patients.
+
+[.text-center]
+.RCHOPS21 pre-med phase
+image::{diagrams_uri}/RCHOPS21-admin.svg[id=rchops_admin, align="center"]
+
+== Proxy Module
+
+Parent proxy modules `Cancer_patient`, `Basic_patient` shown in Decision Support Language spec, {openehr_decision_language}#_examples[examples section^].
+
+----
+proxy
+    Lymphoma_patient
+    
+extend
+    Cancer_patient
+
+state
+    neutrophils:    Quantity
+        currency
+            3d
+        range
+            |normal|:      >1 x 10^9/L
+            |low|:         0.5 - 1 x 10^9/L
+            |very_low|:    <0.5 x 10^9/L
+
+    platelets:       Quantity
+        currency
+            12h
+        range
+            |normal|:      >75 x 10^9/L
+            |low|:         50 - 74 x 10^9/L
+            |very_low|:    <50 x 10^9/L
+    
+    bilirubin:       Quantity
+        currency
+            12h
+        range
+            |normal|:      <20 mmol/L
+            |high|:        20 - 51 mmol/L
+            |very_high|:   51 - 85 mmol/L
+            |crit_high|:   >85 mmol/L
+        
+    // Glomerular filtration rate
+    gfr:            Quantity
+        currency
+            24h
+        range
+            |normal|:      >20 mL/min
+            |low|:         10 - 20 mL/min
+            |very_low|:    <10 mL/min
+
+    // Lactate dehydrogenase (LDH)
+    ldh:            Quantity
+        currency
+            24h
+        range
+            |normal|:      >20 mL/min
+            |low|:         10 - 20 mL/min
+            |very_low|:    <10 mL/min
+
+derived
+    //
+    // Body serface area - Mosteller Formula
+    // BSA = sqrt (weight[kg] x height (m) / 36)
+    //
+    bsa_m2: Real
+        Result <- {Math}.sqrt (weight * height / 36)
+
+----
+
+== Decision Module
+
+----
+decision support module 
+    RCHOPS21
+
+proxy
+    P: Lymphoma_patient
+
+definitions
+    paracetamol_dose: Quantity = 1g
+
+    chlorphenamine_dose: Quantity = 10mg
+
+    prednisolone_dose_per_m2: Quantity = 40mg    
+            
+    rituximab_dose_per_m2: Quantity = 375mg
+    
+    doxorubicin_dose_per_m2: Quantity = 50mg
+    
+    vincristine_dose_per_m2: Quantity = 1.4mg
+
+    cyclophosphamide_dose_per_m2: Quantity = 750mg
+            
+    cycle_period: Duration = 3w
+    
+    cycle_repeats: Integer = 6
+    
+conditions
+    high_ipi:
+        Result <- ipi_risk in {|high risk|3, |intermediate-high risk|2}
+
+    //
+    // patient fit to undertake regime
+    //
+    patient_fit: 
+        Result <- not
+            (platelets.range = |very_low| or
+             neutrophils.range = |very_low|)
+        
+rules
+    prednisolone_dose: Quantity
+        Result <- prednisolone_dose_per_m2 * bsa_m2
+
+    rituximab_dose: Quantity
+        Result <- rituximab_dose_per_m2 * bsa_m2
+
+    doxorubicin_dose: Quantity
+        Result <- doxorubicin_dose_per_m2 * bsa_m2 *
+            map bilirubin.range
+                |high|:        0.5
+                |very_high|:   0.25
+                |crit_high|:   0.0
+
+    prednisolone_dose: Quantity
+        Result <- prednisolone_dose_per_m2 * bsa_m2
+
+    //
+    // TODO: hepatic impairment dose modification
+    //
+    vincristine_dose: Quantity
+        Result <- vincristine_dose_per_m2 * bsa_m2
+
+    //
+    // CHECK: is low platelets and GFR dose modification cumulative?
+    //
+    cyclophosphamide_dose: Quantity
+        Result <- cyclophosphamide_dose_per_m2 * bsa_m2
+            * map platelets.range
+                |normal|:      1
+                |low|:         0.75
+            * map gfr.range
+                |normal|:      1
+                |low|:         0.75
+                |very_low|:    0.5
+    
+    //
+    // International Prognostic Index
+    // ref: https://en.wikipedia.org/wiki/International_Prognostic_Index
+    //
+    // One point is assigned for each of the following risk factors:
+    //     Age greater than 60 years
+    //     Stage III or IV disease
+    //     Elevated serum LDH
+    //     ECOG/Zubrod performance status of 2, 3, or 4
+    //     More than 1 extranodal site
+    //
+    // The sum of the points allotted correlates with the following risk groups:
+    //     Low risk (0-1 points) - 5-year survival of 73%
+    //     Low-intermediate risk (2 points) - 5-year survival of 51%
+    //     High-intermediate risk (3 points) - 5-year survival of 43%
+    //     High risk (4-5 points) - 5-year survival of 26%
+    //
+    
+    ipi_raw_score: Integer
+        if P.age > 60
+            Result <- Result + 1
+
+        if P.staging in {|stage III|, |stage IV|}
+            Result <- Result + 1
+        
+        if P.ldh > LDH_normal
+            Result <- Result + 1
+
+        if P.ecog > 1
+            Result <- Result + 1
+            
+        if P.extranodal_sites > 1
+            Result <- Result + 1
+        
+    ipi_risk: Terminology_code
+        Result <- 
+            map ipi_raw_score
+                |0..1|  : |low risk: 5y survival - 73%|0
+                2       : |intermediate-low risk: 5y survival - 51%|1
+                3       : |intermediate-high risk: 5y survival - 43%|2
+                |4..5|  : |high risk: 5y survival - 26%|3
+    
+        
+----
