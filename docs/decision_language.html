@@ -741,40 +741,40 @@ admin
 state
     weight: Quantity
         currency
-            3d
+            3 days
 
     height: Quantity
         currency
-            1y
+            1 year
 
     systolic_blood_pressure: Quantity
         currency
-            1min
+            1 min
         range
             critical_high:  &gt;= Critical_high_bp
 
     diastolic_blood_pressure: Quantity
         currency
-            1min
+            1 min
 
     heart_rate: Quantity
         currency
-            30s
+            30 sec
 
     oxygen_sat: Proportion
         currency
-            30s
+            30 sec
         range
             low:  &lt; Low_oxygen_sat
 
     blood_glucose: Quantity
         currency
-            2h
+            2 hour
 
     // Eastern Cooperative Oncology Group score
     ecog: Integer
         currency
-            1w
+            1 week
 
 derived
     age: Duration
@@ -795,11 +795,11 @@ extend
 state
     staging: Terminology_term «ann_arbor_staging»
         currency
-            30days
+            30 days
 
     metastases: Terminology_term «pos_neg_vs»
         currency
-            30days
+            30 days
 
 derived
     metastatic:
@@ -820,7 +820,8 @@ extend
     Core_patient
 
 historical
-    is_type1_diabetic:          Boolean
+
+    is_type1_diabetic: Boolean
         Result &lt;- has_diagnosis (73211009|diabetes mellitus|,
             |&lt;Current_episode.start|)
 
@@ -828,16 +829,17 @@ historical
         Result &lt;- has_diagnosis (367390009|hypertension in obstetric context|,
             |&lt; Current_episode.start|)
 
-    previous_pre_eclampsia:     Boolean
+    previous_pre_eclampsia: Boolean
         Result &lt;- has_diagnosis (398254007|pre-eclampsia|,
             |&lt; Current_episode.start|)
 
-    previous_eclampsia:         Boolean
+    previous_eclampsia: Boolean
         Result &lt;- has_diagnosis (15938005|eclampsia|,
             |&lt; Current_episode.start|)
 
 episode -- current pregnancy
-    has_gestational_diabetes:   Boolean
+
+    has_gestational_diabetes: Boolean
         Result &lt;- has_diagnosis (11687002|Gestational diabetes mellitus|,
             |&gt;= Current_episode.start|)
 
@@ -845,15 +847,15 @@ episode -- current pregnancy
         Result &lt;- has_diagnosis (367390009|hypertension in obstetric context|,
             |&gt;= Current_episode.start|)
 
-    has_pre_eclampsia:          Boolean
+    has_pre_eclampsia: Boolean
         Result &lt;- has_diagnosis (398254007|pre-eclampsia|,
             |&gt;= Current_episode.start|)
 
-    has_eclampsia:              Boolean
+    has_eclampsia: Boolean
         Result &lt;- has_diagnosis (15938005|eclampsia|,
             |&gt;= Current_episode.start|)
 
-    anaemia_type:               Terminology_term
+    anaemia_type: Terminology_term
         Result &lt;-
             if not has_diagnosis (87522002|anaemia|, |&gt;= Current_episode.start|)
                 |excluded|
@@ -873,7 +875,7 @@ state
 
 events
     haemorrhage:
-        vaginal_blood_flow&lt;critical_high&gt;
+        vaginal_blood_flow &lt;critical_high&gt;
 
     contractions_commenced:
         &lt;asserted&gt;
@@ -953,17 +955,41 @@ extend
     Cancer_patient
 
 state
-    tnm_t: String {P60D}
-    tnm_n: String {P60D}
-    tnm_m: String {P60D}
-    tnm_g: String {P60D}
+    tnm_t: String
+        currency
+            60 days
 
-    estrogen_receptor:      Terminology_term «pos_neg_vs» {P60D}
-    progesterone_receptor:  Terminology_term «pos_neg_vs» {P60D}
-    her2_expression:        Terminology_term «pos_neg_vs» {P60D}
+    tnm_n: String
+        currency
+            60 days
 
-    ki67:               Quantity {P60D}
-    ejection_fraction:  Quantity {P30D}
+    tnm_m: String
+        currency
+            60 days
+
+    tnm_g: String
+        currency
+            60 days
+
+    estrogen_receptor: Terminology_term «pos_neg_vs»
+        currency
+            60 days
+
+    progesterone_receptor:  Terminology_term «pos_neg_vs»
+        currency
+            60 days
+
+    her2_expression: Terminology_term «pos_neg_vs»
+        currency
+            60 days
+
+    ki67: Quantity
+        currency
+            60 days
+
+    ejection_fraction: Quantity
+        currency
+            60 days
 
 derived
     er_negative:
