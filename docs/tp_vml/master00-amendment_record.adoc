@@ -4,7 +4,12 @@
 |===
 |Issue|Details|Raiser|Completed
 
-4+^h|*PROC Release 1.5.0*
+4+^h|*PROC Release 1.6.0 (unreleased)*
+
+|[[latest_issue]]0.6.1
+|Add concurrent end blocks and T/F Gates.
+|T Beale
+|[[latest_issue_date]]03 Jun 2020
 
 4+^h|*PROC Release 1.0.0*
 
