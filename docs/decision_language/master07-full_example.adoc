@@ -43,7 +43,7 @@ state
         currency
             30 sec
         range
-            low:  < Low_oxygen_sat
+            |low| = |< Low_oxygen_sat|
             
     blood_glucose: Quantity
         currency
@@ -94,7 +94,7 @@ proxy
 extend
     Core_patient
     
-historical
+state :historical
 
     is_type1_diabetic: Boolean
         Result <- has_diagnosis (73211009|diabetes mellitus|, 
@@ -112,7 +112,7 @@ historical
         Result <- has_diagnosis (15938005|eclampsia|, 
             |< Current_episode.start|)
         
-episode -- current pregnancy
+state :this_episode -- current pregnancy
 
     has_gestational_diabetes: Boolean
         Result <- has_diagnosis (11687002|Gestational diabetes mellitus|, 
@@ -137,7 +137,7 @@ episode -- current pregnancy
             else
                 diagnosis (87522002|anaemia|, |>= Current_episode.start|)
 
-state
+state :live
     amniotic_fluid_state: Terminology_term
     
     uterine_fundal_height: Quantity
