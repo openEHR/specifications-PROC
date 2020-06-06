@@ -1,0 +1,108 @@
+= Overview
+
+== Conceptual Model
+
+The Subject Proxy Object (SPO) is an interface to patient state, events and history that is conceptually ontological rather than epistemological. This means its attributes represent _ontic_ entities (i.e. real world entities such as patient P's blood pressure), such as real patient heart rate or diabetic status, rather than particular epistemic entities such as instances of data recorded in an institutional EMR, e.g. the medications list as known by the hospital in which the patient is receiving care.
+
+The logical SPO component is identified as the centre left box (blue) in the following diagram.
+
+[.text-center]
+.Conceptual framework
+image::{common_diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
+
+The Subject Proxy performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific Plans and Decision Support. These jobs are described below.
+
+== Semantic Reframing: from the General and Epistemic to the Ontic and Inquiry-specific
+
+The relationship between guidelines and data exhibits a number of semantic characteristics that lead to the concept of the Subject Proxy as an independent interfacing component. 
+
+In order to define a care pathway or guideline (possibly adapted into a patient-specific care plan), various state variables and events need to be referred to. Since guidelines are specific to purpose, the number of variables is typically low, and for many simpler guidelines, only 3 or 4. Many guidelines need access to common variables such as 'sex', 'age', basic clinical classifiers such as 'is diabetic', 'is pregnant' and then a relatively small number of condition-specific variables representing patient state (e.g. 'neutrophils', 'ldl') and diagnoses (e.g. 'eclampsia', 'gestational hypertension'). A guideline of medium complexity, such as for RCHOPS (non-Hodgkins lymphoma) chemotherapy needs around 20 variables, and a complex guideline such as for sepsis might need 50 - 100.
+
+These small numbers are in contrast to the total number of distinct types of data point that will be routinely recorded for a subject over long periods and relating to all conditions, which is in the O(1k) range, or the number of such data points recorded for a population, e.g. all inpatients + outpatients of a large hospital, which is O(10k), and corresponds to the variety of data that a general EMR product would need to cope with. The 'data sets' for specific guidelines are thus small and well-defined in comparison to the data generally captured within a patient record over time, and thus candidates for encapsulation.
+
+Data set size is not the only distinguishing characteristic of a computable guideline. Where variables such as 'systolic blood pressure', 'is diabetic' and so on are mentioned in guidelines, they are intended to refer to the real patient state or history, i.e. they are references to values representing _ontic_ entities, independent of how they might be obtained or stored. This is in contrast with the view of data where it is captured in health records or documents, which is an _epistemic_ one, i.e. the result of a knowledge capture activity. Consequently, a query into a departmental hospital system asking if patient 150009 is diabetic, indicates that the patient is diabetic in the case of a positive answer, but otherwise probably doesn't indicate anything, since the full list of patient 150009's problems is often not found in departmental systems.
+
+A query into any particular epistemic resource, i.e. a particular database, health record system or document only indicates what is known about the subject by that resource. A true picture of the patient state can be approximated by access to all available data stores (e.g. hospital and GP EMR systems), assuming some are of reasonable quality, and is further improved by access to real-time device data (e.g. monitors connected to the patient while in hospital, but also at home). The best approximation of the ontic situation of the patient will be from the sum of all such sources plus 'carers in the room' who can report events as they unfold (patient going into cardiac arrest), and the patient herself, who might be the only reliable origin of certain facts.
+
+This epistemic _coverage problem_ indicates a need which may be addressed with the Subject Proxy, which is to act as a data 'concentrator', obtaining relevant data from all epistemic sources including live actors to obtain an usable approximation of true patient state. This is a practical thing to do at the guideline / plan level by virtue of the small sizes of the variable sets. The data concentrator function is described in more detail below.
+
+Comprehensive coverage of all possible sources is not the only problem to solve in order to define variables for use in guidelines and plans. In formal terms, symbolic references appearing at different levels in the environment have different semantics. Within the EHR system S1 for example, a generic API call `has_diagnosis(pat_id, x)` has the meaning: 'indicates whether patient P is known to have diagnosis x, according to S1'. However, within a guideline related to pregnancy, a variable `is_diabetic` defined in a Subject Proxy is more convenient, and is intended to represent the true diabetic state (or not) of the patient. The SPO thus not only has the effect of data concentration in order to extract a true ontic picture of the subject, but it reifies technical data access calls into ontic variables, specific to the guideline. In some cases, such variables might have pre-coordinated names such as `previous_history_of_eclampsia, combining a temporal region with a substantive state.
+
+== Data Concentration and Missing Data
+
+A Subject Proxy acts as a _data concentrator_, providing a single interface to all available sources of information about the subject. In a typical in-patient or live-encounter (e.g. GP visit) situation, these include:
+
+* the EMR system providing the institutional patient record;
+* any shared (e.g. regional or national) EHR system providing e.g. summary and/or emergency data;
+* devices attached to the patient, e.g. vital signs, pulse oximeter etc.
+
+In many cases, a variable required by a guideline, e.g. sufficiently recent patient weight, is not available from the EMR/EHR or from any other source. This is a common problem in all decision support environments, and the usual solution is that an application window is displayed to ask the clinician for the data directly. This may be entered (e.g. after weighing the patient or asking the patient for his last weight), saved into the EMR, and the original request retried. Traditionally, this data request 'loop' has been engineered into either the main EMR application or into the decision support component. It is however a general problem and can be conveniently solved in a generic way using the Subject Proxy.
+
+Further, there are some subject state variables and particularly events that are only available 'live' from clinicians working with the patient, e.g. state of consciousness, occurrence of a post-heart surgery heart attack (requiring emergency cardiac shock and/or re-sternotomy), haemorrhage during childbirth etc. Such events can only be realistically asserted 'in the room' by a clinician, potentially via a voice interface.
+
+Consequently, we can say that the following constitute two more routine data sources for a Subject Proxy:
+
+* just-in-time UI capture of missing data;
+* _live-reported_ events 'in the room'.
+
+The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, such 'live' data obtained by sich methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.
+
+== Type System Conversion and Simplification
+
+A natural consequence of obtaining data from multiple sources is that the data will be instances different concrete concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-oriented and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital sign data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).
+
+The consequence of this is that the type system required at the Subject Proxy level may be significantly simplified compared to the type systems and structures in which data are originally captured. The use of an SPO as the interface for decision support and plan applications to back-end systems greatly simplifies the artifacts needed in the latter components.
+
+== The Temporal Dimension: Currency and Era
+
+Another common problem traditionally handled by individual applications, including decision-support, is the _currency_ of data, i.e. its 'recency'. Some variables such as body height (`body_height`) are sufficiently current even when measured years earlier, while others such as oxygen saturation (`SpO2`) and heart rate (`heart_rate`) need to be less than a minute old to be useful. To obtain valid values, applications often implement a scheme based on polling, automated server-side 'push' query execution, publish-subscribe or other mechanisms to obtain current data. None of this funcionality can really be avoided, but the Subject Proxy provides a single place to locate it, such that client applications simply access the SPO variables they need, and the SPO takes care of the update problem.
+
+The following shows how currency could be specified in an SPO.
+
+----
+state
+    // Glomerular filtration rate
+    gfr: Quantity
+        currency
+            24h
+----
+
+A related issue for decision support is that some needed variables relate to earlier periods in time, such as the 'previous episode', or more generally, any point within the 'historical' period prior to the current episode. For example, an obstetrician would naturally refer to 'pre-existing hypertension' as distinct from 'gestational hypertension', which could be both in the current episode (i.e. current pregnancy) or a prior one. A risk algorithm for eclampsia would normally need to refer to both historical gestational hypertension, historical eclampsia (and pre-eclampsia), as well as these diagnosis within the current pregnancy. The various time periods corresponding to episodes and patient history can be thought of as 'eras', in a similar way to the eras used in geology and paleontology. 
+
+If the Subject Proxy can provide a formal meaning for 'previous history of eclampsia', as distinct from (current) eclampsia, the formulation of DS rules mentioning such entities is easier. The following example shows how such definitions might appear in an SPO.
+
+----
+state :historical
+
+    is_type1_diabetic: Boolean
+        
+    previous_obstetric_hypertension: Boolean
+        
+state :this_episode -- current pregnancy
+
+    has_gestational_diabetes: Boolean
+---- 
+
+== References Ranges and Event Generation
+
+Many variables including vital signs and lab analytes have various associated reference ranges. These ranges can be stated within a Subject Proxy variable definition to achieve two useful goals:
+
+* providing formally named ranges for use within rules;
+* enabling event notifications to be generated when the live value crosses a threshold (e.g. enters 'critical low').
+
+The following provides an example definition including reference ranges.
+
+----
+state
+    // Glomerular filtration rate
+    gfr: Quantity
+        currency
+            24h
+        range
+            |normal|:      >20 mL/min
+            |low|:         10 - 20 mL/min
+            |very_low|:    <10 mL/min
+----
+
+Given the above definition, it is relatively easy to engineer the capability for an SPO to generate notifications for when the `gfr` value crosses the `|low|` and `|very_low|` threshold limits. This means that the SPO acts not only as a source of reified subject variables but also as a real-time generator of event notifications relating to their trajectories as well.
+
