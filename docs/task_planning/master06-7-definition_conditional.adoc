@@ -22,7 +22,7 @@ The three fully defined decision patterns are described below.
 
 === Condition Group (if/elseif/else chain)
 
-The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes `CONDITION_GROUP` and `CONDITION_BRANCH` provide this structure, which is  equivalent to an if/then/else structure in a programming language. At execution time, the branches are evaluated in order, in the manner of an if/then/else structure. A final 'else' branch, represented by the `CONDITION_GROUP._else_branch_` attribute must always be present to ensure a catch-all processing path is available.
+The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes `CONDITION_GROUP` and `CONDITION_BRANCH` provide this structure, which is  equivalent to an if/then/else structure in a programming language. A final 'else' branch may be defined using a `CONDITION_BRANCH` with an expression representing the `True` value. At execution time, the branches are evaluated in order, in the manner of an if/then/else structure.
 
 The following diagram shows a typical condition structure.
 
@@ -32,7 +32,7 @@ image::{diagrams_uri}/condition_structure.svg[id=condition_structure, align="cen
 
 === Decision Group (case)
 
-The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. As with the Condition Group, the branches are processed in the order stated in the definition, which allows overlapping value constraints on successive branches. An optional 'else' branch, represented as `DECISION_GROUP._else_branch_` of type `ADHOC_BRANCH` may be supplied to ensure exhaustive coverage of the value space, if it is not already covered by the defined `DECISION_GROUP._members_`.
+The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression's value range (`_value_constraint_` attribute). The classes `DECISION_GROUP` and `DECISION_BRANCH` provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. As with the Condition Group, the branches are processed in the order stated in the definition, which allows overlapping value constraints on successive branches. A catch-all 'else' branch may be represented as a `DECISION_BRANCH` with an open `_value_constraint_` (i.e. matching all values).
 
 The following diagram shows a typical decision structure.
 

@@ -8,7 +8,7 @@ h|*Class*
 h|*Description*
 2+a|Special kind of Task Group whose members are all `DECISION_BRANCH` instances, each of which represents a distinct value sub-range, and which represent together the total possible range of values of the test expression.
 
-This structure is the equivalent of a programming switch statement. It is processed in order, and for situations that need it, the last branch may represent an 'any value', corresponding to a final 'else' at the end of the switch.
+This structure is the equivalent of a programming 'case' statement. It is processed in order, and for situations that need it, the last branch may use a `_value_constraint_` representing 'any value', to represent a catch-all 'else' branch.
 
 h|*Inherit*
 2+|`CHOICE_GROUP`
@@ -20,10 +20,6 @@ h|*Attributes*
 h|*1..1*
 |*value*: `CONTEXT_EXPRESSION`
 a|Reference to an Expression Language terminal that may be a function call or property reference. The Result value is compared to `_value_constraint_` sub-ranges in each of the various output branches, in the manner of a case statement.
-
-h|*0..1*
-|*else_branch*: `ADHOC_BRANCH`
-a|Optional catch-all branch to ensure exhaustive coverage of the test `_value_` if not already covered by existing branches in `_members_`.
 
 h|*0..1 +
 (redefined)*

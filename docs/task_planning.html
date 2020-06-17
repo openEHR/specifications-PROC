@@ -606,7 +606,6 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.6.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-43" target="_blank" rel="noopener">SPECPROC-43</a>. Add inheritance to separate <code>CALLBACK_NOTIFICATION</code> from other Plan Event types;<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-42" target="_blank" rel="noopener">SPECPROC-42</a>. Add 'else' paths to Decision and Condition structures;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
@@ -923,13 +922,13 @@
 <p>Eugeny Leonov, Solit Clouds, Moscow, Russia</p>
 </li>
 <li>
+<p>Vladimir V Makarov, Department of Information Technologies, City of Moscow</p>
+</li>
+<li>
 <p>Ian McNicoll MD, FreshEHR, UK</p>
 </li>
 <li>
 <p>Bjørn Næss, DIPS, Norway</p>
-</li>
-<li>
-<p>Vladimir V Makarov, Department of Information Technologies, City of Moscow</p>
 </li>
 <li>
 <p>Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay</p>
@@ -6209,7 +6208,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="sect3">
 <h4 id="_condition_group_ifelseifelse_chain"><a class="anchor" href="#_condition_group_ifelseifelse_chain"></a>6.7.2. Condition Group (if/elseif/else chain)</h4>
 <div class="paragraph">
-<p>The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes <code>CONDITION_GROUP</code> and <code>CONDITION_BRANCH</code> provide this structure, which is  equivalent to an if/then/else structure in a programming language. At execution time, the branches are evaluated in order, in the manner of an if/then/else structure. A final 'else' branch, represented by the <code>CONDITION_GROUP.<em>else_branch</em></code> attribute must always be present to ensure a catch-all processing path is available.</p>
+<p>The first is a structure in which a set of Task Groups are treated as separate branches from a common point in the Plan. Each branch is entered conditionally according to the Boolean expression included on the branch. The classes <code>CONDITION_GROUP</code> and <code>CONDITION_BRANCH</code> provide this structure, which is  equivalent to an if/then/else structure in a programming language. A final 'else' branch may be defined using a <code>CONDITION_BRANCH</code> with an expression representing the <code>True</code> value. At execution time, the branches are evaluated in order, in the manner of an if/then/else structure.</p>
 </div>
 <div class="paragraph">
 <p>The following diagram shows a typical condition structure.</p>
@@ -6224,7 +6223,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="sect3">
 <h4 id="_decision_group_case"><a class="anchor" href="#_decision_group_case"></a>6.7.3. Decision Group (case)</h4>
 <div class="paragraph">
-<p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. As with the Condition Group, the branches are processed in the order stated in the definition, which allows overlapping value constraints on successive branches. An optional 'else' branch, represented as <code>DECISION_GROUP.<em>else_branch</em></code> of type <code>ADHOC_BRANCH</code> may be supplied to ensure exhaustive coverage of the value space, if it is not already covered by the defined <code>DECISION_GROUP.<em>members</em></code>.</p>
+<p>The second pattern corresponds to a decision point in a workflow at which some expression is evaluated, and each outgoing branch corresponds to a sub-set of the expression&#8217;s value range (<code><em>value_constraint</em></code> attribute). The classes <code>DECISION_GROUP</code> and <code>DECISION_BRANCH</code> provide this structure, which is  equivalent to a switch statement in a programming language. The branch sub-ranges should ideally be individually mutually exclusive, and collectively they should cover the entire value range of the expression. As with the Condition Group, the branches are processed in the order stated in the definition, which allows overlapping value constraints on successive branches. A catch-all 'else' branch may be represented as a <code>DECISION_BRANCH</code> with an open <code><em>value_constraint</em></code> (i.e. matching all values).</p>
 </div>
 <div class="paragraph">
 <p>The following diagram shows a typical decision structure.</p>
@@ -6405,7 +6404,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Special kind of Task Group whose members are all <code>CONDITION_BRANCH</code> instances, each of which represents a conditional expression based on context variables. Member branches are evaluated in order, which enables overlapping conditions as well as a final 'match-any' branch with a test expression of <code>True</code> to be used if needed.</p>
+<p>Special kind of Task Group whose members are all <code>CONDITION_BRANCH</code> instances, each of which represents a conditional expression based on context variables. Member branches are evaluated in order, which enables overlapping conditions. The final branch may be used as a logical else (i.e. 'match-any') branch with a <code><em>condition</em></code> of <code>True</code>.</p>
 </div>
 <div class="paragraph">
 <p>This structure is the equivalent of a programming if/then/else statement.</p>
@@ -6419,13 +6418,6 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_branch</strong>: <code>ADHOC_BRANCH</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Mandatory catch-all branch corresponding to a <code>True</code> condition.</p>
-</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
@@ -6501,7 +6493,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p>Special kind of Task Group whose members are all <code>DECISION_BRANCH</code> instances, each of which represents a distinct value sub-range, and which represent together the total possible range of values of the test expression.</p>
 </div>
 <div class="paragraph">
-<p>This structure is the equivalent of a programming switch statement. It is processed in order, and for situations that need it, the last branch may represent an 'any value', corresponding to a final 'else' at the end of the switch.</p>
+<p>This structure is the equivalent of a programming 'case' statement. It is processed in order, and for situations that need it, the last branch may use a <code><em>value_constraint</em></code> representing 'any value', to represent a catch-all 'else' branch.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6518,13 +6510,6 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>CONTEXT_EXPRESSION</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to an Expression Language terminal that may be a function call or property reference. The Result value is compared to <code><em>value_constraint</em></code> sub-ranges in each of the various output branches, in the manner of a case statement.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_branch</strong>: <code>ADHOC_BRANCH</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional catch-all branch to ensure exhaustive coverage of the test <code><em>value</em></code> if not already covered by existing branches in <code><em>members</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -9842,7 +9827,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-22 17:15:49 +0100
+Last updated 2020-06-02 13:44:01 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">

@@ -45,9 +45,9 @@ This specification benefited from formal and informal input from the openEHR and
 * Matija Kejžar, Software Engineer, Better, Slovenia
 * Bostjan Lah, Senior Architect, Marand, Slovenia
 * Eugeny Leonov, Solit Clouds, Moscow, Russia
+* Vladimir V Makarov, Department of Information Technologies, City of Moscow
 * Ian McNicoll MD, FreshEHR, UK
 * Bjørn Næss, DIPS, Norway
-* Vladimir V Makarov, Department of Information Technologies, City of Moscow
 * Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay
 * Pekka Pesola, Engineer, Tieto, Finland
 * Matija Polajnar, PhD, Software Engineer, Better, Slovenia

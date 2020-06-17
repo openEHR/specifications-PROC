@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*CONDITION_GROUP*
 
 h|*Description*
-2+a|Special kind of Task Group whose members are all `CONDITION_BRANCH` instances, each of which represents a conditional expression based on context variables. Member branches are evaluated in order, which enables overlapping conditions as well as a final 'match-any' branch with a test expression of `True` to be used if needed.
+2+a|Special kind of Task Group whose members are all `CONDITION_BRANCH` instances, each of which represents a conditional expression based on context variables. Member branches are evaluated in order, which enables overlapping conditions. The final branch may be used as a logical else (i.e. 'match-any') branch with a `_condition_` of `True`.
 
 This structure is the equivalent of a programming if/then/else statement.
 
@@ -16,10 +16,6 @@ h|*Inherit*
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
-
-h|*1..1*
-|*else_branch*: `ADHOC_BRANCH`
-a|Mandatory catch-all branch corresponding to a `True` condition.
 
 h|*0..1 +
 (redefined)*
