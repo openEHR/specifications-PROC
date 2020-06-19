@@ -66,10 +66,7 @@ The state machine is shown below.
 .Task lifecycle state machine
 image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
 
-The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathways through the states `underway` and `suspended` are provided to represent in-execution states, which are needed for two cases:
-
-* longer-running atomic Tasks;
-* dispatchable Tasks that are blocked waiting on another performer.
+The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathway through the state `underway` allows longer-running Tasks to be represented as being worked on. The `suspended` state is used to represent long-running Tasks that have been put on hold, i.e. are not currently being actively worked on, but are still considered to be underway.
 
 NOTE: Task lifecycle only accounts for the states of a Task itself; states of an order (e.g. prescription, lab request) with which the Task may be associated will be visible in the documentation for those objects, e.g. openEHR `ACTION` or other Entry objects.
 

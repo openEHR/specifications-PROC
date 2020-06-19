@@ -607,7 +607,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.6.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-43" target="_blank" rel="noopener">SPECPROC-43</a>. Add inheritance to separate <code>CALLBACK_NOTIFICATION</code> from other Plan Event types;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation;<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>.</p></td>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>; add enumeration Integer values; improve text.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
  M Kejžar,<br>
  T Beale</p></td>
@@ -3827,17 +3827,7 @@ The following UML diagram illustrates.</p>
 <div class="title">Figure 17. Task lifecycle state machine</div>
 </div>
 <div class="paragraph">
-<p>The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is <code>available</code> &#8658; <code>completed</code> or <code>abandoned</code> or <code>cancelled</code>, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathways through the states <code>underway</code> and <code>suspended</code> are provided to represent in-execution states, which are needed for two cases:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>longer-running atomic Tasks;</p>
-</li>
-<li>
-<p>dispatchable Tasks that are blocked waiting on another performer.</p>
-</li>
-</ul>
+<p>The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is <code>available</code> &#8658; <code>completed</code> or <code>abandoned</code> or <code>cancelled</code>, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathway through the state <code>underway</code> allows longer-running Tasks to be represented as being worked on. The <code>suspended</code> state is used to represent long-running Tasks that have been put on hold, i.e. are not currently being actively worked on, but are still considered to be underway.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3870,7 +3860,10 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Enumeration representing possible lifecycle states for a Task lifecycle transition, for example, "not needed".</p>
+<p>Enumeration representing possible lifecycle states for a Task lifecycle transition.</p>
+</div>
+<div class="paragraph">
+<p>Integer-based values.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3883,6 +3876,9 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <td class="tableblock halign-left valign-top"><p class="tableblock">planned</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Task is defined, but not yet available for execution.</p>
+</div>
+<div class="paragraph">
+<p>Value = 0.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3890,43 +3886,29 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <td class="tableblock halign-left valign-top"><p class="tableblock">available</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Task is available for execution by the performer, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time.</p>
+</div>
+<div class="paragraph">
+<p>Value = 1.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cancelled</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task was cancelled prior to or during execution as not needed for success of the Plan.</p>
+<p>Task was cancelled prior to or during execution as not needed for success of the Plan. This is a terminal state.</p>
 </div>
 <div class="paragraph">
-<p>Terminal state.</p>
+<p>Value = 2.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">abandoned</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task was aborted due to completion being impossible, i.e. ended prematurely without meeting normal conditions of completion.</p>
+<p>Task was aborted due to completion being impossible, i.e. ended prematurely without meeting normal conditions of completion. This is a terminal state.</p>
 </div>
 <div class="paragraph">
-<p>Terminal state.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">completed</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task was completed in the intended way.</p>
-</div>
-<div class="paragraph">
-<p>Terminal state.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">suspended</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Task is suspended, waiting for completion of a handoff or external request.</p>
+<p>Value = 4.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3934,6 +3916,29 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <td class="tableblock halign-left valign-top"><p class="tableblock">underway</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Task has been commenced or resumed from 'suspend' state.</p>
+</div>
+<div class="paragraph">
+<p>Value = 5.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suspended</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task is put on hold, i.e. not actively being performed while in this state.</p>
+</div>
+<div class="paragraph">
+<p>Value = 6.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">completed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Task was completed in the intended way. This is a terminal state.</p>
+</div>
+<div class="paragraph">
+<p>Value = 8.</p>
 </div></div></td>
 </tr>
 </tbody>

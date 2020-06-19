@@ -6,7 +6,9 @@ h|*Enumeration*
 2+^h|*TASK_LIFECYCLE*
 
 h|*Description*
-2+a|Enumeration representing possible lifecycle states for a Task lifecycle transition, for example, "not needed".
+2+a|Enumeration representing possible lifecycle states for a Task lifecycle transition.
+
+Integer-based values.
 
 h|*Attributes*
 ^h|*Signature*
@@ -16,33 +18,41 @@ h|
 |planned
 a|Task is defined, but not yet available for execution.
 
+Value = 0.
+
 h|
 |available
 a|Task is available for execution by the performer, due to previous Tasks having been performed, preconditions being met, and if there is a time specification on the Task, the current time being at or later than the stated time.
 
+Value = 1.
+
 h|
 |cancelled
-a|Task was cancelled prior to or during execution as not needed for success of the Plan.
+a|Task was cancelled prior to or during execution as not needed for success of the Plan. This is a terminal state.
 
-Terminal state.
+Value = 2.
 
 h|
 |abandoned
-a|Task was aborted due to completion being impossible, i.e. ended prematurely without meeting normal conditions of completion.
+a|Task was aborted due to completion being impossible, i.e. ended prematurely without meeting normal conditions of completion. This is a terminal state.
 
-Terminal state.
-
-h|
-|completed
-a|Task was completed in the intended way.
-
-Terminal state.
-
-h|
-|suspended
-a|Task is suspended, waiting for completion of a handoff or external request.
+Value = 4.
 
 h|
 |underway
 a|Task has been commenced or resumed from 'suspend' state.
+
+Value = 5.
+
+h|
+|suspended
+a|Task is put on hold, i.e. not actively being performed while in this state.
+
+Value = 6.
+
+h|
+|completed
+a|Task was completed in the intended way. This is a terminal state.
+
+Value = 8.
 |===
