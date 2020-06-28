@@ -2,7 +2,7 @@
 
 This section illustrates multi-drug chemotherapy with complex dosing and timing arrangements.
 
-This example is based on the version of RCHOPS-21 documented by http://nssg.oxford-haematology.org.uk/lymphoma/documents/lymphoma-chemo-protocols/L-80-r-chop-21.pdf[NHS Lymphoma Group].
+This example is based on the version of RCHOPS-21 documented by http://nssg.oxford-haematology.org.uk/lymphoma/documents/lymphoma-chemo-protocols/L-80-r-chop-21.pdf[NHS Thames Valley Cancer Network].
 
 == Limitations
 
@@ -23,7 +23,7 @@ image::{diagrams_uri}/RCHOPS21-pre.svg[id=rchops_pre, align="center"]
 The following shows the main regime, including conditional addition of Rituximab / methotrexate for high IPI patients.
 
 [.text-center]
-.RCHOPS21 pre-med phase
+.RCHOPS21 administration phase
 image::{diagrams_uri}/RCHOPS21-admin.svg[id=rchops_admin, align="center"]
 
 == Proxy Module
