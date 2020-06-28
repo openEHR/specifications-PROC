@@ -90,6 +90,14 @@
             }
         },
         {
+            "id": "1.6.0",
+            "date": "",
+            "jira": {
+                "crs": "SPECPROC/versions/12539",
+                "prs": "SPECPR/versions/12527"
+            }
+        },
+        {
             "id": "1.5.0",
             "date": "2020-05-05",
             "jira": {
