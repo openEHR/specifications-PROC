@@ -1,0 +1,22 @@
+=== SP_TRACKED_VARIABLE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*SP_TRACKED_VARIABLE*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`SP_TRACKED_VALUE`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*feature_extensions*: `List<TRACKED_VARIABLE_DEF>`
+a|Extensions to feature-level meta-types.
+|===

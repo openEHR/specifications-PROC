@@ -1,0 +1,22 @@
+=== SUBJECT_PROXY Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*SUBJECT_PROXY*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`BMM_CLASS`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*functions*: `Hash<String,SP_TRACKED_VALUE>`
+a|List of functions defined in this class.
+|===

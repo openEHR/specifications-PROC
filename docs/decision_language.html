@@ -43,9 +43,8 @@
 <li><a href="#_overview">3. Overview</a>
 <ul class="sectlevel2">
 <li><a href="#_conceptual_model">3.1. Conceptual Model</a></li>
-<li><a href="#_representation_scheme">3.2. Representation Scheme</a></li>
-<li><a href="#_prior_art">3.3. Prior Art</a></li>
-<li><a href="#_other_standards">3.4. Other Standards</a></li>
+<li><a href="#_prior_art">3.2. Prior Art</a></li>
+<li><a href="#_other_standards">3.3. Other Standards</a></li>
 </ul>
 </li>
 <li><a href="#_decision_support_language">4. Decision Support Language</a>
@@ -72,32 +71,28 @@
 <li><a href="#_dsm_service_model">6. DSM Service Model</a></li>
 <li><a href="#_examples">7. Examples</a>
 <ul class="sectlevel2">
-<li><a href="#_basic_patient">7.1. Basic patient</a></li>
-<li><a href="#_cancer_patient">7.2. Cancer patient</a></li>
-<li><a href="#_perinatal_care">7.3. Perinatal Care</a>
+<li><a href="#_perinatal_care">7.1. Perinatal Care</a>
 <ul class="sectlevel3">
-<li><a href="#_proxy_module">7.3.1. Proxy Module</a></li>
-<li><a href="#_decision_module">7.3.2. Decision Module</a></li>
+<li><a href="#_proxy_module">7.1.1. Proxy Module</a></li>
+<li><a href="#_decision_module">7.1.2. Decision Module</a></li>
 </ul>
 </li>
-<li><a href="#_breast_cancer_decision_protocol">7.4. Breast Cancer Decision Protocol</a>
+<li><a href="#_breast_cancer_decision_protocol">7.2. Breast Cancer Decision Protocol</a>
 <ul class="sectlevel3">
-<li><a href="#_proxy_module_2">7.4.1. Proxy module</a></li>
-<li><a href="#_decision_module_2">7.4.2. Decision Module</a></li>
+<li><a href="#_proxy_module_2">7.2.1. Proxy module</a></li>
+<li><a href="#_decision_module_2">7.2.2. Decision Module</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_the_decision_support_object_model_dsom">8. The Decision Support Object Model (DSOM)</a>
+<li><a href="#_the_decision_support_language_model_dslm">8. The Decision Support Language Model (DSLM)</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_3">8.1. Overview</a></li>
 <li><a href="#_ds_module_package">8.2. DS Module Package</a>
 <ul class="sectlevel3">
 <li><a href="#_class_descriptions">8.2.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_module_feature_class">8.2.1.1. MODULE_FEATURE Class</a></li>
-<li><a href="#_decision_module_class">8.2.1.2. DECISION_MODULE Class</a></li>
-<li><a href="#_ds_condition_def_class">8.2.1.3. DS_CONDITION_DEF Class</a></li>
+<li><a href="#_decision_module_class">8.2.1.1. DECISION_MODULE Class</a></li>
 </ul>
 </li>
 </ul>
@@ -106,26 +101,7 @@
 <ul class="sectlevel3">
 <li><a href="#_condition_chain_rule">8.3.1. Condition Chain Rule</a></li>
 <li><a href="#_case_rule">8.3.2. Case Rule</a></li>
-<li><a href="#_class_descriptions_2">8.3.3. Class Descriptions</a>
-<ul class="sectlevel4">
-<li><a href="#_ds_rule_class">8.3.3.1. DS_RULE Class</a></li>
-<li><a href="#_ds_condition_rule_class">8.3.3.2. DS_CONDITION_RULE Class</a></li>
-<li><a href="#_ds_condition_chain_class">8.3.3.3. DS_CONDITION_CHAIN Class</a></li>
-<li><a href="#_ds_condition_branch_class">8.3.3.4. DS_CONDITION_BRANCH Class</a></li>
-<li><a href="#_ds_case_rule_class">8.3.3.5. DS_CASE_RULE Class</a></li>
-<li><a href="#_ds_case_group_class">8.3.3.6. DS_CASE_GROUP Class</a></li>
-<li><a href="#_ds_case_branch_class">8.3.3.7. DS_CASE_BRANCH Class</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_proxy_module_package">8.4. Proxy Module Package</a>
-<ul class="sectlevel3">
-<li><a href="#_class_descriptions_3">8.4.1. Class Descriptions</a>
-<ul class="sectlevel4">
-<li><a href="#_proxy_module_class">8.4.1.1. PROXY_MODULE Class</a></li>
-</ul>
-</li>
+<li><a href="#_class_descriptions_2">8.3.3. Class Descriptions</a></li>
 </ul>
 </li>
 </ul>
@@ -260,7 +236,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document specifies the openEHR Decision Support Language (DSL), in both abstract syntax form and as a related model, the Decision Supoort Object Model (DSOM). The latter defines the semantics of a first order predicate style logic that can be used to write clinical Decision Support Models (DSMs) that may be used standalone or with a Process / Plan oriented system such as <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning</a>.</p>
+<p>This document specifies the openEHR Decision Support Language (DSL), in both abstract syntax form and as a related model, the Decision Supoort Language Model (DSLM). The latter defines the semantics of a first order predicate style logic that can be used to write clinical Decision Support Models (DSMs) that may be used standalone or with a Process / Plan oriented system such as <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning</a>.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -320,7 +296,7 @@
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://forums.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/PROC/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -397,13 +373,13 @@
 <div class="sect2">
 <h3 id="_conceptual_model"><a class="anchor" href="#_conceptual_model"></a>3.1. Conceptual Model</h3>
 <div class="paragraph">
-<p>The openEHR Decision Support Language (DSL) and Decision Support Object Model (DSOM) define a formalism for expressing decision logic used in healthcare and biomedical research. Decision logic usually sits within a larger environment of plans, workflows and also data sources such as the EHR. The following diagram illustrates the artefacts covered by this specification within the wider computational context.</p>
+<p>The openEHR Decision Support Language (DSL) and Decision Support Language Model (DSLM) define a formalism for expressing decision logic used in healthcare and biomedical research. Decision logic usually sits within a larger environment of plans, workflows and also data sources such as the EHR. The following diagram illustrates the artefacts covered by this specification within the wider computational context.</p>
 </div>
 <div id="conceptual_framework_overview" class="imageblock text-center text-center">
 <div class="content">
 <img src="common/diagrams/conceptual_framework_overview.svg" alt="conceptual framework overview">
 </div>
-<div class="title">Figure 1. Conceptual framework</div>
+<div class="title">Figure 1. openEHR conceptual framework for computable care pathways</div>
 </div>
 <div class="paragraph">
 <p>In the above, the top part illustrates process and plan definitions, of which the <em>care pathway</em> is a specific example in clinical medicine. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. In other environments, OMG BPMN/CMMN representation might be used.</p>
@@ -463,25 +439,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_representation_scheme"><a class="anchor" href="#_representation_scheme"></a>3.2. Representation Scheme</h3>
-<div class="paragraph">
-<p>The general approach to representation for Decision Logic Modules (DSMs) and Subject Proxy Objects (SPOs) is to support two forms. The first is using Decision Support Language, designed for use by domain experts DSL is a small formalism that builds upon the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, whose meta-model is defined in the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model (BMM)</a>. DSL adds constructs for representing conditions, decisions, and modules. A small extra meta-model and syntax covers Proxy definition, and the importation and binding semantics in the binding objects. DSL abstracts away detail typically required by a programming language, and also provides some higher level abstractions, such as complex type operators, temporal logic and so on. DSL texts are assumed to be written by hand, with the aid of a syntax mode for typical editors, or a light-weight UI tool.</p>
-</div>
-<div class="paragraph">
-<p>The second form is an expression in a standard programming language which is either generated from the DSL form by a cross-compilation process, or directly generated by a more sophisticated UI tool. This direct expression will be significantly more complex, because it encompasses not just the decision logic and proxy definitions, but the ability to compute recommendations (i.e. decision proposals), reasoning chains and other advanced functionality requiring transparent access to the logic structures of a DSM.</p>
-</div>
-<div class="paragraph">
-<p>The two types of artefacts are shown below.</p>
-</div>
-<div id="artefact_scheme" class="imageblock text-center text-center">
-<div class="content">
-<img src="decision_language/diagrams/artefact_scheme.svg" alt="artefact scheme">
-</div>
-<div class="title">Figure 2. Representation scheme</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>3.3. Prior Art</h3>
+<h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>3.2. Prior Art</h3>
 <div class="paragraph">
 <p>openEHR DSL may be compared to other languages developed in the health arena for expressing 'medical logic', including <a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">HL7 Arden Syntax</a>, Guideline Interchange Format (<a href="#GLIF">Ohno-Machado et al.&#44; 1998</a>), ProForma (<a href="#SuttonFox2003">Sutton &amp; Fox&#44; 2003</a>), as well as decision support languages such as <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" target="_blank" rel="noopener">HL7 Gello</a>. These languages were not directly used, for various reasons including:</p>
 </div>
@@ -512,7 +470,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_standards"><a class="anchor" href="#_other_standards"></a>3.4. Other Standards</h3>
+<h3 id="_other_standards"><a class="anchor" href="#_other_standards"></a>3.3. Other Standards</h3>
 <div class="paragraph">
 <p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are starting (as of 2020) to find use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses some of the same issues as openEHR DL/EL.</p>
 </div>
@@ -635,7 +593,7 @@ rules
 <div class="content">
 <img src="decision_language/diagrams/conceptual_decision_based.svg" alt="conceptual decision based">
 </div>
-<div class="title">Figure 3. Rule-based interface</div>
+<div class="title">Figure 2. Rule-based interface</div>
 </div>
 </div>
 <div class="sect3">
@@ -647,7 +605,7 @@ rules
 <div class="content">
 <img src="decision_language/diagrams/conceptual_condition_based.svg" alt="conceptual condition based">
 </div>
-<div class="title">Figure 4. Condition-based interface</div>
+<div class="title">Figure 3. Condition-based interface</div>
 </div>
 </div>
 </div>
@@ -657,109 +615,20 @@ rules
 <h2 id="_dsm_service_model"><a class="anchor" href="#_dsm_service_model"></a>6. DSM Service Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following shows an outline idea of a DSM service interface. This could be made to cater for talking to an OMG DMN service. It could also incorporate the CDS-hooks idea, which is just a recommendation structure.</p>
-</div>
-<div id="conceptual_service_model" class="imageblock text-center text-center">
-<div class="content">
-<img src="decision_language/diagrams/conceptual_service_model.svg" alt="conceptual service model">
-</div>
-<div class="title">Figure 5. Service Model</div>
+<p>TBD</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_examples"><a class="anchor" href="#_examples"></a>7. Examples</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_basic_patient"><a class="anchor" href="#_basic_patient"></a>7.1. Basic patient</h3>
-<div class="listingblock">
-<div class="content">
-<pre>proxy
-    Core_patient
-
-definitions
-    Critical_high_bp: Quantity = 180 mm[Hg]
-
-    Low_oxygen_sat: Proportion = 92%
-
-admin
-    date_of_birth: Date
-
-    sex: Terminology_term
-
-state
-    weight: Quantity
-        currency
-            3 days
-
-    height: Quantity
-        currency
-            1 year
-
-    systolic_blood_pressure: Quantity
-        currency
-            1 min
-        range
-            critical_high:  &gt;= Critical_high_bp
-
-    diastolic_blood_pressure: Quantity
-        currency
-            1 min
-
-    heart_rate: Quantity
-        currency
-            30 sec
-
-    oxygen_sat: Proportion
-        currency
-            30 sec
-        range
-            |low| = |&lt; Low_oxygen_sat|
-
-    blood_glucose: Quantity
-        currency
-            2 hour
-
-    // Eastern Cooperative Oncology Group score
-    ecog: Integer
-        currency
-            1 week
-
-derived
-    age: Duration
-        Result &lt;- {Env}.current_date() - date_of_birth</pre>
-</div>
-</div>
+<div class="paragraph">
+<p>The following examples rely on the 'Core Patient' and extension Subject Proxies defined in the <a href="https://specifications.openehr.org/releases/PROC/latest/subject_proxy.html#_core_patient_proxy" target="_blank" rel="noopener">openEHR Subject Proxy Specification</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_cancer_patient"><a class="anchor" href="#_cancer_patient"></a>7.2. Cancer patient</h3>
-<div class="listingblock">
-<div class="content">
-<pre>proxy module
-    Cancer_patient
-
-extend
-    Core_patient
-
-state
-    staging: Terminology_term «ann_arbor_staging»
-        currency
-            30 days
-
-    metastases: Terminology_term «pos_neg_vs»
-        currency
-            30 days
-
-derived
-    metastatic:
-        metastases = |positive|</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_perinatal_care"><a class="anchor" href="#_perinatal_care"></a>7.3. Perinatal Care</h3>
+<h3 id="_perinatal_care"><a class="anchor" href="#_perinatal_care"></a>7.1. Perinatal Care</h3>
 <div class="sect3">
-<h4 id="_proxy_module"><a class="anchor" href="#_proxy_module"></a>7.3.1. Proxy Module</h4>
+<h4 id="_proxy_module"><a class="anchor" href="#_proxy_module"></a>7.1.1. Proxy Module</h4>
 <div class="listingblock">
 <div class="content">
 <pre>proxy
@@ -835,7 +704,7 @@ events
 </div>
 </div>
 <div class="sect3">
-<h4 id="_decision_module"><a class="anchor" href="#_decision_module"></a>7.3.2. Decision Module</h4>
+<h4 id="_decision_module"><a class="anchor" href="#_decision_module"></a>7.1.2. Decision Module</h4>
 <div class="listingblock">
 <div class="content">
 <pre>decision support module
@@ -889,9 +758,9 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_breast_cancer_decision_protocol"><a class="anchor" href="#_breast_cancer_decision_protocol"></a>7.4. Breast Cancer Decision Protocol</h3>
+<h3 id="_breast_cancer_decision_protocol"><a class="anchor" href="#_breast_cancer_decision_protocol"></a>7.2. Breast Cancer Decision Protocol</h3>
 <div class="sect3">
-<h4 id="_proxy_module_2"><a class="anchor" href="#_proxy_module_2"></a>7.4.1. Proxy module</h4>
+<h4 id="_proxy_module_2"><a class="anchor" href="#_proxy_module_2"></a>7.2.1. Proxy module</h4>
 <div class="paragraph">
 <p>Breast cancer specific Proxy.</p>
 </div>
@@ -905,40 +774,31 @@ extend
 
 state
     tnm_t: String
-        currency
-            60 days
+        currency  = 60 days
 
     tnm_n: String
-        currency
-            60 days
+        currency = 60 days
 
     tnm_m: String
-        currency
-            60 days
+        currency = 60 days
 
     tnm_g: String
-        currency
-            60 days
+        currency = 60 days
 
     estrogen_receptor: Terminology_term «pos_neg_vs»
-        currency
-            60 days
+        currency = 60 days
 
     progesterone_receptor:  Terminology_term «pos_neg_vs»
-        currency
-            60 days
+        currency = 60 days
 
     her2_expression: Terminology_term «pos_neg_vs»
-        currency
-            60 days
+        currency = 60 days
 
     ki67: Quantity
-        currency
-            60 days
+        currency = 60 days
 
     ejection_fraction: Quantity
-        currency
-            60 days
+        currency = 60 days
 
 derived
     er_negative:
@@ -962,7 +822,7 @@ derived
 </div>
 </div>
 <div class="sect3">
-<h4 id="_decision_module_2"><a class="anchor" href="#_decision_module_2"></a>7.4.2. Decision Module</h4>
+<h4 id="_decision_module_2"><a class="anchor" href="#_decision_module_2"></a>7.2.2. Decision Module</h4>
 <div class="listingblock">
 <div class="content">
 <pre>decision support module
@@ -1043,7 +903,7 @@ rules
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_decision_support_object_model_dsom"><a class="anchor" href="#_the_decision_support_object_model_dsom"></a>8. The Decision Support Object Model (DSOM)</h2>
+<h2 id="_the_decision_support_language_model_dslm"><a class="anchor" href="#_the_decision_support_language_model_dslm"></a>8. The Decision Support Language Model (DSLM)</h2>
 <div class="sectionbody">
 <div class="paragraph tbd">
 <p>TBD: this section is a rough draft at the moment</p>
@@ -1051,16 +911,16 @@ rules
 <div class="sect2">
 <h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>8.1. Overview</h3>
 <div class="paragraph">
-<p>The <code>org.openehr.proc.dsom</code> package defines the Decision Support Object Model (DSOM), a structural model of the openEHR Decision Support language. It relies on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
+<p>The <code>org.openehr.proc.dslm</code> package defines the Decision Support Language Model (DSLM), a structural model of the openEHR Decision Support language. It relies on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
 <div class="paragraph">
-<p>The structure of the <code>dsom</code> packages is shown below.</p>
+<p>The structure of the <code>dslm</code> packages is shown below.</p>
 </div>
-<div id="dsom_packages" class="imageblock text-center text-center">
+<div id="dslm_packages" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/PROC-dsom-packages.svg" alt="PROC dsom packages" width="50%">
+<img src="UML/diagrams/PROC-dslm-packages.svg" alt="PROC dslm packages" width="50%">
 </div>
-<div class="title">Figure 6. proc.dsom Package</div>
+<div class="title">Figure 4. proc.dslm Package</div>
 </div>
 <div class="paragraph">
 <p>The packages are described below.</p>
@@ -1069,13 +929,13 @@ rules
 <div class="sect2">
 <h3 id="_ds_module_package"><a class="anchor" href="#_ds_module_package"></a>8.2. DS Module Package</h3>
 <div class="paragraph">
-<p>The top-level construct of the DSOM is the <code>DS_MODULE</code>, representing a standalone decision support module. It is shown below.</p>
+<p>The top-level construct of the DSLM is the <code>DS_MODULE</code>, representing a standalone decision support module. It is shown below.</p>
 </div>
-<div id="dsom_module" class="imageblock text-center text-center">
+<div id="dslm_module" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/PROC-dsom.module.svg" alt="PROC dsom.module">
+<img src="UML/diagrams/PROC-dslm.module.svg" alt="PROC dslm.module">
 </div>
-<div class="title">Figure 7. proc.dsom.module Package</div>
+<div class="title">Figure 5. proc.dslm.module Package</div>
 </div>
 <div class="paragraph tbd">
 <p>TBD: to be continued.</p>
@@ -1083,44 +943,7 @@ rules
 <div class="sect3">
 <h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>8.2.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_module_feature_class"><a class="anchor" href="#_module_feature_class"></a>8.2.1.1. MODULE_FEATURE Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>MODULE_FEATURE (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_DECLARATION</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scope</strong>: <code>BMM_MODULE</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Model element within which an element is declared.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_decision_module_class"><a class="anchor" href="#_decision_module_class"></a>8.2.1.2. DECISION_MODULE Class</h5>
+<h5 id="_decision_module_class"><a class="anchor" href="#_decision_module_class"></a>8.2.1.1. DECISION_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1140,7 +963,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_MODULE</code>, <code>AUTHORED_RESOURCE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>AUTHORED_RESOURCE</code>, <code>BMM_CLASS</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1149,30 +972,9 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>conditions</strong>: <code>List&lt;DS_CONDITION_DEF&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean conditions defined by module for use in rules.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rules</strong>: <code>List&lt;DS_RULE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Ruleset consisting of rules of various types.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_properties</strong>: <code>List&lt;BMM_PROPERTY&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Properties representing real-world objects, such as the patient state, the patient history (logical EHR) etc.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_objects</strong>: <code>List&lt;PROXY_MODULE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Imported proxy modules</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1210,56 +1012,12 @@ rules
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_ds_condition_def_class"><a class="anchor" href="#_ds_condition_def_class"></a>8.2.1.3. DS_CONDITION_DEF Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CONDITION_DEF</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>DL representation of an argumentless Boolean function that defines a condition.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>EL_EXPRESSION</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p><em>Inv_boolean_definition</em>: <code>definition.is_boolean()</code></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_ds_rules_package"><a class="anchor" href="#_ds_rules_package"></a>8.3. DS Rules Package</h3>
 <div class="paragraph">
 <p>Specific Rule types are defined as descendants of <code>DS_RULE</code>, which may be understood as a pseudo form of the <code>BMM_FUNCTION</code> meta-type, i.e. a particular kind of function with a <code><em>body</em></code>. The following UML view illustrates.</p>
-</div>
-<div id="dsom_rules" class="imageblock text-center text-center">
-<div class="content">
-<img src="UML/diagrams/PROC-dsom.rules.svg" alt="PROC dsom.rules">
-</div>
-<div class="title">Figure 8. proc.dsom.rules Package</div>
 </div>
 <div class="paragraph">
 <p>Some specific rule types are described below.</p>
@@ -1269,378 +1027,16 @@ rules
 <div class="paragraph">
 <p>A DS <em>condition chain rule</em> is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.</p>
 </div>
-<div id="dsom_rules_condition_chain" class="imageblock text-center text-center">
-<div class="content">
-<img src="UML/diagrams/PROC-dsom.rules-condition_chain.svg" alt="PROC dsom.rules condition chain">
-</div>
-<div class="title">Figure 9. Condition chain rule</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>8.3.2. Case Rule</h4>
 <div class="paragraph">
 <p>A DS <em>case rule</em> is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of <code>C_PRIMITIVE</code> constraint types, from the <a href="https://specifications.openehr.org/releases/AM/latest/index">openEHR AOM2 model</a>.</p>
 </div>
-<div id="dsom_rules_case" class="imageblock text-center text-center">
-<div class="content">
-<img src="UML/diagrams/PROC-dsom.rules-case.svg" alt="PROC dsom.rules case">
-</div>
-<div class="title">Figure 10. Case rule</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>8.3.3. Class Descriptions</h4>
-<div class="sect4">
-<h5 id="_ds_rule_class"><a class="anchor" href="#_ds_rule_class"></a>8.3.3.1. DS_RULE Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>DS_RULE (abstract)</em></strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Abstract parent of DL rule types. All rules have a <code><em>name</em></code> (inherited from <code>BMM_DECLARATION</code>), and a <code><em>type</em></code> (from <code>BMM_TYPED</code>).</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_TYPED</code>, <code>BMM_CLASS_ENTITY</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>body</strong>: <code>BMM_STATEMENT_ITEM</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_ds_condition_rule_class"><a class="anchor" href="#_ds_condition_rule_class"></a>8.3.3.2. DS_CONDITION_RULE Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CONDITION_RULE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A kind of rule consisting of a chain of Condition/action branches.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DS_RULE</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>body</strong>: <code>DS_CONDITION_CHAIN</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The body of the rule.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_ds_condition_chain_class"><a class="anchor" href="#_ds_condition_chain_class"></a>8.3.3.3. DS_CONDITION_CHAIN Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CONDITION_CHAIN</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Rule type that returns a result based on one or more conditions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_STATEMENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;DS_CONDITION_BRANCH&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Items in the chain.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_result</strong>: <code>EL_INSTANCE_REF</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Result to use if logical 'else' branch is followed.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_ds_condition_branch_class"><a class="anchor" href="#_ds_condition_branch_class"></a>8.3.3.4. DS_CONDITION_BRANCH Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CONDITION_BRANCH</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A condition / result pair (sometimes known as a 'when/then rule').</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>condition</strong>: <code>DS_CONDITION_DEF</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The rule condition.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>result</strong>: <code>EL_INSTANCE_REF</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The rule result, in the form of a terminal expression of the form of a literal value, module definition (i.e. constant), or function call.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_ds_case_rule_class"><a class="anchor" href="#_ds_case_rule_class"></a>8.3.3.5. DS_CASE_RULE Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CASE_RULE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A case rule.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DS_RULE</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>body</strong>: <code>DS_CASE_GROUP</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The body of the rule.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_ds_case_group_class"><a class="anchor" href="#_ds_case_group_class"></a>8.3.3.6. DS_CASE_GROUP Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CASE_GROUP</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Body of case rule construct.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_STATEMENT</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>DS_CASE_BRANCH</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Branches of the case rule.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>else_result</strong>: <code>EL_INSTANCE_REF</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Result to use if logical 'else' is followed.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>EL_EXPRESSION</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The value-generating expression that is the basis for the decision structure to be evaluated.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_ds_case_branch_class"><a class="anchor" href="#_ds_case_branch_class"></a>8.3.3.7. DS_CASE_BRANCH Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DS_CASE_BRANCH</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>One branch of a case rule.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>condition</strong>: <code>C_PRIMITIVE_OBJECT</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Constraint expression constraining the value of a decision branch.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>result</strong>: <code>EL_INSTANCE_REF</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The rule result, in the form of a terminal expression of the form of a literal value, module definition (i.e. constant), or function call.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_proxy_module_package"><a class="anchor" href="#_proxy_module_package"></a>8.4. Proxy Module Package</h3>
-<div class="paragraph">
-<p>The class <code>PROXY_MODULE</code> represents an object proxy, i.e. source of real-world data.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: to be continued.</p>
-</div>
-<div class="sect3">
-<h4 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>8.4.1. Class Descriptions</h4>
-<div class="sect4">
-<h5 id="_proxy_module_class"><a class="anchor" href="#_proxy_module_class"></a>8.4.1.1. PROXY_MODULE Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PROXY_MODULE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A module for defining a collection of properties representing real-world state values and events, defined in terms of conditions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>BMM_MODULE</code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_variables</strong>: <code>List&lt;STATE_VARIABLE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event_conditions</strong>: <code>List&lt;EVENT_CONDITION&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ancestors</strong>: <code>List&lt;PROXY_MODULE&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-</div>
+
 </div>
 </div>
 </div>
@@ -1662,7 +1058,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-04 18:08:52 +0100
+Last updated 2020-06-25 14:13:23 +0100
 </div>
 </div>
 </body>

@@ -1,0 +1,134 @@
+= Example
+
+== Core Patient Proxy
+
+----
+proxy
+    Core_patient
+
+state <tag="admin">
+
+    date_of_birth: Date
+    
+    sex: Terminology_term
+
+state <tag="general">
+
+    weight: Quantity
+        currency = 7 days
+            
+    height: Quantity
+    
+    blood_glucose: Quantity
+        currency = 2 hour
+    
+state <tag="vital_signs">
+
+    systolic_blood_pressure: Quantity
+        currency = 1 min
+        range
+            critical_high >= 180 mm[Hg]
+            very_high     >  140 mm[Hg]
+            high          >  120 mm[Hg]
+            normal
+            low           <=  90 mm[Hg]
+            critical_low  <=  50 mm[Hg]
+
+    diastolic_blood_pressure: Quantity
+        currency = 1 min
+        range
+            high          >   80 mm[Hg]
+            normal
+            low           <=  60 mm[Hg]
+
+    resting_heart_rate: Quantity
+        currency = 30 sec
+        range
+            critical_high >= 140 /min
+            high          >=  90 /min
+            normal
+            low           <=  55 /min
+            critical_low  <=  39 /min
+            
+    oxygen_saturation: Proportion
+        currency = 30 sec
+        limit
+            low = 92%
+        range
+            low = |< limit.low|
+            
+evaluation <tag="general">
+
+    is_type1_diabetic: Boolean
+
+derived
+    age: Duration
+        Result <- {Env}.current_date() - date_of_birth
+        
+    bmi: Quantity
+        Result <- weight / height ^ 2
+    
+terminology
+	term_definitions = <
+		["en"] = <
+			["date_of_birth"] = <
+				text = <"Date of birth">
+				description = <"Date of birth of subject">
+			>
+			["sex"] = <
+				text = <"biological sex">
+				description = <"Biological sex of subject.">
+			>
+			["systolic_blood_pressure"] = <
+				text = <"systolic blood pressure">
+				description = <"Instantaneous systolic blood pressure (lying).">
+			>
+			["is_type1_diabetic"] = <
+				text = <"Type I diabetic status of subject">
+				description = <"Subject has confirmed diagnosis of type I diabetes mellitus.">
+			>
+			["bmi"] = <
+				text = <"Body mass index">
+				description = <"Subject body mass index.">
+			>
+			["..."] = <
+				text = <"...">
+				description = <"...">
+			>
+        >
+    >
+    
+----
+
+== Cancer patient
+
+----
+proxy
+    Cancer_patient
+    
+extend
+    Core_patient
+    
+evaluation <tag="general">
+
+    staging: Terminology_term «ann_arbor_staging» 
+        currency = 30 days
+
+    has_metastases: Boolean
+        currency = 30 days
+        
+terminology
+	term_definitions = <
+		["en"] = <
+			["staging"] = <
+				text = <"Cancer staging">
+				description = <"Cancer staging (Ann Arbor system)">
+			>
+			["has_metastases"] = <
+				text = <"Metastatic status">
+				description = <"Status of metastasis of cancer">
+			>
+        >
+    >
+        
+----

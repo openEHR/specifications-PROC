@@ -1,0 +1,48 @@
+= The Decision Support Language Model (DSLM)
+
+[.tbd]
+TBD: this section is a rough draft at the moment
+
+== Overview
+
+The `org.openehr.proc.dslm` package defines the Decision Support Language Model (DSLM), a structural model of the openEHR Decision Support language. It relies on the {openehr_bmm}[openEHR BMM^].
+
+The structure of the `dslm` packages is shown below.
+
+[.text-center]
+.proc.dslm Package
+image::{uml_diagrams_uri}/PROC-dslm-packages.svg[id=dslm_packages, align="center", width="50%"]
+
+The packages are described below.
+
+== DS Module Package
+
+The top-level construct of the DSLM is the `DS_MODULE`, representing a standalone decision support module. It is shown below.
+
+[.text-center]
+.proc.dslm.module Package
+image::{uml_diagrams_uri}/PROC-dslm.module.svg[id=dslm_module, align="center"]
+
+[.tbd]
+TBD: to be continued. 
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/decision_module.adoc[leveloffset=+1]]
+
+== DS Rules Package
+
+Specific Rule types are defined as descendants of `DS_RULE`, which may be understood as a pseudo form of the `BMM_FUNCTION` meta-type, i.e. a particular kind of function with a `_body_`. The following UML view illustrates.
+
+Some specific rule types are described below.
+
+=== Condition Chain Rule
+
+A DS _condition chain rule_ is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.
+
+=== Case Rule
+
+A DS _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of `C_PRIMITIVE` constraint types, from the {openehr_am}[openEHR AOM2 model].
+
+=== Class Descriptions
+

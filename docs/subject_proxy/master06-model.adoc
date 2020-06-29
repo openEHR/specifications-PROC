@@ -1,0 +1,9 @@
+= Subject Proxy Object Model
+
+== Overview
+
+The following shows the `proc.subject_proxy.module` object model of the Subject Proxy concept.
+
+[.text-center]
+.proc.subject_proxy.module package
+image::{uml_diagrams_uri}/PROC-subject_proxy.module.svg[id=proc_subject_proxy, align="center"]

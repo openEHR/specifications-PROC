@@ -48,8 +48,10 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
-include::master03-proxy_objects.adoc[leveloffset=+1]
-include::master04-example.adoc[leveloffset=+1]
+include::master03-architecture.adoc[leveloffset=+1]
+include::master04-formal_definition.adoc[leveloffset=+1]
+include::master05-example.adoc[leveloffset=+1]
+include::master06-model.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------

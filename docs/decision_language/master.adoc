@@ -53,7 +53,7 @@ include::master04-decision_language.adoc[leveloffset=+1]
 include::master05-usage.adoc[leveloffset=+1]
 include::master06-service_interface.adoc[leveloffset=+1]
 include::master07-full_example.adoc[leveloffset=+1]
-include::master08-dlom.adoc[leveloffset=+1]
+include::master08-dslm.adoc[leveloffset=+1]
 
 //include::master05-dl_statements.adoc[leveloffset=+1]
 //include::master06-dl_module.adoc[leveloffset=+1]

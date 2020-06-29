@@ -1,21 +1,22 @@
-=== EVENT_CONDITION Class
+=== RANGE_DEF Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*EVENT_CONDITION*
+2+^h|*RANGE_DEF*
 
 h|*Description*
 2+a|
-
-h|*Inherit*
-2+|`MODULE_FEATURE`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*condition*: `DS_CONDITION_DEF`
+|*name*: `String`
+a|
+
+h|*1..1*
+|*interval*: `Interval`
 a|
 |===

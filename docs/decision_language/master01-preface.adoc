@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document specifies the openEHR Decision Support Language (DSL), in both abstract syntax form and as a related model, the Decision Supoort Object Model (DSOM). The latter defines the semantics of a first order predicate style logic that can be used to write clinical Decision Support Models (DSMs) that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
+This document specifies the openEHR Decision Support Language (DSL), in both abstract syntax form and as a related model, the Decision Supoort Language Model (DSLM). The latter defines the semantics of a first order predicate style logic that can be used to write clinical Decision Support Models (DSMs) that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
 
 The intended audience includes:
 

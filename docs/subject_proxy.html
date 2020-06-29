@@ -42,13 +42,37 @@
 <li><a href="#_references_ranges_and_event_generation">2.6. References Ranges and Event Generation</a></li>
 </ul>
 </li>
-<li><a href="#_proxy_objects">3. Proxy Objects</a>
+<li><a href="#_architecture">3. Architecture</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_2">3.1. Overview</a></li>
-<li><a href="#_variable_naming">3.2. Variable Naming</a></li>
+<li><a href="#_cache_model">3.1. Cache Model</a></li>
+<li><a href="#_system_proxy_service">3.2. System Proxy Service</a></li>
+<li><a href="#_runtime_proxy_injection">3.3. Runtime Proxy Injection</a></li>
 </ul>
 </li>
-<li><a href="#_example">4. Example</a></li>
+<li><a href="#_formal_definition">4. Formal Definition</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_2">4.1. Overview</a></li>
+<li><a href="#_inheritance">4.2. Inheritance</a></li>
+<li><a href="#_variable_declaration">4.3. Variable Declaration</a>
+<ul class="sectlevel3">
+<li><a href="#_typing_and_null_value_handling">4.3.1. Typing and Null Value Handling</a></li>
+<li><a href="#_reference_ranges">4.3.2. Reference Ranges</a></li>
+<li><a href="#_currency">4.3.3. Currency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_example">5. Example</a>
+<ul class="sectlevel2">
+<li><a href="#_core_patient_proxy">5.1. Core Patient Proxy</a></li>
+<li><a href="#_cancer_patient">5.2. Cancer patient</a></li>
+</ul>
+</li>
+<li><a href="#_subject_proxy_object_model">6. Subject Proxy Object Model</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_3">6.1. Overview</a></li>
+</ul>
+</li>
 <li><a href="#_references">References</a></li>
 </ul>
 </li>
@@ -239,7 +263,7 @@
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://forums.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/PROC/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -262,16 +286,13 @@
 <div class="sect2">
 <h3 id="_conceptual_model"><a class="anchor" href="#_conceptual_model"></a>2.1. Conceptual Model</h3>
 <div class="paragraph">
-<p>The Subject Proxy Object (SPO) is an interface to patient state, events and history that is conceptually ontological rather than epistemological. This means its attributes represent <em>ontic</em> entities (i.e. real world entities such as patient P&#8217;s blood pressure), such as real patient heart rate or diabetic status, rather than particular epistemic entities such as instances of data recorded in an institutional EMR, e.g. the medications list as known by the hospital in which the patient is receiving care.</p>
-</div>
-<div class="paragraph">
-<p>The logical SPO component is identified as the centre left box (blue) in the following diagram.</p>
+<p>Within a clinical computing environment driven by computable plans and decision support (guidelines), the Subject Proxy Object (SPO) is an interface between the plan and guideline components on the one hand, and patient data on the other. The logical SPO component is shown below in the context of the related components (blue box, centre left).</p>
 </div>
 <div id="conceptual_framework_overview" class="imageblock text-center text-center">
 <div class="content">
 <img src="common/diagrams/conceptual_framework_overview.svg" alt="conceptual framework overview">
 </div>
-<div class="title">Figure 1. Conceptual framework</div>
+<div class="title">Figure 1. openEHR conceptual framework for computable care pathways</div>
 </div>
 <div class="paragraph">
 <p>The Subject Proxy performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific Plans and Decision Support. These jobs are described below.</p>
@@ -286,7 +307,7 @@
 <p>In order to define a care pathway or guideline (possibly adapted into a patient-specific care plan), various state variables and events need to be referred to. Since guidelines are specific to purpose, the number of variables is typically low, and for many simpler guidelines, only 3 or 4. Many guidelines need access to common variables such as 'sex', 'age', basic clinical classifiers such as 'is diabetic', 'is pregnant' and then a relatively small number of condition-specific variables representing patient state (e.g. 'neutrophils', 'ldl') and diagnoses (e.g. 'eclampsia', 'gestational hypertension'). A guideline of medium complexity, such as for RCHOPS (non-Hodgkins lymphoma) chemotherapy needs around 20 variables, and a complex guideline such as for sepsis might need 50 - 100.</p>
 </div>
 <div class="paragraph">
-<p>These small numbers are in contrast to the total number of distinct types of data point that will be routinely recorded for a subject over long periods and relating to all conditions, which is in the O(1k) range, or the number of such data points recorded for a population, e.g. all inpatients + outpatients of a large hospital, which is O(10k), and corresponds to the variety of data that a general EMR product would need to cope with. The 'data sets' for specific guidelines are thus small and well-defined in comparison to the data generally captured within a patient record over time, and thus candidates for encapsulation.</p>
+<p>These small numbers are in contrast to the total number of distinct types of data point that will be routinely recorded for a subject over long periods and relating to all conditions, which is in the O(1k) range, or the number of such data points recorded for a population, e.g. all inpatients + outpatients of a large hospital, which is O(10k). The latter corresponds to the variety of data that a general EMR product would need to cope with. The 'data sets' for specific guidelines are thus small and well-defined in comparison to the data generally captured within a patient record over time, and thus candidates for encapsulation.</p>
 </div>
 <div class="paragraph">
 <p>Data set size is not the only distinguishing characteristic of a computable guideline. Where variables such as 'systolic blood pressure', 'is diabetic' and so on are mentioned in guidelines, they are intended to refer to the real patient state or history, i.e. they are references to values representing <em>ontic</em> entities, independent of how they might be obtained or stored. This is in contrast with the view of data where it is captured in health records or documents, which is an <em>epistemic</em> one, i.e. the result of a knowledge capture activity. Consequently, a query into a departmental hospital system asking if patient 150009 is diabetic, indicates that the patient is diabetic in the case of a positive answer, but otherwise probably doesn&#8217;t indicate anything, since the full list of patient 150009&#8217;s problems is often not found in departmental systems.</p>
@@ -426,35 +447,224 @@ state :this_episode -- current pregnancy
 </div>
 </div>
 <div class="sect1">
-<h2 id="_proxy_objects"><a class="anchor" href="#_proxy_objects"></a>3. Proxy Objects</h2>
+<h2 id="_architecture"><a class="anchor" href="#_architecture"></a>3. Architecture</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The following shows a possible architecture within which Subject Proxy Objects can be deployed.</p>
+</div>
 <div class="sect2">
-<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>3.1. Overview</h3>
+<h3 id="_cache_model"><a class="anchor" href="#_cache_model"></a>3.1. Cache Model</h3>
 <div class="paragraph">
-<p>From a data perspective, the set of features defined in an SPO will relate to a particular use. For example, the properties for a leukaemia patient are likely to include <code>white_cell_count</code>, <code>platelets</code> and so on, while a DPO for ante-natal use will contain obstetric properties. A core set of SPO features for any patient would include clinical basics such as date of birth, sex, and typical vital signs. In general, the collection of features in an SPO will be a somewhat arbitrary 'slice' of all possible variables and events characterising a real-world entity.</p>
-</div>
-<div class="paragraph">
-<p>The following illustrates two SPOs, one a specialisation of the other.</p>
-</div>
-<div id="conceptual_proxy" class="imageblock text-center text-center">
-<div class="content">
-<img src="subject_proxy/diagrams/conceptual_proxy.svg" alt="conceptual proxy">
-</div>
-<div class="title">Figure 2. Abstract proxy</div>
+<p>TBD</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_variable_naming"><a class="anchor" href="#_variable_naming"></a>3.2. Variable Naming</h3>
-<div class="paragraph tbd">
-<p>TBD: basic question of variable like 'Apgar 5min heartrate' - represent in a structure, and reference like <code>apgar_result.5min.heart_rate</code>, or just use flat pre-coord approach: <code>apgar_result_5min_heart_rate</code>? Structuring probably makes authoring easier.</p>
+<h3 id="_system_proxy_service"><a class="anchor" href="#_system_proxy_service"></a>3.2. System Proxy Service</h3>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_proxy_injection"><a class="anchor" href="#_runtime_proxy_injection"></a>3.3. Runtime Proxy Injection</h3>
+<div class="paragraph">
+<p>TBD</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_example"><a class="anchor" href="#_example"></a>4. Example</h2>
+<h2 id="_formal_definition"><a class="anchor" href="#_formal_definition"></a>4. Formal Definition</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
+<div class="paragraph">
+<p>From a data perspective, the set of features defined in an SPO will relate to a particular use. For example, the properties for a leukaemia patient are likely to include <code>white_cell_count</code>, <code>platelets</code> and so on, while a SPO for ante-natal use will contain obstetric properties. A core set of SPO features for any patient would include clinical basics such as date of birth, sex, and typical vital signs. In general, the collection of features in an SPO will be a somewhat arbitrary 'slice' of all possible variables and events characterising a real-world entity.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inheritance"><a class="anchor" href="#_inheritance"></a>4.2. Inheritance</h3>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_variable_declaration"><a class="anchor" href="#_variable_declaration"></a>4.3. Variable Declaration</h3>
+<div class="sect3">
+<h4 id="_typing_and_null_value_handling"><a class="anchor" href="#_typing_and_null_value_handling"></a>4.3.1. Typing and Null Value Handling</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reference_ranges"><a class="anchor" href="#_reference_ranges"></a>4.3.2. Reference Ranges</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_currency"><a class="anchor" href="#_currency"></a>4.3.3. Currency</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>5. Example</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_core_patient_proxy"><a class="anchor" href="#_core_patient_proxy"></a>5.1. Core Patient Proxy</h3>
+<div class="listingblock">
+<div class="content">
+<pre>proxy
+    Core_patient
 
+state &lt;tag="admin"&gt;
+
+    date_of_birth: Date
+
+    sex: Terminology_term
+
+state &lt;tag="general"&gt;
+
+    weight: Quantity
+        currency = 7 days
+
+    height: Quantity
+
+    blood_glucose: Quantity
+        currency = 2 hour
+
+state &lt;tag="vital_signs"&gt;
+
+    systolic_blood_pressure: Quantity
+        currency = 1 min
+        range
+            critical_high &gt;= 180 mm[Hg]
+            very_high     &gt;  140 mm[Hg]
+            high          &gt;  120 mm[Hg]
+            normal
+            low           &lt;=  90 mm[Hg]
+            critical_low  &lt;=  50 mm[Hg]
+
+    diastolic_blood_pressure: Quantity
+        currency = 1 min
+        range
+            high          &gt;   80 mm[Hg]
+            normal
+            low           &lt;=  60 mm[Hg]
+
+    resting_heart_rate: Quantity
+        currency = 30 sec
+        range
+            critical_high &gt;= 140 /min
+            high          &gt;=  90 /min
+            normal
+            low           &lt;=  55 /min
+            critical_low  &lt;=  39 /min
+
+    oxygen_saturation: Proportion
+        currency = 30 sec
+        limit
+            low = 92%
+        range
+            low = |&lt; limit.low|
+
+evaluation &lt;tag="general"&gt;
+
+    is_type1_diabetic: Boolean
+
+derived
+    age: Duration
+        Result &lt;- {Env}.current_date() - date_of_birth
+
+    bmi: Quantity
+        Result &lt;- weight / height ^ 2
+
+terminology
+	term_definitions = &lt;
+		["en"] = &lt;
+			["date_of_birth"] = &lt;
+				text = &lt;"Date of birth"&gt;
+				description = &lt;"Date of birth of subject"&gt;
+			&gt;
+			["sex"] = &lt;
+				text = &lt;"biological sex"&gt;
+				description = &lt;"Biological sex of subject."&gt;
+			&gt;
+			["systolic_blood_pressure"] = &lt;
+				text = &lt;"systolic blood pressure"&gt;
+				description = &lt;"Instantaneous systolic blood pressure (lying)."&gt;
+			&gt;
+			["is_type1_diabetic"] = &lt;
+				text = &lt;"Type I diabetic status of subject"&gt;
+				description = &lt;"Subject has confirmed diagnosis of type I diabetes mellitus."&gt;
+			&gt;
+			["bmi"] = &lt;
+				text = &lt;"Body mass index"&gt;
+				description = &lt;"Subject body mass index."&gt;
+			&gt;
+			["..."] = &lt;
+				text = &lt;"..."&gt;
+				description = &lt;"..."&gt;
+			&gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cancer_patient"><a class="anchor" href="#_cancer_patient"></a>5.2. Cancer patient</h3>
+<div class="listingblock">
+<div class="content">
+<pre>proxy
+    Cancer_patient
+
+extend
+    Core_patient
+
+evaluation &lt;tag="general"&gt;
+
+    staging: Terminology_term «ann_arbor_staging»
+        currency = 30 days
+
+    has_metastases: Boolean
+        currency = 30 days
+
+terminology
+	term_definitions = &lt;
+		["en"] = &lt;
+			["staging"] = &lt;
+				text = &lt;"Cancer staging"&gt;
+				description = &lt;"Cancer staging (Ann Arbor system)"&gt;
+			&gt;
+			["has_metastases"] = &lt;
+				text = &lt;"Metastatic status"&gt;
+				description = &lt;"Status of metastasis of cancer"&gt;
+			&gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_subject_proxy_object_model"><a class="anchor" href="#_subject_proxy_object_model"></a>6. Subject Proxy Object Model</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>6.1. Overview</h3>
+<div class="paragraph">
+<p>The following shows the <code>proc.subject_proxy.module</code> object model of the Subject Proxy concept.</p>
+</div>
+<div id="proc_subject_proxy" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/PROC-subject_proxy.module.svg" alt="PROC subject proxy.module">
+</div>
+<div class="title">Figure 2. proc.subject_proxy.module package</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -466,7 +676,7 @@ state :this_episode -- current pregnancy
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-28 15:22:33 +0100
+Last updated 2020-06-28 17:11:59 +0100
 </div>
 </div>
 </body>

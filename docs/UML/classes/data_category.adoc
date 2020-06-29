@@ -1,9 +1,9 @@
-=== DL_BLOCK Class
+=== DATA_CATEGORY Enumeration
 
 [cols="^1,3,5"]
 |===
-h|*Class*
-2+^h|*DL_BLOCK*
+h|*Enumeration*
+2+^h|*DATA_CATEGORY*
 
 h|*Description*
 2+a|
@@ -12,7 +12,11 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*0..1*
-|*statements*: `List<DL_STATEMENT>`
+h|
+|state
+a|
+
+h|
+|diagnosis
 a|
 |===

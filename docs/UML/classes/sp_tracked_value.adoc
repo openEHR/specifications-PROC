@@ -1,0 +1,17 @@
+=== SP_TRACKED_VALUE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*_SP_TRACKED_VALUE (abstract)_*
+
+h|*Description*
+2+a|
+
+h|*Inherit*
+2+|`BMM_FUNCTION`
+
+
+h|*Invariants*
+2+a|_Argumentless_: `arity() = 0`
+|===

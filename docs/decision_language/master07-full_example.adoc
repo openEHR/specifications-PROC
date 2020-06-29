@@ -1,87 +1,6 @@
 = Examples
 
-== Basic patient
-
-----
-proxy
-    Core_patient
-
-definitions
-    Critical_high_bp: Quantity = 180 mm[Hg]
-    
-    Low_oxygen_sat: Proportion = 92%
-
-admin
-    date_of_birth: Date
-    
-    sex: Terminology_term
-
-state
-    weight: Quantity
-        currency
-            3 days
-            
-    height: Quantity
-        currency
-            1 year
-    
-    systolic_blood_pressure: Quantity
-        currency
-            1 min
-        range
-            critical_high:  >= Critical_high_bp
-
-    diastolic_blood_pressure: Quantity
-        currency
-            1 min
-
-    heart_rate: Quantity
-        currency
-            30 sec
-            
-    oxygen_sat: Proportion
-        currency
-            30 sec
-        range
-            |low| = |< Low_oxygen_sat|
-            
-    blood_glucose: Quantity
-        currency
-            2 hour
-            
-    // Eastern Cooperative Oncology Group score
-    ecog: Integer
-        currency
-            1 week
-    
-derived
-    age: Duration
-        Result <- {Env}.current_date() - date_of_birth
-    
-----
-
-== Cancer patient
-
-----
-proxy module
-    Cancer_patient
-    
-extend
-    Core_patient
-    
-state
-    staging: Terminology_term «ann_arbor_staging» 
-        currency
-            30 days
-
-    metastases: Terminology_term «pos_neg_vs» 
-        currency
-            30 days
-
-derived
-    metastatic:
-        metastases = |positive|
-----
+The following examples rely on the 'Core Patient' and extension Subject Proxies defined in the {openehr_subject_proxy}#_core_patient_proxy[openEHR Subject Proxy Specification^].
 
 == Perinatal Care
 
@@ -228,40 +147,31 @@ extend
     
 state
     tnm_t: String
-        currency 
-            60 days
+        currency  = 60 days
             
     tnm_n: String
-        currency 
-            60 days
+        currency = 60 days
             
     tnm_m: String
-        currency 
-            60 days
+        currency = 60 days
             
     tnm_g: String
-        currency 
-            60 days
+        currency = 60 days
             
     estrogen_receptor: Terminology_term «pos_neg_vs»
-        currency 
-            60 days
+        currency = 60 days
             
     progesterone_receptor:  Terminology_term «pos_neg_vs»
-        currency 
-            60 days
+        currency = 60 days
             
     her2_expression: Terminology_term «pos_neg_vs»
-        currency 
-            60 days
+        currency = 60 days
     
     ki67: Quantity
-        currency 
-            60 days
+        currency = 60 days
             
     ejection_fraction: Quantity
-        currency 
-            60 days
+        currency = 60 days
                 
 derived
     er_negative:

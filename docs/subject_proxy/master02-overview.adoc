@@ -2,12 +2,10 @@
 
 == Conceptual Model
 
-The Subject Proxy Object (SPO) is an interface to patient state, events and history that is conceptually ontological rather than epistemological. This means its attributes represent _ontic_ entities (i.e. real world entities such as patient P's blood pressure), such as real patient heart rate or diabetic status, rather than particular epistemic entities such as instances of data recorded in an institutional EMR, e.g. the medications list as known by the hospital in which the patient is receiving care.
-
-The logical SPO component is identified as the centre left box (blue) in the following diagram.
+Within a clinical computing environment driven by computable plans and decision support (guidelines), the Subject Proxy Object (SPO) is an interface between the plan and guideline components on the one hand, and patient data on the other. The logical SPO component is shown below in the context of the related components (blue box, centre left).
 
 [.text-center]
-.Conceptual framework
+.openEHR conceptual framework for computable care pathways
 image::{common_diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
 
 The Subject Proxy performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific Plans and Decision Support. These jobs are described below.
@@ -18,7 +16,7 @@ The relationship between guidelines and data exhibits a number of semantic chara
 
 In order to define a care pathway or guideline (possibly adapted into a patient-specific care plan), various state variables and events need to be referred to. Since guidelines are specific to purpose, the number of variables is typically low, and for many simpler guidelines, only 3 or 4. Many guidelines need access to common variables such as 'sex', 'age', basic clinical classifiers such as 'is diabetic', 'is pregnant' and then a relatively small number of condition-specific variables representing patient state (e.g. 'neutrophils', 'ldl') and diagnoses (e.g. 'eclampsia', 'gestational hypertension'). A guideline of medium complexity, such as for RCHOPS (non-Hodgkins lymphoma) chemotherapy needs around 20 variables, and a complex guideline such as for sepsis might need 50 - 100.
 
-These small numbers are in contrast to the total number of distinct types of data point that will be routinely recorded for a subject over long periods and relating to all conditions, which is in the O(1k) range, or the number of such data points recorded for a population, e.g. all inpatients + outpatients of a large hospital, which is O(10k), and corresponds to the variety of data that a general EMR product would need to cope with. The 'data sets' for specific guidelines are thus small and well-defined in comparison to the data generally captured within a patient record over time, and thus candidates for encapsulation.
+These small numbers are in contrast to the total number of distinct types of data point that will be routinely recorded for a subject over long periods and relating to all conditions, which is in the O(1k) range, or the number of such data points recorded for a population, e.g. all inpatients + outpatients of a large hospital, which is O(10k). The latter corresponds to the variety of data that a general EMR product would need to cope with. The 'data sets' for specific guidelines are thus small and well-defined in comparison to the data generally captured within a patient record over time, and thus candidates for encapsulation.
 
 Data set size is not the only distinguishing characteristic of a computable guideline. Where variables such as 'systolic blood pressure', 'is diabetic' and so on are mentioned in guidelines, they are intended to refer to the real patient state or history, i.e. they are references to values representing _ontic_ entities, independent of how they might be obtained or stored. This is in contrast with the view of data where it is captured in health records or documents, which is an _epistemic_ one, i.e. the result of a knowledge capture activity. Consequently, a query into a departmental hospital system asking if patient 150009 is diabetic, indicates that the patient is diabetic in the case of a positive answer, but otherwise probably doesn't indicate anything, since the full list of patient 150009's problems is often not found in departmental systems.
 

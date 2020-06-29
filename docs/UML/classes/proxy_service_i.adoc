@@ -1,0 +1,26 @@
+=== PROXY_SERVICE_I Interface
+
+[cols="^1,3,5"]
+|===
+h|*Interface*
+2+^h|*PROXY_SERVICE_I*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|: `PROXY_STATE_I`
+a|
+
+h|*1..1*
+|: `PROXY_PROBLEM_DX_I`
+a|
+
+h|*1..1*
+|: `PROXY_VITAL_SIGNS_I`
+a|
+|===
