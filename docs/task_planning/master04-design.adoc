@@ -9,7 +9,7 @@ At the coarsest conceptual level, _plans_ are one of a small number of distinct 
 The following diagram illustrates these artefacts, with plans proper shown at the top.
 
 [.text-center]
-.Conceptual framework
+.Conceptual framework for TP/DL ecosystem
 image::{common_diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
 
 One important consequence of this separation of concerns is that the Task Plan model described here uses _symbolic references_ to refer to both proxy values (patient state, previous diagnoses etc) and decision logic functions, rather than including expressions inline, in the manner of most workflow languages. All 'expressions' are thus represented externally, either within decision logic modules or proxies. Both of the latter are maintained as independent knowledge artefacts and _used_ by plans.

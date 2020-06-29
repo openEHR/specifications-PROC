@@ -5,7 +5,7 @@
 This section describes the formal model of Work Plan and Task Plan, which is presented in UML form, as well as in TP-VML definition instance form. The following figure shows the main classes in the `proc.task_planning.definition` package.
 
 [.text-center]
-.proc.task_planning.definition model overview
+.`proc.task_planning.definition` model overview
 image::{uml_diagrams_uri}/PROC-task_planning.definition-structure.svg[id=proc_definition_structure, align="center"]
 
 The remaining classes are shown in various specialised views below.

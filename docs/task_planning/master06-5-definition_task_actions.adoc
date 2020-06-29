@@ -3,7 +3,7 @@
 The specific definition of the work of Tasks is provided by `TASK._action_`, of type `TASK_ACTION` and its subtypes. Two abstract sub-types `DISPATCHABLE_ACTION` and `PERFORMABLE_ACTION` distinguish the _dispatchable_ and _performable_ flavours of Task Action, corresponding to the two `TASK` subtypes. The following UML diagram shows `TASK_ACTION` and its subtypes in detail.
 
 [.text-center]
-.proc.task_planning.definition model - Task Actions
+.`proc.task_planning.definition` model - Task Actions
 image::{uml_diagrams_uri}/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
 
 `TASK_ACTION` includes two attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.

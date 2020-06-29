@@ -9,7 +9,7 @@ The `materialised` package contains the class model of the materialised form of 
 The `history` package contains the model of audit events that have occurred to each Task Plan in a Work Plan during execution.
 
 [.text-center]
-.rm.task_planning package overview
+.`proc.task_planning` package overview
 image::{uml_diagrams_uri}/PROC-task_planning-overview.svg[id=proc_task_planning_overview, align="center"]
 
 The following instance diagram illustrates the relationships among these models for one Task Plan. On the left is a Task Plan definition, consisting of a Task Group and various Defined Actions. Each of these Tasks may have a prototype Entry attached, which represents the intended data of an Action, Observation or other Entry that the Task defines.

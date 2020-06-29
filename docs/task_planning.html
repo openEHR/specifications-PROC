@@ -1066,7 +1066,7 @@
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://forums.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/PROC/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -1794,7 +1794,7 @@
 <div class="content">
 <img src="common/diagrams/conceptual_framework_overview.svg" alt="conceptual framework overview">
 </div>
-<div class="title">Figure 5. Conceptual framework</div>
+<div class="title">Figure 5. Conceptual framework for TP/DL ecosystem</div>
 </div>
 <div class="paragraph">
 <p>One important consequence of this separation of concerns is that the Task Plan model described here uses <em>symbolic references</em> to refer to both proxy values (patient state, previous diagnoses etc) and decision logic functions, rather than including expressions inline, in the manner of most workflow languages. All 'expressions' are thus represented externally, either within decision logic modules or proxies. Both of the latter are maintained as independent knowledge artefacts and <em>used</em> by plans.</p>
@@ -2449,7 +2449,7 @@
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning-overview.svg" alt="PROC task planning overview">
 </div>
-<div class="title">Figure 12. rm.task_planning package overview</div>
+<div class="title">Figure 12. <code>proc.task_planning</code> package overview</div>
 </div>
 <div class="paragraph">
 <p>The following instance diagram illustrates the relationships among these models for one Task Plan. On the left is a Task Plan definition, consisting of a Task Group and various Defined Actions. Each of these Tasks may have a prototype Entry attached, which represents the intended data of an Action, Observation or other Entry that the Task defines.</p>
@@ -3699,7 +3699,7 @@ The following UML diagram illustrates.</p>
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-structure.svg" alt="PROC task planning.definition structure">
 </div>
-<div class="title">Figure 15. proc.task_planning.definition model overview</div>
+<div class="title">Figure 15. <code>proc.task_planning.definition</code> model overview</div>
 </div>
 <div class="paragraph">
 <p>The remaining classes are shown in various specialised views below.</p>
@@ -5228,7 +5228,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="content">
 <img src="UML/diagrams/PROC-task_planning.definition-actions.svg" alt="PROC task planning.definition actions">
 </div>
-<div class="title">Figure 22. proc.task_planning.definition model - Task Actions</div>
+<div class="title">Figure 22. <code>proc.task_planning.definition</code> model - Task Actions</div>
 </div>
 <div class="paragraph">
 <p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
