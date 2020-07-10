@@ -39,25 +39,22 @@ extend
 
 state
     neutrophils: Quantity
-        currency
-            3d
-        range
+        currency = 3d
+        ranges
             |normal|:      >1 x 10^9/L
             |low|:         0.5 - 1 x 10^9/L
             |very_low|:    <0.5 x 10^9/L
 
     platelets: Quantity
-        currency
-            12h
-        range
+        currency = 12h
+        ranges
             |normal|:      >75 x 10^9/L
             |low|:         50 - 74 x 10^9/L
             |very_low|:    <50 x 10^9/L
     
     bilirubin: Quantity
-        currency
-            12h
-        range
+        currency = 12h
+        ranges
             |normal|:      <20 mmol/L
             |high|:        20 - 51 mmol/L
             |very_high|:   51 - 85 mmol/L
@@ -65,18 +62,16 @@ state
         
     // Glomerular filtration rate
     gfr: Quantity
-        currency
-            24h
-        range
+        currency = 24h
+        rangess
             |normal|:      >20 mL/min
             |low|:         10 - 20 mL/min
             |very_low|:    <10 mL/min
 
     // Lactate dehydrogenase (LDH)
     ldh: Quantity
-        currency
-            24h
-        range
+        currency = 24h
+        ranges
             |normal|:      >20 mL/min
             |low|:         10 - 20 mL/min
             |very_low|:    <10 mL/min
@@ -119,7 +114,7 @@ definitions
     
     cycle_repeats: Integer = 6
     
-conditions
+rules
     high_ipi:
         Result <- ipi_risk in {|high risk|3, |intermediate-high risk|2}
 
@@ -128,41 +123,41 @@ conditions
     //
     patient_fit: 
         Result <- not
-            (platelets.range = |very_low| or
-             neutrophils.range = |very_low|)
+            (P.platelets.range = |very_low| or
+             P.neutrophils.range = |very_low|)
         
-rules
     prednisolone_dose: Quantity
-        Result <- prednisolone_dose_per_m2 * bsa_m2
+        Result <- prednisolone_dose_per_m2 * P.bsa_m2
 
     rituximab_dose: Quantity
-        Result <- rituximab_dose_per_m2 * bsa_m2
+        Result <- rituximab_dose_per_m2 * P.bsa_m2
 
     doxorubicin_dose: Quantity
-        Result <- doxorubicin_dose_per_m2 * bsa_m2 *
-            map bilirubin.range
+        Result <- doxorubicin_dose_per_m2 * P.bsa_m2 *
+            map P.bilirubin.range
                 |high|:        0.5
                 |very_high|:   0.25
                 |crit_high|:   0.0
 
     prednisolone_dose: Quantity
-        Result <- prednisolone_dose_per_m2 * bsa_m2
+        Result <- prednisolone_dose_per_m2 * P.bsa_m2
 
     //
     // TODO: hepatic impairment dose modification
     //
     vincristine_dose: Quantity
-        Result <- vincristine_dose_per_m2 * bsa_m2
+        Result <- vincristine_dose_per_m2 * P.bsa_m2
 
     //
-    // CHECK: is low platelets and GFR dose modification cumulative?
+    // CHECK: is low platelets and GFR dose modification 
+    // cumulative?
     //
     cyclophosphamide_dose: Quantity
-        Result <- cyclophosphamide_dose_per_m2 * bsa_m2
-            * map platelets.range
+        Result <- cyclophosphamide_dose_per_m2 * P.bsa_m2
+            * map P.platelets.range
                 |normal|:      1
                 |low|:         0.75
-            * map gfr.range
+            * map P.gfr.range
                 |normal|:      1
                 |low|:         0.75
                 |very_low|:    0.5

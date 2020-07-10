@@ -686,10 +686,9 @@ state :live
     uterine_fundal_height: Quantity
 
     vaginal_blood_flow: Quantity
-        currency
-            30mins
-        range
-            critical_high: &gt; 500 mL/hr
+        currency = 30mins
+        ranges
+            |critical_high|: &gt; 500 mL/hr
 
 events
     haemorrhage:
@@ -774,7 +773,7 @@ extend
 
 state
     tnm_t: String
-        currency  = 60 days
+        currency = 60 days
 
     tnm_n: String
         currency = 60 days
@@ -1058,7 +1057,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-25 14:13:23 +0100
+Last updated 2020-06-29 10:48:58 +0100
 </div>
 </div>
 </body>
