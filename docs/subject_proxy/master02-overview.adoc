@@ -70,13 +70,13 @@ A related issue for decision support is that some needed variables relate to ear
 If the Subject Proxy can provide a formal meaning for 'previous history of eclampsia', as distinct from (current) eclampsia, the formulation of DS rules mentioning such entities is easier. The following example shows how such definitions might appear in an SPO.
 
 ----
-state :historical
+state <"historical">
 
     is_type1_diabetic: Boolean
         
     previous_obstetric_hypertension: Boolean
         
-state :this_episode -- current pregnancy
+state <"this_episode"> -- current pregnancy
 
     has_gestational_diabetes: Boolean
 ---- 

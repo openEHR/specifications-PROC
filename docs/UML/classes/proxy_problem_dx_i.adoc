@@ -15,14 +15,14 @@ h|*Functions*
 h|*1..1*
 |*has_problem_dx* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `Boolean`
+concept: `Terminology_code[1]` +
+): `Boolean_data_item`
 a|
 
 h|*1..1*
 |*get_problem_dx* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
+concept: `Terminology_code[1]` +
 ): `Hash<String, Any>`
 a|
 |===

@@ -26,7 +26,7 @@ state <tag="vital_signs">
 
     systolic_blood_pressure: Quantity
         currency = 1 min
-        range
+        ranges
             critical_high >= 180 mm[Hg]
             very_high     >  140 mm[Hg]
             high          >  120 mm[Hg]
@@ -36,14 +36,14 @@ state <tag="vital_signs">
 
     diastolic_blood_pressure: Quantity
         currency = 1 min
-        range
+        ranges
             high          >   80 mm[Hg]
             normal
             low           <=  60 mm[Hg]
 
     resting_heart_rate: Quantity
         currency = 30 sec
-        range
+        ranges
             critical_high >= 140 /min
             high          >=  90 /min
             normal
@@ -54,7 +54,7 @@ state <tag="vital_signs">
         currency = 30 sec
         limit
             low = 92%
-        range
+        ranges
             low = |< limit.low|
             
 evaluation <tag="general">

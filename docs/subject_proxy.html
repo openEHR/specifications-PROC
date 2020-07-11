@@ -397,13 +397,13 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>state :historical
+<pre>state &lt;"historical"&gt;
 
     is_type1_diabetic: Boolean
 
     previous_obstetric_hypertension: Boolean
 
-state :this_episode -- current pregnancy
+state &lt;"this_episode"&gt; -- current pregnancy
 
     has_gestational_diabetes: Boolean</pre>
 </div>
@@ -540,7 +540,7 @@ state &lt;tag="vital_signs"&gt;
 
     systolic_blood_pressure: Quantity
         currency = 1 min
-        range
+        ranges
             critical_high &gt;= 180 mm[Hg]
             very_high     &gt;  140 mm[Hg]
             high          &gt;  120 mm[Hg]
@@ -550,14 +550,14 @@ state &lt;tag="vital_signs"&gt;
 
     diastolic_blood_pressure: Quantity
         currency = 1 min
-        range
+        ranges
             high          &gt;   80 mm[Hg]
             normal
             low           &lt;=  60 mm[Hg]
 
     resting_heart_rate: Quantity
         currency = 30 sec
-        range
+        ranges
             critical_high &gt;= 140 /min
             high          &gt;=  90 /min
             normal
@@ -568,7 +568,7 @@ state &lt;tag="vital_signs"&gt;
         currency = 30 sec
         limit
             low = 92%
-        range
+        ranges
             low = |&lt; limit.low|
 
 evaluation &lt;tag="general"&gt;
@@ -676,7 +676,7 @@ terminology
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-28 17:11:59 +0100
+Last updated 2020-06-29 10:48:58 +0100
 </div>
 </div>
 </body>

@@ -1,0 +1,28 @@
+=== SP_EVALUATOR Interface
+
+[cols="^1,3,5"]
+|===
+h|*Interface*
+2+^h|*SP_EVALUATOR*
+
+h|*Description*
+2+a|
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*install_proxy* ( +
+subject_id: `String[1]`, +
+plan_id: `String[1]`, +
+a_proxy: `SUBJECT_PROXY[1]` +
+): `String`
+a|
+
+h|*0..1*
+|*remove_proxy* ( +
+proxy_id: `String[1]` +
+)
+a|
+|===

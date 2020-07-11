@@ -11,6 +11,19 @@ h|*Description*
 h|*Inherit*
 2+|`BMM_FUNCTION`
 
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1 +
+(redefined)*
+|*feature_extensions*: `List<TRACKED_VALUE_DEF>`
+a|Extensions to feature-level meta-types.
+
+h|*1..1 +
+(redefined)*
+|*type*: `BMM_SIMPLE_TYPE`
+a|Declared or inferred static type of the entity.
 
 h|*Invariants*
 2+a|_Argumentless_: `arity() = 0`

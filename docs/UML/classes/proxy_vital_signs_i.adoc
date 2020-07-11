@@ -15,42 +15,42 @@ h|*Functions*
 h|*1..1*
 |*get_boolean* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `Boolean`
+concept: `Terminology_code[1]` +
+): `Boolean_data_item`
 a|
 
 h|*1..1*
 |*get_integer* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `Integer`
+concept: `Terminology_code[1]` +
+): `Integer_data_item`
 a|
 
 h|*1..1*
 |*get_real* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `Real`
+concept: `Terminology_code[1]` +
+): `Real_data_item`
 a|
 
 h|*1..1*
 |*get_quantity* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `Quantity`
+concept: `Terminology_code[1]` +
+): `Quantity_data_item`
 a|
 
 h|*1..1*
 |*get_coded_term* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `Terminology_term`
+concept: `Terminology_code[1]` +
+): `Coded_term_data_item`
 a|
 
 h|*1..1*
 |*get_text* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]` +
-): `String`
+concept: `Terminology_code[1]` +
+): `Text_data_item`
 a|
 |===

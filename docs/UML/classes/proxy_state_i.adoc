@@ -15,48 +15,48 @@ h|*Functions*
 h|*1..1*
 |*get_boolean* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]`, +
+concept: `Terminology_code[1]`, +
 time_window: `Time_window[0..1]` +
-): `Boolean`
+): `Boolean_data_item`
 a|
 
 h|*1..1*
 |*get_integer* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]`, +
+concept: `Terminology_code[1]`, +
 time_window: `Time_window[0..1]` +
-): `Integer`
+): `Integer_data_item`
 a|
 
 h|*1..1*
 |*get_real* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]`, +
+concept: `Terminology_code[1]`, +
 time_window: `Time_window[0..1]` +
-): `Real`
+): `Real_data_item`
 a|
 
 h|*1..1*
 |*get_quantity* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]`, +
+concept: `Terminology_code[1]`, +
 time_window: `Time_window[0..1]` +
-): `Quantity`
+): `Quantity_data_item`
 a|
 
 h|*1..1*
 |*get_coded_term* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]`, +
+concept: `Terminology_code[1]`, +
 time_window: `Time_window[0..1]` +
-): `Terminology_term`
+): `Coded_term_data_item`
 a|
 
 h|*1..1*
 |*get_text* ( +
 subject_id: `String[1]`, +
-item: `Terminology_code[1]`, +
+concept: `Terminology_code[1]`, +
 time_window: `Time_window[0..1]` +
-): `String`
+): `Text_data_item`
 a|
 |===
