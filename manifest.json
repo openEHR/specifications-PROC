@@ -69,7 +69,7 @@
             }
         },
         {
-            "id": "openEHR_UML-Base.mdzip",
+            "id": "openEHR_UML-BASE.mdzip",
             "dependency": {
                 "component": "BASE",
                 "release": "latest"
