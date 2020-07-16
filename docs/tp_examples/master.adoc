@@ -2,12 +2,7 @@
 // ============================================ Asciidoc HEADER =============================================
 //
 include::{ref_dir}/docs/boilerplate/book_style_settings.adoc[]
-
-:copyright_year: 2017
-:spec_status: TRIAL
-:keywords: task, planning, examples, workflow
-:description: openEHR Task Planning (TP) Examples
-
+include::manifest_vars.adoc[]
 include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
 //

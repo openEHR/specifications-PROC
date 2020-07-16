@@ -1,0 +1,5 @@
+:spec_title: Task Planning (TP) Specification
+:copyright_year: 2017
+:spec_status: TRIAL
+:keywords: workflow, task, planning, EHR, EMR, reference model, openehr
+:description: openEHR Task Planning specification

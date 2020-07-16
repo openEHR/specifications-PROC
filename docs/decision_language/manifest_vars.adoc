@@ -1,0 +1,5 @@
+:spec_title: Decision Language (DL) and Model
+:copyright_year: 2020
+:spec_status: DEVELOPMENT
+:keywords: expressions, rules, workflow
+:description: openEHR Decision Language specification
