@@ -9,6 +9,6 @@ h|*Description*
 2+a|Variable that is used locally within the Work Plan, and can be used to transmit information to sub-plans.
 
 h|*Inherit*
-2+|`CONTEXT_VARIABLE`
+2+|`<<_context_variable_class,CONTEXT_VARIABLE>>`
 
 |===

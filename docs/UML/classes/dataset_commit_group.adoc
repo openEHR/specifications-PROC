@@ -13,10 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*group_id*: `String`
+|*group_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Unique identifier of this commit group within scope of a single Task Plan.
 
 h|*1..1*
-|*completion_step*: `Boolean`
+|*completion_step*: `link:/releases/BASE/{proc_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|If True, the Task to which this Dataset Spec is attached is the one that puts it into the `complete` lifecycle state.
 |===

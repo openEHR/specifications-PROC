@@ -9,21 +9,21 @@ h|*Description*
 2+a|System-generated Event created on receipt of notification of completion of the work of the target of a Dispatchable Task.
 
 h|*Inherit*
-2+|`EVENT`
+2+|`<<_event_class,EVENT>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_id*: `UID_BASED_ID`
+|*task_id*: `link:/releases/BASE/{proc_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
 a|Identifier of originating Task.
 
 h|*0..1*
-|*request_id*: `String`
+|*request_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of original request, may be matchable with `EXTERNAL_REQUEST._request_id_`.
 
 h|*0..1*
-|*subject_id*: `String`
+|*subject_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of subject to which callback relates.
 |===

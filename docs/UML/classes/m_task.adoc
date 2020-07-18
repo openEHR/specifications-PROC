@@ -9,26 +9,26 @@ h|*Description*
 2+a|Materialised form of `TASK` type and its descendants from a Task Plan definition.
 
 h|*Inherit*
-2+|`M_PLAN_ITEM`
+2+|`<<_m_plan_item_class,M_PLAN_ITEM>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*lifecycle_state*: `TASK_LIFECYCLE`
+|*lifecycle_state*: `<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>`
 a|Current lifecycle state of this Task at run-time.
 
 h|*0..1*
-|*events*: `List<TASK_EVENT_RECORD>`
+|*events*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_event_record_class,TASK_EVENT_RECORD>>>`
 a|List of references to run-time events that have occurred on this Task.
 
 h|*0..1*
-|*preconditions*: `List<EL_ASSERTION>`
+|*preconditions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_el_boolean_expression_class[EL_BOOLEAN_EXPRESSION^]>`
 a|Run-time form of preconditions on corresponding TASK in Task Plan definition.
 
 h|*1..1 +
 (redefined)*
-|*definition*: `TASK`
+|*definition*: `<<_task_class,TASK>>`
 a|Reference to corresponding TASK instance in Task Plan definition.
 |===

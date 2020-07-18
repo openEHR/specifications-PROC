@@ -9,13 +9,13 @@ h|*Description*
 2+a|Event type representing the manual notification of a real-world event to the system, such as arrival of a test result, manually taken vital sign value over a threshold.
 
 h|*Inherit*
-2+|`PLAN_EVENT`
+2+|`<<_plan_event_class,PLAN_EVENT>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*description*: `String`
+|*description*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Natural language or processable description of the event. Needs to be sufficiently detailed to distinguish it from other similar events.
 |===

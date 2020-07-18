@@ -13,10 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*name*: `String`
+|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Name of parameter in external API call definition.
 
 h|*1..1*
-|*context_name*: `String`
+|*context_name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Name of context value definition (i.e. variable, expression, constant, including built-ins) whose value should be passed through as the named parameter on call invocation.
 |===

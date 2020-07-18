@@ -9,13 +9,13 @@ h|*Description*
 2+a|A point in time within a day.
 
 h|*Inherit*
-2+|`TIME_SPECIFIER`
+2+|`<<_time_specifier_class,TIME_SPECIFIER>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*time*: `Iso8601_time`
+|*time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_time_class[Iso8601_time^]`
 a|Time expressed as a clock time within a day.
 |===

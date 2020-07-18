@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_LINKED_PLAN (abstract)_*
+2+^h|*__LINKED_PLAN (abstract)__*
 
 h|*Description*
 2+a|Task type that represents a dispatch to another Task Plan to be executed by another performer in a Plan Group.
@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*target*: `TASK_PLAN`
+|*target*: `<<_task_plan_class,TASK_PLAN>>`
 a|Reference to target `TASK_PLAN` object.
 |===

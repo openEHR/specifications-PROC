@@ -9,13 +9,13 @@ h|*Description*
 2+a|Represents a Task that can be performed by the principal performer during the Plan execution.
 
 h|*Inherit*
-2+|`TASK`
+2+|`<<_task_class,TASK>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*capture_dataset*: `List<CAPTURE_DATASET_SPEC>`
+|*capture_dataset*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_capture_dataset_spec_class,CAPTURE_DATASET_SPEC>>>`
 a|Associated data-set template and/or form via which data to be captured during this Task will actually be entered.
 |===

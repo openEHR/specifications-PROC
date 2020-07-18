@@ -11,18 +11,18 @@ h|*Description*
 This structure is the equivalent of a programming 'case' statement. It is processed in order, and for situations that need it, the last branch may use a `_value_constraint_` representing 'any value', to represent a catch-all 'else' branch.
 
 h|*Inherit*
-2+|`CHOICE_GROUP`
+2+|`<<_choice_group_class,CHOICE_GROUP>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*value*: `CONTEXT_EXPRESSION`
+|*value*: `<<_context_expression_class,CONTEXT_EXPRESSION>>`
 a|Reference to an Expression Language terminal that may be a function call or property reference. The Result value is compared to `_value_constraint_` sub-ranges in each of the various output branches, in the manner of a case statement.
 
 h|*0..1 +
 (redefined)*
-|*members*: `List<DECISION_BRANCH>`
+|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_decision_branch_class,DECISION_BRANCH>>>`
 a|Set of branches in this Decision Group.
 |===

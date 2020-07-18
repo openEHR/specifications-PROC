@@ -9,13 +9,13 @@ h|*Description*
 2+a|An expression that references one or more context variables. At run time, Context Expressions are updated when changes to their dependent variables are detected.
 
 h|*Inherit*
-2+|`CONTEXT_VALUE`
+2+|`<<_context_value_class,CONTEXT_VALUE>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*expression*: `String`
+|*expression*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Expression, in openEHR Expression syntax.
 |===

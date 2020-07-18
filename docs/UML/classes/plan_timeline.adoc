@@ -13,10 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*planned_items*: `List<PLAN_ITEM>`
+|*planned_items*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_plan_item_class,PLAN_ITEM>>>`
 a|List of Plan Items that have a wait_condition containing a `TIMELINE_MOMENT`.
 
 h|*0..1*
-|*timers*: `List<TIMER_WAIT>`
+|*timers*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_timer_wait_class,TIMER_WAIT>>>`
 a|Reference list of all defined Timers.
 |===

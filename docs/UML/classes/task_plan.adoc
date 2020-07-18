@@ -15,22 +15,22 @@ It has an associated `_execution_history_` that can be used to record work event
 The `_guideline_` attribute provides a way of associating a Task Plan with a published guideline on which the Task Plan may be based; this may be used by `WORK_PLAN._care_pathway_` if set.
 
 h|*Inherit*
-2+|`CONTENT_ITEM`
+2+|`link:/releases/RM/{proc_release}/ehr.html#_content_item_class[CONTENT_ITEM^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*description*: `DV_TEXT`
+|*description*: `link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]`
 a|Human-understandable description of the Task Plan, which may be specific to the work items and patient.
 
 h|*0..1*
-|*subject*: `PARTY_PROXY`
+|*subject*: `link:/releases/RM/{proc_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
 a|Optional indicator of subject of Task Plan, which is normally the subject of the EHR. If this is not the case, this attribute states with respect to whom the Plan is to be performed.
 
 h|*0..1*
-|*guideline*: `ITEM_STRUCTURE`
+|*guideline*: `link:/releases/RM/{proc_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
 a|Identifier of guideline on which this Task Plan is based, if such exists. A 'guideline' is understood here as a published standard for performing a detailed Task.
 
 Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.
@@ -43,38 +43,38 @@ The `ITEM_STRUCTURE` type is used to allow population at runtime with an archety
 * `url = "https://www.nice.org.uk/guidance/cg180"`.
 
 h|*1..1*
-|*definition*: `TASK_GROUP`
+|*definition*: `<<_task_group_class,TASK_GROUP>>`
 a|The Tasks for the main part of this Task Plan; this section of the plan may be repeatable.
 
 h|*0..1*
-|*execution_history*: `TASK_PLAN_EXECUTION_HISTORY`
+|*execution_history*: `<<_task_plan_execution_history_class,TASK_PLAN_EXECUTION_HISTORY>>`
 a|History of execution events for an execution of this Task Plan.
 
 h|*0..1*
-|*best_practice_ref*: `DV_URI`
+|*best_practice_ref*: `link:/releases/RM/{proc_release}/data_types.html#_dv_uri_class[DV_URI^]`
 a|A URI (typically a local URL) that points to the document form of any governing guideline or other best practice publication in use in the current institution. This link provides a way for a clinician to cross-check the Task Plan design and functioning against the definitive document that acts as the source of its semantics.
 
 h|*0..1*
-|*expiry_time*: `Iso8601_duration`
+|*expiry_time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
 a|Maximal date/time by which this Task Plan should be considered obsolete. If not set, the Task Plan would normally be inferred to be obsolete after a discharge from acute care, but in primary or social care situations, no value may be assumed to indicate that the Tasks are still to be performed, depending on the times specified in the `_execution_time_` attribute of `TASKs` in the Plan.
 
 h|*0..1*
-|*due_time*: `Iso8601_duration`
+|*due_time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
 a|Due date/time expressed as an offset, to be converted to a real date/time at activation.
 
 h|*0..1*
-|*order_set_type*: `DV_IDENTIFIER`
+|*order_set_type*: `link:/releases/RM/{proc_release}/data_types.html#_dv_identifier_class[DV_IDENTIFIER^]`
 a|Optional identifier for an order set, which is understood as a _type_ of order set, e.g. 'R-CHOP-14'.
 
 h|*0..1*
-|*order_set_id*: `DV_IDENTIFIER`
+|*order_set_id*: `link:/releases/RM/{proc_release}/data_types.html#_dv_identifier_class[DV_IDENTIFIER^]`
 a|Identifier of instance of an order set on which this Task Plan is based, if there is one.
 
 h|*0..1*
-|*indications*: `List<DV_TEXT>`
+|*indications*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]>`
 a|Clinical applicability of this Task Plan to subject of work, e.g. 'pregnancy', 'lymphoma' etc. May be derived from a governing guideline. May be displayed as a safety precaution to human performer.
 
 h|*0..1*
-|*principal_performer*: `TASK_PARTICIPATION`
+|*principal_performer*: `<<_task_participation_class,TASK_PARTICIPATION>>`
 a|Specification of principle performer of this Task Plan as a Participation, in terms of role and optionally function, mode and specific performer as appropriate.
 |===

@@ -13,14 +13,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*performer*: `PARTY_IDENTIFIED`
+|*performer*: `link:/releases/RM/{proc_release}/common.html#_party_identified_class[PARTY_IDENTIFIED^]`
 a|Identity of allocated performer.
 
 h|*1..1*
-|*connection*: `String`
+|*connection*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|URI used to connect to performer (e.g. application, messaging channel) for notifications.
 
 h|*1..1*
-|*other_details*: `Hash<String, String>`
+|*other_details*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]>`
 a|Archetypable details.
 |===

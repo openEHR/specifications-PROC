@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*entries*: `List<CALENDAR_ENTRY>`
+|*entries*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_calendar_entry_class,CALENDAR_ENTRY>>>`
 a|Entries in calendar.
 |===

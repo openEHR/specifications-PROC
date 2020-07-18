@@ -17,10 +17,10 @@ h|*1..1*
 a|Descriptor for event on which this wait state is based.
 
 h|*0..1*
-|*success_action*: `EVENT_ACTION`
+|*success_action*: `<<_event_action_class,EVENT_ACTION>>`
 a|Action to perform if any listened-for event returns a success result.
 
 h|*0..1*
-|*timeout*: `TIMER_WAIT`
+|*timeout*: `<<_timer_wait_class,TIMER_WAIT>>`
 a|Timeout handler to use if no other Event is received within a certain time.
 |===

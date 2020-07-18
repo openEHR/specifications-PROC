@@ -13,22 +13,22 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*plans*: `List<M_TASK_PLAN>`
+|*plans*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_m_task_plan_class,M_TASK_PLAN>>>`
 a|Member Plans.
 
 h|*1..1*
-|*owner*: `WORK_PLAN`
+|*owner*: `<<_work_plan_class,WORK_PLAN>>`
 a|Owning Work Plan definition.
 
 h|*1..1*
-|*timeline*: `M_TIMELINE`
+|*timeline*: `<<_m_timeline_class,M_TIMELINE>>`
 a|Materialised global timeline.
 
 h|*1..1*
-|*calendar*: `M_CALENDAR`
+|*calendar*: `<<_m_calendar_class,M_CALENDAR>>`
 a|Materialised global calendar.
 
 h|*1..1*
-|*context*: `M_PLAN_DATA_CONTEXT`
+|*context*: `<<_m_plan_data_context_class,M_PLAN_DATA_CONTEXT>>`
 a|Materialised global context.
 |===

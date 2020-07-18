@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_SYSTEM_CALL (abstract)_*
+2+^h|*__SYSTEM_CALL (abstract)__*
 
 h|*Description*
 2+a|Abstract definition of a request to make to a system (i.e. information system or device) via its API, that reads or writes information specific to the Task to which it is attached in an actual Plan.
@@ -17,24 +17,24 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*system_id*: `String`
+|*system_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of target system, typically a domain name.
 
 h|*1..1*
-|*call_name*: `String`
+|*call_name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Name of call in API.
 
 h|*0..1*
-|*definition*: 
+|*definition*: `@@`
 a|Signature definition of call.
 
 TODO: to be defined.
 
 h|*0..1*
-|*parameter_map*: `List<PARAMETER_MAPPING>`
+|*parameter_map*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_parameter_mapping_class,PARAMETER_MAPPING>>>`
 a|Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.
 
 h|*0..1*
-|*bound_parameters*: `List<PARAMETER_DEF>`
+|*bound_parameters*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_parameter_def_class,PARAMETER_DEF>>>`
 a|Parameter values fixed for any invocation of the call. For example, a general call such as `_cds_check (type: String, other_args, ...)_` might be used from within the Task Plan in the form `_cds_check ("hypertension risk", other_args, ...)_`, i.e. the first argument is always fixed.
 |===

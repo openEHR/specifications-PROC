@@ -3,12 +3,12 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_DISPATCHABLE_ACTION (abstract)_*
+2+^h|*__DISPATCHABLE_ACTION (abstract)__*
 
 h|*Description*
 2+a|Type of Task Action that is performed by another performer, system or organisation.
 
 h|*Inherit*
-2+|`TASK_ACTION`
+2+|`<<_task_action_class,TASK_ACTION>>`
 
 |===

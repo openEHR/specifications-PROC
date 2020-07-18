@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*definition*: `PLAN_DATA_CONTEXT`
+|*definition*: `<<_plan_data_context_class,PLAN_DATA_CONTEXT>>`
 a|Definition object for this execution time context.
 |===

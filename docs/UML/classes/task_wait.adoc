@@ -18,18 +18,18 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*events*: `List<PLAN_EVENT>`
+|*events*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_plan_event_class,PLAN_EVENT>>>`
 a|One or more events that define the intended point in time. If there are more than one, the implied logical relation is OR, i.e. any event occurring causes the wait state to complete.
 
 h|*0..1*
-|*event_relation*: `TEMPORAL_RELATION`
+|*event_relation*: `<<_temporal_relation_enumeration,TEMPORAL_RELATION>>`
 a|Temporal relation to the event of the point or period in time being defined by this Timing Spec.
 
 h|*0..1*
-|*timeout*: `TIMER_WAIT`
+|*timeout*: `<<_timer_wait_class,TIMER_WAIT>>`
 a|Timeout handler to use if no other Event is received within a certain time.
 
 h|*0..1*
-|*next_state*: `TASK_LIFECYCLE`
+|*next_state*: `<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>`
 a|Override for next state to enter on receipt of any Event in `_events_`. Default processing is to enter the `available` state.
 |===

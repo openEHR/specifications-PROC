@@ -13,14 +13,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|: `PROXY_STATE_I`
+|: `<<_proxy_state_i_interface,PROXY_STATE_I>>`
 a|
 
 h|*1..1*
-|: `PROXY_PROBLEM_DX_I`
+|: `<<_proxy_problem_dx_i_interface,PROXY_PROBLEM_DX_I>>`
 a|
 
 h|*1..1*
-|: `PROXY_VITAL_SIGNS_I`
+|: `<<_proxy_vital_signs_i_interface,PROXY_VITAL_SIGNS_I>>`
 a|
 |===

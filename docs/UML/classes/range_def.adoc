@@ -13,10 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*name*: `String`
+|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*1..1*
-|*interval*: `Interval`
+|*interval*: `link:/releases/BASE/{proc_release}/foundation_types.html#_interval_class[Interval^]`
 a|
 |===

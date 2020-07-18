@@ -11,7 +11,7 @@ h|*Description*
 If the reminder is activated, its `_success_action_` should be configured to generate a reminder or alert to performer or other user.
 
 h|*Inherit*
-2+|`EVENT_WAIT`
+2+|`<<_event_wait_class,EVENT_WAIT>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -19,12 +19,12 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*event*: `PLAN_EVENT`
+|*event*: `<<_plan_event_class,PLAN_EVENT>>`
 a|The event that will generate the reminder. This could be a timer, or it may be a timeline moment, calendar time, or a non-deterministic event, e.g. state trigger.
 
 h|*Invariants*
-2+a|_Inv_no_timeout_: `timeout = Void`
+2+a|__Inv_no_timeout__: `timeout = Void`
 
 h|
-2+a|_Inv_has_action_: `success_action /= Void`
+2+a|__Inv_has_action__: `success_action /= Void`
 |===

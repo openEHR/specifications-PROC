@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_TASK_ACTION (abstract)_*
+2+^h|*__TASK_ACTION (abstract)__*
 
 h|*Description*
 2+a|Abstract parent of Task Action types, which define the specifics of the work of a Task. All Task Actions may have subject preconditions (i.e. preconditions on the state of the subject) that must be met or overridden before proceeding; costing information; and one or more review data sets to display in the application environment.
@@ -11,23 +11,23 @@ h|*Description*
 Performable Actions have further properties.
 
 h|*Inherit*
-2+|`LOCATABLE`
+2+|`link:/releases/RM/{proc_release}/common.html#_locatable_class[LOCATABLE^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*instruction_activity*: `LOCATABLE_REF`
+|*instruction_activity*: `link:/releases/BASE/{proc_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]`
 a|Optional reference back to the `ACTIVITY` of an `INSTRUCTION` that generated this `TASK`.
 
 TODO: may be movable to `PERFORMABLE_ACTION`.
 
 h|*0..1*
-|*subject_preconditions*: `List<SUBJECT_PRECONDITION>`
+|*subject_preconditions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_subject_precondition_class,SUBJECT_PRECONDITION>>>`
 a|Condition which must be met for the Task Action to be available to perform in a runtime execution context.
 
 h|*0..1*
-|*costing_data*: `TASK_COSTING`
+|*costing_data*: `<<_task_costing_class,TASK_COSTING>>`
 a|Costing data related to this Task item.
 |===

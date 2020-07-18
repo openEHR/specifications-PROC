@@ -3,12 +3,12 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_CHOICE_BRANCH (abstract)_*
+2+^h|*__CHOICE_BRANCH (abstract)__*
 
 h|*Description*
 2+a|Abstract precursor of any subordinate branch in a decision structure.
 
 h|*Inherit*
-2+|`TASK_GROUP`
+2+|`<<_task_group_class,TASK_GROUP>>`
 
 |===

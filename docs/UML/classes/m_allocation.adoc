@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*status*: `ALLOCATION_STATUS`
+|*status*: `<<_allocation_status_enumeration,ALLOCATION_STATUS>>`
 a|
 |===

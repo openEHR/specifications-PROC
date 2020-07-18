@@ -9,13 +9,13 @@ h|*Description*
 2+a|Dynamically updated variable of any continuous type whose value may change by arbitrarily small amounts. The `_update_variation_` attribute may be used to control updating frequency.
 
 h|*Inherit*
-2+|`EVENT_VARIABLE`
+2+|`<<_event_variable_class,EVENT_VARIABLE>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*update_variation*: `Real`
+|*update_variation*: `link:/releases/BASE/{proc_release}/foundation_types.html#_real_class[Real^]`
 a|Minimum percentage variation from current value to be considered a change that should cause an update.
 |===

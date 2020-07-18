@@ -13,12 +13,12 @@ h|*Functions*
 ^h|*Meaning*
 
 h|*0..1*
-|*plans* (): `List<UID_BASED_ID>`
+|*plans* (): `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{proc_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]>`
 a|List of Task Plan ids for this Work Plan.
 
 h|*0..1*
 |*plan* ( +
-a_task_plan_id: `UID_BASED_ID[1]` +
-): `List<I_TASK_PLAN_MATERIALISED>`
+a_task_plan_id: `link:/releases/BASE/{proc_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^][1]` +
+): `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_i_task_plan_materialised_interface,I_TASK_PLAN_MATERIALISED>>>`
 a|Obtain a Task Plan materialised API interface.
 |===

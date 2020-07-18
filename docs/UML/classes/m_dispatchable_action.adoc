@@ -9,6 +9,6 @@ h|*Description*
 2+a|Materialised form of `DISPATCHABLE_ACTION`.
 
 h|*Inherit*
-2+|`M_TASK_ACTION`
+2+|`<<_m_task_action_class,M_TASK_ACTION>>`
 
 |===

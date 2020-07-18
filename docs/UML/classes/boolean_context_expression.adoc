@@ -9,6 +9,6 @@ h|*Description*
 2+a|Boolean-valued form of `CONTEXT_EXPRESSION`.
 
 h|*Inherit*
-2+|`CONTEXT_EXPRESSION`
+2+|`<<_context_expression_class,CONTEXT_EXPRESSION>>`
 
 |===

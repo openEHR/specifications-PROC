@@ -9,13 +9,13 @@ h|*Description*
 2+a|Definition of a symbolic constant value that can be used in Context Expressions.
 
 h|*Inherit*
-2+|`CONTEXT_VALUE`
+2+|`<<_context_value_class,CONTEXT_VALUE>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*value*: `Any`
+|*value*: `link:/releases/BASE/{proc_release}/foundation_types.html#_any_class[Any^]`
 a|Value of the constant.
 |===

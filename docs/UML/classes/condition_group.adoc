@@ -11,7 +11,7 @@ h|*Description*
 This structure is the equivalent of a programming if/then/else statement.
 
 h|*Inherit*
-2+|`CHOICE_GROUP`
+2+|`<<_choice_group_class,CHOICE_GROUP>>`
 
 h|*Attributes*
 ^h|*Signature*
@@ -19,6 +19,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*members*: `List<CONDITION_BRANCH>`
+|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_condition_branch_class,CONDITION_BRANCH>>>`
 a|Set of branches in this Condition Group.
 |===

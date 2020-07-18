@@ -9,25 +9,25 @@ h|*Description*
 2+a|An instance of this class represents a logical tracking reference to one 'order' in the real world. In an openEHR system, this will be represented by an `INSTRUCTION` committed to the EHR, normally followed by `ACTIONs` each representing the execution of an Activity or change of state of the order.
 
 h|*Inherit*
-2+|`LOCATABLE`
+2+|`link:/releases/RM/{proc_release}/common.html#_locatable_class[LOCATABLE^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*order_tag*: `String`
+|*order_tag*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Tag that refers to this order within a Work Plan. May include an instance-level modifier such as '@1', '@2' etc, to distinguish repeats within a Plan.
 
 h|*0..1*
-|*instruction_archetype_id*: `String`
+|*instruction_archetype_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of openEHR Instruction archetype that contains the order.
 
 h|*0..1*
-|*action_archetype_id*: `String`
+|*action_archetype_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of openEHR Action archetype that defines the actions that may occur with respect to the Instruction activities used in this order.
 
 h|*0..1*
-|*order_ref*: `LOCATABLE_REF`
+|*order_ref*: `link:/releases/BASE/{proc_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]`
 a|EHR system order reference. When referencing an openEHR order, this will be a reference to the initial Instruction defining the order.
 |===

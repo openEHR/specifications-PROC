@@ -20,23 +20,23 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*system_call*: `List<SYSTEM_CALL>`
+|*system_call*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_system_call_class,SYSTEM_CALL>>>`
 a|System call to perform on receipt of event
 
 h|*0..1*
-|*message*: `DV_TEXT`
+|*message*: `link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]`
 a|Optional message to display to original Task context (i.e. application, form etc) if timer expires.
 
 h|*0..1*
-|*resume_action*: `RESUME_ACTION`
+|*resume_action*: `<<_resume_action_class,RESUME_ACTION>>`
 a|Optional resume action, used when the intention is to resume in a different location than the default (i.e. next available Task).
 
 h|*0..1*
-|*receiver_thread_next_state*: `TASK_LIFECYCLE`
+|*receiver_thread_next_state*: `<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>`
 a|Next state of the receiver thread of control. In the blocking case, this is the original Task of this callback notification; in the non-blocking (context fork) case, it will be the _enclosing  Task Group_ of the original dispatching Task.
 
 If not set, default processing will be performed, which for a Task is to enter the `available` state.
 
 h|*Invariants*
-2+a|_Inv_custom_actions_next_state_: `custom_actions.for_all ((ev:EVENT_ACTION) {ev.receiver_thread_next_state /= Void})`
+2+a|__Inv_custom_actions_next_state__: `custom_actions.for_all ((ev:EVENT_ACTION) {ev.receiver_thread_next_state /= Void})`
 |===

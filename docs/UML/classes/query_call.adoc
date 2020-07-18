@@ -20,17 +20,17 @@ In the context of a Work Plan / Task Plan, query parameters  supplied from three
 * for fixed parameters, `_bound_parameters_` contains the values.
 
 h|*Inherit*
-2+|`SYSTEM_CALL`
+2+|`<<_system_call_class,SYSTEM_CALL>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*query_id*: `String`
+|*query_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of a stored query.
 
 h|*0..1*
-|*query_text*: `String`
+|*query_text*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Ad hoc query text.
 |===

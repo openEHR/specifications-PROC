@@ -1497,6 +1497,9 @@
 <p><em>actions requiring sign-off</em> in some way;</p>
 </li>
 <li>
+<p><em>coordination</em> of workers in a distributed team;</p>
+</li>
+<li>
 <p>actions that result in <em>recording</em> something in the EHR;</p>
 </li>
 <li>
@@ -2530,21 +2533,21 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code>List&lt;CONTEXT_VARIABLE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>variables</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_context_variable_class">CONTEXT_VARIABLE</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all variables tracked by this Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expressions</strong>: <code>List&lt;CONTEXT_EXPRESSION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expressions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_context_expression_class">CONTEXT_EXPRESSION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all expressions used in the Plan, based on tracked variables.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constants</strong>: <code>List&lt;CONTEXT_CONSTANT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>constants</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_context_constant_class">CONTEXT_CONSTANT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of all constants used in the Plan.</p>
 </div></div></td>
@@ -2578,7 +2581,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of variable, as used in precondition and decision expressions.</p>
 </div></div></td>
@@ -2614,7 +2617,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VALUE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_context_value_class">CONTEXT_VALUE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2623,7 +2626,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Value of the constant.</p>
 </div></div></td>
@@ -2652,7 +2655,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VALUE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_context_value_class">CONTEXT_VALUE</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2678,7 +2681,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_context_variable_class">CONTEXT_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2687,7 +2690,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_request</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_request</strong>: <code><a href="#_system_call_class">SYSTEM_CALL</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional specification of a system request that would populate a context variable.</p>
 </div></div></td>
@@ -2716,7 +2719,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_context_variable_class">CONTEXT_VARIABLE</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2742,7 +2745,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_external_variable_class">EXTERNAL_VARIABLE</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2768,7 +2771,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_variable_class">EVENT_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2777,7 +2780,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>update_variation</strong>: <code>Real</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>update_variation</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_real_class" target="_blank" rel="noopener">Real</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Minimum percentage variation from current value to be considered a change that should cause an update.</p>
 </div></div></td>
@@ -2806,7 +2809,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EXTERNAL_VARIABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_external_variable_class">EXTERNAL_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2815,7 +2818,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
 </div></div></td>
@@ -2844,7 +2847,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_VALUE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_context_value_class">CONTEXT_VALUE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2853,7 +2856,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Expression, in openEHR Expression syntax.</p>
 </div></div></td>
@@ -2882,7 +2885,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_context_expression_class">CONTEXT_EXPRESSION</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -3019,21 +3022,21 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of target system, typically a domain name.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>call_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>call_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of call in API.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>@@</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Signature definition of call.</p>
 </div>
@@ -3043,14 +3046,14 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parameter_map</strong>: <code>List&lt;PARAMETER_MAPPING&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>parameter_map</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_parameter_mapping_class">PARAMETER_MAPPING</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bound_parameters</strong>: <code>List&lt;PARAMETER_DEF&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bound_parameters</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_parameter_def_class">PARAMETER_DEF</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Parameter values fixed for any invocation of the call. For example, a general call such as <code><em>cds_check (type: String, other_args, &#8230;&#8203;)</em></code> might be used from within the Task Plan in the form <code><em>cds_check ("hypertension risk", other_args, &#8230;&#8203;)</em></code>, i.e. the first argument is always fixed.</p>
 </div></div></td>
@@ -3084,21 +3087,21 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of parameter in external API call.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code>EL_TYPE_DEF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code><a href="/releases/LANG/latest/obsolete-elom.html#_el_type_def_class" target="_blank" rel="noopener">EL_TYPE_DEF</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Type of parameter in external API call.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>Any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_any_class" target="_blank" rel="noopener">Any</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Fixed value to pass on call invocation.</p>
 </div></div></td>
@@ -3132,14 +3135,14 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of parameter in external API call definition.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context_name</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context_name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of context value definition (i.e. variable, expression, constant, including built-ins) whose value should be passed through as the named parameter on call invocation.</p>
 </div></div></td>
@@ -3168,7 +3171,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_system_call_class">SYSTEM_CALL</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -3223,7 +3226,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_system_call_class">SYSTEM_CALL</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3232,14 +3235,14 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of a stored query.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query_text</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query_text</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Ad hoc query text.</p>
 </div></div></td>
@@ -3424,7 +3427,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TIME_SPECIFIER</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_time_specifier_class">TIME_SPECIFIER</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3433,7 +3436,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>Iso8601_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_time_class" target="_blank" rel="noopener">Iso8601_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Time expressed as a clock time within a day.</p>
 </div></div></td>
@@ -3465,7 +3468,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TIME_SPECIFIER</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_time_specifier_class">TIME_SPECIFIER</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -3474,7 +3477,7 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_coded_text_class" target="_blank" rel="noopener">DV_CODED_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A coded term expressing a customary time in natural language.</p>
 </div></div></td>
@@ -4071,7 +4074,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/classes/AUTHORED_RESOURCE" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/classes/CONTENT_ITEM" target="_blank" rel="noopener">CONTENT_ITEM</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/RM/latest/ehr.html#_content_item_class" target="_blank" rel="noopener">CONTENT_ITEM</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4080,7 +4083,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>care_pathway</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>care_pathway</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.</p>
 </div>
@@ -4106,49 +4109,49 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code>List&lt;UID_BASED_ID&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_uid_based_id_class">UID_BASED_ID</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>References to all Task Plans use in this Work Plan. In general, only some of these are top-level Plans.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>care_plan</strong>: <code>LOCATABLE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>care_plan</strong>: <code><a href="/releases/BASE/latest/base_types.html#_locatable_ref_class" target="_blank" rel="noopener">LOCATABLE_REF</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Care plan in EHR from which this Work Plan is derived, if any.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>calendar</strong>: <code>PLAN_CALENDAR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>calendar</strong>: <code><a href="#_plan_calendar_class">PLAN_CALENDAR</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Global calendar object, containing events fixed in time relevant to the Plan&#8217;s Tasks, for example appointments.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline</strong>: <code>PLAN_TIMELINE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline</strong>: <code><a href="#_plan_timeline_class">PLAN_TIMELINE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Global timeline of Work Plan, on which Tasks with planned times can be listed.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code>PLAN_DATA_CONTEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code><a href="#_plan_data_context_class">PLAN_DATA_CONTEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Global Work Plan data context.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event_wait_states</strong>: <code>List&lt;EVENT_WAIT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event_wait_states</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_event_wait_class">EVENT_WAIT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference list of all defined Event Listeners.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>top_level_plans</strong>: <code>List&lt;TASK_PLAN&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>top_level_plans</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_plan_class">TASK_PLAN</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The set of Task Plans that are active at Work Plan activation. Does not include Task Plans referred to from <code>HAND_OFF</code> or <code>SUB_PLAN</code>.</p>
 </div>
@@ -4158,21 +4161,21 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>indications</strong>: <code>List&lt;DV_TEXT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>indications</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/RM/latest/data_types.html#_dv_text_class">DV_TEXT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code>Hash&lt;String,ORDER_REF&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_list</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_order_ref_class">ORDER_REF</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Orders tracked by Tasks in this Work Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>classification</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>classification</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetypable structure for recording classification of Work Plans, e.g. business process category, administrative category etc.</p>
 </div>
@@ -4209,7 +4212,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entries</strong>: <code>List&lt;CALENDAR_ENTRY&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entries</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_calendar_entry_class">CALENDAR_ENTRY</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Entries in calendar.</p>
 </div></div></td>
@@ -4243,14 +4246,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>planned_items</strong>: <code>List&lt;PLAN_ITEM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>planned_items</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_plan_item_class">PLAN_ITEM</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of Plan Items that have a wait_condition containing a <code>TIMELINE_MOMENT</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timers</strong>: <code>List&lt;TIMER_WAIT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timers</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_timer_wait_class">TIMER_WAIT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference list of all defined Timers.</p>
 </div></div></td>
@@ -4310,7 +4313,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CONTENT_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/ehr.html#_content_item_class" target="_blank" rel="noopener">CONTENT_ITEM</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4319,21 +4322,21 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_text_class" target="_blank" rel="noopener">DV_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Human-understandable description of the Task Plan, which may be specific to the work items and patient.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code>PARTY_PROXY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/RM/latest/common.html#_party_proxy_class" target="_blank" rel="noopener">PARTY_PROXY</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional indicator of subject of Task Plan, which is normally the subject of the EHR. If this is not the case, this attribute states with respect to whom the Plan is to be performed.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of guideline on which this Task Plan is based, if such exists. A 'guideline' is understood here as a published standard for performing a detailed Task.</p>
 </div>
@@ -4362,63 +4365,63 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code><a href="#_task_group_class">TASK_GROUP</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The Tasks for the main part of this Task Plan; this section of the plan may be repeatable.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_history</strong>: <code>TASK_PLAN_EXECUTION_HISTORY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_history</strong>: <code><a href="#_task_plan_execution_history_class">TASK_PLAN_EXECUTION_HISTORY</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>History of execution events for an execution of this Task Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>best_practice_ref</strong>: <code>DV_URI</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>best_practice_ref</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_uri_class" target="_blank" rel="noopener">DV_URI</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A URI (typically a local URL) that points to the document form of any governing guideline or other best practice publication in use in the current institution. This link provides a way for a clinician to cross-check the Task Plan design and functioning against the definitive document that acts as the source of its semantics.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expiry_time</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expiry_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Maximal date/time by which this Task Plan should be considered obsolete. If not set, the Task Plan would normally be inferred to be obsolete after a discharge from acute care, but in primary or social care situations, no value may be assumed to indicate that the Tasks are still to be performed, depending on the times specified in the <code><em>execution_time</em></code> attribute of <code>TASKs</code> in the Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>due_time</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>due_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Due date/time expressed as an offset, to be converted to a real date/time at activation.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_set_type</strong>: <code>DV_IDENTIFIER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_set_type</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_identifier_class" target="_blank" rel="noopener">DV_IDENTIFIER</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional identifier for an order set, which is understood as a <em>type</em> of order set, e.g. 'R-CHOP-14'.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_set_id</strong>: <code>DV_IDENTIFIER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_set_id</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_identifier_class" target="_blank" rel="noopener">DV_IDENTIFIER</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of instance of an order set on which this Task Plan is based, if there is one.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>indications</strong>: <code>List&lt;DV_TEXT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>indications</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/RM/latest/data_types.html#_dv_text_class">DV_TEXT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Clinical applicability of this Task Plan to subject of work, e.g. 'pregnancy', 'lymphoma' etc. May be derived from a governing guideline. May be displayed as a safety precaution to human performer.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>principal_performer</strong>: <code>TASK_PARTICIPATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>principal_performer</strong>: <code><a href="#_task_participation_class">TASK_PARTICIPATION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Specification of principle performer of this Task Plan as a Participation, in terms of role and optionally function, mode and specific performer as appropriate.</p>
 </div></div></td>
@@ -4452,35 +4455,35 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>function</strong>: <code>DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>function</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_text_class" target="_blank" rel="noopener">DV_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). This attribute should be coded.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>role</strong>: <code>List&lt;DV_TEXT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>role</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/RM/latest/data_types.html#_dv_text_class">DV_TEXT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Organisational role, i.e. the professional type of participant in the activity. Preferably coded.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>mode</strong>: <code>DV_CODED_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>mode</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_coded_text_class" target="_blank" rel="noopener">DV_CODED_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional field for recording the 'mode' of the performer / activity interaction, e.g. present, by telephone, by email etc.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>performer</strong>: <code>PARTY_PROXY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>performer</strong>: <code><a href="/releases/RM/latest/common.html#_party_proxy_class" target="_blank" rel="noopener">PARTY_PROXY</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The id and possibly demographic system link of the party participating in the activity.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>optionality</strong>: <code>VALIDITY_KIND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>optionality</strong>: <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Condition for participation in the Plan item.</p>
 </div></div></td>
@@ -4509,7 +4512,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_locatable_class" target="_blank" rel="noopener">LOCATABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4518,42 +4521,42 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_text_class" target="_blank" rel="noopener">DV_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Human-readable form of the task directive.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeat_spec</strong>: <code>TASK_REPEAT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeat_spec</strong>: <code><a href="#_task_repeat_class">TASK_REPEAT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional specification of repetitions.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>classification</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>classification</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetypable structure for recording classification of Task Groups or Tasks, e.g. business process category, administrative category etc.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait_spec</strong>: <code>TASK_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait_spec</strong>: <code><a href="#_task_wait_class">TASK_WAIT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional wait specification for Plan Item (Task or Group) initiation. If not set, the Plan Item is immediately <code>available</code> once execution reaches it. If set, it becomes <code>available</code> when any Event in <code><em>events</em></code> occurs.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code>List&lt;REVIEW_DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>review_dataset</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_review_dataset_spec_class">REVIEW_DATASET_SPEC</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional data-set to review prior to / as part of performing the Plan element.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline_step</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline_step</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional reference to a step within the <code><em>guideline</em></code> referenced by the current Task Plan (if set) or else the <code><em>care_pathway</em></code> of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.</p>
 </div>
@@ -4563,14 +4566,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetypable structure for recording non hard-modelled information.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reminders</strong>: <code>List&lt;REMINDER&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reminders</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_reminder_class">REMINDER</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional wait state(s) that may be used to remind the Task performer to do something based on a Timer or other Event. Will be cancelled by the Task transitioning to any new state from the <code>available</code> state, due to performer activity.</p>
 </div></div></td>
@@ -4610,21 +4613,21 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeats</strong>: <code>Interval&lt;Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>repeats</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_integer_class">Integer</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Range of repetitions. If the lower limit is greater than zero, at least one repeat is required. A range such as 0..3 means up to 3 repeats possible, but not required.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>terminate_condition</strong>: <code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>States a condition for when repetition should stop. If set, tested prior to each further potential repetition once the minimum number have been executed.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>period</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>period</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional period of repetition, i.e. duration between the commencement of each <code>PLAN_ITEM</code> clone in the materialised form.</p>
 </div></div></td>
@@ -4856,7 +4859,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_item_class">PLAN_ITEM</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -4865,28 +4868,28 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;PLAN_ITEM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_plan_item_class">PLAN_ITEM</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of Tasks to perform. Execution order is defined by the <code><em>execution_type</em></code> setting, either sequential or parallel (no order).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_type</strong>: <code>EXECUTION_TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_type</strong>: <code><a href="#_execution_type_enumeration">EXECUTION_TYPE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Basis for executing the Task items contained in this Task Group.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concurrency_mode</strong>: <code>CONCURRENCY_MODE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>concurrency_mode</strong>: <code><a href="#_concurrency_mode_enumeration">CONCURRENCY_MODE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Mode in which to execute if execution type is parallel.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_rules</strong>: <code>List&lt;EXECUTION_RULE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>execution_rules</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_execution_rule_class">EXECUTION_RULE</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Other rules that may control execution over and above the basic sequential / parallel scheme, e.g.</p>
 </div>
@@ -4903,7 +4906,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>training_level</strong>: <code>Integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>training_level</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_integer_class" target="_blank" rel="noopener">Integer</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>An integer value representing the training level for which this Task Plan is designed. A high value corresponds to a lower level of expertise. The default value is zero.</p>
 </div></div></td>
@@ -5098,7 +5101,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_item_class">PLAN_ITEM</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5107,14 +5110,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>action</strong>: <code>TA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>action</strong>: <code><a href="#_ta_class">TA</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Task Action definition.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tags</strong>: <code>List&lt;String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tags</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>References to order(s) being created and / or tracked by this Task. The value(s) must match <code>ORDER_REF.<em>order_tag</em></code> values from the list <code>WORK_PLAN.<em>order_list</em></code> and be unique within the list.</p>
 </div>
@@ -5155,7 +5158,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_task_class">TASK</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5164,14 +5167,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. <code><em>wait</em> = True</code> corresponds to a context switch (block and wait) while <code><em>wait</em> = False</code> indicates a context fork.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>callback</strong>: <code>CALLBACK_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>callback</strong>: <code><a href="#_callback_wait_class">CALLBACK_WAIT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional callback notification handler.</p>
 </div></div></td>
@@ -5200,7 +5203,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_task_class">TASK</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5209,7 +5212,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_dataset</strong>: <code>List&lt;CAPTURE_DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_dataset</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_capture_dataset_spec_class">CAPTURE_DATASET_SPEC</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Associated data-set template and/or form via which data to be captured during this Task will actually be entered.</p>
 </div></div></td>
@@ -5483,7 +5486,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_locatable_class" target="_blank" rel="noopener">LOCATABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5492,7 +5495,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_activity</strong>: <code>LOCATABLE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_activity</strong>: <code><a href="/releases/BASE/latest/base_types.html#_locatable_ref_class" target="_blank" rel="noopener">LOCATABLE_REF</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional reference back to the <code>ACTIVITY</code> of an <code>INSTRUCTION</code> that generated this <code>TASK</code>.</p>
 </div>
@@ -5502,14 +5505,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_preconditions</strong>: <code>List&lt;SUBJECT_PRECONDITION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_preconditions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_subject_precondition_class">SUBJECT_PRECONDITION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Condition which must be met for the Task Action to be available to perform in a runtime execution context.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>costing_data</strong>: <code>TASK_COSTING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>costing_data</strong>: <code><a href="#_task_costing_class">TASK_COSTING</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Costing data related to this Task item.</p>
 </div></div></td>
@@ -5543,7 +5546,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer, e.g. 'patient no allergic to penicillin'.</p>
 </div>
@@ -5553,7 +5556,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code><a href="#_boolean_context_expression_class">BOOLEAN_CONTEXT_EXPRESSION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>An optional formal Boolean expression that can be machine-evaluated at runtime to determine availability, if the relevant variables exist.</p>
 </div></div></td>
@@ -5582,7 +5585,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_task_action_class">TASK_ACTION</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5591,14 +5594,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resources</strong>: <code>List&lt;RESOURCE_PARTICIPATION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resources</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_resource_participation_class">RESOURCE_PARTICIPATION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Descriptions of resources required for the Task, if required to be processed at runtime as pre-conditions to Task execution.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_participations</strong>: <code>List&lt;TASK_PARTICIPATION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_participations</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_participation_class">TASK_PARTICIPATION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of participations for task item.</p>
 </div></div></td>
@@ -5635,14 +5638,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resource_type</strong>: <code>DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resource_type</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_text_class" target="_blank" rel="noopener">DV_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Text or coded description of resource.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>external_ref</strong>: <code>OBJECT_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>external_ref</strong>: <code><a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">OBJECT_REF</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to resource, e.g. in scheduling or other system.</p>
 </div>
@@ -5677,7 +5680,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PERFORMABLE_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_performable_action_class">PERFORMABLE_ACTION</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5686,14 +5689,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype</strong>: <code>List&lt;ENTRY&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>prototype</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/RM/latest/ehr.html#_entry_class">ENTRY</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Prototype instance of one or more openEHR EHR Entries that express the specific work of the Task. Normally one Entry would be used, typically an <code>ACTION</code>, but more than one may sometimes make sense, e.g. an <code>ACTION</code> and an <code>OBSERVATION</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>optionality</strong>: <code>VALIDITY_KIND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>optionality</strong>: <code><a href="/releases/BASE/latest/base_types.html#_validity_kind_enumeration" target="_blank" rel="noopener">VALIDITY_KIND</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Informal indication of whether Task is considered optional or not from the point of view of any guideline. If not set, the Task is treated as mandatory.</p>
 </div>
@@ -5728,7 +5731,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LINKED_PLAN</code>, <code>PERFORMABLE_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_linked_plan_class">LINKED_PLAN</a></code>, <code><a href="#_performable_action_class">PERFORMABLE_ACTION</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -5754,7 +5757,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_task_action_class">TASK_ACTION</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -5786,7 +5789,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LINKED_PLAN</code>, <code>DISPATCHABLE_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_linked_plan_class">LINKED_PLAN</a></code>, <code><a href="#_dispatchable_action_class">DISPATCHABLE_ACTION</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -5812,7 +5815,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DISPATCHABLE_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_dispatchable_action_class">DISPATCHABLE_ACTION</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5821,21 +5824,21 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>organisation</strong>: <code>PARTY_PROXY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>organisation</strong>: <code><a href="/releases/RM/latest/common.html#_party_proxy_class" target="_blank" rel="noopener">PARTY_PROXY</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of organisation to which the request or order is addressed.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Request identifier for this type request. May be used in callback notification. Other runtime instance-level identifiers may be needed as well.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Request details.</p>
 </div>
@@ -5867,7 +5870,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DISPATCHABLE_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_dispatchable_action_class">DISPATCHABLE_ACTION</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -5876,7 +5879,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_call</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_call</strong>: <code><a href="#_system_call_class">SYSTEM_CALL</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Definition of call to make.</p>
 </div></div></td>
@@ -5910,7 +5913,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target</strong>: <code>TASK_PLAN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target</strong>: <code><a href="#_task_plan_class">TASK_PLAN</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to target <code>TASK_PLAN</code> object.</p>
 </div></div></td>
@@ -6003,7 +6006,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_locatable_class" target="_blank" rel="noopener">LOCATABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6012,35 +6015,35 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Form identifier.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>template_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Template identifier in String form of an <code>ARCHETYPE_HRID</code>. If used with no <code><em>form_id</em></code>, the Execution engine needs to determine how to find a form based on the template identifier.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Other data-set related details.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code>SYSTEM_CALL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>populating_call</strong>: <code><a href="#_system_call_class">SYSTEM_CALL</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional system call that will populate this data-set.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_section_path</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>form_section_path</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional path to a sub-section of the form identified by <code><em>form_id</em></code>. The format of the path is the same as a template or AQL path.</p>
 </div></div></td>
@@ -6075,7 +6078,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_dataset_spec_class">DATASET_SPEC</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6084,7 +6087,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>commit_group</strong>: <code>DATASET_COMMIT_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>commit_group</strong>: <code><a href="#_dataset_commit_group_class">DATASET_COMMIT_GROUP</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 </tbody>
@@ -6111,7 +6114,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>DATASET_SPEC</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_dataset_spec_class">DATASET_SPEC</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6120,7 +6123,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_datasets</strong>: <code>List&lt;CAPTURE_DATASET_SPEC&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>capture_datasets</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_capture_dataset_spec_class">CAPTURE_DATASET_SPEC</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.</p>
 </div></div></td>
@@ -6154,14 +6157,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>group_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>group_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Unique identifier of this commit group within scope of a single Task Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>completion_step</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>completion_step</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>If True, the Task to which this Dataset Spec is attached is the one that puts it into the <code>complete</code> lifecycle state.</p>
 </div></div></td>
@@ -6275,7 +6278,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_task_group_class">TASK_GROUP</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6284,14 +6287,14 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>override_type</strong>: <code>OVERRIDE_TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>override_type</strong>: <code><a href="#_override_type_enumeration">OVERRIDE_TYPE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Indicates kind of user override that would be accepted at runtime. If set to a value other than <code>prohibited</code>, user interaction is assumed, and runtime processing must enter a wait state.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code>TIMER_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code><a href="#_timer_wait_class">TIMER_WAIT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Timeout handler to use if <code>CHOICE_GROUP</code> blocks unexpectedly, e.g. due to absent user, unavailable external data item.</p>
 </div></div></td>
@@ -6299,7 +6302,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;CHOICE_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_choice_branch_class">CHOICE_BRANCH</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of branches in this Choice Group.</p>
 </div></div></td>
@@ -6388,7 +6391,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_task_group_class">TASK_GROUP</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -6417,7 +6420,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_group_class">CHOICE_GROUP</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6427,7 +6430,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;CONDITION_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_condition_branch_class">CONDITION_BRANCH</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of branches in this Condition Group.</p>
 </div></div></td>
@@ -6456,7 +6459,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_branch_class">CHOICE_BRANCH</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6465,7 +6468,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>condition</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>condition</strong>: <code><a href="#_boolean_context_expression_class">BOOLEAN_CONTEXT_EXPRESSION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Boolean-valued test expression which if True indicates that this Branch is to be followed during execution.</p>
 </div></div></td>
@@ -6503,7 +6506,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_group_class">CHOICE_GROUP</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6512,7 +6515,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code><a href="#_context_expression_class">CONTEXT_EXPRESSION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to an Expression Language terminal that may be a function call or property reference. The Result value is compared to <code><em>value_constraint</em></code> sub-ranges in each of the various output branches, in the manner of a case statement.</p>
 </div></div></td>
@@ -6520,7 +6523,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;DECISION_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_decision_branch_class">DECISION_BRANCH</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of branches in this Decision Group.</p>
 </div></div></td>
@@ -6549,7 +6552,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_branch_class">CHOICE_BRANCH</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6558,7 +6561,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_constraint</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_constraint</strong>: <code><a href="#_boolean_context_expression_class">BOOLEAN_CONTEXT_EXPRESSION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Constraint on result value of the owning Decision Group <code><em>value</em></code>, for this branch.</p>
 </div></div></td>
@@ -6593,7 +6596,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_group_class">CHOICE_GROUP</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6603,7 +6606,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;ADHOC_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_adhoc_branch_class">ADHOC_BRANCH</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of branches in this Adhoc Group.</p>
 </div></div></td>
@@ -6632,7 +6635,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_branch_class">CHOICE_BRANCH</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
@@ -6676,7 +6679,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_group_class">CHOICE_GROUP</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6686,7 +6689,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;EVENT_BRANCH&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_event_branch_class">EVENT_BRANCH</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of branches in this Event Group.</p>
 </div></div></td>
@@ -6715,7 +6718,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>CHOICE_BRANCH</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_choice_branch_class">CHOICE_BRANCH</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
@@ -6836,7 +6839,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_locatable_class" target="_blank" rel="noopener">LOCATABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -6845,28 +6848,28 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tag</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tag</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Tag that refers to this order within a Work Plan. May include an instance-level modifier such as '@1', '@2' etc, to distinguish repeats within a Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_archetype_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>instruction_archetype_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of openEHR Instruction archetype that contains the order.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>action_archetype_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>action_archetype_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of openEHR Action archetype that defines the actions that may occur with respect to the Instruction activities used in this order.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_ref</strong>: <code>LOCATABLE_REF</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_ref</strong>: <code><a href="/releases/BASE/latest/base_types.html#_locatable_ref_class" target="_blank" rel="noopener">LOCATABLE_REF</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>EHR system order reference. When referencing an openEHR order, this will be a reference to the initial Instruction defining the order.</p>
 </div></div></td>
@@ -7481,28 +7484,28 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;PLAN_EVENT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_plan_event_class">PLAN_EVENT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>One or more events that define the intended point in time. If there are more than one, the implied logical relation is OR, i.e. any event occurring causes the wait state to complete.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event_relation</strong>: <code>TEMPORAL_RELATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event_relation</strong>: <code><a href="#_temporal_relation_enumeration">TEMPORAL_RELATION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Temporal relation to the event of the point or period in time being defined by this Timing Spec.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code>TIMER_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code><a href="#_timer_wait_class">TIMER_WAIT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Timeout handler to use if no other Event is received within a certain time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>next_state</strong>: <code><a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Override for next state to enter on receipt of any Event in <code><em>events</em></code>. Default processing is to enter the <code>available</code> state.</p>
 </div></div></td>
@@ -7543,14 +7546,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>success_action</strong>: <code>EVENT_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>success_action</strong>: <code><a href="#_event_action_class">EVENT_ACTION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Action to perform if any listened-for event returns a success result.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code>TIMER_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeout</strong>: <code><a href="#_timer_wait_class">TIMER_WAIT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Timeout handler to use if no other Event is received within a certain time.</p>
 </div></div></td>
@@ -7579,7 +7582,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_wait_class">EVENT_WAIT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7589,7 +7592,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code>TIMER_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code><a href="#_timer_event_class">TIMER_EVENT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Redefined from <code>EVENT_WAIT</code>.</p>
 </div></div></td>
@@ -7633,7 +7636,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_wait_class">EVENT_WAIT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7643,7 +7646,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The event that will generate the reminder. This could be a timer, or it may be a timeline moment, calendar time, or a non-deterministic event, e.g. state trigger.</p>
 </div></div></td>
@@ -7700,7 +7703,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_WAIT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_wait_class">EVENT_WAIT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7709,14 +7712,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>fail_action</strong>: <code>EVENT_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>fail_action</strong>: <code><a href="#_event_action_class">EVENT_ACTION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Action to perform if any listened-for event returns a fail result.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>custom_actions</strong>: <code>Hash&lt;String,EVENT_ACTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>custom_actions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_event_action_class">EVENT_ACTION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A keyed list of specific actions to perform based on custom key values, which are understood as types of remote event more specific than just 'success' or 'fail'.</p>
 </div></div></td>
@@ -7724,7 +7727,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code>CALLBACK_NOTIFICATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>event</strong>: <code><a href="#_callback_notification_class">CALLBACK_NOTIFICATION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Callback notification on which this Callback wait state is based.</p>
 </div></div></td>
@@ -7777,28 +7780,28 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_call</strong>: <code>List&lt;SYSTEM_CALL&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_call</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_system_call_class">SYSTEM_CALL</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>System call to perform on receipt of event</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>message</strong>: <code>DV_TEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>message</strong>: <code><a href="/releases/RM/latest/data_types.html#_dv_text_class" target="_blank" rel="noopener">DV_TEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional message to display to original Task context (i.e. application, form etc) if timer expires.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resume_action</strong>: <code>RESUME_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resume_action</strong>: <code><a href="#_resume_action_class">RESUME_ACTION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional resume action, used when the intention is to resume in a different location than the default (i.e. next available Task).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_thread_next_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_thread_next_state</strong>: <code><a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Next state of the receiver thread of control. In the blocking case, this is the original Task of this callback notification; in the non-blocking (context fork) case, it will be the <em>enclosing  Task Group</em> of the original dispatching Task.</p>
 </div>
@@ -7841,7 +7844,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resume_type</strong>: <code>RESUME_TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resume_type</strong>: <code><a href="#_resume_type_enumeration">RESUME_TYPE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Procedure to execute when completion notification received, for example, to display a form, notify performer etc.</p>
 </div>
@@ -7851,7 +7854,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resume_location</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>resume_location</strong>: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_id_class" target="_blank" rel="noopener">UID_BASED_ID</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to a resume Task in the current Plan, at which to restart when the request / handoff has completed.</p>
 </div>
@@ -7883,7 +7886,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>LOCATABLE</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_locatable_class" target="_blank" rel="noopener">LOCATABLE</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -7909,7 +7912,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_class">EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7918,12 +7921,12 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>ITEM_STRUCTURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code><a href="/releases/RM/latest/data_structures.html#_item_structure_class" target="_blank" rel="noopener">ITEM_STRUCTURE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>delay</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>delay</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional delay to event generation.</p>
 </div></div></td>
@@ -7952,7 +7955,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -7961,14 +7964,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>duration</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>duration</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Delay from activation time to receive the event notification.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>purpose</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional explanatory purpose of Timer.</p>
 </div></div></td>
@@ -7997,7 +8000,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8006,14 +8009,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entry_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entry_id</strong>: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_id_class" target="_blank" rel="noopener">UID_BASED_ID</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of entry within global Plan calendar.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>Iso8601_date_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Time of entry in calendar.</p>
 </div></div></td>
@@ -8051,7 +8054,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8060,21 +8063,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_offset</strong>: <code>Iso8601_duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_offset</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>fixed_time</strong>: <code>TIME_SPECIFIER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>fixed_time</strong>: <code><a href="#_time_specifier_class">TIME_SPECIFIER</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Fixed time specifier, used to expressed a fixed moment in the day.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_origin</strong>: <code>PLAN_TIME_ORIGIN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline_origin</strong>: <code><a href="#_plan_time_origin_enumeration">PLAN_TIME_ORIGIN</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Relative origin for <code><em>timeline_offset</em></code>. If not set, Work Plan activation is assumed as the time origin.</p>
 </div></div></td>
@@ -8109,7 +8112,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8118,14 +8121,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_id_class" target="_blank" rel="noopener">UID_BASED_ID</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of Task with which this event is associated.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transitions</strong>: <code>List&lt;TASK_LIFECYCLE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transitions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>One or more Task lifecycle transition(s) that defines this event; if more than one, the logical relation is 'OR'.</p>
 </div></div></td>
@@ -8154,7 +8157,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8163,7 +8166,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Natural language or processable description of the event. Needs to be sufficiently detailed to distinguish it from other similar events.</p>
 </div></div></td>
@@ -8192,7 +8195,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8201,21 +8204,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of system that will generate notification.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>notification_type</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>notification_type</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Type of notification, i.e. among types generated by the source system.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reference_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference identifier, typically a request identifier from a previous request.</p>
 </div></div></td>
@@ -8244,7 +8247,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>PLAN_EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_plan_event_class">PLAN_EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8253,7 +8256,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code>BOOLEAN_CONTEXT_EXPRESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expression</strong>: <code><a href="#_boolean_context_expression_class">BOOLEAN_CONTEXT_EXPRESSION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Boolean-returning expression that mentions one or more tracked variables, e.g. <code>heart_rate &gt; 120 bpm</code>. Evaluation controlled by Plan variable context.</p>
 </div></div></td>
@@ -8282,7 +8285,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_class">EVENT</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -8291,21 +8294,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>UID_BASED_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_id_class" target="_blank" rel="noopener">UID_BASED_ID</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of originating Task.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>request_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of original request, may be matchable with <code>EXTERNAL_REQUEST.<em>request_id</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of subject to which callback relates.</p>
 </div></div></td>
@@ -8835,35 +8838,35 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code>List&lt;M_TASK_PLAN&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_m_task_plan_class">M_TASK_PLAN</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Member Plans.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>owner</strong>: <code>WORK_PLAN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>owner</strong>: <code><a href="#_work_plan_class">WORK_PLAN</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Owning Work Plan definition.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline</strong>: <code>M_TIMELINE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timeline</strong>: <code><a href="#_m_timeline_class">M_TIMELINE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Materialised global timeline.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>calendar</strong>: <code>M_CALENDAR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>calendar</strong>: <code><a href="#_m_calendar_class">M_CALENDAR</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Materialised global calendar.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code>M_PLAN_DATA_CONTEXT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code><a href="#_m_plan_data_context_class">M_PLAN_DATA_CONTEXT</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Materialised global context.</p>
 </div></div></td>
@@ -8897,35 +8900,35 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code>Iso8601_date_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via <code>PLANNED_TIME.<em>relative_offset</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>M_TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code><a href="#_m_task_group_class">M_TASK_GROUP</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Root of run-time Task Plan Task structure.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>owner</strong>: <code>TASK_PLAN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>owner</strong>: <code><a href="#_task_plan_class">TASK_PLAN</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Owning Task Plan definition.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pending_callbacks</strong>: <code>List&lt;M_CALLBACK&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pending_callbacks</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_m_callback_class">M_CALLBACK</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference list of all wait conditions in the Task Plan, and current status.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>principal_performer</strong>: <code>M_PERFORMER_ALLOCATION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>principal_performer</strong>: <code><a href="#_m_performer_allocation_class">M_PERFORMER_ALLOCATION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Run-time principal performer - a person or other agent.</p>
 </div></div></td>
@@ -8937,7 +8940,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong> (): <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong> (): <code><a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Lifecycle state of Task Plan, derived as a copy of the <code><em>lifecycle_state()</em></code> of the definition <code>TASK_GROUP</code>.</p>
 </div></div></td>
@@ -8971,21 +8974,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>performer</strong>: <code>PARTY_IDENTIFIED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>performer</strong>: <code><a href="/releases/RM/latest/common.html#_party_identified_class" target="_blank" rel="noopener">PARTY_IDENTIFIED</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identity of allocated performer.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>connection</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>connection</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>URI used to connect to performer (e.g. application, messaging channel) for notifications.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetypable details.</p>
 </div></div></td>
@@ -9019,7 +9022,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>PLAN_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code><a href="#_plan_item_class">PLAN_ITEM</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Corresponding item from Task Plan definition. Redefined in descendants to the definition type corresponding to each runtime (RT_XXX) type.</p>
 </div></div></td>
@@ -9048,7 +9051,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>M_PLAN_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_m_plan_item_class">M_PLAN_ITEM</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -9057,7 +9060,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code>List&lt;M_PLAN_ITEM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>members</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_m_plan_item_class">M_PLAN_ITEM</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Member run-time items in group, mimicking structure of the corresponding definition group instance.</p>
 </div></div></td>
@@ -9065,7 +9068,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>TASK_GROUP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code><a href="#_task_group_class">TASK_GROUP</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to corresponding TASK_GROUP instance in Task Plan definition.</p>
 </div></div></td>
@@ -9077,7 +9080,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong> (): <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong> (): <code><a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Effective lifecycle state, computed from the states of members of the group.</p>
 </div></div></td>
@@ -9106,7 +9109,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>M_PLAN_ITEM</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_m_plan_item_class">M_PLAN_ITEM</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -9115,21 +9118,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code><a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Current lifecycle state of this Task at run-time.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;TASK_EVENT_RECORD&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_event_record_class">TASK_EVENT_RECORD</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of references to run-time events that have occurred on this Task.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions</strong>: <code>List&lt;EL_ASSERTION&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_el_boolean_expression_class">EL_BOOLEAN_EXPRESSION</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Run-time form of preconditions on corresponding TASK in Task Plan definition.</p>
 </div></div></td>
@@ -9137,7 +9140,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>TASK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code><a href="#_task_class">TASK</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to corresponding TASK instance in Task Plan definition.</p>
 </div></div></td>
@@ -9171,7 +9174,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code>TASK_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definition</strong>: <code><a href="#_task_action_class">TASK_ACTION</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
 </tr>
 </tbody>
@@ -9198,7 +9201,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>M_TASK_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_m_task_action_class">M_TASK_ACTION</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -9224,7 +9227,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>M_TASK_ACTION</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_m_task_action_class">M_TASK_ACTION</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -9333,14 +9336,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_events</strong>: <code>List&lt;TASK_EVENT_RECORD&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_events</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_event_record_class">TASK_EVENT_RECORD</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Task-level execution time events.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plan_events</strong>: <code>List&lt;TASK_PLAN_EVENT_RECORD&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plan_events</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_plan_event_record_class">TASK_PLAN_EVENT_RECORD</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Execution time events that occurred at the Task Plan level, i.e. not to a particular task. These include events such as Task Plan abandonment.</p>
 </div></div></td>
@@ -9374,14 +9377,14 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code>Iso8601_date_time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Time the event occurred.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional description associated with the event. Would typically be populated for Cancel and Abort events.</p>
 </div></div></td>
@@ -9410,7 +9413,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_RECORD</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_record_class">EVENT_RECORD</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -9419,7 +9422,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Other details as a name/value list.</p>
 </div></div></td>
@@ -9448,7 +9451,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>EVENT_RECORD</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_event_record_class">EVENT_RECORD</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -9457,49 +9460,49 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>task_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identification of Task in the Task Plan structre using a path of the form <code>/task_group_id/task_group_id</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code>TASK_LIFECYCLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code><a href="#_task_lifecycle_enumeration">TASK_LIFECYCLE</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The lifecycle state that was reached due to this event.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>notifications_sent</strong>: <code>List&lt;TASK_NOTIFICATION_RECORD&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>notifications_sent</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_task_notification_record_class">TASK_NOTIFICATION_RECORD</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Notifications that were performed as part of this Task Event.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entry_instances</strong>: <code>List&lt;LOCATABLE_REF&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>entry_instances</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_locatable_ref_class">LOCATABLE_REF</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Forward references to Entry (e.g. <code>ACTION</code>, <code>OBSERVATION</code> etc) that was recorded as a result of this Task being performed. If this is set, it indicates that the planned Task is 'done' i.e. checked off the plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions_satisfied</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>preconditions_satisfied</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set to True if all preconditions defined on the corresponding Task were satisfied at runtime. If set to False, and there were preconditions, this means that preconditions were overridden by the user at runtime.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait_conditions_satisfied</strong>: <code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>wait_conditions_satisfied</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set to True if all wait_conditions for the corresponding Task were satisfied when it was performed. If False, and there were wait_conditions, wait_conditions were overridden by the user at runtime.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_transition_reason</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_transition_reason</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional reason for lifecycle transition.</p>
 </div></div></td>
@@ -9533,21 +9536,21 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reciever</strong>: <code>PARTY_PROXY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reciever</strong>: <code><a href="/releases/RM/latest/common.html#_party_proxy_class" target="_blank" rel="noopener">PARTY_PROXY</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identification of the receiver party</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_task_plan</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>receiver_task_plan</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Identifier of receiving Task Plan.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>Hash&lt;String, String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>, <a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Other details as a name/value list.</p>
 </div></div></td>
@@ -9613,7 +9616,7 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong> (): <code>List&lt;UID_BASED_ID&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_uid_based_id_class">UID_BASED_ID</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of Task Plan ids for this Work Plan.</p>
 </div></div></td>
@@ -9621,8 +9624,8 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plan</strong> (<br>
-a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
-): <code>List&lt;I_TASK_PLAN_DEFINITION&gt;</code></p></td>
+a_task_plan_id: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_id_class" target="_blank" rel="noopener">UID_BASED_ID</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_i_task_plan_definition_interface">I_TASK_PLAN_DEFINITION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Obtain a Task Plan definition API interface.</p>
 </div></div></td>
@@ -9698,7 +9701,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong> (): <code>List&lt;UID_BASED_ID&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/BASE/latest/base_types.html#_uid_based_id_class">UID_BASED_ID</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of Task Plan ids for this Work Plan.</p>
 </div></div></td>
@@ -9706,8 +9709,8 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plan</strong> (<br>
-a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
-): <code>List&lt;I_TASK_PLAN_DEFINITION&gt;</code></p></td>
+a_task_plan_id: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_id_class" target="_blank" rel="noopener">UID_BASED_ID</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_i_task_plan_definition_interface">I_TASK_PLAN_DEFINITION</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Obtain a Task Plan definition API interface.</p>
 </div></div></td>
@@ -9832,7 +9835,7 @@ a_task_plan_id: <code>UID_BASED_ID[1]</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-02 13:44:01 +0100
+Last updated 2020-07-16 17:37:27 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">

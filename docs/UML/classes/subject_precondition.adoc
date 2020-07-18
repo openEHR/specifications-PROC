@@ -13,12 +13,12 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*description*: `String`
+|*description*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Textual representation of preconditions for this Task to be performed, according to governing protocol. May be displayed as a safety check for human performer, e.g. 'patient no allergic to penicillin'.
 
 Evaluated when encountered.
 
 h|*0..1*
-|*expression*: `BOOLEAN_CONTEXT_EXPRESSION`
+|*expression*: `<<_boolean_context_expression_class,BOOLEAN_CONTEXT_EXPRESSION>>`
 a|An optional formal Boolean expression that can be machine-evaluated at runtime to determine availability, if the relevant variables exist.
 |===

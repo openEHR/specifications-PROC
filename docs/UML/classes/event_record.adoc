@@ -3,7 +3,7 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_EVENT_RECORD (abstract)_*
+2+^h|*__EVENT_RECORD (abstract)__*
 
 h|*Description*
 2+a|Abstract parent of types representing execution time events on a Task Plan.
@@ -13,10 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*time*: `Iso8601_date_time`
+|*time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
 a|Time the event occurred.
 
 h|*0..1*
-|*description*: `String`
+|*description*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Optional description associated with the event. Would typically be populated for Cancel and Abort events.
 |===

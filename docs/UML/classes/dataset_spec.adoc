@@ -3,38 +3,38 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_DATASET_SPEC (abstract)_*
+2+^h|*__DATASET_SPEC (abstract)__*
 
 h|*Description*
 2+a|Specification of a related data-set and/or form to use with a Task, usually by means of display and/or data entry screens in an application being used by the principal performer.
 
 h|*Inherit*
-2+|`LOCATABLE`
+2+|`link:/releases/RM/{proc_release}/common.html#_locatable_class[LOCATABLE^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*form_id*: `String`
+|*form_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Form identifier.
 
 h|*0..1*
-|*template_id*: `String`
+|*template_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Template identifier in String form of an `ARCHETYPE_HRID`. If used with no `_form_id_`, the Execution engine needs to determine how to find a form based on the template identifier.
 
 h|*0..1*
-|*other_details*: `ITEM_STRUCTURE`
+|*other_details*: `link:/releases/RM/{proc_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
 a|Other data-set related details.
 
 h|*0..1*
-|*populating_call*: `SYSTEM_CALL`
+|*populating_call*: `<<_system_call_class,SYSTEM_CALL>>`
 a|Optional system call that will populate this data-set.
 
 h|*0..1*
-|*form_section_path*: `String`
+|*form_section_path*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Optional path to a sub-section of the form identified by `_form_id_`. The format of the path is the same as a template or AQL path.
 
 h|*Invariants*
-2+a|_Inv_validity_: `form_id /= Void or template_id /= Void`
+2+a|__Inv_validity__: `form_id /= Void or template_id /= Void`
 |===

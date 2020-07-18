@@ -11,6 +11,6 @@ h|*Description*
 For an experienced performer, the referenced Plan, which is usually more detailed may not be needed.
 
 h|*Inherit*
-2+|`LINKED_PLAN`, `PERFORMABLE_ACTION`
+2+|`<<_linked_plan_class,LINKED_PLAN>>`, `<<_performable_action_class,PERFORMABLE_ACTION>>`
 
 |===

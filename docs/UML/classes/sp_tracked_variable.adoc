@@ -9,6 +9,6 @@ h|*Description*
 2+a|
 
 h|*Inherit*
-2+|`SP_TRACKED_VALUE`
+2+|`<<_sp_tracked_value_class,SP_TRACKED_VALUE>>`
 
 |===

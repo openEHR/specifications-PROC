@@ -9,6 +9,6 @@ h|*Description*
 2+a|Variable whose value is required to be the latest; ideally, updating would be implemented by listener model.
 
 h|*Inherit*
-2+|`EXTERNAL_VARIABLE`
+2+|`<<_external_variable_class,EXTERNAL_VARIABLE>>`
 
 |===

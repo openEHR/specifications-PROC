@@ -13,6 +13,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*definition*: `TASK_ACTION`
+|*definition*: `<<_task_action_class,TASK_ACTION>>`
 a|
 |===

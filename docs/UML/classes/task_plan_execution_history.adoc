@@ -15,10 +15,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*task_events*: `List<TASK_EVENT_RECORD>`
+|*task_events*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_event_record_class,TASK_EVENT_RECORD>>>`
 a|Task-level execution time events.
 
 h|*0..1*
-|*plan_events*: `List<TASK_PLAN_EVENT_RECORD>`
+|*plan_events*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_plan_event_record_class,TASK_PLAN_EVENT_RECORD>>>`
 a|Execution time events that occurred at the Task Plan level, i.e. not to a particular task. These include events such as Task Plan abandonment.
 |===

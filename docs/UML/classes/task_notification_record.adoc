@@ -13,14 +13,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*reciever*: `PARTY_PROXY`
+|*reciever*: `link:/releases/RM/{proc_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
 a|Identification of the receiver party
 
 h|*1..1*
-|*receiver_task_plan*: `String`
+|*receiver_task_plan*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of receiving Task Plan.
 
 h|*1..1*
-|*details*: `Hash<String, String>`
+|*details*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]>`
 a|Other details as a name/value list.
 |===

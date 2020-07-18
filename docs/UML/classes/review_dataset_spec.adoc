@@ -9,13 +9,13 @@ h|*Description*
 2+a|Specification of a related data display data-set and/or form to use with a Task, usually by means display screens in an application being used by the principal performer.
 
 h|*Inherit*
-2+|`DATASET_SPEC`
+2+|`<<_dataset_spec_class,DATASET_SPEC>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*capture_datasets*: `List<CAPTURE_DATASET_SPEC>`
+|*capture_datasets*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_capture_dataset_spec_class,CAPTURE_DATASET_SPEC>>>`
 a|Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.
 |===

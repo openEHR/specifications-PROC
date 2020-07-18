@@ -13,14 +13,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_item*: `M_TASK`
+|*task_item*: `<<_m_task_class,M_TASK>>`
 a|Reference to the Task Item blocked waiting on this callback.
 
 h|*1..1*
-|*dispatch_info*: `DISPATCHABLE_ACTION`
+|*dispatch_info*: `<<_dispatchable_action_class,DISPATCHABLE_ACTION>>`
 a|Dispatch object defining actions on receipt of callback.
 
 h|*1..1*
-|*other_details*: `Hash<String, String>`
+|*other_details*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]>`
 a|
 |===

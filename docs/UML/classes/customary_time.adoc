@@ -11,13 +11,13 @@ h|*Description*
 Resolution to computable times is assumed to be done via call to a service or resource available within the operational environment.
 
 h|*Inherit*
-2+|`TIME_SPECIFIER`
+2+|`<<_time_specifier_class,TIME_SPECIFIER>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*time*: `DV_CODED_TEXT`
+|*time*: `link:/releases/RM/{proc_release}/data_types.html#_dv_coded_text_class[DV_CODED_TEXT^]`
 a|A coded term expressing a customary time in natural language.
 |===

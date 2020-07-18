@@ -13,22 +13,22 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*function*: `DV_TEXT`
+|*function*: `link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]`
 a|The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). This attribute should be coded.
 
 h|*0..1*
-|*role*: `List<DV_TEXT>`
+|*role*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]>`
 a|Organisational role, i.e. the professional type of participant in the activity. Preferably coded.
 
 h|*0..1*
-|*mode*: `DV_CODED_TEXT`
+|*mode*: `link:/releases/RM/{proc_release}/data_types.html#_dv_coded_text_class[DV_CODED_TEXT^]`
 a|Optional field for recording the 'mode' of the performer / activity interaction, e.g. present, by telephone, by email etc.
 
 h|*0..1*
-|*performer*: `PARTY_PROXY`
+|*performer*: `link:/releases/RM/{proc_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
 a|The id and possibly demographic system link of the party participating in the activity.
 
 h|*1..1*
-|*optionality*: `VALIDITY_KIND`
+|*optionality*: `link:/releases/BASE/{proc_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
 a|Condition for participation in the Plan item.
 |===

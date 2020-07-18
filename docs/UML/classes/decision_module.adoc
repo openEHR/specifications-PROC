@@ -9,18 +9,18 @@ h|*Description*
 2+a|A container for a set of statements along with related BMM definitions, meta-data, terminology and bindings.
 
 h|*Inherit*
-2+|`AUTHORED_RESOURCE`, `BMM_CLASS`
+2+|`link:/releases/RM/{proc_release}/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{proc_release}/bmm.html#_bmm_class_class[BMM_CLASS^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*proxy_properties*: `List<BMM_PROPERTY>`
+|*proxy_properties*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_bmm_property_class[BMM_PROPERTY^]>`
 a|Properties representing real-world objects, such as the patient state, the patient history (logical EHR) etc.
 
 h|*0..1*
-|*definitions*: `List<BMM_CONSTANT>`
+|*definitions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_bmm_constant_class[BMM_CONSTANT^]>`
 a|Constant definitions needed by module.
 h|*Functions*
 ^h|*Signature*

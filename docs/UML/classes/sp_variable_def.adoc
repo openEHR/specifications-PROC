@@ -13,18 +13,18 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*name*: `String`
+|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*1..1*
-|*type_name*: `String`
+|*type_name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*1..1*
-|*category*: `SP_VARIABLE_CATEGORY`
+|*category*: `<<_sp_variable_category_enumeration,SP_VARIABLE_CATEGORY>>`
 a|
 
 h|*1..1*
-|*concept*: `Terminology_code`
+|*concept*: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|
 |===

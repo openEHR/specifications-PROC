@@ -9,25 +9,25 @@ h|*Description*
 2+a|Materialised form of `TASK_GROUP` from a Task Plan definition.
 
 h|*Inherit*
-2+|`M_PLAN_ITEM`
+2+|`<<_m_plan_item_class,M_PLAN_ITEM>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*members*: `List<M_PLAN_ITEM>`
+|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_m_plan_item_class,M_PLAN_ITEM>>>`
 a|Member run-time items in group, mimicking structure of the corresponding definition group instance.
 
 h|*1..1 +
 (redefined)*
-|*definition*: `TASK_GROUP`
+|*definition*: `<<_task_group_class,TASK_GROUP>>`
 a|Reference to corresponding TASK_GROUP instance in Task Plan definition.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*lifecycle_state* (): `TASK_LIFECYCLE`
+|*lifecycle_state* (): `<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>`
 a|Effective lifecycle state, computed from the states of members of the group.
 |===

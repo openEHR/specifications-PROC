@@ -9,13 +9,13 @@ h|*Description*
 2+a|Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.
 
 h|*Inherit*
-2+|`EXTERNAL_VARIABLE`
+2+|`<<_external_variable_class,EXTERNAL_VARIABLE>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*required_currency*: `Iso8601_duration`
+|*required_currency*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
 a|Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.
 |===

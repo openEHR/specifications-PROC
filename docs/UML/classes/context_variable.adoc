@@ -3,12 +3,12 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*_CONTEXT_VARIABLE<TT> (abstract)_*
+2+^h|*__CONTEXT_VARIABLE<TT> (abstract)__*
 
 h|*Description*
 2+a|Any kind of symbolic variable that can be used within Expressions in the Task Plan, including in pre-conditions and decision pathways.
 
 h|*Inherit*
-2+|`CONTEXT_VALUE`
+2+|`<<_context_value_class,CONTEXT_VALUE>>`
 
 |===

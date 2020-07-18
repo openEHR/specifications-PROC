@@ -11,17 +11,17 @@ h|*Description*
 If `_wait_` is True, the Task blocks until the target work thread returns. If `_callback_` is set, specific processing can be performed on the return, before execution progresses. If it is not set, the Task completes normally on target completion, and execution continues to the next Task. In this case (`_wait_ = True`, no `_callback_`), a global timer will be created for the Task to deal with the situation where the dispatch target never returns.
 
 h|*Inherit*
-2+|`TASK`
+2+|`<<_task_class,TASK>>`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*wait*: `Boolean`
+|*wait*: `link:/releases/BASE/{proc_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. `_wait_ = True` corresponds to a context switch (block and wait) while `_wait_ = False` indicates a context fork.
 
 h|*0..1*
-|*callback*: `CALLBACK_WAIT`
+|*callback*: `<<_callback_wait_class,CALLBACK_WAIT>>`
 a|Optional callback notification handler.
 |===

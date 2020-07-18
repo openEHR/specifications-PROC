@@ -13,18 +13,18 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*content_bindings*: 
+|*content_bindings*: `@@`
 a|
 
 h|*1..1*
-|*api_bindings*: 
+|*api_bindings*: `@@`
 a|
 
 h|*1..1*
-|*query_bindings*: 
+|*query_bindings*: `@@`
 a|
 
 h|*1..1*
-|*interactive_bindings*: 
+|*interactive_bindings*: `@@`
 a|
 |===
