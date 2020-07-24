@@ -4,50 +4,71 @@ The following examples rely on the 'Core Patient' and extension Subject Proxies 
 
 == Perinatal Care
 
-=== Proxy Module
+=== Interface Module
 
 ----
-proxy
-    Pregnant_patient
-    
+gdl3_dataset Pregnant_patient_DS 
+
 extend
-    Core_patient
+    Core_patient_DS
     
-state :historical
+state -- <time_window = "all">
+
+    is_pregnant: Boolean
 
     is_type1_diabetic: Boolean
-        Result <- has_diagnosis (73211009|diabetes mellitus|, 
-            |<Current_episode.start|)
-        
+
     previous_obstetric_hypertension: Boolean
-        Result <- has_diagnosis (367390009|hypertension in obstetric context|, 
-            |< Current_episode.start|)
-        
+
     previous_pre_eclampsia: Boolean
-        Result <- has_diagnosis (398254007|pre-eclampsia|, 
-            |< Current_episode.start|)
-        
+
     previous_eclampsia: Boolean
-        Result <- has_diagnosis (15938005|eclampsia|, 
-            |< Current_episode.start|)
-        
-state :this_episode -- current pregnancy
+
+state -- <time_window = "current_episode">
 
     has_gestational_diabetes: Boolean
-        Result <- has_diagnosis (11687002|Gestational diabetes mellitus|, 
-            |>= Current_episode.start|)
- 
+
     has_pregnancy_hypertension: Boolean 
-        Result <- has_diagnosis (367390009|hypertension in obstetric context|, 
-            |>= Current_episode.start|)
 
     has_pre_eclampsia: Boolean
-        Result <- has_diagnosis (398254007|pre-eclampsia|, 
-            |>= Current_episode.start|)
 
     has_eclampsia: Boolean
-        Result <- has_diagnosis (15938005|eclampsia|, 
-            |>= Current_episode.start|)
+
+state -- <time_window = "live">
+
+    amniotic_fluid_state: Terminology_term
+
+    uterine_fundal_height: Quantity
+
+    vaginal_blood_flow: Quantity
+        currency = 30mins
+        ranges =
+            critical_high: |> 500 mL/hr|
+
+
+state -- <time_window = "live", source = "manual">
+
+    haemorrhage: Boolean
+
+    contractions_commenced: Boolean
+
+    braxton_hicks_contraction: Boolean
+
+----
+
+=== Decision Module
+
+----
+gdl3_guideline Obstetric_pregnancy 
+
+use 
+    Pregnant_patient_DS
+    
+preconditions
+
+    is_pregnant
+
+rules
 
     anaemia_type: Terminology_term
         Result <- 
@@ -56,73 +77,37 @@ state :this_episode -- current pregnancy
             else
                 diagnosis (87522002|anaemia|, |>= Current_episode.start|)
 
-state :live
-    amniotic_fluid_state: Terminology_term
-    
-    uterine_fundal_height: Quantity
-    
-    vaginal_blood_flow: Quantity
-        currency = 30mins
-        ranges
-            |critical_high|: > 500 mL/hr
-
-events
-    haemorrhage:
-        vaginal_blood_flow <critical_high>
-        
-    contractions_commenced:
-        <asserted>
-        
-    braxton_hicks_contraction:
-        <asserted>
-    
-----
-
-=== Decision Module
-
-----
-decision support module 
-    Obstetric_pregnancy
-
-proxy
-    P: Pregnant_patient
-
-definitions
-
-conditions
-
-rules
     risk_evaluation: Terminology_term
         ....
         
     amniotic_fluid_risk: Terminology_term
         Result <- 
-            map P.hypertension_state
+            map hypertension_state
                 {44223004|premature rupture|, 
                  86203003|polyhydramnios|}      -> |obstetric emergency|9999
                 {59566000|oligohydramnios|}     -> |refer high risk care|1111
                 {*}                             -> |normal|0000
     
     hypertension_risk: Terminology_term
-        if P.has_pre_eclampsia or P.has_eclampsia
+        if has_pre_eclampsia or has_eclampsia
             Result <- |obstetric emergency|9999
             
-        elseif P.previous_obstetric_hypertension or P.previous_pre_eclampsia or 
-                P.previous_eclampsia or P.has_pregnancy_hypertension
+        elseif previous_obstetric_hypertension or previous_pre_eclampsia or 
+                previous_eclampsia or has_pregnancy_hypertension
             Result <- |refer high risk antenatal care|1111
             
         else
             Result <- |normal|0000
             
     diabetes_risk: Terminology_term
-        if P.has_gestational_diabetes
+        if has_gestational_diabetes
             Result <- |refer high risk antenatal care|1111
         else
             Result <- |normal|0000
             
     anaemia_risk: Terminology_term
         Result <- 
-            map P.anaemia_type
+            map anaemia_type
                 {27342004|anaemia of pregnancy|, 
                  |severe|}                          -> |obstetric emergency|9999
                 {27342004|anaemia of pregnancy|}    -> |refer high risk care|1111
@@ -138,37 +123,37 @@ rules
 Breast cancer specific Proxy.
 
 ----
-proxy module
-    Breast_cancer_patient
-    
+gdl3_dataset Breast_cancer_patient_DS 
+
 extend
-    Cancer_patient
+    Cancer_patient_DS
     
-state
+state -- <time_window = "current_episode">
+
     tnm_t: String
         currency = 60 days
-            
+
     tnm_n: String
         currency = 60 days
-            
+
     tnm_m: String
         currency = 60 days
-            
+
     tnm_g: String
         currency = 60 days
-            
+
     estrogen_receptor: Terminology_term «pos_neg_vs»
         currency = 60 days
-            
+
     progesterone_receptor:  Terminology_term «pos_neg_vs»
         currency = 60 days
-            
+
     her2_expression: Terminology_term «pos_neg_vs»
         currency = 60 days
-    
+
     ki67: Quantity
         currency = 60 days
-            
+
     ejection_fraction: Quantity
         currency = 60 days
                 
@@ -196,66 +181,67 @@ derived
 === Decision Module
 
 ----
-decision support module 
-    Oncology_breast_cancer
+gdl3_guideline Oncology_breast_cancer 
 
-proxy
-    P: Breast_cancer_patient
+use
+    Breast_cancer_patient_DS
 
 definitions
     ki67_threshold: Quantity = 14%
     
 conditions
+
     ki67_high:
-        P.ki67 >= ki67_threshold
+        ki67 >= ki67_threshold
         
     anthracyclines_contraindicated:
-        P.has_diagnosis (|Transmural MI|) or
-        P.ejection_fraction < 40% or
-        P.has_diagnosis ({|heart failure (class II)|, 
-                          |heart failure (class III)|,
-                          |heart failure (class IV)|})
+        has_diagnosis (|Transmural MI|) or
+        ejection_fraction < 40% or
+        has_diagnosis ({|heart failure (class II)|, 
+                        |heart failure (class III)|,
+                        |heart failure (class IV)|})
                                 
     taxanes_contraindicated:
-        P.is_type1_diabetic or
-        P.has_allergy (|taxanes|) or 
-        P.has_intolerance (|taxanes|)
+        is_type1_diabetic or
+        has_allergy (|taxanes|) or 
+        has_DSntolerance (|taxanes|)
         
 rules
+
     molecular_subtype: Terminology_term
-        if P.er_positive and P.her2_negative and not ki67_high
+        if er_positive and her2_negative and not ki67_high
             Result <- |Luminal A|
 
-        elseif P.er_positive and P.her2_negative and ki67_high
+        elseif er_positive and her2_negative and ki67_high
             Result <- |Luminal B (HER2 negative)|
 
-        elseif P.er_positive and P.her2_positive
+        elseif er_positive and her2_positive
             Result <- |Luminal B (HER2 positive)|
 
-        elseif P.er_negative and P.pr_negative and P.her2_positive and ki67_high
+        elseif er_negative and pr_negative and her2_positive and ki67_high
             Result <- |HER2|
 
-        elseif P.er_negative and P.pr_negative and P.her2_negative and ki67_high
+        elseif er_negative and pr_negative and her2_negative and ki67_high
             Result <- |Triple negative|
             
         else 
             Result <- |none|
     
     chemotherapy_regime: Terminology_term
-        if not P.metastatic 
+        if not metastatic 
             if molecular_subtype in {|Luminal B (HER2 negative)|, |Triple negative|} and
-                    (P.tnm_t > '1a' or P.tnm_n > '0')
+                    (tnm_t > '1a' or tnm_n > '0')
                 Result <- |taxanes|
             
             elseif molecular_subtype = |Luminal A| and 
-                    (P.tnm_t >= '3' or P.tnm_n >= '2' or P.tnm_g >= '3')
+                    (tnm_t >= '3' or tnm_n >= '2' or tnm_g >= '3')
                 Result <- |anthracyclines|
             
             elseif molecular_subtype = |Luminal B (HER2 positive)| and 
-                    (P.tnm_t = '1b' or P.tnm_t = '1c' and P.tnm_n = '0')
+                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0')
                     or
                     molecular_subtype = |HER2| and 
-                    (P.tnm_t = '1b' and P.tnm_n = '0')
+                    (tnm_t = '1b' and tnm_n = '0')
                 Result <- |paditaxel + trastuzumab|
             else ...
                 Result <-

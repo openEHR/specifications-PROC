@@ -64,7 +64,7 @@
 </li>
 <li><a href="#_example">5. Example</a>
 <ul class="sectlevel2">
-<li><a href="#_core_patient_proxy">5.1. Core Patient Proxy</a></li>
+<li><a href="#_core_patient_interface">5.1. Core Patient Interface</a></li>
 <li><a href="#_cancer_patient">5.2. Cancer patient</a></li>
 </ul>
 </li>
@@ -514,19 +514,18 @@ state &lt;"this_episode"&gt; -- current pregnancy
 <h2 id="_example"><a class="anchor" href="#_example"></a>5. Example</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_core_patient_proxy"><a class="anchor" href="#_core_patient_proxy"></a>5.1. Core Patient Proxy</h3>
+<h3 id="_core_patient_interface"><a class="anchor" href="#_core_patient_interface"></a>5.1. Core Patient Interface</h3>
 <div class="listingblock">
 <div class="content">
-<pre>proxy
-    Core_patient
+<pre>gdl3_dataset Core_patient_DS
 
-state &lt;tag="admin"&gt;
+state -- &lt;time_window = "all", source = "admin"&gt;
 
     date_of_birth: Date
 
     sex: Terminology_term
 
-state &lt;tag="general"&gt;
+state -- &lt;time_window = "all"&gt;
 
     weight: Quantity
         currency = 7 days
@@ -536,46 +535,45 @@ state &lt;tag="general"&gt;
     blood_glucose: Quantity
         currency = 2 hour
 
-state &lt;tag="vital_signs"&gt;
+state -- &lt;time_window = "live"&gt;
 
     systolic_blood_pressure: Quantity
         currency = 1 min
-        ranges
-            critical_high &gt;= 180 mm[Hg]
-            very_high     &gt;  140 mm[Hg]
-            high          &gt;  120 mm[Hg]
-            normal
-            low           &lt;=  90 mm[Hg]
-            critical_low  &lt;=  50 mm[Hg]
+        ranges =
+            critical_high: |&gt;= 180 mm[Hg]|,
+            very_high:     |&gt;  140 mm[Hg]|,
+            high:          |&gt;  120 mm[Hg]|,
+            normal:        .,
+            low:           |&lt;=  90 mm[Hg]|,
+            critical_low:  |&lt;=  50 mm[Hg]|
 
     diastolic_blood_pressure: Quantity
         currency = 1 min
-        ranges
-            high          &gt;   80 mm[Hg]
-            normal
-            low           &lt;=  60 mm[Hg]
+        ranges =
+            high:          |&gt;   80 mm[Hg]|,
+            normal:        .,
+            low:           |&lt;=  60 mm[Hg]|
 
     resting_heart_rate: Quantity
         currency = 30 sec
-        ranges
-            critical_high &gt;= 140 /min
-            high          &gt;=  90 /min
-            normal
-            low           &lt;=  55 /min
-            critical_low  &lt;=  39 /min
+        ranges =
+            critical_high: |&gt;= 140 /min|,
+            high:          |&gt;=  90 /min|,
+            normal:        .,
+            low:           |&lt;=  55 /min|,
+            critical_low:  |&lt;=  39 /min|
 
     oxygen_saturation: Proportion
         currency = 30 sec
-        limit
-            low = 92%
-        ranges
-            low = |&lt; limit.low|
+        ranges =
+            low:           |&lt; 92%|
 
-evaluation &lt;tag="general"&gt;
+state -- &lt;time_window = "all"&gt;
 
     is_type1_diabetic: Boolean
 
 derived
+
     age: Duration
         Result &lt;- {Env}.current_date() - date_of_birth
 
@@ -618,13 +616,12 @@ terminology
 <h3 id="_cancer_patient"><a class="anchor" href="#_cancer_patient"></a>5.2. Cancer patient</h3>
 <div class="listingblock">
 <div class="content">
-<pre>proxy
-    Cancer_patient
+<pre>gdl3_dataset Cancer_patient_DS
 
 extend
-    Core_patient
+    Core_patient_DS
 
-evaluation &lt;tag="general"&gt;
+state -- &lt;time_window = "current_episode"&gt;
 
     staging: Terminology_term «ann_arbor_staging»
         currency = 30 days

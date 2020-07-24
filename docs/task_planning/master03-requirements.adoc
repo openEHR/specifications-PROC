@@ -7,6 +7,7 @@ The discussion above provides a guide as to what should potentially be modelled 
 * complex sets of actions defined by _clinical pathways_;
 * decision points that determine which path from alternatives to follow;
 * _actions requiring sign-off_ in some way;
+* _coordination_ of workers in a distributed team;
 * actions that result in _recording_ something in the EHR;
 * actions of varying levels of granularity that are needed in a _training_ mode.
 

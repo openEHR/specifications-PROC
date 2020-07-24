@@ -62,8 +62,8 @@
 <ul class="sectlevel2">
 <li><a href="#_limitations">5.1. Limitations</a></li>
 <li><a href="#_plan_definition">5.2. Plan Definition</a></li>
-<li><a href="#_proxy_module">5.3. Proxy Module</a></li>
-<li><a href="#_decision_module">5.4. Decision Module</a></li>
+<li><a href="#_guideline_interface">5.3. Guideline Interface</a></li>
+<li><a href="#_guideline_definition">5.4. Guideline Definition</a></li>
 </ul>
 </li>
 </ul>
@@ -482,7 +482,7 @@
 <p>This section illustrates multi-drug chemotherapy with complex dosing and timing arrangements.</p>
 </div>
 <div class="paragraph">
-<p>This example is based on the version of RCHOPS-21 documented by <a href="http://nssg.oxford-haematology.org.uk/lymphoma/documents/lymphoma-chemo-protocols/L-80-r-chop-21.pdf">NHS Thames Valley Cancer Network</a>.</p>
+<p>This example is based on the version of RCHOPS-21 documented by http:|nssg.oxford-haematology.org.uk/lymphoma/documents/lymphoma-chemo-protocols/L-80-r-chop-21.pdf[NHS Thames Valley Cancer Network].</p>
 </div>
 <div class="sect2">
 <h3 id="_limitations"><a class="anchor" href="#_limitations"></a>5.1. Limitations</h3>
@@ -525,78 +525,76 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_proxy_module"><a class="anchor" href="#_proxy_module"></a>5.3. Proxy Module</h3>
+<h3 id="_guideline_interface"><a class="anchor" href="#_guideline_interface"></a>5.3. Guideline Interface</h3>
 <div class="paragraph">
-<p>Parent proxy modules <code>Cancer_patient</code>, <code>Basic_patient</code> shown in Decision Support Language spec, <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html#_examples" target="_blank" rel="noopener">examples section</a>.</p>
+<p>Parent interfaces <code>Cancer_patient</code>, <code>Basic_patient</code> shown in Decision Support Language spec, <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html#_examples" target="_blank" rel="noopener">examples section</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>proxy
-    Lymphoma_patient
+<pre>gdl3_dataset Lymphoma_patient_DS
 
 extend
-    Cancer_patient
+    Cancer_patient_DS
 
-state
+state -- &lt;time_window = "current_episode"&gt;
+
+    has_lymphoma_diagnosis: Boolean
+
     neutrophils: Quantity
         currency = 3d
-        ranges
-            |normal|:      &gt;1 x 10^9/L
-            |low|:         0.5 - 1 x 10^9/L
-            |very_low|:    &lt;0.5 x 10^9/L
+        ranges =
+            normal:      |&gt;1 x 10^9/L|,
+            low:         |0.5 - 1 x 10^9/L|,
+            very_low:    |&lt;0.5 x 10^9/L|
 
     platelets: Quantity
         currency = 12h
-        ranges
-            |normal|:      &gt;75 x 10^9/L
-            |low|:         50 - 74 x 10^9/L
-            |very_low|:    &lt;50 x 10^9/L
+        ranges =
+            normal:      |&gt;75 x 10^9/L|,
+            low:         |50 - 74 x 10^9/L|,
+            very_low:    |&lt;50 x 10^9/L|
 
     bilirubin: Quantity
         currency = 12h
-        ranges
-            |normal|:      &lt;20 mmol/L
-            |high|:        20 - 51 mmol/L
-            |very_high|:   51 - 85 mmol/L
-            |crit_high|:   &gt;85 mmol/L
+        ranges =
+            normal:      |&lt;20 mmol/L|,
+            high:        |20 - 51 mmol/L|,
+            very_high:   |51 - 85 mmol/L|,
+            crit_high:   |&gt;85 mmol/L|
 
-    // Glomerular filtration rate
+    |
+    | Glomerular filtration rate
+    |
     gfr: Quantity
         currency = 24h
-        rangess
-            |normal|:      &gt;20 mL/min
-            |low|:         10 - 20 mL/min
-            |very_low|:    &lt;10 mL/min
+        ranges =
+            normal:      |&gt;20 mL/min|,
+            low:         |10 - 20 mL/min|,
+            very_low:    |&lt;10 mL/min|
 
-    // Lactate dehydrogenase (LDH)
+    |
+    | Lactate dehydrogenase (LDH)
+    |
     ldh: Quantity
         currency = 24h
-        ranges
-            |normal|:      &gt;20 mL/min
-            |low|:         10 - 20 mL/min
-            |very_low|:    &lt;10 mL/min
-
-derived
-    //
-    // Body serface area - Mosteller Formula
-    // BSA = sqrt (weight[kg] x height (m) / 36)
-    //
-    bsa_m2: Real
-        Result &lt;- {Math}.sqrt (weight * height / 36)</pre>
+        ranges =
+            normal:      |&gt;20 mL/min|,
+            low:         |10 - 20 mL/min|,
+            very_low:    |&lt;10 mL/min|</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_decision_module"><a class="anchor" href="#_decision_module"></a>5.4. Decision Module</h3>
+<h3 id="_guideline_definition"><a class="anchor" href="#_guideline_definition"></a>5.4. Guideline Definition</h3>
 <div class="listingblock">
 <div class="content">
-<pre>decision support module
-    RCHOPS21
+<pre>gdl3_guideline RCHOPS21
 
-proxy
-    P: Lymphoma_patient
+use
+    Lymphoma_patient_I
 
 definitions
+
     paracetamol_dose: Quantity = 1g
 
     chlorphenamine_dose: Quantity = 10mg
@@ -615,86 +613,96 @@ definitions
 
     cycle_repeats: Integer = 6
 
+preconditions
+
+    has_lymphoma_diagnosis
+
 rules
+    |
+    | Body serface area - Mosteller Formula
+    | BSA = sqrt (weight[kg] x height (m) / 36)
+    |
+    bsa_m2: Real
+        Result &lt;- {Math}.sqrt (weight * height / 36)
+
     high_ipi:
         Result &lt;- ipi_risk in {|high risk|3, |intermediate-high risk|2}
 
-    //
-    // patient fit to undertake regime
-    //
+    |
+    | patient fit to undertake regime
+    |
     patient_fit:
         Result &lt;- not
-            (P.platelets.range = |very_low| or
-             P.neutrophils.range = |very_low|)
+            (platelets.range = |very_low| or
+             neutrophils.range = |very_low|)
 
     prednisolone_dose: Quantity
-        Result &lt;- prednisolone_dose_per_m2 * P.bsa_m2
+        Result &lt;- prednisolone_dose_per_m2 * bsa_m2
 
     rituximab_dose: Quantity
-        Result &lt;- rituximab_dose_per_m2 * P.bsa_m2
+        Result &lt;- rituximab_dose_per_m2 * bsa_m2
 
     doxorubicin_dose: Quantity
-        Result &lt;- doxorubicin_dose_per_m2 * P.bsa_m2 *
-            map P.bilirubin.range
+        Result &lt;- doxorubicin_dose_per_m2 * bsa_m2 *
+            map bilirubin.range
                 |high|:        0.5
                 |very_high|:   0.25
                 |crit_high|:   0.0
 
     prednisolone_dose: Quantity
-        Result &lt;- prednisolone_dose_per_m2 * P.bsa_m2
+        Result &lt;- prednisolone_dose_per_m2 * bsa_m2
 
-    //
-    // TODO: hepatic impairment dose modification
-    //
+    |
+    | TODO: hepatic impairment dose modification
+    |
     vincristine_dose: Quantity
-        Result &lt;- vincristine_dose_per_m2 * P.bsa_m2
+        Result &lt;- vincristine_dose_per_m2 * bsa_m2
 
-    //
-    // CHECK: is low platelets and GFR dose modification
-    // cumulative?
-    //
+    |
+    | CHECK: is low platelets and GFR dose modification
+    | cumulative?
+    |
     cyclophosphamide_dose: Quantity
-        Result &lt;- cyclophosphamide_dose_per_m2 * P.bsa_m2
-            * map P.platelets.range
+        Result &lt;- cyclophosphamide_dose_per_m2 * bsa_m2
+            * map platelets.range
                 |normal|:      1
                 |low|:         0.75
-            * map P.gfr.range
+            * map gfr.range
                 |normal|:      1
                 |low|:         0.75
                 |very_low|:    0.5
 
-    //
-    // International Prognostic Index
-    // ref: https://en.wikipedia.org/wiki/International_Prognostic_Index
-    //
-    // One point is assigned for each of the following risk factors:
-    //     Age greater than 60 years
-    //     Stage III or IV disease
-    //     Elevated serum LDH
-    //     ECOG/Zubrod performance status of 2, 3, or 4
-    //     More than 1 extranodal site
-    //
-    // The sum of the points allotted correlates with the following risk groups:
-    //     Low risk (0-1 points) - 5-year survival of 73%
-    //     Low-intermediate risk (2 points) - 5-year survival of 51%
-    //     High-intermediate risk (3 points) - 5-year survival of 43%
-    //     High risk (4-5 points) - 5-year survival of 26%
-    //
-
+    |
+    | International Prognostic Index
+    | ref: https:|en.wikipedia.org/wiki/International_Prognostic_Index
+    |
+    | One point is assigned for each of the following risk factors:
+    |     Age greater than 60 years
+    |     Stage III or IV disease
+    |     Elevated serum LDH
+    |     ECOG/Zubrod performance status of 2, 3, or 4
+    |     More than 1 extranodal site
+    |
+    | The sum of the points allotted correlates with the following risk groups:
+    |     Low risk (0-1 points) - 5-year survival of 73%
+    |     Low-intermediate risk (2 points) - 5-year survival of 51%
+    |     High-intermediate risk (3 points) - 5-year survival of 43%
+    |     High risk (4-5 points) - 5-year survival of 26%
+    |
     ipi_raw_score: Integer
-        if P.age &gt; 60
+        if age &gt; 60
             Result &lt;- Result + 1
 
-        if P.staging in {|stage III|, |stage IV|}
+        if staging in {|stage III|, |stage IV|}
             Result &lt;- Result + 1
 
-        if P.ldh &gt; LDH_normal
+        if ldh &gt; LDH_normal
             Result &lt;- Result + 1
 
-        if P.ecog &gt; 1
+        if ecog &gt; 1
             Result &lt;- Result + 1
 
-        if P.extranodal_sites &gt; 1
+        if extranodal_sites &gt; 1
             Result &lt;- Result + 1
 
     ipi_risk: Terminology_code

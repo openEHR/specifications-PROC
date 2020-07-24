@@ -1,67 +1,65 @@
 = Example
 
-== Core Patient Proxy
+== Core Patient Interface
 
 ----
-proxy
-    Core_patient
+gdl3_dataset Core_patient_DS
 
-state <tag="admin">
+state -- <time_window = "all", source = "admin">
 
     date_of_birth: Date
-    
+
     sex: Terminology_term
 
-state <tag="general">
+state -- <time_window = "all">
 
     weight: Quantity
         currency = 7 days
-            
+
     height: Quantity
-    
+
     blood_glucose: Quantity
         currency = 2 hour
-    
-state <tag="vital_signs">
+
+state -- <time_window = "live">
 
     systolic_blood_pressure: Quantity
         currency = 1 min
-        ranges
-            critical_high >= 180 mm[Hg]
-            very_high     >  140 mm[Hg]
-            high          >  120 mm[Hg]
-            normal
-            low           <=  90 mm[Hg]
-            critical_low  <=  50 mm[Hg]
+        ranges =
+            critical_high: |>= 180 mm[Hg]|,
+            very_high:     |>  140 mm[Hg]|,
+            high:          |>  120 mm[Hg]|,
+            normal:        .,
+            low:           |<=  90 mm[Hg]|,
+            critical_low:  |<=  50 mm[Hg]|
 
     diastolic_blood_pressure: Quantity
         currency = 1 min
-        ranges
-            high          >   80 mm[Hg]
-            normal
-            low           <=  60 mm[Hg]
+        ranges =
+            high:          |>   80 mm[Hg]|,
+            normal:        .,
+            low:           |<=  60 mm[Hg]|
 
     resting_heart_rate: Quantity
         currency = 30 sec
-        ranges
-            critical_high >= 140 /min
-            high          >=  90 /min
-            normal
-            low           <=  55 /min
-            critical_low  <=  39 /min
-            
+        ranges =
+            critical_high: |>= 140 /min|,
+            high:          |>=  90 /min|,
+            normal:        .,
+            low:           |<=  55 /min|,
+            critical_low:  |<=  39 /min|
+
     oxygen_saturation: Proportion
         currency = 30 sec
-        limit
-            low = 92%
-        ranges
-            low = |< limit.low|
-            
-evaluation <tag="general">
+        ranges =
+            low:           |< 92%|
+
+state -- <time_window = "all">
 
     is_type1_diabetic: Boolean
 
 derived
+
     age: Duration
         Result <- {Env}.current_date() - date_of_birth
         
@@ -103,20 +101,19 @@ terminology
 == Cancer patient
 
 ----
-proxy
-    Cancer_patient
-    
-extend
-    Core_patient
-    
-evaluation <tag="general">
+gdl3_dataset Cancer_patient_DS
+
+extend 
+    Core_patient_DS
+ 
+state -- <time_window = "current_episode">
 
     staging: Terminology_term «ann_arbor_staging» 
         currency = 30 days
 
     has_metastases: Boolean
         currency = 30 days
-        
+
 terminology
 	term_definitions = <
 		["en"] = <

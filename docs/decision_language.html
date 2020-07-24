@@ -73,13 +73,13 @@
 <ul class="sectlevel2">
 <li><a href="#_perinatal_care">7.1. Perinatal Care</a>
 <ul class="sectlevel3">
-<li><a href="#_proxy_module">7.1.1. Proxy Module</a></li>
+<li><a href="#_interface_module">7.1.1. Interface Module</a></li>
 <li><a href="#_decision_module">7.1.2. Decision Module</a></li>
 </ul>
 </li>
 <li><a href="#_breast_cancer_decision_protocol">7.2. Breast Cancer Decision Protocol</a>
 <ul class="sectlevel3">
-<li><a href="#_proxy_module_2">7.2.1. Proxy module</a></li>
+<li><a href="#_proxy_module">7.2.1. Proxy module</a></li>
 <li><a href="#_decision_module_2">7.2.2. Decision Module</a></li>
 </ul>
 </li>
@@ -628,50 +628,72 @@ rules
 <div class="sect2">
 <h3 id="_perinatal_care"><a class="anchor" href="#_perinatal_care"></a>7.1. Perinatal Care</h3>
 <div class="sect3">
-<h4 id="_proxy_module"><a class="anchor" href="#_proxy_module"></a>7.1.1. Proxy Module</h4>
+<h4 id="_interface_module"><a class="anchor" href="#_interface_module"></a>7.1.1. Interface Module</h4>
 <div class="listingblock">
 <div class="content">
-<pre>proxy
-    Pregnant_patient
+<pre>gdl3_dataset Pregnant_patient_DS
 
 extend
-    Core_patient
+    Core_patient_DS
 
-state :historical
+state -- &lt;time_window = "all"&gt;
+
+    is_pregnant: Boolean
 
     is_type1_diabetic: Boolean
-        Result &lt;- has_diagnosis (73211009|diabetes mellitus|,
-            |&lt;Current_episode.start|)
 
     previous_obstetric_hypertension: Boolean
-        Result &lt;- has_diagnosis (367390009|hypertension in obstetric context|,
-            |&lt; Current_episode.start|)
 
     previous_pre_eclampsia: Boolean
-        Result &lt;- has_diagnosis (398254007|pre-eclampsia|,
-            |&lt; Current_episode.start|)
 
     previous_eclampsia: Boolean
-        Result &lt;- has_diagnosis (15938005|eclampsia|,
-            |&lt; Current_episode.start|)
 
-state :this_episode -- current pregnancy
+state -- &lt;time_window = "current_episode"&gt;
 
     has_gestational_diabetes: Boolean
-        Result &lt;- has_diagnosis (11687002|Gestational diabetes mellitus|,
-            |&gt;= Current_episode.start|)
 
     has_pregnancy_hypertension: Boolean
-        Result &lt;- has_diagnosis (367390009|hypertension in obstetric context|,
-            |&gt;= Current_episode.start|)
 
     has_pre_eclampsia: Boolean
-        Result &lt;- has_diagnosis (398254007|pre-eclampsia|,
-            |&gt;= Current_episode.start|)
 
     has_eclampsia: Boolean
-        Result &lt;- has_diagnosis (15938005|eclampsia|,
-            |&gt;= Current_episode.start|)
+
+state -- &lt;time_window = "live"&gt;
+
+    amniotic_fluid_state: Terminology_term
+
+    uterine_fundal_height: Quantity
+
+    vaginal_blood_flow: Quantity
+        currency = 30mins
+        ranges =
+            critical_high: |&gt; 500 mL/hr|
+
+
+state -- &lt;time_window = "live", source = "manual"&gt;
+
+    haemorrhage: Boolean
+
+    contractions_commenced: Boolean
+
+    braxton_hicks_contraction: Boolean</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_decision_module"><a class="anchor" href="#_decision_module"></a>7.1.2. Decision Module</h4>
+<div class="listingblock">
+<div class="content">
+<pre>gdl3_guideline Obstetric_pregnancy
+
+use
+    Pregnant_patient_DS
+
+preconditions
+
+    is_pregnant
+
+rules
 
     anaemia_type: Terminology_term
         Result &lt;-
@@ -680,74 +702,37 @@ state :this_episode -- current pregnancy
             else
                 diagnosis (87522002|anaemia|, |&gt;= Current_episode.start|)
 
-state :live
-    amniotic_fluid_state: Terminology_term
-
-    uterine_fundal_height: Quantity
-
-    vaginal_blood_flow: Quantity
-        currency = 30mins
-        ranges
-            |critical_high|: &gt; 500 mL/hr
-
-events
-    haemorrhage:
-        vaginal_blood_flow &lt;critical_high&gt;
-
-    contractions_commenced:
-        &lt;asserted&gt;
-
-    braxton_hicks_contraction:
-        &lt;asserted&gt;</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_decision_module"><a class="anchor" href="#_decision_module"></a>7.1.2. Decision Module</h4>
-<div class="listingblock">
-<div class="content">
-<pre>decision support module
-    Obstetric_pregnancy
-
-proxy
-    P: Pregnant_patient
-
-definitions
-
-conditions
-
-rules
     risk_evaluation: Terminology_term
         ....
 
     amniotic_fluid_risk: Terminology_term
         Result &lt;-
-            map P.hypertension_state
+            map hypertension_state
                 {44223004|premature rupture|,
                  86203003|polyhydramnios|}      -&gt; |obstetric emergency|9999
                 {59566000|oligohydramnios|}     -&gt; |refer high risk care|1111
                 {*}                             -&gt; |normal|0000
 
     hypertension_risk: Terminology_term
-        if P.has_pre_eclampsia or P.has_eclampsia
+        if has_pre_eclampsia or has_eclampsia
             Result &lt;- |obstetric emergency|9999
 
-        elseif P.previous_obstetric_hypertension or P.previous_pre_eclampsia or
-                P.previous_eclampsia or P.has_pregnancy_hypertension
+        elseif previous_obstetric_hypertension or previous_pre_eclampsia or
+                previous_eclampsia or has_pregnancy_hypertension
             Result &lt;- |refer high risk antenatal care|1111
 
         else
             Result &lt;- |normal|0000
 
     diabetes_risk: Terminology_term
-        if P.has_gestational_diabetes
+        if has_gestational_diabetes
             Result &lt;- |refer high risk antenatal care|1111
         else
             Result &lt;- |normal|0000
 
     anaemia_risk: Terminology_term
         Result &lt;-
-            map P.anaemia_type
+            map anaemia_type
                 {27342004|anaemia of pregnancy|,
                  |severe|}                          -&gt; |obstetric emergency|9999
                 {27342004|anaemia of pregnancy|}    -&gt; |refer high risk care|1111
@@ -759,19 +744,19 @@ rules
 <div class="sect2">
 <h3 id="_breast_cancer_decision_protocol"><a class="anchor" href="#_breast_cancer_decision_protocol"></a>7.2. Breast Cancer Decision Protocol</h3>
 <div class="sect3">
-<h4 id="_proxy_module_2"><a class="anchor" href="#_proxy_module_2"></a>7.2.1. Proxy module</h4>
+<h4 id="_proxy_module"><a class="anchor" href="#_proxy_module"></a>7.2.1. Proxy module</h4>
 <div class="paragraph">
 <p>Breast cancer specific Proxy.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>proxy module
-    Breast_cancer_patient
+<pre>gdl3_dataset Breast_cancer_patient_DS
 
 extend
-    Cancer_patient
+    Cancer_patient_DS
 
-state
+state -- &lt;time_window = "current_episode"&gt;
+
     tnm_t: String
         currency = 60 days
 
@@ -824,66 +809,67 @@ derived
 <h4 id="_decision_module_2"><a class="anchor" href="#_decision_module_2"></a>7.2.2. Decision Module</h4>
 <div class="listingblock">
 <div class="content">
-<pre>decision support module
-    Oncology_breast_cancer
+<pre>gdl3_guideline Oncology_breast_cancer
 
-proxy
-    P: Breast_cancer_patient
+use
+    Breast_cancer_patient_DS
 
 definitions
     ki67_threshold: Quantity = 14%
 
 conditions
+
     ki67_high:
-        P.ki67 &gt;= ki67_threshold
+        ki67 &gt;= ki67_threshold
 
     anthracyclines_contraindicated:
-        P.has_diagnosis (|Transmural MI|) or
-        P.ejection_fraction &lt; 40% or
-        P.has_diagnosis ({|heart failure (class II)|,
-                          |heart failure (class III)|,
-                          |heart failure (class IV)|})
+        has_diagnosis (|Transmural MI|) or
+        ejection_fraction &lt; 40% or
+        has_diagnosis ({|heart failure (class II)|,
+                        |heart failure (class III)|,
+                        |heart failure (class IV)|})
 
     taxanes_contraindicated:
-        P.is_type1_diabetic or
-        P.has_allergy (|taxanes|) or
-        P.has_intolerance (|taxanes|)
+        is_type1_diabetic or
+        has_allergy (|taxanes|) or
+        has_DSntolerance (|taxanes|)
 
 rules
+
     molecular_subtype: Terminology_term
-        if P.er_positive and P.her2_negative and not ki67_high
+        if er_positive and her2_negative and not ki67_high
             Result &lt;- |Luminal A|
 
-        elseif P.er_positive and P.her2_negative and ki67_high
+        elseif er_positive and her2_negative and ki67_high
             Result &lt;- |Luminal B (HER2 negative)|
 
-        elseif P.er_positive and P.her2_positive
+        elseif er_positive and her2_positive
             Result &lt;- |Luminal B (HER2 positive)|
 
-        elseif P.er_negative and P.pr_negative and P.her2_positive and ki67_high
+        elseif er_negative and pr_negative and her2_positive and ki67_high
             Result &lt;- |HER2|
 
-        elseif P.er_negative and P.pr_negative and P.her2_negative and ki67_high
+        elseif er_negative and pr_negative and her2_negative and ki67_high
             Result &lt;- |Triple negative|
 
         else
             Result &lt;- |none|
 
     chemotherapy_regime: Terminology_term
-        if not P.metastatic
+        if not metastatic
             if molecular_subtype in {|Luminal B (HER2 negative)|, |Triple negative|} and
-                    (P.tnm_t &gt; '1a' or P.tnm_n &gt; '0')
+                    (tnm_t &gt; '1a' or tnm_n &gt; '0')
                 Result &lt;- |taxanes|
 
             elseif molecular_subtype = |Luminal A| and
-                    (P.tnm_t &gt;= '3' or P.tnm_n &gt;= '2' or P.tnm_g &gt;= '3')
+                    (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3')
                 Result &lt;- |anthracyclines|
 
             elseif molecular_subtype = |Luminal B (HER2 positive)| and
-                    (P.tnm_t = '1b' or P.tnm_t = '1c' and P.tnm_n = '0')
+                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0')
                     or
                     molecular_subtype = |HER2| and
-                    (P.tnm_t = '1b' and P.tnm_n = '0')
+                    (tnm_t = '1b' and tnm_n = '0')
                 Result &lt;- |paditaxel + trastuzumab|
             else ...
                 Result &lt;-
@@ -962,7 +948,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code>AUTHORED_RESOURCE</code>, <code>BMM_CLASS</code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_class_class" target="_blank" rel="noopener">BMM_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -971,14 +957,14 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_properties</strong>: <code>List&lt;BMM_PROPERTY&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_properties</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_property_class">BMM_PROPERTY</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Properties representing real-world objects, such as the patient state, the patient history (logical EHR) etc.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definitions</strong>: <code>List&lt;BMM_CONSTANT&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definitions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_constant_class">BMM_CONSTANT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Constant definitions needed by module.</p>
 </div></div></td>
@@ -1057,7 +1043,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-29 10:48:58 +0100
+Last updated 2020-07-16 16:58:15 +0100
 </div>
 </div>
 </body>
