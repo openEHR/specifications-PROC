@@ -4,7 +4,7 @@ The following examples rely on the 'Core Patient' and extension Subject Proxies 
 
 == Perinatal Care
 
-=== Interface Module
+=== GDL3 Dataset
 
 ----
 gdl3_dataset Pregnant_patient_DS 
@@ -56,7 +56,7 @@ state -- <time_window = "live", source = "manual">
 
 ----
 
-=== Decision Module
+=== GDL3 Gudeline
 
 ----
 gdl3_guideline Obstetric_pregnancy 
@@ -118,9 +118,9 @@ rules
 
 == Breast Cancer Decision Protocol
 
-=== Proxy module
+=== GDL3 Dataset
 
-Breast cancer specific Proxy.
+Breast cancer specific dataset.
 
 ----
 gdl3_dataset Breast_cancer_patient_DS 
@@ -178,7 +178,7 @@ derived
 
 ----
 
-=== Decision Module
+=== GDL3 Guideline
 
 ----
 gdl3_guideline Oncology_breast_cancer 

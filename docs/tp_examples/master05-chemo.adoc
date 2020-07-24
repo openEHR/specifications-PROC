@@ -26,7 +26,7 @@ The following shows the main regime, including conditional addition of Rituximab
 .RCHOPS21 administration phase
 image::{diagrams_uri}/RCHOPS21-admin.svg[id=rchops_admin, align="center"]
 
-== Guideline Interface
+== Dataset Definition
 
 Parent interfaces `Cancer_patient`, `Basic_patient` shown in Decision Support Language spec, {openehr_decision_language}#_examples[examples section^].
 

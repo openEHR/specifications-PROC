@@ -1,6 +1,6 @@
 = Example
 
-== Core Patient Interface
+== Core Patient Dataset
 
 ----
 gdl3_dataset Core_patient_DS
@@ -98,7 +98,7 @@ terminology
     
 ----
 
-== Cancer patient
+== Cancer patient Dataset
 
 ----
 gdl3_dataset Cancer_patient_DS
