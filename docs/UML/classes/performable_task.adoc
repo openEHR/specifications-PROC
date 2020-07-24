@@ -1,4 +1,4 @@
-=== PERFORMABLE_TASK<TA> Class
+=== PERFORMABLE_TASK Class
 
 [cols="^1,3,5"]
 |===

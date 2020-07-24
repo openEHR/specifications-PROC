@@ -1,4 +1,4 @@
-=== EVENT_WAIT<P> Class
+=== EVENT_WAIT Class
 
 [cols="^1,3,5"]
 |===

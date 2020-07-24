@@ -1,4 +1,4 @@
-=== CONTEXT_VARIABLE<TT> Class
+=== CONTEXT_VARIABLE Class
 
 [cols="^1,3,5"]
 |===

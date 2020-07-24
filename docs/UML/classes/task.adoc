@@ -1,4 +1,4 @@
-=== TASK<TA> Class
+=== TASK Class
 
 [cols="^1,3,5"]
 |===

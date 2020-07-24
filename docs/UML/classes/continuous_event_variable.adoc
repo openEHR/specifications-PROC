@@ -1,4 +1,4 @@
-=== CONTINUOUS_EVENT_VARIABLE<TT> Class
+=== CONTINUOUS_EVENT_VARIABLE Class
 
 [cols="^1,3,5"]
 |===
