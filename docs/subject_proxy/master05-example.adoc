@@ -3,7 +3,7 @@
 == Core Patient Dataset
 
 ----
-gdl3_dataset Core_patient_DS
+subject_dataset Core_patient_DS
 
 state -- <time_window = "all", source = "admin">
 
@@ -101,7 +101,7 @@ terminology
 == Cancer patient Dataset
 
 ----
-gdl3_dataset Cancer_patient_DS
+subject_dataset Cancer_patient_DS
 
 extend 
     Core_patient_DS

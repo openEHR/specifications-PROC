@@ -28,10 +28,10 @@ image::{diagrams_uri}/RCHOPS21-admin.svg[id=rchops_admin, align="center"]
 
 == Dataset Definition
 
-Parent interfaces `Cancer_patient`, `Basic_patient` shown in Decision Support Language spec, {openehr_decision_language}#_examples[examples section^].
+Parent data-sets `Cancer_patient_DS`, `Basic_patient_DS` shown in Decision Support Language spec, {openehr_decision_language}#_examples[examples section^].
 
 ----
-gdl3_dataset Lymphoma_patient_DS 
+subject_dataset Lymphoma_patient_DS 
 
 extend
     Cancer_patient_DS
@@ -84,10 +84,10 @@ state -- <time_window = "current_episode">
 
 ----
 
-== Guideline Definition
+== Guideline Rule-set
 
 ----
-gdl3_guideline RCHOPS21 
+gdl3_ruleset RCHOPS21 
 
 use 
     Lymphoma_patient_I

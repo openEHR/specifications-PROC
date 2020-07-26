@@ -63,7 +63,7 @@
 <li><a href="#_limitations">5.1. Limitations</a></li>
 <li><a href="#_plan_definition">5.2. Plan Definition</a></li>
 <li><a href="#_dataset_definition">5.3. Dataset Definition</a></li>
-<li><a href="#_guideline_definition">5.4. Guideline Definition</a></li>
+<li><a href="#_guideline_rule_set">5.4. Guideline Rule-set</a></li>
 </ul>
 </li>
 </ul>
@@ -527,11 +527,11 @@
 <div class="sect2">
 <h3 id="_dataset_definition"><a class="anchor" href="#_dataset_definition"></a>5.3. Dataset Definition</h3>
 <div class="paragraph">
-<p>Parent interfaces <code>Cancer_patient</code>, <code>Basic_patient</code> shown in Decision Support Language spec, <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html#_examples" target="_blank" rel="noopener">examples section</a>.</p>
+<p>Parent data-sets <code>Cancer_patient_DS</code>, <code>Basic_patient_DS</code> shown in Decision Support Language spec, <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html#_examples" target="_blank" rel="noopener">examples section</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>gdl3_dataset Lymphoma_patient_DS
+<pre>subject_dataset Lymphoma_patient_DS
 
 extend
     Cancer_patient_DS
@@ -585,10 +585,10 @@ state -- &lt;time_window = "current_episode"&gt;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_guideline_definition"><a class="anchor" href="#_guideline_definition"></a>5.4. Guideline Definition</h3>
+<h3 id="_guideline_rule_set"><a class="anchor" href="#_guideline_rule_set"></a>5.4. Guideline Rule-set</h3>
 <div class="listingblock">
 <div class="content">
-<pre>gdl3_guideline RCHOPS21
+<pre>gdl3_ruleset RCHOPS21
 
 use
     Lymphoma_patient_I

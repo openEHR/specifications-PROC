@@ -4,10 +4,10 @@ The following examples rely on the 'Core Patient' and extension Subject Proxies 
 
 == Perinatal Care
 
-=== GDL3 Dataset
+=== Subject Dataset
 
 ----
-gdl3_dataset Pregnant_patient_DS 
+subject_dataset Pregnant_patient_DS 
 
 extend
     Core_patient_DS
@@ -56,10 +56,10 @@ state -- <time_window = "live", source = "manual">
 
 ----
 
-=== GDL3 Gudeline
+=== GDL3 Rule-set
 
 ----
-gdl3_guideline Obstetric_pregnancy 
+gdl3_ruleset Obstetric_pregnancy 
 
 use 
     Pregnant_patient_DS
@@ -118,12 +118,12 @@ rules
 
 == Breast Cancer Decision Protocol
 
-=== GDL3 Dataset
+=== Subject Dataset
 
 Breast cancer specific dataset.
 
 ----
-gdl3_dataset Breast_cancer_patient_DS 
+subject_dataset Breast_cancer_patient_DS 
 
 extend
     Cancer_patient_DS
@@ -178,10 +178,10 @@ derived
 
 ----
 
-=== GDL3 Guideline
+=== GDL3 Rule-set
 
 ----
-gdl3_guideline Oncology_breast_cancer 
+gdl3_ruleset Oncology_breast_cancer 
 
 use
     Breast_cancer_patient_DS
