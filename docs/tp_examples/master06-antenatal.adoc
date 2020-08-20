@@ -1,0 +1,158 @@
+= Antenatal Care
+
+== Overview
+
+== Decision Logic Module
+
+----
+dlm ruleset Obstetric_pregnancy 
+
+use 
+    Pregnant_patient_DS
+    
+preconditions
+
+    is_pregnant
+
+input
+
+    is_type1_diabetic: Boolean
+
+    previous_obstetric_hypertension: Boolean
+
+    previous_pre_eclampsia: Boolean
+
+    previous_eclampsia: Boolean
+
+input -- <time_window = tw_current_episode>
+
+    is_pregnant: Boolean
+
+    has_gestational_diabetes: Boolean
+
+    has_pregnancy_hypertension: Boolean 
+
+    has_pre_eclampsia: Boolean
+
+    has_eclampsia: Boolean
+    
+    has_anaemia_of_pregnancy: Boolean
+
+input
+
+    amniotic_fluid_state: Terminology_term
+        currency = 24h
+
+    uterine_fundal_height: Quantity
+        currency = 24h
+
+    vaginal_blood_flow: Quantity
+        currency = 30mins
+        ranges =
+            critical_high: |> 500 mL/hr|
+
+input -- <source = "manual">
+
+    haemorrhage: Boolean
+
+    contractions_commenced: Boolean
+
+    braxton_hicks_contraction: Boolean
+
+rules
+
+    anaemia_type: Terminology_term
+        if not has_anaemia_of_pregnancy
+            Result <- [excluded]
+        else
+            Result <- [anaemia_of_pregnancy]
+
+    risk_evaluation: Terminology_term
+        ....
+        
+    amniotic_fluid_risk: Terminology_term
+        Result <- 
+            map hypertension_state {
+                [premature rupture]:  [obstetric_emergency],
+                [polyhydramnios]:     [obstetric_emergency],
+                [oligohydramnios]:    [refer_high_risk_care],
+                *:                    [normal_obstetric_care]
+            }
+    
+    hypertension_risk: Terminology_term
+        if has_pre_eclampsia or has_eclampsia
+            Result <- [obstetric_emergency]
+        elseif previous_obstetric_hypertension or previous_pre_eclampsia or 
+                previous_eclampsia or has_pregnancy_hypertension
+            Result <- [refer_high_risk_care]
+        else
+            Result <- [normal_obstetric_care]
+            
+    diabetes_risk: Terminology_term
+        if has_gestational_diabetes
+            Result <- [refer_high_risk_care]
+        else
+            Result <- [normal_obstetric_care]
+            
+    anaemia_risk: Terminology_term
+        Result <- 
+            map anaemia_type {
+                [severe_anaemia_of_pregnancy]: [obstetric_emergency],
+                [anaemia_of_pregnancy]:        [refer_high_risk_care],
+                *:                             [normal_obstetric_care]
+            }
+    
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["normal_obstetric_care"] = <
+                text = <"Normal obstetric care">
+                description = <"...">
+            >
+            ["obstetric_emergency"] = <
+                text = <"Obstetric emergency">
+                description = <"...">
+            >
+            ["refer_high_risk_care"] = <
+                text = <"Refer to high risk care">
+                description = <"...">
+            >
+            ["premature_rupture"] = <
+                text = <"Premature rupture of membranes">
+                description = <"...">
+            >
+            ["polyhydramnios"] = <
+                text = <"polyhydramnios">
+                description = <"...">
+            >
+            ["oligohydramnios"] = <
+                text = <"oligohydramnios">
+                description = <"...">
+            >
+            ["severe_anaemia_of_pregnancy"] = <
+                text = <"anaemia of pregnancy, severe">
+                description = <"...">
+            >
+            ["anaemia_of_pregnancy"] = <
+                text = <"anaemia of pregnancy">
+                description = <"...">
+            >
+            ["amniotic_fluid_risk"] = <
+                text = <"Risk of pregnancy-related amniotic fluid">
+                description = <"...">
+            >
+            ["hypertension_risk"] = <
+                text = <"Risk of pregnancy-related hypertension">
+                description = <"...">
+            >
+            ["diabetes_risk"] = <
+                text = <"Risk of pregnancy-related diabetes">
+                description = <"...">
+            >
+            ["anaemia_risk"] = <
+                text = <"Risk of pregnancy-related anaemia">
+                description = <"...">
+            >
+        >
+    >    
+----

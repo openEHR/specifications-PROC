@@ -62,8 +62,7 @@
 <ul class="sectlevel2">
 <li><a href="#_limitations">5.1. Limitations</a></li>
 <li><a href="#_plan_definition">5.2. Plan Definition</a></li>
-<li><a href="#_dataset_definition">5.3. Dataset Definition</a></li>
-<li><a href="#_guideline_rule_set">5.4. Guideline Rule-set</a></li>
+<li><a href="#_rchops21_decision_logic_module">5.3. RCHOPS21 Decision Logic Module</a></li>
 </ul>
 </li>
 </ul>
@@ -283,7 +282,7 @@
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications" target="_blank" rel="noopener">technical mailing list</a>.</p>
+<p>Feedback may be provided on the <a href="https://discourse.openehr.org/c/specifications/task-planning-gdl" target="_blank" rel="noopener">process specifications forum</a>.</p>
 </div>
 <div class="paragraph">
 <p>Issues may be raised on the <a href="https://specifications.openehr.org/components/PROC/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
@@ -525,152 +524,149 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dataset_definition"><a class="anchor" href="#_dataset_definition"></a>5.3. Dataset Definition</h3>
-<div class="paragraph">
-<p>Parent data-sets <code>Cancer_patient_DS</code>, <code>Basic_patient_DS</code> shown in Decision Support Language spec, <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html#_examples" target="_blank" rel="noopener">examples section</a>.</p>
-</div>
+<h3 id="_rchops21_decision_logic_module"><a class="anchor" href="#_rchops21_decision_logic_module"></a>5.3. RCHOPS21 Decision Logic Module</h3>
 <div class="listingblock">
 <div class="content">
-<pre>subject_dataset Lymphoma_patient_DS
+<pre>dlm RCHOPS21
 
-extend
-    Cancer_patient_DS
+language
+    original_language = &lt;[ISO_639-1::en]&gt;
 
-state -- &lt;time_window = "current_episode"&gt;
+description
+    lifecycle_state = &lt;"unmanaged"&gt;
+    original_author = &lt;
+        ["name"] = &lt;"Dr Spock"&gt;
+        ["organisation"] = &lt;"Acme healthcare"&gt;
+        ["date"] = &lt;"2020-03-22"&gt;
+    &gt;
+    details = &lt;
+        ["en"] = &lt;
+            language = &lt;[ISO_639-1::en]&gt;
+            purpose = &lt;"NHS CHOPS-21 chemotherapy guideline ...."&gt;
+        &gt;
+    &gt;
 
+use
+    BSA: Body_surface_area
+
+preconditions
+    has_lymphoma_diagnosis
+
+reference
+    paracetamol_dose: Quantity = 1g
+    chlorphenamine_dose: Quantity = 10mg
+    prednisolone_dose_per_m2: Quantity = 40mg
+    rituximab_dose_per_m2: Quantity = 375mg
+    doxorubicin_dose_per_m2: Quantity = 50mg
+    vincristine_dose_per_m2: Quantity = 1.4mg
+    cyclophosphamide_dose_per_m2: Quantity = 750mg
+    cycle_period: Duration = 3w
+    cycle_repeats: Integer = 6
+
+input
     has_lymphoma_diagnosis: Boolean
+        time_window = tw_current_episode
+
+    staging: Terminology_term «ann_arbor_staging»
+        currency = 30 days
+        time_window = tw_current_episode
+
+    has_metastases: Boolean
+        currency = 30 days
+        time_window = tw_current_episode
 
     neutrophils: Quantity
         currency = 3d
-        ranges =
-            normal:      |&gt;1 x 10^9/L|,
-            low:         |0.5 - 1 x 10^9/L|,
-            very_low:    |&lt;0.5 x 10^9/L|
+        ranges = {
+            [normal]:      |&gt;1 x 10^9/L|,
+            [low]:         |0.5 - 1 x 10^9/L|,
+            [very_low]:    |&lt;0.5 x 10^9/L|
+        }
 
     platelets: Quantity
         currency = 12h
-        ranges =
-            normal:      |&gt;75 x 10^9/L|,
-            low:         |50 - 74 x 10^9/L|,
-            very_low:    |&lt;50 x 10^9/L|
+        ranges = {
+            [normal]:      |&gt;75 x 10^9/L|,
+            [low]:         |50 - 74 x 10^9/L|,
+            [very_low]:    |&lt;50 x 10^9/L|
+        }
 
     bilirubin: Quantity
         currency = 12h
-        ranges =
-            normal:      |&lt;20 mmol/L|,
-            high:        |20 - 51 mmol/L|,
-            very_high:   |51 - 85 mmol/L|,
-            crit_high:   |&gt;85 mmol/L|
+        ranges = {
+            [normal]:      |&lt;20 mmol/L|,
+            [high]:        |20 - 51 mmol/L|,
+            [very_high]:   |51 - 85 mmol/L|,
+            [crit_high]:   |&gt;85 mmol/L|
+        }
 
-    |
-    | Glomerular filtration rate
-    |
     gfr: Quantity
         currency = 24h
-        ranges =
-            normal:      |&gt;20 mL/min|,
-            low:         |10 - 20 mL/min|,
-            very_low:    |&lt;10 mL/min|
+        ranges = {
+            [normal]:      |&gt;20 mL/min|,
+            [low]:         |10 - 20 mL/min|,
+            [very_low]:    |&lt;10 mL/min|
+        }
 
-    |
-    | Lactate dehydrogenase (LDH)
-    |
     ldh: Quantity
         currency = 24h
-        ranges =
-            normal:      |&gt;20 mL/min|,
-            low:         |10 - 20 mL/min|,
-            very_low:    |&lt;10 mL/min|</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_guideline_rule_set"><a class="anchor" href="#_guideline_rule_set"></a>5.4. Guideline Rule-set</h3>
-<div class="listingblock">
-<div class="content">
-<pre>gdl3_ruleset RCHOPS21
+        ranges = {
+            [normal]:      |&gt;20 mL/min|,
+            [low]:         |10 - 20 mL/min|,
+            [very_low]:    |&lt;10 mL/min|
+        }
 
-use
-    Lymphoma_patient_I
-
-definitions
-
-    paracetamol_dose: Quantity = 1g
-
-    chlorphenamine_dose: Quantity = 10mg
-
-    prednisolone_dose_per_m2: Quantity = 40mg
-
-    rituximab_dose_per_m2: Quantity = 375mg
-
-    doxorubicin_dose_per_m2: Quantity = 50mg
-
-    vincristine_dose_per_m2: Quantity = 1.4mg
-
-    cyclophosphamide_dose_per_m2: Quantity = 750mg
-
-    cycle_period: Duration = 3w
-
-    cycle_repeats: Integer = 6
-
-preconditions
-
-    has_lymphoma_diagnosis
-
-rules
-    |
-    | Body serface area - Mosteller Formula
-    | BSA = sqrt (weight[kg] x height (m) / 36)
-    |
-    bsa_m2: Real
-        Result &lt;- {Math}.sqrt (weight * height / 36)
-
+conditions
     high_ipi:
-        Result &lt;- ipi_risk in {|high risk|3, |intermediate-high risk|2}
+        Result &lt;- ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
 
     |
     | patient fit to undertake regime
     |
     patient_fit:
         Result &lt;- not
-            (platelets.range = |very_low| or
-             neutrophils.range = |very_low|)
+            (platelets.in_range ([very_low]) or
+             neutrophils.in_range ([very_low]))
 
+rules
     prednisolone_dose: Quantity
-        Result &lt;- prednisolone_dose_per_m2 * bsa_m2
+        Result &lt;- prednisolone_dose_per_m2 * BSA.bsa_m2
 
     rituximab_dose: Quantity
-        Result &lt;- rituximab_dose_per_m2 * bsa_m2
+        Result &lt;- rituximab_dose_per_m2 * BSA.bsa_m2
 
     doxorubicin_dose: Quantity
-        Result &lt;- doxorubicin_dose_per_m2 * bsa_m2 *
-            map bilirubin.range
-                |high|:        0.5
-                |very_high|:   0.25
-                |crit_high|:   0.0
+        Result &lt;- doxorubicin_dose_per_m2 * BSA.bsa_m2 *
+            map bilirubin.range {
+                [high]:        0.5,
+                [very_high]:   0.25,
+                [crit_high]:   0.0
+            }
 
     prednisolone_dose: Quantity
-        Result &lt;- prednisolone_dose_per_m2 * bsa_m2
+        Result &lt;- prednisolone_dose_per_m2 * BSA.bsa_m2
 
     |
     | TODO: hepatic impairment dose modification
     |
     vincristine_dose: Quantity
-        Result &lt;- vincristine_dose_per_m2 * bsa_m2
+        Result &lt;- vincristine_dose_per_m2 * BSA.bsa_m2
 
     |
     | CHECK: is low platelets and GFR dose modification
     | cumulative?
     |
     cyclophosphamide_dose: Quantity
-        Result &lt;- cyclophosphamide_dose_per_m2 * bsa_m2
-            * map platelets.range
-                |normal|:      1
-                |low|:         0.75
-            * map gfr.range
-                |normal|:      1
-                |low|:         0.75
-                |very_low|:    0.5
+        Result &lt;- cyclophosphamide_dose_per_m2 * BSA.bsa_m2
+            * map platelets.range {
+                [normal]:      1,
+                [low]:         0.75
+            }
+            * map gfr.range {
+                [normal]:      1,
+                [low]:         0.75,
+                [very_low]:    0.5
+            }
 
     |
     | International Prognostic Index
@@ -693,10 +689,10 @@ rules
         if age &gt; 60
             Result &lt;- Result + 1
 
-        if staging in {|stage III|, |stage IV|}
+        if staging ∈ {|stage III|, |stage IV|}
             Result &lt;- Result + 1
 
-        if ldh &gt; LDH_normal
+        if ldh.in_range ([normal])
             Result &lt;- Result + 1
 
         if ecog &gt; 1
@@ -707,11 +703,61 @@ rules
 
     ipi_risk: Terminology_code
         Result &lt;-
-            map ipi_raw_score
-                |0..1|  : |low risk: 5y survival - 73%|0
-                2       : |intermediate-low risk: 5y survival - 51%|1
-                3       : |intermediate-high risk: 5y survival - 43%|2
-                |4..5|  : |high risk: 5y survival - 26%|3</pre>
+            map ipi_raw_score {
+                |0..1|  : [ipi_low_risk],
+                |2|     : [ipi_intermediate_low_risk],
+                |3|     : [ipi_intermediate_high_risk],
+                |4..5|  : [ipi_high_risk]
+            }
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["paracetamol_dose"] = &lt;
+                text = &lt;"paracetamol dose"&gt;
+                description = &lt;"paracetamol base dose level per sq. m of BSA"&gt;
+            &gt;
+            ["chlorphenamine_dose"] = &lt;
+                text = &lt;"chlorphenamine dose"&gt;
+                description = &lt;"chlorphenamine base dose level per sq. m of BSA"&gt;
+            &gt;
+            ...
+            ["staging"] = &lt;
+                text = &lt;"Cancer staging"&gt;
+                description = &lt;"Cancer staging (Ann Arbor system)"&gt;
+            &gt;
+            ["has_metastases"] = &lt;
+                text = &lt;"Metastatic status"&gt;
+                description = &lt;"Status of metastasis of cancer"&gt;
+            &gt;
+            ...
+            ["neutrophils"] = &lt;
+                text = &lt;"neutrophils"&gt;
+                description = &lt;"neutrophils level"&gt;
+            &gt;
+            ["platelets"] = &lt;
+                text = &lt;"platelets"&gt;
+                description = &lt;"platelets level"&gt;
+            &gt;
+            ...
+            ["ipi_low_risk"] = &lt;
+                text = &lt;"low risk: 5y survival - 73%"&gt;
+                description = &lt;".."&gt;
+            &gt;
+            ["ipi_intermediate_low_risk"] = &lt;
+                text = &lt;"intermediate-low risk: 5y survival - 51%"&gt;
+                description = &lt;".."&gt;
+            &gt;
+            ["ipi_intermediate_high_risk"] = &lt;
+                text = &lt;"intermediate-high risk: 5y survival - 43%"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["ipi_high_risk"] = &lt;
+                text = &lt;"high risk: 5y survival - 26%"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+        &gt;
+    &gt;</pre>
 </div>
 </div>
 </div>
@@ -720,7 +766,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-16 16:58:15 +0100
+Last updated 2020-07-27 10:28:52 +0100
 </div>
 </div>
 </body>
