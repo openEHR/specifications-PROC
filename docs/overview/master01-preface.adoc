@@ -1,0 +1,39 @@
+= Preface
+
+== Purpose
+
+This document provides an overview of the openEHR PROC component specifications, including the openEHR Decision Logic Module (DLM) Language, {openehr_task_planning}[openEHR Task Planning^] and Subject Proxy service.
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Academic groups using openEHR;
+* Solution vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^].
+
+Related documents include:
+
+* The {openehr_task_planning}[openEHR Task Planning specification^];
+* The {openehr_cds_gdl2}[Guideline Definition Language (GDL2)^].
+
+== Status
+
+This document is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_overview}[{openehr_proc_latest_overview}^].
+
+Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
+[.tbd]
+*TBD*: (example To Be Determined paragraph)
+
+== Feedback
+
+Feedback may be provided on the {openehr_process_forum}[process specifications forum^].
+
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
+
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
+

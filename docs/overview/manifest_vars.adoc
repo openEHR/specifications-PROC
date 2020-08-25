@@ -1,0 +1,5 @@
+:spec_title: Process & Planning Overview
+:copyright_year: 2020
+:spec_status: DEVELOPMENT
+:keywords: process, guidelines, GDL, planning, workflow
+:description: openEHR Process and Planning Overview

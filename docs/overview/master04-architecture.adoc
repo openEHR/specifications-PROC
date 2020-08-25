@@ -1,0 +1,19 @@
+= Architectural Use-cases
+
+The formal artefacts described above may be deployed in different ways to achieve various goals. 
+
+== Plan-oriented Systems
+
+Many applications are designed around plans as the organising principle, such as complex medication administration (e.g. multiple cycles of multi-drug chemotherapy), team-based acute stroke response, ante-natal care and chronic condition management. In such cases, the system or application architecture will typically resemble the following.
+
+[.text-center]
+.Example Plan-based system architecture
+image::{diagrams_uri}/plan-architecture.svg[id=plan_architecture, align="center"]
+
+== Guidelines and Decision Support
+
+Another major category of clinical process IT is guideline-based decision support. In this case, DLMs are used to express potentially complex guidelines to evaluate e.g. risk of acute events (heart attack, stroke etc). They are usually evaluated in an event-based manner, being triggered by e.g. commits to the EHR, or by a family practitioner opening the patient record for a particular patient.
+
+[.text-center]
+.Example Guideline-based system architecture
+image::{diagrams_uri}/gdl-architecture.svg[id=gdl_architecture, align="center"]

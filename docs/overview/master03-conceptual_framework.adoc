@@ -1,0 +1,49 @@
+= Conceptual Framework
+
+Within a clinical process-driven healthcare environment, two high-level artefacts are commonly recognised: _care pathways_ and _guidelines_, where guidelines are usually understood as specific to particular diagnostic and treatment processes, and care pathways as larger decision structures that combine guidelines around a major healthcare goal, e.g. 'manage sepsis'. At a clinical level, both types of artefact are understood to broadly consist of _structured plans_ consisting of tasks and decision points, and _decision rules_, which provide input values for decisions. A third kind of artefact which is required for computational representation (but taken for granted in published guidelines) is the set of _subject variables_ referred to, i.e. patient state, diagnoses and so on. The latter can be understood in two parts: declarations (names and types) and _bindings_, which are concrete methods of populating such variables from data sources. The following illustrates these conceptual artefacts without implying anything about a deployment or service architecture.
+
+[.text-center]
+.openEHR conceptual framework for care pathways and guidelines
+image::{diagrams_uri}/conceptual_model.svg[id=conceptual_framework, align="center"]
+
+== Plans
+
+In the above, the top box (pink) illustrates a _plan definition_, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the {openehr_task_planning}[openEHR Task Planning model^]. Work plans are indispensible for various scenarios, including: 
+
+* _long term management plans_ unfolding over a time period in which personnel constantly change, and the plan is the main record of work done / to do;
+* highly detailed actions defined by _clinical pathways_ for complex conditions such as sepsis, where the complexity level is beyond unaided cognitive capacity;
+* _reminders and checklist_ items for basic actions that are sometimes missed or forgotten due to busy workplace and fatigue;
+* _actions requiring sign-off_ in some way;
+* _coordination_ of workers in a distributed team;
+* actions that result in _recording_ something in the EHR;
+* actions of varying levels of granularity that are needed in a _training_ mode.
+
+Using the openEHR Task Planning model, plans for any of the above situations can be defined by domain experts and executed. Work Plans are _executed_ by a _plan engine_, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker's process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.
+
+One of the key formal elements of a Work Plan is decision points (see e.g. the node marked 'CASE heart assessment' in the plan diagram above), where plan branching occurs, based on _conditions_ and _rules_ that ultimately depend on _subject variables_. In the openEHR architecture, all such decisional logic is expressed in dedicated _Decision Logic Modules (DLMs)_, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.
+
+== Decision Logic Modules (DLMs)
+
+In the conceptual model, the box on the lower right (green) represents _decision logic modules_, which express the rules, decision tables etc that encode published guidelines, and express the decision logic of plans. DLMs are used to represent the simplest Boolean conditions such as `high_blood_pressure = systolic_blood_pressure >= 140 mm[Hg]` used in plans, as well as complex chained logic representing stand-alone guidelines, scores and other rule-based clinical entities.
+
+The essential characterisation of _decision logic_ in the openEHR process specifications is a function-oriented logic that typically represents deductive inferences, such as clinical classification of patients (including diagnosis), based on input variables representing known facts about the subject (i.e. patient). These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnoses and records of previous procedures. Other kinds of reasoning may be used as well, including Bayesian and other statistical and Artificial Intelligence (AI). In the latter case, DLM functions make calls to appropriate specialised services.
+
+The openEHR DLM language consists of various formal elements, including:
+
+* _input variables_: declarations of subject-related variables that are referenced within the conditions and rules;
+* _conditions_: Boolean-valued simple rules based directly on subject variables;
+* _rules_: complex rules generating non-Boolean values;
+* _rule-sets_: collections of rules that operate on a common set of input variables to generate a common set of output values; may be represented as 2-dimensional _decision tables_;
+* _output variables_: intermediate rule results that may be inspected by calling components.
+
+Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).
+
+== Subject Data
+
+One the lower left (blue / grey) is the _subject dataset_, which might be managed by a _Subject Proxy service_ or by other integration components. Whatever the concrete architecture, these components serve to populate the subject data required by the Plans and Decision Logic Modules. As such, _Data Access Bindings (DAB)_ are required to extract data from specific data sources and repositories, such as patient health records and monitoring devices, and where data is not available from these sources, users may be requested to provide it.
+
+Decision support logic necessarily requires a way of defining and expressing its _input variables_. This is not just a question of creating typed variables, but one of semantics. The 'variables' used in rules represent an _ontic_ view of the subject, that is, a true description of its state in reality. For example, a rule for inferring atrial fibrillation and other forms of arrhythmia may refer to the input variables `_heart_rate_` and `_heart_rhythm_`. The meaning of these variables is that they represent the real heart rate and rhythm of the patient, rather than being just any heart rate, e.g. from a measurement 3 years ago. Similarly, a variable `_is_type1_diabetic_` represents a proposition about the patient in reality.
+
+A second requirement of rule variables is that they are close to the language of the domain, for example `_is_type1_diabetic_` and `_has_family_history_of_breast_cancer_` are things a clinical professional instantly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. `problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)`.
+
+In order to support the definition of such variables, a connection is needed to the technical representation of data found within EHRs, documents, lab messages, real-time devices and other sources. These latter constitute the _epistemic_ knowledge base for extracting the ontic view. They also tend to be in highly variable representations, due to the use of different standards, products and databases. The ability to write decision logic in a natural yet computable way - independent of specific access methods and type systems - thus requires support for various levels of representation above the purely technical data items and APIs found in healthcare information systems. The Subject Proxy component in the scheme illustrated above constitutes the top-most reification of underlying data in the form of domain-comprehensible ontic variables.
