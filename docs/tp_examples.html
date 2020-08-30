@@ -67,7 +67,12 @@
 </li>
 <li><a href="#_antenatal_care">6. Antenatal Care</a>
 <ul class="sectlevel2">
-<li><a href="#_main_pregnancy_decision_logic_module">6.1. Main Pregnancy Decision Logic Module</a></li>
+<li><a href="#_pregnancy_risk_assessment_dlm">6.1. Pregnancy Risk Assessment DLM</a></li>
+</ul>
+</li>
+<li><a href="#_breast_cancer_decision_protocol">7. Breast Cancer Decision Protocol</a>
+<ul class="sectlevel2">
+<li><a href="#_decision_logic_module">7.1. Decision Logic Module</a></li>
 </ul>
 </li>
 </ul>
@@ -583,38 +588,48 @@ input
     neutrophils: Quantity
         currency = 3d
         ranges =
+            ----------------------------------
             [normal]:      |&gt;1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
             [very_low]:    |&lt;0.5 x 10^9/L|
+            ----------------------------------
 
     platelets: Quantity
         currency = 12h
         ranges =
+            ----------------------------------
             [normal]:      |&gt;75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
             [very_low]:    |&lt;50 x 10^9/L|
+            ----------------------------------
 
     bilirubin: Quantity
         currency = 12h
         ranges =
+            ----------------------------------
             [normal]:      |&lt;20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
             [crit_high]:   |&gt;85 mmol/L|
+            ----------------------------------
 
     gfr: Quantity
         currency = 24h
         ranges =
+            ----------------------------------
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
             [very_low]:    |&lt;10 mL/min|
+            ----------------------------------
 
     ldh: Quantity
         currency = 24h
         ranges =
+            ----------------------------------
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
             [very_low]:    |&lt;10 mL/min|
+            ----------------------------------
 
 conditions
     high_ipi:
@@ -637,7 +652,7 @@ rules
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * map bilirubin.range
+            * case bilirubin.range
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
@@ -659,13 +674,13 @@ rules
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * map platelets.range
+            * case platelets.range
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
 
-            * map gfr.range
+            * case gfr.range
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
@@ -772,7 +787,7 @@ terminology
 <h2 id="_antenatal_care"><a class="anchor" href="#_antenatal_care"></a>6. Antenatal Care</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_main_pregnancy_decision_logic_module"><a class="anchor" href="#_main_pregnancy_decision_logic_module"></a>6.1. Main Pregnancy Decision Logic Module</h3>
+<h3 id="_pregnancy_risk_assessment_dlm"><a class="anchor" href="#_pregnancy_risk_assessment_dlm"></a>6.1. Pregnancy Risk Assessment DLM</h3>
 <div class="listingblock">
 <div class="content">
 <pre>dlm ruleset Obstetric_pregnancy
@@ -817,9 +832,11 @@ input -- &lt;time_window = tw_current_episode&gt;
 
     bmi: Quantity
         ranges =
+            ------------------------------------
             [high]:      |&gt;30 kg/m^2|,
             [normal]:    |&gt;=15 .. &lt;= 30 kg/m^2|,
             [low]:       |&lt; 15 kg/m^2|
+            ------------------------------------
 
 input
 
@@ -857,7 +874,7 @@ rules
 
     amniotic_fluid_risk: Terminology_term
         Result :=
-            map amniotic_fluid_state
+            case amniotic_fluid_state
                 ============================================
                 [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
@@ -891,14 +908,14 @@ rules
 
     anaemia_risk: Terminology_term
         Result :=
-            map anaemia_type
-                =====================================================
+            case anaemia_type
+                ======================================================
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                -----------------------------------------------------
+                ------------------------------------------------------
                 [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                -----------------------------------------------------
+                ------------------------------------------------------
                 *:                             [normal_obstetric_care]
-                =====================================================
+                ======================================================
 
 terminology
     term_definitions = &lt;
@@ -966,10 +983,187 @@ terminology
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_breast_cancer_decision_protocol"><a class="anchor" href="#_breast_cancer_decision_protocol"></a>7. Breast Cancer Decision Protocol</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_decision_logic_module"><a class="anchor" href="#_decision_logic_module"></a>7.1. Decision Logic Module</h3>
+<div class="listingblock">
+<div class="content">
+<pre>dlm guideline Oncology_breast_cancer.v0.5.0
+
+input
+
+    tnm_t: String
+        currency = 60 days
+
+    tnm_n: String
+        currency = 60 days
+
+    tnm_m: String
+        currency = 60 days
+
+    tnm_g: String
+        currency = 60 days
+
+    estrogen_receptor: Terminology_term «pos_neg_vs»
+        currency = 60 days
+
+    progesterone_receptor:  Terminology_term «pos_neg_vs»
+        currency = 60 days
+
+    her2_expression: Terminology_term «pos_neg_vs»
+        currency = 60 days
+
+    ki67: Quantity
+        currency = 60 days
+        ranges =
+            -----------------
+            high:   |&gt;= 14%|,
+            normal: |&lt; 14%|
+            -----------------
+
+    ejection_fraction: Quantity
+        currency = 60 days
+        ranges =
+            ------------------
+            normal:  |&gt;= 40%|,
+            low  :   |&lt; 40%|
+            ------------------
+
+conditions
+
+    er_negative:
+        estrogen_receptor = [negative]
+
+    er_positive:
+        estrogen_receptor = [positive]
+
+    pr_negative:
+        progesterone_receptor = [negative]
+
+    pr_positive:
+        progesterone_receptor = [positive]
+
+    her2_negative:
+        her2_expression = [negative]
+
+    her2_positive:
+        her2_expression = [positive]
+
+    non_class_I_heart_failure:
+        has_diagnosis ({[heart_failure_class_II],
+                    [heart_failure_class_III],
+                    [heart_failure_class_IV]})
+
+    anthracyclines_contraindicated:
+        has_diagnosis ([transmural_MI]) or
+        ejection_fraction.in_range ([low]) or
+        non_class_I_heart_failure
+
+    taxanes_contraindicated:
+        is_type1_diabetic or
+        has_allergy ([taxanes]) or
+        has_intolerance ([taxanes])
+
+rules
+
+    molecular_subtype: Terminology_term
+        Result :=
+            =========================================================
+            er_positive and
+            her2_negative and
+            not ki67.in_range (high):    |Luminal A|,
+            ---------------------------------------------------------
+            er_positive and
+            her2_negative and
+            ki67.in_range (high):        [luminal_B_HER2_negative],
+            ---------------------------------------------------------
+            er_positive and
+            her2_positive:               [luminal_B_HER2_positive],
+            ---------------------------------------------------------
+            er_negative and
+            pr_negative and
+            her2_positive and
+            ki67.in_range (high):        [HER2],
+            ---------------------------------------------------------
+            er_negative and
+            pr_negative and
+            her2_negative and
+            ki67.in_range (high):        [triple_negative],
+            ---------------------------------------------------------
+            *:                           [none]
+            =========================================================
+
+    chemotherapy_regime: Terminology_term
+        Result :=
+            ================================================================================
+            not metastatic:
+                    ========================================================================
+                    molecular_subtype in
+                        {[luminal_B_HER2_negative],
+                         [triple_negative]} and
+                    (tnm_t &gt; '1a' or tnm_n &gt; '0'):                   [taxanes],
+                    ------------------------------------------------------------------------
+                    molecular_subtype = [luminal_A] and
+                    (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3'):  [anthracyclines],
+                    ------------------------------------------------------------------------
+                    molecular_subtype = [luminal_B_HER2_positive] and
+                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or
+                    molecular_subtype = [HER2_positive] and
+                    (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
+                    ========================================================================
+            --------------------------------------------------------------------------------
+            *:
+                    =====================
+                    yyy:        aaa,
+                    ---------------------
+                    xxx:        bbb,
+                    ---------------------
+                    *:
+                    =====================
+            ================================================================================
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["luminal_A"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["luminal_B_HER2_positive"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["luminal_B_HER2_negative"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["HER2_positive"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["HER2_megative"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["triple_negative"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["oligohydramnios"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-30 10:54:48 +0100
+Last updated 2020-08-30 18:20:39 +0100
 </div>
 </div>
 </body>

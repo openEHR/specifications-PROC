@@ -1,0 +1,172 @@
+= Breast Cancer Decision Protocol
+
+== Decision Logic Module
+
+----
+dlm guideline Oncology_breast_cancer.v0.5.0
+
+input
+
+    tnm_t: String
+        currency = 60 days
+
+    tnm_n: String
+        currency = 60 days
+
+    tnm_m: String
+        currency = 60 days
+
+    tnm_g: String
+        currency = 60 days
+
+    estrogen_receptor: Terminology_term «pos_neg_vs»
+        currency = 60 days
+
+    progesterone_receptor:  Terminology_term «pos_neg_vs»
+        currency = 60 days
+
+    her2_expression: Terminology_term «pos_neg_vs»
+        currency = 60 days
+
+    ki67: Quantity
+        currency = 60 days
+        ranges =
+            -----------------
+            high:   |>= 14%|,
+            normal: |< 14%|
+            -----------------
+
+    ejection_fraction: Quantity
+        currency = 60 days
+        ranges =
+            ------------------
+            normal:  |>= 40%|,
+            low  :   |< 40%|
+            ------------------
+                
+conditions
+        
+    er_negative:
+        estrogen_receptor = [negative]
+
+    er_positive:
+        estrogen_receptor = [positive]
+        
+    pr_negative:
+        progesterone_receptor = [negative]
+
+    pr_positive:
+        progesterone_receptor = [positive]
+        
+    her2_negative:
+        her2_expression = [negative]
+
+    her2_positive:
+        her2_expression = [positive]
+
+    non_class_I_heart_failure:
+        has_diagnosis ({[heart_failure_class_II],
+                    [heart_failure_class_III],
+                    [heart_failure_class_IV]})
+                        
+    anthracyclines_contraindicated:
+        has_diagnosis ([transmural_MI]) or
+        ejection_fraction.in_range ([low]) or
+        non_class_I_heart_failure
+                                
+    taxanes_contraindicated:
+        is_type1_diabetic or
+        has_allergy ([taxanes]) or 
+        has_intolerance ([taxanes])
+        
+rules
+
+    molecular_subtype: Terminology_term
+        Result := 
+            =========================================================
+            er_positive and 
+            her2_negative and 
+            not ki67.in_range (high):    |Luminal A|,
+            ---------------------------------------------------------
+            er_positive and 
+            her2_negative and 
+            ki67.in_range (high):        [luminal_B_HER2_negative],
+            ---------------------------------------------------------
+            er_positive and 
+            her2_positive:               [luminal_B_HER2_positive],
+            ---------------------------------------------------------
+            er_negative and 
+            pr_negative and 
+            her2_positive and 
+            ki67.in_range (high):        [HER2],
+            ---------------------------------------------------------
+            er_negative and
+            pr_negative and 
+            her2_negative and 
+            ki67.in_range (high):        [triple_negative],
+            ---------------------------------------------------------
+            *:                           [none]
+            =========================================================
+    
+    chemotherapy_regime: Terminology_term
+        Result :=
+            ================================================================================
+            not metastatic:
+                    ========================================================================
+                    molecular_subtype in 
+                        {[luminal_B_HER2_negative], 
+                         [triple_negative]} and
+                    (tnm_t > '1a' or tnm_n > '0'):                   [taxanes],
+                    ------------------------------------------------------------------------
+                    molecular_subtype = [luminal_A] and 
+                    (tnm_t >= '3' or tnm_n >= '2' or tnm_g >= '3'):  [anthracyclines],
+                    ------------------------------------------------------------------------
+                    molecular_subtype = [luminal_B_HER2_positive] and 
+                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or
+                    molecular_subtype = [HER2_positive] and 
+                    (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
+                    ========================================================================
+            --------------------------------------------------------------------------------
+            *: 
+                    =====================
+                    yyy:        aaa,
+                    ---------------------
+                    xxx:        bbb,
+                    ---------------------
+                    *:
+                    =====================
+            ================================================================================
+            
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["luminal_A"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+            ["luminal_B_HER2_positive"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+            ["luminal_B_HER2_negative"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+            ["HER2_positive"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+            ["HER2_megative"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+            ["triple_negative"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+            ["oligohydramnios"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+
+----

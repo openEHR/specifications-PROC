@@ -1,6 +1,6 @@
 = Antenatal Care
 
-== Main Pregnancy Decision Logic Module
+== Pregnancy Risk Assessment DLM
 
 ----
 dlm ruleset Obstetric_pregnancy 
@@ -45,9 +45,11 @@ input -- <time_window = tw_current_episode>
 
     bmi: Quantity
         ranges =
+            ------------------------------------
             [high]:      |>30 kg/m^2|,
             [normal]:    |>=15 .. <= 30 kg/m^2|,
             [low]:       |< 15 kg/m^2|
+            ------------------------------------
 
 input
 
@@ -85,7 +87,7 @@ rules
         
     amniotic_fluid_risk: Terminology_term
         Result :=
-            map amniotic_fluid_state
+            case amniotic_fluid_state
                 ============================================
                 [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
@@ -119,14 +121,14 @@ rules
             
     anaemia_risk: Terminology_term
         Result := 
-            map anaemia_type
-                =====================================================
+            case anaemia_type
+                ======================================================
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                -----------------------------------------------------
+                ------------------------------------------------------
                 [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                -----------------------------------------------------
+                ------------------------------------------------------
                 *:                             [normal_obstetric_care]
-                =====================================================
+                ======================================================
     
 terminology
     term_definitions = <

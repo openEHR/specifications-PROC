@@ -59,7 +59,7 @@ include::master03-teamwork.adoc[leveloffset=+1]
 include::master04-order_management.adoc[leveloffset=+1]
 include::master05-chemo.adoc[leveloffset=+1]
 include::master06-antenatal.adoc[leveloffset=+1]
-
+include::master07-cancer_prescribing.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------
