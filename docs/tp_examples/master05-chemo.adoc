@@ -79,96 +79,95 @@ input
 
     neutrophils: Quantity
         currency = 3d
-        ranges = {
+        ranges =
             [normal]:      |>1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
             [very_low]:    |<0.5 x 10^9/L|
-        }
 
     platelets: Quantity
         currency = 12h
-        ranges = {
+        ranges =
             [normal]:      |>75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
             [very_low]:    |<50 x 10^9/L|
-        }
 
     bilirubin: Quantity
         currency = 12h
-        ranges = {
+        ranges =
             [normal]:      |<20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
             [crit_high]:   |>85 mmol/L|
-        }
 
     gfr: Quantity
         currency = 24h
-        ranges = {
+        ranges =
             [normal]:      |>20 mL/min|,
             [low]:         |10 - 20 mL/min|,
             [very_low]:    |<10 mL/min|
-        }
 
     ldh: Quantity
         currency = 24h
-        ranges = {
+        ranges =
             [normal]:      |>20 mL/min|,
             [low]:         |10 - 20 mL/min|,
             [very_low]:    |<10 mL/min|
-        }
 
 conditions
     high_ipi:
-        Result <- ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
+        Result := ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
 
     |
     | patient fit to undertake regime
     |
     patient_fit:
-        Result <- not
+        Result := not
             (platelets.in_range ([very_low]) or
              neutrophils.in_range ([very_low]))
        
 rules
     prednisolone_dose: Quantity
-        Result <- prednisolone_dose_per_m2 * BSA.bsa_m2
+        Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
     rituximab_dose: Quantity
-        Result <- rituximab_dose_per_m2 * BSA.bsa_m2
+        Result := rituximab_dose_per_m2 * BSA.bsa_m2
 
     doxorubicin_dose: Quantity
-        Result <- doxorubicin_dose_per_m2 * BSA.bsa_m2 *
-            map bilirubin.range {
+        Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
+            * map bilirubin.range
+                ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
-            }
+                ===================
 
     prednisolone_dose: Quantity
-        Result <- prednisolone_dose_per_m2 * BSA.bsa_m2
+        Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
     |
     | TODO: hepatic impairment dose modification
     |
     vincristine_dose: Quantity
-        Result <- vincristine_dose_per_m2 * BSA.bsa_m2
+        Result := vincristine_dose_per_m2 * BSA.bsa_m2
 
     |
     | CHECK: is low platelets and GFR dose modification
     | cumulative?
     |
     cyclophosphamide_dose: Quantity
-        Result <- cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * map platelets.range {
+        Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
+            * map platelets.range
+                ===================
                 [normal]:      1,
                 [low]:         0.75
-            }
-            * map gfr.range {
+                ===================
+                
+            * map gfr.range
+                ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
-            }
+                ===================
    
     |
     | International Prognostic Index
@@ -189,28 +188,29 @@ rules
     |
     ipi_raw_score: Integer
         if age > 60
-            Result <- Result + 1
+            Result := Result + 1
 
         if staging ∈ {|stage III|, |stage IV|}
-            Result <- Result + 1
+            Result := Result + 1
        
         if ldh.in_range ([normal])
-            Result <- Result + 1
+            Result := Result + 1
 
         if ecog > 1
-            Result <- Result + 1
+            Result := Result + 1
            
         if extranodal_sites > 1
-            Result <- Result + 1
+            Result := Result + 1
        
     ipi_risk: Terminology_code
-        Result <-
-            map ipi_raw_score {
+        Result :=
+            map ipi_raw_score
+                =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk]
-            }
+                =======================================
                 
 terminology
     term_definitions = <

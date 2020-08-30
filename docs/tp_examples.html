@@ -67,8 +67,7 @@
 </li>
 <li><a href="#_antenatal_care">6. Antenatal Care</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_2">6.1. Overview</a></li>
-<li><a href="#_decision_logic_module">6.2. Decision Logic Module</a></li>
+<li><a href="#_main_pregnancy_decision_logic_module">6.1. Main Pregnancy Decision Logic Module</a></li>
 </ul>
 </li>
 </ul>
@@ -583,96 +582,95 @@ input
 
     neutrophils: Quantity
         currency = 3d
-        ranges = {
+        ranges =
             [normal]:      |&gt;1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
             [very_low]:    |&lt;0.5 x 10^9/L|
-        }
 
     platelets: Quantity
         currency = 12h
-        ranges = {
+        ranges =
             [normal]:      |&gt;75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
             [very_low]:    |&lt;50 x 10^9/L|
-        }
 
     bilirubin: Quantity
         currency = 12h
-        ranges = {
+        ranges =
             [normal]:      |&lt;20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
             [crit_high]:   |&gt;85 mmol/L|
-        }
 
     gfr: Quantity
         currency = 24h
-        ranges = {
+        ranges =
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
             [very_low]:    |&lt;10 mL/min|
-        }
 
     ldh: Quantity
         currency = 24h
-        ranges = {
+        ranges =
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
             [very_low]:    |&lt;10 mL/min|
-        }
 
 conditions
     high_ipi:
-        Result &lt;- ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
+        Result := ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
 
     |
     | patient fit to undertake regime
     |
     patient_fit:
-        Result &lt;- not
+        Result := not
             (platelets.in_range ([very_low]) or
              neutrophils.in_range ([very_low]))
 
 rules
     prednisolone_dose: Quantity
-        Result &lt;- prednisolone_dose_per_m2 * BSA.bsa_m2
+        Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
     rituximab_dose: Quantity
-        Result &lt;- rituximab_dose_per_m2 * BSA.bsa_m2
+        Result := rituximab_dose_per_m2 * BSA.bsa_m2
 
     doxorubicin_dose: Quantity
-        Result &lt;- doxorubicin_dose_per_m2 * BSA.bsa_m2 *
-            map bilirubin.range {
+        Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
+            * map bilirubin.range
+                ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
-            }
+                ===================
 
     prednisolone_dose: Quantity
-        Result &lt;- prednisolone_dose_per_m2 * BSA.bsa_m2
+        Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
     |
     | TODO: hepatic impairment dose modification
     |
     vincristine_dose: Quantity
-        Result &lt;- vincristine_dose_per_m2 * BSA.bsa_m2
+        Result := vincristine_dose_per_m2 * BSA.bsa_m2
 
     |
     | CHECK: is low platelets and GFR dose modification
     | cumulative?
     |
     cyclophosphamide_dose: Quantity
-        Result &lt;- cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * map platelets.range {
+        Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
+            * map platelets.range
+                ===================
                 [normal]:      1,
                 [low]:         0.75
-            }
-            * map gfr.range {
+                ===================
+
+            * map gfr.range
+                ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
-            }
+                ===================
 
     |
     | International Prognostic Index
@@ -693,28 +691,29 @@ rules
     |
     ipi_raw_score: Integer
         if age &gt; 60
-            Result &lt;- Result + 1
+            Result := Result + 1
 
         if staging ∈ {|stage III|, |stage IV|}
-            Result &lt;- Result + 1
+            Result := Result + 1
 
         if ldh.in_range ([normal])
-            Result &lt;- Result + 1
+            Result := Result + 1
 
         if ecog &gt; 1
-            Result &lt;- Result + 1
+            Result := Result + 1
 
         if extranodal_sites &gt; 1
-            Result &lt;- Result + 1
+            Result := Result + 1
 
     ipi_risk: Terminology_code
-        Result &lt;-
-            map ipi_raw_score {
+        Result :=
+            map ipi_raw_score
+                =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk]
-            }
+                =======================================
 
 terminology
     term_definitions = &lt;
@@ -773,17 +772,10 @@ terminology
 <h2 id="_antenatal_care"><a class="anchor" href="#_antenatal_care"></a>6. Antenatal Care</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.1. Overview</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_decision_logic_module"><a class="anchor" href="#_decision_logic_module"></a>6.2. Decision Logic Module</h3>
+<h3 id="_main_pregnancy_decision_logic_module"><a class="anchor" href="#_main_pregnancy_decision_logic_module"></a>6.1. Main Pregnancy Decision Logic Module</h3>
 <div class="listingblock">
 <div class="content">
 <pre>dlm ruleset Obstetric_pregnancy
-
-use
-    Pregnant_patient_DS
 
 preconditions
 
@@ -799,6 +791,16 @@ input
 
     previous_eclampsia: Boolean
 
+    previous_gestational_diabetes: Boolean
+
+    family_history_of_diabetes: Boolean
+
+    race_related_diabetes_risk: Boolean
+
+input -- &lt;time_window = tw_previous_episode&gt;
+
+    previous_macrosomic_baby: Boolean
+
 input -- &lt;time_window = tw_current_episode&gt;
 
     is_pregnant: Boolean
@@ -812,6 +814,12 @@ input -- &lt;time_window = tw_current_episode&gt;
     has_eclampsia: Boolean
 
     has_anaemia_of_pregnancy: Boolean
+
+    bmi: Quantity
+        ranges =
+            [high]:      |&gt;30 kg/m^2|,
+            [normal]:    |&gt;=15 .. &lt;= 30 kg/m^2|,
+            [low]:       |&lt; 15 kg/m^2|
 
 input
 
@@ -837,56 +845,60 @@ input -- &lt;source = "manual"&gt;
 rules
 
     anaemia_type: Terminology_term
-        if not has_anaemia_of_pregnancy
-            Result &lt;- [excluded]
-        else
-            Result &lt;- [anaemia_of_pregnancy]
+        Result :=
+            =====================================================
+            not has_anaemia_of_pregnancy:  [excluded],
+            -----------------------------------------------------
+            *:                             [anaemia_of_pregnancy]
+            =====================================================
 
     risk_evaluation: Terminology_term
         ....
 
     amniotic_fluid_risk: Terminology_term
-        Result &lt;-
+        Result :=
             map amniotic_fluid_state
-                --------------------------------------------
+                ============================================
                 [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
-
-                [oligohydramnios]:    [refer_high_risk_care],
-
-                *:                    [normal_obstetric_care]
                 --------------------------------------------
+                [oligohydramnios]:    [refer_high_risk_care],
+                --------------------------------------------
+                *:                    [normal_obstetric_care]
+                ============================================
 
     hypertension_risk: Terminology_term
-        Result &lt;-
-            -------------------------------------------------
+        Result :=
+            ===========================================================
             has_pre_eclampsia or
-            has_eclampsia:              [obstetric_emergency]
-
+            has_eclampsia:                      [obstetric_emergency],
+            -----------------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
-            has_pregnancy_hypertension: [refer_high_risk_care]
+            has_pregnancy_hypertension:         [refer_high_risk_care],
+            -----------------------------------------------------------
+            *:                                  [normal_obstetric_care]
+            ===========================================================
 
-            *:                          [normal_obstetric_care]
-            -------------------------------------------------
-
-    diabetes_risk: Terminology_term
-        if has_gestational_diabetes
-            Result &lt;- [refer_high_risk_care]
-        else
-            Result &lt;- [normal_obstetric_care]
+    gestational_diabetes_risk: Boolean
+        Result :=
+            bmi.in_range ([high]) or
+            previous_macrosomic_baby or
+            previous_gestational_diabetes or
+            family_history_of_diabetes or
+            race_related_diabetes_risk
 
     anaemia_risk: Terminology_term
-        Result &lt;-
+        Result :=
             map anaemia_type
-                -----------------------------------------------------
+                =====================================================
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-
-                [anaemia_of_pregnancy]:        [refer_high_risk_care],
-
-                *:                             [normal_obstetric_care]
                 -----------------------------------------------------
+                [anaemia_of_pregnancy]:        [refer_high_risk_care],
+                -----------------------------------------------------
+                *:                             [normal_obstetric_care]
+                =====================================================
 
 terminology
     term_definitions = &lt;
@@ -937,6 +949,14 @@ terminology
             &gt;
             ["anaemia_risk"] = &lt;
                 text = &lt;"Risk of pregnancy-related anaemia"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["previous_macrosomic_baby"] = &lt;
+                text = &lt;"Baby weighing 4.5kg or above"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["previous_gestational_diabetes"] = &lt;
+                text = &lt;"xxx"&gt;
                 description = &lt;"..."&gt;
             &gt;
         &gt;

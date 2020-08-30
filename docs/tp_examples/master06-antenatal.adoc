@@ -1,15 +1,10 @@
 = Antenatal Care
 
-== Overview
-
-== Decision Logic Module
+== Main Pregnancy Decision Logic Module
 
 ----
 dlm ruleset Obstetric_pregnancy 
 
-use 
-    Pregnant_patient_DS
-    
 preconditions
 
     is_pregnant
@@ -24,6 +19,16 @@ input
 
     previous_eclampsia: Boolean
 
+    previous_gestational_diabetes: Boolean
+
+    family_history_of_diabetes: Boolean
+
+    race_related_diabetes_risk: Boolean
+    
+input -- <time_window = tw_previous_episode>
+
+    previous_macrosomic_baby: Boolean
+
 input -- <time_window = tw_current_episode>
 
     is_pregnant: Boolean
@@ -37,6 +42,12 @@ input -- <time_window = tw_current_episode>
     has_eclampsia: Boolean
     
     has_anaemia_of_pregnancy: Boolean
+
+    bmi: Quantity
+        ranges =
+            [high]:      |>30 kg/m^2|,
+            [normal]:    |>=15 .. <= 30 kg/m^2|,
+            [low]:       |< 15 kg/m^2|
 
 input
 
@@ -62,56 +73,60 @@ input -- <source = "manual">
 rules
 
     anaemia_type: Terminology_term
-        if not has_anaemia_of_pregnancy
-            Result <- [excluded]
-        else
-            Result <- [anaemia_of_pregnancy]
+        Result :=
+            =====================================================
+            not has_anaemia_of_pregnancy:  [excluded],
+            -----------------------------------------------------
+            *:                             [anaemia_of_pregnancy]
+            =====================================================
 
     risk_evaluation: Terminology_term
         ....
         
     amniotic_fluid_risk: Terminology_term
-        Result <- 
+        Result :=
             map amniotic_fluid_state
-                --------------------------------------------
+                ============================================
                 [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
-                
-                [oligohydramnios]:    [refer_high_risk_care],
-                
-                *:                    [normal_obstetric_care]
                 --------------------------------------------
+                [oligohydramnios]:    [refer_high_risk_care],
+                --------------------------------------------
+                *:                    [normal_obstetric_care]
+                ============================================
     
     hypertension_risk: Terminology_term
-        Result <-
-            -------------------------------------------------
+        Result :=
+            ===========================================================
             has_pre_eclampsia or 
-            has_eclampsia:              [obstetric_emergency]
-                                                
+            has_eclampsia:                      [obstetric_emergency],
+            -----------------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
-            has_pregnancy_hypertension  [refer_high_risk_care]
+            has_pregnancy_hypertension:         [refer_high_risk_care],
+            -----------------------------------------------------------
+            *:                                  [normal_obstetric_care]
+            ===========================================================
             
-            *:                          [normal_obstetric_care]
-            -------------------------------------------------
-            
-    diabetes_risk: Terminology_term
-        if has_gestational_diabetes
-            Result <- [refer_high_risk_care]
-        else
-            Result <- [normal_obstetric_care]
+    gestational_diabetes_risk: Boolean
+        Result :=
+            bmi.in_range ([high]) or
+            previous_macrosomic_baby or
+            previous_gestational_diabetes or
+            family_history_of_diabetes or
+            race_related_diabetes_risk
             
     anaemia_risk: Terminology_term
-        Result <- 
+        Result := 
             map anaemia_type
-                -----------------------------------------------------
+                =====================================================
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                
-                [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                
-                *:                             [normal_obstetric_care]
                 -----------------------------------------------------
+                [anaemia_of_pregnancy]:        [refer_high_risk_care],
+                -----------------------------------------------------
+                *:                             [normal_obstetric_care]
+                =====================================================
     
 terminology
     term_definitions = <
@@ -162,6 +177,14 @@ terminology
             >
             ["anaemia_risk"] = <
                 text = <"Risk of pregnancy-related anaemia">
+                description = <"...">
+            >
+            ["previous_macrosomic_baby"] = <
+                text = <"Baby weighing 4.5kg or above">
+                description = <"...">
+            >
+            ["previous_gestational_diabetes"] = <
+                text = <"xxx">
                 description = <"...">
             >
         >
