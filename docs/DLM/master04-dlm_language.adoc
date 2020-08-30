@@ -1,0 +1,321 @@
+= Decision Logic Module (DLM) Language
+
+A DLM module has the following general structure.
+
+----
+dlm <form> <identifier>
+
+[language
+    <lang and translations meta-data, as for archetypes>]
+    
+[description
+    <descriptive meta-data>]
+    
+[use_model
+    <reference model ids; defaults to openEHR Foundation & Base types>]
+
+[use
+    <local identifier>: <dlm identifier>
+    <local identifier>: <dlm identifier>]
+
+[preconditions
+    <conditions that act as pre-conditions for this module>]
+    
+[reference
+    <constant definitions>]
+   
+input
+    <subject variable declarations>
+  
+conditions
+    <simple boolean conditions (0-order functions)>
+    
+rules
+    <complex rules (functions), returning any data type>
+    
+[output
+    <output variable declarations>]
+    
+[terminology
+    <symbol definitions in archetype format>]
+    
+[bindings
+    <local bindings of symbols to data set paths>]
+----
+
+Many of the sections are optional and are only used in specific _forms_ of DLM, indicated by the `<form>` on the first line.
+
+The `language`, `description` and `terminology` sections (which are identical in form to the same-named sections in openEHR archetypes) can be omitted for DLMs in development for which no descriptive meta-data or terminology is needed.
+
+== Identifiers
+
+All identifiers in a DLM are strings with no whitespace. If the `terminology` section is present, these identifiers are included with linguistic definitions and translations, in the same way as archetypes. This approach enables the symbolic variables such as `is_type1_diabetic` to be used in rules, and to have a full, formal, multi-lingual definition, such as the following:
+
+[source,odin]
+----
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["resting_heart_rate"] = <
+                text = <"heart rate at rest">
+                description = <"...">
+            >
+            ...
+            ["SpO2"] = <
+                text = <"Oxygen saturation">
+                description = <"...">
+            >
+        >
+    >
+----
+
+== Identification Section
+
+The identification section takes the form `dlm <form> <identifier>`, where:
+
+* `<form>`: flavour of DLM artefact, with value `ruleset | guideline`;
+* `<identifier>`: identifier, in the format `<concept>.vN.N.N` where `vN.N.N` represents a numeric version of the logical form `major.minor.patch`, and whose values over time obey the {semver}[Semver.org rules^].
+
+The following shows the identification line for a guideline:
+
+----
+dlm guideline chadvasc2.v1.0.5
+----
+
+A reference to a DLM may be effected by quoting the whole identifier, or a form with the minor and / or patch parts of the version missing. Either of these forms identify the most recent matching DLm available. For example, the reference `NHS-chops14.v4` identifies whatever the most recent minor version of the `v4` major version of the NHS-chops DLM is locally available. 
+
+== Language and Description Sections
+
+The `language` and `description` sections are the same as for openEHR archetypes, and are formally defined by the {openehr_resource}[openEHR Resource specification^]. The following provides an example.
+
+[source,odin]
+----
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"stable">
+    original_author = <
+        ["name"] = <"Rong Chen">
+        ["date"] = <"2020-03-22">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Simple cardiology guideline">
+        >
+    >
+----
+
+== Use_model Section
+
+The optional `use_model` section enables a DLM to specify a model that defines the type system for the DLM. The identifier of the model must be resolvable to a BMM model, i.e. a model for which an {openehr_bmm}[openEHR Basic Meta-Model^] file is available. This might be a well-known model such as the {openehr_rm}[openEHR Reference Model^] ({openehr_its_bmm_releases}[BMM form^]), or a custom model created for local use. The model identifier must include a version matching part, with at least the major version present. The following example specifies the use of the openEHR RM in the latest `1.1` version available.
+
+----
+use_model
+    openEHR-RM.v1.1
+----
+
+If no model is specified, the {openehr_base_releases}[openEHR Base and Foundation types^] are assumed.
+
+== Use Section
+
+A DLM can use other DLMs, by declaring each DLM with an identifier in the `use` section. The identifier must include a version-matching part. The following example declares the identifier `BSA` as a convenient local label to refer to the latest version of the DLM `Body_surface_area.v1`.
+
+----
+use
+    BSA: Body_surface_area.v1
+----
+
+== Preconditions Section
+
+The `preconditions` section is used to state logical conditions that must evaluate to true for the DLM to be used for the subject. Any Boolean-typed identifier may be used from the `input`, `condition` or `rules` sections, or any Boolean-returning logical expression referencing any identifiers declared in the DLM. A typical `preconditions` section is shown below:
+
+----
+preconditions
+    is_pregnant
+----
+
+== Reference Section
+
+The `reference` section of a DLM contains what might be thought of constant definitions, i.e. identifiers declared with fixed values. The following illustrates.
+
+[source,kotlin]
+----
+reference
+    paracetamol_dose: Quantity = 1g
+    chlorphenamine_dose: Quantity = 10mg
+    prednisolone_dose_per_m2: Quantity = 40mg   
+    rituximab_dose_per_m2: Quantity = 375mg
+    doxorubicin_dose_per_m2: Quantity = 50mg
+    vincristine_dose_per_m2: Quantity = 1.4mg
+    cyclophosphamide_dose_per_m2: Quantity = 750mg
+    cycle_period: Duration = 3w
+    cycle_repeats: Integer = 6
+----
+
+== Input Section
+
+The `input` section contains declarations of all _subject variables_ used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:
+
+[source,kotlin]
+----
+input
+    heart_rate: Quantity
+----
+
+=== Subject Variable Naming
+
+The naming of a subject variable is important, and should reflect its intended domain meaning _with respect to the guideline or plan_ which it formalises. Thus, a cardiology guideline might use a variable `systolic_bp` to mean 'current instantaneous systolic blood pressure' and a variable `target_systolic_bp` to mean a target pressure for the patient to aim for over the course of hypertension treatment. However a guideline that refers to different systolic blood pressures, e.g. historical, average and current might use variables such as `actual_systolic_bp`, `24h_average_systolic_bp` etc.
+
+The naming is important in another way. Generally a subject variable should reflect a fact or assertion about the subject in reality rather than a purely epistemic view relating to an information system. For example a variable `is_type1_diabetic` is intended to reflect the patient's real diabetic status, not just the knowledge of the local hospital EMR system of whether the patient is diabetic. Such variables may be termed 'ontic' i.e. reflecting the real world, rather than reflecting states of knowledge of some information source. The reason for using ontic variables is to allow DLM authors to define rules in terms of true clinical reality based on reliable previously established facts, rather than continually having to compensate for missing or unreliable knowledge within a guideline.
+
+Epistemic variables may of course be defined, e.g. the variable `has_diabetes_diagnosis` directly reflects the idea that the presence of a diagnosis of a condition is distinct from the true fact of having the condition. These are typically used when the purpose of the guideline is to establish the presence or otherwise of the condition named in such variables.
+
+=== Currency
+
+The declaration may include a number of other elements. Firstly, since each such variable represents a fact about the subject in the real world, such as a patient heart-rate or diagnosis, rather than just being a local variable, the declaration may state a _currency_, in terms of a temporal duration. This specifies how recent the value obtained from the external world (the 'sample') must be to be valid from the point of view of the DLM. Currency may be understood as the converse of 'staleness', that is, a variable sample that must be say 1 hour or less old is understood as stale after 1 hour.
+
+The use of the currency modifier establishes that a subject variable is a time-related sample of some kind (instantaneous, average, minimum, etc) of a real-world time-varying continuant quality (e.g. blood pressure) of an independent continuant entity (usually a person).
+
+Since the various physiological and disease process that occur in a human body have significantly differing temporal rhythms, currency will vary widely for different subject variables, as per the following examples.
+
+[source,kotlin]
+----
+input
+    |
+    | DOB never changes, no currency needed
+    |
+    date_of_birth: Date
+
+    |
+    | weight changes over a period of days 
+    |
+    weight: Quantity
+        currency = 3 days
+
+    |
+    | assuming an adult subject, height constant
+    |
+    height: Quantity
+
+    |
+    | blood glucose changes within minutes in response to food
+    |
+    blood_glucose: Quantity
+        currency = 15 min
+
+    |
+    | Heart-rate may change quickly
+    |
+    heart_rate: Quantity
+        currency = 5 sec
+----
+
+Variables for which no currency is stated may be understood as having the currency equal to the age of the subject.
+
+=== Time-window
+
+Another aspect of a subject variable that can be specified is termed _time-window_, meaning an interval of real world time within which the state or event that the variable represents occurred. For example, assume the variable `previous_history_of_eclampsia` declared in an obstetric DLM is intended to represent 'eclampsia experienced by the subject in any previous pregnancy (i.e. not the current pregnancy)'. Another guideline might define a variable `no_cancer_last_5y` to mean that no recurrence of the cancer addressed by the DLM had occurred within the last 5 years.
+
+Formally, time window is specified in the form of an interval of negative durations with respect to the current point in time, i.e. of the form `|-T1 .. -T2|`, e.g. `|-P3Y .. -P1Y|`, meaning 'the period from 3 years ago to 1 year ago'. A single-sided interval such as `|> -P30d|` ('since 30 days ago') may also be used.
+
+Since the actual duration of a time-window may be subject- and/or context-specific, a symbolic variable may also be used, whose value is supplied by the execution context. For example, the variables `tw_current_episode` and `tw_historical` could be used to represent respectively:
+
+* the interval of the current admission, i.e. date/time of admission until now;
+* the interval of historical time up until the start of the current episode of condition.
+
+Time window can be included in a subject variable declaration as follows:
+
+[source,kotlin]
+----
+input
+    has_previous_history_of_eclampsia: Boolean
+        time_window = tw_historical
+
+    has_pregnancy_related_hypertension: Boolean
+        time_window = tw_current_episode
+----
+
+Time window is typically used to ensure that for a kind of event, condition or other characteristic that may occur multiply in the subject lifetime, only occurrences from a particular period are included or excluded. For example, the following declarations ensure that the variable `staging` and `has_metastases` refer to the staging and metastases of the current eposide of cancer, not some previous one. 
+
+[source,kotlin]
+----
+input
+
+    staging: Terminology_term «ann_arbor_staging» 
+        time_window = tw_current_episode
+
+    has_metastases: Boolean
+        time_window = tw_current_episode
+----
+
+In general, if `currency` is specified, `time_window` is not.
+
+[.tbd]
+TBD: determine if there is a meaning for both together.
+
+=== Variable Ranges
+
+A ubiquitous need within clinical guidelines and rules is to be able to refer to a continuous variable such as vital signs and most lab test values as being in a designated range. Such ranges may be the usual ones published e.g. the normal and high ranges for lipids in a cholesterol test for adults, or ranges defined by the DLM.
+
+[.tbd]
+TBD: for now ranges have to be declared locally
+
+The ranges for a subject variable may be declared in the following way:
+
+[source,kotlin]
+----
+input
+    systolic_blood_pressure: Quantity
+        currency = 1 min
+        ranges = {
+            [critical_high]:  |>= 180 mm[Hg]|,
+            [very_high]:      |>  140 mm[Hg]|,
+            [high]:           |>  120 mm[Hg]|,
+            [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
+            [low]:            |<=  90 mm[Hg]|,
+            [critical_low]:   |<=  50 mm[Hg]|
+        }
+----
+
+The formal type of the `ranges` property is `Hash <Terminology_code, Interval <T>>`, where `T` is the declared type of the subject variable. Thus, in the above, the entry `[very_high], |>  140 mm[Hg]|` defines a [key, value] pair whose value is of type `Interval <Quantity>`.
+
+Note that the ranges are defined to be overlapping, such that `[high]` refers to any value higher than 120, while `[very_high]` refers to any value over 140.
+
+The above declaration allows the use of the predefined `in_range` function, which returns the most precise range in which the value falls, in rule expressions as follows:
+
+[source,kotlin]
+----
+    if systolic_blood_pressure.in_range (critical_high) then
+        -- emergency
+    elseif systolic_blood_pressure.in_range ({high, very_high}) then
+        -- medication and monitoring
+    else
+        -- monitor
+----
+
+=== Null Values
+
+A subject variable declaration of the form `identifier: Type` means that the variable cannot be null, i.e. it must always have be _attached_. A variable can be declared as _nullable_ to indicate that no value can be found for it in the external world, i.e. that it may be _undefined_. This is done via the appending of a '? symbol to the type, as in some programming languages, as per the following example.
+
+[source,kotlin]
+----
+input
+    date_of_decease: Date?
+----
+
+== Conditions Section
+
+[.tbd]
+TBD:
+
+== Rules Section
+
+[.tbd]
+TBD:
+
+== Output Section
+
+[.tbd]
+TBD:

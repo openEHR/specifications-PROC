@@ -1,27 +1,27 @@
-= The Decision Support Language Model (DSLM)
+= The Decision Logic Model (DLM)
 
 [.tbd]
 TBD: this section is a rough draft at the moment
 
 == Overview
 
-The `org.openehr.proc.dslm` package defines the Decision Support Language Model (DSLM), a structural model of the openEHR Decision Support language. It relies on the {openehr_bmm}[openEHR BMM^].
+The `org.openehr.proc.dlm` package defines the Decision Logic Model (DLM), a structural model of the openEHR Decision Language. It relies on the {openehr_bmm}[openEHR BMM^].
 
-The structure of the `dslm` packages is shown below.
+The structure of the `dlm` packages is shown below.
 
 [.text-center]
-.proc.dslm Package
-image::{uml_diagrams_uri}/PROC-dslm-packages.svg[id=dslm_packages, align="center", width="50%"]
+.proc.dlm Package
+image::{uml_diagrams_uri}/PROC-dlm-packages.svg[id=DLM_packages, align="center", width="50%"]
 
 The packages are described below.
 
 == DS Module Package
 
-The top-level construct of the DSLM is the `DS_MODULE`, representing a standalone decision support module. It is shown below.
+The top-level construct of the DLM is the `DS_MODULE`, representing a standalone Decision Logic Module. It is shown below.
 
 [.text-center]
-.proc.dslm.module Package
-image::{uml_diagrams_uri}/PROC-dslm.module.svg[id=dslm_module, align="center"]
+.proc.DLM.module Package
+image::{uml_diagrams_uri}/PROC-dlm.module.svg[id=DLM_module, align="center"]
 
 [.tbd]
 TBD: to be continued. 

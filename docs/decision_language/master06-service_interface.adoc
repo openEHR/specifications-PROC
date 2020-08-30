@@ -1,3 +1,0 @@
-= DSM Service Model
-
-TBD

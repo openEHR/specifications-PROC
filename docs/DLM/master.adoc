@@ -11,7 +11,7 @@ include::{ref_dir}/docs/boilerplate/global_vars.adoc[]
 
 image::{openehr_logo}["openEHR logo",align="center"]
 
-= Decision Support Language (DSL) and Model
+= {spec_title}
 
 include::{ref_dir}/docs/boilerplate/full_front_block.adoc[]
 include::{ref_dir}/docs/references/reference_definitions.adoc[]
@@ -42,13 +42,11 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 //
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
-include::master02-requirements.adoc[leveloffset=+1]
-include::master03-overview.adoc[leveloffset=+1]
-include::master04-decision_language.adoc[leveloffset=+1]
-include::master05-usage.adoc[leveloffset=+1]
-include::master06-service_interface.adoc[leveloffset=+1]
-include::master07-full_example.adoc[leveloffset=+1]
-include::master08-dslm.adoc[leveloffset=+1]
+include::master02-overview.adoc[leveloffset=+1]
+include::master04-dlm_language.adoc[leveloffset=+1]
+// include::master05-usage.adoc[leveloffset=+1]
+include::master06-full_example.adoc[leveloffset=+1]
+include::master07-dlm.adoc[leveloffset=+1]
 
 //include::master05-dl_statements.adoc[leveloffset=+1]
 //include::master06-dl_module.adoc[leveloffset=+1]

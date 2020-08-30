@@ -1,0 +1,44 @@
+= Overview
+
+The openEHR Decision Logic Module (DLM) language and model define a formalism for expressing decision logic used by process-oriented healthcare information systems, active forms and so on. Decision logic usually sits within a larger environment of plans, guidelines and data sources such as the EHR, as described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^].
+
+Within the openEHR ecosystem, Task Plans and GDL3 guidelines both require a way of expressing rules and declaring input variables. Guidelines additionally need a way of declaring output variables. These needs are achieved with the flexible use of a single kind of multi-section module called a decision logic module (DLM).
+
+The DLM language is a high-level language in which modules containing the following elements may be written:
+
+* _reference data_: domain constants;
+* _input variables_: data items representing external variables relating to the subject (i.e. patient);
+* _conditions_: Boolean-returning domain-specified criteria;
+* _rules_: domain-specified rules structures based on condition/action structures, which may return any type;
+* _rule-sets_: related sets of rules in various forms, including decision tables;
+* _outputs_: computed results of rule invocations, including logic trace information;
+
+All symbolic elements, including constants, variables and rules may be treated as _codes_ for which a translation terminology is supplied, enabling a DLM to be translated and presented in any natural language.
+
+== Requirements
+
+The requirements of openEHR Decision Language fall into a number of categories, described below.
+
+[.tbd]
+TBD: this section only very rough for now.
+
+=== Caller Interaction
+
+* the ability to capture the reasoning chain for presentation to a caller as a justification;
+* the ability to provide a decision and its possible outcomes, with the current recommendation indicated;
+
+=== Representation
+
+* multi-lingual translations for symbolic variables, in a similar way to the {openehr_am_adl2}[openEHR Archetype Definition Language (ADL2)^];
+
+=== Binding to Data Context
+
+* bindings that connect variables to external data sources;
+
+=== Type System
+
+* an ability to use externally defined information models that supply types that may be used in DL statements.
+
+
+== Execution Model
+
