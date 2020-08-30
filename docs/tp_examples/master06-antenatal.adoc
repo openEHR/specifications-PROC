@@ -72,21 +72,29 @@ rules
         
     amniotic_fluid_risk: Terminology_term
         Result <- 
-            map hypertension_state {
-                [premature rupture]:  [obstetric_emergency],
+            map amniotic_fluid_state
+                --------------------------------------------
+                [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
+                
                 [oligohydramnios]:    [refer_high_risk_care],
+                
                 *:                    [normal_obstetric_care]
-            }
+                --------------------------------------------
     
     hypertension_risk: Terminology_term
-        if has_pre_eclampsia or has_eclampsia
-            Result <- [obstetric_emergency]
-        elseif previous_obstetric_hypertension or previous_pre_eclampsia or 
-                previous_eclampsia or has_pregnancy_hypertension
-            Result <- [refer_high_risk_care]
-        else
-            Result <- [normal_obstetric_care]
+        Result <-
+            -------------------------------------------------
+            has_pre_eclampsia or 
+            has_eclampsia:              [obstetric_emergency]
+                                                
+            previous_obstetric_hypertension or
+            previous_pre_eclampsia or
+            previous_eclampsia or
+            has_pregnancy_hypertension  [refer_high_risk_care]
+            
+            *:                          [normal_obstetric_care]
+            -------------------------------------------------
             
     diabetes_risk: Terminology_term
         if has_gestational_diabetes
@@ -96,11 +104,14 @@ rules
             
     anaemia_risk: Terminology_term
         Result <- 
-            map anaemia_type {
+            map anaemia_type
+                -----------------------------------------------------
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
+                
                 [anaemia_of_pregnancy]:        [refer_high_risk_care],
+                
                 *:                             [normal_obstetric_care]
-            }
+                -----------------------------------------------------
     
 terminology
     term_definitions = <

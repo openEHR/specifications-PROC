@@ -65,6 +65,12 @@
 <li><a href="#_rchops21_decision_logic_module">5.3. RCHOPS21 Decision Logic Module</a></li>
 </ul>
 </li>
+<li><a href="#_antenatal_care">6. Antenatal Care</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_2">6.1. Overview</a></li>
+<li><a href="#_decision_logic_module">6.2. Decision Logic Module</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -763,10 +769,187 @@ terminology
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_antenatal_care"><a class="anchor" href="#_antenatal_care"></a>6. Antenatal Care</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>6.1. Overview</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_decision_logic_module"><a class="anchor" href="#_decision_logic_module"></a>6.2. Decision Logic Module</h3>
+<div class="listingblock">
+<div class="content">
+<pre>dlm ruleset Obstetric_pregnancy
+
+use
+    Pregnant_patient_DS
+
+preconditions
+
+    is_pregnant
+
+input
+
+    is_type1_diabetic: Boolean
+
+    previous_obstetric_hypertension: Boolean
+
+    previous_pre_eclampsia: Boolean
+
+    previous_eclampsia: Boolean
+
+input -- &lt;time_window = tw_current_episode&gt;
+
+    is_pregnant: Boolean
+
+    has_gestational_diabetes: Boolean
+
+    has_pregnancy_hypertension: Boolean
+
+    has_pre_eclampsia: Boolean
+
+    has_eclampsia: Boolean
+
+    has_anaemia_of_pregnancy: Boolean
+
+input
+
+    amniotic_fluid_state: Terminology_term
+        currency = 24h
+
+    uterine_fundal_height: Quantity
+        currency = 24h
+
+    vaginal_blood_flow: Quantity
+        currency = 30mins
+        ranges =
+            critical_high: |&gt; 500 mL/hr|
+
+input -- &lt;source = "manual"&gt;
+
+    haemorrhage: Boolean
+
+    contractions_commenced: Boolean
+
+    braxton_hicks_contraction: Boolean
+
+rules
+
+    anaemia_type: Terminology_term
+        if not has_anaemia_of_pregnancy
+            Result &lt;- [excluded]
+        else
+            Result &lt;- [anaemia_of_pregnancy]
+
+    risk_evaluation: Terminology_term
+        ....
+
+    amniotic_fluid_risk: Terminology_term
+        Result &lt;-
+            map amniotic_fluid_state
+                --------------------------------------------
+                [premature rupture],
+                [polyhydramnios]:     [obstetric_emergency],
+
+                [oligohydramnios]:    [refer_high_risk_care],
+
+                *:                    [normal_obstetric_care]
+                --------------------------------------------
+
+    hypertension_risk: Terminology_term
+        Result &lt;-
+            -------------------------------------------------
+            has_pre_eclampsia or
+            has_eclampsia:              [obstetric_emergency]
+
+            previous_obstetric_hypertension or
+            previous_pre_eclampsia or
+            previous_eclampsia or
+            has_pregnancy_hypertension: [refer_high_risk_care]
+
+            *:                          [normal_obstetric_care]
+            -------------------------------------------------
+
+    diabetes_risk: Terminology_term
+        if has_gestational_diabetes
+            Result &lt;- [refer_high_risk_care]
+        else
+            Result &lt;- [normal_obstetric_care]
+
+    anaemia_risk: Terminology_term
+        Result &lt;-
+            map anaemia_type
+                -----------------------------------------------------
+                [severe_anaemia_of_pregnancy]: [obstetric_emergency],
+
+                [anaemia_of_pregnancy]:        [refer_high_risk_care],
+
+                *:                             [normal_obstetric_care]
+                -----------------------------------------------------
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["normal_obstetric_care"] = &lt;
+                text = &lt;"Normal obstetric care"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["obstetric_emergency"] = &lt;
+                text = &lt;"Obstetric emergency"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["refer_high_risk_care"] = &lt;
+                text = &lt;"Refer to high risk care"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["premature_rupture"] = &lt;
+                text = &lt;"Premature rupture of membranes"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["polyhydramnios"] = &lt;
+                text = &lt;"polyhydramnios"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["oligohydramnios"] = &lt;
+                text = &lt;"oligohydramnios"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["severe_anaemia_of_pregnancy"] = &lt;
+                text = &lt;"anaemia of pregnancy, severe"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["anaemia_of_pregnancy"] = &lt;
+                text = &lt;"anaemia of pregnancy"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["amniotic_fluid_risk"] = &lt;
+                text = &lt;"Risk of pregnancy-related amniotic fluid"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["hypertension_risk"] = &lt;
+                text = &lt;"Risk of pregnancy-related hypertension"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["diabetes_risk"] = &lt;
+                text = &lt;"Risk of pregnancy-related diabetes"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["anaemia_risk"] = &lt;
+                text = &lt;"Risk of pregnancy-related anaemia"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-27 10:28:52 +0100
+Last updated 2020-08-30 10:54:48 +0100
 </div>
 </div>
 </body>
