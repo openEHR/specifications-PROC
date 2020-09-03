@@ -76,9 +76,9 @@ rules
 
     anaemia_type: Terminology_term
         Result :=
-            ======================== IF =========================
+            =======================[ IF ]========================
             not has_anaemia_of_pregnancy:  [excluded],
-            ----------------------- ELSE ------------------------
+            ----------------------[ ELSE ]-----------------------
             *:                             [anaemia_of_pregnancy]
             =====================================================
 
@@ -88,26 +88,26 @@ rules
     amniotic_fluid_risk: Terminology_term
         Result :=
             case amniotic_fluid_state
-                =================== IN ======================
+                ==================[ IN ]=====================
                 [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
-                ----------------- ELSE-IN -------------------
+                ----------------[ ELSE IN ]------------------
                 [oligohydramnios]:    [refer_high_risk_care],
-                ------------------ ELSE ---------------------
+                -----------------[ ELSE ]--------------------
                 *:                    [normal_obstetric_care]
                 =============================================
     
     hypertension_risk: Terminology_term
         Result :=
-            ========================= IF ==============================
+            ========================[ IF ]=============================
             has_pre_eclampsia or 
             has_eclampsia:                      [obstetric_emergency],
-            ----------------------- ELSE-IF ---------------------------
+            ----------------------[ ELSE IF ]--------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
             has_pregnancy_hypertension:         [refer_high_risk_care],
-            ------------------------- ELSE ----------------------------
+            ------------------------[ ELSE ]---------------------------
             *:                                  [normal_obstetric_care]
             ===========================================================
             
@@ -122,11 +122,11 @@ rules
     anaemia_risk: Terminology_term
         Result := 
             case anaemia_type
-                ======================= IN ===========================
+                ======================[ IN ]==========================
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                --------------------- ELSE-IN ------------------------
+                --------------------[ ELSE-IN ]-----------------------
                 [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                ----------------------- ELSE -------------------------
+                ----------------------[ ELSE ]------------------------
                 *:                             [normal_obstetric_care]
                 ======================================================
     
