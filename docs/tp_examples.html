@@ -863,9 +863,9 @@ rules
 
     anaemia_type: Terminology_term
         Result :=
-            ======================== IF =========================
+            =======================[ IF ]========================
             not has_anaemia_of_pregnancy:  [excluded],
-            ----------------------- ELSE ------------------------
+            ----------------------[ ELSE ]-----------------------
             *:                             [anaemia_of_pregnancy]
             =====================================================
 
@@ -875,26 +875,26 @@ rules
     amniotic_fluid_risk: Terminology_term
         Result :=
             case amniotic_fluid_state
-                =================== IN ======================
+                ==================[ IN ]=====================
                 [premature rupture],
                 [polyhydramnios]:     [obstetric_emergency],
-                ----------------- ELSE-IN -------------------
+                ----------------[ ELSE IN ]------------------
                 [oligohydramnios]:    [refer_high_risk_care],
-                ------------------ ELSE ---------------------
+                -----------------[ ELSE ]--------------------
                 *:                    [normal_obstetric_care]
                 =============================================
 
     hypertension_risk: Terminology_term
         Result :=
-            ========================= IF ==============================
+            ========================[ IF ]=============================
             has_pre_eclampsia or
             has_eclampsia:                      [obstetric_emergency],
-            ----------------------- ELSE-IF ---------------------------
+            ----------------------[ ELSE IF ]--------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
             has_pregnancy_hypertension:         [refer_high_risk_care],
-            ------------------------- ELSE ----------------------------
+            ------------------------[ ELSE ]---------------------------
             *:                                  [normal_obstetric_care]
             ===========================================================
 
@@ -909,11 +909,11 @@ rules
     anaemia_risk: Terminology_term
         Result :=
             case anaemia_type
-                ======================= IN ===========================
+                ======================[ IN ]==========================
                 [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                --------------------- ELSE-IN ------------------------
+                --------------------[ ELSE-IN ]-----------------------
                 [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                ----------------------- ELSE -------------------------
+                ----------------------[ ELSE ]------------------------
                 *:                             [normal_obstetric_care]
                 ======================================================
 
@@ -1070,52 +1070,52 @@ rules
 
     molecular_subtype: Terminology_term
         Result :=
-            ======================== IF =============================
+            =========================================================
             er_positive and
             her2_negative and
             not ki67.in_range (high):    [luminal_A],
-            ---------------------- ELSE-IF --------------------------
+            ---------------------------------------------------------
             er_positive and
             her2_negative and
             ki67.in_range (high):        [luminal_B_HER2_negative],
-            ---------------------- ELSE-IF --------------------------
+            ---------------------------------------------------------
             er_positive and
             her2_positive:               [luminal_B_HER2_positive],
-            ---------------------- ELSE-IF --------------------------
+            ---------------------------------------------------------
             er_negative and
             pr_negative and
             her2_positive and
             ki67.in_range (high):        [HER2],
-            ---------------------- ELSE-IF --------------------------
+            ---------------------------------------------------------
             er_negative and
             pr_negative and
             her2_negative and
             ki67.in_range (high):        [triple_negative],
-            ----------------------- ELSE ----------------------------
+            ---------------------------------------------------------
             *:                           [none]
             =========================================================
 
     chemotherapy_regime: Terminology_term
         Result :=
-            ==================================== IF ========================================
+            ================================================================================
             not metastatic:
-                    ================================== IF ==================================
+                    ========================================================================
                     molecular_subtype in
                         {[luminal_B_HER2_negative],
                          [triple_negative]} and
                     (tnm_t &gt; '1a' or tnm_n &gt; '0'):                   [taxanes],
 
-                    -------------------------------- ELSE-IF -------------------------------
+                    ------------------------------------------------------------------------
                     molecular_subtype = [luminal_A] and
                     (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3'):  [anthracyclines],
 
-                    -------------------------------- ELSE-IF -------------------------------
+                    ------------------------------------------------------------------------
                     molecular_subtype = [luminal_B_HER2_positive] and
                     (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or
                     molecular_subtype = [HER2_positive] and
                     (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
                     ========================================================================
-            ----------------------------------- ELSE-IF ------------------------------------
+            --------------------------------------------------------------------------------
             *:
                     =====================
                     yyy:        aaa,
