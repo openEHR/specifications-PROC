@@ -1,68 +1,90 @@
 {
-    "name": "PROC",
+    "id": "PROC",
     "title": "Process Model",
     "description": "openEHR Process Model Component",
     "keywords": "process model, workflow, pathways, openehr",
-    "group": "Content",
-    "jira": {
-        "open_issues": "11106",
-		"releases": [
-			{
-				"id": "1.0.0",
-				"jira_refs":  {
-					"crs": "SPECPROC/versions/12500",
-					"prs": "SPECPR/versions/12501"
-				}
-			},
-			{
-				"id": "1.5.0", 
-				"jira_refs": {
-					"crs": "SPECPROC/versions/12505",
-					"prs": "SPECPR/versions/12536"
-				}
-			}
-		]
-    },
     "specifications": [
         {
-            "name": "task_planning",
+            "id": "task_planning",
             "title": "Task Planning (TP) Specification",
             "title_short": "Task Planning (TP)",
             "description": "openEHR Task Planning specification",
-            "summary": "An adaptive, executable, team-based model of workflow.",
+            "summary": "A major extension to the openEHR EHR specifications that defines a formal model for Task Plans and clinical workflow.",
+            "micro_summary": "An adaptive, executable, team-based model of clinical workflow",
+            "classes": [
+                "WORK_PLAN",
+                "TASK_PLAN",
+                "PLAN_EVENT"
+            ],
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
 			"keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
         },
         {
-            "name": "tp_vml",
+            "id": "tp_vml",
             "title": "Task Planning Visual Modelling Language (TP-VML)",
             "title_short": "TP Visual Modelling Language (TP_VML)",
             "description": "openEHR Task Planning Visual Modelling Language",
-            "summary": "A visual modelling language for openEHR Task Planning.",
+            "summary": "Task Planning Visual Modelling Language - a visual modelling language for Task Planning.",
+            "micro_summary": "A visual modelling language for clinical plans and workflows.",
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
 			"keywords": "task planning, visual language, workflow"
         },
         {
-            "name": "tp_examples",
+            "id": "tp_examples",
             "title": "Task Planning Examples",
             "title_short": "TP Examples",
             "description": "openEHR Task Planning Examples",
-            "summary": "Real world examples of openEHR Task Planning.",
+            "summary": "Real world detailed examples using Task Planning.",
+            "micro_summary": "Real-world worked TP examples.",
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
 			"keywords": "task planning, examples, workflow"
         }
-
     ],
-    "expressions": {
-	    "uml": {
-		    "primary": "openEHR_UML-PROC.mdzip",
-		    "dependencies": [
-				"openEHR_UML-Base.mdzip",
-				"openEHR_UML-RM.mdzip"
-		    ]
-		}
-	}
+    "expressions": [
+	    {
+		    "id": "openEHR_UML-PROC.mdzip",
+            "type": "uml",
+		    "title": "PROC UML",
+            "description": "UML file for MagicDraw 19 for PROC model. Contains UML 2.5 standard XMI file."
+		},
+        {
+            "id": "openEHR_UML-RM.mdzip",
+            "dependency": {
+                "component": "RM",
+                "release": "latest"
+            }
+        },
+        {
+            "id": "openEHR_UML-BASE.mdzip",
+            "dependency": {
+                "component": "BASE",
+                "release": "latest"
+            }
+        }
+    ],
+    "jira": {
+        "open_issues": "11106",
+        "roadmap": "SPECPROC"
+    },
+    "releases": [
+        {
+            "id": "1.5.0",
+            "date": "2020-05-05",
+            "jira": {
+                "crs": "SPECPROC/versions/12505",
+                "prs": "SPECPR/versions/12536"
+            }
+        },
+        {
+            "id": "1.0.0",
+            "date": "2017-12-01",
+            "jira":  {
+                "crs": "SPECPROC/versions/12500",
+                "prs": "SPECPR/versions/12501"
+            }
+        }
+    ]
 }
