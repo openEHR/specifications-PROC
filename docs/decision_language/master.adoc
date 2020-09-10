@@ -43,10 +43,8 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 :sectnums:
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
-include::master04-dlm_language.adoc[leveloffset=+1]
-// include::master05-usage.adoc[leveloffset=+1]
-include::master06-full_example.adoc[leveloffset=+1]
-include::master07-dlm.adoc[leveloffset=+1]
+include::master04-language.adoc[leveloffset=+1]
+include::master05-model.adoc[leveloffset=+1]
 
 //include::master05-dl_statements.adoc[leveloffset=+1]
 //include::master06-dl_module.adoc[leveloffset=+1]

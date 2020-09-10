@@ -1,10 +1,10 @@
 = Overview
 
-The openEHR Decision Logic Module (DLM) language and model define a formalism for expressing decision logic used by process-oriented healthcare information systems, active forms and so on. Decision logic usually sits within a larger environment of plans, guidelines and data sources such as the EHR, as described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^].
+The openEHR Decision Language (DL) and model defines a formalism for expressing decision logic and rules used by process-oriented healthcare information systems, active forms and so on. Decision logic usually sits within a larger environment of plans, guidelines and data sources such as the EHR, as described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^]. The primary encapsulation of DL is within a Decision Logic Module (DLM).
 
 Within the openEHR ecosystem, Task Plans and GDL3 guidelines both require a way of expressing rules and declaring input variables. Guidelines additionally need a way of declaring output variables. These needs are achieved with the flexible use of a single kind of multi-section module called a decision logic module (DLM).
 
-The DLM language is a high-level language in which modules containing the following elements may be written:
+The Decision Language is a high-level language in which modules containing the following elements may be written:
 
 * _reference data_: domain constants;
 * _input variables_: data items representing external variables relating to the subject (i.e. patient);

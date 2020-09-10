@@ -1,6 +1,6 @@
-= Decision Logic Module (DLM) Language
+= Decision Logic Modules (DLM)
 
-A DLM module has the following general structure.
+The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following structure.
 
 ----
 dlm <form> <identifier>
@@ -27,11 +27,8 @@ dlm <form> <identifier>
 input
     <subject variable declarations>
   
-conditions
-    <simple boolean conditions (0-order functions)>
-    
 rules
-    <complex rules (functions), returning any data type>
+    <conditions and rules expressed as EL functions>
     
 [output
     <output variable declarations>]
@@ -116,7 +113,7 @@ use_model
     openEHR-RM.v1.1
 ----
 
-If no model is specified, the {openehr_base_releases}[openEHR Base and Foundation types^] are assumed.
+The types defined in all 'used' models become available to the DLM for use in declarations. If no model is specified, the {openehr_base_releases}[openEHR Base and Foundation types^] are assumed.
 
 == Use Section
 
@@ -287,17 +284,21 @@ The above declaration allows the use of the predefined `in_range` function, whic
 
 [source,kotlin]
 ----
-    if systolic_blood_pressure.in_range (critical_high) then
-        -- emergency
-    elseif systolic_blood_pressure.in_range ({high, very_high}) then
-        -- medication and monitoring
-    else
-        -- monitor
+    Result :=
+        ========================================================
+        systolic_blood_pressure
+            .in_range ([critical_high]):           [emergency],
+        --------------------------------------------------------
+        systolic_blood_pressure
+            .in_range ({[high], [very_high]}):     [high_risk],
+        --------------------------------------------------------
+        *:                                         [monitor]
+        ========================================================        
 ----
 
 === Null Values
 
-A subject variable declaration of the form `identifier: Type` means that the variable cannot be null, i.e. it must always have be _attached_. A variable can be declared as _nullable_ to indicate that no value can be found for it in the external world, i.e. that it may be _undefined_. This is done via the appending of a '? symbol to the type, as in some programming languages, as per the following example.
+A subject variable declaration of the form `identifier: Type` means that the variable cannot be null, i.e. it must always be _attached_. A variable can be declared as _nullable_ to indicate that no value can be found for it in the external world, i.e. that it may be _undefined_. This is done via the appending of the '?' symbol to the type, as in some programming languages, as per the following example.
 
 [source,kotlin]
 ----
@@ -305,15 +306,58 @@ input
     date_of_decease: Date?
 ----
 
-== Conditions Section
-
-[.tbd]
-TBD:
-
 == Rules Section
 
-[.tbd]
-TBD:
+The `rules` section contains various kinds of rules, expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^]. 
+
+This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The `Boolean` type may be omitted, since all conditions have this as their formal type. The following is an example.
+
+[source,kotlin]
+----
+rules -- Conditions
+
+    her2_positive:
+        her2_expression = [positive]
+
+    non_class_I_heart_failure:
+        has_diagnosis ({[heart_failure_class_II],
+                    [heart_failure_class_III],
+                    [heart_failure_class_IV]})
+                        
+    anthracyclines_contraindicated:
+        has_diagnosis ([transmural_MI]) or
+        ejection_fraction.in_range ([low]) or
+        non_class_I_heart_failure
+----
+
+The primary rules may be included in a separate `rules` group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an exmaple.
+
+[source,kotlin]
+----
+rules -- Main
+
+    hypertension_risk: Terminology_term
+        Result :=
+            ===========================================================
+            has_pre_eclampsia or 
+            has_eclampsia:                      [obstetric_emergency],
+            -----------------------------------------------------------
+            previous_obstetric_hypertension or
+            previous_pre_eclampsia or
+            previous_eclampsia or
+            has_pregnancy_hypertension:         [refer_high_risk_care],
+            -----------------------------------------------------------
+            *:                                  [normal_obstetric_care]
+            ===========================================================
+            
+    gestational_diabetes_risk: Boolean
+        Result :=
+            bmi.in_range ([high]) or
+            previous_macrosomic_baby or
+            previous_gestational_diabetes or
+            family_history_of_diabetes or
+            race_related_diabetes_risk
+----
 
 == Output Section
 

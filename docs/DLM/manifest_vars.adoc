@@ -1,5 +1,0 @@
-:spec_title: Decision Logic Module (DLM) specification
-:copyright_year: 2020
-:spec_status: DEVELOPMENT
-:keywords: expressions, rules, guidelines
-:description: openEHR Decision Logic Module specification

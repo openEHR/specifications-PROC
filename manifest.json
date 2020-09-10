@@ -54,10 +54,10 @@
 			"keywords": "task planning, examples, workflow"
         },
         {
-            "id": "DLM",
-            "title": "Decision Logic Module (DLM) specification",
-            "title_short": "Decision Logic Module (DLM)",
-            "description": "openEHR Decision Logic Module specification",
+            "id": "decision_language",
+            "title": "Decision Language specification",
+            "title_short": "Decision Language",
+            "description": "openEHR Decision Language specification",
             "summary": "Language for expressing rules and guidelines, for use with GDL3, Task Planning (TP).",
             "micro_summary": "Rule language for use with GDL, TP.",
             "copyright_year": "2020",

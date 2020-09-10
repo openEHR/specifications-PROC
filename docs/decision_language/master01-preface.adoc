@@ -2,7 +2,7 @@
 
 == Purpose
 
-This document specifies the openEHR Decision Logic Module (DLM) language, in both abstract syntax form and as a related model. The latter defines the semantics of a first order predicate style logic that can be used to write Guideline rule-sets that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
+This document specifies the openEHR Decision Language, in both abstract syntax form and as a related model. The latter defines the semantics of a first order predicate style logic that can be used to write Decision Logic Modules (DLMs) containing rule-sets that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
 
 The intended audience includes:
 
@@ -23,7 +23,7 @@ Related documents include:
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_dlm}[{openehr_proc_latest_dlm}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_decision_language}[{openehr_proc_latest_decision_language}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]

@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="openEHR Decision Logic Module specification">
+<meta name="description" content="openEHR Decision Language specification">
 <meta name="keywords" content="expressions, rules, guidelines">
-<title>Decision Logic Module (DLM) specification</title>
+<title>Decision Language specification</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 </head>
 <body class="book toc2 toc-left">
@@ -15,7 +15,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_decision_logic_module_dlm_specification">Decision Logic Module (DLM) specification</a>
+<li><a href="#_decision_language_specification">Decision Language specification</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -45,7 +45,7 @@
 <li><a href="#_execution_model">2.2. Execution Model</a></li>
 </ul>
 </li>
-<li><a href="#_decision_logic_module_dlm_language">3. Decision Logic Module (DLM) Language</a>
+<li><a href="#_decision_logic_module_dlm_formalism">3. Decision Logic Module (DLM) Formalism</a>
 <ul class="sectlevel2">
 <li><a href="#_identifiers">3.1. Identifiers</a></li>
 <li><a href="#_identification_section">3.2. Identification Section</a></li>
@@ -63,34 +63,27 @@
 <li><a href="#_null_values">3.8.5. Null Values</a></li>
 </ul>
 </li>
-<li><a href="#_conditions_section">3.9. Conditions Section</a></li>
-<li><a href="#_rules_section">3.10. Rules Section</a></li>
-<li><a href="#_output_section">3.11. Output Section</a></li>
+<li><a href="#_rules_section">3.9. Rules Section</a></li>
+<li><a href="#_output_section">3.10. Output Section</a></li>
 </ul>
 </li>
-<li><a href="#_examples">4. Examples</a>
+<li><a href="#_the_decision_logic_model_dlm">4. The Decision Logic Model (DLM)</a>
 <ul class="sectlevel2">
-<li><a href="#_general_patient">4.1. General patient</a></li>
-<li><a href="#_breast_cancer_decision_protocol">4.2. Breast Cancer Decision Protocol</a></li>
-</ul>
-</li>
-<li><a href="#_the_decision_logic_model_dlm">5. The Decision Logic Model (DLM)</a>
-<ul class="sectlevel2">
-<li><a href="#_overview_2">5.1. Overview</a></li>
-<li><a href="#_ds_module_package">5.2. DS Module Package</a>
+<li><a href="#_overview_2">4.1. Overview</a></li>
+<li><a href="#_ds_module_package">4.2. DS Module Package</a>
 <ul class="sectlevel3">
-<li><a href="#_class_descriptions">5.2.1. Class Descriptions</a>
+<li><a href="#_class_descriptions">4.2.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_decision_module_class">5.2.1.1. DECISION_MODULE Class</a></li>
+<li><a href="#_decision_module_class">4.2.1.1. DECISION_MODULE Class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_ds_rules_package">5.3. DS Rules Package</a>
+<li><a href="#_ds_rules_package">4.3. DS Rules Package</a>
 <ul class="sectlevel3">
-<li><a href="#_condition_chain_rule">5.3.1. Condition Chain Rule</a></li>
-<li><a href="#_case_rule">5.3.2. Case Rule</a></li>
-<li><a href="#_class_descriptions_2">5.3.3. Class Descriptions</a></li>
+<li><a href="#_condition_chain_rule">4.3.1. Condition Chain Rule</a></li>
+<li><a href="#_case_rule">4.3.2. Case Rule</a></li>
+<li><a href="#_class_descriptions_2">4.3.3. Class Descriptions</a></li>
 </ul>
 </li>
 </ul>
@@ -111,7 +104,7 @@
 </div>
 </div>
 </div>
-<h1 id="_decision_logic_module_dlm_specification" class="sect0"><a class="anchor" href="#_decision_logic_module_dlm_specification"></a>Decision Logic Module (DLM) specification</h1>
+<h1 id="_decision_language_specification" class="sect0"><a class="anchor" href="#_decision_language_specification"></a>Decision Language specification</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all fit-content spread">
@@ -225,7 +218,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document specifies the openEHR Decision Logic Module (DLM) language, in both abstract syntax form and as a related model. The latter defines the semantics of a first order predicate style logic that can be used to write Guideline rule-sets that may be used standalone or with a Process / Plan oriented system such as <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning</a>.</p>
+<p>This document specifies the openEHR Decision Language, in both abstract syntax form and as a related model. The latter defines the semantics of a first order predicate style logic that can be used to write Decision Logic Modules (DLMs) containing rule-sets that may be used standalone or with a Process / Plan oriented system such as <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning</a>.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -273,7 +266,7 @@
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
 <div class="paragraph">
-<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/PROC/latest/DLM.html" target="_blank" rel="noopener">https://specifications.openehr.org/releases/PROC/latest/DLM.html</a>.</p>
+<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">https://specifications.openehr.org/releases/PROC/latest/decision_language.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -306,13 +299,13 @@
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The openEHR Decision Logic Module (DLM) language and model define a formalism for expressing decision logic used by process-oriented healthcare information systems, active forms and so on. Decision logic usually sits within a larger environment of plans, guidelines and data sources such as the EHR, as described in the <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
+<p>The openEHR Decision Language (DL) and model defines a formalism for expressing decision logic and rules used by process-oriented healthcare information systems, active forms and so on. Decision logic usually sits within a larger environment of plans, guidelines and data sources such as the EHR, as described in the <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>. The primary encapsulation of DL is within a Decision Logic Module (DLM).</p>
 </div>
 <div class="paragraph">
 <p>Within the openEHR ecosystem, Task Plans and GDL3 guidelines both require a way of expressing rules and declaring input variables. Guidelines additionally need a way of declaring output variables. These needs are achieved with the flexible use of a single kind of multi-section module called a decision logic module (DLM).</p>
 </div>
 <div class="paragraph">
-<p>The DLM language is a high-level language in which modules containing the following elements may be written:</p>
+<p>The Decision Language is a high-level language in which modules containing the following elements may be written:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -398,10 +391,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_decision_logic_module_dlm_language"><a class="anchor" href="#_decision_logic_module_dlm_language"></a>3. Decision Logic Module (DLM) Language</h2>
+<h2 id="_decision_logic_module_dlm_formalism"><a class="anchor" href="#_decision_logic_module_dlm_formalism"></a>3. Decision Logic Module (DLM) Formalism</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A DLM module has the following general structure.</p>
+<p>The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following general structure.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -429,11 +422,8 @@
 input
     &lt;subject variable declarations&gt;
 
-conditions
-    &lt;simple boolean conditions (0-order functions)&gt;
-
 rules
-    &lt;complex rules (functions), returning any data type&gt;
+    &lt;conditions and rules expressed as EL functions&gt;
 
 [output
     &lt;output variable declarations&gt;]
@@ -539,7 +529,7 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>If no model is specified, the <a href="https://specifications.openehr.org/releases/BASE/latest" target="_blank" rel="noopener">openEHR Base and Foundation types</a> are assumed.</p>
+<p>The types defined in all 'used' models become available to the DLM for use in declarations. If no model is specified, the <a href="https://specifications.openehr.org/releases/BASE/latest" target="_blank" rel="noopener">openEHR Base and Foundation types</a> are assumed.</p>
 </div>
 </div>
 <div class="sect2">
@@ -748,19 +738,23 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-k">if</span> <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">(</span><span class="tok-n">critical_high</span><span class="tok-p">)</span> <span class="tok-n">then</span>
-        <span class="tok-p">--</span> <span class="tok-n">emergency</span>
-    <span class="tok-n">elseif</span> <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">({</span><span class="tok-n">high</span><span class="tok-p">,</span> <span class="tok-n">very_high</span><span class="tok-p">})</span> <span class="tok-n">then</span>
-        <span class="tok-p">--</span> <span class="tok-n">medication</span> <span class="tok-n">and</span> <span class="tok-n">monitoring</span>
-    <span class="tok-k">else</span>
-        <span class="tok-p">--</span> <span class="tok-n">monitor</span></code></pre>
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">Result</span> <span class="tok-p">:=</span>
+        <span class="tok-p">========================================================</span>
+        <span class="tok-n">systolic_blood_pressure</span>
+            <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">critical_high</span><span class="tok-p">]):</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
+        <span class="tok-p">--------------------------------------------------------</span>
+        <span class="tok-n">systolic_blood_pressure</span>
+            <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">({[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}):</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
+        <span class="tok-p">--------------------------------------------------------</span>
+        <span class="tok-p">*:</span>                                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
+        <span class="tok-p">========================================================</span></code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_null_values"><a class="anchor" href="#_null_values"></a>3.8.5. Null Values</h4>
 <div class="paragraph">
-<p>A subject variable declaration of the form <code>identifier: Type</code> means that the variable cannot be null, i.e. it must always have be <em>attached</em>. A variable can be declared as <em>nullable</em> to indicate that no value can be found for it in the external world, i.e. that it may be <em>undefined</em>. This is done via the appending of a '? symbol to the type, as in some programming languages, as per the following example.</p>
+<p>A subject variable declaration of the form <code>identifier: Type</code> means that the variable cannot be null, i.e. it must always be <em>attached</em>. A variable can be declared as <em>nullable</em> to indicate that no value can be found for it in the external world, i.e. that it may be <em>undefined</em>. This is done via the appending of the '?' symbol to the type, as in some programming languages, as per the following example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -771,191 +765,78 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conditions_section"><a class="anchor" href="#_conditions_section"></a>3.9. Conditions Section</h3>
-<div class="paragraph tbd">
-<p>TBD:</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_rules_section"><a class="anchor" href="#_rules_section"></a>3.10. Rules Section</h3>
-<div class="paragraph tbd">
-<p>TBD:</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_output_section"><a class="anchor" href="#_output_section"></a>3.11. Output Section</h3>
-<div class="paragraph tbd">
-<p>TBD:</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_examples"><a class="anchor" href="#_examples"></a>4. Examples</h2>
-<div class="sectionbody">
+<h3 id="_rules_section"><a class="anchor" href="#_rules_section"></a>3.9. Rules Section</h3>
 <div class="paragraph">
-<p>The following examples rely on the 'Basic Patient' and extension Subject Proxies defined in the <a href="https://specifications.openehr.org/releases/PROC/latest/subject_proxy.html#_core_patient_proxy" target="_blank" rel="noopener">openEHR Subject Proxy Specification</a>.</p>
+<p>The <code>rules</code> section contains various kinds of rules, expressed as functions in the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, based on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
-<div class="sect2">
-<h3 id="_general_patient"><a class="anchor" href="#_general_patient"></a>4.1. General patient</h3>
+<div class="paragraph">
+<p>This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The <code>Boolean</code> type may be omitted, since all conditions have this type. The following is an example.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>dlm Basic_patient
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">rules</span> <span class="tok-p">--</span> <span class="tok-n">Conditions</span>
 
-use
-    Basic_patient_DS
+    <span class="tok-n">her2_positive</span><span class="tok-p">:</span>
+        <span class="tok-n">her2_expression</span> <span class="tok-p">=</span> <span class="tok-p">[</span><span class="tok-n">positive</span><span class="tok-p">]</span>
 
-rules
+    <span class="tok-n">non_class_I_heart_failure</span><span class="tok-p">:</span>
+        <span class="tok-n">has_diagnosis</span> <span class="tok-p">({[</span><span class="tok-n">heart_failure_class_II</span><span class="tok-p">],</span>
+<span class="tok-na">                    [heart_failure_class_III]</span><span class="tok-p">,</span>
+<span class="tok-na">                    [heart_failure_class_IV]</span><span class="tok-p">})</span>
 
-    age: Duration
-        Result &lt;- {Env}.current_date() - date_of_birth
+    <span class="tok-n">anthracyclines_contraindicated</span><span class="tok-p">:</span>
+        <span class="tok-n">has_diagnosis</span> <span class="tok-p">([</span><span class="tok-n">transmural_MI</span><span class="tok-p">])</span> <span class="tok-n">or</span>
+        <span class="tok-n">ejection_fraction</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">low</span><span class="tok-p">])</span> <span class="tok-n">or</span>
+        <span class="tok-n">non_class_I_heart_failure</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The primary rules may be included in a separate <code>rules</code> group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an exmaple.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">rules</span> <span class="tok-p">--</span> <span class="tok-n">Main</span>
 
-    bmi: Quantity
-        Result &lt;- weight / height ^ 2</pre>
+    <span class="tok-n">hypertension_risk</span><span class="tok-p">:</span> <span class="tok-n">Terminology_term</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span>
+            <span class="tok-p">===========================================================</span>
+            <span class="tok-n">has_pre_eclampsia</span> <span class="tok-n">or</span>
+            <span class="tok-n">has_eclampsia</span><span class="tok-p">:</span>                      <span class="tok-p">[</span><span class="tok-n">obstetric_emergency</span><span class="tok-p">],</span>
+            <span class="tok-p">-----------------------------------------------------------</span>
+            <span class="tok-n">previous_obstetric_hypertension</span> <span class="tok-n">or</span>
+            <span class="tok-n">previous_pre_eclampsia</span> <span class="tok-n">or</span>
+            <span class="tok-n">previous_eclampsia</span> <span class="tok-n">or</span>
+            <span class="tok-n">has_pregnancy_hypertension</span><span class="tok-p">:</span>         <span class="tok-p">[</span><span class="tok-n">refer_high_risk_care</span><span class="tok-p">],</span>
+            <span class="tok-p">-----------------------------------------------------------</span>
+            <span class="tok-p">*:</span>                                  <span class="tok-p">[</span><span class="tok-n">normal_obstetric_care</span><span class="tok-p">]</span>
+            <span class="tok-p">===========================================================</span>
+
+    <span class="tok-n">gestational_diabetes_risk</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span>
+            <span class="tok-n">bmi</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">high</span><span class="tok-p">])</span> <span class="tok-n">or</span>
+            <span class="tok-n">previous_macrosomic_baby</span> <span class="tok-n">or</span>
+            <span class="tok-n">previous_gestational_diabetes</span> <span class="tok-n">or</span>
+            <span class="tok-n">family_history_of_diabetes</span> <span class="tok-n">or</span>
+            <span class="tok-n">race_related_diabetes_risk</span></code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_breast_cancer_decision_protocol"><a class="anchor" href="#_breast_cancer_decision_protocol"></a>4.2. Breast Cancer Decision Protocol</h3>
-<div class="listingblock">
-<div class="content">
-<pre>dlm guideline Oncology_breast_cancer.v0.5.0
-
-use
-    Breast_cancer_patient_DS
-
-input
-
-    tnm_t: String
-        currency = 60 days
-
-    tnm_n: String
-        currency = 60 days
-
-    tnm_m: String
-        currency = 60 days
-
-    tnm_g: String
-        currency = 60 days
-
-    estrogen_receptor: Terminology_term «pos_neg_vs»
-        currency = 60 days
-
-    progesterone_receptor:  Terminology_term «pos_neg_vs»
-        currency = 60 days
-
-    her2_expression: Terminology_term «pos_neg_vs»
-        currency = 60 days
-
-    ki67: Quantity
-        currency = 60 days
-        ranges = {
-            high:   |&gt;= 14%|,
-            normal: |&lt; 14%|
-        }
-
-    ejection_fraction: Quantity
-        currency = 60 days
-        ranges = {
-            normal:  |&gt;= 40%|,
-            low  :   |&lt; 40%|
-        }
-
-conditions
-
-    er_negative:
-        estrogen_receptor = |negative|
-
-    er_positive:
-        estrogen_receptor = |positive|
-
-    pr_negative:
-        progesterone_receptor = |negative|
-
-    pr_positive:
-        progesterone_receptor = |positive|
-
-    her2_negative:
-        her2_expression = |negative|
-
-    her2_positive:
-        her2_expression = |positive|
-
-    non_class_I_heart_failure:
-        has_diagnosis ({|heart failure (class II)|,
-                    |heart failure (class III)|,
-                    |heart failure (class IV)|})
-
-    anthracyclines_contraindicated:
-        has_diagnosis (|Transmural MI|) or
-        ejection_fraction.in_range (low) or
-        non_class_I_heart_failure
-
-    taxanes_contraindicated:
-        is_type1_diabetic or
-        has_allergy (|taxanes|) or
-        has_intolerance (|taxanes|)
-
-rules
-
-    molecular_subtype: Terminology_term
-        if er_positive and her2_negative and not ki67.in_range (high)
-            Result &lt;- |Luminal A|
-
-        elseif er_positive and her2_negative and ki67.in_range (high)
-            Result &lt;- |Luminal B (HER2 negative)|
-
-        elseif er_positive and her2_positive
-            Result &lt;- |Luminal B (HER2 positive)|
-
-        elseif er_negative and pr_negative and her2_positive and ki67.in_range (high)
-            Result &lt;- |HER2|
-
-        elseif er_negative and pr_negative and her2_negative and ki67.in_range (high)
-            Result &lt;- |Triple negative|
-
-        else
-            Result &lt;- |none|
-
-    chemotherapy_regime: Terminology_term
-        if not metastatic
-            if molecular_subtype in {|Luminal B (HER2 negative)|, |Triple negative|} and
-                    (tnm_t &gt; '1a' or tnm_n &gt; '0')
-                Result &lt;- |taxanes|
-
-            elseif molecular_subtype = |Luminal A| and
-                    (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3')
-                Result &lt;- |anthracyclines|
-
-            elseif molecular_subtype = |Luminal B (HER2 positive)| and
-                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0')
-                    or
-                    molecular_subtype = |HER2| and
-                    (tnm_t = '1b' and tnm_n = '0')
-                Result &lt;- |paditaxel + trastuzumab|
-            else ...
-                Result &lt;-
-
-        else -- metastatic
-            if ...
-                Result &lt;-
-            elseif ...
-                Result &lt;-
-            else
-                Result &lt;-</pre>
-</div>
+<h3 id="_output_section"><a class="anchor" href="#_output_section"></a>3.10. Output Section</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_decision_logic_model_dlm"><a class="anchor" href="#_the_decision_logic_model_dlm"></a>5. The Decision Logic Model (DLM)</h2>
+<h2 id="_the_decision_logic_model_dlm"><a class="anchor" href="#_the_decision_logic_model_dlm"></a>4. The Decision Logic Model (DLM)</h2>
 <div class="sectionbody">
 <div class="paragraph tbd">
 <p>TBD: this section is a rough draft at the moment</p>
 </div>
 <div class="sect2">
-<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>5.1. Overview</h3>
+<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
 <div class="paragraph">
 <p>The <code>org.openehr.proc.dlm</code> package defines the Decision Logic Model (DLM), a structural model of the openEHR Decision Language. It relies on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
@@ -973,7 +854,7 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ds_module_package"><a class="anchor" href="#_ds_module_package"></a>5.2. DS Module Package</h3>
+<h3 id="_ds_module_package"><a class="anchor" href="#_ds_module_package"></a>4.2. DS Module Package</h3>
 <div class="paragraph">
 <p>The top-level construct of the DLM is the <code>DS_MODULE</code>, representing a standalone Decision Logic Module. It is shown below.</p>
 </div>
@@ -987,9 +868,9 @@ rules
 <p>TBD: to be continued.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>5.2.1. Class Descriptions</h4>
+<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>4.2.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_decision_module_class"><a class="anchor" href="#_decision_module_class"></a>5.2.1.1. DECISION_MODULE Class</h5>
+<h5 id="_decision_module_class"><a class="anchor" href="#_decision_module_class"></a>4.2.1.1. DECISION_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1061,7 +942,7 @@ rules
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ds_rules_package"><a class="anchor" href="#_ds_rules_package"></a>5.3. DS Rules Package</h3>
+<h3 id="_ds_rules_package"><a class="anchor" href="#_ds_rules_package"></a>4.3. DS Rules Package</h3>
 <div class="paragraph">
 <p>Specific Rule types are defined as descendants of <code>DS_RULE</code>, which may be understood as a pseudo form of the <code>BMM_FUNCTION</code> meta-type, i.e. a particular kind of function with a <code><em>body</em></code>. The following UML view illustrates.</p>
 </div>
@@ -1069,19 +950,19 @@ rules
 <p>Some specific rule types are described below.</p>
 </div>
 <div class="sect3">
-<h4 id="_condition_chain_rule"><a class="anchor" href="#_condition_chain_rule"></a>5.3.1. Condition Chain Rule</h4>
+<h4 id="_condition_chain_rule"><a class="anchor" href="#_condition_chain_rule"></a>4.3.1. Condition Chain Rule</h4>
 <div class="paragraph">
 <p>A DS <em>condition chain rule</em> is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>5.3.2. Case Rule</h4>
+<h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>4.3.2. Case Rule</h4>
 <div class="paragraph">
 <p>A DS <em>case rule</em> is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of <code>C_PRIMITIVE</code> constraint types, from the <a href="https://specifications.openehr.org/releases/AM/latest/index">openEHR AOM2 model</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.3.3. Class Descriptions</h4>
+<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>4.3.3. Class Descriptions</h4>
 
 </div>
 </div>
@@ -1096,7 +977,7 @@ rules
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-15 20:26:44 +0100
+Last updated 2020-09-09 14:46:53 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
