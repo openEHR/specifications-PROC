@@ -11,7 +11,7 @@ h|*Description*
 The attribute `_care_pathway_` and `_care_plan_`provide a way of associating a Work Plan with a published care pathway, and an operational care plan from within the EHR, if available.
 
 h|*Inherit*
-2+|`link:/releases/RM/{proc_release}/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/RM/{proc_release}/ehr.html#_content_item_class[CONTENT_ITEM^]`
+2+|`link:/releases/BASE/{proc_release}/resource.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/RM/{proc_release}/ehr.html#_content_item_class[CONTENT_ITEM^]`
 
 h|*Attributes*
 ^h|*Signature*
