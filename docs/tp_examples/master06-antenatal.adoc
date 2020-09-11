@@ -98,7 +98,7 @@ rules
                 =============================================
     
     hypertension_risk: Terminology_term
-        Result :=
+        Result := [[
             ========================[ IF ]=============================
             has_pre_eclampsia or 
             has_eclampsia:                      [obstetric_emergency],
@@ -110,6 +110,7 @@ rules
             ------------------------[ ELSE ]---------------------------
             *:                                  [normal_obstetric_care]
             ===========================================================
+        ]]
             
     gestational_diabetes_risk: Boolean
         Result :=

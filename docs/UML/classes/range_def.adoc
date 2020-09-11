@@ -6,17 +6,17 @@ h|*Class*
 2+^h|*RANGE_DEF*
 
 h|*Description*
-2+a|
+2+a|Definition of a range of a tracked variable in terms of an Interval of an appropriate type.
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
-a|
+|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+a|Name of this range.
 
 h|*1..1*
-|*interval*: `link:/releases/BASE/{proc_release}/foundation_types.html#_interval_class[Interval^]`
-a|
+|*interval*: `link:/releases/LANG/{proc_release}/bmm.html#_bmm_interval_value_class[BMM_INTERVAL_VALUE^]`
+a|Interval specification for the range.
 |===

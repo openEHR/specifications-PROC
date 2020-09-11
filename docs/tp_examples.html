@@ -631,9 +631,12 @@ input
             [very_low]:    |&lt;10 mL/min|
             ----------------------------------
 
-conditions
+rules -- Conditions
+
     high_ipi:
         Result := ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
+
+rules -- Main
 
     |
     | patient fit to undertake regime
@@ -643,7 +646,6 @@ conditions
             (platelets.in_range ([very_low]) or
              neutrophils.in_range ([very_low]))
 
-rules
     prednisolone_dose: Quantity
         Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
@@ -658,9 +660,6 @@ rules
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-
-    prednisolone_dose: Quantity
-        Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
     |
     | TODO: hepatic impairment dose modification
@@ -722,7 +721,7 @@ rules
 
     ipi_risk: Terminology_code
         Result :=
-            map ipi_raw_score
+            case ipi_raw_score
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
@@ -885,7 +884,7 @@ rules
                 =============================================
 
     hypertension_risk: Terminology_term
-        Result :=
+        Result := [[
             ========================[ IF ]=============================
             has_pre_eclampsia or
             has_eclampsia:                      [obstetric_emergency],
@@ -897,6 +896,7 @@ rules
             ------------------------[ ELSE ]---------------------------
             *:                                  [normal_obstetric_care]
             ===========================================================
+        ]]
 
     gestational_diabetes_risk: Boolean
         Result :=
@@ -1031,7 +1031,7 @@ input
             [low]  :   |&lt; 40%|
             --------------------
 
-conditions
+rules -- Conditions
 
     er_negative:
         estrogen_receptor = [negative]
@@ -1066,39 +1066,40 @@ conditions
         has_allergy ([taxanes]) or
         has_intolerance ([taxanes])
 
-rules
+rules -- Guideline
 
     molecular_subtype: Terminology_term
-        Result :=
+        Result := [[
             =========================================================
             er_positive and
             her2_negative and
-            not ki67.in_range (high):    [luminal_A],
+            not ki67.in_range ([high]):    [luminal_A],
             ---------------------------------------------------------
             er_positive and
             her2_negative and
-            ki67.in_range (high):        [luminal_B_HER2_negative],
+            ki67.in_range ([high]):        [luminal_B_HER2_negative],
             ---------------------------------------------------------
             er_positive and
-            her2_positive:               [luminal_B_HER2_positive],
+            her2_positive:                 [luminal_B_HER2_positive],
             ---------------------------------------------------------
             er_negative and
             pr_negative and
             her2_positive and
-            ki67.in_range (high):        [HER2],
+            ki67.in_range ([high]):        [HER2],
             ---------------------------------------------------------
             er_negative and
             pr_negative and
             her2_negative and
-            ki67.in_range (high):        [triple_negative],
+            ki67.in_range ([high]):        [triple_negative],
             ---------------------------------------------------------
-            *:                           [none]
+            *:                             [none]
             =========================================================
+        ]]
 
     chemotherapy_regime: Terminology_term
-        Result :=
+        Result := [[
             ================================================================================
-            not metastatic:
+            not metastatic: [[
                     ========================================================================
                     molecular_subtype in
                         {[luminal_B_HER2_negative],
@@ -1115,8 +1116,9 @@ rules
                     molecular_subtype = [HER2_positive] and
                     (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
                     ========================================================================
+            ]]
             --------------------------------------------------------------------------------
-            *:
+            *: [[
                     =====================
                     yyy:        aaa,
                     ---------------------
@@ -1124,7 +1126,9 @@ rules
                     ---------------------
                     *:
                     =====================
+            ]]
             ================================================================================
+        ]]
 
 terminology
     term_definitions = &lt;

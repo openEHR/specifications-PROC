@@ -1,48 +1,38 @@
-= The Decision Logic Model (DLM)
-
-[.tbd]
-TBD: this section is a rough draft at the moment
+= Decision Logic Module (DLM) Model
 
 == Overview
 
-The `org.openehr.proc.dlm` package defines the Decision Logic Model (DLM), a structural model of the openEHR Decision Language. It relies on the {openehr_bmm}[openEHR BMM^].
+The `org.openehr.proc.decision_language.dlm` package defines the Decision Logic Module (DLM) structure, a specialisation of the class meta-type from the {openehr_bmm}[openEHR BMM^].
 
-The structure of the `dlm` packages is shown below.
+The structure of the `proc.decision_language` packages is shown below.
 
 [.text-center]
-.proc.dlm Package
-image::{uml_diagrams_uri}/PROC-dlm-packages.svg[id=DLM_packages, align="center", width="50%"]
+.`proc.decision_language` Package strucure
+image::{uml_diagrams_uri}/PROC-decision_language-packages.svg[id=dl_packages, align="center", width="50%"]
 
 The packages are described below.
 
-== DS Module Package
+== Decision Logic Module Package
 
-The top-level construct of the DLM is the `DS_MODULE`, representing a standalone Decision Logic Module. It is shown below.
+The top-level construct of the DLM is the `DECISION_LOGIC_MODULE` meta-class, representing a standalone Decision Logic Module. It is shown below.
 
 [.text-center]
-.proc.DLM.module Package
-image::{uml_diagrams_uri}/PROC-dlm.module.svg[id=DLM_module, align="center"]
+.`proc.decision_language.dlm` Package
+image::{uml_diagrams_uri}/PROC-decision_language.dlm.svg[id=dl_dlm, align="center"]
 
 [.tbd]
 TBD: to be continued. 
 
 === Class Descriptions
 
-include::{uml_export_dir}/classes/decision_module.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/decision_logic_module.adoc[leveloffset=+1]]
 
-== DS Rules Package
+include::{uml_export_dir}/classes/dlm_reference_section.adoc[leveloffset=+1]]
 
-Specific Rule types are defined as descendants of `DS_RULE`, which may be understood as a pseudo form of the `BMM_FUNCTION` meta-type, i.e. a particular kind of function with a `_body_`. The following UML view illustrates.
+include::{uml_export_dir}/classes/dlm_input_section.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/tracked_variable.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/range_def.adoc[leveloffset=+1]]
 
-Some specific rule types are described below.
-
-=== Condition Chain Rule
-
-A DS _condition chain rule_ is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.
-
-=== Case Rule
-
-A DS _case rule_ is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of `C_PRIMITIVE` constraint types, from the {openehr_am}[openEHR AOM2 model].
-
-=== Class Descriptions
+include::{uml_export_dir}/classes/dlm_rules_section.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/dlm_rule.adoc[leveloffset=+1]]
 

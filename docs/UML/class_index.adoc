@@ -8,10 +8,22 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/binding.html#_dl_data_binding_class[DL_DATA_BINDING^]
 
-==== Package dslm
+==== Package decision_language
 
 [.xcode]
-* link:/releases/PROC/{proc_release}/dslm.html#_decision_module_class[DECISION_MODULE^]
+* link:/releases/PROC/{proc_release}/decision_language.html#_decision_logic_module_class[DECISION_LOGIC_MODULE^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_dlm_input_section_class[DLM_INPUT_SECTION^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_dlm_reference_section_class[DLM_REFERENCE_SECTION^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_dlm_rule_class[DLM_RULE^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_dlm_rules_section_class[DLM_RULES_SECTION^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_range_def_class[RANGE_DEF^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_tracked_variable_class[TRACKED_VARIABLE^]
 
 ==== Package subject_proxy
 
@@ -30,23 +42,13 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_vital_signs_i_interface[PROXY_VITAL_SIGNS_I^]
 [.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_range_def_class[RANGE_DEF^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_derived_variable_class[SP_DERIVED_VARIABLE^]
-[.xcode]
 * link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_evaluator_interface[SP_EVALUATOR^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_tracked_value_class[SP_TRACKED_VALUE^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_tracked_variable_class[SP_TRACKED_VARIABLE^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_variable_category_enumeration[SP_VARIABLE_CATEGORY^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_variable_def_class[SP_VARIABLE_DEF^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/subject_proxy.html#_subject_proxy_class[SUBJECT_PROXY^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_tracked_value_def_class[TRACKED_VALUE_DEF^]
 
 ==== Package task_planning
 

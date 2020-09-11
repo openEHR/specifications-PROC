@@ -1,23 +1,19 @@
-=== DECISION_MODULE Class
+=== DECISION_LOGIC_MODULE Class
 
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*DECISION_MODULE*
+2+^h|*DECISION_LOGIC_MODULE*
 
 h|*Description*
-2+a|A container for a set of statements along with related BMM definitions, meta-data, terminology and bindings.
+2+a|Specialised kind of class that represents a Decision Logic Module (DLM).
 
 h|*Inherit*
-2+|`link:/releases/RM/{proc_release}/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{proc_release}/bmm.html#_bmm_class_class[BMM_CLASS^]`
+2+|`link:/releases/BASE/{proc_release}/resource.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{proc_release}/bmm.html#_bmm_simple_class_class[BMM_SIMPLE_CLASS^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
-
-h|*0..1*
-|*proxy_properties*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_bmm_property_class[BMM_PROPERTY^]>`
-a|Properties representing real-world objects, such as the patient state, the patient history (logical EHR) etc.
 
 h|*0..1*
 |*definitions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_bmm_constant_class[BMM_CONSTANT^]>`

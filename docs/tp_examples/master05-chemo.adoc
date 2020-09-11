@@ -123,9 +123,12 @@ input
             [very_low]:    |<10 mL/min|
             ----------------------------------
 
-conditions
+rules -- Conditions
+
     high_ipi:
         Result := ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
+       
+rules -- Main
 
     |
     | patient fit to undertake regime
@@ -134,8 +137,7 @@ conditions
         Result := not
             (platelets.in_range ([very_low]) or
              neutrophils.in_range ([very_low]))
-       
-rules
+
     prednisolone_dose: Quantity
         Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
@@ -150,9 +152,6 @@ rules
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-
-    prednisolone_dose: Quantity
-        Result := prednisolone_dose_per_m2 * BSA.bsa_m2
 
     |
     | TODO: hepatic impairment dose modification
@@ -214,7 +213,7 @@ rules
        
     ipi_risk: Terminology_code
         Result :=
-            map ipi_raw_score
+            case ipi_raw_score
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],

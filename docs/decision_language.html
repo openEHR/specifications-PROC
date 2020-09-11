@@ -45,7 +45,7 @@
 <li><a href="#_execution_model">2.2. Execution Model</a></li>
 </ul>
 </li>
-<li><a href="#_decision_logic_module_dlm_formalism">3. Decision Logic Module (DLM) Formalism</a>
+<li><a href="#_decision_logic_modules_dlm">3. Decision Logic Modules (DLM)</a>
 <ul class="sectlevel2">
 <li><a href="#_identifiers">3.1. Identifiers</a></li>
 <li><a href="#_identification_section">3.2. Identification Section</a></li>
@@ -65,25 +65,26 @@
 </li>
 <li><a href="#_rules_section">3.9. Rules Section</a></li>
 <li><a href="#_output_section">3.10. Output Section</a></li>
+<li><a href="#_terminology_section">3.11. Terminology Section</a></li>
+<li><a href="#_bindings_section">3.12. Bindings Section</a></li>
 </ul>
 </li>
-<li><a href="#_the_decision_logic_model_dlm">4. The Decision Logic Model (DLM)</a>
+<li><a href="#_decision_logic_module_dlm_model">4. Decision Logic Module (DLM) Model</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">4.1. Overview</a></li>
-<li><a href="#_ds_module_package">4.2. DS Module Package</a>
+<li><a href="#_decision_logic_module_package">4.2. Decision Logic Module Package</a>
 <ul class="sectlevel3">
 <li><a href="#_class_descriptions">4.2.1. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_decision_module_class">4.2.1.1. DECISION_MODULE Class</a></li>
+<li><a href="#_decision_logic_module_class">4.2.1.1. DECISION_LOGIC_MODULE Class</a></li>
+<li><a href="#_dlm_reference_section_class">4.2.1.2. DLM_REFERENCE_SECTION Class</a></li>
+<li><a href="#_dlm_input_section_class">4.2.1.3. DLM_INPUT_SECTION Class</a></li>
+<li><a href="#_tracked_variable_class">4.2.1.4. TRACKED_VARIABLE Class</a></li>
+<li><a href="#_range_def_class">4.2.1.5. RANGE_DEF Class</a></li>
+<li><a href="#_dlm_rules_section_class">4.2.1.6. DLM_RULES_SECTION Class</a></li>
+<li><a href="#_dlm_rule_class">4.2.1.7. DLM_RULE Class</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_ds_rules_package">4.3. DS Rules Package</a>
-<ul class="sectlevel3">
-<li><a href="#_condition_chain_rule">4.3.1. Condition Chain Rule</a></li>
-<li><a href="#_case_rule">4.3.2. Case Rule</a></li>
-<li><a href="#_class_descriptions_2">4.3.3. Class Descriptions</a></li>
 </ul>
 </li>
 </ul>
@@ -186,12 +187,12 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 2.0.0 (unreleased)</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.6.0</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECPROC-41" target="_blank" rel="noopener">SPECPROC-41</a>. Add Decision Language specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>13 Feb 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>11 Sep 2020</p></td>
 </tr>
 </tbody>
 </table>
@@ -386,15 +387,17 @@
 </div>
 <div class="sect2">
 <h3 id="_execution_model"><a class="anchor" href="#_execution_model"></a>2.2. Execution Model</h3>
-
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_decision_logic_module_dlm_formalism"><a class="anchor" href="#_decision_logic_module_dlm_formalism"></a>3. Decision Logic Module (DLM) Formalism</h2>
+<h2 id="_decision_logic_modules_dlm"><a class="anchor" href="#_decision_logic_modules_dlm"></a>3. Decision Logic Modules (DLM)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following general structure.</p>
+<p>The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following structure.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -739,15 +742,17 @@ rules
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">Result</span> <span class="tok-p">:=</span>
-        <span class="tok-p">========================================================</span>
-        <span class="tok-n">systolic_blood_pressure</span>
-            <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">critical_high</span><span class="tok-p">]):</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
+<span class="tok-na">    [[</span>
+<span class="tok-na">        ========================================================</span>
+<span class="tok-na">        systolic_blood_pressure</span>
+<span class="tok-na">            .in_range ([critical_high]</span><span class="tok-p">):</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
         <span class="tok-p">--------------------------------------------------------</span>
         <span class="tok-n">systolic_blood_pressure</span>
             <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">({[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}):</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
         <span class="tok-p">--------------------------------------------------------</span>
         <span class="tok-p">*:</span>                                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
-        <span class="tok-p">========================================================</span></code></pre>
+        <span class="tok-p">========================================================</span>
+    <span class="tok-p">]]</span></code></pre>
 </div>
 </div>
 </div>
@@ -767,10 +772,10 @@ rules
 <div class="sect2">
 <h3 id="_rules_section"><a class="anchor" href="#_rules_section"></a>3.9. Rules Section</h3>
 <div class="paragraph">
-<p>The <code>rules</code> section contains various kinds of rules, expressed as functions in the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, based on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
+<p>The DLM <code>rules</code> section is the section of primary importance, since it contains the rules for which a DLM is created. DLm rules are formally expressed as functions in the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, based on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
 <div class="paragraph">
-<p>This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The <code>Boolean</code> type may be omitted, since all conditions have this type. The following is an example.</p>
+<p>This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The <code>Boolean</code> type may be omitted, since all conditions have this as their formal type. The following is an example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -799,9 +804,10 @@ rules
 
     <span class="tok-n">hypertension_risk</span><span class="tok-p">:</span> <span class="tok-n">Terminology_term</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span>
-            <span class="tok-p">===========================================================</span>
-            <span class="tok-n">has_pre_eclampsia</span> <span class="tok-n">or</span>
-            <span class="tok-n">has_eclampsia</span><span class="tok-p">:</span>                      <span class="tok-p">[</span><span class="tok-n">obstetric_emergency</span><span class="tok-p">],</span>
+<span class="tok-na">        [[</span>
+<span class="tok-na">            ===========================================================</span>
+<span class="tok-na">            has_pre_eclampsia or</span>
+<span class="tok-na">            has_eclampsia:                      [obstetric_emergency]</span><span class="tok-p">,</span>
             <span class="tok-p">-----------------------------------------------------------</span>
             <span class="tok-n">previous_obstetric_hypertension</span> <span class="tok-n">or</span>
             <span class="tok-n">previous_pre_eclampsia</span> <span class="tok-n">or</span>
@@ -810,6 +816,7 @@ rules
             <span class="tok-p">-----------------------------------------------------------</span>
             <span class="tok-p">*:</span>                                  <span class="tok-p">[</span><span class="tok-n">normal_obstetric_care</span><span class="tok-p">]</span>
             <span class="tok-p">===========================================================</span>
+        <span class="tok-p">]]</span>
 
     <span class="tok-n">gestational_diabetes_risk</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span>
@@ -827,42 +834,77 @@ rules
 <p>TBD:</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_terminology_section"><a class="anchor" href="#_terminology_section"></a>3.11. Terminology Section</h3>
+<div class="paragraph">
+<p>The <code>terminology</code> section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the 'codes' in a DLM may be freely named, since they act as names of rules (i.e. functions), properties and so on. A typical DLM <code>terminology</code> section is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="odin"><span></span><span class="tok-nc">terminology</span>
+    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;paracetamol_dose&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;paracetamol dose&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;paracetamol base dose level per sq. m of BSA&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;chlorphenamine_dose&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;chlorphenamine dose&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;chlorphenamine base dose level per sq. m of BSA&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">...</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;staging&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Cancer staging&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Cancer staging (Ann Arbor system)&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+            <span class="tok-p">[</span><span class="tok-s">&quot;has_metastases&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
+                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Metastatic status&quot;</span><span class="tok-p">&gt;</span>
+                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Status of metastasis of cancer&quot;</span><span class="tok-p">&gt;</span>
+            <span class="tok-p">&gt;</span>
+        <span class="tok-p">&gt;</span>
+    <span class="tok-p">&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bindings_section"><a class="anchor" href="#_bindings_section"></a>3.12. Bindings Section</h3>
+<div class="paragraph tbd">
+<p>TBD:</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_decision_logic_model_dlm"><a class="anchor" href="#_the_decision_logic_model_dlm"></a>4. The Decision Logic Model (DLM)</h2>
+<h2 id="_decision_logic_module_dlm_model"><a class="anchor" href="#_decision_logic_module_dlm_model"></a>4. Decision Logic Module (DLM) Model</h2>
 <div class="sectionbody">
-<div class="paragraph tbd">
-<p>TBD: this section is a rough draft at the moment</p>
-</div>
 <div class="sect2">
 <h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
 <div class="paragraph">
-<p>The <code>org.openehr.proc.dlm</code> package defines the Decision Logic Model (DLM), a structural model of the openEHR Decision Language. It relies on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
+<p>The <code>org.openehr.proc.decision_language.dlm</code> package defines the Decision Logic Module (DLM) structure, a specialisation of the class meta-type from the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
 <div class="paragraph">
-<p>The structure of the <code>dlm</code> packages is shown below.</p>
+<p>The structure of the <code>proc.decision_language</code> packages is shown below.</p>
 </div>
-<div id="DLM_packages" class="imageblock text-center text-center">
+<div id="dl_packages" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/PROC-dlm-packages.svg" alt="PROC dlm packages" width="50%">
+<img src="UML/diagrams/PROC-decision_language-packages.svg" alt="PROC decision language packages" width="50%">
 </div>
-<div class="title">Figure 1. proc.dlm Package</div>
+<div class="title">Figure 1. <code>proc.decision_language</code> Package strucure</div>
 </div>
 <div class="paragraph">
 <p>The packages are described below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ds_module_package"><a class="anchor" href="#_ds_module_package"></a>4.2. DS Module Package</h3>
+<h3 id="_decision_logic_module_package"><a class="anchor" href="#_decision_logic_module_package"></a>4.2. Decision Logic Module Package</h3>
 <div class="paragraph">
-<p>The top-level construct of the DLM is the <code>DS_MODULE</code>, representing a standalone Decision Logic Module. It is shown below.</p>
+<p>The top-level construct of the DLM is the <code>DECISION_LOGIC_MODULE</code> meta-class, representing a standalone Decision Logic Module. It is shown below.</p>
 </div>
-<div id="DLM_module" class="imageblock text-center text-center">
+<div id="dl_dlm" class="imageblock text-center text-center">
 <div class="content">
-<img src="UML/diagrams/PROC-dlm.module.svg" alt="PROC dlm.module">
+<img src="UML/diagrams/PROC-decision_language.dlm.svg" alt="PROC decision language.dlm">
 </div>
-<div class="title">Figure 2. proc.DLM.module Package</div>
+<div class="title">Figure 2. <code>proc.decision_language.dlm</code> Package</div>
 </div>
 <div class="paragraph tbd">
 <p>TBD: to be continued.</p>
@@ -870,7 +912,7 @@ rules
 <div class="sect3">
 <h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>4.2.1. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_decision_module_class"><a class="anchor" href="#_decision_module_class"></a>4.2.1.1. DECISION_MODULE Class</h5>
+<h5 id="_decision_logic_module_class"><a class="anchor" href="#_decision_logic_module_class"></a>4.2.1.1. DECISION_LOGIC_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -880,29 +922,22 @@ rules
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DECISION_MODULE</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DECISION_LOGIC_MODULE</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>A container for a set of statements along with related BMM definitions, meta-data, terminology and bindings.</p>
+<p>Specialised kind of class that represents a Decision Logic Module (DLM).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_class_class" target="_blank" rel="noopener">BMM_CLASS</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>proxy_properties</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_property_class">BMM_PROPERTY</sup></a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Properties representing real-world objects, such as the patient state, the patient history (logical EHR) etc.</p>
-</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
@@ -939,31 +974,300 @@ rules
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_dlm_reference_section_class"><a class="anchor" href="#_dlm_reference_section_class"></a>4.2.1.2. DLM_REFERENCE_SECTION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DLM_REFERENCE_SECTION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specialised feature group used in DLM to represent the <code>reference</code> section.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_feature_group_class" target="_blank" rel="noopener">BMM_FEATURE_GROUP</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a><br>
+{default&#160;=&#160;"reference"}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this feature group; defaults to 'reference'.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_constant_class">BMM_CONSTANT</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Set of features in this group.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="sect4">
+<h5 id="_dlm_input_section_class"><a class="anchor" href="#_dlm_input_section_class"></a>4.2.1.3. DLM_INPUT_SECTION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DLM_INPUT_SECTION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specialised feature group used in DLM to represent the <code>input</code> section. Contains only <code>SUBJECT_TRACKED_VARIABLE</code> members.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_feature_group_class" target="_blank" rel="noopener">BMM_FEATURE_GROUP</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a><br>
+{default&#160;=&#160;"input"}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this feature group; defaults to 'input'.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_tracked_variable_class">TRACKED_VARIABLE</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Set of features in this group.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sect2">
-<h3 id="_ds_rules_package"><a class="anchor" href="#_ds_rules_package"></a>4.3. DS Rules Package</h3>
-<div class="paragraph">
-<p>Specific Rule types are defined as descendants of <code>DS_RULE</code>, which may be understood as a pseudo form of the <code>BMM_FUNCTION</code> meta-type, i.e. a particular kind of function with a <code><em>body</em></code>. The following UML view illustrates.</p>
+<div class="sect4">
+<h5 id="_tracked_variable_class"><a class="anchor" href="#_tracked_variable_class"></a>4.2.1.4. TRACKED_VARIABLE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRACKED_VARIABLE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specialised property that represents a 'tracked variable' within the DLM <code>input</code> section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_unitary_property_class" target="_blank" rel="noopener">BMM_UNITARY_PROPERTY</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ranges</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_range_def_class">RANGE_DEF</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Map of variable range definitions.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If set, maximum age of a real-world snapshot of this variable&#8217;s value.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_type_class" target="_blank" rel="noopener">BMM_SIMPLE_TYPE</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Declared or inferred static type of the entity.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong> (<br>
+a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/LANG/latest/bmm.html#_bmm_interval_value_class" target="_blank" rel="noopener">BMM_INTERVAL_VALUE</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Function to return the interval of a named range.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>in_range</strong> (<br>
+a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Determine if the last read value of the variable is in the named range.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_of</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return the name of the range within which the last read value of the variable resides.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="paragraph">
-<p>Some specific rule types are described below.</p>
+<div class="sect4">
+<h5 id="_range_def_class"><a class="anchor" href="#_range_def_class"></a>4.2.1.5. RANGE_DEF Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RANGE_DEF</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Definition of a range of a tracked variable in terms of an Interval of an appropriate type.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this range.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code><a href="/releases/LANG/latest/bmm.html#_bmm_interval_value_class" target="_blank" rel="noopener">BMM_INTERVAL_VALUE</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Interval specification for the range.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sect3">
-<h4 id="_condition_chain_rule"><a class="anchor" href="#_condition_chain_rule"></a>4.3.1. Condition Chain Rule</h4>
-<div class="paragraph">
-<p>A DS <em>condition chain rule</em> is one that consists of a chain of condition / result pairs and an 'else' result to cover a failure to match any condition. It is illustrated in the following UML view.</p>
+<div class="sect4">
+<h5 id="_dlm_rules_section_class"><a class="anchor" href="#_dlm_rules_section_class"></a>4.2.1.6. DLM_RULES_SECTION Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DLM_RULES_SECTION</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specialised feature group used in DLM to represent the <code>rules</code> section. Contains only <code>DLM_RULE</code> members.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_feature_group_class" target="_blank" rel="noopener">BMM_FEATURE_GROUP</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a><br>
+{default&#160;=&#160;"rules"}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this feature group; defaults to 'rules'.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_dlm_rule_class">DLM_RULE</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Set of features in this group.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="sect4">
+<h5 id="_dlm_rule_class"><a class="anchor" href="#_dlm_rule_class"></a>4.2.1.7. DLM_RULE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>DLM_RULE</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specialised form of <code>BMM_FUNCTION</code> that acts as a DLM rule.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_function_class" target="_blank" rel="noopener">BMM_FUNCTION</a></code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sect3">
-<h4 id="_case_rule"><a class="anchor" href="#_case_rule"></a>4.3.2. Case Rule</h4>
-<div class="paragraph">
-<p>A DS <em>case rule</em> is one that obtains a value from an expression and determines the Result based on the interval in which the value falls. It is the equivalent of a 'case' statement in many languages. The match criterion on each branch of the rule is specified in terms of <code>C_PRIMITIVE</code> constraint types, from the <a href="https://specifications.openehr.org/releases/AM/latest/index">openEHR AOM2 model</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>4.3.3. Class Descriptions</h4>
-
 </div>
 </div>
 </div>

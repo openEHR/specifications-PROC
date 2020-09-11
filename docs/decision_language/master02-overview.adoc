@@ -39,6 +39,7 @@ TBD: this section only very rough for now.
 
 * an ability to use externally defined information models that supply types that may be used in DL statements.
 
-
 == Execution Model
 
+[.tbd]
+TBD: 

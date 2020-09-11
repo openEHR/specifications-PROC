@@ -1,0 +1,28 @@
+=== DLM_INPUT_SECTION Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DLM_INPUT_SECTION*
+
+h|*Description*
+2+a|Specialised feature group used in DLM to represent the `input` section. Contains only `SUBJECT_TRACKED_VARIABLE` members.
+
+h|*Inherit*
+2+|`link:/releases/LANG/{proc_release}/bmm.html#_bmm_feature_group_class[BMM_FEATURE_GROUP^]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(redefined)*
+|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^] +
+{default{nbsp}={nbsp}"input"}`
+a|Name of this feature group; defaults to 'input'.
+
+h|*0..1 +
+(redefined)*
+|*features*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_tracked_variable_class,TRACKED_VARIABLE>>>`
+a|Set of features in this group.
+|===

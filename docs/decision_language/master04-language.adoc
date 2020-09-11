@@ -285,6 +285,7 @@ The above declaration allows the use of the predefined `in_range` function, whic
 [source,kotlin]
 ----
     Result :=
+    [[
         ========================================================
         systolic_blood_pressure
             .in_range ([critical_high]):           [emergency],
@@ -294,6 +295,7 @@ The above declaration allows the use of the predefined `in_range` function, whic
         --------------------------------------------------------
         *:                                         [monitor]
         ========================================================        
+    ]]
 ----
 
 === Null Values
@@ -308,7 +310,7 @@ input
 
 == Rules Section
 
-The `rules` section contains various kinds of rules, expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^]. 
+The DLM `rules` section is the section of primary importance, since it contains the rules for which a DLM is created. DLm rules are formally expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^]. 
 
 This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The `Boolean` type may be omitted, since all conditions have this as their formal type. The following is an example.
 
@@ -338,6 +340,7 @@ rules -- Main
 
     hypertension_risk: Terminology_term
         Result :=
+        [[
             ===========================================================
             has_pre_eclampsia or 
             has_eclampsia:                      [obstetric_emergency],
@@ -349,6 +352,7 @@ rules -- Main
             -----------------------------------------------------------
             *:                                  [normal_obstetric_care]
             ===========================================================
+        ]]
             
     gestational_diabetes_risk: Boolean
         Result :=
@@ -363,3 +367,38 @@ rules -- Main
 
 [.tbd]
 TBD:
+
+== Terminology Section
+
+The `terminology` section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the 'codes' in a DLM may be freely named, since they act as names of rules (i.e. functions), properties and so on. A typical DLM `terminology` section is shown below.
+
+[source,odin]
+----
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["paracetamol_dose"] = <
+                text = <"paracetamol dose">
+                description = <"paracetamol base dose level per sq. m of BSA">
+            >
+            ["chlorphenamine_dose"] = <
+                text = <"chlorphenamine dose">
+                description = <"chlorphenamine base dose level per sq. m of BSA">
+            >
+            ...
+            ["staging"] = <
+                text = <"Cancer staging">
+                description = <"Cancer staging (Ann Arbor system)">
+            >
+            ["has_metastases"] = <
+                text = <"Metastatic status">
+                description = <"Status of metastasis of cancer">
+            >
+        >
+    >
+----
+
+== Bindings Section
+
+[.tbd]
+TBD: 

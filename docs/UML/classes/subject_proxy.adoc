@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*functions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^],<<_sp_tracked_value_class,SP_TRACKED_VALUE>>>`
+|*functions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^],link:/releases/PROC/{proc_release}/decision_language.html#_tracked_variable_class[TRACKED_VARIABLE^]>`
 a|List of functions defined in this class.
 |===
