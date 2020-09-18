@@ -605,13 +605,19 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.6.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-44" target="_blank" rel="noopener">SPECPROC-44</a>. Correct <code>PLAN_TIME_ORIGIN</code> enum order and add values. See <a href="#_plan_time_origin_enumeration">Section 5.6.1.4</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-43" target="_blank" rel="noopener">SPECPROC-43</a>. Add inheritance to separate <code>CALLBACK_NOTIFICATION</code> from other Plan Event types;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation;<br>
  <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>; add enumeration Integer values; improve text.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
  M Kejžar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>29 May 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">29 May 2020</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.5.0</strong></p></th>
@@ -3657,16 +3663,22 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">current_task_plan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_work_plan</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Time offset is relative to the moment of activation of the Task Plan within which the offset occurs.</p>
+<p>Time offset is relative to the moment of activation of the Work Plan within which the offset occurs.</p>
+</div>
+<div class="paragraph">
+<p>Integer value = 0.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">current_work_plan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_task_plan</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Time offset is relative to the moment of activation of the Work Plan within which the offset occurs.</p>
+<p>Time offset is relative to the moment of activation of the Task Plan within which the offset occurs.</p>
+</div>
+<div class="paragraph">
+<p>Integer value = 1.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3674,6 +3686,9 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">inner_repeat_section</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Time offset is relative to the moment of activation of the innermost Repeat Section (Task Group or Task with a <code>REPEAT_SPEC</code>) within which the offset occurs.</p>
+</div>
+<div class="paragraph">
+<p>Integer value = 2.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3681,6 +3696,9 @@ The following UML diagram illustrates.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">outer_repeat_section</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Time offset is relative to the moment of activation of the outermost Repeat Section (Task Group or Task with a <code>REPEAT_SPEC</code>) within which the offset occurs.</p>
+</div>
+<div class="paragraph">
+<p>Integer value = 3.</p>
 </div></div></td>
 </tr>
 </tbody>

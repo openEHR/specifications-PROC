@@ -13,18 +13,26 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|
+|current_work_plan
+a|Time offset is relative to the moment of activation of the Work Plan within which the offset occurs.
+
+Integer value = 0.
+
+h|
 |current_task_plan
 a|Time offset is relative to the moment of activation of the Task Plan within which the offset occurs.
 
-h|
-|current_work_plan
-a|Time offset is relative to the moment of activation of the Work Plan within which the offset occurs.
+Integer value = 1.
 
 h|
 |inner_repeat_section
 a|Time offset is relative to the moment of activation of the innermost Repeat Section (Task Group or Task with a `REPEAT_SPEC`) within which the offset occurs.
 
+Integer value = 2.
+
 h|
 |outer_repeat_section
 a|Time offset is relative to the moment of activation of the outermost Repeat Section (Task Group or Task with a `REPEAT_SPEC`) within which the offset occurs.
+
+Integer value = 3.
 |===
