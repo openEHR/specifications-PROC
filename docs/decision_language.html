@@ -57,10 +57,10 @@
 <li><a href="#_input_section">3.8. Input Section</a>
 <ul class="sectlevel3">
 <li><a href="#_subject_variable_naming">3.8.1. Subject Variable Naming</a></li>
-<li><a href="#_currency">3.8.2. Currency</a></li>
-<li><a href="#_time_window">3.8.3. Time-window</a></li>
-<li><a href="#_variable_ranges">3.8.4. Variable Ranges</a></li>
-<li><a href="#_null_values">3.8.5. Null Values</a></li>
+<li><a href="#_unavailable_null_values">3.8.2. Unavailable (null) Values</a></li>
+<li><a href="#_currency">3.8.3. Currency</a></li>
+<li><a href="#_time_window">3.8.4. Time-window</a></li>
+<li><a href="#_variable_ranges">3.8.5. Variable Ranges</a></li>
 </ul>
 </li>
 <li><a href="#_rules_section">3.9. Rules Section</a></li>
@@ -69,7 +69,7 @@
 <li><a href="#_bindings_section">3.12. Bindings Section</a></li>
 </ul>
 </li>
-<li><a href="#_decision_logic_module_dlm_model">4. Decision Logic Module (DLM) Model</a>
+<li><a href="#_dlm_model">4. Decision Logic Module (DLM) Model</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">4.1. Overview</a></li>
 <li><a href="#_decision_logic_module_package">4.2. Decision Logic Module Package</a>
@@ -192,7 +192,7 @@
 <p><a href="https://specifications.openehr.org/tickets/SPECPROC-41" target="_blank" rel="noopener">SPECPROC-41</a>. Add Decision Language specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>11 Sep 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>27 Sep 2020</p></td>
 </tr>
 </tbody>
 </table>
@@ -582,13 +582,16 @@ rules
 <div class="sect2">
 <h3 id="_input_section"><a class="anchor" href="#_input_section"></a>3.8. Input Section</h3>
 <div class="paragraph">
-<p>The <code>input</code> section contains declarations of all <em>subject variables</em> used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:</p>
+<p>The <code>input</code> section contains declarations of all <em>tracked subject variables</em> used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
     <span class="tok-n">heart_rate</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Although a subject variable declaration appears to declare a simple property of a type such as a <code>Quantity</code>, in fact it creates an instance of a special proxy object described below in <a href="#_dlm_model">Section 4</a>, that provides access to snapshot values of the variable over time, as well as other 'smart' facilities including null-value detection and range conversion, described in the sections below.</p>
 </div>
 <div class="sect3">
 <h4 id="_subject_variable_naming"><a class="anchor" href="#_subject_variable_naming"></a>3.8.1. Subject Variable Naming</h4>
@@ -603,7 +606,33 @@ rules
 </div>
 </div>
 <div class="sect3">
-<h4 id="_currency"><a class="anchor" href="#_currency"></a>3.8.2. Currency</h4>
+<h4 id="_unavailable_null_values"><a class="anchor" href="#_unavailable_null_values"></a>3.8.2. Unavailable (null) Values</h4>
+<div class="paragraph">
+<p>One of the facilities created by a declaration of the form <code>identifier: Type</code> are subordinate predicate functions to detect if a value is available for the variable, i.e. if it is not logically null (i.e. void). Lack of a value is caused either by the true absence of the data in back-end systems (e.g. there really is no recent blood pressure available) or a technical failure to either query the appropriate system, or to connect to a system that does in fact contain the data of interest.</p>
+</div>
+<div class="paragraph">
+<p>It should be noted that within the overall conceptual model of Process-based computing in openEHR, that the common problem of a failure to locate a data item in back-end systems causing a live user to be asked to supply it is assumed to be addressed outside the DLM itself. This means that the simple lack of a value, say a recent vital sign, in back-end systems does not need to be compensated for by logic (including null checks) in a DLM itself - it will already have been done in the Subject Proxy service. Consequently, if a variable value is unavailable, this already takes into account attempts to obtain a value from a user.</p>
+</div>
+<div class="paragraph">
+<p>The general case is that any subject variable might not have a value available for it, or at least a sufficiently <em>current</em> value (see next section for the concept of 'currency') at the moment of a particular rule invocation (remembering that the same rule might be invoked repeatedly over time). This means that the simple (primary variable) reference <code>systolic_blood_pressure</code> may in fact return a null value. If rules containing primary variable references such as <code>systolic_blood_pressure</code> are written under a non-null assumption, a null value will cause an exception of type <code>no available value</code>, and the original rule invocation will fail.</p>
+</div>
+<div class="paragraph">
+<p>In most cases this is likely to be the preferred style of rule expression, since it makes rules simpler and clearer. However, in some cases, it may be known a priori that certain variables are only sometimes likely to be available, and if so, they are used, but if not, no exception is generated. This may be achieved by calling the subordinate predicate <code>is_available</code> as a guard on the direct access, as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">rules</span>
+
+    <span class="tok-n">is_hypertensive</span><span class="tok-p">:</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">.</span><span class="tok-n">is_available</span> <span class="tok-n">and</span> <span class="tok-n">then</span> <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">.</span><span class="tok-n">in_range</span><span class="tok-p">([</span><span class="tok-n">high</span><span class="tok-p">])</span> <span class="tok-n">or</span>  <span class="tok-p">...</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above, the semi-strict Boolean <code>operator</code> ensures the second reference to <code>systolic_blood_pressure</code> will only occur if <code>systolic_blood_pressure.is_available</code> returns True.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_currency"><a class="anchor" href="#_currency"></a>3.8.3. Currency</h4>
 <div class="paragraph">
 <p>The declaration may include a number of other elements. Firstly, since each such variable represents a fact about the subject in the real world, such as a patient heart-rate or diagnosis, rather than just being a local variable, the declaration may state a <em>currency</em>, in terms of a temporal duration. This specifies how recent the value obtained from the external world (the 'sample') must be to be valid from the point of view of the DLM. Currency may be understood as the converse of 'staleness', that is, a variable sample that must be say 1 hour or less old is understood as stale after 1 hour.</p>
 </div>
@@ -650,7 +679,7 @@ rules
 </div>
 </div>
 <div class="sect3">
-<h4 id="_time_window"><a class="anchor" href="#_time_window"></a>3.8.3. Time-window</h4>
+<h4 id="_time_window"><a class="anchor" href="#_time_window"></a>3.8.4. Time-window</h4>
 <div class="paragraph">
 <p>Another aspect of a subject variable that can be specified is termed <em>time-window</em>, meaning an interval of real world time within which the state or event that the variable represents occurred. For example, assume the variable <code>previous_history_of_eclampsia</code> declared in an obstetric DLM is intended to represent 'eclampsia experienced by the subject in any previous pregnancy (i.e. not the current pregnancy)'. Another guideline might define a variable <code>no_cancer_last_5y</code> to mean that no recurrence of the cancer addressed by the DLM had occurred within the last 5 years.</p>
 </div>
@@ -705,7 +734,7 @@ rules
 </div>
 </div>
 <div class="sect3">
-<h4 id="_variable_ranges"><a class="anchor" href="#_variable_ranges"></a>3.8.4. Variable Ranges</h4>
+<h4 id="_variable_ranges"><a class="anchor" href="#_variable_ranges"></a>3.8.5. Variable Ranges</h4>
 <div class="paragraph">
 <p>A ubiquitous need within clinical guidelines and rules is to be able to refer to a continuous variable such as vital signs and most lab test values as being in a designated range. Such ranges may be the usual ones published e.g. the normal and high ranges for lipids in a cholesterol test for adults, or ranges defined by the DLM.</p>
 </div>
@@ -755,17 +784,34 @@ rules
     <span class="tok-p">]]</span></code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_null_values"><a class="anchor" href="#_null_values"></a>3.8.5. Null Values</h4>
 <div class="paragraph">
-<p>A subject variable declaration of the form <code>identifier: Type</code> means that the variable cannot be null, i.e. it must always be <em>attached</em>. A variable can be declared as <em>nullable</em> to indicate that no value can be found for it in the external world, i.e. that it may be <em>undefined</em>. This is done via the appending of the '?' symbol to the type, as in some programming languages, as per the following example.</p>
+<p>Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a <em>discriminator</em>. The following shows an example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
-    <span class="tok-n">date_of_decease</span><span class="tok-p">:</span> <span class="tok-n">Date</span><span class="tok-p">?</span></code></pre>
+    <span class="tok-n">PaO2_FiO2_ratio</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
+        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
+        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
+<span class="tok-na">            [SI]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
+<span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">400</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">300</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">399</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">200</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">299</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">199</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
+             <span class="tok-p">}</span>
+<span class="tok-na">            [metric]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
+<span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
+<span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
+<span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">26.6</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">39.8</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
+<span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
+<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|</span>
+             <span class="tok-p">}</span>
+        <span class="tok-p">}</span></code></pre>
 </div>
+</div>
+<div class="paragraph tbd">
+<p>TBD: exact data structure to handle discriminator.</p>
 </div>
 </div>
 </div>
@@ -782,21 +828,21 @@ rules
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">rules</span> <span class="tok-p">--</span> <span class="tok-n">Conditions</span>
 
     <span class="tok-n">her2_positive</span><span class="tok-p">:</span>
-        <span class="tok-n">her2_expression</span> <span class="tok-p">=</span> <span class="tok-p">[</span><span class="tok-n">positive</span><span class="tok-p">]</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">her2_expression</span> <span class="tok-p">=</span> <span class="tok-p">[</span><span class="tok-n">positive</span><span class="tok-p">]</span>
 
     <span class="tok-n">non_class_I_heart_failure</span><span class="tok-p">:</span>
-        <span class="tok-n">has_diagnosis</span> <span class="tok-p">({[</span><span class="tok-n">heart_failure_class_II</span><span class="tok-p">],</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_diagnosis</span> <span class="tok-p">({[</span><span class="tok-n">heart_failure_class_II</span><span class="tok-p">],</span>
 <span class="tok-na">                    [heart_failure_class_III]</span><span class="tok-p">,</span>
 <span class="tok-na">                    [heart_failure_class_IV]</span><span class="tok-p">})</span>
 
     <span class="tok-n">anthracyclines_contraindicated</span><span class="tok-p">:</span>
-        <span class="tok-n">has_diagnosis</span> <span class="tok-p">([</span><span class="tok-n">transmural_MI</span><span class="tok-p">])</span> <span class="tok-n">or</span>
-        <span class="tok-n">ejection_fraction</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">low</span><span class="tok-p">])</span> <span class="tok-n">or</span>
-        <span class="tok-n">non_class_I_heart_failure</span></code></pre>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_diagnosis</span> <span class="tok-p">([</span><span class="tok-n">transmural_MI</span><span class="tok-p">])</span> <span class="tok-n">or</span>
+            <span class="tok-n">ejection_fraction</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">low</span><span class="tok-p">])</span> <span class="tok-n">or</span>
+            <span class="tok-n">non_class_I_heart_failure</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The primary rules may be included in a separate <code>rules</code> group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an exmaple.</p>
+<p>The primary rules may be included in a separate <code>rules</code> group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -875,7 +921,7 @@ rules
 </div>
 </div>
 <div class="sect1">
-<h2 id="_decision_logic_module_dlm_model"><a class="anchor" href="#_decision_logic_module_dlm_model"></a>4. Decision Logic Module (DLM) Model</h2>
+<h2 id="_dlm_model"><a class="anchor" href="#_dlm_model"></a>4. Decision Logic Module (DLM) Model</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
@@ -932,7 +978,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -955,20 +1001,7 @@ rules
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>create_bmm_class</strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generate a <code>BMM_CLASS</code> structure in which:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><em>constants</em></code> = <code><em>this.definitions</em></code>;</p>
-</li>
-<li>
-<p><code><em>this.conditions</em></code> are converted to <code>Boolean</code>-returning functions with no parameters whose <code><em>body</em></code> is a single assignment statement of the form <code>Result</code> = <code>DL_CONDITION_DEF.<em>definition</em></code>;</p>
-</li>
-<li>
-<p><code><em>this.rules</em></code> are converted to <code>Boolean</code>-returning functions with no parameters whose <code><em>body</em></code> consists of the <code>DL_CONDITION_RULE.<em>body</em></code>.</p>
-</li>
-</ul>
+<p>Generate a <code>BMM_CLASS</code> structure whose feature groups correspond to the formal sections of a DLM, instantiated using the <code>DLM_XXX_SECTION</code> classes.</p>
 </div></div></td>
 </tr>
 </tbody>

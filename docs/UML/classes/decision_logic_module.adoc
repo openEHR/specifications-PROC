@@ -9,7 +9,7 @@ h|*Description*
 2+a|Specialised kind of class that represents a Decision Logic Module (DLM).
 
 h|*Inherit*
-2+|`link:/releases/BASE/{proc_release}/resource.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{proc_release}/bmm.html#_bmm_simple_class_class[BMM_SIMPLE_CLASS^]`
+2+|`link:/releases/RM/{proc_release}/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{proc_release}/bmm.html#_bmm_simple_class_class[BMM_SIMPLE_CLASS^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -24,9 +24,5 @@ h|*Functions*
 
 h|*0..1*
 |*create_bmm_class*
-a|Generate a `BMM_CLASS` structure in which:
-
-* `_constants_` = `_this.definitions_`;
-* `_this.conditions_` are converted to `Boolean`-returning functions with no parameters whose `_body_` is a single assignment statement of the form `Result` = `DL_CONDITION_DEF._definition_`;
-* `_this.rules_` are converted to `Boolean`-returning functions with no parameters whose `_body_` consists of the `DL_CONDITION_RULE._body_`.
+a|Generate a `BMM_CLASS` structure whose feature groups correspond to the formal sections of a DLM, instantiated using the `DLM_XXX_SECTION` classes.
 |===

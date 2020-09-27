@@ -1,3 +1,4 @@
+
 = Decision Logic Modules (DLM)
 
 The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following structure.
@@ -7,10 +8,10 @@ dlm <form> <identifier>
 
 [language
     <lang and translations meta-data, as for archetypes>]
-    
+
 [description
     <descriptive meta-data>]
-    
+
 [use_model
     <reference model ids; defaults to openEHR Foundation & Base types>]
 
@@ -20,22 +21,22 @@ dlm <form> <identifier>
 
 [preconditions
     <conditions that act as pre-conditions for this module>]
-    
+
 [reference
     <constant definitions>]
-   
+
 input
     <subject variable declarations>
-  
+
 rules
     <conditions and rules expressed as EL functions>
-    
+
 [output
     <output variable declarations>]
-    
+
 [terminology
     <symbol definitions in archetype format>]
-    
+
 [bindings
     <local bindings of symbols to data set paths>]
 ----
@@ -79,7 +80,7 @@ The following shows the identification line for a guideline:
 dlm guideline chadvasc2.v1.0.5
 ----
 
-A reference to a DLM may be effected by quoting the whole identifier, or a form with the minor and / or patch parts of the version missing. Either of these forms identify the most recent matching DLm available. For example, the reference `NHS-chops14.v4` identifies whatever the most recent minor version of the `v4` major version of the NHS-chops DLM is locally available. 
+A reference to a DLM may be effected by quoting the whole identifier, or a form with the minor and / or patch parts of the version missing. Either of these forms identify the most recent matching DLm available. For example, the reference `NHS-chops14.v4` identifies whatever the most recent minor version of the `v4` major version of the NHS-chops DLM is locally available.
 
 == Language and Description Sections
 
@@ -89,7 +90,7 @@ The `language` and `description` sections are the same as for openEHR archetypes
 ----
 language
     original_language = <[ISO_639-1::en]>
-    
+
 description
     lifecycle_state = <"stable">
     original_author = <
@@ -142,7 +143,7 @@ The `reference` section of a DLM contains what might be thought of constant defi
 reference
     paracetamol_dose: Quantity = 1g
     chlorphenamine_dose: Quantity = 10mg
-    prednisolone_dose_per_m2: Quantity = 40mg   
+    prednisolone_dose_per_m2: Quantity = 40mg
     rituximab_dose_per_m2: Quantity = 375mg
     doxorubicin_dose_per_m2: Quantity = 50mg
     vincristine_dose_per_m2: Quantity = 1.4mg
@@ -153,13 +154,15 @@ reference
 
 == Input Section
 
-The `input` section contains declarations of all _subject variables_ used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:
+The `input` section contains declarations of all _tracked subject variables_ used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:
 
 [source,kotlin]
 ----
 input
     heart_rate: Quantity
 ----
+
+Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a special proxy object described below in <<_dlm_model>>, that provides access to snapshot values of the variable over time, as well as other 'smart' facilities including null-value detection and range conversion, described in the sections below.
 
 === Subject Variable Naming
 
@@ -168,6 +171,26 @@ The naming of a subject variable is important, and should reflect its intended d
 The naming is important in another way. Generally a subject variable should reflect a fact or assertion about the subject in reality rather than a purely epistemic view relating to an information system. For example a variable `is_type1_diabetic` is intended to reflect the patient's real diabetic status, not just the knowledge of the local hospital EMR system of whether the patient is diabetic. Such variables may be termed 'ontic' i.e. reflecting the real world, rather than reflecting states of knowledge of some information source. The reason for using ontic variables is to allow DLM authors to define rules in terms of true clinical reality based on reliable previously established facts, rather than continually having to compensate for missing or unreliable knowledge within a guideline.
 
 Epistemic variables may of course be defined, e.g. the variable `has_diabetes_diagnosis` directly reflects the idea that the presence of a diagnosis of a condition is distinct from the true fact of having the condition. These are typically used when the purpose of the guideline is to establish the presence or otherwise of the condition named in such variables.
+
+=== Unavailable (null) Values
+
+One of the facilities created by a declaration of the form `identifier: Type` are subordinate predicate functions to detect if a value is available for the variable, i.e. if it is not logically null (i.e. void). Lack of a value is caused either by the true absence of the data in back-end systems (e.g. there really is no recent blood pressure available) or a technical failure to either query the appropriate system, or to connect to a system that does in fact contain the data of interest.
+
+It should be noted that within the overall conceptual model of Process-based computing in openEHR, that the common problem of a failure to locate a data item in back-end systems causing a live user to be asked to supply it is assumed to be addressed outside the DLM itself. This means that the simple lack of a value, say a recent vital sign, in back-end systems does not need to be compensated for by logic (including null checks) in a DLM itself - it will already have been done in the Subject Proxy service. Consequently, if a variable value is unavailable, this already takes into account attempts to obtain a value from a user.
+
+The general case is that any subject variable might not have a value available for it, or at least a sufficiently _current_ value (see next section for the concept of 'currency') at the moment of a particular rule invocation (remembering that the same rule might be invoked repeatedly over time). This means that the simple (primary variable) reference `systolic_blood_pressure` may in fact return a null value. If rules containing primary variable references such as `systolic_blood_pressure` are written under a non-null assumption, a null value will cause an exception of type `no available value`, and the original rule invocation will fail.
+
+In most cases this is likely to be the preferred style of rule expression, since it makes rules simpler and clearer. However, in some cases, it may be known a priori that certain variables are only sometimes likely to be available, and if so, they are used, but if not, no exception is generated. This may be achieved by calling the subordinate predicate `is_available` as a guard on the direct access, as follows.
+
+[source,kotlin]
+----
+rules
+
+    is_hypertensive:
+        Result := systolic_blood_pressure.is_available and then systolic_blood_pressure.in_range([high]) or  ...
+----
+
+In the above, the semi-strict Boolean `operator` ensures the second reference to `systolic_blood_pressure` will only occur if `systolic_blood_pressure.is_available` returns True.
 
 === Currency
 
@@ -186,7 +209,7 @@ input
     date_of_birth: Date
 
     |
-    | weight changes over a period of days 
+    | weight changes over a period of days
     |
     weight: Quantity
         currency = 3 days
@@ -234,13 +257,13 @@ input
         time_window = tw_current_episode
 ----
 
-Time window is typically used to ensure that for a kind of event, condition or other characteristic that may occur multiply in the subject lifetime, only occurrences from a particular period are included or excluded. For example, the following declarations ensure that the variable `staging` and `has_metastases` refer to the staging and metastases of the current eposide of cancer, not some previous one. 
+Time window is typically used to ensure that for a kind of event, condition or other characteristic that may occur multiply in the subject lifetime, only occurrences from a particular period are included or excluded. For example, the following declarations ensure that the variable `staging` and `has_metastases` refer to the staging and metastases of the current eposide of cancer, not some previous one.
 
 [source,kotlin]
 ----
 input
 
-    staging: Terminology_term «ann_arbor_staging» 
+    staging: Terminology_term «ann_arbor_staging»
         time_window = tw_current_episode
 
     has_metastases: Boolean
@@ -294,23 +317,41 @@ The above declaration allows the use of the predefined `in_range` function, whic
             .in_range ({[high], [very_high]}):     [high_risk],
         --------------------------------------------------------
         *:                                         [monitor]
-        ========================================================        
+        ========================================================
     ]]
 ----
 
-=== Null Values
-
-A subject variable declaration of the form `identifier: Type` means that the variable cannot be null, i.e. it must always be _attached_. A variable can be declared as _nullable_ to indicate that no value can be found for it in the external world, i.e. that it may be _undefined_. This is done via the appending of the '?' symbol to the type, as in some programming languages, as per the following example.
+Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a _discriminator_. The following shows an example.
 
 [source,kotlin]
 ----
 input
-    date_of_decease: Date?
+    PaO2_FiO2_ratio: Quantity
+        currency = 1 min
+        ranges = {
+            [SI]: {
+                [normal]:         |≥400 mm[Hg]|,
+                [low]:            |300 mm[Hg] .. 399 mm[Hg]|,
+                [very_low]:       |200 mm[Hg] .. 299 mm[Hg]|,
+                [extremely_low]:  |100 mm[Hg] .. 199 mm[Hg]|,
+                [critical_low]:   |<100 mm[Hg]|
+             }
+            [metric]: {
+                [normal]:         |≥53 kPa|,
+                [low]:            |39.9 kPa .. 53 kPa|,
+                [very_low]:       |26.6 kPa .. 39.8 kPa|,
+                [extremely_low]:  |13.3 kPa .. 26.5 kPa|,
+                [critical_low]:   |<13.3 kPa|
+             }
+        }
 ----
+
+[.tbd]
+TBD: exact data structure to handle discriminator.
 
 == Rules Section
 
-The DLM `rules` section is the section of primary importance, since it contains the rules for which a DLM is created. DLm rules are formally expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^]. 
+The DLM `rules` section is the section of primary importance, since it contains the rules for which a DLM is created. DLm rules are formally expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^].
 
 This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The `Boolean` type may be omitted, since all conditions have this as their formal type. The following is an example.
 
@@ -319,20 +360,20 @@ This section may be typically divided into two or more groups for authoring conv
 rules -- Conditions
 
     her2_positive:
-        her2_expression = [positive]
+        Result := her2_expression = [positive]
 
     non_class_I_heart_failure:
-        has_diagnosis ({[heart_failure_class_II],
+        Result := has_diagnosis ({[heart_failure_class_II],
                     [heart_failure_class_III],
                     [heart_failure_class_IV]})
-                        
+
     anthracyclines_contraindicated:
-        has_diagnosis ([transmural_MI]) or
-        ejection_fraction.in_range ([low]) or
-        non_class_I_heart_failure
+        Result := has_diagnosis ([transmural_MI]) or
+            ejection_fraction.in_range ([low]) or
+            non_class_I_heart_failure
 ----
 
-The primary rules may be included in a separate `rules` group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an exmaple.
+The primary rules may be included in a separate `rules` group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an example.
 
 [source,kotlin]
 ----
@@ -342,7 +383,7 @@ rules -- Main
         Result :=
         [[
             ===========================================================
-            has_pre_eclampsia or 
+            has_pre_eclampsia or
             has_eclampsia:                      [obstetric_emergency],
             -----------------------------------------------------------
             previous_obstetric_hypertension or
@@ -353,7 +394,7 @@ rules -- Main
             *:                                  [normal_obstetric_care]
             ===========================================================
         ]]
-            
+
     gestational_diabetes_risk: Boolean
         Result :=
             bmi.in_range ([high]) or
@@ -401,4 +442,4 @@ terminology
 == Bindings Section
 
 [.tbd]
-TBD: 
+TBD:

@@ -15,6 +15,8 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/decision_language.html#_dlm_input_section_class[DLM_INPUT_SECTION^]
 [.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_dlm_preconditions_section_class[DLM_PRECONDITIONS_SECTION^]
+[.xcode]
 * link:/releases/PROC/{proc_release}/decision_language.html#_dlm_reference_section_class[DLM_REFERENCE_SECTION^]
 [.xcode]
 * link:/releases/PROC/{proc_release}/decision_language.html#_dlm_rule_class[DLM_RULE^]

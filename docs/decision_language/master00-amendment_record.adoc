@@ -9,7 +9,7 @@
 |[[latest_issue]]0.6.0
 |{spec_tickets}/SPECPROC-41[SPECPROC-41^]. Add Decision Language specification.
 |T Beale
-|[[latest_issue_date]]11 Sep 2020
+|[[latest_issue_date]]27 Sep 2020
 
 |===
 
