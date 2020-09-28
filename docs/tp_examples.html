@@ -1034,37 +1034,37 @@ input
 rules -- Conditions
 
     er_negative:
-        estrogen_receptor = [negative]
+        Result := estrogen_receptor = [negative]
 
     er_positive:
-        estrogen_receptor = [positive]
+        Result := estrogen_receptor = [positive]
 
     pr_negative:
-        progesterone_receptor = [negative]
+        Result := progesterone_receptor = [negative]
 
     pr_positive:
-        progesterone_receptor = [positive]
+        Result := progesterone_receptor = [positive]
 
     her2_negative:
-        her2_expression = [negative]
+        Result := her2_expression = [negative]
 
     her2_positive:
-        her2_expression = [positive]
+        Result := her2_expression = [positive]
 
     non_class_I_heart_failure:
-        has_diagnosis ({[heart_failure_class_II],
+        Result := has_diagnosis ({[heart_failure_class_II],
                     [heart_failure_class_III],
                     [heart_failure_class_IV]})
 
     anthracyclines_contraindicated:
-        has_diagnosis ([transmural_MI]) or
-        ejection_fraction.in_range ([low]) or
-        non_class_I_heart_failure
+        Result := has_diagnosis ([transmural_MI]) or
+            ejection_fraction.in_range ([low]) or
+            non_class_I_heart_failure
 
     taxanes_contraindicated:
-        is_type1_diabetic or
-        has_allergy ([taxanes]) or
-        has_intolerance ([taxanes])
+        Result := is_type1_diabetic or
+            has_allergy ([taxanes]) or
+            has_intolerance ([taxanes])
 
 rules -- Guideline
 
