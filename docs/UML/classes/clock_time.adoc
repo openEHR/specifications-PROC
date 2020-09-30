@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_time_class[Iso8601_time^]`
+|*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_time_class[Iso8601_time^]`
 a|Time expressed as a clock time within a day.
 |===

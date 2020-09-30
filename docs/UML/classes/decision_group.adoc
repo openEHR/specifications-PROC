@@ -23,6 +23,6 @@ a|Reference to an Expression Language terminal that may be a function call or pr
 
 h|*0..1 +
 (redefined)*
-|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_decision_branch_class,DECISION_BRANCH>>>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_decision_branch_class,DECISION_BRANCH>>>`
 a|Set of branches in this Decision Group.
 |===

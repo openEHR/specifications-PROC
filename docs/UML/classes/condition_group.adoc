@@ -19,6 +19,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_condition_branch_class,CONDITION_BRANCH>>>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_condition_branch_class,CONDITION_BRANCH>>>`
 a|Set of branches in this Condition Group.
 |===

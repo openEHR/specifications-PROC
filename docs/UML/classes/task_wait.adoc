@@ -18,7 +18,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*events*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_plan_event_class,PLAN_EVENT>>>`
+|*events*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_plan_event_class,PLAN_EVENT>>>`
 a|One or more events that define the intended point in time. If there are more than one, the implied logical relation is OR, i.e. any event occurring causes the wait state to complete.
 
 h|*0..1*

@@ -16,14 +16,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_id*: `link:/releases/BASE/{proc_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
+|*task_id*: `link:/releases/BASE/{base_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
 a|Identifier of originating Task.
 
 h|*0..1*
-|*request_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*request_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of original request, may be matchable with `EXTERNAL_REQUEST._request_id_`.
 
 h|*0..1*
-|*subject_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*subject_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of subject to which callback relates.
 |===

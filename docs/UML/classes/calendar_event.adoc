@@ -16,10 +16,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*entry_id*: `link:/releases/BASE/{proc_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
+|*entry_id*: `link:/releases/BASE/{base_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
 a|Identifier of entry within global Plan calendar.
 
 h|*1..1*
-|*time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+|*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
 a|Time of entry in calendar.
 |===

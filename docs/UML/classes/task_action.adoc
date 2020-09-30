@@ -11,20 +11,20 @@ h|*Description*
 Performable Actions have further properties.
 
 h|*Inherit*
-2+|`link:/releases/RM/{proc_release}/common.html#_locatable_class[LOCATABLE^]`
+2+|`link:/releases/RM/{rm_release}/common.html#_locatable_class[LOCATABLE^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*instruction_activity*: `link:/releases/BASE/{proc_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]`
+|*instruction_activity*: `link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]`
 a|Optional reference back to the `ACTIVITY` of an `INSTRUCTION` that generated this `TASK`.
 
 TODO: may be movable to `PERFORMABLE_ACTION`.
 
 h|*0..1*
-|*subject_preconditions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_subject_precondition_class,SUBJECT_PRECONDITION>>>`
+|*subject_preconditions*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_subject_precondition_class,SUBJECT_PRECONDITION>>>`
 a|Condition which must be met for the Task Action to be available to perform in a runtime execution context.
 
 h|*0..1*

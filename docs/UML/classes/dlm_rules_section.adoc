@@ -9,7 +9,7 @@ h|*Description*
 2+a|Specialised feature group used in DLM to represent the `rules` section. Contains only `DLM_RULE` members.
 
 h|*Inherit*
-2+|`link:/releases/LANG/{proc_release}/bmm.html#_bmm_feature_group_class[BMM_FEATURE_GROUP^]`
+2+|`link:/releases/LANG/{lang_release}/bmm.html#_bmm_feature_group_class[BMM_FEATURE_GROUP^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,12 +17,12 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^] +
+|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^] +
 {default{nbsp}={nbsp}"rules"}`
 a|Name of this feature group; defaults to 'rules'.
 
 h|*0..1 +
 (redefined)*
-|*features*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_dlm_rule_class,DLM_RULE>>>`
+|*features*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_dlm_rule_class,DLM_RULE>>>`
 a|Set of features in this group.
 |===

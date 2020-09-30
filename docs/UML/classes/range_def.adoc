@@ -13,10 +13,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|Name of this range.
 
 h|*1..1*
-|*interval*: `link:/releases/LANG/{proc_release}/bmm.html#_bmm_interval_value_class[BMM_INTERVAL_VALUE^]`
+|*interval*: `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
 a|Interval specification for the range.
 |===

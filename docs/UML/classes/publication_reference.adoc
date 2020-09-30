@@ -13,38 +13,38 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*title*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*title*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*1..1*
-|*author*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*author*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*1..1*
-|*publisher*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*publisher*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*0..1*
-|*address*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*address*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*0..1*
-|*edition*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*edition*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*1..1*
-|*year*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*year*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*0..1*
-|*journal*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*journal*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*0..1*
-|*url*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*url*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 
 h|*0..1*
-|*section*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*section*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
 |===

@@ -13,14 +13,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*variables*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_context_variable_class,CONTEXT_VARIABLE>>>`
+|*variables*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_context_variable_class,CONTEXT_VARIABLE>>>`
 a|List of all variables tracked by this Plan.
 
 h|*0..1*
-|*expressions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_context_expression_class,CONTEXT_EXPRESSION>>>`
+|*expressions*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_context_expression_class,CONTEXT_EXPRESSION>>>`
 a|List of all expressions used in the Plan, based on tracked variables.
 
 h|*0..1*
-|*constants*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_context_constant_class,CONTEXT_CONSTANT>>>`
+|*constants*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_context_constant_class,CONTEXT_CONSTANT>>>`
 a|List of all constants used in the Plan.
 |===

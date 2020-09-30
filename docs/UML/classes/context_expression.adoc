@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*expression*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*expression*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Expression, in openEHR Expression syntax.
 |===

@@ -9,14 +9,14 @@ h|*Description*
 2+a|Parent type of structural Task types that may appear within a Task Plan structure.
 
 h|*Inherit*
-2+|`link:/releases/RM/{proc_release}/common.html#_locatable_class[LOCATABLE^]`
+2+|`link:/releases/RM/{rm_release}/common.html#_locatable_class[LOCATABLE^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*description*: `link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]`
+|*description*: `link:/releases/RM/{rm_release}/data_types.html#_dv_text_class[DV_TEXT^]`
 a|Human-readable form of the task directive.
 
 h|*0..1*
@@ -24,7 +24,7 @@ h|*0..1*
 a|Optional specification of repetitions.
 
 h|*0..1*
-|*classification*: `link:/releases/RM/{proc_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*classification*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
 a|Archetypable structure for recording classification of Task Groups or Tasks, e.g. business process category, administrative category etc.
 
 h|*0..1*
@@ -32,20 +32,20 @@ h|*0..1*
 a|Optional wait specification for Plan Item (Task or Group) initiation. If not set, the Plan Item is immediately `available` once execution reaches it. If set, it becomes `available` when any Event in `_events_` occurs.
 
 h|*0..1*
-|*review_dataset*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_review_dataset_spec_class,REVIEW_DATASET_SPEC>>>`
+|*review_dataset*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_review_dataset_spec_class,REVIEW_DATASET_SPEC>>>`
 a|Optional data-set to review prior to / as part of performing the Plan element.
 
 h|*0..1*
-|*guideline_step*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*guideline_step*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Optional reference to a step within the `_guideline_` referenced by the current Task Plan (if set) or else the `_care_pathway_` of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.
 
 The reference may take the form of a plain text section or item name within the referenced guideline, e.g. '"Check heart rate"' or be a URI or path reference, if the guideline has an online machine-representation.
 
 h|*0..1*
-|*other_details*: `link:/releases/RM/{proc_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*other_details*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
 a|Archetypable structure for recording non hard-modelled information.
 
 h|*0..1*
-|*reminders*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_reminder_class,REMINDER>>>`
+|*reminders*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_reminder_class,REMINDER>>>`
 a|Optional wait state(s) that may be used to remind the Task performer to do something based on a Timer or other Event. Will be cancelled by the Task transitioning to any new state from the `available` state, due to performer activity.
 |===

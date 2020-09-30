@@ -9,7 +9,7 @@ h|*Description*
 2+a|
 
 h|*Inherit*
-2+|`link:/releases/LANG/{proc_release}/bmm.html#_bmm_class_class[BMM_CLASS^]`
+2+|`link:/releases/LANG/{lang_release}/bmm.html#_bmm_class_class[BMM_CLASS^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*functions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^],link:/releases/PROC/{proc_release}/decision_language.html#_tracked_variable_class[TRACKED_VARIABLE^]>`
+|*functions*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],link:/releases/PROC/{proc_release}/decision_language.html#_tracked_quantitative_variable_class[TRACKED_QUANTITATIVE_VARIABLE^]>`
 a|List of functions defined in this class.
 |===

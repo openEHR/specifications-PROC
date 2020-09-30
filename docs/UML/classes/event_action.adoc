@@ -20,11 +20,11 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*system_call*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_system_call_class,SYSTEM_CALL>>>`
+|*system_call*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_system_call_class,SYSTEM_CALL>>>`
 a|System call to perform on receipt of event
 
 h|*0..1*
-|*message*: `link:/releases/RM/{proc_release}/data_types.html#_dv_text_class[DV_TEXT^]`
+|*message*: `link:/releases/RM/{rm_release}/data_types.html#_dv_text_class[DV_TEXT^]`
 a|Optional message to display to original Task context (i.e. application, form etc) if timer expires.
 
 h|*0..1*

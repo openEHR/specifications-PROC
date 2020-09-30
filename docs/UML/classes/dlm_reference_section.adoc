@@ -9,7 +9,7 @@ h|*Description*
 2+a|Specialised feature group used in DLM to represent the `reference` section.
 
 h|*Inherit*
-2+|`link:/releases/LANG/{proc_release}/bmm.html#_bmm_feature_group_class[BMM_FEATURE_GROUP^]`
+2+|`link:/releases/LANG/{lang_release}/bmm.html#_bmm_feature_group_class[BMM_FEATURE_GROUP^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,12 +17,12 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^] +
+|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^] +
 {default{nbsp}={nbsp}"reference"}`
 a|Name of this feature group; defaults to 'reference'.
 
 h|*0..1 +
 (redefined)*
-|*features*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_bmm_constant_class[BMM_CONSTANT^]>`
+|*features*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{lang_release}/bmm.html#_bmm_constant_class[BMM_CONSTANT^]>`
 a|Set of features in this group.
 |===

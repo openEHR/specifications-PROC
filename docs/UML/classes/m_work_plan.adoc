@@ -13,7 +13,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*plans*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_m_task_plan_class,M_TASK_PLAN>>>`
+|*plans*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_m_task_plan_class,M_TASK_PLAN>>>`
 a|Member Plans.
 
 h|*1..1*

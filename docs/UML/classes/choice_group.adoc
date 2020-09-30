@@ -25,7 +25,7 @@ a|Timeout handler to use if `CHOICE_GROUP` blocks unexpectedly, e.g. due to abse
 
 h|*0..1 +
 (redefined)*
-|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_choice_branch_class,CHOICE_BRANCH>>>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_choice_branch_class,CHOICE_BRANCH>>>`
 a|Set of branches in this Choice Group.
 
 h|*Invariants*

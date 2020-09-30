@@ -13,14 +13,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*name*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Name of parameter in external API call.
 
 h|*1..1*
-|*type*: `link:/releases/LANG/{proc_release}/obsolete-elom.html#_el_type_def_class[EL_TYPE_DEF^]`
+|*type*: `link:/releases/LANG/{lang_release}/obsolete-elom.html#_el_type_def_class[EL_TYPE_DEF^]`
 a|Type of parameter in external API call.
 
 h|*1..1*
-|*value*: `link:/releases/BASE/{proc_release}/foundation_types.html#_any_class[Any^]`
+|*value*: `link:/releases/BASE/{base_release}/foundation_types.html#_any_class[Any^]`
 a|Fixed value to pass on call invocation.
 |===

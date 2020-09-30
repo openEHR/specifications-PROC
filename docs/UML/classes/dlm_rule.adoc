@@ -9,6 +9,6 @@ h|*Description*
 2+a|Specialised form of `BMM_FUNCTION` that acts as a DLM rule.
 
 h|*Inherit*
-2+|`link:/releases/LANG/{proc_release}/bmm.html#_bmm_function_class[BMM_FUNCTION^]`
+2+|`link:/releases/LANG/{lang_release}/bmm.html#_bmm_function_class[BMM_FUNCTION^]`
 
 |===

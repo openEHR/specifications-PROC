@@ -27,10 +27,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*query_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*query_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of a stored query.
 
 h|*0..1*
-|*query_text*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*query_text*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Ad hoc query text.
 |===

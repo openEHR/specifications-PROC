@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*value*: `link:/releases/BASE/{proc_release}/foundation_types.html#_any_class[Any^]`
+|*value*: `link:/releases/BASE/{base_release}/foundation_types.html#_any_class[Any^]`
 a|Value of the constant.
 |===

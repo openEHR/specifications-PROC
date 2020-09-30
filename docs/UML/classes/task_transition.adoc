@@ -16,10 +16,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_id*: `link:/releases/BASE/{proc_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
+|*task_id*: `link:/releases/BASE/{base_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
 a|Identifier of Task with which this event is associated.
 
 h|*1..1*
-|*transitions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>>`
+|*transitions*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>>`
 a|One or more Task lifecycle transition(s) that defines this event; if more than one, the logical relation is 'OR'.
 |===

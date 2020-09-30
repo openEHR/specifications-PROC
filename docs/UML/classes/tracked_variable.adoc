@@ -16,8 +16,8 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*ranges*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^],<<_range_def_class,RANGE_DEF>>>`
-a|Map of variable range definitions.
+|*history*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_value_snapshot_class,VALUE_SNAPSHOT>>>`
+a|
 
 h|*0..1*
 |*currency*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`

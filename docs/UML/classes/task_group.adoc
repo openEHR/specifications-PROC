@@ -22,7 +22,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_plan_item_class,PLAN_ITEM>>>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_plan_item_class,PLAN_ITEM>>>`
 a|Set of Tasks to perform. Execution order is defined by the `_execution_type_` setting, either sequential or parallel (no order).
 
 h|*0..1*
@@ -34,13 +34,13 @@ h|*0..1*
 a|Mode in which to execute if execution type is parallel.
 
 h|*0..1*
-|*execution_rules*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_execution_rule_class,EXECUTION_RULE>>>`
+|*execution_rules*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_execution_rule_class,EXECUTION_RULE>>>`
 a|Other rules that may control execution over and above the basic sequential / parallel scheme, e.g.
 
 * at least N members must complete for group to complete;
 * exit group on first succeeding task.
 
 h|*0..1*
-|*training_level*: `link:/releases/BASE/{proc_release}/foundation_types.html#_integer_class[Integer^]`
+|*training_level*: `link:/releases/BASE/{base_release}/foundation_types.html#_integer_class[Integer^]`
 a|An integer value representing the training level for which this Task Plan is designed. A high value corresponds to a lower level of expertise. The default value is zero.
 |===

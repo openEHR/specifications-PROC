@@ -18,7 +18,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*wait*: `link:/releases/BASE/{proc_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*wait*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Flag indicating whether to wait or continue in the current Plan after the dispatch notification has been achieved. `_wait_ = True` corresponds to a context switch (block and wait) while `_wait_ = False` indicates a context fork.
 
 h|*0..1*

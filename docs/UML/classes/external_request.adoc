@@ -16,15 +16,15 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*organisation*: `link:/releases/RM/{proc_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
+|*organisation*: `link:/releases/RM/{rm_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
 a|Identifier of organisation to which the request or order is addressed.
 
 h|*1..1*
-|*request_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*request_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Request identifier for this type request. May be used in callback notification. Other runtime instance-level identifiers may be needed as well.
 
 h|*0..1*
-|*other_details*: `link:/releases/RM/{proc_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*other_details*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
 a|Request details.
 
 TODO: more details needed.

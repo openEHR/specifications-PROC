@@ -14,43 +14,43 @@ h|*Functions*
 
 h|*1..1*
 |*get_boolean* ( +
-subject_id: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^][1]`, +
-concept: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/base_types.html#_boolean_data_item_class[Boolean_data_item^]`
+subject_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+concept: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/base_types.html#_boolean_data_item_class[Boolean_data_item^]`
 a|
 
 h|*1..1*
 |*get_integer* ( +
-subject_id: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^][1]`, +
-concept: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/base_types.html#_integer_data_item_class[Integer_data_item^]`
+subject_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+concept: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/base_types.html#_integer_data_item_class[Integer_data_item^]`
 a|
 
 h|*1..1*
 |*get_real* ( +
-subject_id: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^][1]`, +
-concept: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/base_types.html#_real_data_item_class[Real_data_item^]`
+subject_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+concept: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/base_types.html#_real_data_item_class[Real_data_item^]`
 a|
 
 h|*1..1*
 |*get_quantity* ( +
-subject_id: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^][1]`, +
-concept: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/base_types.html#_quantity_data_item_class[Quantity_data_item^]`
+subject_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+concept: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/base_types.html#_quantity_data_item_class[Quantity_data_item^]`
 a|
 
 h|*1..1*
 |*get_coded_term* ( +
-subject_id: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^][1]`, +
-concept: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/base_types.html#_coded_term_data_item_class[Coded_term_data_item^]`
+subject_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+concept: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/base_types.html#_coded_term_data_item_class[Coded_term_data_item^]`
 a|
 
 h|*1..1*
 |*get_text* ( +
-subject_id: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^][1]`, +
-concept: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/base_types.html#_text_data_item_class[Text_data_item^]`
+subject_id: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^][1]`, +
+concept: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/base_types.html#_text_data_item_class[Text_data_item^]`
 a|
 |===

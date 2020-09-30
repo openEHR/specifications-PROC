@@ -16,10 +16,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*duration*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
+|*duration*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
 a|Delay from activation time to receive the event notification.
 
 h|*0..1*
-|*purpose*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*purpose*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Optional explanatory purpose of Timer.
 |===

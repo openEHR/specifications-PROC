@@ -20,11 +20,11 @@ h|*1..1*
 a|Current lifecycle state of this Task at run-time.
 
 h|*0..1*
-|*events*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_event_record_class,TASK_EVENT_RECORD>>>`
+|*events*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_task_event_record_class,TASK_EVENT_RECORD>>>`
 a|List of references to run-time events that have occurred on this Task.
 
 h|*0..1*
-|*preconditions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{proc_release}/bmm.html#_el_boolean_expression_class[EL_BOOLEAN_EXPRESSION^]>`
+|*preconditions*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/LANG/{lang_release}/bmm.html#_el_boolean_expression_class[EL_BOOLEAN_EXPRESSION^]>`
 a|Run-time form of preconditions on corresponding TASK in Task Plan definition.
 
 h|*1..1 +

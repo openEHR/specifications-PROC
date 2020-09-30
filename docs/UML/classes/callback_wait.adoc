@@ -27,7 +27,7 @@ h|*0..1*
 a|Action to perform if any listened-for event returns a fail result.
 
 h|*0..1*
-|*custom_actions*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^],<<_event_action_class,EVENT_ACTION>>>`
+|*custom_actions*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_event_action_class,EVENT_ACTION>>>`
 a|A keyed list of specific actions to perform based on custom key values, which are understood as types of remote event more specific than just 'success' or 'fail'.
 
 h|*1..1 +

@@ -16,10 +16,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*resources*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_resource_participation_class,RESOURCE_PARTICIPATION>>>`
+|*resources*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_resource_participation_class,RESOURCE_PARTICIPATION>>>`
 a|Descriptions of resources required for the Task, if required to be processed at runtime as pre-conditions to Task execution.
 
 h|*0..1*
-|*other_participations*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_participation_class,TASK_PARTICIPATION>>>`
+|*other_participations*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_task_participation_class,TASK_PARTICIPATION>>>`
 a|List of participations for task item.
 |===

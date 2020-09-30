@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*members*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_m_plan_item_class,M_PLAN_ITEM>>>`
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_m_plan_item_class,M_PLAN_ITEM>>>`
 a|Member run-time items in group, mimicking structure of the corresponding definition group instance.
 
 h|*1..1 +

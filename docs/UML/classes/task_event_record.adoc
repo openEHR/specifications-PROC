@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_id*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*task_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Identification of Task in the Task Plan structre using a path of the form `/task_group_id/task_group_id`.
 
 h|*1..1*
@@ -24,22 +24,22 @@ h|*1..1*
 a|The lifecycle state that was reached due to this event.
 
 h|*0..1*
-|*notifications_sent*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_task_notification_record_class,TASK_NOTIFICATION_RECORD>>>`
+|*notifications_sent*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_task_notification_record_class,TASK_NOTIFICATION_RECORD>>>`
 a|Notifications that were performed as part of this Task Event.
 
 h|*0..1*
-|*entry_instances*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{proc_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]>`
+|*entry_instances*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]>`
 a|Forward references to Entry (e.g. `ACTION`, `OBSERVATION` etc) that was recorded as a result of this Task being performed. If this is set, it indicates that the planned Task is 'done' i.e. checked off the plan.
 
 h|*1..1*
-|*preconditions_satisfied*: `link:/releases/BASE/{proc_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*preconditions_satisfied*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Set to True if all preconditions defined on the corresponding Task were satisfied at runtime. If set to False, and there were preconditions, this means that preconditions were overridden by the user at runtime.
 
 h|*1..1*
-|*wait_conditions_satisfied*: `link:/releases/BASE/{proc_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*wait_conditions_satisfied*: `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Set to True if all wait_conditions for the corresponding Task were satisfied when it was performed. If False, and there were wait_conditions, wait_conditions were overridden by the user at runtime.
 
 h|*0..1*
-|*lifecycle_transition_reason*: `link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]`
+|*lifecycle_transition_reason*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Optional reason for lifecycle transition.
 |===

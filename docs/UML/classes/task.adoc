@@ -20,7 +20,7 @@ h|*1..1*
 a|Task Action definition.
 
 h|*0..1*
-|*order_tags*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]>`
+|*order_tags*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>`
 a|References to order(s) being created and / or tracked by this Task. The value(s) must match `ORDER_REF._order_tag_` values from the list `WORK_PLAN._order_list_` and be unique within the list.
 
 Multiple tags are only required if the same Task causes creation of, or tracks, more than one order.

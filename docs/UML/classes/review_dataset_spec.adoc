@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*capture_datasets*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_capture_dataset_spec_class,CAPTURE_DATASET_SPEC>>>`
+|*capture_datasets*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_capture_dataset_spec_class,CAPTURE_DATASET_SPEC>>>`
 a|Capture data-sets (forms etc) used to obtain the data displayed in this Review data-set.
 |===

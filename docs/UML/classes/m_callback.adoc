@@ -21,6 +21,6 @@ h|*1..1*
 a|Dispatch object defining actions on receipt of callback.
 
 h|*1..1*
-|*other_details*: `link:/releases/BASE/{proc_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{proc_release}/foundation_types.html#_string_class[String^]>`
+|*other_details*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^], link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]>`
 a|
 |===

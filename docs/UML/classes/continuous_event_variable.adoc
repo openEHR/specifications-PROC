@@ -16,6 +16,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*update_variation*: `link:/releases/BASE/{proc_release}/foundation_types.html#_real_class[Real^]`
+|*update_variation*: `link:/releases/BASE/{base_release}/foundation_types.html#_real_class[Real^]`
 a|Minimum percentage variation from current value to be considered a change that should cause an update.
 |===

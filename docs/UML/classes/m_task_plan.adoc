@@ -13,7 +13,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*start_time*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+|*start_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
 a|Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via `PLANNED_TIME._relative_offset_`.
 
 h|*1..1*
@@ -25,7 +25,7 @@ h|*1..1*
 a|Owning Task Plan definition.
 
 h|*0..1*
-|*pending_callbacks*: `link:/releases/BASE/{proc_release}/foundation_types.html#_list_class[List^]<<<_m_callback_class,M_CALLBACK>>>`
+|*pending_callbacks*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_m_callback_class,M_CALLBACK>>>`
 a|Reference list of all wait conditions in the Task Plan, and current status.
 
 h|*1..1*
