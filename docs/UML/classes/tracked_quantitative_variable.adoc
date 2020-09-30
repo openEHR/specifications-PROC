@@ -1,0 +1,60 @@
+=== TRACKED_QUANTITATIVE_VARIABLE Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*TRACKED_QUANTITATIVE_VARIABLE<T>*
+
+h|*Description*
+2+a|Specialised property that represents a 'tracked variable' within the DLM `input` section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.
+
+h|*Inherit*
+2+|`<<_tracked_variable_class,TRACKED_VARIABLE>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*range_groups*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_range_group_class,RANGE_GROUP>>>`
+a|Range definitions, organised as groups, each one exhaustively covering the value space.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*in_range* ( +
+a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Determine if the last read value of the variable is in the named range within the default group. Use when there is only one range group.
+
+h|*1..1*
+|*range* (): `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+a|Return the name of the range from the default range group within which the last read value of the variable resides. Use when there is only one range group.
+
+h|*1..1*
+|*range_def* ( +
+a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
+a|Return the interval of the named range within the default range group. Use when there is only one range group.
+
+h|*1..1*
+|*in_range2* ( +
+range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]`, +
+a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Form of `_in_range()_` to use when there is more than one range group.
+
+h|*1..1*
+|*range2* ( +
+range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+a|Form of `_range()_` to use when there is more than one range group.
+
+h|*1..1*
+|*range_def2* ( +
+range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]`, +
+a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
+): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
+a|Form of `_range_def()_` to use when there is more than one range group.
+|===

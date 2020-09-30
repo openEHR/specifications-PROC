@@ -1,0 +1,26 @@
+=== VALUE_SNAPSHOT Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*VALUE_SNAPSHOT<T>*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*value*: `T`
+a|
+
+h|*1..1*
+|*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+a|
+
+h|*0..1*
+|*unavailable_reason*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+a|
+|===

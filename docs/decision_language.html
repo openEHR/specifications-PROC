@@ -74,15 +74,31 @@
 <li><a href="#_overview_2">4.1. Overview</a></li>
 <li><a href="#_decision_logic_module_package">4.2. Decision Logic Module Package</a>
 <ul class="sectlevel3">
-<li><a href="#_class_descriptions">4.2.1. Class Descriptions</a>
+<li><a href="#_pre_conditions_section">4.2.1. Pre-conditions Section</a></li>
+<li><a href="#_reference_section_2">4.2.2. Reference Section</a></li>
+<li><a href="#_input_section_2">4.2.3. Input Section</a></li>
+<li><a href="#_rules_section_2">4.2.4. Rules Section</a></li>
+<li><a href="#_class_descriptions">4.2.5. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_decision_logic_module_class">4.2.1.1. DECISION_LOGIC_MODULE Class</a></li>
-<li><a href="#_dlm_reference_section_class">4.2.1.2. DLM_REFERENCE_SECTION Class</a></li>
-<li><a href="#_dlm_input_section_class">4.2.1.3. DLM_INPUT_SECTION Class</a></li>
-<li><a href="#_tracked_variable_class">4.2.1.4. TRACKED_VARIABLE Class</a></li>
-<li><a href="#_range_def_class">4.2.1.5. RANGE_DEF Class</a></li>
-<li><a href="#_dlm_rules_section_class">4.2.1.6. DLM_RULES_SECTION Class</a></li>
-<li><a href="#_dlm_rule_class">4.2.1.7. DLM_RULE Class</a></li>
+<li><a href="#_decision_logic_module_class">4.2.5.1. DECISION_LOGIC_MODULE Class</a></li>
+<li><a href="#_dlm_reference_section_class">4.2.5.2. DLM_REFERENCE_SECTION Class</a></li>
+<li><a href="#_dlm_input_section_class">4.2.5.3. DLM_INPUT_SECTION Class</a></li>
+<li><a href="#_dlm_rules_section_class">4.2.5.4. DLM_RULES_SECTION Class</a></li>
+<li><a href="#_dlm_rule_class">4.2.5.5. DLM_RULE Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_dlm_concrete_model">4.3. DLM Concrete Model</a>
+<ul class="sectlevel3">
+<li><a href="#_input_variables">4.3.1. Input Variables</a></li>
+<li><a href="#_class_descriptions_2">4.3.2. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_tracked_variable_class">4.3.2.1. TRACKED_VARIABLE Class</a></li>
+<li><a href="#_value_snapshot_class">4.3.2.2. VALUE_SNAPSHOT Class</a></li>
+<li><a href="#_tracked_quantitative_variable_class">4.3.2.3. TRACKED_QUANTITATIVE_VARIABLE Class</a></li>
+<li><a href="#_range_group_class">4.3.2.4. RANGE_GROUP Class</a></li>
+<li><a href="#_range_def_class">4.3.2.5. RANGE_DEF Class</a></li>
 </ul>
 </li>
 </ul>
@@ -628,7 +644,7 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the semi-strict Boolean <code>operator</code> ensures the second reference to <code>systolic_blood_pressure</code> will only occur if <code>systolic_blood_pressure.is_available</code> returns True.</p>
+<p>In the above, the semi-strict Boolean <code>operator</code> ensures the second reference to <code>systolic_blood_pressure</code> will only be evaluated if <code>systolic_blood_pressure.is_available</code> returns True.</p>
 </div>
 </div>
 <div class="sect3">
@@ -799,19 +815,16 @@ rules
 <span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">200</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">299</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">199</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
-             <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
 <span class="tok-na">            [metric]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">26.6</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">39.8</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|</span>
-             <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
         <span class="tok-p">}</span></code></pre>
 </div>
-</div>
-<div class="paragraph tbd">
-<p>TBD: exact data structure to handle discriminator.</p>
 </div>
 </div>
 </div>
@@ -831,12 +844,12 @@ rules
         <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">her2_expression</span> <span class="tok-p">=</span> <span class="tok-p">[</span><span class="tok-n">positive</span><span class="tok-p">]</span>
 
     <span class="tok-n">non_class_I_heart_failure</span><span class="tok-p">:</span>
-        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_diagnosis</span> <span class="tok-p">({[</span><span class="tok-n">heart_failure_class_II</span><span class="tok-p">],</span>
-<span class="tok-na">                    [heart_failure_class_III]</span><span class="tok-p">,</span>
-<span class="tok-na">                    [heart_failure_class_IV]</span><span class="tok-p">})</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_heart_failure_class_II</span> <span class="tok-n">or</span>
+                    <span class="tok-n">has_heart_failure_class_III</span> <span class="tok-n">or</span>
+                    <span class="tok-n">has_heart_failure_class_IV</span>
 
     <span class="tok-n">anthracyclines_contraindicated</span><span class="tok-p">:</span>
-        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_diagnosis</span> <span class="tok-p">([</span><span class="tok-n">transmural_MI</span><span class="tok-p">])</span> <span class="tok-n">or</span>
+        <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_transmural_MI</span> <span class="tok-n">or</span>
             <span class="tok-n">ejection_fraction</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">low</span><span class="tok-p">])</span> <span class="tok-n">or</span>
             <span class="tok-n">non_class_I_heart_failure</span></code></pre>
 </div>
@@ -944,7 +957,10 @@ rules
 <div class="sect2">
 <h3 id="_decision_logic_module_package"><a class="anchor" href="#_decision_logic_module_package"></a>4.2. Decision Logic Module Package</h3>
 <div class="paragraph">
-<p>The top-level construct of the DLM is the <code>DECISION_LOGIC_MODULE</code> meta-class, representing a standalone Decision Logic Module. It is shown below.</p>
+<p>The module structure of a Decision Logic Module is formally represented by a class model consisting of minimal extensions to the BMM class (i.e. <code>BMM_CLASS</code>) concept. A DLM is thus understood as a special kind of module expressible as a constrained form of class definition, such that only certain types of features are allowed. It also has additions for documentary meta-data and terminology provided by the <code>AUTHORED_RESOURCE</code> class <a href="https://specifications.openehr.org/releases/BASE/latest/resource.html#_resource_package" target="_blank" rel="noopener">from the openEHR BASE component</a>.</p>
+</div>
+<div class="paragraph">
+<p>The meta-model is shown below, with the meta-class <code>DECISION_LOGIC_MODULE</code> being the root entity.</p>
 </div>
 <div id="dl_dlm" class="imageblock text-center text-center">
 <div class="content">
@@ -952,13 +968,37 @@ rules
 </div>
 <div class="title">Figure 2. <code>proc.decision_language.dlm</code> Package</div>
 </div>
-<div class="paragraph tbd">
-<p>TBD: to be continued.</p>
+<div class="paragraph">
+<p>Within this model, the various DLM sections are modelled as specialisations of the BMM meta-class <code>BMM_FEATURE_GROUP</code>, so as to restrict the kind of features they may define. These are described in the following sub-sections.</p>
 </div>
 <div class="sect3">
-<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>4.2.1. Class Descriptions</h4>
+<h4 id="_pre_conditions_section"><a class="anchor" href="#_pre_conditions_section"></a>4.2.1. Pre-conditions Section</h4>
+<div class="paragraph tbd">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reference_section_2"><a class="anchor" href="#_reference_section_2"></a>4.2.2. Reference Section</h4>
+<div class="paragraph">
+<p>The DLM <code>reference</code> section is formally represented as a feature group called <code>'reference'</code> whose members are limited to BMM constants.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_input_section_2"><a class="anchor" href="#_input_section_2"></a>4.2.3. Input Section</h4>
+<div class="paragraph">
+<p>The DLM <code>input</code> section is formally represented as a feature group called <code>'input'</code> whose members are limited to BMM constants of a specific concrete type <code>TRACKED_VARIABLE&lt;T&gt;</code> and descendants, supplied by the <code>proc.decision_language.concrete</code> package.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rules_section_2"><a class="anchor" href="#_rules_section_2"></a>4.2.4. Rules Section</h4>
+<div class="paragraph">
+<p>The DLM <code>rules</code> section is formally represented as a feature group called <code>'rules'</code> whose members are limited to BMM functions. A specific meta-type <code>DLM_RULE</code> is used in case extensions to the standard <code>BMM_FUNCTION</code> are required.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>4.2.5. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_decision_logic_module_class"><a class="anchor" href="#_decision_logic_module_class"></a>4.2.1.1. DECISION_LOGIC_MODULE Class</h5>
+<h5 id="_decision_logic_module_class"><a class="anchor" href="#_decision_logic_module_class"></a>4.2.5.1. DECISION_LOGIC_MODULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1008,7 +1048,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dlm_reference_section_class"><a class="anchor" href="#_dlm_reference_section_class"></a>4.2.1.2. DLM_REFERENCE_SECTION Class</h5>
+<h5 id="_dlm_reference_section_class"><a class="anchor" href="#_dlm_reference_section_class"></a>4.2.5.2. DLM_REFERENCE_SECTION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1056,7 +1096,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dlm_input_section_class"><a class="anchor" href="#_dlm_input_section_class"></a>4.2.1.3. DLM_INPUT_SECTION Class</h5>
+<h5 id="_dlm_input_section_class"><a class="anchor" href="#_dlm_input_section_class"></a>4.2.5.3. DLM_INPUT_SECTION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1095,7 +1135,7 @@ rules
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1<br>
 (redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_tracked_variable_class">TRACKED_VARIABLE</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_constant_class">BMM_CONSTANT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Set of features in this group.</p>
 </div></div></td>
@@ -1104,131 +1144,7 @@ rules
 </table>
 </div>
 <div class="sect4">
-<h5 id="_tracked_variable_class"><a class="anchor" href="#_tracked_variable_class"></a>4.2.1.4. TRACKED_VARIABLE Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRACKED_VARIABLE</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Specialised property that represents a 'tracked variable' within the DLM <code>input</code> section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_unitary_property_class" target="_blank" rel="noopener">BMM_UNITARY_PROPERTY</a></code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ranges</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_range_def_class">RANGE_DEF</a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Map of variable range definitions.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If set, maximum age of a real-world snapshot of this variable&#8217;s value.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
-(redefined)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>type</strong>: <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_type_class" target="_blank" rel="noopener">BMM_SIMPLE_TYPE</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Declared or inferred static type of the entity.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong> (<br>
-a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
-): <code><a href="/releases/LANG/latest/bmm.html#_bmm_interval_value_class" target="_blank" rel="noopener">BMM_INTERVAL_VALUE</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Function to return the interval of a named range.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>in_range</strong> (<br>
-a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
-): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Determine if the last read value of the variable is in the named range.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_of</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return the name of the range within which the last read value of the variable resides.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_range_def_class"><a class="anchor" href="#_range_def_class"></a>4.2.1.5. RANGE_DEF Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RANGE_DEF</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Definition of a range of a tracked variable in terms of an Interval of an appropriate type.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of this range.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code><a href="/releases/LANG/latest/bmm.html#_bmm_interval_value_class" target="_blank" rel="noopener">BMM_INTERVAL_VALUE</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Interval specification for the range.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_dlm_rules_section_class"><a class="anchor" href="#_dlm_rules_section_class"></a>4.2.1.6. DLM_RULES_SECTION Class</h5>
+<h5 id="_dlm_rules_section_class"><a class="anchor" href="#_dlm_rules_section_class"></a>4.2.5.4. DLM_RULES_SECTION Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1276,7 +1192,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </table>
 </div>
 <div class="sect4">
-<h5 id="_dlm_rule_class"><a class="anchor" href="#_dlm_rule_class"></a>4.2.1.7. DLM_RULE Class</h5>
+<h5 id="_dlm_rule_class"><a class="anchor" href="#_dlm_rule_class"></a>4.2.5.5. DLM_RULE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1297,6 +1213,393 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/LANG/latest/bmm.html#_bmm_function_class" target="_blank" rel="noopener">BMM_FUNCTION</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dlm_concrete_model"><a class="anchor" href="#_dlm_concrete_model"></a>4.3. DLM Concrete Model</h3>
+<div class="paragraph">
+<p>In order to supply a few of the key constructs of a DLM, a concrete model is provided with specific types that express the needed semantics. The main types required relate to input variables. The DLM concrete model UML is shown below.</p>
+</div>
+<div id="dl_concrete" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/PROC-decision_language.concrete.svg" alt="PROC decision language.concrete">
+</div>
+<div class="title">Figure 3. <code>proc.decision_language.concrete</code> Package</div>
+</div>
+<div class="sect3">
+<h4 id="_input_variables"><a class="anchor" href="#_input_variables"></a>4.3.1. Input Variables</h4>
+<div class="paragraph">
+<p>The variable definitions found in the <code>input</code> section of a DLM are designed to facilitate both intuitive DLM authoring and tracking of values over time from real data sources, typically health records, devices and so on. The generic class <code>TRACKED_VARIABLE&lt;T&gt;</code> and descendants provide a representation of an external variable with a symbolic name, e.g. <code>is_diabetic</code>, <code>heart_rate</code>, etc and values, tracked over time. The generic type parameter is substituted with types used for representing atomic data values, including primitive types such as <code>String</code>, <code>Integer</code> etc, as well as types like <code>Terminology_code</code>, <code>Quantity</code> etc, as available in the  models (type definitions) <em>used</em> by a DLM.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>history</em></code> attribute represents variable value samples over time, for variables with <code>currency</code> defined, while the features <code>is_available</code> and <code>unavailable_reason</code> provide a way for missing data to be checked for.</p>
+</div>
+<div class="paragraph">
+<p>The class <code>TRACKED_QUANTITATIVE_VARIABLE&lt;T&gt;</code> adds the range facility described earlier in <a href="#_variable_ranges">Section 3.8.5</a>.</p>
+</div>
+<div class="paragraph">
+<p>Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the <code>TRACKED_VARIABLE&lt;T&gt;</code> or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
+        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
+        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
+<span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>  <span class="tok-p">|&gt;=</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">            [very_high]</span><span class="tok-p">:</span>      <span class="tok-p">|&gt;</span>  <span class="tok-m">140</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">            [high]</span><span class="tok-p">:</span>           <span class="tok-p">|&gt;</span>  <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">            [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-p">&lt;=</span> <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">            [low]</span><span class="tok-p">:</span>            <span class="tok-p">|&lt;=</span>  <span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
+<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
+        <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we were to rewrite this in a more standard programming language, it might look like the following object instantiation, preceded by setup code (the syntax 'Type_name (args)' is used to represent an object creation using a constructor call in each case):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-c1">// build the ranges Map</span>
+<span class="tok-n">ranges</span><span class="tok-p">:</span> <span class="tok-n">Map</span> <span class="tok-p">&lt;</span><span class="tok-n">Terminology_code</span><span class="tok-p">,</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;</span> <span class="tok-p">();</span>
+<span class="tok-n">ranges</span><span class="tok-p">.</span><span class="tok-n">put</span> <span class="tok-p">(</span><span class="tok-n">Terminology_code</span><span class="tok-p">(</span><span class="tok-s">&quot;critical_high&quot;</span><span class="tok-p">),</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;(</span><span class="tok-m">0</span><span class="tok-p">,</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]);</span>
+    <span class="tok-p">...</span>
+<span class="tok-n">ranges</span><span class="tok-p">.</span><span class="tok-n">put</span> <span class="tok-p">(</span><span class="tok-n">Terminology_code</span><span class="tok-p">(</span><span class="tok-s">&quot;critical_high&quot;</span><span class="tok-p">),</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;(</span><span class="tok-m">0</span><span class="tok-p">,</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]);</span>
+
+<span class="tok-c1">// instantiate the tracked variable object</span>
+<span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">TRACKED_QUANTITATIVE_VARIABLE</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;</span> <span class="tok-p">(</span>
+    <span class="tok-s">&quot;systolic_blood_pressure&quot;</span><span class="tok-p">,</span>   <span class="tok-c1">// name</span>
+    <span class="tok-n">PT1M</span><span class="tok-p">,</span>                        <span class="tok-c1">// currency</span>
+    <span class="tok-n">ranges</span>                       <span class="tok-c1">// ranges</span>
+<span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It will be appreciated that this is substantially more complex, and also arcane to a domain specialist. In the above, the part between the parentheses in the lower declaration corresponds to a call to a constructor of <code>TRACKED_QUANTITATIVE_VARIABLE</code> with the signature <code>(name: String, currency: Iso8601_duration, ranges: Map&lt;Terminology_code, Interval&lt;T&gt;)</code>. From a formal point of view, such an instantiation creates an instance that will remain for the life of the DLM&#8217;s execution, in other words, a <em>computed constant</em> value. It is thus a meta-instance of the BMM meta-type <code>BMM_CONSTANT</code>, as shown in the DLM model above.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>input</code> section declaration creates an object similar to the above, which may then be used during the execution of the DLM by calls made from the functions in the <code>rules</code> section. The simplest possible 'bare' reference of the variable name alone, i.e. <code>systolic_blood_pressure</code> in the example above, makes use of the <em>default delegate</em> feature of the BMM (<code>BMM_FUNCTION</code>) to invoke the <code><em>value()</em></code> function, avoiding the need to write <code>systolic_blood_pressure.value()</code>. However, all the features defined on <code>TRACKED_VARIABLE</code> and its descendants are indeed available for use in DLM code if needed. Thus, <code>systolic_blood_pressure.in_range([high])</code> is a normal call on the <code>systolic_blood_pressure</code> instance of <code>TRACKED_QUANTITATIVE_VARIABLE&lt;Quantity&gt;</code>.</p>
+</div>
+<div class="paragraph tbd">
+<p>TO BE CONTINUED</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>4.3.2. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_tracked_variable_class"><a class="anchor" href="#_tracked_variable_class"></a>4.3.2.1. TRACKED_VARIABLE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRACKED_VARIABLE&lt;T&gt;</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Abstraction representing a 'tracked' real-world variable representing a quality of a subject, e.g. patient systolic blood pressure, diabetic status, date of birth etc, whose value is sampled and potentially tracked over time.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If set, maximum age of a real-world snapshot of this variable&#8217;s value.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_value_snapshot_class">VALUE_SNAPSHOT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>max_history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time_window</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class">Iso8601_date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong> (): <code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Retrieve latest value, or null if none.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value2</strong> (<br>
+a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a>[1]</code><br>
+): <code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return the value from <code><em>history</em></code> that was available at time <code><em>time</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return True if there is a value in <code><em>history</em></code> whose <code><em>time</em></code> is within the duration of <code><em>currency</em></code> of the current moment.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unavailable_reason</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If <code><em>is_available</em></code> is False, potentially provide a reason.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_tracking</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return true if tracking (i.e. snapshotting) is occurring, i.e. if <code><em>currency</em></code> is set. False indicates that a single sample is sufficient.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_value_snapshot_class"><a class="anchor" href="#_value_snapshot_class"></a>4.3.2.2. VALUE_SNAPSHOT Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>VALUE_SNAPSHOT&lt;T&gt;</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unavailable_reason</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_tracked_quantitative_variable_class"><a class="anchor" href="#_tracked_quantitative_variable_class"></a>4.3.2.3. TRACKED_QUANTITATIVE_VARIABLE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRACKED_QUANTITATIVE_VARIABLE&lt;T&gt;</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Specialised property that represents a 'tracked variable' within the DLM <code>input</code> section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_tracked_variable_class">TRACKED_VARIABLE</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_groups</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_range_group_class">RANGE_GROUP</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Range definitions, organised as groups, each one exhaustively covering the value space.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>in_range</strong> (<br>
+a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Determine if the last read value of the variable is in the named range within the default group. Use when there is only one range group.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return the name of the range from the default range group within which the last read value of the variable resides. Use when there is only one range group.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_def</strong> (<br>
+a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return the interval of the named range within the default range group. Use when there is only one range group.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>in_range2</strong> (<br>
+range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code>,<br>
+a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Form of <code><em>in_range()</em></code> to use when there is more than one range group.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range2</strong> (<br>
+range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Form of <code><em>range()</em></code> to use when there is more than one range group.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_def2</strong> (<br>
+range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code>,<br>
+a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
+): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Form of <code><em>range_def()</em></code> to use when there is more than one range group.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_range_group_class"><a class="anchor" href="#_range_group_class"></a>4.3.2.4. RANGE_GROUP Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RANGE_GROUP&lt;T&gt;</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Structure representing a set of range definitions covering the value space of the variable.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ranges</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_range_def_class">RANGE_DEF</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Map of variable range definitions within this group.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this range group, e.g. "metric", "SI" etc.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_range_def_class"><a class="anchor" href="#_range_def_class"></a>4.3.2.5. RANGE_DEF Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RANGE_DEF&lt;T&gt;</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Definition of a range of a tracked variable in terms of an Interval of the variable type.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of this range.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Interval specification for the range.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>

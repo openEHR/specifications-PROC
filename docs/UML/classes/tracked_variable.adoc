@@ -3,47 +3,57 @@
 [cols="^1,3,5"]
 |===
 h|*Class*
-2+^h|*TRACKED_VARIABLE*
+2+^h|*TRACKED_VARIABLE<T>*
 
 h|*Description*
-2+a|Specialised property that represents a 'tracked variable' within the DLM `input` section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.
-
-h|*Inherit*
-2+|`link:/releases/LANG/{proc_release}/bmm.html#_bmm_unitary_property_class[BMM_UNITARY_PROPERTY^]`
+2+a|Abstraction representing a 'tracked' real-world variable representing a quality of a subject, e.g. patient systolic blood pressure, diabetic status, date of birth etc, whose value is sampled and potentially tracked over time.
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
+
+h|*1..1*
+|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+a|
+
+h|*0..1*
+|*currency*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
+a|If set, maximum age of a real-world snapshot of this variable's value.
 
 h|*0..1*
 |*history*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_value_snapshot_class,VALUE_SNAPSHOT>>>`
 a|
 
 h|*0..1*
-|*currency*: `link:/releases/BASE/{proc_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
-a|If set, maximum age of a real-world snapshot of this variable's value.
+|*max_history*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
+a|
 
-h|*1..1 +
-(redefined)*
-|*type*: `link:/releases/LANG/{proc_release}/bmm.html#_bmm_simple_type_class[BMM_SIMPLE_TYPE^]`
-a|Declared or inferred static type of the entity.
+h|*0..1*
+|*time_window*: `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]>`
+a|
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
-|*range* ( +
-a_range: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/LANG/{proc_release}/bmm.html#_bmm_interval_value_class[BMM_INTERVAL_VALUE^]`
-a|Function to return the interval of a named range.
+h|*0..1*
+|*value* (): `T`
+a|Retrieve latest value, or null if none.
 
 h|*1..1*
-|*in_range* ( +
-a_range: `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{proc_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|Determine if the last read value of the variable is in the named range.
+|*value2* ( +
+a_time: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^][1]` +
+): `T`
+a|Return the value from `_history_` that was available at time `_time_`.
 
 h|*1..1*
-|*range_of* (): `link:/releases/BASE/{proc_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
-a|Return the name of the range within which the last read value of the variable resides.
+|*is_available* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Return True if there is a value in `_history_` whose `_time_` is within the duration of `_currency_` of the current moment.
+
+h|*0..1*
+|*unavailable_reason* (): `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+a|If `_is_available_` is False, potentially provide a reason.
+
+h|*1..1*
+|*is_tracking* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Return true if tracking (i.e. snapshotting) is occurring, i.e. if `_currency_` is set. False indicates that a single sample is sufficient.
 |===

@@ -15,25 +15,103 @@ The packages are described below.
 
 == Decision Logic Module Package
 
-The top-level construct of the DLM is the `DECISION_LOGIC_MODULE` meta-class, representing a standalone Decision Logic Module. It is shown below.
+The module structure of a Decision Logic Module is formally represented by a class model consisting of minimal extensions to the BMM class (i.e. `BMM_CLASS`) concept. A DLM is thus understood as a special kind of module expressible as a constrained form of class definition, such that only certain types of features are allowed. It also has additions for documentary meta-data and terminology provided by the `AUTHORED_RESOURCE` class {openehr_resource}#_resource_package[from the openEHR BASE component^].
+
+The meta-model is shown below, with the meta-class `DECISION_LOGIC_MODULE` being the root entity.
 
 [.text-center]
 .`proc.decision_language.dlm` Package
 image::{uml_diagrams_uri}/PROC-decision_language.dlm.svg[id=dl_dlm, align="center"]
 
+Within this model, the various DLM sections are modelled as specialisations of the BMM meta-class `BMM_FEATURE_GROUP`, so as to restrict the kind of features they may define. These are described in the following sub-sections.
+
+=== Pre-conditions Section
+
 [.tbd]
-TBD: to be continued. 
+TBD
+
+=== Reference Section
+
+The DLM `reference` section is formally represented as a feature group called `'reference'` whose members are limited to BMM constants. 
+
+=== Input Section
+
+The DLM `input` section is formally represented as a feature group called `'input'` whose members are limited to BMM constants of a specific concrete type `TRACKED_VARIABLE<T>` and descendants, supplied by the `proc.decision_language.concrete` package.
+
+=== Rules Section
+
+The DLM `rules` section is formally represented as a feature group called `'rules'` whose members are limited to BMM functions. A specific meta-type `DLM_RULE` is used in case extensions to the standard `BMM_FUNCTION` are required.
 
 === Class Descriptions
 
 include::{uml_export_dir}/classes/decision_logic_module.adoc[leveloffset=+1]]
-
 include::{uml_export_dir}/classes/dlm_reference_section.adoc[leveloffset=+1]]
-
 include::{uml_export_dir}/classes/dlm_input_section.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/tracked_variable.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/range_def.adoc[leveloffset=+1]]
-
 include::{uml_export_dir}/classes/dlm_rules_section.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/dlm_rule.adoc[leveloffset=+1]]
+
+== DLM Concrete Model
+
+In order to supply a few of the key constructs of a DLM, a concrete model is provided with specific types that express the needed semantics. The main types required relate to input variables. The DLM concrete model UML is shown below. 
+
+[.text-center]
+.`proc.decision_language.concrete` Package
+image::{uml_diagrams_uri}/PROC-decision_language.concrete.svg[id=dl_concrete, align="center"]
+
+=== Input Variables
+
+The variable definitions found in the `input` section of a DLM are designed to facilitate both intuitive DLM authoring and tracking of values over time from real data sources, typically health records, devices and so on. The generic class `TRACKED_VARIABLE<T>` and descendants provide a representation of an external variable with a symbolic name, e.g. `is_diabetic`, `heart_rate`, etc and values, tracked over time. The generic type parameter is substituted with types used for representing atomic data values, including primitive types such as `String`, `Integer` etc, as well as types like `Terminology_code`, `Quantity` etc, as available in the  models (type definitions) _used_ by a DLM.
+
+The `_history_` attribute represents variable value samples over time, for variables with `currency` defined, while the features `is_available` and `unavailable_reason` provide a way for missing data to be checked for.
+
+The class `TRACKED_QUANTITATIVE_VARIABLE<T>` adds the range facility described earlier in <<_variable_ranges>>.
+
+Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the `TRACKED_VARIABLE<T>` or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:
+
+[source,kotlin]
+----
+    systolic_blood_pressure: Quantity
+        currency = 1 min
+        ranges = {
+            [critical_high]:  |>= 180 mm[Hg]|,
+            [very_high]:      |>  140 mm[Hg]|,
+            [high]:           |>  120 mm[Hg]|,
+            [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
+            [low]:            |<=  90 mm[Hg]|,
+            [critical_low]:   |<=  50 mm[Hg]|
+        }
+----
+
+If we were to rewrite this in a more standard programming language, it might look like the following object instantiation, preceded by setup code (the syntax 'Type_name (args)' is used to represent an object creation using a constructor call in each case):
+
+[source,kotlin]
+----
+// build the ranges Map
+ranges: Map <Terminology_code, Interval<Quantity> ();
+ranges.put (Terminology_code("critical_high"), Interval<Quantity>(0, 180 mm[Hg]);
+    ...
+ranges.put (Terminology_code("critical_high"), Interval<Quantity>(0, 180 mm[Hg]);
+
+// instantiate the tracked variable object
+systolic_blood_pressure: TRACKED_QUANTITATIVE_VARIABLE<Quantity> (
+    "systolic_blood_pressure",   // name
+    PT1M,                        // currency
+    ranges                       // ranges
+);
+----
+
+It will be appreciated that this is substantially more complex, and also arcane to a domain specialist. In the above, the part between the parentheses in the lower declaration corresponds to a call to a constructor of `TRACKED_QUANTITATIVE_VARIABLE` with the signature `(name: String, currency: Iso8601_duration, ranges: Map<Terminology_code, Interval<T>)`. From a formal point of view, such an instantiation creates an instance that will remain for the life of the DLM's execution, in other words, a _computed constant_ value. It is thus a meta-instance of the BMM meta-type `BMM_CONSTANT`, as shown in the DLM model above.
+
+Each `input` section declaration creates an object similar to the above, which may then be used during the execution of the DLM by calls made from the functions in the `rules` section. The simplest possible 'bare' reference of the variable name alone, i.e. `systolic_blood_pressure` in the example above, makes use of the _default delegate_ feature of the BMM (`BMM_FUNCTION`) to invoke the `_value()_` function, avoiding the need to write `systolic_blood_pressure.value()`. However, all the features defined on `TRACKED_VARIABLE` and its descendants are indeed available for use in DLM code if needed. Thus, `systolic_blood_pressure.in_range([high])` is a normal call on the `systolic_blood_pressure` instance of `TRACKED_QUANTITATIVE_VARIABLE<Quantity>`.
+
+[.tbd]
+TO BE CONTINUED
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/tracked_variable.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/value_snapshot.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/tracked_quantitative_variable.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/range_group.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/range_def.adoc[leveloffset=+1]]
 

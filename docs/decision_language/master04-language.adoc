@@ -190,7 +190,7 @@ rules
         Result := systolic_blood_pressure.is_available and then systolic_blood_pressure.in_range([high]) or  ...
 ----
 
-In the above, the semi-strict Boolean `operator` ensures the second reference to `systolic_blood_pressure` will only occur if `systolic_blood_pressure.is_available` returns True.
+In the above, the semi-strict Boolean `operator` ensures the second reference to `systolic_blood_pressure` will only be evaluated if `systolic_blood_pressure.is_available` returns True.
 
 === Currency
 
@@ -335,19 +335,16 @@ input
                 [very_low]:       |200 mm[Hg] .. 299 mm[Hg]|,
                 [extremely_low]:  |100 mm[Hg] .. 199 mm[Hg]|,
                 [critical_low]:   |<100 mm[Hg]|
-             }
+            }
             [metric]: {
                 [normal]:         |≥53 kPa|,
                 [low]:            |39.9 kPa .. 53 kPa|,
                 [very_low]:       |26.6 kPa .. 39.8 kPa|,
                 [extremely_low]:  |13.3 kPa .. 26.5 kPa|,
                 [critical_low]:   |<13.3 kPa|
-             }
+            }
         }
 ----
-
-[.tbd]
-TBD: exact data structure to handle discriminator.
 
 == Rules Section
 
@@ -363,12 +360,12 @@ rules -- Conditions
         Result := her2_expression = [positive]
 
     non_class_I_heart_failure:
-        Result := has_diagnosis ({[heart_failure_class_II],
-                    [heart_failure_class_III],
-                    [heart_failure_class_IV]})
+        Result := has_heart_failure_class_II or
+                    has_heart_failure_class_III or
+                    has_heart_failure_class_IV
 
     anthracyclines_contraindicated:
-        Result := has_diagnosis ([transmural_MI]) or
+        Result := has_transmural_MI or
             ejection_fraction.in_range ([low]) or
             non_class_I_heart_failure
 ----

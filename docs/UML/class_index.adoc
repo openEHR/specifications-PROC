@@ -25,7 +25,13 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/decision_language.html#_range_def_class[RANGE_DEF^]
 [.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_range_group_class[RANGE_GROUP^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_tracked_quantitative_variable_class[TRACKED_QUANTITATIVE_VARIABLE^]
+[.xcode]
 * link:/releases/PROC/{proc_release}/decision_language.html#_tracked_variable_class[TRACKED_VARIABLE^]
+[.xcode]
+* link:/releases/PROC/{proc_release}/decision_language.html#_value_snapshot_class[VALUE_SNAPSHOT^]
 
 ==== Package subject_proxy
 
