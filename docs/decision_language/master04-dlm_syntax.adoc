@@ -1,5 +1,5 @@
 
-= Decision Logic Modules (DLM)
+= DLM Syntax
 
 The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following structure.
 
@@ -408,7 +408,7 @@ TBD:
 
 == Terminology Section
 
-The `terminology` section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the 'codes' in a DLM may be freely named, since they act as names of rules (i.e. functions), properties and so on. A typical DLM `terminology` section is shown below.
+The `terminology` section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the codes in a DLM may be freely named, since they act as names of all symbolic entities referenced elsewhere in the DLM, including rules (i.e. functions), subject variables and constants. A typical DLM `terminology` section is shown below.
 
 [source,odin]
 ----

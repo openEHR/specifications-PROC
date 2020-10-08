@@ -20,4 +20,9 @@ h|*1..1 +
 |*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^] +
 {default{nbsp}={nbsp}"preconditions"}`
 a|Name of this feature group; defaults to 'feature'.
+
+h|*0..1 +
+(redefined)*
+|*features*: `link:/releases/LANG/{lang_release}/bmm.html#_bmm_function_class[BMM_FUNCTION^]`
+a|Set of features in this group.
 |===

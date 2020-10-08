@@ -3,8 +3,6 @@
 
 == Overview
 
-The `org.openehr.proc.decision_language.dlm` package defines the Decision Logic Module (DLM) structure, a specialisation of the class meta-type from the {openehr_bmm}[openEHR BMM^].
-
 The structure of the `proc.decision_language` packages is shown below.
 
 [.text-center]
@@ -27,8 +25,7 @@ Within this model, the various DLM sections are modelled as specialisations of t
 
 === Pre-conditions Section
 
-[.tbd]
-TBD
+The DLM `preconditions` section is formally represented as a feature group called `'preconditions'` whose members are limited to being a single `BMM_FUNCTION` containing the Boolean expression that appears in that section. The expression may reference only rules and input variables.
 
 === Reference Section
 
@@ -88,9 +85,9 @@ If we were to rewrite this in a more standard programming language, it might loo
 ----
 // build the ranges Map
 ranges: Map <Terminology_code, Interval<Quantity> ();
-ranges.put (Terminology_code("critical_high"), Interval<Quantity>(0, 180 mm[Hg]);
+ranges.put (Terminology_code("critical_high"), Interval<Quantity>(180 mm[Hg], Void);
     ...
-ranges.put (Terminology_code("critical_high"), Interval<Quantity>(0, 180 mm[Hg]);
+ranges.put (Terminology_code("critical_low"), Interval<Quantity>(Void, 50 mm[Hg]);
 
 // instantiate the tracked variable object
 systolic_blood_pressure: TRACKED_QUANTITATIVE_VARIABLE<Quantity> (
@@ -100,9 +97,9 @@ systolic_blood_pressure: TRACKED_QUANTITATIVE_VARIABLE<Quantity> (
 );
 ----
 
-It will be appreciated that this is substantially more complex, and also arcane to a domain specialist. In the above, the part between the parentheses in the lower declaration corresponds to a call to a constructor of `TRACKED_QUANTITATIVE_VARIABLE` with the signature `(name: String, currency: Iso8601_duration, ranges: Map<Terminology_code, Interval<T>)`. From a formal point of view, such an instantiation creates an instance that will remain for the life of the DLM's execution, in other words, a _computed constant_ value. It is thus a meta-instance of the BMM meta-type `BMM_CONSTANT`, as shown in the DLM model above.
+It will be appreciated that this is substantially more complex, and also arcane to a domain specialist. In the above, the part between the parentheses in the lower declaration corresponds to a call to a constructor of type `TRACKED_QUANTITATIVE_VARIABLE` with the signature `(name: String, currency: Iso8601_duration, ranges: Map<Terminology_code, Interval<T>)`. From a formal point of view, such an instantiation creates an instance that will remain for the life of the DLM's execution, in other words, a _computed constant_ value. It is thus a meta-instance of the BMM meta-type `BMM_CONSTANT`, as shown in the DLM model above.
 
-Each `input` section declaration creates an object similar to the above, which may then be used during the execution of the DLM by calls made from the functions in the `rules` section. The simplest possible 'bare' reference of the variable name alone, i.e. `systolic_blood_pressure` in the example above, makes use of the _default delegate_ feature of the BMM (`BMM_FUNCTION`) to invoke the `_value()_` function, avoiding the need to write `systolic_blood_pressure.value()`. However, all the features defined on `TRACKED_VARIABLE` and its descendants are indeed available for use in DLM code if needed. Thus, `systolic_blood_pressure.in_range([high])` is a normal call on the `systolic_blood_pressure` instance of `TRACKED_QUANTITATIVE_VARIABLE<Quantity>`.
+Each `input` variable declaration creates an object similar to the above, which may then be used during the execution of the DLM by calls made from the functions in the `rules` section. The simplest possible 'bare' reference of the variable name alone, i.e. `systolic_blood_pressure` in the example above, makes use of the _default delegate_ feature of the BMM (`BMM_FUNCTION`) to invoke the `_value()_` function, avoiding the need to write `systolic_blood_pressure.value()`. However, all the features defined on `TRACKED_VARIABLE` and its descendants are indeed available for use in DLM code if needed. Thus, `systolic_blood_pressure.in_range([high])` is a normal call on the `systolic_blood_pressure` instance of `TRACKED_QUANTITATIVE_VARIABLE<Quantity>`.
 
 [.tbd]
 TO BE CONTINUED

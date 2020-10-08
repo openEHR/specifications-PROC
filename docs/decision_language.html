@@ -45,7 +45,7 @@
 <li><a href="#_execution_model">2.2. Execution Model</a></li>
 </ul>
 </li>
-<li><a href="#_decision_logic_modules_dlm">3. Decision Logic Modules (DLM)</a>
+<li><a href="#_dlm_syntax">3. DLM Syntax</a>
 <ul class="sectlevel2">
 <li><a href="#_identifiers">3.1. Identifiers</a></li>
 <li><a href="#_identification_section">3.2. Identification Section</a></li>
@@ -410,7 +410,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_decision_logic_modules_dlm"><a class="anchor" href="#_decision_logic_modules_dlm"></a>3. Decision Logic Modules (DLM)</h2>
+<h2 id="_dlm_syntax"><a class="anchor" href="#_dlm_syntax"></a>3. DLM Syntax</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The openEHR Decision Language (DL) is primarily used to write Decision Logic Modules (DLMs). A DLM has the following structure.</p>
@@ -896,7 +896,7 @@ rules
 <div class="sect2">
 <h3 id="_terminology_section"><a class="anchor" href="#_terminology_section"></a>3.11. Terminology Section</h3>
 <div class="paragraph">
-<p>The <code>terminology</code> section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the 'codes' in a DLM may be freely named, since they act as names of rules (i.e. functions), properties and so on. A typical DLM <code>terminology</code> section is shown below.</p>
+<p>The <code>terminology</code> section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the codes in a DLM may be freely named, since they act as names of all symbolic entities referenced elsewhere in the DLM, including rules (i.e. functions), subject variables and constants. A typical DLM <code>terminology</code> section is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -970,8 +970,8 @@ rules
 </div>
 <div class="sect3">
 <h4 id="_pre_conditions_section"><a class="anchor" href="#_pre_conditions_section"></a>4.2.1. Pre-conditions Section</h4>
-<div class="paragraph tbd">
-<p>TBD</p>
+<div class="paragraph">
+<p>The DLM <code>preconditions</code> section is formally represented as a feature group called <code>'preconditions'</code> whose members are limited to being a single <code>BMM_FUNCTION</code> containing the Boolean expression that appears in that section. The expression may reference only rules and input variables.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1262,9 +1262,9 @@ rules
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-c1">// build the ranges Map</span>
 <span class="tok-n">ranges</span><span class="tok-p">:</span> <span class="tok-n">Map</span> <span class="tok-p">&lt;</span><span class="tok-n">Terminology_code</span><span class="tok-p">,</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;</span> <span class="tok-p">();</span>
-<span class="tok-n">ranges</span><span class="tok-p">.</span><span class="tok-n">put</span> <span class="tok-p">(</span><span class="tok-n">Terminology_code</span><span class="tok-p">(</span><span class="tok-s">&quot;critical_high&quot;</span><span class="tok-p">),</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;(</span><span class="tok-m">0</span><span class="tok-p">,</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]);</span>
+<span class="tok-n">ranges</span><span class="tok-p">.</span><span class="tok-n">put</span> <span class="tok-p">(</span><span class="tok-n">Terminology_code</span><span class="tok-p">(</span><span class="tok-s">&quot;critical_high&quot;</span><span class="tok-p">),</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;(</span><span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">],</span> <span class="tok-n">Void</span><span class="tok-p">);</span>
     <span class="tok-p">...</span>
-<span class="tok-n">ranges</span><span class="tok-p">.</span><span class="tok-n">put</span> <span class="tok-p">(</span><span class="tok-n">Terminology_code</span><span class="tok-p">(</span><span class="tok-s">&quot;critical_high&quot;</span><span class="tok-p">),</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;(</span><span class="tok-m">0</span><span class="tok-p">,</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]);</span>
+<span class="tok-n">ranges</span><span class="tok-p">.</span><span class="tok-n">put</span> <span class="tok-p">(</span><span class="tok-n">Terminology_code</span><span class="tok-p">(</span><span class="tok-s">&quot;critical_low&quot;</span><span class="tok-p">),</span> <span class="tok-n">Interval</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;(</span><span class="tok-n">Void</span><span class="tok-p">,</span> <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]);</span>
 
 <span class="tok-c1">// instantiate the tracked variable object</span>
 <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">TRACKED_QUANTITATIVE_VARIABLE</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;</span> <span class="tok-p">(</span>
@@ -1275,10 +1275,10 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>It will be appreciated that this is substantially more complex, and also arcane to a domain specialist. In the above, the part between the parentheses in the lower declaration corresponds to a call to a constructor of <code>TRACKED_QUANTITATIVE_VARIABLE</code> with the signature <code>(name: String, currency: Iso8601_duration, ranges: Map&lt;Terminology_code, Interval&lt;T&gt;)</code>. From a formal point of view, such an instantiation creates an instance that will remain for the life of the DLM&#8217;s execution, in other words, a <em>computed constant</em> value. It is thus a meta-instance of the BMM meta-type <code>BMM_CONSTANT</code>, as shown in the DLM model above.</p>
+<p>It will be appreciated that this is substantially more complex, and also arcane to a domain specialist. In the above, the part between the parentheses in the lower declaration corresponds to a call to a constructor of type <code>TRACKED_QUANTITATIVE_VARIABLE</code> with the signature <code>(name: String, currency: Iso8601_duration, ranges: Map&lt;Terminology_code, Interval&lt;T&gt;)</code>. From a formal point of view, such an instantiation creates an instance that will remain for the life of the DLM&#8217;s execution, in other words, a <em>computed constant</em> value. It is thus a meta-instance of the BMM meta-type <code>BMM_CONSTANT</code>, as shown in the DLM model above.</p>
 </div>
 <div class="paragraph">
-<p>Each <code>input</code> section declaration creates an object similar to the above, which may then be used during the execution of the DLM by calls made from the functions in the <code>rules</code> section. The simplest possible 'bare' reference of the variable name alone, i.e. <code>systolic_blood_pressure</code> in the example above, makes use of the <em>default delegate</em> feature of the BMM (<code>BMM_FUNCTION</code>) to invoke the <code><em>value()</em></code> function, avoiding the need to write <code>systolic_blood_pressure.value()</code>. However, all the features defined on <code>TRACKED_VARIABLE</code> and its descendants are indeed available for use in DLM code if needed. Thus, <code>systolic_blood_pressure.in_range([high])</code> is a normal call on the <code>systolic_blood_pressure</code> instance of <code>TRACKED_QUANTITATIVE_VARIABLE&lt;Quantity&gt;</code>.</p>
+<p>Each <code>input</code> variable declaration creates an object similar to the above, which may then be used during the execution of the DLM by calls made from the functions in the <code>rules</code> section. The simplest possible 'bare' reference of the variable name alone, i.e. <code>systolic_blood_pressure</code> in the example above, makes use of the <em>default delegate</em> feature of the BMM (<code>BMM_FUNCTION</code>) to invoke the <code><em>value()</em></code> function, avoiding the need to write <code>systolic_blood_pressure.value()</code>. However, all the features defined on <code>TRACKED_VARIABLE</code> and its descendants are indeed available for use in DLM code if needed. Thus, <code>systolic_blood_pressure.in_range([high])</code> is a normal call on the <code>systolic_blood_pressure</code> instance of <code>TRACKED_QUANTITATIVE_VARIABLE&lt;Quantity&gt;</code>.</p>
 </div>
 <div class="paragraph tbd">
 <p>TO BE CONTINUED</p>
@@ -1614,7 +1614,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-09 14:46:53 +0100
+Last updated 2020-10-08 16:00:50 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
