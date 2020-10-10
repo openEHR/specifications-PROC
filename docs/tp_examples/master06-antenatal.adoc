@@ -62,7 +62,7 @@ input
     vaginal_blood_flow: Quantity
         currency = 30mins
         ranges =
-            critical_high: |> 500 mL/hr|
+            [critical_high]: |> 500 mL/hr|
 
 input -- <source = "manual">
 
@@ -75,27 +75,23 @@ input -- <source = "manual">
 rules
 
     anaemia_type: Terminology_term
-        Result :=
-            =======================[ IF ]========================
-            not has_anaemia_of_pregnancy:  [excluded],
-            ----------------------[ ELSE ]-----------------------
-            *:                             [anaemia_of_pregnancy]
-            =====================================================
+        Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
     risk_evaluation: Terminology_term
         ....
         
     amniotic_fluid_risk: Terminology_term
         Result :=
-            case amniotic_fluid_state
-                ==================[ IN ]=====================
+            case amniotic_fluid_state in [[
+                =====================[ IN ]========================
                 [premature rupture],
-                [polyhydramnios]:     [obstetric_emergency],
-                ----------------[ ELSE IN ]------------------
-                [oligohydramnios]:    [refer_high_risk_care],
-                -----------------[ ELSE ]--------------------
-                *:                    [normal_obstetric_care]
-                =============================================
+                [polyhydramnios]:           [obstetric_emergency],
+                -------------------[ ELSE IN ]---------------------
+                [oligohydramnios]:          [refer_high_risk_care],
+                --------------------[ ELSE ]-----------------------
+                *:                          [normal_obstetric_care]
+                ===================================================
+            ]]
     
     hypertension_risk: Terminology_term
         Result := [[
@@ -122,14 +118,15 @@ rules
             
     anaemia_risk: Terminology_term
         Result := 
-            case anaemia_type
-                ======================[ IN ]==========================
-                [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                --------------------[ ELSE-IN ]-----------------------
-                [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                ----------------------[ ELSE ]------------------------
-                *:                             [normal_obstetric_care]
-                ======================================================
+            case anaemia_type in [[
+                ======================[ IN ]===========================
+                [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
+                --------------------[ ELSE-IN ]------------------------
+                [anaemia_of_pregnancy]:         [refer_high_risk_care],
+                ----------------------[ ELSE ]-------------------------
+                *:                              [normal_obstetric_care]
+                =======================================================
+            ]]
     
 terminology
     term_definitions = <

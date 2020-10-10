@@ -573,7 +573,8 @@ reference
     cycle_period: Duration = 3w
     cycle_repeats: Integer = 6
 
-input
+input -- Diagnosis
+
     has_lymphoma_diagnosis: Boolean
         time_window = tw_current_episode
 
@@ -584,6 +585,8 @@ input
     has_metastases: Boolean
         currency = 30 days
         time_window = tw_current_episode
+
+input -- Labs
 
     neutrophils: Quantity
         currency = 3d
@@ -654,12 +657,13 @@ rules -- Main
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * case bilirubin.range
+            * case bilirubin.range in [[
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
+            ]]
 
     |
     | TODO: hepatic impairment dose modification
@@ -673,18 +677,19 @@ rules -- Main
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * case platelets.range
+            * case platelets.range in [[
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-
-            * case gfr.range
+            ]]
+            * case gfr.range in [[
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
+            ]]
 
     |
     | International Prognostic Index
@@ -704,30 +709,26 @@ rules -- Main
     |     High risk (4-5 points) - 5-year survival of 26%
     |
     ipi_raw_score: Integer
-        if age &gt; 60
-            Result := Result + 1
-
-        if staging ∈ {|stage III|, |stage IV|}
-            Result := Result + 1
-
-        if ldh.in_range ([normal])
-            Result := Result + 1
-
-        if ecog &gt; 1
-            Result := Result + 1
-
-        if extranodal_sites &gt; 1
-            Result := Result + 1
+        Result.add (
+            ---------------------------------------------
+            age &gt; 60                             ? 1 : 0,
+            staging ∈ {[stage_III], [stage_IV]} ? 1 : 0,
+            ldh.in_range ([normal])              ? 1 : 0,
+            ecog &gt; 1                             ? 1 : 0,
+            extranodal_sites &gt; 1                 ? 1 : 0
+            ---------------------------------------------
+        )
 
     ipi_risk: Terminology_code
         Result :=
-            case ipi_raw_score
+            case ipi_raw_score in [[
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk]
                 =======================================
+            ]]
 
 terminology
     term_definitions = &lt;
@@ -848,7 +849,7 @@ input
     vaginal_blood_flow: Quantity
         currency = 30mins
         ranges =
-            critical_high: |&gt; 500 mL/hr|
+            [critical_high]: |&gt; 500 mL/hr|
 
 input -- &lt;source = "manual"&gt;
 
@@ -861,27 +862,23 @@ input -- &lt;source = "manual"&gt;
 rules
 
     anaemia_type: Terminology_term
-        Result :=
-            =======================[ IF ]========================
-            not has_anaemia_of_pregnancy:  [excluded],
-            ----------------------[ ELSE ]-----------------------
-            *:                             [anaemia_of_pregnancy]
-            =====================================================
+        Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
     risk_evaluation: Terminology_term
         ....
 
     amniotic_fluid_risk: Terminology_term
         Result :=
-            case amniotic_fluid_state
-                ==================[ IN ]=====================
+            case amniotic_fluid_state in [[
+                =====================[ IN ]========================
                 [premature rupture],
-                [polyhydramnios]:     [obstetric_emergency],
-                ----------------[ ELSE IN ]------------------
-                [oligohydramnios]:    [refer_high_risk_care],
-                -----------------[ ELSE ]--------------------
-                *:                    [normal_obstetric_care]
-                =============================================
+                [polyhydramnios]:           [obstetric_emergency],
+                -------------------[ ELSE IN ]---------------------
+                [oligohydramnios]:          [refer_high_risk_care],
+                --------------------[ ELSE ]-----------------------
+                *:                          [normal_obstetric_care]
+                ===================================================
+            ]]
 
     hypertension_risk: Terminology_term
         Result := [[
@@ -908,14 +905,15 @@ rules
 
     anaemia_risk: Terminology_term
         Result :=
-            case anaemia_type
-                ======================[ IN ]==========================
-                [severe_anaemia_of_pregnancy]: [obstetric_emergency],
-                --------------------[ ELSE-IN ]-----------------------
-                [anaemia_of_pregnancy]:        [refer_high_risk_care],
-                ----------------------[ ELSE ]------------------------
-                *:                             [normal_obstetric_care]
-                ======================================================
+            case anaemia_type in [[
+                ======================[ IN ]===========================
+                [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
+                --------------------[ ELSE-IN ]------------------------
+                [anaemia_of_pregnancy]:         [refer_high_risk_care],
+                ----------------------[ ELSE ]-------------------------
+                *:                              [normal_obstetric_care]
+                =======================================================
+            ]]
 
 terminology
     term_definitions = &lt;
@@ -1031,6 +1029,14 @@ input
             [low]  :   |&lt; 40%|
             --------------------
 
+    has_heart_failure_class_II: Boolean
+
+    has_heart_failure_class_III: Boolean
+
+    has_heart_failure_class_IV: Boolean
+
+    has_allergy_to_taxanes: Boolean
+
 rules -- Conditions
 
     er_negative:
@@ -1051,20 +1057,20 @@ rules -- Conditions
     her2_positive:
         Result := her2_expression = [positive]
 
-    non_class_I_heart_failure:
-        Result := has_diagnosis ({[heart_failure_class_II],
-                    [heart_failure_class_III],
-                    [heart_failure_class_IV]})
+    has_non_class_I_heart_failure:
+        Result := has_heart_failure_class_II
+                  or has_heart_failure_class_III
+                  or has_heart_failure_class_IV
 
     anthracyclines_contraindicated:
-        Result := has_diagnosis ([transmural_MI]) or
-            ejection_fraction.in_range ([low]) or
-            non_class_I_heart_failure
+        Result := has_transmural_MI
+            or ejection_fraction.in_range ([low])
+            or has_non_class_I_heart_failure
 
     taxanes_contraindicated:
-        Result := is_type1_diabetic or
-            has_allergy ([taxanes]) or
-            has_intolerance ([taxanes])
+        Result := is_type1_diabetic
+            or has_allergy_to_taxanes
+            or has_intolerance ([taxanes])
 
 rules -- Guideline
 
@@ -1105,11 +1111,9 @@ rules -- Guideline
                         {[luminal_B_HER2_negative],
                          [triple_negative]} and
                     (tnm_t &gt; '1a' or tnm_n &gt; '0'):                   [taxanes],
-
                     ------------------------------------------------------------------------
                     molecular_subtype = [luminal_A] and
                     (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3'):  [anthracyclines],
-
                     ------------------------------------------------------------------------
                     molecular_subtype = [luminal_B_HER2_positive] and
                     (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or

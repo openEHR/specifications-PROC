@@ -44,6 +44,14 @@ input
             [low]  :   |< 40%|
             --------------------
                 
+    has_heart_failure_class_II: Boolean
+    
+    has_heart_failure_class_III: Boolean
+    
+    has_heart_failure_class_IV: Boolean
+    
+    has_allergy_to_taxanes: Boolean
+    
 rules -- Conditions
         
     er_negative:
@@ -64,20 +72,20 @@ rules -- Conditions
     her2_positive:
         Result := her2_expression = [positive]
 
-    non_class_I_heart_failure:
-        Result := has_diagnosis ({[heart_failure_class_II],
-                    [heart_failure_class_III],
-                    [heart_failure_class_IV]})
+    has_non_class_I_heart_failure:
+        Result := has_heart_failure_class_II
+                  or has_heart_failure_class_III
+                  or has_heart_failure_class_IV
                         
     anthracyclines_contraindicated:
-        Result := has_diagnosis ([transmural_MI]) or
-            ejection_fraction.in_range ([low]) or
-            non_class_I_heart_failure
+        Result := has_transmural_MI
+            or ejection_fraction.in_range ([low])
+            or has_non_class_I_heart_failure
                                 
     taxanes_contraindicated:
-        Result := is_type1_diabetic or
-            has_allergy ([taxanes]) or 
-            has_intolerance ([taxanes])
+        Result := is_type1_diabetic
+            or has_allergy_to_taxanes
+            or has_intolerance ([taxanes])
         
 rules -- Guideline
 
@@ -118,11 +126,9 @@ rules -- Guideline
                         {[luminal_B_HER2_negative], 
                          [triple_negative]} and
                     (tnm_t > '1a' or tnm_n > '0'):                   [taxanes],
-                    
                     ------------------------------------------------------------------------
                     molecular_subtype = [luminal_A] and 
                     (tnm_t >= '3' or tnm_n >= '2' or tnm_g >= '3'):  [anthracyclines],
-                    
                     ------------------------------------------------------------------------
                     molecular_subtype = [luminal_B_HER2_positive] and 
                     (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or

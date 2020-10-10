@@ -65,7 +65,8 @@ reference
     cycle_period: Duration = 3w
     cycle_repeats: Integer = 6
 
-input
+input -- Diagnosis
+
     has_lymphoma_diagnosis: Boolean
         time_window = tw_current_episode
 
@@ -76,6 +77,8 @@ input
     has_metastases: Boolean
         currency = 30 days
         time_window = tw_current_episode
+
+input -- Labs
 
     neutrophils: Quantity
         currency = 3d
@@ -146,12 +149,13 @@ rules -- Main
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * case bilirubin.range
+            * case bilirubin.range in [[
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
+            ]]
 
     |
     | TODO: hepatic impairment dose modification
@@ -165,18 +169,19 @@ rules -- Main
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * case platelets.range
+            * case platelets.range in [[
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-                
-            * case gfr.range
+            ]]
+            * case gfr.range in [[
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
+            ]]
    
     |
     | International Prognostic Index
@@ -196,30 +201,26 @@ rules -- Main
     |     High risk (4-5 points) - 5-year survival of 26%
     |
     ipi_raw_score: Integer
-        if age > 60
-            Result := Result + 1
-
-        if staging ∈ {|stage III|, |stage IV|}
-            Result := Result + 1
-       
-        if ldh.in_range ([normal])
-            Result := Result + 1
-
-        if ecog > 1
-            Result := Result + 1
-           
-        if extranodal_sites > 1
-            Result := Result + 1
+        Result.add (
+            ---------------------------------------------
+            age > 60                             ? 1 : 0,
+            staging ∈ {[stage_III], [stage_IV]} ? 1 : 0,
+            ldh.in_range ([normal])              ? 1 : 0,
+            ecog > 1                             ? 1 : 0,
+            extranodal_sites > 1                 ? 1 : 0
+            ---------------------------------------------
+        )
        
     ipi_risk: Terminology_code
         Result :=
-            case ipi_raw_score
+            case ipi_raw_score in [[
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk]
                 =======================================
+            ]]
                 
 terminology
     term_definitions = <
