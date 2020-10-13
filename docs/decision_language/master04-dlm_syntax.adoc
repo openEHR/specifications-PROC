@@ -162,7 +162,7 @@ input
     heart_rate: Quantity
 ----
 
-Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a special proxy object described below in <<_dlm_model>>, that provides access to snapshot values of the variable over time, as well as other 'smart' facilities including null-value detection and range conversion, described in the sections below.
+Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a special proxy object described below in <<_dlm_model>>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.
 
 === Subject Variable Naming
 
@@ -289,14 +289,13 @@ The ranges for a subject variable may be declared in the following way:
 input
     systolic_blood_pressure: Quantity
         currency = 1 min
-        ranges = {
+        ranges =
             [critical_high]:  |>= 180 mm[Hg]|,
             [very_high]:      |>  140 mm[Hg]|,
             [high]:           |>  120 mm[Hg]|,
             [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
             [low]:            |<=  90 mm[Hg]|,
-            [critical_low]:   |<=  50 mm[Hg]|
-        }
+            [critical_low]:   |<=  50 mm[Hg]|;
 ----
 
 The formal type of the `ranges` property is `Hash <Terminology_code, Interval <T>>`, where `T` is the declared type of the subject variable. Thus, in the above, the entry `[very_high], |>  140 mm[Hg]|` defines a [key, value] pair whose value is of type `Interval <Quantity>`.
@@ -308,17 +307,17 @@ The above declaration allows the use of the predefined `in_range` function, whic
 [source,kotlin]
 ----
     Result :=
-    [[
-        ========================================================
-        systolic_blood_pressure
-            .in_range ([critical_high]):           [emergency],
-        --------------------------------------------------------
-        systolic_blood_pressure
-            .in_range ({[high], [very_high]}):     [high_risk],
-        --------------------------------------------------------
-        *:                                         [monitor]
-        ========================================================
-    ]]
+        choice in {
+            ========================================================
+            systolic_blood_pressure
+                .in_range ([critical_high]):           [emergency],
+            --------------------------------------------------------
+            systolic_blood_pressure
+                .in_range ({[high], [very_high]}):     [high_risk],
+            --------------------------------------------------------
+            *:                                         [monitor]
+            ========================================================
+        }
 ----
 
 Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a _discriminator_. The following shows an example.
@@ -328,22 +327,20 @@ Sometimes there are multiple ranges, usually due to alternative units systems. T
 input
     PaO2_FiO2_ratio: Quantity
         currency = 1 min
-        ranges = {
-            [SI]: {
+        ranges =
+            [SI]:
                 [normal]:         |≥400 mm[Hg]|,
                 [low]:            |300 mm[Hg] .. 399 mm[Hg]|,
                 [very_low]:       |200 mm[Hg] .. 299 mm[Hg]|,
                 [extremely_low]:  |100 mm[Hg] .. 199 mm[Hg]|,
-                [critical_low]:   |<100 mm[Hg]|
-            }
-            [metric]: {
+                [critical_low]:   |<100 mm[Hg]|;
+                
+            [metric]:
                 [normal]:         |≥53 kPa|,
                 [low]:            |39.9 kPa .. 53 kPa|,
                 [very_low]:       |26.6 kPa .. 39.8 kPa|,
                 [extremely_low]:  |13.3 kPa .. 26.5 kPa|,
-                [critical_low]:   |<13.3 kPa|
-            }
-        }
+                [critical_low]:   |<13.3 kPa|;
 ----
 
 == Rules Section
@@ -378,19 +375,19 @@ rules -- Main
 
     hypertension_risk: Terminology_term
         Result :=
-        [[
-            ===========================================================
-            has_pre_eclampsia or
-            has_eclampsia:                      [obstetric_emergency],
-            -----------------------------------------------------------
-            previous_obstetric_hypertension or
-            previous_pre_eclampsia or
-            previous_eclampsia or
-            has_pregnancy_hypertension:         [refer_high_risk_care],
-            -----------------------------------------------------------
-            *:                                  [normal_obstetric_care]
-            ===========================================================
-        ]]
+            choice in {
+                ===========================================================
+                has_pre_eclampsia or
+                has_eclampsia:                      [obstetric_emergency],
+                -----------------------------------------------------------
+                previous_obstetric_hypertension or
+                previous_pre_eclampsia or
+                previous_eclampsia or
+                has_pregnancy_hypertension:         [refer_high_risk_care],
+                -----------------------------------------------------------
+                *:                                  [normal_obstetric_care]
+                ===========================================================
+            }
 
     gestational_diabetes_risk: Boolean
         Result :=

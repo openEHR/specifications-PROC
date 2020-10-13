@@ -69,7 +69,7 @@
 <li><a href="#_bindings_section">3.12. Bindings Section</a></li>
 </ul>
 </li>
-<li><a href="#_dlm_model">4. Decision Logic Module (DLM) Model</a>
+<li><a href="#_dlm_model">4. DLM Model</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_2">4.1. Overview</a></li>
 <li><a href="#_decision_logic_module_package">4.2. Decision Logic Module Package</a>
@@ -607,7 +607,7 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>Although a subject variable declaration appears to declare a simple property of a type such as a <code>Quantity</code>, in fact it creates an instance of a special proxy object described below in <a href="#_dlm_model">Section 4</a>, that provides access to snapshot values of the variable over time, as well as other 'smart' facilities including null-value detection and range conversion, described in the sections below.</p>
+<p>Although a subject variable declaration appears to declare a simple property of a type such as a <code>Quantity</code>, in fact it creates an instance of a special proxy object described below in <a href="#_dlm_model">Section 4</a>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.</p>
 </div>
 <div class="sect3">
 <h4 id="_subject_variable_naming"><a class="anchor" href="#_subject_variable_naming"></a>3.8.1. Subject Variable Naming</h4>
@@ -765,14 +765,13 @@ rules
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
     <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
+        <span class="tok-n">ranges</span> <span class="tok-p">=</span>
 <span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>  <span class="tok-p">|&gt;=</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [very_high]</span><span class="tok-p">:</span>      <span class="tok-p">|&gt;</span>  <span class="tok-m">140</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [high]</span><span class="tok-p">:</span>           <span class="tok-p">|&gt;</span>  <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-p">&lt;=</span> <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [low]</span><span class="tok-p">:</span>            <span class="tok-p">|&lt;=</span>  <span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
-        <span class="tok-p">}</span></code></pre>
+<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -787,17 +786,17 @@ rules
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">Result</span> <span class="tok-p">:=</span>
-<span class="tok-na">    [[</span>
-<span class="tok-na">        ========================================================</span>
-<span class="tok-na">        systolic_blood_pressure</span>
-<span class="tok-na">            .in_range ([critical_high]</span><span class="tok-p">):</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
-        <span class="tok-p">--------------------------------------------------------</span>
-        <span class="tok-n">systolic_blood_pressure</span>
-            <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">({[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}):</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
-        <span class="tok-p">--------------------------------------------------------</span>
-        <span class="tok-p">*:</span>                                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
-        <span class="tok-p">========================================================</span>
-    <span class="tok-p">]]</span></code></pre>
+        <span class="tok-n">choice</span> <span class="tok-k">in</span> <span class="tok-p">{</span>
+            <span class="tok-p">========================================================</span>
+            <span class="tok-n">systolic_blood_pressure</span>
+                <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">critical_high</span><span class="tok-p">]):</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
+            <span class="tok-p">--------------------------------------------------------</span>
+            <span class="tok-n">systolic_blood_pressure</span>
+                <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">({[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}):</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
+            <span class="tok-p">--------------------------------------------------------</span>
+            <span class="tok-p">*:</span>                                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
+            <span class="tok-p">========================================================</span>
+        <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -808,22 +807,20 @@ rules
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
     <span class="tok-n">PaO2_FiO2_ratio</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
-<span class="tok-na">            [SI]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
+        <span class="tok-n">ranges</span> <span class="tok-p">=</span>
+<span class="tok-na">            [SI]</span><span class="tok-p">:</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">400</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">300</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">399</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">200</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">299</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">199</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
-            <span class="tok-p">}</span>
-<span class="tok-na">            [metric]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
+<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|;</span>
+
+<span class="tok-na">            [metric]</span><span class="tok-p">:</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">26.6</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">39.8</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
-<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|</span>
-            <span class="tok-p">}</span>
-        <span class="tok-p">}</span></code></pre>
+<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|;</span></code></pre>
 </div>
 </div>
 </div>
@@ -863,19 +860,19 @@ rules
 
     <span class="tok-n">hypertension_risk</span><span class="tok-p">:</span> <span class="tok-n">Terminology_term</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span>
-<span class="tok-na">        [[</span>
-<span class="tok-na">            ===========================================================</span>
-<span class="tok-na">            has_pre_eclampsia or</span>
-<span class="tok-na">            has_eclampsia:                      [obstetric_emergency]</span><span class="tok-p">,</span>
-            <span class="tok-p">-----------------------------------------------------------</span>
-            <span class="tok-n">previous_obstetric_hypertension</span> <span class="tok-n">or</span>
-            <span class="tok-n">previous_pre_eclampsia</span> <span class="tok-n">or</span>
-            <span class="tok-n">previous_eclampsia</span> <span class="tok-n">or</span>
-            <span class="tok-n">has_pregnancy_hypertension</span><span class="tok-p">:</span>         <span class="tok-p">[</span><span class="tok-n">refer_high_risk_care</span><span class="tok-p">],</span>
-            <span class="tok-p">-----------------------------------------------------------</span>
-            <span class="tok-p">*:</span>                                  <span class="tok-p">[</span><span class="tok-n">normal_obstetric_care</span><span class="tok-p">]</span>
-            <span class="tok-p">===========================================================</span>
-        <span class="tok-p">]]</span>
+            <span class="tok-n">choice</span> <span class="tok-k">in</span> <span class="tok-p">{</span>
+                <span class="tok-p">===========================================================</span>
+                <span class="tok-n">has_pre_eclampsia</span> <span class="tok-n">or</span>
+                <span class="tok-n">has_eclampsia</span><span class="tok-p">:</span>                      <span class="tok-p">[</span><span class="tok-n">obstetric_emergency</span><span class="tok-p">],</span>
+                <span class="tok-p">-----------------------------------------------------------</span>
+                <span class="tok-n">previous_obstetric_hypertension</span> <span class="tok-n">or</span>
+                <span class="tok-n">previous_pre_eclampsia</span> <span class="tok-n">or</span>
+                <span class="tok-n">previous_eclampsia</span> <span class="tok-n">or</span>
+                <span class="tok-n">has_pregnancy_hypertension</span><span class="tok-p">:</span>         <span class="tok-p">[</span><span class="tok-n">refer_high_risk_care</span><span class="tok-p">],</span>
+                <span class="tok-p">-----------------------------------------------------------</span>
+                <span class="tok-p">*:</span>                                  <span class="tok-p">[</span><span class="tok-n">normal_obstetric_care</span><span class="tok-p">]</span>
+                <span class="tok-p">===========================================================</span>
+            <span class="tok-p">}</span>
 
     <span class="tok-n">gestational_diabetes_risk</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span>
@@ -934,7 +931,7 @@ rules
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dlm_model"><a class="anchor" href="#_dlm_model"></a>4. Decision Logic Module (DLM) Model</h2>
+<h2 id="_dlm_model"><a class="anchor" href="#_dlm_model"></a>4. DLM Model</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
@@ -1015,7 +1012,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1245,14 +1242,13 @@ rules
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
+        <span class="tok-n">ranges</span> <span class="tok-p">=</span>
 <span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>  <span class="tok-p">|&gt;=</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [very_high]</span><span class="tok-p">:</span>      <span class="tok-p">|&gt;</span>  <span class="tok-m">140</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [high]</span><span class="tok-p">:</span>           <span class="tok-p">|&gt;</span>  <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-p">&lt;=</span> <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [low]</span><span class="tok-p">:</span>            <span class="tok-p">|&lt;=</span>  <span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
-        <span class="tok-p">}</span></code></pre>
+<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

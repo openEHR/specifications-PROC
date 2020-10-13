@@ -1,5 +1,5 @@
 [[_dlm_model]]
-= Decision Logic Module (DLM) Model
+= DLM Model
 
 == Overview
 
@@ -69,14 +69,13 @@ Variable declarations in DL syntax, as described in the language section above a
 ----
     systolic_blood_pressure: Quantity
         currency = 1 min
-        ranges = {
+        ranges =
             [critical_high]:  |>= 180 mm[Hg]|,
             [very_high]:      |>  140 mm[Hg]|,
             [high]:           |>  120 mm[Hg]|,
             [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
             [low]:            |<=  90 mm[Hg]|,
-            [critical_low]:   |<=  50 mm[Hg]|
-        }
+            [critical_low]:   |<=  50 mm[Hg]|;
 ----
 
 If we were to rewrite this in a more standard programming language, it might look like the following object instantiation, preceded by setup code (the syntax 'Type_name (args)' is used to represent an object creation using a constructor call in each case):
