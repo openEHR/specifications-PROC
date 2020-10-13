@@ -48,7 +48,7 @@ input -- <time_window = tw_current_episode>
             ------------------------------------
             [high]:      |>30 kg/m^2|,
             [normal]:    |>=15 .. <= 30 kg/m^2|,
-            [low]:       |< 15 kg/m^2|
+            [low]:       |< 15 kg/m^2|;
             ------------------------------------
 
 input
@@ -71,6 +71,14 @@ input -- <source = "manual">
     contractions_commenced: Boolean
 
     braxton_hicks_contraction: Boolean
+    
+    amniotic_volume: Real
+        ranges =
+            ------------------------------------
+            [polyhydramnios]:    |> 14|,
+            [normal]:            |>= 5 .. <= 14|,
+            [oligohydramnios]:   |< 5|;
+            ------------------------------------
 
 rules
 
@@ -81,32 +89,31 @@ rules
         ....
         
     amniotic_fluid_risk: Terminology_term
-        Result :=
-            case amniotic_fluid_state in [[
-                =====================[ IN ]========================
-                [premature rupture],
-                [polyhydramnios]:           [obstetric_emergency],
-                -------------------[ ELSE IN ]---------------------
-                [oligohydramnios]:          [refer_high_risk_care],
-                --------------------[ ELSE ]-----------------------
-                *:                          [normal_obstetric_care]
-                ===================================================
-            ]]
+        Result := case amniotic_fluid_state in {
+            ====================================================
+            [premature_rupture],
+            [polyhydramnios]:           [obstetric_emergency],
+            ----------------------------------------------------
+            [oligohydramnios]:          [refer_high_risk_care],
+            ----------------------------------------------------
+            *:                          [normal_obstetric_care]
+            ====================================================
+        }
     
     hypertension_risk: Terminology_term
-        Result := [[
-            ========================[ IF ]=============================
+        Result := choice of {
+            ============================================================
             has_pre_eclampsia or 
             has_eclampsia:                      [obstetric_emergency],
-            ----------------------[ ELSE IF ]--------------------------
+            ------------------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
             has_pregnancy_hypertension:         [refer_high_risk_care],
-            ------------------------[ ELSE ]---------------------------
+            ------------------------------------------------------------
             *:                                  [normal_obstetric_care]
-            ===========================================================
-        ]]
+            ============================================================
+        }
             
     gestational_diabetes_risk: Boolean
         Result :=
@@ -117,16 +124,15 @@ rules
             race_related_diabetes_risk
             
     anaemia_risk: Terminology_term
-        Result := 
-            case anaemia_type in [[
-                ======================[ IN ]===========================
-                [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
-                --------------------[ ELSE-IN ]------------------------
-                [anaemia_of_pregnancy]:         [refer_high_risk_care],
-                ----------------------[ ELSE ]-------------------------
-                *:                              [normal_obstetric_care]
-                =======================================================
-            ]]
+        Result := case anaemia_type in {
+            ========================================================
+            [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
+            --------------------------------------------------------
+            [anaemia_of_pregnancy]:         [refer_high_risk_care],
+            --------------------------------------------------------
+            *:                              [normal_obstetric_care]
+            ========================================================
+        }
     
 terminology
     term_definitions = <

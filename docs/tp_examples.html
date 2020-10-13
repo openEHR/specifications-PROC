@@ -594,7 +594,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
-            [very_low]:    |&lt;0.5 x 10^9/L|
+            [very_low]:    |&lt;0.5 x 10^9/L|;
             ----------------------------------
 
     platelets: Quantity
@@ -603,7 +603,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
-            [very_low]:    |&lt;50 x 10^9/L|
+            [very_low]:    |&lt;50 x 10^9/L|;
             ----------------------------------
 
     bilirubin: Quantity
@@ -613,7 +613,7 @@ input -- Labs
             [normal]:      |&lt;20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
-            [crit_high]:   |&gt;85 mmol/L|
+            [crit_high]:   |&gt;85 mmol/L|;
             ----------------------------------
 
     gfr: Quantity
@@ -622,7 +622,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |&lt;10 mL/min|
+            [very_low]:    |&lt;10 mL/min|;
             ----------------------------------
 
     ldh: Quantity
@@ -631,7 +631,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |&lt;10 mL/min|
+            [very_low]:    |&lt;10 mL/min|;
             ----------------------------------
 
 rules -- Conditions
@@ -657,13 +657,13 @@ rules -- Main
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * case bilirubin.range in [[
+            * case bilirubin.range in {
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-            ]]
+            }
 
     |
     | TODO: hepatic impairment dose modification
@@ -677,19 +677,19 @@ rules -- Main
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * case platelets.range in [[
+            * case platelets.range in {
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-            ]]
-            * case gfr.range in [[
+            }
+            * case gfr.range in {
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
-            ]]
+            }
 
     |
     | International Prognostic Index
@@ -721,14 +721,14 @@ rules -- Main
 
     ipi_risk: Terminology_code
         Result :=
-            case ipi_raw_score in [[
+            case ipi_raw_score in {
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
-                |4..5|  : [ipi_high_risk]
+                |4..5|  : [ipi_high_risk];
                 =======================================
-            ]]
+            }
 
 terminology
     term_definitions = &lt;
@@ -835,7 +835,7 @@ input -- &lt;time_window = tw_current_episode&gt;
             ------------------------------------
             [high]:      |&gt;30 kg/m^2|,
             [normal]:    |&gt;=15 .. &lt;= 30 kg/m^2|,
-            [low]:       |&lt; 15 kg/m^2|
+            [low]:       |&lt; 15 kg/m^2|;
             ------------------------------------
 
 input
@@ -859,6 +859,14 @@ input -- &lt;source = "manual"&gt;
 
     braxton_hicks_contraction: Boolean
 
+    amniotic_volume: Real
+        ranges =
+            ------------------------------------
+            [polyhydramnios]:    |&gt; 14|,
+            [normal]:            |&gt;= 5 .. &lt;= 14|,
+            [oligohydramnios]:   |&lt; 5|;
+            ------------------------------------
+
 rules
 
     anaemia_type: Terminology_term
@@ -868,32 +876,31 @@ rules
         ....
 
     amniotic_fluid_risk: Terminology_term
-        Result :=
-            case amniotic_fluid_state in [[
-                =====================[ IN ]========================
-                [premature rupture],
-                [polyhydramnios]:           [obstetric_emergency],
-                -------------------[ ELSE IN ]---------------------
-                [oligohydramnios]:          [refer_high_risk_care],
-                --------------------[ ELSE ]-----------------------
-                *:                          [normal_obstetric_care]
-                ===================================================
-            ]]
+        Result := case amniotic_fluid_state in {
+            ====================================================
+            [premature_rupture],
+            [polyhydramnios]:           [obstetric_emergency],
+            ----------------------------------------------------
+            [oligohydramnios]:          [refer_high_risk_care],
+            ----------------------------------------------------
+            *:                          [normal_obstetric_care]
+            ====================================================
+        }
 
     hypertension_risk: Terminology_term
-        Result := [[
-            ========================[ IF ]=============================
+        Result := choice of {
+            ============================================================
             has_pre_eclampsia or
             has_eclampsia:                      [obstetric_emergency],
-            ----------------------[ ELSE IF ]--------------------------
+            ------------------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
             has_pregnancy_hypertension:         [refer_high_risk_care],
-            ------------------------[ ELSE ]---------------------------
+            ------------------------------------------------------------
             *:                                  [normal_obstetric_care]
-            ===========================================================
-        ]]
+            ============================================================
+        }
 
     gestational_diabetes_risk: Boolean
         Result :=
@@ -904,16 +911,15 @@ rules
             race_related_diabetes_risk
 
     anaemia_risk: Terminology_term
-        Result :=
-            case anaemia_type in [[
-                ======================[ IN ]===========================
-                [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
-                --------------------[ ELSE-IN ]------------------------
-                [anaemia_of_pregnancy]:         [refer_high_risk_care],
-                ----------------------[ ELSE ]-------------------------
-                *:                              [normal_obstetric_care]
-                =======================================================
-            ]]
+        Result := case anaemia_type in {
+            ========================================================
+            [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
+            --------------------------------------------------------
+            [anaemia_of_pregnancy]:         [refer_high_risk_care],
+            --------------------------------------------------------
+            *:                              [normal_obstetric_care]
+            ========================================================
+        }
 
 terminology
     term_definitions = &lt;
@@ -1018,7 +1024,7 @@ input
         ranges =
             -------------------
             [high]:   |&gt;= 14%|,
-            [normal]: |&lt; 14%|
+            [normal]: |&lt; 14%|;
             -------------------
 
     ejection_fraction: Quantity
@@ -1026,7 +1032,7 @@ input
         ranges =
             --------------------
             [normal]:  |&gt;= 40%|,
-            [low]  :   |&lt; 40%|
+            [low]  :   |&lt; 40%|;
             --------------------
 
     has_heart_failure_class_II: Boolean
@@ -1075,64 +1081,66 @@ rules -- Conditions
 rules -- Guideline
 
     molecular_subtype: Terminology_term
-        Result := [[
-            =========================================================
-            er_positive and
-            her2_negative and
-            not ki67.in_range ([high]):    [luminal_A],
-            ---------------------------------------------------------
-            er_positive and
-            her2_negative and
-            ki67.in_range ([high]):        [luminal_B_HER2_negative],
-            ---------------------------------------------------------
-            er_positive and
-            her2_positive:                 [luminal_B_HER2_positive],
-            ---------------------------------------------------------
-            er_negative and
-            pr_negative and
-            her2_positive and
-            ki67.in_range ([high]):        [HER2],
-            ---------------------------------------------------------
-            er_negative and
-            pr_negative and
-            her2_negative and
-            ki67.in_range ([high]):        [triple_negative],
-            ---------------------------------------------------------
-            *:                             [none]
-            =========================================================
-        ]]
+        Result :=
+            choice of {
+                =========================================================
+                er_positive and
+                her2_negative and
+                not ki67.in_range ([high]):    [luminal_A],
+                ---------------------------------------------------------
+                er_positive and
+                her2_negative and
+                ki67.in_range ([high]):        [luminal_B_HER2_negative],
+                ---------------------------------------------------------
+                er_positive and
+                her2_positive:                 [luminal_B_HER2_positive],
+                ---------------------------------------------------------
+                er_negative and
+                pr_negative and
+                her2_positive and
+                ki67.in_range ([high]):        [HER2],
+                ---------------------------------------------------------
+                er_negative and
+                pr_negative and
+                her2_negative and
+                ki67.in_range ([high]):        [triple_negative],
+                ---------------------------------------------------------
+                *:                             [none];
+                =========================================================
+            }
 
     chemotherapy_regime: Terminology_term
-        Result := [[
-            ================================================================================
-            not metastatic: [[
-                    ========================================================================
-                    molecular_subtype in
-                        {[luminal_B_HER2_negative],
-                         [triple_negative]} and
-                    (tnm_t &gt; '1a' or tnm_n &gt; '0'):                   [taxanes],
-                    ------------------------------------------------------------------------
-                    molecular_subtype = [luminal_A] and
-                    (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3'):  [anthracyclines],
-                    ------------------------------------------------------------------------
-                    molecular_subtype = [luminal_B_HER2_positive] and
-                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or
-                    molecular_subtype = [HER2_positive] and
-                    (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
-                    ========================================================================
-            ]]
-            --------------------------------------------------------------------------------
-            *: [[
-                    =====================
-                    yyy:        aaa,
-                    ---------------------
-                    xxx:        bbb,
-                    ---------------------
-                    *:
-                    =====================
-            ]]
-            ================================================================================
-        ]]
+        Result :=
+            choice of {
+                ============================================================================================
+                not metastatic: choice of {
+                                    ========================================================================
+                                    molecular_subtype in
+                                        {[luminal_B_HER2_negative],
+                                         [triple_negative]} and
+                                    (tnm_t &gt; '1a' or tnm_n &gt; '0'):                   [taxanes],
+                                    ------------------------------------------------------------------------
+                                    molecular_subtype = [luminal_A] and
+                                    (tnm_t &gt;= '3' or tnm_n &gt;= '2' or tnm_g &gt;= '3'):  [anthracyclines],
+                                    ------------------------------------------------------------------------
+                                    molecular_subtype = [luminal_B_HER2_positive] and
+                                    (tnm_t = '1b' or tnm_t = '1c' and tnm_n = '0') or
+                                    molecular_subtype = [HER2_positive] and
+                                    (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
+                                    ========================================================================
+                                },
+                --------------------------------------------------------------------------------------------
+                *:              choice of {
+                                    =====================
+                                    yyy:        aaa,
+                                    ---------------------
+                                    xxx:        bbb,
+                                    ---------------------
+                                    *:          ccc
+                                    =====================
+                                }
+                =============================================================================================
+            }
 
 terminology
     term_definitions = &lt;

@@ -86,7 +86,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |>1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
-            [very_low]:    |<0.5 x 10^9/L|
+            [very_low]:    |<0.5 x 10^9/L|;
             ----------------------------------
 
     platelets: Quantity
@@ -95,7 +95,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |>75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
-            [very_low]:    |<50 x 10^9/L|
+            [very_low]:    |<50 x 10^9/L|;
             ----------------------------------
 
     bilirubin: Quantity
@@ -105,7 +105,7 @@ input -- Labs
             [normal]:      |<20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
-            [crit_high]:   |>85 mmol/L|
+            [crit_high]:   |>85 mmol/L|;
             ----------------------------------
 
     gfr: Quantity
@@ -114,7 +114,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |>20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |<10 mL/min|
+            [very_low]:    |<10 mL/min|;
             ----------------------------------
 
     ldh: Quantity
@@ -123,7 +123,7 @@ input -- Labs
             ----------------------------------
             [normal]:      |>20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |<10 mL/min|
+            [very_low]:    |<10 mL/min|;
             ----------------------------------
 
 rules -- Conditions
@@ -149,13 +149,13 @@ rules -- Main
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * case bilirubin.range in [[
+            * case bilirubin.range in {
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-            ]]
+            }
 
     |
     | TODO: hepatic impairment dose modification
@@ -169,19 +169,19 @@ rules -- Main
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * case platelets.range in [[
+            * case platelets.range in {
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-            ]]
-            * case gfr.range in [[
+            }
+            * case gfr.range in {
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
-            ]]
+            }
    
     |
     | International Prognostic Index
@@ -213,14 +213,14 @@ rules -- Main
        
     ipi_risk: Terminology_code
         Result :=
-            case ipi_raw_score in [[
+            case ipi_raw_score in {
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
-                |4..5|  : [ipi_high_risk]
+                |4..5|  : [ipi_high_risk];
                 =======================================
-            ]]
+            }
                 
 terminology
     term_definitions = <
