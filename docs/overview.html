@@ -51,6 +51,7 @@
 <li><a href="#_guidelines_and_decision_support">4.2. Guidelines and Decision Support</a></li>
 </ul>
 </li>
+<li><a href="#_subject_data_sets">5. Subject Data-sets</a></li>
 <li><a href="#_references">References</a></li>
 </ul>
 </li>
@@ -221,6 +222,12 @@
 <p>The <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning specification</a>;</p>
 </li>
 <li>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language</a>;</p>
+</li>
+<li>
+<p><a href="https://specifications.openehr.org/releases/PROC/latest/process_examples.html" target="_blank" rel="noopener">openEHR Process Examples</a>;</p>
+</li>
+<li>
 <p>The <a href="https://specifications.openehr.org/releases/CDS/latest/GDL2.html" target="_blank" rel="noopener">Guideline Definition Language (GDL2)</a>.</p>
 </li>
 </ul>
@@ -266,13 +273,16 @@
 <p>A <em>plan</em> definition formalism: the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning specification</a>;</p>
 </li>
 <li>
-<p>A <em>logic / rules</em> definition language: the {openehr_dlm}[openEHR Decision Logic Module (DLM) specification^];</p>
+<p>A <em>guideline and rule</em> language: the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language specification</a>;</p>
 </li>
 <li>
-<p>An <em>expression language</em>, which forms the basis for writing expressions and rules, defined by the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model </a>;</p>
+<p>An <em>expression language</em>, which forms the basis for writing expressions and rules, defined by the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language (EL)</a>;</p>
 </li>
 <li>
-<p>A specification for a <em>subject proxy service</em>, which forms the bridge between concrete data sources and plans and decision logic as consumers: the <a href="https://specifications.openehr.org/releases/PROC/latest/subject_proxy.html" target="_blank" rel="noopener">openEHR Subject Proxy specification</a>.</p>
+<p>A <em>subject proxy service</em>, which forms the bridge between Plans and Guidelines as consumers of subject data: the <a href="https://specifications.openehr.org/releases/PROC/latest/subject_proxy.html" target="_blank" rel="noopener">openEHR Subject Proxy specification</a>.</p>
+</li>
+<li>
+<p>An underlying <em>meta-model</em> formalising information models, expression language and decision constructs, defined by the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model</a>;</p>
 </li>
 </ul>
 </div>
@@ -380,7 +390,7 @@
 <p>The essential characterisation of <em>decision logic</em> in the openEHR process specifications is a function-oriented logic that typically represents deductive inferences, such as clinical classification of patients (including diagnosis), based on input variables representing known facts about the subject (i.e. patient). These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnoses and records of previous procedures. Other kinds of reasoning may be used as well, including Bayesian and other statistical and Artificial Intelligence (AI). In the latter case, DLM functions make calls to appropriate specialised services.</p>
 </div>
 <div class="paragraph">
-<p>The openEHR DLM language consists of various formal elements, including:</p>
+<p>DLMs are written in the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language (DL)</a> consists of various formal elements, including:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -408,7 +418,7 @@
 <div class="sect2">
 <h3 id="_subject_data"><a class="anchor" href="#_subject_data"></a>3.3. Subject Data</h3>
 <div class="paragraph">
-<p>One the lower left (blue / grey) is the <em>subject dataset</em>, which might be managed by a <em>Subject Proxy service</em> or by other integration components. Whatever the concrete architecture, these components serve to populate the subject data required by the Plans and Decision Logic Modules. As such, <em>Data Access Bindings (DAB)</em> are required to extract data from specific data sources and repositories, such as patient health records and monitoring devices, and where data is not available from these sources, users may be requested to provide it.</p>
+<p>On the lower left (blue / grey) is the <em>subject dataset</em>, which is managed by the <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html" target="_blank" rel="noopener">Subject Proxy service</a>. Whatever the concrete architecture, these components serve to populate the subject data required by the Plans and Decision Logic Modules. As such, <em>Data Access Bindings (DAB)</em> are required to extract data from specific data sources and repositories, such as patient health records and monitoring devices, and where data is not available from these sources, users may be requested to provide it.</p>
 </div>
 <div class="paragraph">
 <p>Decision support logic necessarily requires a way of defining and expressing its <em>input variables</em>. This is not just a question of creating typed variables, but one of semantics. The 'variables' used in rules represent an <em>ontic</em> view of the subject, that is, a true description of its state in reality. For example, a rule for inferring atrial fibrillation and other forms of arrhythmia may refer to the input variables <code><em>heart_rate</em></code> and <code><em>heart_rhythm</em></code>. The meaning of these variables is that they represent the real heart rate and rhythm of the patient, rather than being just any heart rate, e.g. from a measurement 3 years ago. Similarly, a variable <code><em>is_type1_diabetic</em></code> represents a proposition about the patient in reality.</p>
@@ -455,6 +465,12 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_subject_data_sets"><a class="anchor" href="#_subject_data_sets"></a>5. Subject Data-sets</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -471,7 +487,7 @@
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-13 14:14:15 +0100
+Last updated 2020-08-18 12:07:50 +0100
 </div>
 </div>
 </body>

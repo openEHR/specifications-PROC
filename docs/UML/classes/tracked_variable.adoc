@@ -8,6 +8,8 @@ h|*Class*
 h|*Description*
 2+a|Abstraction representing a 'tracked' real-world variable representing a quality of a subject, e.g. patient systolic blood pressure, diabetic status, date of birth etc, whose value is sampled and potentially tracked over time.
 
+The generic parameter is a model type from an accessible model.
+
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
@@ -22,7 +24,7 @@ a|If set, maximum age of a real-world snapshot of this variable's value.
 
 h|*0..1*
 |*history*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_value_snapshot_class,VALUE_SNAPSHOT>>>`
-a|
+a|Local history of values.
 
 h|*0..1*
 |*max_history*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
@@ -40,7 +42,7 @@ h|*0..1*
 a|Retrieve latest value, or null if none.
 
 h|*1..1*
-|*value2* ( +
+|*value_at_time* ( +
 a_time: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^][1]` +
 ): `T`
 a|Return the value from `_history_` that was available at time `_time_`.

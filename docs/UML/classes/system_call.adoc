@@ -16,6 +16,10 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
+h|*0..1*
+|*parameter_map*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_parameter_mapping_class,PARAMETER_MAPPING>>>`
+a|Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.
+
 h|*1..1*
 |*system_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|Identifier of target system, typically a domain name.
@@ -29,10 +33,6 @@ h|*0..1*
 a|Signature definition of call.
 
 TODO: to be defined.
-
-h|*0..1*
-|*parameter_map*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_parameter_mapping_class,PARAMETER_MAPPING>>>`
-a|Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.
 
 h|*0..1*
 |*bound_parameters*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_parameter_def_class,PARAMETER_DEF>>>`

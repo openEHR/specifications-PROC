@@ -33,31 +33,6 @@
 [.xcode]
 * link:/releases/PROC/{proc_release}/decision_language.html#_value_snapshot_class[VALUE_SNAPSHOT^]
 
-==== Package subject_proxy
-
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_data_category_enumeration[DATA_CATEGORY^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_history_i_interface[PROXY_HISTORY_I^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_problem_dx_i_interface[PROXY_PROBLEM_DX_I^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_service_interface[PROXY_SERVICE^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_service_backend_interface[PROXY_SERVICE_BACKEND^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_state_i_interface[PROXY_STATE_I^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_proxy_vital_signs_i_interface[PROXY_VITAL_SIGNS_I^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_evaluator_interface[SP_EVALUATOR^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_variable_category_enumeration[SP_VARIABLE_CATEGORY^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_sp_variable_def_class[SP_VARIABLE_DEF^]
-[.xcode]
-* link:/releases/PROC/{proc_release}/subject_proxy.html#_subject_proxy_class[SUBJECT_PROXY^]
-
 ==== Package task_planning
 
 [.xcode]

@@ -28,7 +28,7 @@ In the conceptual model, the box on the lower right (green) represents _decision
 
 The essential characterisation of _decision logic_ in the openEHR process specifications is a function-oriented logic that typically represents deductive inferences, such as clinical classification of patients (including diagnosis), based on input variables representing known facts about the subject (i.e. patient). These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnoses and records of previous procedures. Other kinds of reasoning may be used as well, including Bayesian and other statistical and Artificial Intelligence (AI). In the latter case, DLM functions make calls to appropriate specialised services.
 
-The openEHR DLM language consists of various formal elements, including:
+DLMs are written in the {openehr_decision_language}[openEHR Decision Language (DL)^] consists of various formal elements, including:
 
 * _input variables_: declarations of subject-related variables that are referenced within the conditions and rules;
 * _conditions_: Boolean-valued simple rules based directly on subject variables;
@@ -40,7 +40,7 @@ Conditions, rules, rule-sets and other inference-generating structures that may 
 
 == Subject Data
 
-One the lower left (blue / grey) is the _subject dataset_, which might be managed by a _Subject Proxy service_ or by other integration components. Whatever the concrete architecture, these components serve to populate the subject data required by the Plans and Decision Logic Modules. As such, _Data Access Bindings (DAB)_ are required to extract data from specific data sources and repositories, such as patient health records and monitoring devices, and where data is not available from these sources, users may be requested to provide it.
+On the lower left (blue / grey) is the _subject dataset_, which is managed by the {openehr_sm_openehr_platform}[Subject Proxy service^]. Whatever the concrete architecture, these components serve to populate the subject data required by the Plans and Decision Logic Modules. As such, _Data Access Bindings (DAB)_ are required to extract data from specific data sources and repositories, such as patient health records and monitoring devices, and where data is not available from these sources, users may be requested to provide it.
 
 Decision support logic necessarily requires a way of defining and expressing its _input variables_. This is not just a question of creating typed variables, but one of semantics. The 'variables' used in rules represent an _ontic_ view of the subject, that is, a true description of its state in reality. For example, a rule for inferring atrial fibrillation and other forms of arrhythmia may refer to the input variables `_heart_rate_` and `_heart_rhythm_`. The meaning of these variables is that they represent the real heart rate and rhythm of the patient, rather than being just any heart rate, e.g. from a measurement 3 years ago. Similarly, a variable `_is_type1_diabetic_` represents a proposition about the patient in reality.
 

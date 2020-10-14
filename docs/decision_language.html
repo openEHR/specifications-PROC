@@ -1012,7 +1012,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1299,6 +1299,9 @@ rules
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
 <p>Abstraction representing a 'tracked' real-world variable representing a quality of a subject, e.g. patient systolic blood pressure, diabetic status, date of birth etc, whose value is sampled and potentially tracked over time.</p>
+</div>
+<div class="paragraph">
+<p>The generic parameter is a model type from an accessible model.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1321,7 +1324,9 @@ rules
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_value_snapshot_class">VALUE_SNAPSHOT</a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Local history of values.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
@@ -1347,7 +1352,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value2</strong> (<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_at_time</strong> (<br>
 a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a>[1]</code><br>
 ): <code>T</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1476,7 +1481,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_def</strong> (<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_definition</strong> (<br>
 a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1485,7 +1490,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>in_range2</strong> (<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>in_group_range</strong> (<br>
 range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code>,<br>
 a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
@@ -1495,7 +1500,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range2</strong> (<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>group_range</strong> (<br>
 range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1504,7 +1509,7 @@ range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_termino
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_def2</strong> (<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>group_range_definition</strong> (<br>
 range_group: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code>,<br>
 a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a>[1]</code><br>
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>

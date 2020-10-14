@@ -36,9 +36,6 @@ rules
 
 [terminology
     <symbol definitions in archetype format>]
-
-[bindings
-    <local bindings of symbols to data set paths>]
 ----
 
 Many of the sections are optional and are only used in specific _forms_ of DLM, indicated by the `<form>` on the first line.
@@ -433,7 +430,3 @@ terminology
     >
 ----
 
-== Bindings Section
-
-[.tbd]
-TBD:

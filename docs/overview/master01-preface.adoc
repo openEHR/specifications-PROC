@@ -19,6 +19,8 @@ Prerequisite documents for reading this document include:
 Related documents include:
 
 * The {openehr_task_planning}[openEHR Task Planning specification^];
+* The {openehr_decision_language}[openEHR Decision Language^];
+* {openehr_process_examples}[openEHR Process Examples^];
 * The {openehr_cds_gdl2}[Guideline Definition Language (GDL2)^].
 
 == Status

@@ -5,9 +5,10 @@
 openEHR provides specifications for various models and languages to address the area of process and guideline-driven healthcare. These are as follows:
 
 * A _plan_ definition formalism: the {openehr_task_planning}[openEHR Task Planning specification^];
-* A _logic / rules_ definition language: the {openehr_dlm}[openEHR Decision Logic Module (DLM) specification^];
-* An _expression language_, which forms the basis for writing expressions and rules, defined by the {openehr_bmm}[openEHR Basic Meta-Model ^];
-* A specification for a _subject proxy service_, which forms the bridge between concrete data sources and plans and decision logic as consumers: the {openehr_subject_proxy}[openEHR Subject Proxy specification^].
+* A _guideline and rule_ language: the {openehr_decision_language}[openEHR Decision Language specification^];
+* An _expression language_, which forms the basis for writing expressions and rules, defined by the {openehr_expression_language}[openEHR Expression Language (EL)^];
+* A _subject proxy service_, which forms the bridge between Plans and Guidelines as consumers of subject data: the {openehr_subject_proxy}[openEHR Subject Proxy specification^].
+* An underlying _meta-model_ formalising information models, expression language and decision constructs, defined by the {openehr_bmm}[openEHR Basic Meta-Model^];
 
 Together these enable the authoring of guidelines (GDL3 format), executable care plans and in-application active forms. There is also an existing guideline language, {openehr_cds_gdl2}[Guideline Definition Language 2 (GDL2)^], which defines an earlier self-standing guideline format, and which can be replaced by the DLM format GDL3 guideline.
 

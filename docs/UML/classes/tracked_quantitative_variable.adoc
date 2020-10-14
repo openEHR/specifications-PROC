@@ -33,26 +33,26 @@ h|*1..1*
 a|Return the name of the range from the default range group within which the last read value of the variable resides. Use when there is only one range group.
 
 h|*1..1*
-|*range_def* ( +
+|*range_definition* ( +
 a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
 a|Return the interval of the named range within the default range group. Use when there is only one range group.
 
 h|*1..1*
-|*in_range2* ( +
+|*in_group_range* ( +
 range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]`, +
 a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
 a|Form of `_in_range()_` to use when there is more than one range group.
 
 h|*1..1*
-|*range2* ( +
+|*group_range* ( +
 range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|Form of `_range()_` to use when there is more than one range group.
 
 h|*1..1*
-|*range_def2* ( +
+|*group_range_definition* ( +
 range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]`, +
 a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
 ): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
