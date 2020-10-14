@@ -63,17 +63,6 @@
             "copyright_year": "2020",
             "spec_status": "DEVELOPMENT",
             "keywords": "expressions, rules, guidelines"
-        },
-        {
-            "id": "subject_proxy",
-            "title": "Subject Proxy Service specification",
-            "title_short": "Subject Proxy Service (SP)",
-            "description": "openEHR Subject Proxy Service specification",
-            "summary": "Service for populating data-sets for Guideline definition Language (GDL), Task Planning (TP).",
-            "micro_summary": "Service for high-level data-set access",
-            "copyright_year": "2020",
-            "spec_status": "DEVELOPMENT",
-            "keywords": "data access, guidelines, workflow"
         }
     ],
     "expressions": [
