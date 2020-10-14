@@ -2,11 +2,11 @@
 
 == Purpose
 
-This document contains elaborated examples of the openEHR Task Planning (TP) Model, with diagrams in TP-VML.
+This document contains elaborated examples of the openEHR Process framework, including Task Plans and Decision Logic Modules, with diagrams in TP-VML.
 
 The intended audience includes:
 
-* Task Plan and workflow authors;
+* Plan and Guideline authors;
 * Tool vendors.
 
 == Related Documents
@@ -14,11 +14,12 @@ The intended audience includes:
 Prerequisite documents for reading this document include:
 
 * The {openehr_task_planning}[openEHR Task Planning Model^];
+* The {openehr_decision_language}[openEHR Decision Language^];
 * The {openehr_tp_vml}[openEHR Task Planning Visual Modelling Language (TP-VML)^];
 
 == Status
 
-This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_tp_examples}[{openehr_proc_latest_tp_examples}^].
+This specification is in the {spec_status} state. The development version of this document can be found at {openehr_proc_latest_process_examples}[{openehr_proc_latest_process_examples}^].
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
