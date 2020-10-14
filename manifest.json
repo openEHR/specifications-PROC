@@ -32,6 +32,17 @@
 			"keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
         },
         {
+            "id": "decision_language",
+            "title": "Decision Language specification",
+            "title_short": "Decision Language",
+            "description": "openEHR Decision Language specification",
+            "summary": "Language for expressing rules and guidelines, for use with GDL3, Task Planning (TP).",
+            "micro_summary": "Rule language for use with GDL, TP.",
+            "copyright_year": "2020",
+            "spec_status": "DEVELOPMENT",
+            "keywords": "expressions, rules, guidelines"
+        },
+        {
             "id": "tp_vml",
             "title": "Task Planning Visual Modelling Language (TP-VML)",
             "title_short": "TP Visual Modelling Language (TP_VML)",
@@ -43,26 +54,15 @@
 			"keywords": "task planning, visual language, workflow"
         },
         {
-            "id": "tp_examples",
-            "title": "Task Planning Examples",
-            "title_short": "TP Examples",
-            "description": "openEHR Task Planning Examples",
-            "summary": "Real world detailed examples using Task Planning.",
-            "micro_summary": "Real-world worked TP examples.",
+            "id": "process_examples",
+            "title": "openEHR Process Examples",
+            "title_short": "Process Examples",
+            "description": "Examples of openEHR Plan, Guideline and Decision framework.",
+            "summary": "Real world examples of openEHR Plan, Guideline and Decision framework.",
+            "micro_summary": "Real-world worked Process examples.",
 			"copyright_year": "2017",
-			"spec_status": "TRIAL",
-			"keywords": "task planning, examples, workflow"
-        },
-        {
-            "id": "decision_language",
-            "title": "Decision Language specification",
-            "title_short": "Decision Language",
-            "description": "openEHR Decision Language specification",
-            "summary": "Language for expressing rules and guidelines, for use with GDL3, Task Planning (TP).",
-            "micro_summary": "Rule language for use with GDL, TP.",
-            "copyright_year": "2020",
-            "spec_status": "DEVELOPMENT",
-            "keywords": "expressions, rules, guidelines"
+			"spec_status": "DEVELOPMENT",
+			"keywords": "process, task planning, decision logic, examples, workflow"
         }
     ],
     "expressions": [
