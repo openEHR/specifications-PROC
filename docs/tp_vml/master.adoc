@@ -66,7 +66,7 @@ The work reported in this specification has been funded by the following organis
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-overview.adoc[leveloffset=+1]
 include::master03-elements.adoc[leveloffset=+1]
-//include::master04-patterns.adoc[leveloffset=+1]
+include::master04-patterns.adoc[leveloffset=+1]
 
 
 //

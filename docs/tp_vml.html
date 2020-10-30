@@ -57,6 +57,11 @@
 </li>
 </ul>
 </li>
+<li><a href="#_patterns">4. Patterns</a>
+<ul class="sectlevel2">
+<li><a href="#_syncrhonisation_of_parallel_paths">4.1. Syncrhonisation of Parallel Paths</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -154,10 +159,16 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.6.0 (unreleased)</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.6.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.6.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add parallel synchronisation example.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 Oct 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Add concurrent end blocks and T/F Gates.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>03 Jun 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03 Jun 2020</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.0.0</strong></p></th>
@@ -458,10 +469,27 @@
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_patterns"><a class="anchor" href="#_patterns"></a>4. Patterns</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_syncrhonisation_of_parallel_paths"><a class="anchor" href="#_syncrhonisation_of_parallel_paths"></a>4.1. Syncrhonisation of Parallel Paths</h3>
+<div class="paragraph">
+<p>The following example shows two parallel activity paths, where the completion of one (lab results arriving) causes the termination of the other (medication).</p>
+</div>
+<div id="parallel_sync" class="imageblock text-center text-center">
+<div class="content">
+<img src="tp_vml/diagrams/EX-parallel_sync.svg" alt="EX parallel sync">
+</div>
+<div class="title">Figure 8. Parallel synchronisation</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-27 10:29:20 +0100
+Last updated 2020-10-30 13:35:47 UTC
 </div>
 </div>
 </body>
