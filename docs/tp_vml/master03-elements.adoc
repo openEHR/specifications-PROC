@@ -8,7 +8,7 @@ The TP-VML elements in this section are composite structures that contain primit
 
 === Plans
 
-TP-VML icons for `WORK_PLAN` and `TASK_PLAN` are used ({openehr_tp_vml}#_plan_structure[TP plan structure]), enabling some of the relevant meta-data to be visualised.
+TP-VML icons for `WORK_PLAN` and `TASK_PLAN` are used ({openehr_task_planning}#_plan_structure[TP plan structure^]), enabling some of the relevant meta-data to be visualised.
 
 [.text-center]
 .Plans
@@ -16,7 +16,7 @@ image::{diagrams_uri}/TP-VML-plans.svg[id=tp_vml_plans, align="center"]
 
 === Task Groups
 
-Task Group icons and their conditional structure derivatives use two visual elements to indicate the extent of the ({openehr_tp_vml}#_task_group_structure[container structure]) they represent from the TP model.
+Task Group icons and their conditional structure derivatives use two visual elements to indicate the extent of the ({openehr_task_planning}#_task_group_structure[container structure^]) they represent from the TP model.
 
 Since Tasks and other Task Groups within any Task Group are included by ordered containment (i.e. 'list' semantics) rather than chaining, contained items are shown connected with dashed arrows, indicating the implied ordered.
 
@@ -46,13 +46,21 @@ The TP-VML elements in this section are atomic primitives that are used within v
 
 === Tasks
 
-TP-VML Tasks correspond to formal types of the form `TASK<T>` ({openehr_tp_vml}#\_definition_model[TP main model]; {openehr_tp_vml}#\_task_actions[TP Task Action types]), whose concrete forms are: `PERFORMABLE_TASK<DEFINED_ACTION>`, `PERFORMABLE_TASK<SUB_PLAN>`, `DISPATCHABLE_TASK<HAND_OFF>`, `DISPATCHABLE_TASK<SYSTEM_REQUEST>`, `DISPATCHABLE_TASK<EXTERNAL_REQUEST>`.
+TP-VML Tasks correspond to formal types of the form `TASK<T>` ({openehr_task_planning}#_definition_model[TP main model^]; {openehr_task_planning}#_task_actions[TP Task Action types^]), whose concrete forms are: `PERFORMABLE_TASK<DEFINED_ACTION>`, `PERFORMABLE_TASK<SUB_PLAN>`, `DISPATCHABLE_TASK<HAND_OFF>`, `DISPATCHABLE_TASK<SYSTEM_REQUEST>`, `DISPATCHABLE_TASK<EXTERNAL_REQUEST>`.
 
 Performable Tasks may have one or more associated `_capture_datasets_`. Dispatchable Tasks may have an associated callback wait state (`CALLBACK_WAIT`).
 
 [.text-center]
 .Tasks
 image::{diagrams_uri}/TP-VML-tasks.svg[id=tp_vml_tasks, align="center"]
+
+=== Task Repeats
+
+A Task, or more usually a Task Group may have a repeat specification (`TASK_REPEAT`) associted with it ({openehr_task_planning}#_repetition[TP Repetitions^]). Various forms are possible. This is diagrammed as follows.
+
+[.text-center]
+.Task (group) repeat
+image::{diagrams_uri}/TP-VML-task_repeat.svg[id=tp_vml_task_repeat, align="center"]
 
 === Events
 

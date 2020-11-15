@@ -6,10 +6,16 @@
 
 4+^h|*PROC Release 1.6.0 (unreleased)*
 
-|[[latest_issue]]0.6.2
-|Add parallel synchronisation example.
+|[[latest_issue]]0.6.3
+|Add Task Repeat.
 |T Beale
-|[[latest_issue_date]]30 Oct 2020
+|[[latest_issue_date]]15 Nov 2020
+
+|0.6.2
+|Add parallel synchronisation example.
+|N Iglesias, +
+ T Beale
+|30 Oct 2020
 
 |0.6.1
 |Add concurrent end blocks and T/F Gates.
