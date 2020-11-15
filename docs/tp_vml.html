@@ -52,14 +52,15 @@
 <li><a href="#_primitives">3.2. Primitives</a>
 <ul class="sectlevel3">
 <li><a href="#_tasks">3.2.1. Tasks</a></li>
-<li><a href="#_events">3.2.2. Events</a></li>
+<li><a href="#_task_repeats">3.2.2. Task Repeats</a></li>
+<li><a href="#_events">3.2.3. Events</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_patterns">4. Patterns</a>
 <ul class="sectlevel2">
-<li><a href="#_syncrhonisation_of_parallel_paths">4.1. Syncrhonisation of Parallel Paths</a></li>
+<li><a href="#_synchronisation_of_parallel_paths">4.1. Synchronisation of Parallel Paths</a></li>
 </ul>
 </li>
 </ul>
@@ -159,10 +160,17 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.6.0 (unreleased)</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.6.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add parallel synchronisation example.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.6.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add Task Repeat.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 Oct 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>15 Nov 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add parallel synchronisation example.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N Iglesias,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 Oct 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.6.1</p></td>
@@ -369,7 +377,7 @@
 <div class="sect3">
 <h4 id="_plans"><a class="anchor" href="#_plans"></a>3.1.1. Plans</h4>
 <div class="paragraph">
-<p>TP-VML icons for <code>WORK_PLAN</code> and <code>TASK_PLAN</code> are used (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_plan_structure">TP plan structure</a>), enabling some of the relevant meta-data to be visualised.</p>
+<p>TP-VML icons for <code>WORK_PLAN</code> and <code>TASK_PLAN</code> are used (<a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_plan_structure" target="_blank" rel="noopener">TP plan structure</a>), enabling some of the relevant meta-data to be visualised.</p>
 </div>
 <div id="tp_vml_plans" class="imageblock text-center text-center">
 <div class="content">
@@ -381,7 +389,7 @@
 <div class="sect3">
 <h4 id="_task_groups"><a class="anchor" href="#_task_groups"></a>3.1.2. Task Groups</h4>
 <div class="paragraph">
-<p>Task Group icons and their conditional structure derivatives use two visual elements to indicate the extent of the (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_task_group_structure">container structure</a>) they represent from the TP model.</p>
+<p>Task Group icons and their conditional structure derivatives use two visual elements to indicate the extent of the (<a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_task_group_structure" target="_blank" rel="noopener">container structure</a>) they represent from the TP model.</p>
 </div>
 <div class="paragraph">
 <p>Since Tasks and other Task Groups within any Task Group are included by ordered containment (i.e. 'list' semantics) rather than chaining, contained items are shown connected with dashed arrows, indicating the implied ordered.</p>
@@ -426,7 +434,7 @@
 <div class="sect3">
 <h4 id="_tasks"><a class="anchor" href="#_tasks"></a>3.2.1. Tasks</h4>
 <div class="paragraph">
-<p>TP-VML Tasks correspond to formal types of the form <code>TASK&lt;T&gt;</code> (<a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#\_definition_model">TP main model</a>; <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#\_task_actions">TP Task Action types</a>), whose concrete forms are: <code>PERFORMABLE_TASK&lt;DEFINED_ACTION&gt;</code>, <code>PERFORMABLE_TASK&lt;SUB_PLAN&gt;</code>, <code>DISPATCHABLE_TASK&lt;HAND_OFF&gt;</code>, <code>DISPATCHABLE_TASK&lt;SYSTEM_REQUEST&gt;</code>, <code>DISPATCHABLE_TASK&lt;EXTERNAL_REQUEST&gt;</code>.</p>
+<p>TP-VML Tasks correspond to formal types of the form <code>TASK&lt;T&gt;</code> (<a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_definition_model" target="_blank" rel="noopener">TP main model</a>; <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_task_actions" target="_blank" rel="noopener">TP Task Action types</a>), whose concrete forms are: <code>PERFORMABLE_TASK&lt;DEFINED_ACTION&gt;</code>, <code>PERFORMABLE_TASK&lt;SUB_PLAN&gt;</code>, <code>DISPATCHABLE_TASK&lt;HAND_OFF&gt;</code>, <code>DISPATCHABLE_TASK&lt;SYSTEM_REQUEST&gt;</code>, <code>DISPATCHABLE_TASK&lt;EXTERNAL_REQUEST&gt;</code>.</p>
 </div>
 <div class="paragraph">
 <p>Performable Tasks may have one or more associated <code><em>capture_datasets</em></code>. Dispatchable Tasks may have an associated callback wait state (<code>CALLBACK_WAIT</code>).</p>
@@ -439,7 +447,19 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_events"><a class="anchor" href="#_events"></a>3.2.2. Events</h4>
+<h4 id="_task_repeats"><a class="anchor" href="#_task_repeats"></a>3.2.2. Task Repeats</h4>
+<div class="paragraph">
+<p>A Task, or more usually a Task Group may have a repeat specification (<code>TASK_REPEAT</code>) associted with it (<a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_repetition" target="_blank" rel="noopener">TP Repetitions</a>). Various forms are possible. This is diagrammed as follows.</p>
+</div>
+<div id="tp_vml_task_repeat" class="imageblock text-center text-center">
+<div class="content">
+<img src="tp_vml/diagrams/TP-VML-task_repeat.svg" alt="TP VML task repeat">
+</div>
+<div class="title">Figure 7. Task (group) repeat</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_events"><a class="anchor" href="#_events"></a>3.2.3. Events</h4>
 <div class="paragraph">
 <p>TP-VML Events are defined in the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html#_events">Events section in the TP specification</a> and can be visually represented in three forms:</p>
 </div>
@@ -463,7 +483,7 @@
 <div class="content">
 <img src="tp_vml/diagrams/TP-VML-events.svg" alt="TP VML events">
 </div>
-<div class="title">Figure 7. Events</div>
+<div class="title">Figure 8. Events</div>
 </div>
 </div>
 </div>
@@ -473,7 +493,7 @@
 <h2 id="_patterns"><a class="anchor" href="#_patterns"></a>4. Patterns</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_syncrhonisation_of_parallel_paths"><a class="anchor" href="#_syncrhonisation_of_parallel_paths"></a>4.1. Syncrhonisation of Parallel Paths</h3>
+<h3 id="_synchronisation_of_parallel_paths"><a class="anchor" href="#_synchronisation_of_parallel_paths"></a>4.1. Synchronisation of Parallel Paths</h3>
 <div class="paragraph">
 <p>The following example shows two parallel activity paths, where the completion of one (lab results arriving) causes the termination of the other (medication).</p>
 </div>
@@ -481,7 +501,7 @@
 <div class="content">
 <img src="tp_vml/diagrams/EX-parallel_sync.svg" alt="EX parallel sync">
 </div>
-<div class="title">Figure 8. Parallel synchronisation</div>
+<div class="title">Figure 9. Parallel synchronisation</div>
 </div>
 </div>
 </div>
