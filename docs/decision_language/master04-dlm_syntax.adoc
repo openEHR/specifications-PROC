@@ -304,7 +304,7 @@ The above declaration allows the use of the predefined `in_range` function, whic
 [source,kotlin]
 ----
     Result :=
-        choice in {
+        choice in
             ========================================================
             systolic_blood_pressure
                 .in_range ([critical_high]):           [emergency],
@@ -314,7 +314,7 @@ The above declaration allows the use of the predefined `in_range` function, whic
             --------------------------------------------------------
             *:                                         [monitor]
             ========================================================
-        }
+        ;
 ----
 
 Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a _discriminator_. The following shows an example.
@@ -372,19 +372,19 @@ rules -- Main
 
     hypertension_risk: Terminology_term
         Result :=
-            choice in {
-                ===========================================================
+            choice in
+                =================================================
                 has_pre_eclampsia or
-                has_eclampsia:                      [obstetric_emergency],
-                -----------------------------------------------------------
+                has_eclampsia:                      [emergency],
+                -------------------------------------------------
                 previous_obstetric_hypertension or
                 previous_pre_eclampsia or
                 previous_eclampsia or
-                has_pregnancy_hypertension:         [refer_high_risk_care],
-                -----------------------------------------------------------
-                *:                                  [normal_obstetric_care]
-                ===========================================================
-            }
+                has_pregnancy_hypertension:         [high_risk],
+                -------------------------------------------------
+                *:                                  [low_risk]
+                =================================================
+            ;
 
     gestational_diabetes_risk: Boolean
         Result :=

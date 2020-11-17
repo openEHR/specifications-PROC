@@ -660,13 +660,13 @@ rules -- Main
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * case bilirubin.range in {
+            * case bilirubin.range in
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-            }
+            ;
 
     |
     | TODO: hepatic impairment dose modification
@@ -680,19 +680,18 @@ rules -- Main
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * case platelets.range in {
+            * case platelets.range in
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-            }
             * case gfr.range in {
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
-            }
+            ;
 
     |
     | International Prognostic Index
@@ -724,14 +723,14 @@ rules -- Main
 
     ipi_risk: Terminology_code
         Result :=
-            case ipi_raw_score in {
+            case ipi_raw_score in
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk];
                 =======================================
-            }
+            ;
 
 terminology
     term_definitions = &lt;
@@ -841,6 +840,7 @@ input -- &lt;time_window = tw_current_episode&gt;
             [low]:       |&lt; 15 kg/m^2|;
             ------------------------------------
 
+
 input
 
     amniotic_fluid_state: Terminology_term
@@ -853,6 +853,15 @@ input
         currency = 30mins
         ranges =
             [critical_high]: |&gt; 500 mL/hr|
+
+    |
+    | Assessment of vaginal bleeding, pain, confirm
+    | with ultrasound. Result value-set includes
+    | placenta previa, risk of miscarriage, extopic
+    | pregnancy etc
+    |
+    vaginal_physical_exam_assessment: Terminology_term
+        currency = 48h
 
 input -- &lt;source = "manual"&gt;
 
@@ -879,31 +888,44 @@ rules
         ....
 
     amniotic_fluid_risk: Terminology_term
-        Result := case amniotic_fluid_state in {
-            ====================================================
+        Result := case amniotic_fluid_state in
+            ===================================
             [premature_rupture],
-            [polyhydramnios]:           [obstetric_emergency],
-            ----------------------------------------------------
-            [oligohydramnios]:          [refer_high_risk_care],
-            ----------------------------------------------------
-            *:                          [normal_obstetric_care]
-            ====================================================
-        }
+            [polyhydramnios]:      [emergency],
+            -----------------------------------
+            [oligohydramnios]:     [high_risk],
+            -----------------------------------
+            *:                     [low_risk]
+            ===================================
+        ;
+
+    vaginal_bleeding_related_risk: Terminology_term
+        Result := case vaginal_physical_exam_assessment in
+            =================================================
+            [ectopic_pregnancy],
+            [gestational_trophoblastic_disease]: [emergency],
+            -------------------------------------------------
+            [placenta previa],
+            [risk_of_miscarriage]:               [high_risk],
+            -------------------------------------------------
+            *:                                   [low_risk]
+            =================================================
+        ;
 
     hypertension_risk: Terminology_term
-        Result := choice of {
-            ============================================================
+        Result := choice of
+            =================================================
             has_pre_eclampsia or
-            has_eclampsia:                      [obstetric_emergency],
-            ------------------------------------------------------------
+            has_eclampsia:                      [emergency],
+            -------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
-            has_pregnancy_hypertension:         [refer_high_risk_care],
-            ------------------------------------------------------------
-            *:                                  [normal_obstetric_care]
-            ============================================================
-        }
+            has_pregnancy_hypertension:         [high_risk],
+            -------------------------------------------------
+            *:                                  [low_risk]
+            =================================================
+        ;
 
     gestational_diabetes_risk: Boolean
         Result :=
@@ -912,30 +934,31 @@ rules
             previous_gestational_diabetes or
             family_history_of_diabetes or
             race_related_diabetes_risk
+        ;
 
     anaemia_risk: Terminology_term
-        Result := case anaemia_type in {
-            ========================================================
-            [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
-            --------------------------------------------------------
-            [anaemia_of_pregnancy]:         [refer_high_risk_care],
-            --------------------------------------------------------
-            *:                              [normal_obstetric_care]
-            ========================================================
-        }
+        Result := case anaemia_type in
+            ============================================
+            [severe_anaemia_of_pregnancy]:  [emergency],
+            --------------------------------------------
+            [anaemia_of_pregnancy]:         [high_risk],
+            --------------------------------------------
+            *:                              [low_risk]
+            ============================================
+        ;
 
 terminology
     term_definitions = &lt;
         ["en"] = &lt;
-            ["normal_obstetric_care"] = &lt;
+            ["low_risk"] = &lt;
                 text = &lt;"Normal obstetric care"&gt;
                 description = &lt;"..."&gt;
             &gt;
-            ["obstetric_emergency"] = &lt;
+            ["emergency"] = &lt;
                 text = &lt;"Obstetric emergency"&gt;
                 description = &lt;"..."&gt;
             &gt;
-            ["refer_high_risk_care"] = &lt;
+            ["high_risk"] = &lt;
                 text = &lt;"Refer to high risk care"&gt;
                 description = &lt;"..."&gt;
             &gt;
@@ -1085,7 +1108,7 @@ rules -- Guideline
 
     molecular_subtype: Terminology_term
         Result :=
-            choice of {
+            choice of
                 =========================================================
                 er_positive and
                 her2_negative and
@@ -1110,14 +1133,14 @@ rules -- Guideline
                 ---------------------------------------------------------
                 *:                             [none];
                 =========================================================
-            }
+            ;
 
     chemotherapy_regime: Terminology_term
         Result :=
-            choice of {
+            choice of
                 ================================================================================
                 not metastatic:
-                    choice of {
+                    choice of
                         ========================================================================
                         molecular_subtype in
                             {[luminal_B_HER2_negative],
@@ -1132,10 +1155,10 @@ rules -- Guideline
                         molecular_subtype = [HER2_positive] and
                         (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
                         ========================================================================
-                    },
+                    ;,
                 --------------------------------------------------------------------------------
                 *:
-                    choice of {
+                    choice of
                         =====================
                         yyy:        aaa,
                         ---------------------
@@ -1143,9 +1166,9 @@ rules -- Guideline
                         ---------------------
                         *:          ccc
                         =====================
-                    }
+                    ;
                 =================================================================================
-            }
+            ;
 
 terminology
     term_definitions = &lt;

@@ -91,7 +91,7 @@ rules -- Guideline
 
     molecular_subtype: Terminology_term
         Result := 
-            choice of {
+            choice of
                 =========================================================
                 er_positive and 
                 her2_negative and 
@@ -116,14 +116,14 @@ rules -- Guideline
                 ---------------------------------------------------------
                 *:                             [none];
                 =========================================================
-            }
+            ;
     
     chemotherapy_regime: Terminology_term
         Result := 
-            choice of {
+            choice of
                 ================================================================================
                 not metastatic: 
-                    choice of {
+                    choice of
                         ========================================================================
                         molecular_subtype in 
                             {[luminal_B_HER2_negative], 
@@ -138,10 +138,10 @@ rules -- Guideline
                         molecular_subtype = [HER2_positive] and 
                         (tnm_t = '1b' and tnm_n = '0'):                  [paditaxel_trastuzumab]
                         ========================================================================
-                    },
+                    ;,
                 --------------------------------------------------------------------------------
                 *:              
-                    choice of {
+                    choice of
                         =====================
                         yyy:        aaa,
                         ---------------------
@@ -149,9 +149,9 @@ rules -- Guideline
                         ---------------------
                         *:          ccc
                         =====================
-                    }
+                    ;
                 =================================================================================
-            }
+            ;
             
 terminology
     term_definitions = <

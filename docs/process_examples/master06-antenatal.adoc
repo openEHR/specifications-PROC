@@ -51,6 +51,7 @@ input -- <time_window = tw_current_episode>
             [low]:       |< 15 kg/m^2|;
             ------------------------------------
 
+    
 input
 
     amniotic_fluid_state: Terminology_term
@@ -63,6 +64,15 @@ input
         currency = 30mins
         ranges =
             [critical_high]: |> 500 mL/hr|
+
+    |
+    | Assessment of vaginal bleeding, pain, confirm
+    | with ultrasound. Result value-set includes
+    | placenta previa, risk of miscarriage, extopic
+    | pregnancy etc
+    |
+    vaginal_physical_exam_assessment: Terminology_term
+        currency = 48h
 
 input -- <source = "manual">
 
@@ -89,31 +99,44 @@ rules
         ....
         
     amniotic_fluid_risk: Terminology_term
-        Result := case amniotic_fluid_state in {
-            ====================================================
+        Result := case amniotic_fluid_state in
+            ===================================
             [premature_rupture],
-            [polyhydramnios]:           [obstetric_emergency],
-            ----------------------------------------------------
-            [oligohydramnios]:          [refer_high_risk_care],
-            ----------------------------------------------------
-            *:                          [normal_obstetric_care]
-            ====================================================
-        }
+            [polyhydramnios]:      [emergency],
+            -----------------------------------
+            [oligohydramnios]:     [high_risk],
+            -----------------------------------
+            *:                     [low_risk]
+            ===================================
+        ;
     
+    vaginal_bleeding_related_risk: Terminology_term
+        Result := case vaginal_physical_exam_assessment in
+            =================================================
+            [ectopic_pregnancy],
+            [gestational_trophoblastic_disease]: [emergency],
+            -------------------------------------------------
+            [placenta previa],
+            [risk_of_miscarriage]:               [high_risk],
+            -------------------------------------------------
+            *:                                   [low_risk]
+            =================================================
+        ;
+            
     hypertension_risk: Terminology_term
-        Result := choice of {
-            ============================================================
+        Result := choice of
+            =================================================
             has_pre_eclampsia or 
-            has_eclampsia:                      [obstetric_emergency],
-            ------------------------------------------------------------
+            has_eclampsia:                      [emergency],
+            -------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
-            has_pregnancy_hypertension:         [refer_high_risk_care],
-            ------------------------------------------------------------
-            *:                                  [normal_obstetric_care]
-            ============================================================
-        }
+            has_pregnancy_hypertension:         [high_risk],
+            -------------------------------------------------
+            *:                                  [low_risk]
+            =================================================
+        ;
             
     gestational_diabetes_risk: Boolean
         Result :=
@@ -122,30 +145,31 @@ rules
             previous_gestational_diabetes or
             family_history_of_diabetes or
             race_related_diabetes_risk
+        ;
             
     anaemia_risk: Terminology_term
-        Result := case anaemia_type in {
-            ========================================================
-            [severe_anaemia_of_pregnancy]:  [obstetric_emergency],
-            --------------------------------------------------------
-            [anaemia_of_pregnancy]:         [refer_high_risk_care],
-            --------------------------------------------------------
-            *:                              [normal_obstetric_care]
-            ========================================================
-        }
+        Result := case anaemia_type in
+            ============================================
+            [severe_anaemia_of_pregnancy]:  [emergency],
+            --------------------------------------------
+            [anaemia_of_pregnancy]:         [high_risk],
+            --------------------------------------------
+            *:                              [low_risk]
+            ============================================
+        ;
     
 terminology
     term_definitions = <
         ["en"] = <
-            ["normal_obstetric_care"] = <
+            ["low_risk"] = <
                 text = <"Normal obstetric care">
                 description = <"...">
             >
-            ["obstetric_emergency"] = <
+            ["emergency"] = <
                 text = <"Obstetric emergency">
                 description = <"...">
             >
-            ["refer_high_risk_care"] = <
+            ["high_risk"] = <
                 text = <"Refer to high risk care">
                 description = <"...">
             >

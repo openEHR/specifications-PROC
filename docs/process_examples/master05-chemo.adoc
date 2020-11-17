@@ -149,13 +149,13 @@ rules -- Main
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
-            * case bilirubin.range in {
+            * case bilirubin.range in
                 ===================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-            }
+            ;
 
     |
     | TODO: hepatic impairment dose modification
@@ -169,19 +169,18 @@ rules -- Main
     |
     cyclophosphamide_dose: Quantity
         Result := cyclophosphamide_dose_per_m2 * BSA.bsa_m2
-            * case platelets.range in {
+            * case platelets.range in
                 ===================
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-            }
             * case gfr.range in {
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
-            }
+            ;
    
     |
     | International Prognostic Index
@@ -213,14 +212,14 @@ rules -- Main
        
     ipi_risk: Terminology_code
         Result :=
-            case ipi_raw_score in {
+            case ipi_raw_score in
                 =======================================
                 |0..1|  : [ipi_low_risk],
                 |2|     : [ipi_intermediate_low_risk],
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk];
                 =======================================
-            }
+            ;
                 
 terminology
     term_definitions = <
