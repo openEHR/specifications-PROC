@@ -69,7 +69,9 @@ input
 
     |
     | Possible values:
-    |   premature rupture, polyhydramnios, oligohydramnios
+    |   |premature rupture|, 
+    |   |polyhydramnios|, |oligohydramnios|,
+    |   |severe polyhydramnios|, |severe oligohydramnios|
     |
     amniotic_fluid_state: Terminology_term
         currency = 24h
@@ -150,14 +152,16 @@ rules
     
     amniotic_fluid_risk: Risk_value
         Result := case amniotic_fluid_state in
-            ===================================
+            =========================================
             [premature_rupture],
-            [polyhydramnios]:      [emergency],
-            -----------------------------------
-            [oligohydramnios]:     [high_risk],
-            -----------------------------------
-            *:                     [low_risk]
-            ===================================
+            [severe_oligohydramnios],
+            [severe_polyhydramnios]:     [emergency],
+            -----------------------------------------
+            [polyhydramnios],
+            [oligohydramnios]:           [high_risk],
+            -----------------------------------------
+            *:                            [low_risk]
+            =========================================
         ;
     
     vaginal_bleeding_related_risk: Risk_value
@@ -261,6 +265,14 @@ terminology
             >
             ["oligohydramnios"] = <
                 text = <"oligohydramnios">
+                description = <"...">
+            >
+            ["severe polyhydramnios"] = <
+                text = <"severe polyhydramnios">
+                description = <"...">
+            >
+            ["severe oligohydramnios"] = <
+                text = <"severe oligohydramnios">
                 description = <"...">
             >
             ["severe_anaemia_of_pregnancy"] = <
