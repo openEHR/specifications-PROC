@@ -597,8 +597,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
-            [very_low]:    |&lt;0.5 x 10^9/L|;
+            [very_low]:    |&lt;0.5 x 10^9/L|
             ----------------------------------
+        ;
 
     platelets: Quantity
         currency = 12h
@@ -606,8 +607,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
-            [very_low]:    |&lt;50 x 10^9/L|;
+            [very_low]:    |&lt;50 x 10^9/L|
             ----------------------------------
+        ;
 
     bilirubin: Quantity
         currency = 12h
@@ -616,8 +618,9 @@ input -- Labs
             [normal]:      |&lt;20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
-            [crit_high]:   |&gt;85 mmol/L|;
+            [crit_high]:   |&gt;85 mmol/L|
             ----------------------------------
+        ;
 
     gfr: Quantity
         currency = 24h
@@ -625,8 +628,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |&lt;10 mL/min|;
+            [very_low]:    |&lt;10 mL/min|
             ----------------------------------
+        ;
 
     ldh: Quantity
         currency = 24h
@@ -634,8 +638,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |&gt;20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |&lt;10 mL/min|;
+            [very_low]:    |&lt;10 mL/min|
             ----------------------------------
+        ;
 
 rules -- Conditions
 
@@ -788,6 +793,9 @@ terminology
 <div class="sect1">
 <h2 id="_antenatal_care"><a class="anchor" href="#_antenatal_care"></a>6. Antenatal Care</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The following pregnancy care DLM was developed by D S Alves as part of a PhD thesis at Federal University of Pernambuco (UFPE), Brazil.</p>
+</div>
 <div class="sect2">
 <h3 id="_pregnancy_risk_assessment_dlm"><a class="anchor" href="#_pregnancy_risk_assessment_dlm"></a>6.1. Pregnancy Risk Assessment DLM</h3>
 <div class="listingblock">
@@ -797,6 +805,17 @@ terminology
 preconditions
 
     is_pregnant
+
+types
+
+    Risk_value ::= Ordinal
+        map =
+            -------------------
+            [emergency]:    5,
+            [high_risk]:    2,
+            [low_risk]:     0
+            -------------------
+        ;
 
 input
 
@@ -837,9 +856,9 @@ input -- &lt;time_window = tw_current_episode&gt;
             ------------------------------------
             [high]:      |&gt;30 kg/m^2|,
             [normal]:    |&gt;=15 .. &lt;= 30 kg/m^2|,
-            [low]:       |&lt; 15 kg/m^2|;
+            [low]:       |&lt; 15 kg/m^2|
             ------------------------------------
-
+        ;
 
 input
 
@@ -863,6 +882,10 @@ input
     vaginal_physical_exam_assessment: Terminology_term
         currency = 48h
 
+    vomiting_assessment: Terminology_term
+
+    ultrasound_finding: Terminology_term
+
 input -- &lt;source = "manual"&gt;
 
     haemorrhage: Boolean
@@ -876,18 +899,43 @@ input -- &lt;source = "manual"&gt;
             ------------------------------------
             [polyhydramnios]:    |&gt; 14|,
             [normal]:            |&gt;= 5 .. &lt;= 14|,
-            [oligohydramnios]:   |&lt; 5|;
+            [oligohydramnios]:   |&lt; 5|
             ------------------------------------
+        ;
+
+    labour_onset_assessment: Terminology_term
 
 rules
 
     anaemia_type: Terminology_term
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
-    risk_evaluation: Terminology_term
-        ....
+    |
+    | Return the highest level risk of any of the
+    | assessed risks
+    |
+    effective_risk: Risk_value
+        Result := Result.max ({fundal_height_related_risk,
+                    amniotic_fluid_risk,
+                    vaginal_bleeding_related_risk,
+                    hypertension_risk,
+                    hyperemesis_related_risk,
+                    gestational_diabetes_risk,
+                    anaemia_risk})
+        ;
 
-    amniotic_fluid_risk: Terminology_term
+    fundal_height_related_risk: Risk_value
+        Result := case ultrasound_finding in
+            =================================================
+            [interuterine_growth_retardation],
+            [multiple_pregnancy],
+            [macrosomia]:                        [high_risk],
+            -------------------------------------------------
+            *:                                   [low_risk]
+            =================================================
+        ;
+
+    amniotic_fluid_risk: Risk_value
         Result := case amniotic_fluid_state in
             ===================================
             [premature_rupture],
@@ -899,20 +947,20 @@ rules
             ===================================
         ;
 
-    vaginal_bleeding_related_risk: Terminology_term
+    vaginal_bleeding_related_risk: Risk_value
         Result := case vaginal_physical_exam_assessment in
             =================================================
             [ectopic_pregnancy],
             [gestational_trophoblastic_disease]: [emergency],
             -------------------------------------------------
-            [placenta previa],
+            [placenta_previa],
             [risk_of_miscarriage]:               [high_risk],
             -------------------------------------------------
             *:                                   [low_risk]
             =================================================
         ;
 
-    hypertension_risk: Terminology_term
+    hypertension_risk: Risk_value
         Result := choice of
             =================================================
             has_pre_eclampsia or
@@ -927,16 +975,31 @@ rules
             =================================================
         ;
 
-    gestational_diabetes_risk: Boolean
-        Result :=
+    hyperemesis_related_risk: Risk_value
+        Result := case vomiting_assessment in
+            ========================================
+            [hyperemesis_gravidarum]:   [high_risk],
+            ----------------------------------------
+            *:                          [low_risk]
+            ========================================
+        ;
+
+    gestational_diabetes_risk: Risk_value
+        Result := choice of
+            =================================================
             bmi.in_range ([high]) or
             previous_macrosomic_baby or
             previous_gestational_diabetes or
             family_history_of_diabetes or
-            race_related_diabetes_risk
+            race_related_diabetes_risk or
+            has_gestational_diabetes or
+            is_type1_diabetic:                  [high_risk],
+            -------------------------------------------------
+            *:                                  [low_risk]
+            =================================================
         ;
 
-    anaemia_risk: Terminology_term
+    anaemia_risk: Risk_value
         Result := case anaemia_type in
             ============================================
             [severe_anaemia_of_pregnancy]:  [emergency],
@@ -945,6 +1008,19 @@ rules
             --------------------------------------------
             *:                              [low_risk]
             ============================================
+        ;
+
+    labour_onset_pathway: Terminology
+        Result := case labour_onset_assessment in
+            ====================================
+            [placental_abruption],
+            [premature_labour]:    [emergency],
+            ------------------------------------
+            [onset_of_labour],
+            [labour_first_stage]:  [maternity],
+            ------------------------------------
+            *:                     [observation]
+            ====================================
         ;
 
 terminology
@@ -1006,6 +1082,24 @@ terminology
                 text = &lt;"xxx"&gt;
                 description = &lt;"..."&gt;
             &gt;
+
+            ["ectopic_pregnancy"] = &lt;
+                text = &lt;"Ectopic pregnancy"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["gestational_trophoblastic_disease"] = &lt;
+                text = &lt;"Gestational trophoblastic disease"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["previous_macrosomic_baby"] = &lt;
+                text = &lt;"Baby weighing 4.5kg or above"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+            ["previous_gestational_diabetes"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+            &gt;
+
         &gt;
     &gt;</pre>
 </div>
@@ -1050,16 +1144,18 @@ input
         ranges =
             -------------------
             [high]:   |&gt;= 14%|,
-            [normal]: |&lt; 14%|;
+            [normal]: |&lt; 14%|
             -------------------
+        ;
 
     ejection_fraction: Quantity
         currency = 60 days
         ranges =
             --------------------
             [normal]:  |&gt;= 40%|,
-            [low]  :   |&lt; 40%|;
+            [low]  :   |&lt; 40%|
             --------------------
+        ;
 
     has_heart_failure_class_II: Boolean
 

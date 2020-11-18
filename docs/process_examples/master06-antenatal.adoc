@@ -1,5 +1,7 @@
 = Antenatal Care
 
+The following pregnancy care DLM was developed by D S Alves as part of a PhD thesis at Federal University of Pernambuco (UFPE), Brazil.
+
 == Pregnancy Risk Assessment DLM
 
 ----
@@ -8,6 +10,17 @@ dlm ruleset Obstetric_pregnancy
 preconditions
 
     is_pregnant
+    
+types
+
+    Risk_value ::= Ordinal
+        map =
+            -------------------
+            [emergency]:    5,
+            [high_risk]:    2,
+            [low_risk]:     0
+            -------------------
+        ;
 
 input
 
@@ -48,9 +61,9 @@ input -- <time_window = tw_current_episode>
             ------------------------------------
             [high]:      |>30 kg/m^2|,
             [normal]:    |>=15 .. <= 30 kg/m^2|,
-            [low]:       |< 15 kg/m^2|;
+            [low]:       |< 15 kg/m^2|
             ------------------------------------
-
+        ;
     
 input
 
@@ -73,6 +86,10 @@ input
     |
     vaginal_physical_exam_assessment: Terminology_term
         currency = 48h
+        
+    vomiting_assessment: Terminology_term
+    
+    ultrasound_finding: Terminology_term
 
 input -- <source = "manual">
 
@@ -87,18 +104,43 @@ input -- <source = "manual">
             ------------------------------------
             [polyhydramnios]:    |> 14|,
             [normal]:            |>= 5 .. <= 14|,
-            [oligohydramnios]:   |< 5|;
+            [oligohydramnios]:   |< 5|
             ------------------------------------
+        ;
 
+    labour_onset_assessment: Terminology_term
+    
 rules
 
     anaemia_type: Terminology_term
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
-    risk_evaluation: Terminology_term
-        ....
+    |
+    | Return the highest level risk of any of the
+    | assessed risks
+    |
+    effective_risk: Risk_value
+        Result := Result.max ({fundal_height_related_risk, 
+                    amniotic_fluid_risk,
+                    vaginal_bleeding_related_risk,
+                    hypertension_risk,
+                    hyperemesis_related_risk,
+                    gestational_diabetes_risk,
+                    anaemia_risk})
+        ;
         
-    amniotic_fluid_risk: Terminology_term
+    fundal_height_related_risk: Risk_value
+        Result := case ultrasound_finding in
+            =================================================
+            [interuterine_growth_retardation],
+            [multiple_pregnancy],
+            [macrosomia]:                        [high_risk],
+            -------------------------------------------------
+            *:                                   [low_risk]
+            =================================================
+        ;
+    
+    amniotic_fluid_risk: Risk_value
         Result := case amniotic_fluid_state in
             ===================================
             [premature_rupture],
@@ -110,20 +152,20 @@ rules
             ===================================
         ;
     
-    vaginal_bleeding_related_risk: Terminology_term
+    vaginal_bleeding_related_risk: Risk_value
         Result := case vaginal_physical_exam_assessment in
             =================================================
             [ectopic_pregnancy],
             [gestational_trophoblastic_disease]: [emergency],
             -------------------------------------------------
-            [placenta previa],
+            [placenta_previa],
             [risk_of_miscarriage]:               [high_risk],
             -------------------------------------------------
             *:                                   [low_risk]
             =================================================
         ;
             
-    hypertension_risk: Terminology_term
+    hypertension_risk: Risk_value
         Result := choice of
             =================================================
             has_pre_eclampsia or 
@@ -138,16 +180,31 @@ rules
             =================================================
         ;
             
-    gestational_diabetes_risk: Boolean
-        Result :=
+    hyperemesis_related_risk: Risk_value
+        Result := case vomiting_assessment in
+            ========================================
+            [hyperemesis_gravidarum]:   [high_risk],
+            ----------------------------------------
+            *:                          [low_risk]
+            ========================================
+        ;
+            
+    gestational_diabetes_risk: Risk_value
+        Result := choice of
+            =================================================
             bmi.in_range ([high]) or
             previous_macrosomic_baby or
             previous_gestational_diabetes or
             family_history_of_diabetes or
-            race_related_diabetes_risk
+            race_related_diabetes_risk or
+            has_gestational_diabetes or
+            is_type1_diabetic:                  [high_risk],
+            -------------------------------------------------
+            *:                                  [low_risk]
+            =================================================
         ;
             
-    anaemia_risk: Terminology_term
+    anaemia_risk: Risk_value
         Result := case anaemia_type in
             ============================================
             [severe_anaemia_of_pregnancy]:  [emergency],
@@ -156,6 +213,19 @@ rules
             --------------------------------------------
             *:                              [low_risk]
             ============================================
+        ;
+    
+    labour_onset_pathway: Terminology
+        Result := case labour_onset_assessment in
+            ====================================
+            [placental_abruption],
+            [premature_labour]:    [emergency],
+            ------------------------------------
+            [onset_of_labour],
+            [labour_first_stage]:  [maternity],
+            ------------------------------------
+            *:                     [observation]
+            ====================================
         ;
     
 terminology
@@ -217,6 +287,24 @@ terminology
                 text = <"xxx">
                 description = <"...">
             >
+
+            ["ectopic_pregnancy"] = <
+                text = <"Ectopic pregnancy">
+                description = <"...">
+            >
+            ["gestational_trophoblastic_disease"] = <
+                text = <"Gestational trophoblastic disease">
+                description = <"...">
+            >
+            ["previous_macrosomic_baby"] = <
+                text = <"Baby weighing 4.5kg or above">
+                description = <"...">
+            >
+            ["previous_gestational_diabetes"] = <
+                text = <"xxx">
+                description = <"...">
+            >
+
         >
     >    
 ----

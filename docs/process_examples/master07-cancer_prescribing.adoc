@@ -33,16 +33,18 @@ input
         ranges =
             -------------------
             [high]:   |>= 14%|,
-            [normal]: |< 14%|;
+            [normal]: |< 14%|
             -------------------
+        ;
 
     ejection_fraction: Quantity
         currency = 60 days
         ranges =
             --------------------
             [normal]:  |>= 40%|,
-            [low]  :   |< 40%|;
+            [low]  :   |< 40%|
             --------------------
+        ;
                 
     has_heart_failure_class_II: Boolean
     

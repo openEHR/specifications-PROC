@@ -86,8 +86,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |>1 x 10^9/L|,
             [low]:         |0.5 - 1 x 10^9/L|,
-            [very_low]:    |<0.5 x 10^9/L|;
+            [very_low]:    |<0.5 x 10^9/L|
             ----------------------------------
+        ;
 
     platelets: Quantity
         currency = 12h
@@ -95,8 +96,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |>75 x 10^9/L|,
             [low]:         |50 - 74 x 10^9/L|,
-            [very_low]:    |<50 x 10^9/L|;
+            [very_low]:    |<50 x 10^9/L|
             ----------------------------------
+        ;
 
     bilirubin: Quantity
         currency = 12h
@@ -105,8 +107,9 @@ input -- Labs
             [normal]:      |<20 mmol/L|,
             [high]:        |20 - 51 mmol/L|,
             [very_high]:   |51 - 85 mmol/L|,
-            [crit_high]:   |>85 mmol/L|;
+            [crit_high]:   |>85 mmol/L|
             ----------------------------------
+        ;
 
     gfr: Quantity
         currency = 24h
@@ -114,8 +117,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |>20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |<10 mL/min|;
+            [very_low]:    |<10 mL/min|
             ----------------------------------
+        ;
 
     ldh: Quantity
         currency = 24h
@@ -123,8 +127,9 @@ input -- Labs
             ----------------------------------
             [normal]:      |>20 mL/min|,
             [low]:         |10 - 20 mL/min|,
-            [very_low]:    |<10 mL/min|;
+            [very_low]:    |<10 mL/min|
             ----------------------------------
+        ;
 
 rules -- Conditions
 
