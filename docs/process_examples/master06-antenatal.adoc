@@ -1,6 +1,6 @@
 = Antenatal Care
 
-The following pregnancy care DLM was developed by D S Alves as part of a PhD thesis at Federal University of Pernambuco (UFPE), Brazil.
+The following pregnancy care DLM was developed by Danielle S Alves (RN, midwife) as part of her PhD thesis at Federal University of Pernambuco (UFPE), Brazil.
 
 == Pregnancy Risk Assessment DLM
 
@@ -16,8 +16,8 @@ types
     Risk_value ::= Ordinal
         map =
             -------------------
-            [emergency]:    5,
-            [high_risk]:    2,
+            [emergency]:    2,
+            [high_risk]:    1,
             [low_risk]:     0
             -------------------
         ;
@@ -67,6 +67,10 @@ input -- <time_window = tw_current_episode>
     
 input
 
+    |
+    | Possible values:
+    |   premature rupture, polyhydramnios, oligohydramnios
+    |
     amniotic_fluid_state: Terminology_term
         currency = 24h
 
@@ -81,8 +85,8 @@ input
     |
     | Assessment of vaginal bleeding, pain, confirm
     | with ultrasound. Result value-set includes
-    | placenta previa, risk of miscarriage, extopic
-    | pregnancy etc
+    | |placenta previa|, |risk of miscarriage|, 
+    | |ectopic pregnancy| etc
     |
     vaginal_physical_exam_assessment: Terminology_term
         currency = 48h
@@ -112,6 +116,10 @@ input -- <source = "manual">
     
 rules
 
+    |
+    | Possible values:
+    |    |excluded|, |anaemia of pregnancy|
+    |
     anaemia_type: Terminology_term
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 

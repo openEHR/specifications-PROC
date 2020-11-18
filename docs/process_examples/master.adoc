@@ -27,9 +27,9 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 //
 == Acknowledgements
 
-=== Editors
+=== Contributors
 
-* Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board
+* Danielle S Alves, RN, midwife, Federal University of Pernambuco (UFPE), Brazil
 * Bjørn Næss, DIPS, Norway
 
 === Support

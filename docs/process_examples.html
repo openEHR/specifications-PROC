@@ -20,7 +20,7 @@
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
 <ul class="sectlevel2">
-<li><a href="#_editors">Editors</a></li>
+<li><a href="#_contributors">Contributors</a></li>
 <li><a href="#_support">Support</a></li>
 <li><a href="#_trademarks">Trademarks</a></li>
 </ul>
@@ -175,11 +175,17 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.0.0</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.1.12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update perinatal care DLM.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D S Alves</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>18 Nov 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Replace 'manual notification' callback by normal Handoff followed by manual notification Task wait state.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
  T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Apr 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 Apr 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
@@ -196,11 +202,11 @@
 <h2 id="_acknowledgements"><a class="anchor" href="#_acknowledgements"></a>Acknowledgements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_editors"><a class="anchor" href="#_editors"></a>Editors</h3>
+<h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board</p>
+<p>Danielle S Alves, RN, midwife, Federal University of Pernambuco (UFPE), Brazil</p>
 </li>
 <li>
 <p>Bjørn Næss, DIPS, Norway</p>
@@ -794,7 +800,7 @@ terminology
 <h2 id="_antenatal_care"><a class="anchor" href="#_antenatal_care"></a>6. Antenatal Care</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following pregnancy care DLM was developed by D S Alves as part of a PhD thesis at Federal University of Pernambuco (UFPE), Brazil.</p>
+<p>The following pregnancy care DLM was developed by Danielle S Alves (RN, midwife) as part of her PhD thesis at Federal University of Pernambuco (UFPE), Brazil.</p>
 </div>
 <div class="sect2">
 <h3 id="_pregnancy_risk_assessment_dlm"><a class="anchor" href="#_pregnancy_risk_assessment_dlm"></a>6.1. Pregnancy Risk Assessment DLM</h3>
@@ -811,8 +817,8 @@ types
     Risk_value ::= Ordinal
         map =
             -------------------
-            [emergency]:    5,
-            [high_risk]:    2,
+            [emergency]:    2,
+            [high_risk]:    1,
             [low_risk]:     0
             -------------------
         ;
@@ -862,6 +868,10 @@ input -- &lt;time_window = tw_current_episode&gt;
 
 input
 
+    |
+    | Possible values:
+    |   premature rupture, polyhydramnios, oligohydramnios
+    |
     amniotic_fluid_state: Terminology_term
         currency = 24h
 
@@ -876,8 +886,8 @@ input
     |
     | Assessment of vaginal bleeding, pain, confirm
     | with ultrasound. Result value-set includes
-    | placenta previa, risk of miscarriage, extopic
-    | pregnancy etc
+    | |placenta previa|, |risk of miscarriage|,
+    | |ectopic pregnancy| etc
     |
     vaginal_physical_exam_assessment: Terminology_term
         currency = 48h
@@ -907,6 +917,10 @@ input -- &lt;source = "manual"&gt;
 
 rules
 
+    |
+    | Possible values:
+    |    |excluded|, |anaemia of pregnancy|
+    |
     anaemia_type: Terminology_term
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
@@ -1305,7 +1319,7 @@ terminology
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-30 18:20:39 +0100
+Last updated 2020-11-18 20:37:18 UTC
 </div>
 </div>
 </body>
