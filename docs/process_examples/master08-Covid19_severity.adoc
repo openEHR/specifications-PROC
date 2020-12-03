@@ -1,0 +1,286 @@
+= Covid19 Severity Classification
+
+This guideline is a formal expression of the https://www.acep.org/corona/COVID-19-alert/covid-19-articles/covid-19-severity-classification-tool-now-available/[American College of Emergency Physicians (ACEP)^]  Covid19 Severity Classification, published in https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf[PDF form^] and as an https://covid19.evidence.care/dashboard/covid/pathway/198712647/-980102880[interactive tool^].
+
+== Work Plan
+
+The following work plan is a rendition of the ACEP Covid19 severity guideline multi-step structure.
+
+[.text-center]
+.ACEP Covid19 Work Plan
+image::{diagrams_uri}/ACEP_covid19_severity.svg[id=ACEP_covid19_severity, align="center"]
+
+== Decision Logic Module
+
+----
+dlm ACEP_COVID19_severity_classification.v0.5.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Thomas Beale">
+        ["email"] = <"thomas.beale@openEHR.org">
+        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
+        ["date"] = <"2020-12-02">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"This tool was developed by ACEP and EvidenceCare to assist
+                in determining the appropriate evaluation and disposition for adult
+                patients with suspected or confirmed COVID-19.">
+        >
+    >
+    copyright = <"© 2020 openEHR Foundation">
+    licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
+    ip_acknowledgements = <
+        ["ACEP_EvidenceCare"] = <"This content developed from original publication of
+            © 2020 American College of Emergency Physicians (ACEP), EvidenceCare, 
+            see https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf">
+    >
+    
+use
+    BASIC: Basic_patient_data
+    BMI: Body_mass_index
+    
+input -- clinical
+
+    heart_rate: Count
+        currency = 1 min
+        ranges =
+            ------------------------------------
+            [mild_low_risk]:  |<= 99 /min|,
+            [mild_at_risk]:   |100 .. 120 /min|,
+            [moderate_risk]:  |>= 121 /min|
+            ------------------------------------
+        ;
+        
+    systolic_BP: Quantity
+        currency = 10 min
+        ranges =
+            --------------------------------
+            [critical_risk]:  |< 90 mm[Hg]|,
+            [normal_risk]:    |>= 90 mm[Hg]|
+            --------------------------------
+        ;
+        
+    SpO2: Quantity
+        currency = 1 min
+        ranges =
+            ------------------------------
+            [mild_low_risk]:  |>= 93 %|,
+            [moderate_risk]:  |89 .. 92 %|,
+            [severe_risk]:    |<= 88 %|
+            ------------------------------
+        ;
+        
+    respiratory_rate: Quantity
+        currency = 2 min
+        ranges =
+            ----------------------------------
+            [mild_low_risk]:  |<= 22 /min|,
+            [moderate_risk]:  |23 .. 28 /min|,
+            [severe_risk]:    |>= 29 /min|
+            ----------------------------------
+        ;
+        
+    O2_flow_rate: Quantity
+        currency = 2 min
+        ranges =
+            ---------------------------------
+            [mild_low_risk]:  |= 0 L/min|,
+            [mild_at_risk]:   |1 .. 2 L/min|,
+            [moderate_risk]:  |3 .. 4 L/min|,
+            [severe_risk]:    |>= 5 L/min|
+            ---------------------------------
+        ;
+        
+    has_altered_LOC: Boolean
+        currency = 5 min
+        ;
+        
+    has_hemoptysis: Boolean
+        currency = 5 min
+        ;
+        
+    has_persistent_dyspnea: Boolean
+        currency = 5 min
+        ;
+    
+input -- history
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_cardiovascular_disease: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    has cerebrovascular_disease: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_COPD: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    is_type_2_diabetic: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_hypertension: Boolean
+        ;
+        
+    |
+    | True if any cancer diagnosis on master problem list 
+    | or ask patient
+    |
+    has_malignancy: Boolean
+        ;
+        
+input -- administrative
+
+    is_LT_care_resident: Boolean
+        ;
+        
+rules
+
+    heart_rate_score: Integer
+        Result := case heart_rate in
+            =====================
+            *:                0
+            =====================
+        ;
+        
+    systolic_BP_score: Integer
+        Result := case systolic_BP in
+            =====================
+            *:                0
+            =====================
+        ;
+        
+    SpO2_score: Integer
+        Result := case SpO2 in
+            =====================
+            [mild_low_risk]:  0,
+            ---------------------
+            [moderate_risk]:  2,
+            ---------------------
+            [severe_risk]:    5,
+            ---------------------
+            *:                0
+            =====================
+        ;
+        
+    respiratory_rate_score: Integer
+        Result := case respiratory_rate in
+            =====================
+            [mild_low_risk]:  0,
+            ---------------------
+            [mild_at_risk]:   1,
+            ---------------------
+            [moderate_risk]:  2,
+            ---------------------
+            *:                0
+            =====================
+        ;
+        
+    O2_flow_rate_score: Integer
+        Result := case O2_flow_rate in
+            =====================
+            [mild_low_risk],
+            [mild_at_risk]:   0,
+            ---------------------
+            [moderate_risk]:  4,
+            ---------------------
+            [severe_risk]:    5,
+            ---------------------
+            *:                0
+            =====================
+        ;
+        
+    qCSI_score: Integer
+        Result := heart_rate_score +
+                systolic_BP_score +
+                SpO2_score +
+                respiratory_rate_score +
+                O2_flow_rate_score
+        ;
+
+    |
+    | ACEP step 2 assessment
+    |
+    qCSI_risk: Terminology_code
+        Result := case qCSI_score in
+            ============================
+            0:          [mild_low_risk],
+            ----------------------------
+            |1..2|:     [mild_at_risk],
+            ----------------------------
+            |3..5|:     [moderate_risk],
+            ----------------------------
+            |6..8|:     [severe_risk],
+            ----------------------------
+            |>= 9|:     [critical_risk]
+            ============================
+        ;
+
+    risk_factors_demographic_count: Integer
+        Result.add (
+            ------------------------------------
+            BASIC.sex = [male]          ? 1 : 0,
+            BASIC.age > 60              ? 1 : 0,
+            BASIC.race = [black_race]   ? 1 : 0
+            ------------------------------------
+        );
+       
+    risk_factors_medical_count: Integer
+        Result.add (
+            --------------------------------------
+            has_cardiovascular_disease    ? 1 : 0,
+            has cerebrovascular_disease   ? 1 : 0,
+            has_COPD                      ? 1 : 0,
+            is_type_2_diabetic            ? 1 : 0,
+            has_hypertension              ? 1 : 0,
+            has_malignancy                ? 1 : 0,
+            BMI.bmi > 30                  ? 1 : 0,
+            has_renal_disease             ? 1 : 0
+            --------------------------------------
+        )
+       
+    risk_factors_count: Integer
+        Result := risk_factors_demographic_count + 
+                  risk_factors_medical_count
+                    
+    |
+    | ACEP step 3 assessment
+    | NB: must be assessed in highest -> lowest order
+    |
+    symptoms_related_risk: Terminology_code
+        Result := choice of
+            ====================================================
+            has_altered_LOC:                    [critical_risk],
+            ----------------------------------------------------
+            has_hemoptysis:                     [severe_risk],
+            ----------------------------------------------------
+            has_persistent_dyspnea or
+            is_LT_care_resident:                [moderate_risk],
+            ----------------------------------------------------
+            risk_factors_count ∈ {|>= 2|}:     [mild_at_risk],
+            ----------------------------------------------------
+            risk_factors_count ∈ {|0..1|}:     [mild_low_risk]
+            ====================================================
+        ;
+
+----

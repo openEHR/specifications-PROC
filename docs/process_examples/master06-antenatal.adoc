@@ -2,6 +2,14 @@
 
 The following pregnancy care DLM was developed by Danielle S Alves (RN, midwife) as part of her PhD thesis at Federal University of Pernambuco (UFPE), Brazil.
 
+== Work Plan
+
+The following Work Plan is the standard risk assessment for an antenatal visit.
+
+[.text-center]
+.Pre-natal risk assessment Work Plan
+image::{diagrams_uri}/prenatal_risk_assessment2.svg[id=prenatal_risk_assessment, align="center"]
+
 == Pregnancy Risk Assessment DLM
 
 ----
@@ -139,6 +147,22 @@ rules
                     anaemia_risk})
         ;
         
+    ultrasound_required: Boolean
+        Result := fundal_height_related_risk != [low_risk] or
+                amniotic_fluid_risk != [low_risk] or 
+                vaginal_bleeding_related_risk != [low_risk]
+
+    anaemia_risk: Risk_value
+        Result := case anaemia_type in
+            ============================================
+            [severe_anaemia_of_pregnancy]:  [emergency],
+            --------------------------------------------
+            [anaemia_of_pregnancy]:         [high_risk],
+            --------------------------------------------
+            *:                              [low_risk]
+            ============================================
+        ;
+    
     fundal_height_related_risk: Risk_value
         Result := case ultrasound_finding in
             =================================================
@@ -177,30 +201,6 @@ rules
             =================================================
         ;
             
-    hypertension_risk: Risk_value
-        Result := choice of
-            =================================================
-            has_pre_eclampsia or 
-            has_eclampsia:                      [emergency],
-            -------------------------------------------------
-            previous_obstetric_hypertension or
-            previous_pre_eclampsia or
-            previous_eclampsia or
-            has_pregnancy_hypertension:         [high_risk],
-            -------------------------------------------------
-            *:                                  [low_risk]
-            =================================================
-        ;
-            
-    hyperemesis_related_risk: Risk_value
-        Result := case vomiting_assessment in
-            ========================================
-            [hyperemesis_gravidarum]:   [high_risk],
-            ----------------------------------------
-            *:                          [low_risk]
-            ========================================
-        ;
-            
     gestational_diabetes_risk: Risk_value
         Result := choice of
             =================================================
@@ -216,18 +216,22 @@ rules
             =================================================
         ;
             
-    anaemia_risk: Risk_value
-        Result := case anaemia_type in
-            ============================================
-            [severe_anaemia_of_pregnancy]:  [emergency],
-            --------------------------------------------
-            [anaemia_of_pregnancy]:         [high_risk],
-            --------------------------------------------
-            *:                              [low_risk]
-            ============================================
+    hypertension_risk: Risk_value
+        Result := choice of
+            =================================================
+            has_pre_eclampsia or 
+            has_eclampsia:                      [emergency],
+            -------------------------------------------------
+            previous_obstetric_hypertension or
+            previous_pre_eclampsia or
+            previous_eclampsia or
+            has_pregnancy_hypertension:         [high_risk],
+            -------------------------------------------------
+            *:                                  [low_risk]
+            =================================================
         ;
-    
-    labour_onset_pathway: Terminology
+            
+   labour_onset_pathway: Terminology
         Result := case labour_onset_assessment in
             ====================================
             [placental_abruption],
