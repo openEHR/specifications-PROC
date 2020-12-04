@@ -1419,8 +1419,11 @@ input -- clinical
             --------------------------------
         ;
 
-    SpO2: Quantity
-        currency = 1 min
+    |
+    | Minimum documented within last 8 hrs
+    |
+    lowest_SpO2: Quantity
+        currency = 8 hr
         ranges =
             ------------------------------
             [mild_low_risk]:  |&gt;= 93 %|,
@@ -1459,6 +1462,24 @@ input -- clinical
         ;
 
     has_persistent_dyspnea: Boolean
+        currency = 5 min
+        ;
+
+    |
+    | Reference SpO2 for exertional test: a 1-minute sit-to-stand
+    | test can be performed within the patient’s room.
+    | With this, they sit and stand as many as they can over the
+    | course of 1 minute.
+    | * A 3% drop in pulse oximeter reading is considered a positive test
+    |
+    SpO2_exertion_reference: Quantity
+        currency = 5 min
+        ;
+
+    |
+    | Post exertion SpO2
+    |
+    SpO2_exertion_post: Quantity
         currency = 5 min
         ;
 
@@ -1523,7 +1544,7 @@ rules
         ;
 
     SpO2_score: Integer
-        Result := case SpO2 in
+        Result := case lowest_SpO2 in
             =====================
             [mild_low_risk]:  0,
             ---------------------
@@ -1633,6 +1654,29 @@ rules
             ----------------------------------------------------
             risk_factors_count ∈ {|0..1|}:     [mild_low_risk]
             ====================================================
+        ;
+
+    |
+    | Discharge home rule based on various criteria
+    |
+    can_discharge: Boolean
+        Result :=
+            qCSI_risk = [mild_low_risk] and
+            symptoms_related_risk = [mild_low_risk] and
+            exertional_SpO2_drop = [normal] and
+            TO BE COMPLETED
+        ;
+
+    exertional_SpO2_drop: Quantity
+        Result := (SpO2_exertion_post - SpO2_exertion_reference)/SpO2_exertion_reference * 100
+
+    exertional_SpO2_result: Terminology_code
+        Result := case exertional_SpO2_drop in
+            ============================
+            |&lt; 3%|:   [normal],
+            ----------------------------
+            |&gt;= 3%|:  [mild_at_risk]
+            ============================
         ;</pre>
 </div>
 </div>
