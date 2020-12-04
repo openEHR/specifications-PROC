@@ -1583,6 +1583,9 @@ rules
             =====================
         ;
 
+    |
+    | Compute the qCSI score from vital signs sub-scores
+    |
     qCSI_score: Integer
         Result := heart_rate_score +
                 systolic_BP_score +
@@ -1609,6 +1612,9 @@ rules
             ============================
         ;
 
+    |
+    | Count demographic related risk factors
+    |
     risk_factors_demographic_count: Integer
         Result.add (
             ------------------------------------
@@ -1618,6 +1624,9 @@ rules
             ------------------------------------
         );
 
+    |
+    | Count medical / history related risk factors
+    |
     risk_factors_medical_count: Integer
         Result.add (
             --------------------------------------
@@ -1630,11 +1639,15 @@ rules
             BMI.bmi &gt; 30                  ? 1 : 0,
             has_renal_disease             ? 1 : 0
             --------------------------------------
-        )
+        );
 
+    |
+    | Total pre-existing risk factors count
+    |
     risk_factors_count: Integer
         Result := risk_factors_demographic_count +
                   risk_factors_medical_count
+        ;
 
     |
     | ACEP step 3 assessment
@@ -1667,16 +1680,21 @@ rules
             TO BE COMPLETED
         ;
 
+    |
+    | Generate a % drop in SpO2 over 1 min sit/stand exertion test;
+    | NB: A fall in SpO2 generates a +ve result value.
+    |
     exertional_SpO2_drop: Quantity
-        Result := (SpO2_exertion_post - SpO2_exertion_reference)/SpO2_exertion_reference * 100
+        Result := (SpO2_exertion_reference - SpO2_exertion_post)/SpO2_exertion_reference * 100
+        ;
 
     exertional_SpO2_result: Terminology_code
         Result := case exertional_SpO2_drop in
-            ============================
+            ========================
             |&lt; 3%|:   [normal],
-            ----------------------------
+            ------------------------
             |&gt;= 3%|:  [mild_at_risk]
-            ============================
+            ========================
         ;</pre>
 </div>
 </div>
