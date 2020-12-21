@@ -9,7 +9,7 @@
 |[[latest_issue]]0.5.0
 |{spec_tickets}/SPECPROC-xx[SPECPROC-xx^]. Add Overview document.
 |T Beale
-|[[latest_issue_date]]27 Jul 2020
+|[[latest_issue_date]]21 Dec 2020
 
 |===
 

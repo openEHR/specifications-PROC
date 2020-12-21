@@ -21,6 +21,7 @@
 <li><a href="#_acknowledgements">Acknowledgements</a>
 <ul class="sectlevel2">
 <li><a href="#_primary_author">Primary Author</a></li>
+<li><a href="#_support">Support</a></li>
 </ul>
 </li>
 <li><a href="#_preface">1. Preface</a>
@@ -38,20 +39,53 @@
 <li><a href="#_other_standards">2.3. Other Standards</a></li>
 </ul>
 </li>
-<li><a href="#_conceptual_framework">3. Conceptual Framework</a>
+<li><a href="#_needs">3. Needs</a>
 <ul class="sectlevel2">
-<li><a href="#_plans">3.1. Plans</a></li>
-<li><a href="#_decision_logic_modules_dlms">3.2. Decision Logic Modules (DLMs)</a></li>
-<li><a href="#_subject_data">3.3. Subject Data</a></li>
+<li><a href="#_how_can_it_improve_clinical_care_process">3.1. How Can IT Improve Clinical Care Process?</a></li>
+<li><a href="#_care_management_artefacts">3.2. Care Management Artefacts</a>
+<ul class="sectlevel3">
+<li><a href="#_clinical_practice_guidelines_cpgs_and_care_pathways">3.2.1. Clinical Practice Guidelines (CPGs) and Care Pathways</a></li>
+<li><a href="#_order_set">3.2.2. Order Set</a></li>
+<li><a href="#_care_plan">3.2.3. Care Plan</a></li>
+<li><a href="#_artefact_relationships_and_formalisation">3.2.4. Artefact Relationships and Formalisation</a></li>
 </ul>
 </li>
-<li><a href="#_architectural_use_cases">4. Architectural Use-cases</a>
-<ul class="sectlevel2">
-<li><a href="#_plan_oriented_systems">4.1. Plan-oriented Systems</a></li>
-<li><a href="#_guidelines_and_decision_support">4.2. Guidelines and Decision Support</a></li>
+<li><a href="#_long_running_processes">3.3. Long-running Processes</a></li>
+<li><a href="#_cognitive_model">3.4. Cognitive Model</a>
+<ul class="sectlevel3">
+<li><a href="#_the_co_pilot_paradigm">3.4.1. The Co-pilot Paradigm</a></li>
+<li><a href="#_voice_based_hci">3.4.2. Voice-based HCI</a></li>
 </ul>
 </li>
-<li><a href="#_subject_data_sets">5. Subject Data-sets</a></li>
+</ul>
+</li>
+<li><a href="#_deployment_paradigm">4. Deployment Paradigm</a>
+<ul class="sectlevel2">
+<li><a href="#_separation_of_worlds">4.1. Separation of Worlds</a></li>
+<li><a href="#_distributed_plans">4.2. Distributed Plans</a></li>
+</ul>
+</li>
+<li><a href="#_conceptual_architecture">5. Conceptual Architecture</a>
+<ul class="sectlevel2">
+<li><a href="#_plans">5.1. Plans</a></li>
+<li><a href="#_decision_logic_modules_dlms">5.2. Decision Logic Modules (DLMs)</a></li>
+<li><a href="#_subject_proxy">5.3. Subject Proxy</a></li>
+<li><a href="#_subject_proxy_service">5.4. Subject Proxy Service</a>
+<ul class="sectlevel3">
+<li><a href="#_semantic_reframing_from_the_general_and_epistemic_to_the_ontic_and_use_specific">5.4.1. Semantic Reframing: from the General and Epistemic to the Ontic and Use-specific</a></li>
+<li><a href="#_manually_reported_and_missing_data">5.4.2. Manually Reported and Missing Data</a></li>
+<li><a href="#_type_conversion">5.4.3. Type Conversion</a></li>
+<li><a href="#_the_temporal_dimension_currency">5.4.4. The Temporal Dimension: Currency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_architectural_use_cases">6. Architectural Use-cases</a>
+<ul class="sectlevel2">
+<li><a href="#_plan_oriented_systems">6.1. Plan-oriented Systems</a></li>
+<li><a href="#_guidelines_and_decision_support">6.2. Guidelines and Decision Support</a></li>
+</ul>
+</li>
 <li><a href="#_references">References</a></li>
 </ul>
 </li>
@@ -155,7 +189,7 @@
 <p><a href="https://specifications.openehr.org/tickets/SPECPROC-xx" target="_blank" rel="noopener">SPECPROC-xx</a>. Add Overview document.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>27 Jul 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Dec 2020</p></td>
 </tr>
 </tbody>
 </table>
@@ -170,6 +204,25 @@
 <ul>
 <li>
 <p>Thomas Beale, Ars Semantica; openEHR Foundation Management Board.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support"><a class="anchor" href="#_support"></a>Support</h3>
+<div class="paragraph">
+<p>The work reported in this specification has been funded by the following organisations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>City of Moscow</p>
+</li>
+<li>
+<p>Better d.o.o., Slovenia</p>
+</li>
+<li>
+<p>Ars Semantica, UK</p>
 </li>
 </ul>
 </div>
@@ -333,21 +386,566 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conceptual_framework"><a class="anchor" href="#_conceptual_framework"></a>3. Conceptual Framework</h2>
+<h2 id="_needs"><a class="anchor" href="#_needs"></a>3. Needs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Within a clinical process-driven healthcare environment, two high-level artefacts are commonly recognised: <em>care pathways</em> and <em>guidelines</em>, where guidelines are usually understood as specific to particular diagnostic and treatment processes, and care pathways as larger decision structures that combine guidelines around a major healthcare goal, e.g. 'manage sepsis'. At a clinical level, both types of artefact are understood to broadly consist of <em>structured plans</em> consisting of tasks and decision points, and <em>decision rules</em>, which provide input values for decisions. A third kind of artefact which is required for computational representation (but taken for granted in published guidelines) is the set of <em>subject variables</em> referred to, i.e. patient state, diagnoses and so on. The latter can be understood in two parts: declarations (names and types) and <em>bindings</em>, which are concrete methods of populating such variables from data sources. The following illustrates these conceptual artefacts without implying anything about a deployment or service architecture.</p>
+<p>This section discusses the requirements for a category of computational system that supports the execution of distributed, team-based, and long-running care processes by professional workers and subjects.</p>
+</div>
+<div class="sect2">
+<h3 id="_how_can_it_improve_clinical_care_process"><a class="anchor" href="#_how_can_it_improve_clinical_care_process"></a>3.1. How Can IT Improve Clinical Care Process?</h3>
+<div class="paragraph">
+<p>Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself <em>perform</em> the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since a clinical process is not the same thing as the work undertaken by one of its performers.</p>
+</div>
+<div class="paragraph">
+<p>To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.</p>
+</div>
+<div class="paragraph">
+<p>The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. Nevertheless, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
+</div>
+<div class="paragraph">
+<p>The second aspect to consider is that clinical professionals don&#8217;t need to be told how to do routine tasks. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>following care pathways and guidelines</em> for complex conditions e.g. acute stroke, sepsis, complex childbirth; also guidelines that incorporate changing <em>policy</em> on the use of specific types of test whose costs and risks change over time (e.g. CT scan, MRI, certain drugs);</p>
+</li>
+<li>
+<p><em>clinical check lists</em> for multi-step procedures, including surgery, to prevent busy or tired personnel forgetting common steps;</p>
+</li>
+<li>
+<p><em>decision support</em> to determine appropriate treatments, medications from among numerous and/or changing possibilities;</p>
+</li>
+<li>
+<p><em>verification (signing off)</em> of tasks performed for medico-legal reasons, process improvement (including <em>process mining</em>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In general, the above capabilities address three human fallibilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>limited capacity to <strong>deal with complexity</strong> (often denoted as <a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>);</p>
+</li>
+<li>
+<p>the inability to <strong>keep up with change</strong> (new medications, research etc); and</p>
+</li>
+<li>
+<p>forgetting routine steps in an activity due to fatigue, rushing or an unexpected change of personnel in the middle of a procedure.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Automated support for the above would significantly aid the short-term, single clinician/patient situation, but much clinical care today is team-based, and also unfolds over a longer time than a single work shift or day. Therefore another important kind of help is needed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>coordination</em> of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>team members across departments (via e.g. plan-generated notifications); example: acute stroke care;</p>
+</li>
+<li>
+<p>workers undertaking care spanning multiple shifts and personnel, e.g. multi-day chemotherapy administration.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Another type of support that process automation can provide is to enable <em>on-the-fly interaction with the EHR</em>, including retrieval and recording. The idea here is to <em>integrate</em> EHR recording (well known as a time-consuming activity <em>additional</em> to clinical care) with execution of clinical work, such that when the work is done, the EHR is up-to-date, or very close to it.</p>
+</div>
+<div class="paragraph">
+<p>A final category of requirement for clinical process automation is <em>training</em>. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one&#8217;s professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.</p>
+</div>
+<div class="paragraph">
+<p>The sections below elucidate some of the topics mentioned above.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_care_management_artefacts"><a class="anchor" href="#_care_management_artefacts"></a>3.2. Care Management Artefacts</h3>
+<div class="paragraph">
+<p>Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the above needs, including the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>clinical practice guideline (CPG)</em> and <em>care pathway</em>: evidence-based protocols for a condition (i.e. patient category or cohort);</p>
+</li>
+<li>
+<p><em>care plan</em>: clinician-produced descriptive plan for an individual patient;</p>
+</li>
+<li>
+<p><em>order set</em>: 'template' set of combined orders for medications and/or other resources for a particular purpose.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>What these artefacts are considered to consist of within the openEHR process architecture, and how they interrelate are described below.</p>
+</div>
+<div class="sect3">
+<h4 id="_clinical_practice_guidelines_cpgs_and_care_pathways"><a class="anchor" href="#_clinical_practice_guidelines_cpgs_and_care_pathways"></a>3.2.1. Clinical Practice Guidelines (CPGs) and Care Pathways</h4>
+<div class="paragraph">
+<p><em>Clinical practice guidelines</em> (CPGs) and <em>care pathways</em> are two kinds of evidence-based, published artefact used in clinical medicine designed as structured aids to providing care.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+in openEHR documents and specifications, the term <em>guideline</em> is used as a synonym for clinical practice guideline.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A common definition of a guideline is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for specific clinical circumstances (<a href="https://www.cebm.ox.ac.uk/resources/ebm-tools/glossary" target="_blank" rel="noopener">Oxford Centre for Evidence-based Medicine</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Guidelines are usually either <em>therapeutic</em>, i.e. oriented to describing a procedure e.g. intubation, asthma management, or <em>diagnostic</em>, such as for diagnosing various forms of angina. Many diagnostic guidelines are relatively simple scores based on a number of patient variables, whose aim is to stratify risk into categories corresponding to type of intervention. Examples include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/CHA2DS2-VASc_score" target="_blank" rel="noopener">CHA2DS2–VASc stroke risk score</a>;</p>
+</li>
+<li>
+<p><a href="https://www.nice.org.uk/guidance/CG126" target="_blank" rel="noopener">UK NICE Stable angina management guideline</a>;</p>
+</li>
+<li>
+<p><a href="https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf" target="_blank" rel="noopener">American College of Emergency Physicians (ACEP) Covid19 Severity Classification tool</a>;</p>
+</li>
+<li>
+<p>Australian Clinical Guidelines for the Diagnosis and Management of Atrial Fibrillation 2018 (<a href="#Afib_NHFA_CSANZ_2018">Brieger&#44; Amerena&#44; Bajorek&#44; &amp; others&#44; 2018</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The notion of care pathway, also known by names such as 'integrated care pathway' (ICP) and 'critical care pathway', has various definitions in healthcare, such as summarised by the <a href="http://e-p-a.org/care-pathways/" target="_blank" rel="noopener">European Pathway Association (E-P-A)</a> and many other authors and organisations. Based on these, we take a care pathway to be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a structured description of complex care based on evidence, oriented to managing a particular condition;</p>
+</li>
+<li>
+<p>patient-centric (rather than institution- or procedure-centric) and therefore multi-disciplinary and cross-enterprise.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A care pathway is thus a higher-level entity aimed at achieving a patient outcome, whereas a guideline is aimed at performing a more specific professional task. Consequently, care pathways typically refer to one or more <em>guidelines</em> that describe in detail how to deal with specific situations within the condition (<a href="#Schrijvers_et_al2012">Schrijvers van Hoorn &amp; Huiskes (2012)</a>, <a href="#Vanhaecht_et_al2007">van Haecht de Witte &amp; Sermeus (2007)</a>). Examples include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://pathways.nice.org.uk/pathways" target="_blank" rel="noopener">UK NICE Sepsis pathway</a>;</p>
+</li>
+<li>
+<p><a href="https://www.cancer.org.au/assets/pdf/breast-cancer-optimal-cancer-care-pathway" target="_blank" rel="noopener">Cancer Council Australia Breast cancer pathway</a>;</p>
+</li>
+<li>
+<p><a href="https://intermountainhealthcare.org/ckr-ext/Dcmnt?ncid=520500199" target="_blank" rel="noopener">Intermountain Healthcare Acute Stroke CPM</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply by 'old school medicine'. In general however, recognised guidelines exist for healthcar professionals for most procedures undetaken during care.</p>
+</div>
+<div class="paragraph">
+<p>With respect to the challenge of applying information technology to process-oriented care, key questions to do with pathways and guidelines are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the extent to which they are <em>formally representable</em>;</p>
+</li>
+<li>
+<p>the question of <em>which pathways and/or guidelines may concurrently apply to a real patient</em> who will typically have multiple conditions, or at least be currently taking some medications or therapies which may be incompatible with a proposed guideline or pathway.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. The first question above heavily depends on the the types of interpretation of <em>implied formal semantics</em>, which include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>goals</em>;</p>
+</li>
+<li>
+<p>structured natural language statements describing <em>plan steps</em>, also commonly known as <em>tasks</em> or <em>activities</em>, which may be sequential or parallel, and which may include activities relating to:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>medication and other orders or order sets;</p>
+</li>
+<li>
+<p>medication administration;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>single <em>conditions</em> that convert a real-world value to a classification for the purpose of the guideline, e.g.:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SpO2 of 88% &#8594; 'critical' in a Covid19 assessment tool;</p>
+</li>
+<li>
+<p>Systolic pressure &gt; 160 mm[Hg] &#8594; 'high', in a hypertension guideline;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>decision flowcharts and tables that act as related <em>rule-sets</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If published pathways and guidelines can be formalised, the second challenge then requires some process of selecting and/or adapting guidelines and pathways into a merged form for use with a real patient in a particular care situation. There is little science on this issue, and the current method of enabling pathways to be used together is essentially to include in each one contra-indications for medications (e.g. being on anti-rejection therapy post transplant), phenotypic features (e.g. being female, being allergic to penicillin), and patient history (e.g. being pregnant). This fact implies that any adaptation or merging for real world use is likely to require careful study by human professionals (and possibly specialist decision support engines) in order to build a computable patient-specific artefact, which is termed here a <em>patient plan</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_order_set"><a class="anchor" href="#_order_set"></a>3.2.2. Order Set</h4>
+<div class="paragraph">
+<p>Within the above-described artefacts references to so-called <em>order sets</em> may exist. An order set is generally understood as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a set of orders for medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;</p>
+</li>
+<li>
+<p>potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;</p>
+</li>
+<li>
+<p>descriptive meta-data, including authors, history, evidence base, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'prescriptions', while the second is a candidate for representation as a formalised plan.</p>
+</div>
+<div class="paragraph">
+<p>In the openEHR process architecture, an 'order set' is considered to be a <em>treatment-specific set of orders</em> (openEHR Instructions) with associated descriptive information, with any administration plan being represented in a separate work plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) would need to be replicated and adapted into a larger patient-specific plan.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_care_plan"><a class="anchor" href="#_care_plan"></a>3.2.3. Care Plan</h4>
+<div class="paragraph">
+<p>Care plans are common artefact within clinical care, originating in nursing, for which various definitions exist e.g. RN-central provides an <a href="http://www.rncentral.com/nursing-library/careplans/" target="_blank" rel="noopener">original nursing-oriented definition</a>; <a href="https://www.iso.org/standard/58102.html" target="_blank" rel="noopener">ISO Continuity of Care standard ('contsys')</a>. From these we synthesise the following definition:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>care plan</em> - a dynamic, personalised plan, relating to one or more specified health issues, including patient objectives and goals, defining diagnoses and describing steps for resolution, medications and monitoring.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Historically, a care plan has been a <em>description of intended care</em> that may be followed by relevant staff (e.g. home-visit nurses). A patient may have more than one care plan, and the contents of a care plan may be determined by one or more care pathways and/or CPGs, or might be 'standard local practice'; a care plan may even be <em>ad hoc</em> in the case of a patient type with no well-described models of care available.</p>
+</div>
+<div class="paragraph">
+<p>Within the openEHR process architecture, a care plan is considered a structured artefact whose contents are consumed by human actors, rather than being a directly automatable entity. It is assumed to include items such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>identifier and purpose;</p>
+</li>
+<li>
+<p>descriptive text;</p>
+</li>
+<li>
+<p>potentially references to CPG(s) or care pathway(s) that apply, with any modifictions necessary;</p>
+</li>
+<li>
+<p>goals and targets;</p>
+</li>
+<li>
+<p>relevant problems and diagnoses;</p>
+</li>
+<li>
+<p>interventions: medication and other orders (and potentially order sets);</p>
+</li>
+<li>
+<p>monitoring criteria / instructions.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_artefact_relationships_and_formalisation"><a class="anchor" href="#_artefact_relationships_and_formalisation"></a>3.2.4. Artefact Relationships and Formalisation</h4>
+<div class="paragraph">
+<p>The clinical artefacts described so far may be classified as follows, for the purposes of potential computable representation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>automatable artefacts</em>: care pathways, guidelines, order set administration plans;</p>
+</li>
+<li>
+<p><em>structured artefacts</em>: care plans.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Automatable artefacts are assumed to consists of at least three kinds of element:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>descriptive</em>: structured description, identification etc;</p>
+</li>
+<li>
+<p><em>workflow</em>: a representation of tasks, activities etc;</p>
+</li>
+<li>
+<p><em>decision logic</em>: a representation of rules, ultimately based on a combination of <em>subject variable</em> values and clinical evidence based logic, ranges, threshold values etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>None of the above artefacts acts directly as an <em>executable plan</em> for a specific subject (i.e. patient). Care pathways and guidelines each relate to a single isolated condition or procedure, whereas the general situation for a real patient is multiple conditions plus phenotypic specificities (e.g. allergies) plus current situation (e.g. being pregnant) plus non-clinical elements (e.g. patient preferences, type of health plan cover etc). Adaptation and merging is in general unavoidable.</p>
+</div>
+<div class="paragraph">
+<p>Although there is no commonly recognised term for an automatable patient-specific plan, we assume its existence and term such an artefact a <em>patient plan</em> for convenience, and make the assumption that for the purposes of formal representation it is a combination of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a care plan that describes the intended care approach (may be minimal in some circumstances, e.g. emergency);</p>
+</li>
+<li>
+<p>a potentially executable pathway of the same <em>formal representation</em> as a care pathway or guideline, but whose content is adapted from relevant automatable CPGs and/or care pathways, where available.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since a computable patient plan may originate from a full care pathway, such as for complex pregnancy, or a simple guideline, such as <a href="https://en.wikipedia.org/wiki/CHA2DS2-VASc_score" target="_blank" rel="noopener">CHA2DS2–VASc</a>, it may express any level of clinical detail.</p>
+</div>
+<div class="paragraph">
+<p>The various clinical artefacts described above and related computational entities, along with their relationships, can be visualised as follows.</p>
+</div>
+<div id="care_mgt_artefact_relations" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/diagrams/artefact_relations.svg" alt="artefact relations">
+</div>
+<div class="title">Figure 1. Care management artefacts</div>
+</div>
+<div class="paragraph">
+<p>In the diagram, the term <em>executable plan</em> is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.</p>
+</div>
+<div class="paragraph">
+<p>Entities shown with dotted lines are not assumed to exist in all real world clinical situations. That is, care may be being provided for a patient for which no published care pathway is available, and only limited published guidelines. This would imply no or limited availability of condition-specific executable plans for use in constructing an executable patient plan. Nevertheless, the latter could be constructed <em>de novo</em>, rather than by adaptation of library pathways or guidelines.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_long_running_processes"><a class="anchor" href="#_long_running_processes"></a>3.3. Long-running Processes</h3>
+<div class="paragraph">
+<p>One of the key characteristics of work in the real world is the passage of time, and how it relates to workers. In general human workers are present for a <em>shift</em> or <em>work day</em> of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during normal working hours. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).</p>
+</div>
+<div class="paragraph">
+<p>A similar kind of pattern, although usually with longer periods, applies to machines that may be active parties in organised work (e.g. robotic surgery devices), since all machines eventually need to be serviced, and in the long term, obsoleted and replaced. Service patterns may be a combination of regular planned down-times and unplanned failures.</p>
+</div>
+<div class="paragraph">
+<p>The general picture of workers is therefore one of repeating cycles of presence and thus <em>availability</em> (shifts, work days, in-service periods) during normal 'at-work' periods, punctuated by variable absences for holidays, sickness, downtime, and bounded by commencement and completions of appointments.</p>
+</div>
+<div class="paragraph">
+<p>In contrast to this, the 'work to be done', whether a well-defined procedure (e.g. GP encounter, surgery) or open-ended care situation (diabetes, post-trauma therapy) will usually have its own natural temporal extension. The presence of the patient as the subject in healthcare usually follows this, although may not, such as in the case of pathology and microbiology lab testing, in which tissue samples are proximate subject of the work. Consequently, there are a variety of relationships between the innate temporal structure of the planned work, and that of the work execution by its performers.</p>
+</div>
+<div class="paragraph">
+<p>In some cases, an entire piece of work may be completable within a work <em>session</em>, during which the workers do not change. Most doctor&#8217;s appointments and single surgeries are of this nature. In other cases, an overall task takes some days or weeks, i.e. many shifts and work days. Open-ended care processes will run through shifts, work-days and also longer absences, as well as permanent employment changes. To make things more difficult, it should always be remembered that no process, short or long, is guaranteed to be conveniently contained within a shift or non-holiday period - unplanned worker absence may occur at any time and any point within an executing process.</p>
+</div>
+<div class="paragraph">
+<p>Two conclusions can be drawn from the above. The first is that variable worker availability is a fact of life, and any machine-based process execution engine must deal with it. The second is that, for long running processes, the executing plan is likely to be the <em>only</em> coherent single record of planned and performed actions on the subject, as shifts and holidays pass, new workers commence, and others leave or retire.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cognitive_model"><a class="anchor" href="#_cognitive_model"></a>3.4. Cognitive Model</h3>
+<div class="sect3">
+<h4 id="_the_co_pilot_paradigm"><a class="anchor" href="#_the_co_pilot_paradigm"></a>3.4.1. The Co-pilot Paradigm</h4>
+<div class="paragraph">
+<p>Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time <em>override</em> system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_voice_based_hci"><a class="anchor" href="#_voice_based_hci"></a>3.4.2. Voice-based HCI</h4>
+<div class="paragraph">
+<p>One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home audio-visual systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>by replacing physical keyboard interaction with voice, it enables interaction with the system to occur in <em>parallel</em>, and therefore in real-time, with clinical work that typically already occupies the worker&#8217;s hands and eyes;</p>
+</li>
+<li>
+<p>it largely removes the problem of maintaining the <em>sterile field</em> around a patient that would otherwise be jeapordised by multiple workers touching keyboards and touchscreens.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Voice control is also likely to be crucial to enabling a clinical process support system to operate as an intelligent co-pilot rather than an overbearing presence in the work environment, since it starts to emulate the normal conversational abilities of human workers, via which any principal worker may ask for help as needed, but also limit system intervention when it is not needed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment_paradigm"><a class="anchor" href="#_deployment_paradigm"></a>4. Deployment Paradigm</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_separation_of_worlds"><a class="anchor" href="#_separation_of_worlds"></a>4.1. Separation of Worlds</h3>
+<div class="paragraph">
+<p>As soon as the notion of planning is assumed, we enter the workflow space, and it becomes essential to describe the intended relationship of humans and machines in the work environment. This is due to the fact that any description of planned work acts as a set of instructions to actors intended to perform the tasks. Since the instructions (task plans) will be represented in the IT layer and the performing actors (generally human, although they may also be autonomous devices or software applications) exist in the real world, an account of the interaction between the computing environment and the real world is required.</p>
+</div>
+<div class="paragraph">
+<p>Firstly, we distinguish the following entities in the work environment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>computing environment</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>executable plan definition</strong>: a reusable definition of work to be done, consisting of tasks, potentially standardised according to a guideline or protocol;</p>
+</li>
+<li>
+<p><strong>executable plan instance</strong>: a run-time instance of a task plan, potentially with local variations, created for execution by an actor or actors;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>real world</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>performing actor</strong>: an autonomous human, machine or software application that performs tasks in the real world as part of a procedure designed to achieve a goal;</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In real-world environments, the actors are not passive recipients of commands from a computer application implementing a plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, coherent sequencing of tasks and so on. A workflow application provides help by maintaining a representation of the plan, and a representation of its progress in execution. It is immediately apparent that the application&#8217;s idea of a given plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a challenge of <em>synchronisation</em> of the two.</p>
+</div>
+<div class="paragraph">
+<p>There is also a question of the nature of the communication between the workflow application and the real world actors, which we can think of as consisting of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>commands</em>: signals from the plan system to a real world actor to do something;</p>
+</li>
+<li>
+<p><em>notifications</em>: signals to and from the plan system and the real world actors on the status of work, e.g. 'new work item', 'item completed' etc;</p>
+</li>
+<li>
+<p><em>data</em>: data collection from actors and presentation to actors from the system.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This view of the environment can be illustrated as follows.</p>
+</div>
+<div id="workflow_execution_paradigm" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/diagrams/workflow_execution_paradigm.svg" alt="workflow execution paradigm" width="55%">
+</div>
+<div class="title">Figure 2. Plan execution paradigm</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_distributed_plans"><a class="anchor" href="#_distributed_plans"></a>4.2. Distributed Plans</h3>
+<div class="paragraph">
+<p>There is a potentially complicated relationship between IT environments in which computable plans execute and the work-places where the human actors are found. This is because 'systems' in a concrete sense are part of IT installations owned by organisations that may or may not be the employers of the workers, while plans may logically span more than one distinct work-place. For example a clinical plan for diagnosing and resolving angina may contain steps that are performed by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an emergency department (part of a hospital);</p>
+</li>
+<li>
+<p>a general practitioner (in a separate health clinic);</p>
+</li>
+<li>
+<p>a cardiologist (within a hospital, possibly a different one to the original ED attendance);</p>
+</li>
+<li>
+<p>a radiology department (usually within a hospital, possibly also different, for reasons of availability, machine type etc).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These various healthcare facilities almost certainly have their own IT systems within a managed environment and security boundary, with some possible sharing of systems among some facilities. Consequently, where the notional clinical plan executes in the real world doesn&#8217;t usually cleanly correspond to one IT system in which a plan engine can execute it.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, in an ideal environment with regional patient-centric hosted services (shared EHR etc), accessible by all healthcare facilities the patient visits, the logical locus of a plan&#8217;s activities - the various HCFs taken together - correspond 1:1 with a location where the plan can be executed by an engine, i.e. the regional system.</p>
+</div>
+<div class="paragraph">
+<p>The following figure illustrates different possible relationships between a logical plan definition whose work is performed by actors in different enterprises, and the location of plan engines where such a plan may logically be executed. The particular arrangement shown has one enterprise (on the left) with its own separate IT (typical for most hospitals today) and three other enterprises that share regional health IT services relevant to the patient record and plan execution (they probably have their own private IT for more mundate purposes as well of course). The plan is shown as having tasks that are to be performed at all four of the enterprises.</p>
+</div>
+<div id="distributed_plan_execution" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/diagrams/distributed_plan_execution.svg" alt="distributed plan execution" width="80%">
+</div>
+<div class="title">Figure 3. Distributed plan execution</div>
+</div>
+<div class="paragraph">
+<p>The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is <em>some</em> means of enabling the various parts of a plan to execute in the various work-places required.</p>
+</div>
+<div class="paragraph">
+<p>One of the challenges in such distributed work environments, which are the norm in healthcare, is the ownership, creation, maintenance and sharing of plan definitions that implicate workers across enterprises.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conceptual_architecture"><a class="anchor" href="#_conceptual_architecture"></a>5. Conceptual Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Within <a href="#care_mgt_artefact_relations">Figure 1</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual archicture of this artefact in some detail.</p>
+</div>
+<div class="paragraph">
+<p>The primary elements of executable plans shown are 'workflow', i.e. a structured representation of tasks to be performed along with relevant decision points, and 'decision logic', which provides input values for workflow decisions. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
+</div>
+<div class="paragraph">
+<p>Both of these artefacts contain references to <em>subject variables</em>, i.e. ontic (real-world) subject state, such as <em>date_of_birth</em>, <em>weight</em>, <em>systolic_BP</em> and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be <em>tracked</em>, i.e. updated continuously from measuring devices. A collection of subject variables relevant to a plan or DLM is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.</p>
+</div>
+<div class="paragraph">
+<p>In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are required, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.</p>
 </div>
 <div id="conceptual_framework" class="imageblock text-center text-center">
 <div class="content">
 <img src="overview/diagrams/conceptual_model.svg" alt="conceptual model">
 </div>
-<div class="title">Figure 1. openEHR conceptual framework for care pathways and guidelines</div>
+<div class="title">Figure 4. openEHR conceptual framework for care pathways and guidelines</div>
 </div>
 <div class="sect2">
-<h3 id="_plans"><a class="anchor" href="#_plans"></a>3.1. Plans</h3>
+<h3 id="_plans"><a class="anchor" href="#_plans"></a>5.1. Plans</h3>
 <div class="paragraph">
-<p>In the above, the top box (pink) illustrates a <em>plan definition</em>, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. Work plans are indispensible for various scenarios, including:</p>
+<p>In the above, the top box (pink) illustrates a <em>plan definition</em>, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>. Work plans are used for various scenarios, including:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -375,19 +973,19 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Using the openEHR Task Planning model, plans for any of the above situations can be defined by domain experts and executed. Work Plans are <em>executed</em> by a <em>plan engine</em>, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker&#8217;s process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.</p>
+<p>Using this model, plans for any of the above situations can be defined by domain experts using dedicated graphical tools. Work Plans are <em>executed</em> by a <em>plan engine</em>, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker&#8217;s process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.</p>
 </div>
 <div class="paragraph">
 <p>One of the key formal elements of a Work Plan is decision points (see e.g. the node marked 'CASE heart assessment' in the plan diagram above), where plan branching occurs, based on <em>conditions</em> and <em>rules</em> that ultimately depend on <em>subject variables</em>. In the openEHR architecture, all such decisional logic is expressed in dedicated <em>Decision Logic Modules (DLMs)</em>, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_decision_logic_modules_dlms"><a class="anchor" href="#_decision_logic_modules_dlms"></a>3.2. Decision Logic Modules (DLMs)</h3>
+<h3 id="_decision_logic_modules_dlms"><a class="anchor" href="#_decision_logic_modules_dlms"></a>5.2. Decision Logic Modules (DLMs)</h3>
 <div class="paragraph">
-<p>In the conceptual model, the box on the lower right (green) represents <em>decision logic modules</em>, which express the rules, decision tables etc that encode published guidelines, and express the decision logic of plans. DLMs are used to represent the simplest Boolean conditions such as <code>high_blood_pressure = systolic_blood_pressure &gt;= 140 mm[Hg]</code> used in plans, as well as complex chained logic representing stand-alone guidelines, scores and other rule-based clinical entities.</p>
+<p>In the conceptual model, the box on the lower right (green) represents <em>decision logic modules</em> (DLMs), which express the rules, decision tables etc that encode published guidelines and decision logic of plans. DLMs are used to represent the simplest Boolean conditions such as <code>systolic_blood_pressure &gt;= 140 mm[Hg]</code> used in plans, as well as complex chained logic representing stand-alone guidelines, scores and other rule-based clinical entities. To do this, they declare <em>subject variables</em> needed for computing the rules and/or needed by client Work Plans or other applications.</p>
 </div>
 <div class="paragraph">
-<p>The essential characterisation of <em>decision logic</em> in the openEHR process specifications is a function-oriented logic that typically represents deductive inferences, such as clinical classification of patients (including diagnosis), based on input variables representing known facts about the subject (i.e. patient). These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnoses and records of previous procedures. Other kinds of reasoning may be used as well, including Bayesian and other statistical and Artificial Intelligence (AI). In the latter case, DLM functions make calls to appropriate specialised services.</p>
+<p>The openEHR <em>decision logic language</em> may be characterised as a function-oriented logic that typically represents deductive inferences, such as clinical classification of patients (including diagnosis), based on input variables representing known facts about the subject (i.e. patient). These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnoses and records of previous procedures. Other kinds of reasoning may be used as well, including Bayesian and other statistical and Artificial Intelligence (AI). In the latter case, DLM functions make calls to appropriate specialised services.</p>
 </div>
 <div class="paragraph">
 <p>DLMs are written in the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language (DL)</a> consists of various formal elements, including:</p>
@@ -416,30 +1014,119 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_subject_data"><a class="anchor" href="#_subject_data"></a>3.3. Subject Data</h3>
+<h3 id="_subject_proxy"><a class="anchor" href="#_subject_proxy"></a>5.3. Subject Proxy</h3>
 <div class="paragraph">
-<p>On the lower left (blue / grey) is the <em>subject dataset</em>, which is managed by the <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html" target="_blank" rel="noopener">Subject Proxy service</a>. Whatever the concrete architecture, these components serve to populate the subject data required by the Plans and Decision Logic Modules. As such, <em>Data Access Bindings (DAB)</em> are required to extract data from specific data sources and repositories, such as patient health records and monitoring devices, and where data is not available from these sources, users may be requested to provide it.</p>
+<p>Plans and decision logic necessarily require a way of defining and expressing their <em>input variables</em>. This is not just a question of creating typed variables, but of their semantics. The 'variables' used in plan tasks (e.g. for display) and DLM rules represent an <em>ontic</em> view of the subject, that is, as close as possible to a true description of its state in reality. For example, a rule for inferring atrial fibrillation and other forms of arrhythmia may refer to the input variables <code><em>heart_rate</em></code> and <code><em>heart_rhythm</em></code>. The meaning of these variables is that they represent the real heart rate and rhythm of the patient, rather than being just any heart rate, e.g. from a measurement 3 years ago recorded within a particular EMR system. Similarly, a variable <code><em>is_type1_diabetic</em></code> represents a proposition about the patient in reality.</p>
 </div>
 <div class="paragraph">
-<p>Decision support logic necessarily requires a way of defining and expressing its <em>input variables</em>. This is not just a question of creating typed variables, but one of semantics. The 'variables' used in rules represent an <em>ontic</em> view of the subject, that is, a true description of its state in reality. For example, a rule for inferring atrial fibrillation and other forms of arrhythmia may refer to the input variables <code><em>heart_rate</em></code> and <code><em>heart_rhythm</em></code>. The meaning of these variables is that they represent the real heart rate and rhythm of the patient, rather than being just any heart rate, e.g. from a measurement 3 years ago. Similarly, a variable <code><em>is_type1_diabetic</em></code> represents a proposition about the patient in reality.</p>
+<p>To make decision logic comprehensible to (and therefor authorable by) domain experts, subject variable names need to be close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional directly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code> which should of course be hidden in implementations.</p>
 </div>
 <div class="paragraph">
-<p>A second requirement of rule variables is that they are close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional instantly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code>.</p>
+<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 4</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
+</div>
+<div class="paragraph tbd">
+<p>TBD: include event listener in subject proxy or in separate component?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_subject_proxy_service"><a class="anchor" href="#_subject_proxy_service"></a>5.4. Subject Proxy Service</h3>
+<div class="paragraph">
+<p>Extraction of subject state from its sources is managed by a <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html" target="_blank" rel="noopener">Subject Proxy service</a>. <em>Data Access Bindings (DAB)</em> are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.</p>
 </div>
 <div class="paragraph">
-<p>In order to support the definition of such variables, a connection is needed to the technical representation of data found within EHRs, documents, lab messages, real-time devices and other sources. These latter constitute the <em>epistemic</em> knowledge base for extracting the ontic view. They also tend to be in highly variable representations, due to the use of different standards, products and databases. The ability to write decision logic in a natural yet computable way - independent of specific access methods and type systems - thus requires support for various levels of representation above the purely technical data items and APIs found in healthcare information systems. The Subject Proxy component in the scheme illustrated above constitutes the top-most reification of underlying data in the form of domain-comprehensible ontic variables.</p>
+<p>The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including Plan workflows and Decision Support. These jobs are described below.</p>
+</div>
+<div class="sect3">
+<h4 id="_semantic_reframing_from_the_general_and_epistemic_to_the_ontic_and_use_specific"><a class="anchor" href="#_semantic_reframing_from_the_general_and_epistemic_to_the_ontic_and_use_specific"></a>5.4.1. Semantic Reframing: from the General and Epistemic to the Ontic and Use-specific</h4>
+<div class="paragraph">
+<p>The relationship between guidelines and data exhibits a number of semantic characteristics that lead to the concept of the Subject Proxy as an independent interfacing service.</p>
+</div>
+<div class="paragraph">
+<p>In order to define a care pathway or guideline (possibly adapted into a patient-specific care plan), various subject state variables and events are needed. Since guidelines are specific to purpose, the number of variables is typically low, and for many simpler guidelines, as few as three or four. Many guidelines need access to common variables such as 'sex', 'age', basic clinical classifiers such as 'is diabetic', 'is pregnant' and then a relatively small number of condition-specific variables representing patient state (e.g. 'neutrophils', 'ldl') and specific diagnoses (e.g. 'eclampsia', 'gestational hypertension'). A guideline of medium complexity, such as for RCHOPS (non-Hodgkins lymphoma) chemotherapy needs around 20 variables, and a complex guideline such as for sepsis might need 50 - 100.</p>
+</div>
+<div class="paragraph">
+<p>These small numbers are in contrast to the total number of distinct types of data point that will be routinely recorded for an average subject over long periods and relating to all conditions, which is in the O(1k) range, or the number of such data points recorded for a population, e.g. all inpatients + outpatients of a large hospital, which is O(10k). The latter corresponds to the variety of data that a general EMR product would need to cope with. The 'data sets' for specific guidelines are thus small and well-defined in comparison to the data generally captured within a patient record over time, and thus candidates for encapsulation.</p>
+</div>
+<div class="paragraph">
+<p>Data set size is not the only distinguishing characteristic of a computable guideline. Where variables such as 'systolic blood pressure', 'is diabetic' and so on are mentioned in guidelines, they are intended to refer to the real patient state or history, i.e. they are references to values representing <em>ontic</em> entities, independent of how they might be obtained or stored. This is in contrast with the view of data where it is captured in health records or documents, which is an <em>epistemic</em> one, i.e. the result of a knowledge capture activity. Consequently, a query into a departmental hospital system asking if patient 150009 is diabetic, indicates that the patient is diabetic in the case of a positive answer, but otherwise probably doesn&#8217;t indicate anything, since the full list of patient 150009&#8217;s problems is often not found in departmental systems.</p>
+</div>
+<div class="paragraph">
+<p>A query into any particular epistemic resource, i.e. a particular database, health record system or document only indicates what is known about the subject <em>by that system</em>. A true picture of the patient state can be approximated by access to all available data stores (e.g. hospital and GP EMR systems), assuming some are of reasonable quality, and is further improved by access to real-time device data (e.g. monitors connected to the patient while in hospital, but also at home). The best approximation of the ontic situation of the patient will be from the sum of all such sources plus 'carers in the room' who can report events as they unfold (patient going into cardiac arrest), and the patient herself, who is sometimes the only reliable origin of certain facts.</p>
+</div>
+<div class="paragraph">
+<p>This epistemic <em>coverage problem</em> indicates a need which may be addressed with the Subject Proxy, which is to act as a data 'concentrator', obtaining relevant data from all epistemic sources including live actors to obtain a usable approximation of true patient state. This is a practical thing to do at the guideline / plan level by virtue of the small sizes of the variable sets. The data concentrator function is described in more detail below.</p>
+</div>
+<div class="paragraph">
+<p>Comprehensive coverage of all possible sources is not the only problem to solve in order to define variables for use in guidelines and plans. In formal terms, symbolic references appearing at different levels in the environment have different semantics. Within the EHR system S1 for example, a generic API call <code>has_diagnosis(pat_id, x)</code> has the meaning: 'indicates whether patient P is known to have diagnosis x, according to S1'. However, within a guideline related to pregnancy, a variable <code>is_diabetic</code> defined in a Subject Proxy is more convenient, and is intended to represent the true diabetic state (or not) of the patient. The Subject Proxy Service thus not only has the effect of data concentration in order to extract a true ontic picture of the subject, but it reifies technical data access calls into ontic variables, specific to the guideline. In some cases, such variables might have pre-coordinated names such as <code>previous_history_of_eclampsia</code>, combining a temporal region with a substantive state.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_manually_reported_and_missing_data"><a class="anchor" href="#_manually_reported_and_missing_data"></a>5.4.2. Manually Reported and Missing Data</h4>
+<div class="paragraph">
+<p>A Subject Proxy acts as a <em>data concentrator</em>, providing a single interface to all available sources of information about the subject. In a typical in-patient or live-encounter (e.g. GP visit) situation, these include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the EMR system providing the institutional patient record;</p>
+</li>
+<li>
+<p>any shared (e.g. regional or national) EHR system providing e.g. summary and/or emergency data;</p>
+</li>
+<li>
+<p>devices attached to the patient, e.g. vital signs, pulse oximeter etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In many cases, a variable required by an application, e.g. sufficiently recent patient weight, is not available from the EMR/EHR or from any other source. This is a common problem in all decision support environments, and the usual solution is that an application window is displayed to ask the clinician for the data directly. This may be entered (e.g. after weighing the patient or asking the patient for his last weight), saved into the EMR, and the original request retried. Traditionally, this data request 'loop' has been engineered into either the main EMR application or into the decision support component. It is however a general problem and can be conveniently solved in a generic way using the Subject Proxy.</p>
+</div>
+<div class="paragraph">
+<p>Further, there are some subject state variables and particularly events that are only available 'live' from clinicians working with the patient, e.g. state of consciousness, occurrence of a post-heart surgery heart attack (requiring emergency cardiac shock and/or re-sternotomy), haemorrhage during childbirth etc. Such events can only be realistically asserted 'in the room' by a clinician, potentially via a voice interface.</p>
+</div>
+<div class="paragraph">
+<p>Consequently, we can say that the following constitute two more routine data sources for a Subject Proxy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>just-in-time UI capture of missing data;</p>
+</li>
+<li>
+<p><em>manually-reported</em> events 'in the room'.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, such 'live' data obtained by sich methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_type_conversion"><a class="anchor" href="#_type_conversion"></a>5.4.3. Type Conversion</h4>
+<div class="paragraph">
+<p>A natural consequence of obtaining data from multiple sources is that the data will be instances different concrete concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-oriented and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital sign data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).</p>
+</div>
+<div class="paragraph">
+<p>The consequence of this is that the type system required at the Subject Proxy level may be significantly simplified compared to the type systems and structures in which data are originally captured. The use of an SPO as the interface for decision support and plan applications to back-end systems greatly simplifies the artifacts needed in the latter components.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_temporal_dimension_currency"><a class="anchor" href="#_the_temporal_dimension_currency"></a>5.4.4. The Temporal Dimension: Currency</h4>
+<div class="paragraph">
+<p>Another common problem traditionally handled by individual applications, including decision-support, is the <em>currency</em> of data, i.e. its 'recency'. Some variables such as body height are sufficiently current even when measured years earlier, while others such as oxygen saturation and heart rate need to be less than a minute old to be useful. To obtain valid values, applications often implement a scheme based on polling, automated server-side 'push' query execution, publish-subscribe or other mechanisms to obtain current data. None of this funcionality can really be avoided, but the Subject Proxy provides a single place to locate it, such that client applications simply access the SPO variables they need, and the SPO takes care of the update problem.</p>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_architectural_use_cases"><a class="anchor" href="#_architectural_use_cases"></a>4. Architectural Use-cases</h2>
+<h2 id="_architectural_use_cases"><a class="anchor" href="#_architectural_use_cases"></a>6. Architectural Use-cases</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The formal artefacts described above may be deployed in different ways to achieve various goals.</p>
 </div>
 <div class="sect2">
-<h3 id="_plan_oriented_systems"><a class="anchor" href="#_plan_oriented_systems"></a>4.1. Plan-oriented Systems</h3>
+<h3 id="_plan_oriented_systems"><a class="anchor" href="#_plan_oriented_systems"></a>6.1. Plan-oriented Systems</h3>
 <div class="paragraph">
 <p>Many applications are designed around plans as the organising principle, such as complex medication administration (e.g. multiple cycles of multi-drug chemotherapy), team-based acute stroke response, ante-natal care and chronic condition management. In such cases, the system or application architecture will typically resemble the following.</p>
 </div>
@@ -447,11 +1134,11 @@
 <div class="content">
 <img src="overview/diagrams/plan-architecture.svg" alt="plan architecture">
 </div>
-<div class="title">Figure 2. Example Plan-based system architecture</div>
+<div class="title">Figure 5. Example Plan-based system architecture</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_guidelines_and_decision_support"><a class="anchor" href="#_guidelines_and_decision_support"></a>4.2. Guidelines and Decision Support</h3>
+<h3 id="_guidelines_and_decision_support"><a class="anchor" href="#_guidelines_and_decision_support"></a>6.2. Guidelines and Decision Support</h3>
 <div class="paragraph">
 <p>Another major category of clinical process IT is guideline-based decision support. In this case, DLMs are used to express potentially complex guidelines to evaluate e.g. risk of acute events (heart attack, stroke etc). They are usually evaluated in an event-based manner, being triggered by e.g. commits to the EHR, or by a family practitioner opening the patient record for a particular patient.</p>
 </div>
@@ -459,20 +1146,17 @@
 <div class="content">
 <img src="overview/diagrams/gdl-architecture.svg" alt="gdl architecture">
 </div>
-<div class="title">Figure 3. Example Guideline-based system architecture</div>
+<div class="title">Figure 6. Example Guideline-based system architecture</div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_subject_data_sets"><a class="anchor" href="#_subject_data_sets"></a>5. Subject Data-sets</h2>
-<div class="sectionbody">
-
 </div>
 </div>
 <div class="sect1">
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><a id="Afib_NHFA_CSANZ_2018"></a>Brieger, D., Amerena, J., Bajorek, B., &amp; others. (2018). NHFA CSANZ Atrial Fibrillation Guideline Working Group: Australian Clinical Guidelines for the Diagnosis and Management of Atrial Fibrillation. <em>Heart, Lung and Circulation</em>, <em>27</em>(10), 1209–1266. Retrieved from <a href="https://www.heartlungcirc.org/article/S1443-9506(18)31778-5/pdf" class="bare">https://www.heartlungcirc.org/article/S1443-9506(18)31778-5/pdf</a></p>
+</div>
 <div class="paragraph">
 <p><a id="GLIF"></a>Ohno-Machado, L., Gennari, J. H., Murphy, S. N., Jain, N. L., Tu, S. W., Oliver, D. E., Pattison-Gordon, E., et al. (1998). The GuideLine Interchange Format - A Model for Representing Guidelines. <em>J Am Med Inform Assoc</em>, 357–372.</p>
 </div>
@@ -480,14 +1164,20 @@
 <p><a id="Samwald_arden_2012"></a>Samwald, M., Fehre, K., Bruin, J. de, &amp; Adlassnig, K.-P. (2012). The Arden Syntax standard for clinical decision support: Experiences and directions. <em>Journal of Biomedical Informatics</em>, <em>45</em>, 711–718. Retrieved from <a href="https://www.sciencedirect.com/science/article/pii/S1532046412000226" class="bare">https://www.sciencedirect.com/science/article/pii/S1532046412000226</a></p>
 </div>
 <div class="paragraph">
+<p><a id="Schrijvers_et_al2012"></a>Schrijvers, G., Hoorn, A. van, &amp; Huiskes, N. (2012). The care pathway: concepts and theories: an introduction. In <em>International journal of integrated care</em>.</p>
+</div>
+<div class="paragraph">
 <p><a id="SuttonFox2003"></a>Sutton, D. R., &amp; Fox, J. (2003). The syntax and semantics of the PROforma guideline modeling language. <em>J Am Med Inform Assoc.</em>, <em>10(5)</em>, 433–443. Retrieved from <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/" class="bare">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/</a></p>
+</div>
+<div class="paragraph">
+<p><a id="Vanhaecht_et_al2007"></a>Haecht, K. van, Witte, K. de, &amp; Sermeus, W. (2007). <em>The impact of clinical pathways on the organisation of care processes</em> (PhD thesis). Belgium: KU Leuven, Leuven.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-18 12:07:50 +0100
+Last updated 2020-12-21 13:43:24 UTC
 </div>
 </div>
 </body>
