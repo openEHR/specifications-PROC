@@ -55,15 +55,17 @@ In order to supply a few of the key constructs of a DLM, a concrete model is pro
 .`proc.decision_language.concrete` Package
 image::{uml_diagrams_uri}/PROC-decision_language.concrete.svg[id=dl_concrete, align="center"]
 
-=== Input Variables
+=== Subject Variables
 
-The variable definitions found in the `input` section of a DLM are designed to facilitate both intuitive DLM authoring and tracking of values over time from real data sources, typically health records, devices and so on. The generic class `TRACKED_VARIABLE<T>` and descendants provide a representation of an external variable with a symbolic name, e.g. `is_diabetic`, `heart_rate`, etc and values, tracked over time. The generic type parameter is substituted with types used for representing atomic data values, including primitive types such as `String`, `Integer` etc, as well as types like `Terminology_code`, `Quantity` etc, as available in the  models (type definitions) _used_ by a DLM.
+The variable definitions found in the `input` section of a DLM are designed to facilitate both intuitive DLM authoring and tracking of values over time from real data sources, typically health records, devices and so on. The generic class `STATE_VARIABLE<T>` and descendants provide a representation of a subject variable with a symbolic name. The generic type parameter is substituted with types used for representing atomic data values, including primitive types such as `String`, `Integer` etc, as well as types like `Terminology_code`, `Quantity` etc, as available in the  models (type definitions) _used_ by a DLM.
 
-The `_history_` attribute represents variable value samples over time, for variables with `currency` defined, while the features `is_available` and `unavailable_reason` provide a way for missing data to be checked for.
+The class `STATE_VARIABLE<T>` models the simplest case: a variable that may be queried once for an execution run. This is sufficient for subject variables that are not time-dependent, and will not change during the execution, such as `date_of_birth`, `sex`, and Boolean variables such as `is_type1_diabetic`. The `_history_` attribute contains the variable value (normally only one sample), while the features `is_available()` and `unavailable_reason()` provide a way for missing data to be checked for.
 
-The class `TRACKED_QUANTITATIVE_VARIABLE<T>` adds the range facility described earlier in <<_variable_ranges>>.
+For time-varying variables, the values must usually be tracked. The class `TRACKED_STATE_VARIABLE<T>` is is provided for this purpose, and adds the meta-attribute `_currency_`, a duration indicating the maximum age of the sample value to be useful or valid. The `_history_` attribute now contains variable samples over time. The function `value()` extracts the most recent available value, while `is_available()` is redefined to indicate whether a sufficiently recent value is availale. 
 
-Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the `TRACKED_VARIABLE<T>` or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:
+Many tracked variables are quantitative, and for these, extra facilities are provided via the class `TRACKED_QUANTITATIVE_VARIABLE<T>`, which adds the 'ranges' facility described earlier in <<_variable_ranges>>.
+
+Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the `STATE_VARIABLE<T>` or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:
 
 [source,kotlin]
 ----
@@ -91,7 +93,7 @@ ranges.put (Terminology_code("critical_low"), Interval<Quantity>(Void, 50 mm[Hg]
 // instantiate the tracked variable object
 systolic_blood_pressure: TRACKED_QUANTITATIVE_VARIABLE<Quantity> (
     "systolic_blood_pressure",   // name
-    PT1M,                        // currency
+    "PT1M",                      // currency
     ranges                       // ranges
 );
 ----
@@ -105,8 +107,9 @@ TO BE CONTINUED
 
 === Class Descriptions
 
-include::{uml_export_dir}/classes/tracked_variable.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/state_variable.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/value_snapshot.adoc[leveloffset=+1]]
+include::{uml_export_dir}/classes/tracked_state_variable.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/tracked_quantitative_variable.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/range_group.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/range_def.adoc[leveloffset=+1]]

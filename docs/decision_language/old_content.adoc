@@ -66,3 +66,45 @@ image::{diagrams_uri}/conceptual_proxy.svg[id=conceptual_proxy, align="center"]
 
 [.tbd]
 TBD: basic question of variable like 'Apgar 5min heartrate' - represent in a structure, and reference like `apgar_result.5min.heart_rate`, or just use flat pre-coord approach: `apgar_result_5min_heart_rate`? Structuring probably makes authoring easier.
+
+
+=== Time-window
+
+Another aspect of a subject variable that can be specified is termed _time-window_, meaning an interval of real world time within which the state or event that the variable represents occurred. For example, assume the variable `previous_history_of_eclampsia` declared in an obstetric DLM is intended to represent 'eclampsia experienced by the subject in any previous pregnancy (i.e. not the current pregnancy)'. Another guideline might define a variable `no_cancer_last_5y` to mean that no recurrence of the cancer addressed by the DLM had occurred within the last 5 years.
+
+Formally, time window is specified in the form of an interval of negative durations with respect to the current point in time, i.e. of the form `|-T1 .. -T2|`, e.g. `|-P3Y .. -P1Y|`, meaning 'the period from 3 years ago to 1 year ago'. A single-sided interval such as `|> -P30d|` ('since 30 days ago') may also be used.
+
+Since the actual duration of a time-window may be subject- and/or context-specific, a symbolic variable may also be used, whose value is supplied by the execution context. For example, the variables `tw_current_episode` and `tw_historical` could be used to represent respectively:
+
+* the interval of the current admission, i.e. date/time of admission until now;
+* the interval of historical time up until the start of the current episode of condition.
+
+Time window can be included in a subject variable declaration as follows:
+
+[source,kotlin]
+----
+input
+    has_previous_history_of_eclampsia: Boolean
+        time_window = tw_historical
+
+    has_pregnancy_related_hypertension: Boolean
+        time_window = tw_current_episode
+----
+
+Time window is typically used to ensure that for a kind of event, condition or other characteristic that may occur multiply in the subject lifetime, only occurrences from a particular period are included or excluded. For example, the following declarations ensure that the variable `staging` and `has_metastases` refer to the staging and metastases of the current eposide of cancer, not some previous one.
+
+[source,kotlin]
+----
+input
+
+    staging: Terminology_term «ann_arbor_staging»
+        time_window = tw_current_episode
+
+    has_metastases: Boolean
+        time_window = tw_current_episode
+----
+
+In general, if `currency` is specified, `time_window` is not.
+
+[.tbd]
+TBD: determine if there is a meaning for both together.

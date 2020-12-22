@@ -151,7 +151,9 @@ reference
 
 == Input Section
 
-The `input` section contains declarations of all _tracked subject variables_ used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:
+=== Subject Variables
+
+The `input` section contains declarations of all _subject variables_ used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:
 
 [source,kotlin]
 ----
@@ -159,9 +161,9 @@ input
     heart_rate: Quantity
 ----
 
-Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a special proxy object described below in <<_dlm_model>>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.
+Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a proxy object described below in <<_dlm_model>>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.
 
-=== Subject Variable Naming
+==== Variable Naming
 
 The naming of a subject variable is important, and should reflect its intended domain meaning _with respect to the guideline or plan_ which it formalises. Thus, a cardiology guideline might use a variable `systolic_bp` to mean 'current instantaneous systolic blood pressure' and a variable `target_systolic_bp` to mean a target pressure for the patient to aim for over the course of hypertension treatment. However a guideline that refers to different systolic blood pressures, e.g. historical, average and current might use variables such as `actual_systolic_bp`, `24h_average_systolic_bp` etc.
 
@@ -169,13 +171,13 @@ The naming is important in another way. Generally a subject variable should refl
 
 Epistemic variables may of course be defined, e.g. the variable `has_diabetes_diagnosis` directly reflects the idea that the presence of a diagnosis of a condition is distinct from the true fact of having the condition. These are typically used when the purpose of the guideline is to establish the presence or otherwise of the condition named in such variables.
 
-=== Unavailable (null) Values
+==== Unavailable Values
 
-One of the facilities created by a declaration of the form `identifier: Type` are subordinate predicate functions to detect if a value is available for the variable, i.e. if it is not logically null (i.e. void). Lack of a value is caused either by the true absence of the data in back-end systems (e.g. there really is no recent blood pressure available) or a technical failure to either query the appropriate system, or to connect to a system that does in fact contain the data of interest.
+One of the facilities created by a declaration of the form `identifier: Type` are subordinate predicate functions to detect if a value is available for the variable, i.e. if it is not logically null. Lack of a value is caused either by the true absence of the data in back-end systems (e.g. blood pressure has not recently been measured) or a technical failure to query or otherwise interrogate the relevant system.
 
-It should be noted that within the overall conceptual model of Process-based computing in openEHR, that the common problem of a failure to locate a data item in back-end systems causing a live user to be asked to supply it is assumed to be addressed outside the DLM itself. This means that the simple lack of a value, say a recent vital sign, in back-end systems does not need to be compensated for by logic (including null checks) in a DLM itself - it will already have been done in the Subject Proxy service. Consequently, if a variable value is unavailable, this already takes into account attempts to obtain a value from a user.
+It should be noted that within the overall conceptual model of process-based computing in openEHR, the common problem of a failure to locate a data item in back-end systems causing a live user to be asked to supply it is assumed to be addressed outside the DLM itself. This means that the simple lack of a value in back-end systems does not need to be compensated for by logic (such as null checks) in a DLM itself - it will already have been done in the Subject Proxy service. Consequently, if a variable value is unavailable within a DLM computation, this already takes into account attempts to obtain a value from a user.
 
-The general case is that any subject variable might not have a value available for it, or at least a sufficiently _current_ value (see next section for the concept of 'currency') at the moment of a particular rule invocation (remembering that the same rule might be invoked repeatedly over time). This means that the simple (primary variable) reference `systolic_blood_pressure` may in fact return a null value. If rules containing primary variable references such as `systolic_blood_pressure` are written under a non-null assumption, a null value will cause an exception of type `no available value`, and the original rule invocation will fail.
+The general case is that any subject variable might not have a value available for it, or at least a sufficiently _current_ value (see next section for the concept of currency) at the moment of a particular rule invocation (remembering that the same rule might be invoked repeatedly over time). This means that the simple (primary variable) reference `systolic_blood_pressure` may in fact return a null value. If rules containing primary variable references such as `systolic_blood_pressure` are written under a non-null assumption, a null value will cause an exception of type `no available value`, and the original rule invocation will fail.
 
 In most cases this is likely to be the preferred style of rule expression, since it makes rules simpler and clearer. However, in some cases, it may be known a priori that certain variables are only sometimes likely to be available, and if so, they are used, but if not, no exception is generated. This may be achieved by calling the subordinate predicate `is_available` as a guard on the direct access, as follows.
 
@@ -187,11 +189,11 @@ rules
         Result := systolic_blood_pressure.is_available and then systolic_blood_pressure.in_range([high]) or  ...
 ----
 
-In the above, the semi-strict Boolean `operator` ensures the second reference to `systolic_blood_pressure` will only be evaluated if `systolic_blood_pressure.is_available` returns True.
+In the above, the semi-strict Boolean operator `and then` ensures the second reference to `systolic_blood_pressure` will only be evaluated if `systolic_blood_pressure.is_available` returns True.
 
-=== Currency
+=== Tracked Variables
 
-The declaration may include a number of other elements. Firstly, since each such variable represents a fact about the subject in the real world, such as a patient heart-rate or diagnosis, rather than just being a local variable, the declaration may state a _currency_, in terms of a temporal duration. This specifies how recent the value obtained from the external world (the 'sample') must be to be valid from the point of view of the DLM. Currency may be understood as the converse of 'staleness', that is, a variable sample that must be say 1 hour or less old is understood as stale after 1 hour.
+An important category of subject variable is the _tracked variable_, which enables the current value of a variable, with some lag, to be obtained automatically from the back-end system. The acceptable lag is indicated by the subordinate _currency_ attribute, as a temporal duration. This specifies how recent the value obtained from the external world (the 'sample') must be to be valid from the point of view of the DLM. Currency may be understood as the converse of 'staleness', that is, a variable sample that must be say 1 hour or less old is understood as stale after 1 hour.
 
 The use of the currency modifier establishes that a subject variable is a time-related sample of some kind (instantaneous, average, minimum, etc) of a real-world time-varying continuant quality (e.g. blood pressure) of an independent continuant entity (usually a person).
 
@@ -201,28 +203,33 @@ Since the various physiological and disease process that occur in a human body h
 ----
 input
     |
+    | untracked variable:
     | DOB never changes, no currency needed
     |
     date_of_birth: Date
 
     |
+    | tracked variable:
     | weight changes over a period of days
     |
     weight: Quantity
         currency = 3 days
 
     |
+    | untracked variable:
     | assuming an adult subject, height constant
     |
     height: Quantity
 
     |
+    | tracked variable:
     | blood glucose changes within minutes in response to food
     |
     blood_glucose: Quantity
         currency = 15 min
 
     |
+    | tracked variable:
     | Heart-rate may change quickly
     |
     heart_rate: Quantity
@@ -231,55 +238,14 @@ input
 
 Variables for which no currency is stated may be understood as having the currency equal to the age of the subject.
 
-=== Time-window
+=== Quantitative Tracked Variables
 
-Another aspect of a subject variable that can be specified is termed _time-window_, meaning an interval of real world time within which the state or event that the variable represents occurred. For example, assume the variable `previous_history_of_eclampsia` declared in an obstetric DLM is intended to represent 'eclampsia experienced by the subject in any previous pregnancy (i.e. not the current pregnancy)'. Another guideline might define a variable `no_cancer_last_5y` to mean that no recurrence of the cancer addressed by the DLM had occurred within the last 5 years.
-
-Formally, time window is specified in the form of an interval of negative durations with respect to the current point in time, i.e. of the form `|-T1 .. -T2|`, e.g. `|-P3Y .. -P1Y|`, meaning 'the period from 3 years ago to 1 year ago'. A single-sided interval such as `|> -P30d|` ('since 30 days ago') may also be used.
-
-Since the actual duration of a time-window may be subject- and/or context-specific, a symbolic variable may also be used, whose value is supplied by the execution context. For example, the variables `tw_current_episode` and `tw_historical` could be used to represent respectively:
-
-* the interval of the current admission, i.e. date/time of admission until now;
-* the interval of historical time up until the start of the current episode of condition.
-
-Time window can be included in a subject variable declaration as follows:
-
-[source,kotlin]
-----
-input
-    has_previous_history_of_eclampsia: Boolean
-        time_window = tw_historical
-
-    has_pregnancy_related_hypertension: Boolean
-        time_window = tw_current_episode
-----
-
-Time window is typically used to ensure that for a kind of event, condition or other characteristic that may occur multiply in the subject lifetime, only occurrences from a particular period are included or excluded. For example, the following declarations ensure that the variable `staging` and `has_metastases` refer to the staging and metastases of the current eposide of cancer, not some previous one.
-
-[source,kotlin]
-----
-input
-
-    staging: Terminology_term «ann_arbor_staging»
-        time_window = tw_current_episode
-
-    has_metastases: Boolean
-        time_window = tw_current_episode
-----
-
-In general, if `currency` is specified, `time_window` is not.
+Many tracked variables are quantitative, and a ubiquitous need within clinical guidelines and rules is to be able to refer to a continuous variable such as vital signs and most lab test values as being in a designated range. Such ranges may be the usual ones published e.g. the normal and high ranges for lipids in a cholesterol test for adults, or ranges defined by the DLM.
 
 [.tbd]
-TBD: determine if there is a meaning for both together.
+TBD: could ranges be declared elsewhere and re-used, e.g. standard BMI ranges, BP ranges etc?
 
-=== Variable Ranges
-
-A ubiquitous need within clinical guidelines and rules is to be able to refer to a continuous variable such as vital signs and most lab test values as being in a designated range. Such ranges may be the usual ones published e.g. the normal and high ranges for lipids in a cholesterol test for adults, or ranges defined by the DLM.
-
-[.tbd]
-TBD: for now ranges have to be declared locally
-
-The ranges for a subject variable may be declared in the following way:
+The ranges for a subject variable are declared in the following way:
 
 [source,kotlin]
 ----
@@ -287,19 +253,18 @@ input
     systolic_blood_pressure: Quantity
         currency = 1 min
         ranges =
+            ------------------------------------------------
             [critical_high]:  |>= 180 mm[Hg]|,
             [very_high]:      |>  140 mm[Hg]|,
             [high]:           |>  120 mm[Hg]|,
             [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
             [low]:            |<=  90 mm[Hg]|,
-            [critical_low]:   |<=  50 mm[Hg]|;
+            [critical_low]:   |<=  50 mm[Hg]|
+            ------------------------------------------------
+        ;
 ----
 
-The formal type of the `ranges` property is `Hash <Terminology_code, Interval <T>>`, where `T` is the declared type of the subject variable. Thus, in the above, the entry `[very_high], |>  140 mm[Hg]|` defines a [key, value] pair whose value is of type `Interval <Quantity>`.
-
-Note that the ranges are defined to be overlapping, such that `[high]` refers to any value higher than 120, while `[very_high]` refers to any value over 140.
-
-The above declaration allows the use of the predefined `in_range` function, which returns the most precise range in which the value falls, in rule expressions as follows:
+The above declaration allows the use of the predefined `in_range` function, which returns the most precise range in which the value falls, in rule expressions such as the following:
 
 [source,kotlin]
 ----
@@ -317,7 +282,14 @@ The above declaration allows the use of the predefined `in_range` function, whic
         ;
 ----
 
-Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a _discriminator_. The following shows an example.
+Note that ranges may be defined in two ways:
+
+* to be overlapping, such that `[high]` refers to any value higher than 120, while `[very_high]` refers to any value over 140;
+* non-overlapping, such that each sub-range stops at the start of the next one.
+
+In the latter case, determining that a patient has high blood pressure requires an expression of the form `systolic_blood_pressure.in_range ({[high], [very_high], [critical_high]})`, using a set argument.
+
+Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a _discriminator_ on a number of _range groups_. The following shows an example.
 
 [source,kotlin]
 ----
@@ -325,24 +297,35 @@ input
     PaO2_FiO2_ratio: Quantity
         currency = 1 min
         ranges =
+            =================================================
             [SI]:
+                ---------------------------------------------
                 [normal]:         |≥400 mm[Hg]|,
                 [low]:            |300 mm[Hg] .. 399 mm[Hg]|,
                 [very_low]:       |200 mm[Hg] .. 299 mm[Hg]|,
                 [extremely_low]:  |100 mm[Hg] .. 199 mm[Hg]|,
-                [critical_low]:   |<100 mm[Hg]|;
-                
+                [critical_low]:   |<100 mm[Hg]|
+                ---------------------------------------------
+            ;   
             [metric]:
+                -----------------------------------------
                 [normal]:         |≥53 kPa|,
                 [low]:            |39.9 kPa .. 53 kPa|,
                 [very_low]:       |26.6 kPa .. 39.8 kPa|,
                 [extremely_low]:  |13.3 kPa .. 26.5 kPa|,
-                [critical_low]:   |<13.3 kPa|;
+                [critical_low]:   |<13.3 kPa|
+                -----------------------------------------
+            ==================================================
+            ;
 ----
+
+To access a range within this structure, an expression of the form `systolic_blood_pressure.in_range ([metric], [high])` is needed. This makes use of an overload of the `in_range()` function taking two keys. We can now see that the simpler form `systolic_blood_pressure.in_range ([critical_high])` first chooses the first range group, and then extracts the required entry.
+
+The above case reveals the general structure of the `ranges` property, with a formal type equivalent to `Map<Terminology_code, Map <Terminology_code, Interval <T>>`, where `T` is the declared type of the subject variable. In both the simple and discriminator cases, the entry `[very_high], |>  140 mm[Hg]|` defines a `[key, value]` pair whose key is of type `Terminology_code` and whose value is of type `Interval <Quantity>`.
 
 == Rules Section
 
-The DLM `rules` section is the section of primary importance, since it contains the rules for which a DLM is created. DLm rules are formally expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^].
+The DLM `rules` section is the section of primary importance, since it contains the rules for which a DLM is created. DLM rules are formally expressed as functions in the {openehr_expression_language}[openEHR Expression Language^], based on the {openehr_bmm}[openEHR BMM^].
 
 This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The `Boolean` type may be omitted, since all conditions have this as their formal type. The following is an example.
 
@@ -352,16 +335,19 @@ rules -- Conditions
 
     her2_positive:
         Result := her2_expression = [positive]
+        ;
 
     non_class_I_heart_failure:
         Result := has_heart_failure_class_II or
                     has_heart_failure_class_III or
                     has_heart_failure_class_IV
+        ;
 
     anthracyclines_contraindicated:
         Result := has_transmural_MI or
             ejection_fraction.in_range ([low]) or
             non_class_I_heart_failure
+        ;
 ----
 
 The primary rules may be included in a separate `rules` group, consisting of 0-order functions returning any type. EL structures of any complexity may be used. The following provides an example.
@@ -393,6 +379,7 @@ rules -- Main
             previous_gestational_diabetes or
             family_history_of_diabetes or
             race_related_diabetes_risk
+        ;
 ----
 
 == Output Section

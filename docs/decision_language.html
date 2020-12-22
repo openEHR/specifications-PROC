@@ -56,11 +56,14 @@
 <li><a href="#_reference_section">3.7. Reference Section</a></li>
 <li><a href="#_input_section">3.8. Input Section</a>
 <ul class="sectlevel3">
-<li><a href="#_subject_variable_naming">3.8.1. Subject Variable Naming</a></li>
-<li><a href="#_unavailable_null_values">3.8.2. Unavailable (null) Values</a></li>
-<li><a href="#_currency">3.8.3. Currency</a></li>
-<li><a href="#_time_window">3.8.4. Time-window</a></li>
-<li><a href="#_variable_ranges">3.8.5. Variable Ranges</a></li>
+<li><a href="#_subject_variables">3.8.1. Subject Variables</a>
+<ul class="sectlevel4">
+<li><a href="#_variable_naming">3.8.1.1. Variable Naming</a></li>
+<li><a href="#_unavailable_values">3.8.1.2. Unavailable Values</a></li>
+</ul>
+</li>
+<li><a href="#_tracked_variables">3.8.2. Tracked Variables</a></li>
+<li><a href="#_quantitative_tracked_variables">3.8.3. Quantitative Tracked Variables</a></li>
 </ul>
 </li>
 <li><a href="#_rules_section">3.9. Rules Section</a></li>
@@ -90,14 +93,15 @@
 </li>
 <li><a href="#_dlm_concrete_model">4.3. DLM Concrete Model</a>
 <ul class="sectlevel3">
-<li><a href="#_input_variables">4.3.1. Input Variables</a></li>
+<li><a href="#_subject_variables_2">4.3.1. Subject Variables</a></li>
 <li><a href="#_class_descriptions_2">4.3.2. Class Descriptions</a>
 <ul class="sectlevel4">
-<li><a href="#_tracked_variable_class">4.3.2.1. TRACKED_VARIABLE Class</a></li>
+<li><a href="#_state_variable_class">4.3.2.1. STATE_VARIABLE Class</a></li>
 <li><a href="#_value_snapshot_class">4.3.2.2. VALUE_SNAPSHOT Class</a></li>
-<li><a href="#_tracked_quantitative_variable_class">4.3.2.3. TRACKED_QUANTITATIVE_VARIABLE Class</a></li>
-<li><a href="#_range_group_class">4.3.2.4. RANGE_GROUP Class</a></li>
-<li><a href="#_range_def_class">4.3.2.5. RANGE_DEF Class</a></li>
+<li><a href="#_tracked_state_variable_class">4.3.2.3. TRACKED_STATE_VARIABLE Class</a></li>
+<li><a href="#_tracked_quantitative_variable_class">4.3.2.4. TRACKED_QUANTITATIVE_VARIABLE Class</a></li>
+<li><a href="#_range_group_class">4.3.2.5. RANGE_GROUP Class</a></li>
+<li><a href="#_range_def_class">4.3.2.6. RANGE_DEF Class</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +211,7 @@
 <p><a href="https://specifications.openehr.org/tickets/SPECPROC-41" target="_blank" rel="noopener">SPECPROC-41</a>. Add Decision Language specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>27 Sep 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Dec 2020</p></td>
 </tr>
 </tbody>
 </table>
@@ -593,8 +597,10 @@ rules
 </div>
 <div class="sect2">
 <h3 id="_input_section"><a class="anchor" href="#_input_section"></a>3.8. Input Section</h3>
+<div class="sect3">
+<h4 id="_subject_variables"><a class="anchor" href="#_subject_variables"></a>3.8.1. Subject Variables</h4>
 <div class="paragraph">
-<p>The <code>input</code> section contains declarations of all <em>tracked subject variables</em> used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:</p>
+<p>The <code>input</code> section contains declarations of all <em>subject variables</em> used by a DLM. At a minimum, a subject variable declaration states the symbolic name and type of the variable in the manner typical of a typed programming language, as exemplified by the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -603,10 +609,10 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>Although a subject variable declaration appears to declare a simple property of a type such as a <code>Quantity</code>, in fact it creates an instance of a special proxy object described below in <a href="#_dlm_model">Section 4</a>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.</p>
+<p>Although a subject variable declaration appears to declare a simple property of a type such as a <code>Quantity</code>, in fact it creates an instance of a proxy object described below in <a href="#_dlm_model">Section 4</a>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.</p>
 </div>
-<div class="sect3">
-<h4 id="_subject_variable_naming"><a class="anchor" href="#_subject_variable_naming"></a>3.8.1. Subject Variable Naming</h4>
+<div class="sect4">
+<h5 id="_variable_naming"><a class="anchor" href="#_variable_naming"></a>3.8.1.1. Variable Naming</h5>
 <div class="paragraph">
 <p>The naming of a subject variable is important, and should reflect its intended domain meaning <em>with respect to the guideline or plan</em> which it formalises. Thus, a cardiology guideline might use a variable <code>systolic_bp</code> to mean 'current instantaneous systolic blood pressure' and a variable <code>target_systolic_bp</code> to mean a target pressure for the patient to aim for over the course of hypertension treatment. However a guideline that refers to different systolic blood pressures, e.g. historical, average and current might use variables such as <code>actual_systolic_bp</code>, <code>24h_average_systolic_bp</code> etc.</p>
 </div>
@@ -617,16 +623,16 @@ rules
 <p>Epistemic variables may of course be defined, e.g. the variable <code>has_diabetes_diagnosis</code> directly reflects the idea that the presence of a diagnosis of a condition is distinct from the true fact of having the condition. These are typically used when the purpose of the guideline is to establish the presence or otherwise of the condition named in such variables.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_unavailable_null_values"><a class="anchor" href="#_unavailable_null_values"></a>3.8.2. Unavailable (null) Values</h4>
+<div class="sect4">
+<h5 id="_unavailable_values"><a class="anchor" href="#_unavailable_values"></a>3.8.1.2. Unavailable Values</h5>
 <div class="paragraph">
-<p>One of the facilities created by a declaration of the form <code>identifier: Type</code> are subordinate predicate functions to detect if a value is available for the variable, i.e. if it is not logically null (i.e. void). Lack of a value is caused either by the true absence of the data in back-end systems (e.g. there really is no recent blood pressure available) or a technical failure to either query the appropriate system, or to connect to a system that does in fact contain the data of interest.</p>
+<p>One of the facilities created by a declaration of the form <code>identifier: Type</code> are subordinate predicate functions to detect if a value is available for the variable, i.e. if it is not logically null. Lack of a value is caused either by the true absence of the data in back-end systems (e.g. blood pressure has not recently been measured) or a technical failure to query or otherwise interrogate the relevant system.</p>
 </div>
 <div class="paragraph">
-<p>It should be noted that within the overall conceptual model of Process-based computing in openEHR, that the common problem of a failure to locate a data item in back-end systems causing a live user to be asked to supply it is assumed to be addressed outside the DLM itself. This means that the simple lack of a value, say a recent vital sign, in back-end systems does not need to be compensated for by logic (including null checks) in a DLM itself - it will already have been done in the Subject Proxy service. Consequently, if a variable value is unavailable, this already takes into account attempts to obtain a value from a user.</p>
+<p>It should be noted that within the overall conceptual model of process-based computing in openEHR, the common problem of a failure to locate a data item in back-end systems causing a live user to be asked to supply it is assumed to be addressed outside the DLM itself. This means that the simple lack of a value in back-end systems does not need to be compensated for by logic (such as null checks) in a DLM itself - it will already have been done in the Subject Proxy service. Consequently, if a variable value is unavailable within a DLM computation, this already takes into account attempts to obtain a value from a user.</p>
 </div>
 <div class="paragraph">
-<p>The general case is that any subject variable might not have a value available for it, or at least a sufficiently <em>current</em> value (see next section for the concept of 'currency') at the moment of a particular rule invocation (remembering that the same rule might be invoked repeatedly over time). This means that the simple (primary variable) reference <code>systolic_blood_pressure</code> may in fact return a null value. If rules containing primary variable references such as <code>systolic_blood_pressure</code> are written under a non-null assumption, a null value will cause an exception of type <code>no available value</code>, and the original rule invocation will fail.</p>
+<p>The general case is that any subject variable might not have a value available for it, or at least a sufficiently <em>current</em> value (see next section for the concept of currency) at the moment of a particular rule invocation (remembering that the same rule might be invoked repeatedly over time). This means that the simple (primary variable) reference <code>systolic_blood_pressure</code> may in fact return a null value. If rules containing primary variable references such as <code>systolic_blood_pressure</code> are written under a non-null assumption, a null value will cause an exception of type <code>no available value</code>, and the original rule invocation will fail.</p>
 </div>
 <div class="paragraph">
 <p>In most cases this is likely to be the preferred style of rule expression, since it makes rules simpler and clearer. However, in some cases, it may be known a priori that certain variables are only sometimes likely to be available, and if so, they are used, but if not, no exception is generated. This may be achieved by calling the subordinate predicate <code>is_available</code> as a guard on the direct access, as follows.</p>
@@ -640,13 +646,14 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>In the above, the semi-strict Boolean <code>operator</code> ensures the second reference to <code>systolic_blood_pressure</code> will only be evaluated if <code>systolic_blood_pressure.is_available</code> returns True.</p>
+<p>In the above, the semi-strict Boolean operator <code>and then</code> ensures the second reference to <code>systolic_blood_pressure</code> will only be evaluated if <code>systolic_blood_pressure.is_available</code> returns True.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_currency"><a class="anchor" href="#_currency"></a>3.8.3. Currency</h4>
+<h4 id="_tracked_variables"><a class="anchor" href="#_tracked_variables"></a>3.8.2. Tracked Variables</h4>
 <div class="paragraph">
-<p>The declaration may include a number of other elements. Firstly, since each such variable represents a fact about the subject in the real world, such as a patient heart-rate or diagnosis, rather than just being a local variable, the declaration may state a <em>currency</em>, in terms of a temporal duration. This specifies how recent the value obtained from the external world (the 'sample') must be to be valid from the point of view of the DLM. Currency may be understood as the converse of 'staleness', that is, a variable sample that must be say 1 hour or less old is understood as stale after 1 hour.</p>
+<p>An important category of subject variable is the <em>tracked variable</em>, which enables the current value of a variable, with some lag, to be obtained automatically from the back-end system. The acceptable lag is indicated by the subordinate <em>currency</em> attribute, as a temporal duration. This specifies how recent the value obtained from the external world (the 'sample') must be to be valid from the point of view of the DLM. Currency may be understood as the converse of 'staleness', that is, a variable sample that must be say 1 hour or less old is understood as stale after 1 hour.</p>
 </div>
 <div class="paragraph">
 <p>The use of the currency modifier establishes that a subject variable is a time-related sample of some kind (instantaneous, average, minimum, etc) of a real-world time-varying continuant quality (e.g. blood pressure) of an independent continuant entity (usually a person).</p>
@@ -658,28 +665,33 @@ rules
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
     <span class="tok-p">|</span>
+    <span class="tok-p">|</span> <span class="tok-n">untracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
     <span class="tok-p">|</span> <span class="tok-n">DOB</span> <span class="tok-n">never</span> <span class="tok-n">changes</span><span class="tok-p">,</span> <span class="tok-n">no</span> <span class="tok-n">currency</span> <span class="tok-n">needed</span>
     <span class="tok-p">|</span>
     <span class="tok-n">date_of_birth</span><span class="tok-p">:</span> <span class="tok-n">Date</span>
 
     <span class="tok-p">|</span>
+    <span class="tok-p">|</span> <span class="tok-n">tracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
     <span class="tok-p">|</span> <span class="tok-n">weight</span> <span class="tok-n">changes</span> <span class="tok-n">over</span> <span class="tok-n">a</span> <span class="tok-n">period</span> <span class="tok-n">of</span> <span class="tok-n">days</span>
     <span class="tok-p">|</span>
     <span class="tok-n">weight</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">3</span> <span class="tok-n">days</span>
 
     <span class="tok-p">|</span>
+    <span class="tok-p">|</span> <span class="tok-n">untracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
     <span class="tok-p">|</span> <span class="tok-n">assuming</span> <span class="tok-n">an</span> <span class="tok-n">adult</span> <span class="tok-n">subject</span><span class="tok-p">,</span> <span class="tok-n">height</span> <span class="tok-n">constant</span>
     <span class="tok-p">|</span>
     <span class="tok-n">height</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
 
     <span class="tok-p">|</span>
+    <span class="tok-p">|</span> <span class="tok-n">tracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
     <span class="tok-p">|</span> <span class="tok-n">blood</span> <span class="tok-n">glucose</span> <span class="tok-n">changes</span> <span class="tok-n">within</span> <span class="tok-n">minutes</span> <span class="tok-k">in</span> <span class="tok-n">response</span> <span class="tok-n">to</span> <span class="tok-n">food</span>
     <span class="tok-p">|</span>
     <span class="tok-n">blood_glucose</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">15</span> <span class="tok-n">min</span>
 
     <span class="tok-p">|</span>
+    <span class="tok-p">|</span> <span class="tok-n">tracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
     <span class="tok-p">|</span> <span class="tok-n">Heart</span><span class="tok-p">-</span><span class="tok-n">rate</span> <span class="tok-n">may</span> <span class="tok-n">change</span> <span class="tok-n">quickly</span>
     <span class="tok-p">|</span>
     <span class="tok-n">heart_rate</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
@@ -691,70 +703,15 @@ rules
 </div>
 </div>
 <div class="sect3">
-<h4 id="_time_window"><a class="anchor" href="#_time_window"></a>3.8.4. Time-window</h4>
+<h4 id="_quantitative_tracked_variables"><a class="anchor" href="#_quantitative_tracked_variables"></a>3.8.3. Quantitative Tracked Variables</h4>
 <div class="paragraph">
-<p>Another aspect of a subject variable that can be specified is termed <em>time-window</em>, meaning an interval of real world time within which the state or event that the variable represents occurred. For example, assume the variable <code>previous_history_of_eclampsia</code> declared in an obstetric DLM is intended to represent 'eclampsia experienced by the subject in any previous pregnancy (i.e. not the current pregnancy)'. Another guideline might define a variable <code>no_cancer_last_5y</code> to mean that no recurrence of the cancer addressed by the DLM had occurred within the last 5 years.</p>
-</div>
-<div class="paragraph">
-<p>Formally, time window is specified in the form of an interval of negative durations with respect to the current point in time, i.e. of the form <code>|-T1 .. -T2|</code>, e.g. <code>|-P3Y .. -P1Y|</code>, meaning 'the period from 3 years ago to 1 year ago'. A single-sided interval such as <code>|&gt; -P30d|</code> ('since 30 days ago') may also be used.</p>
-</div>
-<div class="paragraph">
-<p>Since the actual duration of a time-window may be subject- and/or context-specific, a symbolic variable may also be used, whose value is supplied by the execution context. For example, the variables <code>tw_current_episode</code> and <code>tw_historical</code> could be used to represent respectively:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the interval of the current admission, i.e. date/time of admission until now;</p>
-</li>
-<li>
-<p>the interval of historical time up until the start of the current episode of condition.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Time window can be included in a subject variable declaration as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
-    <span class="tok-n">has_previous_history_of_eclampsia</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
-        <span class="tok-n">time_window</span> <span class="tok-p">=</span> <span class="tok-n">tw_historical</span>
-
-    <span class="tok-n">has_pregnancy_related_hypertension</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
-        <span class="tok-n">time_window</span> <span class="tok-p">=</span> <span class="tok-n">tw_current_episode</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Time window is typically used to ensure that for a kind of event, condition or other characteristic that may occur multiply in the subject lifetime, only occurrences from a particular period are included or excluded. For example, the following declarations ensure that the variable <code>staging</code> and <code>has_metastases</code> refer to the staging and metastases of the current eposide of cancer, not some previous one.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
-
-    <span class="tok-n">staging</span><span class="tok-p">:</span> <span class="tok-n">Terminology_term</span> <span class="tok-err">«</span><span class="tok-n">ann_arbor_staging</span><span class="tok-err">»</span>
-        <span class="tok-n">time_window</span> <span class="tok-p">=</span> <span class="tok-n">tw_current_episode</span>
-
-    <span class="tok-n">has_metastases</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
-        <span class="tok-n">time_window</span> <span class="tok-p">=</span> <span class="tok-n">tw_current_episode</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In general, if <code>currency</code> is specified, <code>time_window</code> is not.</p>
+<p>Many tracked variables are quantitative, and a ubiquitous need within clinical guidelines and rules is to be able to refer to a continuous variable such as vital signs and most lab test values as being in a designated range. Such ranges may be the usual ones published e.g. the normal and high ranges for lipids in a cholesterol test for adults, or ranges defined by the DLM.</p>
 </div>
 <div class="paragraph tbd">
-<p>TBD: determine if there is a meaning for both together.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_variable_ranges"><a class="anchor" href="#_variable_ranges"></a>3.8.5. Variable Ranges</h4>
-<div class="paragraph">
-<p>A ubiquitous need within clinical guidelines and rules is to be able to refer to a continuous variable such as vital signs and most lab test values as being in a designated range. Such ranges may be the usual ones published e.g. the normal and high ranges for lipids in a cholesterol test for adults, or ranges defined by the DLM.</p>
-</div>
-<div class="paragraph tbd">
-<p>TBD: for now ranges have to be declared locally</p>
+<p>TBD: could ranges be declared elsewhere and re-used, e.g. standard BMI ranges, BP ranges etc?</p>
 </div>
 <div class="paragraph">
-<p>The ranges for a subject variable may be declared in the following way:</p>
+<p>The ranges for a subject variable are declared in the following way:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -762,22 +719,19 @@ rules
     <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
         <span class="tok-n">ranges</span> <span class="tok-p">=</span>
+            <span class="tok-p">------------------------------------------------</span>
 <span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>  <span class="tok-p">|&gt;=</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [very_high]</span><span class="tok-p">:</span>      <span class="tok-p">|&gt;</span>  <span class="tok-m">140</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [high]</span><span class="tok-p">:</span>           <span class="tok-p">|&gt;</span>  <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-p">&lt;=</span> <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">            [low]</span><span class="tok-p">:</span>            <span class="tok-p">|&lt;=</span>  <span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|;</span></code></pre>
+<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
+            <span class="tok-p">------------------------------------------------</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The formal type of the <code>ranges</code> property is <code>Hash &lt;Terminology_code, Interval &lt;T&gt;&gt;</code>, where <code>T</code> is the declared type of the subject variable. Thus, in the above, the entry <code>[very_high], |&gt;  140 mm[Hg]|</code> defines a [key, value] pair whose value is of type <code>Interval &lt;Quantity&gt;</code>.</p>
-</div>
-<div class="paragraph">
-<p>Note that the ranges are defined to be overlapping, such that <code>[high]</code> refers to any value higher than 120, while <code>[very_high]</code> refers to any value over 140.</p>
-</div>
-<div class="paragraph">
-<p>The above declaration allows the use of the predefined <code>in_range</code> function, which returns the most precise range in which the value falls, in rule expressions as follows:</p>
+<p>The above declaration allows the use of the predefined <code>in_range</code> function, which returns the most precise range in which the value falls, in rule expressions such as the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -796,7 +750,23 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a <em>discriminator</em>. The following shows an example.</p>
+<p>Note that ranges may be defined in two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>to be overlapping, such that <code>[high]</code> refers to any value higher than 120, while <code>[very_high]</code> refers to any value over 140;</p>
+</li>
+<li>
+<p>non-overlapping, such that each sub-range stops at the start of the next one.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the latter case, determining that a patient has high blood pressure requires an expression of the form <code>systolic_blood_pressure.in_range ({[high], [very_high], [critical_high]})</code>, using a set argument.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes there are multiple ranges, usually due to alternative units systems. This is handled by the use of a <em>discriminator</em> on a number of <em>range groups</em>. The following shows an example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -804,27 +774,40 @@ rules
     <span class="tok-n">PaO2_FiO2_ratio</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
         <span class="tok-n">ranges</span> <span class="tok-p">=</span>
+            <span class="tok-p">=================================================</span>
 <span class="tok-na">            [SI]</span><span class="tok-p">:</span>
+                <span class="tok-p">---------------------------------------------</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">400</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">300</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">399</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">200</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">299</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">199</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|;</span>
-
+<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
+                <span class="tok-p">---------------------------------------------</span>
+            <span class="tok-p">;</span>
 <span class="tok-na">            [metric]</span><span class="tok-p">:</span>
+                <span class="tok-p">-----------------------------------------</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">26.6</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">39.8</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
-<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|;</span></code></pre>
+<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|</span>
+                <span class="tok-p">-----------------------------------------</span>
+            <span class="tok-p">==================================================</span>
+            <span class="tok-p">;</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>To access a range within this structure, an expression of the form <code>systolic_blood_pressure.in_range ([metric], [high])</code> is needed. This makes use of an overload of the <code>in_range()</code> function taking two keys. We can now see that the simpler form <code>systolic_blood_pressure.in_range ([critical_high])</code> first chooses the first range group, and then extracts the required entry.</p>
+</div>
+<div class="paragraph">
+<p>The above case reveals the general structure of the <code>ranges</code> property, with a formal type equivalent to <code>Map&lt;Terminology_code, Map &lt;Terminology_code, Interval &lt;T&gt;&gt;</code>, where <code>T</code> is the declared type of the subject variable. In both the simple and discriminator cases, the entry <code>[very_high], |&gt;  140 mm[Hg]|</code> defines a <code>[key, value]</code> pair whose key is of type <code>Terminology_code</code> and whose value is of type <code>Interval &lt;Quantity&gt;</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_rules_section"><a class="anchor" href="#_rules_section"></a>3.9. Rules Section</h3>
 <div class="paragraph">
-<p>The DLM <code>rules</code> section is the section of primary importance, since it contains the rules for which a DLM is created. DLm rules are formally expressed as functions in the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, based on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
+<p>The DLM <code>rules</code> section is the section of primary importance, since it contains the rules for which a DLM is created. DLM rules are formally expressed as functions in the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a>, based on the <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR BMM</a>.</p>
 </div>
 <div class="paragraph">
 <p>This section may be typically divided into two or more groups for authoring convenience. The first group may be used for simple Boolean-returning 0-order functions that represent 'named conditions', for use in the primary rules. The <code>Boolean</code> type may be omitted, since all conditions have this as their formal type. The following is an example.</p>
@@ -835,16 +818,19 @@ rules
 
     <span class="tok-n">her2_positive</span><span class="tok-p">:</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">her2_expression</span> <span class="tok-p">=</span> <span class="tok-p">[</span><span class="tok-n">positive</span><span class="tok-p">]</span>
+        <span class="tok-p">;</span>
 
     <span class="tok-n">non_class_I_heart_failure</span><span class="tok-p">:</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_heart_failure_class_II</span> <span class="tok-n">or</span>
                     <span class="tok-n">has_heart_failure_class_III</span> <span class="tok-n">or</span>
                     <span class="tok-n">has_heart_failure_class_IV</span>
+        <span class="tok-p">;</span>
 
     <span class="tok-n">anthracyclines_contraindicated</span><span class="tok-p">:</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span> <span class="tok-n">has_transmural_MI</span> <span class="tok-n">or</span>
             <span class="tok-n">ejection_fraction</span><span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">low</span><span class="tok-p">])</span> <span class="tok-n">or</span>
-            <span class="tok-n">non_class_I_heart_failure</span></code></pre>
+            <span class="tok-n">non_class_I_heart_failure</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -857,17 +843,17 @@ rules
     <span class="tok-n">hypertension_risk</span><span class="tok-p">:</span> <span class="tok-n">Terminology_term</span>
         <span class="tok-n">Result</span> <span class="tok-p">:=</span>
             <span class="tok-n">choice</span> <span class="tok-k">in</span>
-                <span class="tok-p">===========================================================</span>
+                <span class="tok-p">=================================================</span>
                 <span class="tok-n">has_pre_eclampsia</span> <span class="tok-n">or</span>
-                <span class="tok-n">has_eclampsia</span><span class="tok-p">:</span>                      <span class="tok-p">[</span><span class="tok-n">obstetric_emergency</span><span class="tok-p">],</span>
-                <span class="tok-p">-----------------------------------------------------------</span>
+                <span class="tok-n">has_eclampsia</span><span class="tok-p">:</span>                      <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
+                <span class="tok-p">-------------------------------------------------</span>
                 <span class="tok-n">previous_obstetric_hypertension</span> <span class="tok-n">or</span>
                 <span class="tok-n">previous_pre_eclampsia</span> <span class="tok-n">or</span>
                 <span class="tok-n">previous_eclampsia</span> <span class="tok-n">or</span>
-                <span class="tok-n">has_pregnancy_hypertension</span><span class="tok-p">:</span>         <span class="tok-p">[</span><span class="tok-n">refer_high_risk_care</span><span class="tok-p">],</span>
-                <span class="tok-p">-----------------------------------------------------------</span>
-                <span class="tok-p">*:</span>                                  <span class="tok-p">[</span><span class="tok-n">normal_obstetric_care</span><span class="tok-p">]</span>
-                <span class="tok-p">===========================================================</span>
+                <span class="tok-n">has_pregnancy_hypertension</span><span class="tok-p">:</span>         <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
+                <span class="tok-p">-------------------------------------------------</span>
+                <span class="tok-p">*:</span>                                  <span class="tok-p">[</span><span class="tok-n">low_risk</span><span class="tok-p">]</span>
+                <span class="tok-p">=================================================</span>
             <span class="tok-p">;</span>
 
     <span class="tok-n">gestational_diabetes_risk</span><span class="tok-p">:</span> <span class="tok-n">Boolean</span>
@@ -876,7 +862,8 @@ rules
             <span class="tok-n">previous_macrosomic_baby</span> <span class="tok-n">or</span>
             <span class="tok-n">previous_gestational_diabetes</span> <span class="tok-n">or</span>
             <span class="tok-n">family_history_of_diabetes</span> <span class="tok-n">or</span>
-            <span class="tok-n">race_related_diabetes_risk</span></code></pre>
+            <span class="tok-n">race_related_diabetes_risk</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -1215,18 +1202,21 @@ rules
 <div class="title">Figure 3. <code>proc.decision_language.concrete</code> Package</div>
 </div>
 <div class="sect3">
-<h4 id="_input_variables"><a class="anchor" href="#_input_variables"></a>4.3.1. Input Variables</h4>
+<h4 id="_subject_variables_2"><a class="anchor" href="#_subject_variables_2"></a>4.3.1. Subject Variables</h4>
 <div class="paragraph">
-<p>The variable definitions found in the <code>input</code> section of a DLM are designed to facilitate both intuitive DLM authoring and tracking of values over time from real data sources, typically health records, devices and so on. The generic class <code>TRACKED_VARIABLE&lt;T&gt;</code> and descendants provide a representation of an external variable with a symbolic name, e.g. <code>is_diabetic</code>, <code>heart_rate</code>, etc and values, tracked over time. The generic type parameter is substituted with types used for representing atomic data values, including primitive types such as <code>String</code>, <code>Integer</code> etc, as well as types like <code>Terminology_code</code>, <code>Quantity</code> etc, as available in the  models (type definitions) <em>used</em> by a DLM.</p>
+<p>The variable definitions found in the <code>input</code> section of a DLM are designed to facilitate both intuitive DLM authoring and tracking of values over time from real data sources, typically health records, devices and so on. The generic class <code>STATE_VARIABLE&lt;T&gt;</code> and descendants provide a representation of a subject variable with a symbolic name. The generic type parameter is substituted with types used for representing atomic data values, including primitive types such as <code>String</code>, <code>Integer</code> etc, as well as types like <code>Terminology_code</code>, <code>Quantity</code> etc, as available in the  models (type definitions) <em>used</em> by a DLM.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>history</em></code> attribute represents variable value samples over time, for variables with <code>currency</code> defined, while the features <code>is_available</code> and <code>unavailable_reason</code> provide a way for missing data to be checked for.</p>
+<p>The class <code>STATE_VARIABLE&lt;T&gt;</code> models the simplest case: a variable that may be queried once for an execution run. This is sufficient for subject variables that are not time-dependent, and will not change during the execution, such as <code>date_of_birth</code>, <code>sex</code>, and Boolean variables such as <code>is_type1_diabetic</code>. The <code><em>history</em></code> attribute contains the variable value (normally only one sample), while the features <code>is_available()</code> and <code>unavailable_reason()</code> provide a way for missing data to be checked for.</p>
 </div>
 <div class="paragraph">
-<p>The class <code>TRACKED_QUANTITATIVE_VARIABLE&lt;T&gt;</code> adds the range facility described earlier in <a href="#_variable_ranges">Section 3.8.5</a>.</p>
+<p>For time-varying variables, the values must usually be tracked. The class <code>TRACKED_STATE_VARIABLE&lt;T&gt;</code> is is provided for this purpose, and adds the meta-attribute <code><em>currency</em></code>, a duration indicating the maximum age of the sample value to be useful or valid. The <code><em>history</em></code> attribute now contains variable samples over time. The function <code>value()</code> extracts the most recent available value, while <code>is_available()</code> is redefined to indicate whether a sufficiently recent value is availale.</p>
 </div>
 <div class="paragraph">
-<p>Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the <code>TRACKED_VARIABLE&lt;T&gt;</code> or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:</p>
+<p>Many tracked variables are quantitative, and for these, extra facilities are provided via the class <code>TRACKED_QUANTITATIVE_VARIABLE&lt;T&gt;</code>, which adds the 'ranges' facility described earlier in <a href="#_variable_ranges">[_variable_ranges]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the <code>STATE_VARIABLE&lt;T&gt;</code> or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1255,7 +1245,7 @@ rules
 <span class="tok-c1">// instantiate the tracked variable object</span>
 <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">TRACKED_QUANTITATIVE_VARIABLE</span><span class="tok-p">&lt;</span><span class="tok-n">Quantity</span><span class="tok-p">&gt;</span> <span class="tok-p">(</span>
     <span class="tok-s">&quot;systolic_blood_pressure&quot;</span><span class="tok-p">,</span>   <span class="tok-c1">// name</span>
-    <span class="tok-n">PT1M</span><span class="tok-p">,</span>                        <span class="tok-c1">// currency</span>
+    <span class="tok-s">&quot;PT1M&quot;</span><span class="tok-p">,</span>                      <span class="tok-c1">// currency</span>
     <span class="tok-n">ranges</span>                       <span class="tok-c1">// ranges</span>
 <span class="tok-p">);</span></code></pre>
 </div>
@@ -1273,7 +1263,7 @@ rules
 <div class="sect3">
 <h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>4.3.2. Class Descriptions</h4>
 <div class="sect4">
-<h5 id="_tracked_variable_class"><a class="anchor" href="#_tracked_variable_class"></a>4.3.2.1. TRACKED_VARIABLE Class</h5>
+<h5 id="_state_variable_class"><a class="anchor" href="#_state_variable_class"></a>4.3.2.1. STATE_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1283,12 +1273,12 @@ rules
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRACKED_VARIABLE&lt;T&gt;</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;T&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Abstraction representing a 'tracked' real-world variable representing a quality of a subject, e.g. patient systolic blood pressure, diabetic status, date of birth etc, whose value is sampled and potentially tracked over time.</p>
+<p>Abstraction of a real-world variable that represents a quality of a subject, e.g. patient diabetic status, date of birth etc.</p>
 </div>
 <div class="paragraph">
 <p>The generic parameter is a model type from an accessible model.</p>
@@ -1300,20 +1290,6 @@ rules
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of variable.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If set, maximum age of a real-world snapshot of this variable&#8217;s value.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_value_snapshot_class">VALUE_SNAPSHOT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1321,14 +1297,11 @@ rules
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>max_history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time_window</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class">Iso8601_date_time</sup></a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of variable.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1336,26 +1309,10 @@ rules
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong> (): <code>T</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Retrieve latest value, or null if none.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_at_time</strong> (<br>
-a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a>[1]</code><br>
-): <code>T</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return the value from <code><em>history</em></code> that was available at time <code><em>time</em></code>.</p>
-</div></div></td>
-</tr>
-<tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return True if there is a value in <code><em>history</em></code> whose <code><em>time</em></code> is within the duration of <code><em>currency</em></code> of the current moment.</p>
+<p>Return True if there is a value in <code><em>history</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1366,10 +1323,10 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_tracking</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong> (): <code>T</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return true if tracking (i.e. snapshotting) is occurring, i.e. if <code><em>currency</em></code> is set. False indicates that a single sample is sufficient.</p>
+<p>Retrieve latest value, or null if none.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1390,7 +1347,9 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>One or more snapshot attempts of the state variable, either containing values or unavailable reason.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1400,12 +1359,16 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong>: <code>T</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Value of variable in the real world, if available; Void if not.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Real-world time of snapshot value.</p>
+</div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
@@ -1416,7 +1379,75 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 </table>
 </div>
 <div class="sect4">
-<h5 id="_tracked_quantitative_variable_class"><a class="anchor" href="#_tracked_quantitative_variable_class"></a>4.3.2.3. TRACKED_QUANTITATIVE_VARIABLE Class</h5>
+<h5 id="_tracked_state_variable_class"><a class="anchor" href="#_tracked_state_variable_class"></a>4.3.2.3. TRACKED_STATE_VARIABLE Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>TRACKED_STATE_VARIABLE&lt;T&gt;</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>A 'tracked' subject variable representing a continuant quality of a subject over time, e.g. patient systolic blood pressure, heart rate etc, whose value is sampled over time.</p>
+</div>
+<div class="paragraph">
+<p>The generic parameter is a model type from an accessible model.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_state_variable_class">STATE_VARIABLE</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If set, maximum age of a real-world snapshot of this variable&#8217;s value to be usable or valid.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>max_history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value_at_time</strong> (<br>
+a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a>[1]</code><br>
+): <code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return the value from <code><em>history</em></code> that was available at time <code><em>time</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return True if there is a value in <code><em>history</em></code> whose <code><em>time</em></code> is within the duration of <code><em>currency</em></code> of the current moment.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_tracked_quantitative_variable_class"><a class="anchor" href="#_tracked_quantitative_variable_class"></a>4.3.2.4. TRACKED_QUANTITATIVE_VARIABLE Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1436,7 +1467,7 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_tracked_variable_class">TRACKED_VARIABLE</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_tracked_state_variable_class">TRACKED_STATE_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1513,7 +1544,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </table>
 </div>
 <div class="sect4">
-<h5 id="_range_group_class"><a class="anchor" href="#_range_group_class"></a>4.3.2.4. RANGE_GROUP Class</h5>
+<h5 id="_range_group_class"><a class="anchor" href="#_range_group_class"></a>4.3.2.5. RANGE_GROUP Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1554,7 +1585,7 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 </table>
 </div>
 <div class="sect4">
-<h5 id="_range_def_class"><a class="anchor" href="#_range_def_class"></a>4.3.2.5. RANGE_DEF Class</h5>
+<h5 id="_range_def_class"><a class="anchor" href="#_range_def_class"></a>4.3.2.6. RANGE_DEF Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
