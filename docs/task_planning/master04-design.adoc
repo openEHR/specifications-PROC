@@ -2,23 +2,15 @@
 
 The following sections describe the key design paradigms underpinning the Task Planning model defined in this specification.
 
-== Conceptual Basis
+== Conceptual Model
 
-At the coarsest conceptual level, _plans_ are one of a small number of distinct categories of computational entity which together must work together at execution time. In addition to plans is _decision support logic_, and both rely on being able to reference values characterising the patient, including state and events - both current and historical. Such values may be represented as variable references and function calls defined on _proxy_ objects representing the subject (i.e. patient), and potentially other specific real-world things, such as 'medications list'. Proxy objects may be understood as providing a _virtual subject_ view. The job of decision logic is to generate deductive inferences from the state of the subject for use in plans and elsewhere. Underpinning proxy objects is a layer of _data access objects_, whose job is to convert _epistemic_ artefacts (information recorded about or generated from the subject, such as the EHR, vital signs devices etc) into the virtual _ontic_ (reality-based) view of the subject in the form of the proxy objects.
-
-The following diagram illustrates these artefacts, with plans proper shown at the top.
-
-[.text-center]
-.Conceptual framework for TP/DL ecosystem
-image::{common_diagrams_uri}/conceptual_framework_overview.svg[id=conceptual_framework_overview, align="center"]
+Conceptually, _plans_ as defined in this specification are not standalone, and require decision logic as well as access to subject data in order to execute. Such logic is represented in _decision logic modules_, as described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^].
 
 One important consequence of this separation of concerns is that the Task Plan model described here uses _symbolic references_ to refer to both proxy values (patient state, previous diagnoses etc) and decision logic functions, rather than including expressions inline, in the manner of most workflow languages. All 'expressions' are thus represented externally, either within decision logic modules or proxies. Both of the latter are maintained as independent knowledge artefacts and _used_ by plans.
 
-In terms of development, Plans, Decision support modules, Proxies and Data access bindings are co-developed artefacts. The latter are described in related specifications while the scope of this specification is limited to Plans.
-
 == Computational Basis
 
-A basic choice in the architecture presented here is that it is _executable_ in the sense that Plan definitions have an objective computational meaning and can be executed according to defined semantics. The intention is that developing task plans is a kind of high level programming, performed using dedicated tools, and whose resulting artefacts are executable. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, it means that the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication into an integrated, coordinated team.
+A basic choice in the architecture presented here is that it is _executable_ in the sense that Plan definitions have an objective computational meaning and can therefore be executed according to the semantics of the model defined in this specification. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication into an integrated, coordinated team.
 
 This follows the YAWL approach cite:[Hofstede_van_der_Aalst2009], such that no Plan defined according to this specification has ambiguous meaning.
 

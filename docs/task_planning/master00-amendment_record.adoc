@@ -4,16 +4,28 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*PROC Release 2.0.0 (unreleased)*
+
+|[[latest_issue]]
+|{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.
+|T Beale
+|[[latest_issue_date]]21 Dec 2020
+
 4+^h|*PROC Release 1.6.0 (unreleased)*
 
-|[[latest_issue]]1.6.0
+|1.6.0
+|{spec_tickets}/SPECPROC-44[SPECPROC-44^]. Correct `PLAN_TIME_ORIGIN` enum order and add values. See <<_plan_time_origin_enumeration>>.
+|M Kejžar
+|18 Sep 2020
+
+|
 |{spec_tickets}/SPECPROC-43[SPECPROC-43^]. Add inheritance to separate `CALLBACK_NOTIFICATION` from other Plan Event types; +
  {spec_tickets}/SPECPROC-33[SPECPROC-33^]. Support progressive data set creation; +
  {spec_tickets}/SPECPROC-39[SPECPROC-39^]. Correct error in `TASK_LIFECYCLE` state enumeration: remove `resumed` state; also correct mentions of `aborted` state to `abandoned`; add enumeration Integer values; improve text.
 |M Polajnar, +
  M Kejžar, +
  T Beale
-|[[latest_issue_date]]29 May 2020
+|29 May 2020
 
 4+^h|*PROC Release 1.5.0*
 

@@ -1,12 +1,14 @@
 = Technical Requirements
 
-The discussion above provides a guide as to what should potentially be modelled in a plan. Rather than necessarily 'everything' (i.e. every possible step as per the medical textbook), it is:
+== Overview
 
-* long term _clinical timing plans_;
+The {openehr_proc_overview}[openEHR Process and Planning Overview^] describes the general requirements for Task Planning and its related formalisms, which may be summarised as follows:
+
+* _long term clinical plans_;
 * reminders / checklist items for basic _actions that are often missed_ or forgotten due to busy workplace and fatigue;
 * complex sets of actions defined by _clinical pathways_;
 * decision points that determine which path from alternatives to follow;
-* _actions requiring sign-off_ in some way;
+* _actions requiring sign-off_;
 * _coordination_ of workers in a distributed team;
 * actions that result in _recording_ something in the EHR;
 * actions of varying levels of granularity that are needed in a _training_ mode.
@@ -21,11 +23,11 @@ Task planning is accordingly applicable to numerous clinical scenarios, exemplif
 * surgery planning - one time event;
 * acute stroke management - multiple sets of tasks coordinated across multiple performers.
 
-Within these and many other similar clinical procedures, a number of commonly occurring technical requirements appear, as described below.
+Within these and many other similar clinical procedures, a number of commonly occurring specific technical requirements appear, described below.
 
 == Flexible Allocation of Workers
 
-As described earlier, the varying availability of workers for a given plan needs to be accommodated within the planning architecture. It should be possible for the specific worker performing a task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.
+The varying availability of workers for a given plan execution needs to be accommodated within the planning architecture. It should be possible for the specific worker performing a task to leave and be replaced by another, whether during an active period of work, or between tasks within the plan.
 
 == Coordinated Teamwork
 
@@ -96,7 +98,7 @@ Task plans derived from semi-formal care pathways or guidelines (and potentially
 * *decision point*: a step containing a variable assignment of the form `$v := expression`;
 * *subordinate decision paths*: groups of tasks each group of which has attached a variable test of the form `$v rel_op value`, where `rel_op` is one of `=`, `/=`, `<`, `>`, `\<=` or `>=`.
 
-An example of decision points is shown below, in an extract from the https://intermountainhealthcare.org/ext/Dcmnt?ncid=520500199[Intermountain Healthcare Care Process Module (CPM) for Ischemic Stroke Management^]:
+An example of decision points is shown below, in an extract from the {ihc_stroke_pathway}[Intermountain Healthcare Care Process Module (CPM) for Ischemic Stroke Management^]:
 
 [.text-center]
 .Decision pathway example (Intermountain Healthcare Acute Stroke CPM)
