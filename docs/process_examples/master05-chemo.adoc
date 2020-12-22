@@ -65,10 +65,12 @@ reference
     cycle_period: Duration = 3w
     cycle_repeats: Integer = 6
 
-input -- Diagnosis
+input -- State
 
     has_lymphoma_diagnosis: Boolean
         time_window = tw_current_episode
+
+input -- Tracked state
 
     staging: Terminology_term «ann_arbor_staging»
         currency = 30 days
@@ -77,8 +79,6 @@ input -- Diagnosis
     has_metastases: Boolean
         currency = 30 days
         time_window = tw_current_episode
-
-input -- Labs
 
     neutrophils: Quantity
         currency = 3d

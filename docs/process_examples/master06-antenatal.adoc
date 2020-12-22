@@ -30,7 +30,7 @@ types
             -------------------
         ;
 
-input
+input -- State
 
     is_type1_diabetic: Boolean
 
@@ -46,11 +46,10 @@ input
 
     race_related_diabetes_risk: Boolean
     
-input -- <time_window = tw_previous_episode>
-
+    |
+    | Macrosomic baby from any previous pregnancy
+    |
     previous_macrosomic_baby: Boolean
-
-input -- <time_window = tw_current_episode>
 
     is_pregnant: Boolean
 
@@ -64,7 +63,10 @@ input -- <time_window = tw_current_episode>
     
     has_anaemia_of_pregnancy: Boolean
 
+input -- Tracked State
+
     bmi: Quantity
+        currency = 30d
         ranges =
             ------------------------------------
             [high]:      |>30 kg/m^2|,
@@ -73,8 +75,6 @@ input -- <time_window = tw_current_episode>
             ------------------------------------
         ;
     
-input
-
     |
     | Possible values:
     |   |premature rupture|, 
@@ -102,18 +102,13 @@ input
         currency = 48h
         
     vomiting_assessment: Terminology_term
+        currency = 48h
     
     ultrasound_finding: Terminology_term
+        currency = 48h
 
-input -- <source = "manual">
-
-    haemorrhage: Boolean
-
-    contractions_commenced: Boolean
-
-    braxton_hicks_contraction: Boolean
-    
     amniotic_volume: Real
+        currency = 24h
         ranges =
             ------------------------------------
             [polyhydramnios]:    |> 14|,
@@ -123,6 +118,7 @@ input -- <source = "manual">
         ;
 
     labour_onset_assessment: Terminology_term
+        currency = 24h
     
 rules
 

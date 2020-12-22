@@ -5,7 +5,17 @@
 ----
 dlm guideline Oncology_breast_cancer.v0.5.0
 
-input
+input -- State
+
+    has_heart_failure_class_II: Boolean
+    
+    has_heart_failure_class_III: Boolean
+    
+    has_heart_failure_class_IV: Boolean
+    
+    has_allergy_to_taxanes: Boolean
+    
+input -- Tracked State
 
     tnm_t: String
         currency = 60 days
@@ -46,14 +56,6 @@ input
             --------------------
         ;
                 
-    has_heart_failure_class_II: Boolean
-    
-    has_heart_failure_class_III: Boolean
-    
-    has_heart_failure_class_IV: Boolean
-    
-    has_allergy_to_taxanes: Boolean
-    
 rules -- Conditions
         
     er_negative:

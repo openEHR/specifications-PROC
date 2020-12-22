@@ -589,10 +589,12 @@ reference
     cycle_period: Duration = 3w
     cycle_repeats: Integer = 6
 
-input -- Diagnosis
+input -- State
 
     has_lymphoma_diagnosis: Boolean
         time_window = tw_current_episode
+
+input -- Tracked state
 
     staging: Terminology_term «ann_arbor_staging»
         currency = 30 days
@@ -601,8 +603,6 @@ input -- Diagnosis
     has_metastases: Boolean
         currency = 30 days
         time_window = tw_current_episode
-
-input -- Labs
 
     neutrophils: Quantity
         currency = 3d
@@ -842,7 +842,7 @@ types
             -------------------
         ;
 
-input
+input -- State
 
     is_type1_diabetic: Boolean
 
@@ -858,11 +858,10 @@ input
 
     race_related_diabetes_risk: Boolean
 
-input -- &lt;time_window = tw_previous_episode&gt;
-
+    |
+    | Macrosomic baby from any previous pregnancy
+    |
     previous_macrosomic_baby: Boolean
-
-input -- &lt;time_window = tw_current_episode&gt;
 
     is_pregnant: Boolean
 
@@ -876,7 +875,10 @@ input -- &lt;time_window = tw_current_episode&gt;
 
     has_anaemia_of_pregnancy: Boolean
 
+input -- Tracked State
+
     bmi: Quantity
+        currency = 30d
         ranges =
             ------------------------------------
             [high]:      |&gt;30 kg/m^2|,
@@ -884,8 +886,6 @@ input -- &lt;time_window = tw_current_episode&gt;
             [low]:       |&lt; 15 kg/m^2|
             ------------------------------------
         ;
-
-input
 
     |
     | Possible values:
@@ -914,18 +914,13 @@ input
         currency = 48h
 
     vomiting_assessment: Terminology_term
+        currency = 48h
 
     ultrasound_finding: Terminology_term
-
-input -- &lt;source = "manual"&gt;
-
-    haemorrhage: Boolean
-
-    contractions_commenced: Boolean
-
-    braxton_hicks_contraction: Boolean
+        currency = 48h
 
     amniotic_volume: Real
+        currency = 24h
         ranges =
             ------------------------------------
             [polyhydramnios]:    |&gt; 14|,
@@ -935,6 +930,7 @@ input -- &lt;source = "manual"&gt;
         ;
 
     labour_onset_assessment: Terminology_term
+        currency = 24h
 
 rules
 
@@ -1157,7 +1153,17 @@ terminology
 <div class="content">
 <pre>dlm guideline Oncology_breast_cancer.v0.5.0
 
-input
+input -- State
+
+    has_heart_failure_class_II: Boolean
+
+    has_heart_failure_class_III: Boolean
+
+    has_heart_failure_class_IV: Boolean
+
+    has_allergy_to_taxanes: Boolean
+
+input -- Tracked State
 
     tnm_t: String
         currency = 60 days
@@ -1197,14 +1203,6 @@ input
             [low]  :   |&lt; 40%|
             --------------------
         ;
-
-    has_heart_failure_class_II: Boolean
-
-    has_heart_failure_class_III: Boolean
-
-    has_heart_failure_class_IV: Boolean
-
-    has_allergy_to_taxanes: Boolean
 
 rules -- Conditions
 
@@ -1347,7 +1345,7 @@ terminology
 <h2 id="_covid19_severity_classification"><a class="anchor" href="#_covid19_severity_classification"></a>8. Covid19 Severity Classification</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guideline is a formal expression of the <a href="https://www.acep.org/corona/COVID-19-alert/covid-19-articles/covid-19-severity-classification-tool-now-available/" target="_blank" rel="noopener">American College of Emergency Physicians (ACEP)</a>  Covid19 Severity Classification, published in <a href="https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf" target="_blank" rel="noopener">PDF form</a> and as an <a href="https://covid19.evidence.care/dashboard/covid/pathway/198712647/-980102880" target="_blank" rel="noopener">interactive tool</a>.</p>
+<p>This guideline is a formal expression of the <a href="https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf" target="_blank" rel="noopener">American College of Emergency Physicians (ACEP) Covid19 Severity Classification tool</a> and as an <a href="https://covid19.evidence.care/dashboard/covid/pathway/198712647/-980102880" target="_blank" rel="noopener">Interactive tool</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_work_plan_2"><a class="anchor" href="#_work_plan_2"></a>8.1. Work Plan</h3>
@@ -1398,7 +1396,51 @@ use
     BASIC: Basic_patient_data
     BMI: Body_mass_index
 
-input -- clinical
+input -- Administrative
+
+    is_LT_care_resident: Boolean
+        ;
+
+input -- State
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_cardiovascular_disease: Boolean
+        ;
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    has cerebrovascular_disease: Boolean
+        ;
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_COPD: Boolean
+        ;
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    is_type_2_diabetic: Boolean
+        ;
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_hypertension: Boolean
+        ;
+
+    |
+    | True if any cancer diagnosis on master problem list
+    | or ask patient
+    |
+    has_malignancy: Boolean
+        ;
+
+input -- Tracked State
 
     heart_rate: Count
         currency = 1 min
@@ -1481,50 +1523,6 @@ input -- clinical
     |
     SpO2_exertion_post: Quantity
         currency = 5 min
-        ;
-
-input -- history
-
-    |
-    | Extract from master problem list or ask patient
-    |
-    has_cardiovascular_disease: Boolean
-        ;
-
-    |
-    | Extract from master problem list or ask patient
-    |
-    has cerebrovascular_disease: Boolean
-        ;
-
-    |
-    | Extract from master problem list or ask patient
-    |
-    has_COPD: Boolean
-        ;
-
-    |
-    | Extract from master problem list or ask patient
-    |
-    is_type_2_diabetic: Boolean
-        ;
-
-    |
-    | Extract from master problem list or ask patient
-    |
-    has_hypertension: Boolean
-        ;
-
-    |
-    | True if any cancer diagnosis on master problem list
-    | or ask patient
-    |
-    has_malignancy: Boolean
-        ;
-
-input -- administrative
-
-    is_LT_care_resident: Boolean
         ;
 
 rules

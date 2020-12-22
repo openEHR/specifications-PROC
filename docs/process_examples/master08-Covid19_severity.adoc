@@ -1,6 +1,6 @@
 = Covid19 Severity Classification
 
-This guideline is a formal expression of the https://www.acep.org/corona/COVID-19-alert/covid-19-articles/covid-19-severity-classification-tool-now-available/[American College of Emergency Physicians (ACEP)^]  Covid19 Severity Classification, published in https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf[PDF form^] and as an https://covid19.evidence.care/dashboard/covid/pathway/198712647/-980102880[interactive tool^].
+This guideline is a formal expression of the {acep_covid_19_severity_tool_pdf}[American College of Emergency Physicians (ACEP) Covid19 Severity Classification tool^] and as an {acep_covid_19_severity_tool_app}[Interactive tool^].
 
 == Work Plan
 
@@ -46,7 +46,51 @@ use
     BASIC: Basic_patient_data
     BMI: Body_mass_index
     
-input -- clinical
+input -- Administrative
+
+    is_LT_care_resident: Boolean
+        ;
+        
+input -- State
+
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_cardiovascular_disease: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    has cerebrovascular_disease: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_COPD: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    is_type_2_diabetic: Boolean
+        ;
+        
+    |
+    | Extract from master problem list or ask patient
+    |
+    has_hypertension: Boolean
+        ;
+        
+    |
+    | True if any cancer diagnosis on master problem list 
+    | or ask patient
+    |
+    has_malignancy: Boolean
+        ;
+        
+input -- Tracked State
 
     heart_rate: Count
         currency = 1 min
@@ -129,50 +173,6 @@ input -- clinical
     |
     SpO2_exertion_post: Quantity
         currency = 5 min
-        ;
-        
-input -- history
-
-    |
-    | Extract from master problem list or ask patient
-    |
-    has_cardiovascular_disease: Boolean
-        ;
-        
-    |
-    | Extract from master problem list or ask patient
-    |
-    has cerebrovascular_disease: Boolean
-        ;
-        
-    |
-    | Extract from master problem list or ask patient
-    |
-    has_COPD: Boolean
-        ;
-        
-    |
-    | Extract from master problem list or ask patient
-    |
-    is_type_2_diabetic: Boolean
-        ;
-        
-    |
-    | Extract from master problem list or ask patient
-    |
-    has_hypertension: Boolean
-        ;
-        
-    |
-    | True if any cancer diagnosis on master problem list 
-    | or ask patient
-    |
-    has_malignancy: Boolean
-        ;
-        
-input -- administrative
-
-    is_LT_care_resident: Boolean
         ;
         
 rules
@@ -344,6 +344,5 @@ rules
             |>= 3%|:  [mild_at_risk]
             ========================
         ;
-        
-        
+
 ----
