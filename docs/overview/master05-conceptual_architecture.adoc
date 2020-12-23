@@ -1,6 +1,6 @@
 = Conceptual Architecture
 
-Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual archicture of this artefact in some detail.
+Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
 
 The primary elements of executable plans shown are 'workflow', i.e. a structured representation of tasks to be performed along with relevant decision points, and 'decision logic', which provides input values for workflow decisions. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
 
@@ -94,7 +94,7 @@ Consequently, we can say that the following constitute two more routine data sou
 * just-in-time UI capture of missing data;
 * _manually-reported_ events 'in the room'.
 
-The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, such 'live' data obtained by sich methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.
+The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, such 'live' data obtained by such methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.
 
 === Type Conversion
 
