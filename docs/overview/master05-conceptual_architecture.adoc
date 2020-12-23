@@ -1,6 +1,6 @@
 = Conceptual Architecture
 
-Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual archicture of this artefact in some detail.
+Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
 
 The primary elements of executable plans shown are 'workflow', i.e. a structured representation of tasks to be performed along with relevant decision points, and 'decision logic', which provides input values for workflow decisions. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
 
