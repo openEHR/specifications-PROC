@@ -10,7 +10,7 @@ To understand the form a clinical workflow / planning system must take to be use
 
 The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. Nevertheless, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
 
-The second aspect to consider is that clinical professionals don't need to be told how to do routine tasks. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:
+The second aspect to consider is that clinical professionals don't need to be told how to do medicine. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:
 
 * _following care pathways and guidelines_ for complex conditions e.g. acute stroke, sepsis, complex childbirth; also guidelines that incorporate changing _policy_ on the use of specific types of test whose costs and risks change over time (e.g. CT scan, MRI, certain drugs);
 * _clinical check lists_ for multi-step procedures, including surgery, to prevent busy or tired personnel forgetting common steps;
@@ -35,7 +35,7 @@ A final category of requirement for clinical process automation is _training_. I
 
 The sections below elucidate some of the topics mentioned above.
 
-== Care Management Artefacts
+== Representation of Care Management Artefacts
 
 Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the above needs, including the following:
 
@@ -73,14 +73,14 @@ A care pathway is thus a higher-level entity aimed at achieving a patient outcom
 * {cancer_council_australia_breast}[Cancer Council Australia Breast cancer pathway^];
 * {ihc_stroke_pathway}[Intermountain Healthcare Acute Stroke CPM^].
 
-Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply by 'old school medicine'. In general however, recognised guidelines exist for healthcar professionals for most procedures undetaken during care.
+Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply by 'old school medicine'. In general however, recognised guidelines exist for healthcare professionals for most procedures undertaken during care.
 
 With respect to the challenge of applying information technology to process-oriented care, key questions to do with pathways and guidelines are:
 
 * the extent to which they are _formally representable_;
-* the question of _which pathways and/or guidelines may concurrently apply to a real patient_ who will typically have multiple conditions, or at least be currently taking some medications or therapies which may be incompatible with a proposed guideline or pathway.
+* the question of _which pathways and/or guidelines may concurrently apply to a real patient_ who will typically have multiple conditions, or at least be currently taking medications or therapies that may be incompatible with a proposed guideline or pathway.
 
-We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. The first question above heavily depends on the the types of interpretation of _implied formal semantics_, which include:
+We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. The first question above heavily depends on the the interpretation of _implied formal semantics_, which include:
 
 * _goals_;
 * structured natural language statements describing _plan steps_, also commonly known as _tasks_ or _activities_, which may be sequential or parallel, and which may include activities relating to:
@@ -103,11 +103,11 @@ Within the above-described artefacts references to so-called _order sets_ may ex
 
 In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'prescriptions', while the second is a candidate for representation as a formalised plan. 
 
-In the openEHR process architecture, an 'order set' is considered to be a _treatment-specific set of orders_ (openEHR Instructions) with associated descriptive information, with any administration plan being represented in a separate work plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) would need to be replicated and adapted into a larger patient-specific plan.
+In the openEHR process architecture, an 'order set' is considered to be a _condition-specific set of orders_ with associated descriptive information, with any administration plan being represented in a separate work plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) would need to be replicated and adapted into a larger patient-specific plan.
 
 === Care Plan
 
-Care plans are common artefact within clinical care, originating in nursing, for which various definitions exist e.g. RN-central provides an {rn_central_care_plan}[original nursing-oriented definition^]; {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
+The care plan is a common artefact within clinical care, originating in nursing, for which various definitions exist e.g. {rn_central_care_plan}[a nursing-oriented definition from RN-central^]; {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
 
 * _care plan_ - a dynamic, personalised plan, relating to one or more specified health issues, including patient objectives and goals, defining diagnoses and describing steps for resolution, medications and monitoring.
 
@@ -157,7 +157,9 @@ Entities shown with dotted lines are not assumed to exist in all real world clin
 
 == Long-running Processes
 
-One of the key characteristics of work in the real world is the passage of time, and how it relates to workers. In general human workers are present for a _shift_ or _work day_ of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during normal working hours. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).
+Orthogonal to the semantics of guidelines and pathways are the semantics of how automatable work plans relate to workers in the real world over time. A simple case is that when a plan is executed, worker(s) are attached by some means, and detached at the completion or abandonment of the plan. This will work well enough for short running processes i.e. of minutes or some hours. Longer running processes, e.g. antenatal care, chronic illness monitoring plans etc, are another question.
+
+In general human workers are present for a _shift_ or _work day_ of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during normal working hours. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).
 
 A similar kind of pattern, although usually with longer periods, applies to machines that may be active parties in organised work (e.g. robotic surgery devices), since all machines eventually need to be serviced, and in the long term, obsoleted and replaced. Service patterns may be a combination of regular planned down-times and unplanned failures.
 
@@ -167,7 +169,21 @@ In contrast to this, the 'work to be done', whether a well-defined procedure (e.
 
 In some cases, an entire piece of work may be completable within a work _session_, during which the workers do not change. Most doctor's appointments and single surgeries are of this nature. In other cases, an overall task takes some days or weeks, i.e. many shifts and work days. Open-ended care processes will run through shifts, work-days and also longer absences, as well as permanent employment changes. To make things more difficult, it should always be remembered that no process, short or long, is guaranteed to be conveniently contained within a shift or non-holiday period - unplanned worker absence may occur at any time and any point within an executing process.
 
-Two conclusions can be drawn from the above. The first is that variable worker availability is a fact of life, and any machine-based process execution engine must deal with it. The second is that, for long running processes, the executing plan is likely to be the _only_ coherent single record of planned and performed actions on the subject, as shifts and holidays pass, new workers commence, and others leave or retire.
+Various conclusions can be drawn from the above. The first is that variable worker availability is a fact of life, and any computable plan representation must deal with it. An automatable plan representation therefore will need to support the idea of multiple worker _roles_, _hand-overs_ between workers, and at some level, the notion of _allocation_ and de-allocation of workers.
+
+Another conclusion is that for long running processes an executing plan is likely to be the _only_ coherent single record of planned and performed actions on the subject, as shifts and holidays pass, new workers commence, and others leave or retire. This implies that a long running plan execution should generate a _coherent record of execution_, i.e. task completions, cancellations, etc by its workers, such that clinical activities over time can easily be viewed.
+
+== Integration with the Patient Record
+
+General-purpose workflow formalisms and products do not generally assume the presence of a system whose purpose is to record information (e.g. observations, decisions, orders, actions) undertaken for the subject, beyond some direct record of the plan execution itself. However many tasks in healthcare plans involve the review and/or capture of complex data sets specific to the task at hand, which would naturally be recorded in the patient record. In order to make clinical plans efficient for their users, the formal representation of tasks needs to account for data sets and detailed action descriptions. For example a task whose short description is 'administer Cyclophosphamide, day 1' will have a detailed description such as:
+
+[.text-center]
+.Detailed task instruction
+image::{images_uri}/cyclophosphamide_instruction.png[id=cyclophosphamide_instruction, align="center"]
+
+In an application, the dose will have been pre-computed based on patient body surface area. The administration description will usually be recorded in a structured way, e.g. `{medication=cyclophosphamide; dose=1mg; route=IV; timing=30 mins; method=with 0.9% NaCl, ...}`.
+
+From a user perspective, if this information structure (in an appropriate unfilled template form) can be directly associated with the task within a plan in such a way as to enable easy filling in of the data and subsequent recording in the patient record, no further work is required to update the record at plan (or task) completion. Similar situations require display of specific data sets as part of performing a task. However, if this is not the case, plan automation will not significantly reduce clinician documentation burden, and may have limited value. Worse, if there is no ability to associate information retrieval and recording actions with their real world tasks, plan authors will be forced to create tasks within plans dedicated to these information system interactions. This will have the effect of greatly increasing the size of many plans, while reducing their comprehensibility.
 
 == Cognitive Model
 

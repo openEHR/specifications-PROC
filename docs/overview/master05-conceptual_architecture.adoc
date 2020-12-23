@@ -1,8 +1,12 @@
 = Conceptual Architecture
 
-Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual archicture of this artefact in some detail.
+== Overview
 
-The primary elements of executable plans shown are 'workflow', i.e. a structured representation of tasks to be performed along with relevant decision points, and 'decision logic', which provides input values for workflow decisions. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
+Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
+
+The primary elements of executable plans shown are _workflow_, i.e. a structured representation of tasks to be performed along with relevant decision points, and _decision logic_, which provides input values for workflow decision points. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
+
+Plans are formally defined by the {openehr_task_planning}[openEHR Task Planning model^], and visualised (including for authoring purposes) in {openehr_tp_vml}[Task Plan Visual Modelling Language (TP-VML)^]. DLMs are written in the {openehr_decision_language}[openEHR Decision Language (DL)^], which is a high-level syntax.
 
 Both of these artefacts contain references to _subject variables_, i.e. ontic (real-world) subject state, such as _date_of_birth_, _weight_, _systolic_BP_ and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be _tracked_, i.e. updated continuously from measuring devices. A collection of subject variables relevant to a plan or DLM is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.
 
@@ -14,23 +18,35 @@ image::{diagrams_uri}/conceptual_model.svg[id=conceptual_framework, align="cente
 
 == Plans
 
-In the above, the top box (pink) illustrates a _plan definition_, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the {openehr_task_planning}[openEHR Task Planning model^]. Work plans are used for various scenarios, including: 
+In the above, the top box (pink) illustrates a _plan definition_, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the {openehr_task_planning}#_plan_structure[openEHR Task Planning specification^]. Work plans are used for various scenarios, including: 
 
 * _long term management plans_ unfolding over a time period in which personnel constantly change, and the plan is the main record of work done / to do;
 * highly detailed actions defined by _clinical pathways_ for complex conditions such as sepsis, where the complexity level is beyond unaided cognitive capacity;
 * _reminders and checklist_ items for basic actions that are sometimes missed or forgotten due to busy workplace and fatigue;
-* _actions requiring sign-off_ in some way;
+* _actions requiring sign-off_;
 * _coordination_ of workers in a distributed team;
 * actions that result in _recording_ something in the EHR;
 * actions of varying levels of granularity that are needed in a _training_ mode.
 
+A Work Plan is a complete plan with an associated goal and indications (i.e. clinical pre-conditions), and consists of one or more Task Plans, each being for one _performer_. The inner structure of a Task Plan consists of Task Groups, various kinds of Tasks (dispatchable and performable) and event wait states. The following illustrates a simplified Work Plan for acute stroke management.
+
+[.text-center]
+.Work Plan general structure
+image::{diagrams_uri}/work_plan_structure.svg[id=work_plan_structure, align="center"]
+
 Using this model, plans for any of the above situations can be defined by domain experts using dedicated graphical tools. Work Plans are _executed_ by a _plan engine_, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker's process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.
 
-One of the key formal elements of a Work Plan is decision points (see e.g. the node marked 'CASE heart assessment' in the plan diagram above), where plan branching occurs, based on _conditions_ and _rules_ that ultimately depend on _subject variables_. In the openEHR architecture, all such decisional logic is expressed in dedicated _Decision Logic Modules (DLMs)_, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.
+The Task Planning model supports various fine-grained mechanisms common in workflow languages, including: five types of task; a task life-cycle that supports completion, cancellation, and abandonment; repeat blocks; parallel and sequential task execution; AND, XOR and various kinds of OR join; wait states triggered by external, calendar-based and internal events; blocking and non-blocking execution threads; condition-gated exception task plans and ad hoc task insertion. Some of these features are visible in the following plan, which is for chemotherapy administration ({openehr_process_examples}#_multi_drug_chemotherapy[full version^]).
+
+[.text-center]
+.Work plan for RCHOPS chemotherapy administration
+image::{diagrams_uri}/RCHOPS21-simple.svg[id=RCHOPS21_simple, align="center"]
+
+One of the key formal elements of a Work Plan is decision points (green nodes in the plan diagrams above), where plan branching occurs, based on _conditions_ and _rules_ that ultimately depend on _subject variables_. In the openEHR architecture, all such decisional logic is expressed in dedicated _Decision Logic Modules (DLMs)_, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.
 
 == Decision Logic Modules (DLMs)
 
-In the conceptual model, the box on the lower right (green) represents _decision logic modules_ (DLMs), which express the rules, decision tables etc that encode published guidelines and decision logic of plans. DLMs are used to represent the simplest Boolean conditions such as `systolic_blood_pressure >= 140 mm[Hg]` used in plans, as well as complex chained logic representing stand-alone guidelines, scores and other rule-based clinical entities. To do this, they declare _subject variables_ needed for computing the rules and/or needed by client Work Plans or other applications.
+In the conceptual model, the box on the lower right (green) represents _decision logic modules_ (DLMs), which express the rules, decision tables etc that encode the decision logic of plans and guidelines. DLMs are used to represent the simplest Boolean conditions such as `systolic_blood_pressure >= 140 mm[Hg]` used in plans, as well as complex chained logic representing stand-alone guidelines, scores and other rule-based clinical entities. To do this, they must declare _subject variables_ needed for computing the rules and/or needed by client Work Plans or other applications.
 
 The openEHR _decision logic language_ may be characterised as a function-oriented logic that typically represents deductive inferences, such as clinical classification of patients (including diagnosis), based on input variables representing known facts about the subject (i.e. patient). These include results obtained from real world observation, measurement, imaging etc, as well as previous confirmed diagnoses and records of previous procedures. Other kinds of reasoning may be used as well, including Bayesian and other statistical and Artificial Intelligence (AI). In the latter case, DLM functions make calls to appropriate specialised services.
 
@@ -43,6 +59,131 @@ DLMs are written in the {openehr_decision_language}[openEHR Decision Language (D
 * _output variables_: intermediate rule results that may be inspected by calling components.
 
 Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).
+
+An extract from the DLM corresponding for the RCHOPS chemotherapy plan shown above is as follows (({openehr_process_examples}#_rchops21_decision_logic_module[full version^])
+
+----
+dlm RCHOPS21
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    original_author = <
+        ["name"] = <"Dr Spock">
+        ...
+    >
+    details = <
+        ["en"] = <
+            purpose = <"NHS CHOPS-21 chemotherapy guideline ....">
+            ...
+        >
+    >
+   
+use
+    BSA: Body_surface_area
+    
+preconditions
+    has_lymphoma_diagnosis
+    
+reference
+    rituximab_dose_per_m2: Quantity = 375mg
+    ...    
+    cycle_period: Duration = 3w
+    ...
+    
+input -- State
+
+    has_lymphoma_diagnosis: Boolean
+        time_window = tw_current_episode
+
+input -- Tracked state
+
+    staging: Terminology_term «ann_arbor_staging»
+        currency = 30 days
+        time_window = tw_current_episode
+
+    neutrophils: Quantity
+        currency = 3d
+        ranges =
+            ----------------------------------
+            [normal]:      |>1 x 10^9/L|,
+            [low]:         |0.5 - 1 x 10^9/L|,
+            [very_low]:    |<0.5 x 10^9/L|
+            ----------------------------------
+        ;
+
+    ...
+    
+rules -- Conditions
+
+    high_ipi:
+        Result := ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
+       
+rules -- Main
+
+    |
+    | patient fit to undertake regime
+    |
+    patient_fit:
+        Result := not
+            (platelets.in_range ([very_low]) or
+             neutrophils.in_range ([very_low]))
+
+    doxorubicin_dose: Quantity
+        Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
+            * case bilirubin.range in
+                ===================
+                [high]:        0.5,
+                [very_high]:   0.25,
+                [crit_high]:   0.0
+                ===================
+            ;
+
+    ...
+   
+    |
+    | International Prognostic Index
+    | ref: https:|en.wikipedia.org/wiki/International_Prognostic_Index
+    |
+    ipi_raw_score: Integer
+        Result.add (
+            ---------------------------------------------
+            age > 60                             ? 1 : 0,
+            staging ∈ {[stage_III], [stage_IV]}  ? 1 : 0,
+            ldh.in_range ([normal])              ? 1 : 0,
+            ecog > 1                             ? 1 : 0,
+            extranodal_sites > 1                 ? 1 : 0
+            ---------------------------------------------
+        )
+       
+    ipi_risk: Terminology_code
+        Result :=
+            case ipi_raw_score in
+                =======================================
+                |0..1|  : [ipi_low_risk],
+                |2|     : [ipi_intermediate_low_risk],
+                |3|     : [ipi_intermediate_high_risk],
+                |4..5|  : [ipi_high_risk];
+                =======================================
+            ;
+                
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["paracetamol_dose"] = <
+                text = <"paracetamol dose">
+                description = <"paracetamol base dose level per sq. m of BSA">
+            >
+            ["chlorphenamine_dose"] = <
+                text = <"chlorphenamine dose">
+                description = <"chlorphenamine base dose level per sq. m of BSA">
+            >
+            ...
+        >
+    > 
+        
+----
 
 == Subject Proxy
 

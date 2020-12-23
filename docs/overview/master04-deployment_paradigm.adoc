@@ -7,10 +7,10 @@ As soon as the notion of planning is assumed, we enter the workflow space, and i
 Firstly, we distinguish the following entities in the work environment:
 
 * _computing environment_:
-** *executable plan definition*: a reusable definition of work to be done, consisting of tasks, potentially standardised according to a guideline or protocol;
-** *executable plan instance*: a run-time instance of a task plan, potentially with local variations, created for execution by an actor or actors;
+** _executable plan definition_: a reusable definition of work to be done, consisting of tasks, potentially standardised according to a guideline or protocol;
+** _executable plan instance_: a run-time instance of a task plan, potentially with local variations, created for execution by an actor or actors;
 * _real world_:
-** *performing actor*: an autonomous human, machine or software application that performs tasks in the real world as part of a procedure designed to achieve a goal;
+** _performing actor_: an autonomous human, machine or software application that performs tasks in the real world as part of a procedure designed to achieve a goal;
 
 In real-world environments, the actors are not passive recipients of commands from a computer application implementing a plan, but are instead active agents who normally work together to perform a job. Working together involves peer-to-peer communication, coherent sequencing of tasks and so on. A workflow application provides help by maintaining a representation of the plan, and a representation of its progress in execution. It is immediately apparent that the application's idea of a given plan execution and the real world state of the same work are not identical, and in fact may be only approximately related. For example, the computable form of the plan might only include some of the tasks and actors at work in the real world. There are in fact two workflows executing: a virtual workflow and the real world one, and there is accordingly a challenge of _synchronisation_ of the two.
 
@@ -39,7 +39,7 @@ These various healthcare facilities almost certainly have their own IT systems w
 
 On the other hand, in an ideal environment with regional patient-centric hosted services (shared EHR etc), accessible by all healthcare facilities the patient visits, the logical locus of a plan's activities - the various HCFs taken together - correspond 1:1 with a location where the plan can be executed by an engine, i.e. the regional system.
 
-The following figure illustrates different possible relationships between a logical plan definition whose work is performed by actors in different enterprises, and the location of plan engines where such a plan may logically be executed. The particular arrangement shown has one enterprise (on the left) with its own separate IT (typical for most hospitals today) and three other enterprises that share regional health IT services relevant to the patient record and plan execution (they probably have their own private IT for more mundate purposes as well of course). The plan is shown as having tasks that are to be performed at all four of the enterprises.
+The following figure illustrates different possible relationships between a logical plan definition whose work is performed by actors in different enterprises, and the location of plan engines where such a plan may logically be executed. The particular arrangement shown has one enterprise (on the left) with its own separate IT (typical for most hospitals today) and three other enterprises that share regional health IT services relevant to the patient record and plan execution (they probably have their own private IT for more mundane purposes as well of course). The plan is shown as having tasks that are to be performed at all four of the enterprises.
 
 [.text-center]
 .Distributed plan execution
