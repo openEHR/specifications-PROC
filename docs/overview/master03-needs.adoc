@@ -73,7 +73,7 @@ A care pathway is thus a higher-level entity aimed at achieving a patient outcom
 * {cancer_council_australia_breast}[Cancer Council Australia Breast cancer pathway^];
 * {ihc_stroke_pathway}[Intermountain Healthcare Acute Stroke CPM^].
 
-Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply by 'old school medicine'. In general however, recognised guidelines exist for healthcar professionals for most procedures undetaken during care.
+Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply by 'old school medicine'. In general however, recognised guidelines exist for healthcare professionals for most procedures undetaken during care.
 
 With respect to the challenge of applying information technology to process-oriented care, key questions to do with pathways and guidelines are:
 
