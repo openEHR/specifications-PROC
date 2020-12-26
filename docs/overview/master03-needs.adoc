@@ -40,7 +40,7 @@ The sections below elucidate some of the topics mentioned above.
 Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the above needs, including the following:
 
 * _clinical practice guideline (CPG)_ and _care pathway_: evidence-based protocols for a condition (i.e. patient category or cohort);
-* _care plan_: clinician-produced descriptive plan for an individual patient;
+* _care plan_: descriptive plan for an individual patient produced by treating physician (clinical care) or senior nurse (nursing care), care team, the patient and any other caregiver(s);
 * _order set_: 'template' set of combined orders for medications and/or other resources for a particular purpose.
 
 What these artefacts are considered to consist of within the openEHR process architecture, and how they interrelate are described below.
@@ -64,40 +64,49 @@ Guidelines are usually either _therapeutic_, i.e. oriented to describing a proce
 
 The notion of care pathway, also known by names such as 'integrated care pathway' (ICP) and 'critical care pathway', has various definitions in healthcare, such as summarised by the {e_p_a_care_pathways}[European Pathway Association (E-P-A)^] and many other authors and organisations. Based on these, we take a care pathway to be:
 
-* a structured description of complex care based on evidence, oriented to managing a particular condition;
+* a structured description of _complex care_ based on evidence, oriented to managing a particular primary condition;
 * patient-centric (rather than institution- or procedure-centric) and therefore multi-disciplinary and cross-enterprise.
 
-A care pathway is thus a higher-level entity aimed at achieving a patient outcome, whereas a guideline is aimed at performing a more specific professional task. Consequently, care pathways typically refer to one or more _guidelines_ that describe in detail how to deal with specific situations within the condition (citenp:[Schrijvers_et_al2012], citenp:[Vanhaecht_et_al2007]). Examples include:
+A care pathway is thus a higher-level entity aimed at achieving a patient outcome, whereas a guideline is aimed at performing a more specific professional task. Consequently, care pathways typically refer to one or more guidelines that describe in detail how to deal with specific situations within the management of the condition (citenp:[Schrijvers_et_al2012], citenp:[Vanhaecht_et_al2007]). Examples include:
 
 * {nice_uk_pathways}[UK NICE Sepsis pathway^];
 * {cancer_council_australia_breast}[Cancer Council Australia Breast cancer pathway^];
 * {ihc_stroke_pathway}[Intermountain Healthcare Acute Stroke CPM^].
 
-Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply by 'old school medicine'. In general however, recognised guidelines exist for healthcare professionals for most procedures undertaken during care.
+Care pathways and guidelines for use in medicine are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There are a couple of important issues that affect potential formalisation.
+
+The first is the problem of _partial coverage_. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.
+
+The second is the problem of _adaptation_. Pathways and guidelines are designed to address a primary _condition_ (sepsis, ARDS, etc), and will not generally be applicable unmodified to a real patient, due to patient specifics, including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. Further, local practice factors such as  formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines.
+
+Due to the first set of factors, _more than one pathway may apply to a patient_, e.g. one for chronic care and one for an acute situation. There may be conflicts between the pathways - commonly in medications recommendations - but also between the pathways and the other patient specificities. Well-written pathways and CPGs usually include obvious contra-indications for medications (e.g. being on anti-rejection medications post transplant conflicts with some chemotherapy drug classes), common phenotypic features (e.g. being female, being allergic to taxanes), and patient history (e.g. being pregnant). There is no guarantee that any given pathway or guideline covers all possible conflicts, hence manual _inspection, adjustment and/or merging_ (if multiple pathways are to be used) is almost always required. Localisation  factors often means further modifications or constraints.
+
+For convenience, we term a care pathway- or guideline-like artefact for a specific patient, however arrived at and incorporating any necessary conflict resolution, merging and localisation, a _patient plan_.
 
 With respect to the challenge of applying information technology to process-oriented care, key questions to do with pathways and guidelines are:
 
-* the extent to which they are _formally representable_;
-* the question of _which pathways and/or guidelines may concurrently apply to a real patient_ who will typically have multiple conditions, or at least be currently taking medications or therapies that may be incompatible with a proposed guideline or pathway.
+* the extent to which they are formally representable, including contra-indications and conflicts;
+* how conflict, merge and localisation is solved to produce an automatable patient plan.
 
 We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. The first question above heavily depends on the the interpretation of _implied formal semantics_, which include:
 
 * _goals_;
-* structured natural language statements describing _plan steps_, also commonly known as _tasks_ or _activities_, which may be sequential or parallel, and which may include activities relating to:
+* _indications_, i.e. clinical pre-conditions for use;
+* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or parallel, and which may include activities relating to:
 ** medication and other orders or order sets;
 ** medication administration;
-* single _conditions_ that convert a real-world value to a classification for the purpose of the guideline, e.g.:
+* _conditions_ that convert a real-world value to a classification for the purpose of the guideline, e.g.:
 ** SpO2 of 88% -> 'critical' in a Covid19 assessment tool;
 ** Systolic pressure > 160 mm[Hg] -> 'high', in a hypertension guideline;
-* decision flowcharts and tables that act as related _rule-sets_.
+* decision rules, flowcharts and tables that act as related _rule-sets_.
 
-If published pathways and guidelines can be formalised, the second challenge then requires some process of selecting and/or adapting guidelines and pathways into a merged form for use with a real patient in a particular care situation. There is little science on this issue, and the current method of enabling pathways to be used together is essentially to include in each one contra-indications for medications (e.g. being on anti-rejection therapy post transplant), phenotypic features (e.g. being female, being allergic to penicillin), and patient history (e.g. being pregnant). This fact implies that any adaptation or merging for real world use is likely to require careful study by human professionals (and possibly specialist decision support engines) in order to build a computable patient-specific artefact, which is termed here a _patient plan_.
+Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
 
 === Order Set
 
 Within the above-described artefacts references to so-called _order sets_ may exist. An order set is generally understood as:
 
-* a set of orders for medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;
+* a set of orders for diagnostic tests and/or medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;
 * potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;
 * descriptive meta-data, including authors, history, evidence base, etc.
 
@@ -157,21 +166,19 @@ Entities shown with dotted lines are not assumed to exist in all real world clin
 
 == Long-running Processes
 
-Orthogonal to the semantics of guidelines and pathways are the semantics of how automatable work plans relate to workers in the real world over time. A simple case is that when a plan is executed, worker(s) are attached by some means, and detached at the completion or abandonment of the plan. This will work well enough for short running processes i.e. of minutes or some hours. Longer running processes, e.g. antenatal care, chronic illness monitoring plans etc, are another question.
+Orthogonal to the semantics of guidelines and pathways are the semantics of how automatable work plans relate to workers in the real world over time. A simple case is that when a plan is executed in an engine, worker(s) are attached by software applications or special devices, and detached at the completion or abandonment of the plan. This will work well enough for short running processes i.e. of minutes or some hours. Longer running processes are another question.
 
-In general human workers are present for a _shift_ or _work day_ of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically present during normal working hours. In addition, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).
+In general human workers are present for a _shift_ or _work day_ of a limited number of hours at a time, with a gap until the next appearance of the same worker. In healthcare, nursing and allied care professionals as well as house residents usually work on a shift basis, in which complete coverage of every 24 hour period is achieved over a series of shifts, while senior physicians and specialists are typically only present during 'normal working hours'. In the time domain of weeks and months, human workers go on holidays, leave job posts and clinics, and themselves die (being only human after all).
 
-A similar kind of pattern, although usually with longer periods, applies to machines that may be active parties in organised work (e.g. robotic surgery devices), since all machines eventually need to be serviced, and in the long term, obsoleted and replaced. Service patterns may be a combination of regular planned down-times and unplanned failures.
+A similar kind of pattern, although usually with longer periods, applies to machines that function autonomously as workers (e.g. robotic surgery devices). This is because all machines need to be serviced and in the long term, obsoleted and replaced. Service patterns will be a combination of regular planned down-times and unplanned failures.
 
-The general picture of workers is therefore one of repeating cycles of presence and thus _availability_ (shifts, work days, in-service periods) during normal 'at-work' periods, punctuated by variable absences for holidays, sickness, downtime, and bounded by commencement and completions of appointments.
+The general picture of worker _availability within a facility_ is therefore one of repeating cycles of presence (shifts, work days, in-service periods) during normal at-work periods, punctuated by variable temporary absences for holidays, sickness, and downtime, as well as permanent absence. Worker _availability for a given subject at a given moment_ is a subset of the overall availability within the facility, since any worker may be occupied with some subjects to the exclusion of others, including unplanned attendance (emergencies etc).
 
-In contrast to this, the 'work to be done', whether a well-defined procedure (e.g. GP encounter, surgery) or open-ended care situation (diabetes, post-trauma therapy) will usually have its own natural temporal extension. The presence of the patient as the subject in healthcare usually follows this, although may not, such as in the case of pathology and microbiology lab testing, in which tissue samples are proximate subject of the work. Consequently, there are a variety of relationships between the innate temporal structure of the planned work, and that of the work execution by its performers.
+In contrast to this, the 'work to be done', whether a well-defined procedure (e.g. GP encounter, surgery) or open-ended care situation (diabetes, post-trauma therapy) will have its own natural temporal extension. This might fit inside a short period of a few minutes or a single shift or work day, i.e. a work _session_, during which the workers do not change. Anything longer will consist of a series of 'patches' in time during which the work of the plan is actively being performed - i.e. during encounters, therapy sessions, surgery, lab testing, image interpretation and so on.
 
-In some cases, an entire piece of work may be completable within a work _session_, during which the workers do not change. Most doctor's appointments and single surgeries are of this nature. In other cases, an overall task takes some days or weeks, i.e. many shifts and work days. Open-ended care processes will run through shifts, work-days and also longer absences, as well as permanent employment changes. To make things more difficult, it should always be remembered that no process, short or long, is guaranteed to be conveniently contained within a shift or non-holiday period - unplanned worker absence may occur at any time and any point within an executing process.
+A priori, healthcare systems, via the administrators, managers, and clinicians in each facility generally make concerted efforts to maintain continuity of care, e.g. by arranging of appointments to ensure that as far as possible, the patient sees the same care team members over time, and by personal efforts to ensure that each logical segment of care is completed in a coherent fashion (for example in antenatal care).
 
-Various conclusions can be drawn from the above. The first is that variable worker availability is a fact of life, and any computable plan representation must deal with it. An automatable plan representation therefore will need to support the idea of multiple worker _roles_, _hand-overs_ between workers, and at some level, the notion of _allocation_ and de-allocation of workers.
-
-Another conclusion is that for long running processes an executing plan is likely to be the _only_ coherent single record of planned and performed actions on the subject, as shifts and holidays pass, new workers commence, and others leave or retire. This implies that a long running plan execution should generate a _coherent record of execution_, i.e. task completions, cancellations, etc by its workers, such that clinical activities over time can easily be viewed.
+Nevertheless, no plan automation system can assume that worker availability is automatic, or guaranteed to cleanly fit with the periods in time during which the patient needs attendance. An automatable plan representation will therefore need to explicitly incorporate the notion of _allocation and de-allocation_ of workers to tasks (including in the middle of a task), as well as _hand-overs_ between workers. This would imply for example, that a task within a plan cannot proceed until an appropriate worker had been allocated to it, which further implies that some basis for allocation may need to be specified. The YAWL language cite:[Hofstede_van_der_Aalst2009] for example supports various allocation strategies such as 'first available', 'most frequently used' and so on.
 
 == Integration with the Patient Record
 

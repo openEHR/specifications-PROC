@@ -32,6 +32,10 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 
 * Thomas Beale, Ars Semantica; openEHR Foundation Management Board.
 
+=== Contributors
+
+* Keith Salzman, MD/CMIO, US Army (ret.)
+
 === Support
 
 The work reported in this specification has been funded by the following organisations:

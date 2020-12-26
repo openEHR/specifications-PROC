@@ -60,7 +60,7 @@ DLMs are written in the {openehr_decision_language}[openEHR Decision Language (D
 
 Conditions, rules, rule-sets and other inference-generating structures that may include them constitute fragments of knowledge that need to be able to be authored and change-managed independently from contexts that use them, rather than being directly written into (say) if/then/else logic chains as a programmer would typically do. This specification accordingly provides a representational form for such logic, along with artefacts that connect them to data access services (e.g. EHR) and also enable them to be invoked by user contexts (e.g. workflow engines).
 
-An extract from the DLM corresponding for the RCHOPS chemotherapy plan shown above is as follows (({openehr_process_examples}#_rchops21_decision_logic_module[full version^])
+An extract from the DLM corresponding for the RCHOPS chemotherapy plan shown above is as follows ({openehr_process_examples}#_rchops21_decision_logic_module[full version^])
 
 ----
 dlm RCHOPS21
