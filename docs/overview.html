@@ -489,13 +489,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p><em>clinical practice guideline (CPG)</em> and <em>care pathway</em>: evidence-based protocols for a condition (i.e. patient category or cohort);</p>
+<p><em>care pathway</em>: evidence-based plan of complex care a condition;</p>
 </li>
 <li>
-<p><em>care plan</em>: descriptive plan for an individual patient produced by treating physician (clinical care) or senior nurse (nursing care), care team, the patient and any other caregiver(s);</p>
+<p><em>clinical practice guideline (CPG)</em>: evidence-based protocol for a specific clinical task;</p>
 </li>
 <li>
-<p><em>order set</em>: 'template' set of combined orders for medications and/or other resources for a particular purpose.</p>
+<p><em>order set</em>: 'template' set of combined orders for tests, medications etc relating to a condition;</p>
+</li>
+<li>
+<p><em>care plan</em>: descriptive plan for individual patient care, typically either oriented to in-patient care or post-discharge nursing care.</p>
 </li>
 </ul>
 </div>
@@ -520,12 +523,12 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 </table>
 </div>
 <div class="paragraph">
-<p>A common definition of a guideline is:</p>
+<p>A common definition of a guideline is (emphasis added):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for specific clinical circumstances (<a href="https://www.cebm.ox.ac.uk/resources/ebm-tools/glossary" target="_blank" rel="noopener">Oxford Centre for Evidence-based Medicine</a>).</p>
+<p>a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for <em>specific clinical circumstances</em> (<a href="https://www.cebm.ox.ac.uk/resources/ebm-tools/glossary" target="_blank" rel="noopener">Oxford Centre for Evidence-based Medicine</a>).</p>
 </li>
 </ul>
 </div>
@@ -1304,10 +1307,10 @@ terminology
 <div class="sect3">
 <h4 id="_type_conversion"><a class="anchor" href="#_type_conversion"></a>5.5.3. Type Conversion</h4>
 <div class="paragraph">
-<p>A natural consequence of obtaining data from multiple sources is that the data will be instances different concrete concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-oriented and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital sign data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).</p>
+<p>A natural consequence of obtaining data from multiple sources is that the data will be instances of different concrete concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-based and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital sign data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).</p>
 </div>
 <div class="paragraph">
-<p>The consequence of this is that the type system required at the Subject Proxy level may be significantly simplified compared to the type systems and structures in which data are originally captured. The use of an SPO as the interface for decision support and plan applications to back-end systems greatly simplifies the artifacts needed in the latter components.</p>
+<p>The consequence of this is that the type system required at the Subject Proxy level may be significantly simplified compared to the type systems and structures in which data are originally captured. The use of subject proxy variables as the interface for decision support and plan applications to back-end systems greatly simplifies the artifacts needed in the latter components.</p>
 </div>
 </div>
 <div class="sect3">

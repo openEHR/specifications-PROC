@@ -39,9 +39,10 @@ The sections below elucidate some of the topics mentioned above.
 
 Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the above needs, including the following:
 
-* _clinical practice guideline (CPG)_ and _care pathway_: evidence-based protocols for a condition (i.e. patient category or cohort);
-* _care plan_: descriptive plan for an individual patient produced by treating physician (clinical care) or senior nurse (nursing care), care team, the patient and any other caregiver(s);
-* _order set_: 'template' set of combined orders for medications and/or other resources for a particular purpose.
+* _care pathway_: evidence-based plan of complex care a condition;
+* _clinical practice guideline (CPG)_: evidence-based protocol for a specific clinical task;
+* _order set_: 'template' set of combined orders for tests, medications etc relating to a condition;
+* _care plan_: descriptive plan for individual patient care, typically either oriented to in-patient care or post-discharge nursing care.
 
 What these artefacts are considered to consist of within the openEHR process architecture, and how they interrelate are described below.
 
@@ -51,9 +52,9 @@ _Clinical practice guidelines_ (CPGs) and _care pathways_ are two kinds of publi
 
 NOTE: in openEHR documents and specifications, the term _guideline_ is used as a synonym for clinical practice guideline.
 
-A common definition of a guideline is:
+A common definition of a guideline is (emphasis added):
 
-* a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for specific clinical circumstances ({cemb_oxford}[Oxford Centre for Evidence-based Medicine^]).
+* a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for _specific clinical circumstances_ ({cemb_oxford}[Oxford Centre for Evidence-based Medicine^]).
 
 Guidelines are usually either _therapeutic_, i.e. oriented to describing a procedure e.g. intubation, asthma management, or _diagnostic_, such as for diagnosing various forms of angina. Many diagnostic guidelines are relatively simple scores based on a number of patient variables, whose aim is to stratify risk into categories corresponding to type of intervention. Examples of guidelines include:
 
