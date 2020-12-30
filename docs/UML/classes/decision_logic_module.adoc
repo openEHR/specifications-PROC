@@ -9,7 +9,7 @@ h|*Description*
 2+a|Specialised kind of class that represents a Decision Logic Module (DLM).
 
 h|*Inherit*
-2+|`link:/releases/RM/{rm_release}/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{lang_release}/bmm.html#_bmm_simple_class_class[BMM_SIMPLE_CLASS^]`
+2+|`link:/releases/BASE/{base_release}/resource.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/LANG/{lang_release}/bmm.html#_bmm_simple_class_class[BMM_SIMPLE_CLASS^]`
 
 h|*Attributes*
 ^h|*Signature*

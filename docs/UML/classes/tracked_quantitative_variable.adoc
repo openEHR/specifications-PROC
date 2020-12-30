@@ -9,7 +9,7 @@ h|*Description*
 2+a|Specialised property that represents a 'tracked variable' within the DLM `input` section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.
 
 h|*Inherit*
-2+|`<<_tracked_variable_class,TRACKED_VARIABLE>>`
+2+|`<<_tracked_state_variable_class,TRACKED_STATE_VARIABLE>>`
 
 h|*Attributes*
 ^h|*Signature*

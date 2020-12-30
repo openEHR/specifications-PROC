@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*VALUE_SNAPSHOT<T>*
 
 h|*Description*
-2+a|
+2+a|One or more snapshot attempts of the state variable, either containing values or unavailable reason.
 
 h|*Attributes*
 ^h|*Signature*
@@ -14,11 +14,11 @@ h|*Attributes*
 
 h|*0..1*
 |*value*: `T`
-a|
+a|Value of variable in the real world, if available; Void if not.
 
 h|*1..1*
 |*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
-a|
+a|Real-world time of snapshot value.
 
 h|*0..1*
 |*unavailable_reason*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
