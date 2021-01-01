@@ -39,7 +39,7 @@ The sections below elucidate some of the topics mentioned above.
 
 Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the above needs, including the following:
 
-* _care pathway_: evidence-based plan of complex care a condition;
+* _care pathway_: evidence-based plan of a complex care condition;
 * _clinical practice guideline (CPG)_: evidence-based protocol for a specific clinical task;
 * _order set_: 'template' set of combined orders for tests, medications etc relating to a condition;
 * _care plan_: descriptive plan for individual patient care, typically either oriented to in-patient care or post-discharge nursing care.
@@ -78,7 +78,7 @@ Care pathways and guidelines are published based on studies performed on the ava
 
 The first is the problem of _partial coverage_. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.
 
-The second is the problem of _adaptation_, which can be divided into two sub-problems. The first is that each pathway or guideline is designed to address one primary _condition_ (sepsis, ARDS, angina etc) and will not generally be applicable unmodified to a real patient, due to patient specifics including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. We might term this as a _merge_ problem since it is essentially a question of arriving at a safe pathway for an actual patient that accounts for all of the patient's current conditions, medications and phenotypic specifics, in a safe way. Secondly, local practice factors such as formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines. We can understand this as a _localisation_ problem.
+The second is the problem of _adaptation_, which can be divided into two sub-problems. The first is that each pathway or guideline is designed to address _one primary condition_ (sepsis, ARDS, angina etc) and will not generally be applicable unmodified to a real patient, due to patient specifics including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. We might term this as a _merge_ problem since it is essentially a question of arriving at a safe pathway for an actual patient that accounts for all of the patient's current conditions (and therefore multiple applicable care pathways), medications and phenotypic specifics. Secondly, local practice factors such as formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines. We can understand this as a _localisation_ problem.
 
 Due to the merge problem, _more than one pathway may apply to a patient_, e.g. one for chronic care and one for an acute situation. There may be conflicts between the pathways - commonly in medications recommendations - but also between the pathways and the other patient specificities. Well-written pathways and CPGs usually include obvious contra-indications for medications (e.g. being on anti-rejection medications post transplant conflicts with some chemotherapy drug classes), common phenotypic features (e.g. being female, being allergic to taxanes), and patient history (e.g. being pregnant). There is no guarantee that any given pathway or guideline covers all possible conflicts, hence manual _inspection, adjustment and customisation_ is almost always required. Localisation factors often means further modifications or constraints.
 
@@ -113,15 +113,15 @@ Within the above-described artefacts references to so-called _order sets_ may ex
 
 In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'prescriptions', while the second is a candidate for representation as a formalised plan. 
 
-In the openEHR process architecture, an 'order set' is considered to be a _condition-specific set of orders_ with associated descriptive information, with any administration plan being represented in a separate artefact of the same general form as a guideline, i.e. potentially consisting of a plan and/or decision logic, along with various descriptive information. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) would need to be replicated and adapted into a larger patient-specific plan.
+In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a _condition-specific set of orders_ with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.
 
 === Care Plan
 
-The care plan is a common artefact within clinical care, originating in nursing, for which various definitions exist e.g. {rn_central_care_plan}[a nursing-oriented definition from RN-central^]; {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
+The care plan is a common artefact within clinical care, originating in nursing. Definitions include {rn_central_care_plan}[a nursing-oriented definition from RN-central^] and one from the {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
 
 * _care plan_ - a dynamic, personalised plan, relating to one or more specified health issues, that describes patient objectives and goals, defining diagnoses and steps for resolution and monitoring.
 
-Historically, a care plan has been a _description_ of intended care that may be followed by relevant staff (e.g. home-visit nurses). A patient may have more than one care plan, and the contents of a care plan may be determined by one or more care pathways and/or CPGs, or might be 'standard local practice'. A care plan may even be _ad hoc_ in the case of a patient type with no well-described models of care available.
+Historically, a care plan has been a _description_ of intended care that may be followed by relevant staff e.g. home-visit nurses. A patient may have more than one care plan, and the contents of a care plan may be informed by one or more care pathways and/or CPGs, or might be 'standard local practice'. A care plan may even be _ad hoc_ in the case of a patient type with no well-described models of care available.
 
 Within the openEHR process architecture, a care plan is considered a structured artefact whose contents are consumed by human actors, rather than being a directly automatable entity. It is assumed to include items such as:
 
@@ -132,6 +132,8 @@ Within the openEHR process architecture, a care plan is considered a structured 
 * relevant problems and diagnoses;
 * interventions: medication and other orders (and potentially order sets);
 * monitoring criteria / instructions.
+
+A care plan may be formalised in the sense that the referenced CPG(s) and/or care pathway are formalised as a personalised patient plan (per above).
 
 === Artefact Relationships and Formalisation
 
