@@ -4,13 +4,13 @@
 
 Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
 
-The primary elements of executable plans shown are _workflow_, i.e. a structured representation of tasks to be performed along with relevant decision points, and _decision logic_, which provides input values for workflow decision points. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
+The primary formal elements of executable plans are the _workflow_, i.e. a structured representation of tasks to be performed including decision points, and the _decision logic_, whose rules provide values for decisions, as well as declarations of _subject variables_. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
 
 Plans are formally defined by the {openehr_task_planning}[openEHR Task Planning model^], and visualised (including for authoring purposes) in {openehr_tp_vml}[Task Plan Visual Modelling Language (TP-VML)^]. DLMs are written in the {openehr_decision_language}[openEHR Decision Language (DL)^], which is a high-level syntax.
 
-Both of these artefacts contain references to _subject variables_, i.e. ontic (real-world) subject state, such as _date_of_birth_, _weight_, _systolic_BP_ and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be _tracked_, i.e. updated continuously from measuring devices. A collection of subject variables relevant to a plan or DLM is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.
+Both of these artefacts contain references to subject variables, i.e. ontic (real-world) subject state, such as _date_of_birth_, _weight_, _systolic_BP_ and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be _tracked_ over time. This might entail near real-time (i.e. seconds, minutes) update from measuring devices or simply repeated querying for routine measurements over time from the patient record. A collection of subject variables relevant to plans and DLMs is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.
 
-In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are required, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.
+In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.
 
 [.text-center]
 .openEHR conceptual framework for care pathways and guidelines
@@ -18,7 +18,7 @@ image::{diagrams_uri}/conceptual_model.svg[id=conceptual_framework, align="cente
 
 == Plans
 
-In the above, the top box (pink) illustrates a _plan definition_, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the {openehr_task_planning}#_plan_structure[openEHR Task Planning specification^]. Work plans are used for various scenarios, including: 
+In the above, the top box (pink) illustrates a _plan definition_, used to express a structured set of tasks. In openEHR these are expressed as Work Plans, defined by the {openehr_task_planning}#_plan_structure[openEHR Task Planning specification^]. Work plans are used for various scenarios, including: 
 
 * _long term management plans_ unfolding over a time period in which personnel constantly change, and the plan is the main record of work done / to do;
 * highly detailed actions defined by _clinical pathways_ for complex conditions such as sepsis, where the complexity level is beyond unaided cognitive capacity;

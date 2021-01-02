@@ -37,5 +37,5 @@ a|Return the value from `_history_` that was available at time `_time_`.
 h|*1..1 +
 (redefined)*
 |*is_available* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
-a|Return True if there is a value in `_history_` whose `_time_` is within the duration of `_currency_` of the current moment.
+a|Return True if there is a member of `_history_` whose `_time_` is within the duration of `_currency_` of the current moment.
 |===

@@ -16,11 +16,25 @@ h|*0..1*
 |*value*: `T`
 a|Value of variable in the real world, if available; Void if not.
 
+h|*0..1*
+|*effective_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+a|Real-world time at which `_value_` was last True, if available.
+
 h|*1..1*
-|*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
-a|Real-world time of snapshot value.
+|*sample_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+a|Time at which this sample was obtained from its source (e.g. a patient record system, device, or user interaction).
 
 h|*0..1*
 |*unavailable_reason*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
 a|
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*is_available* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a|Return True if `_value_` is not Void.
+
+h|*Invariants*
+2+a|__Inv_available__: `is_available() implies value /= Void`
 |===

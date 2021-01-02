@@ -986,16 +986,16 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>Within <a href="#care_mgt_artefact_relations">Figure 1</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
 </div>
 <div class="paragraph">
-<p>The primary elements of executable plans shown are <em>workflow</em>, i.e. a structured representation of tasks to be performed along with relevant decision points, and <em>decision logic</em>, which provides input values for workflow decision points. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
+<p>The primary formal elements of executable plans are the <em>workflow</em>, i.e. a structured representation of tasks to be performed including decision points, and the <em>decision logic</em>, whose rules provide values for decisions, as well as declarations of <em>subject variables</em>. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
 </div>
 <div class="paragraph">
 <p>Plans are formally defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>, and visualised (including for authoring purposes) in <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Plan Visual Modelling Language (TP-VML)</a>. DLMs are written in the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language (DL)</a>, which is a high-level syntax.</p>
 </div>
 <div class="paragraph">
-<p>Both of these artefacts contain references to <em>subject variables</em>, i.e. ontic (real-world) subject state, such as <em>date_of_birth</em>, <em>weight</em>, <em>systolic_BP</em> and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be <em>tracked</em>, i.e. updated continuously from measuring devices. A collection of subject variables relevant to a plan or DLM is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.</p>
+<p>Both of these artefacts contain references to subject variables, i.e. ontic (real-world) subject state, such as <em>date_of_birth</em>, <em>weight</em>, <em>systolic_BP</em> and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be <em>tracked</em> over time. This might entail near real-time (i.e. seconds, minutes) update from measuring devices or simply repeated querying for routine measurements over time from the patient record. A collection of subject variables relevant to plans and DLMs is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.</p>
 </div>
 <div class="paragraph">
-<p>In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are required, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.</p>
+<p>In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.</p>
 </div>
 <div id="conceptual_framework" class="imageblock text-center text-center">
 <div class="content">
@@ -1007,7 +1007,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="sect2">
 <h3 id="_plans"><a class="anchor" href="#_plans"></a>5.2. Plans</h3>
 <div class="paragraph">
-<p>In the above, the top box (pink) illustrates a <em>plan definition</em>, used to express a pre-defined structured set of tasks. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_plan_structure" target="_blank" rel="noopener">openEHR Task Planning specification</a>. Work plans are used for various scenarios, including:</p>
+<p>In the above, the top box (pink) illustrates a <em>plan definition</em>, used to express a structured set of tasks. In openEHR these are expressed as Work Plans, defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html#_plan_structure" target="_blank" rel="noopener">openEHR Task Planning specification</a>. Work plans are used for various scenarios, including:</p>
 </div>
 <div class="ulist">
 <ul>

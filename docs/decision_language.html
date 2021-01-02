@@ -211,7 +211,7 @@
 <p><a href="https://specifications.openehr.org/tickets/SPECPROC-41" target="_blank" rel="noopener">SPECPROC-41</a>. Add Decision Language specification.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Dec 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>02 Jan 2021</p></td>
 </tr>
 </tbody>
 </table>
@@ -989,7 +989,7 @@ rules
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1210,10 +1210,10 @@ rules
 <p>The class <code>STATE_VARIABLE&lt;T&gt;</code> models the simplest case: a variable that may be queried once for an execution run. This is sufficient for subject variables that are not time-dependent, and will not change during the execution, such as <code>date_of_birth</code>, <code>sex</code>, and Boolean variables such as <code>is_type1_diabetic</code>. The <code><em>history</em></code> attribute contains the variable value (normally only one sample), while the features <code>is_available()</code> and <code>unavailable_reason()</code> provide a way for missing data to be checked for.</p>
 </div>
 <div class="paragraph">
-<p>For time-varying variables, the values must usually be tracked. The class <code>TRACKED_STATE_VARIABLE&lt;T&gt;</code> is is provided for this purpose, and adds the meta-attribute <code><em>currency</em></code>, a duration indicating the maximum age of the sample value to be useful or valid. The <code><em>history</em></code> attribute now contains variable samples over time. The function <code>value()</code> extracts the most recent available value, while <code>is_available()</code> is redefined to indicate whether a sufficiently recent value is availale.</p>
+<p>For time-varying variables, the values must usually be tracked. The class <code>TRACKED_STATE_VARIABLE&lt;T&gt;</code> is is provided for this purpose, and adds the meta-attribute <code><em>currency</em></code>, a duration indicating the maximum age of the sample value to be useful or valid. The <code><em>history</em></code> attribute now contains variable samples over time. The function <code>value()</code> extracts the most recent available value, while <code>is_available()</code> is redefined to indicate whether a sufficiently recent value is available.</p>
 </div>
 <div class="paragraph">
-<p>Many tracked variables are quantitative, and for these, extra facilities are provided via the class <code>TRACKED_QUANTITATIVE_VARIABLE&lt;T&gt;</code>, which adds the 'ranges' facility described earlier in <a href="#_variable_ranges">[_variable_ranges]</a>.</p>
+<p>Many tracked variables are quantitative, and for these, extra facilities are provided via the class <code>TRACKED_QUANTITATIVE_VARIABLE&lt;T&gt;</code>, which adds the ranges facility described earlier in <a href="#_quantitative_tracked_variables">Section 3.8.3</a>.</p>
 </div>
 <div class="paragraph">
 <p>Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the <code>STATE_VARIABLE&lt;T&gt;</code> or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:</p>
@@ -1332,16 +1332,41 @@ rules
 </div></div></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Real-world time of snapshot value.</p>
+<p>Real-world time at which <code><em>value</em></code> was last True, if available.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sample_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date_time_class" target="_blank" rel="noopener">Iso8601_date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Time at which this sample was obtained from its source (e.g. a patient record system, device, or user interaction).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unavailable_reason</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return True if <code><em>value</em></code> is not Void.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Inv_available</em>: <code>is_available() implies value /= Void</code></p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1408,7 +1433,7 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return True if there is a value in <code><em>history</em></code> whose <code><em>time</em></code> is within the duration of <code><em>currency</em></code> of the current moment.</p>
+<p>Return True if there is a member of <code><em>history</em></code> whose <code><em>time</em></code> is within the duration of <code><em>currency</em></code> of the current moment.</p>
 </div></div></td>
 </tr>
 </tbody>
