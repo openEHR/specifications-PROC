@@ -17,5 +17,5 @@ h|*Attributes*
 
 h|*0..1*
 |*commit_group*: `<<_dataset_commit_group_class,DATASET_COMMIT_GROUP>>`
-a|
+a|Optional information for multi-step form fill and commit interaction with the EHR.
 |===

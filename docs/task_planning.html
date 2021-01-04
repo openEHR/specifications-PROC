@@ -2508,16 +2508,17 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;T&gt;</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Abstraction of a real-world variable that represents a quality of a subject, e.g. patient diabetic status, date of birth etc.</p>
-</div>
-<div class="paragraph">
-<p>The generic parameter is a model type from an accessible model.</p>
+<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
 </div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_external_variable_class">EXTERNAL_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2526,42 +2527,9 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_value_snapshot_class">VALUE_SNAPSHOT</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Local history of values.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of variable.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Return True if there is a value in <code><em>history</em></code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unavailable_reason</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If <code><em>is_available</em></code> is False, potentially provide a reason.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong> (): <code>T</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Retrieve latest value, or null if none.</p>
+<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5841,7 +5809,9 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>commit_group</strong>: <code><a href="#_dataset_commit_group_class">DATASET_COMMIT_GROUP</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional information for multi-step form fill and commit interaction with the EHR.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
