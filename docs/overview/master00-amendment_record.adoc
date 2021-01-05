@@ -9,6 +9,7 @@
 |[[latest_issue]]0.5.0
 |{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document.
 |T Beale, +
+ R Chen, +
  K Salzman
 |[[latest_issue_date]]05 Jan 2021
 
