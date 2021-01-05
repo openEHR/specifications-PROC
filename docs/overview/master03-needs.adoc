@@ -78,6 +78,8 @@ In an application, the dose will have been pre-computed based on patient body su
 
 From a user perspective, if this information structure (in an appropriate unfilled template form) can be directly associated with the task within a plan in such a way as to enable easy filling in of the data and subsequent recording in the patient record, no further work is required to update the record at plan (or task) completion. Similar situations require display of specific data sets as part of performing a task. However, if this is not the case, plan automation will not significantly reduce clinician documentation burden, and may have limited value. Worse, if there is no ability to associate information retrieval and recording actions with their real world tasks, plan authors will be forced to create tasks within plans dedicated to these information system interactions. This will have the effect of greatly increasing the size of many plans while reducing their comprehensibility.
 
+In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many partical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in native openEHR environments, where archetypes and templates enable convenient domain-level data set definition, whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other forms or similar.
+
 == Cognitive Model
 
 === The Co-pilot Paradigm
