@@ -27,145 +27,28 @@ Automated support for the above would significantly aid the short-term, single c
 
 * _coordination_ of:
 ** team members across departments (via e.g. plan-generated notifications); e.g. acute stroke care;
-** workers undertaking care spanning multiple shifts and personnel, e.g. multi-week chemotherapy administration.
+** workers undertaking care spanning multiple shifts and personnel, e.g. multi-week chemotherapy administration;
+** longer term care, e.g. pregnancy, chronic disease monitoring.
 
-Another type of support that process automation can provide is to enable _on-the-fly interaction with the EHR_, including retrieval and recording. The idea here is to _integrate_ EHR recording (well known as a time-consuming activity _additional_ to clinical care) with execution of clinical work, such that when the work is done, the EHR is up-to-date, or very close to it.
+A further clinical need which process automation can potentially address is reduction of _documentation burden_, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and seeing more patients.
+
+Process automation could address the disconnect between process and documenting by supporting _fine-grained, on-the-fly interaction with the EHR_, such that as clinical work proceeds, documentation is also being done incrementally. When the work is done, the EHR is up-to-date, or very close to it, alowing clinicians to move immediately to the next patient.
 
 A final category of requirement for clinical process automation is _training_. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one's professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.
 
-The sections below elucidate some of the topics mentioned above.
+The sections below elucidate some of these topics.
 
-== Representation of Care Management Artefacts
+== Implementing Best Practices
 
-Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the above needs, including the following:
+Best practices in healthcare, especially for complex conditions and treatment pathways with co-morbidities, but also routine activities such as dialysis and angina diangosis, are increasingly codified in the form of Care Pathways, Clinical Practice Guidelines (CPGs) and related artefacts published by professional colleges, universities, teaching hospitals, and national institutes. These artefacts are based on outcomes-based and other kinds of research that have determined which specific approaches to care produce better and more repeatable outcomes for patients. They are usually published as PDF files or HTML websites containing a modicum of structural visualisation of decision pathways; they may contain hundreds of details to do with particular drugs, dosing, analyte levels, and investigational pathways.
 
-* _care pathway_: evidence-based plan of a complex care condition;
-* _clinical practice guideline (CPG)_: evidence-based protocol for a specific clinical task;
-* _order set_: 'template' set of combined orders for tests, medications etc relating to a condition;
-* _care plan_: descriptive plan for individual patient care, typically either oriented to in-patient care or post-discharge nursing care.
+One of the primary obstructions to the routine uptake of best practices publications is the inability to integrate them directly into the cognitive care environment of working clinicians. Their use relies on reading prior to care, and either memorisation or else use on a screen or in printed form at the point of care. Due to this basic difficulty, many guidelines are only used in a patchy way depending on individual clinician interest, spare time and psychological factors cite:[JCI_CPGs_2016]. Many of the major benefits are consequently not realised until they are incorporated into mainstream medical and nursing training, at which point they become the norm. The time lag for this to occur has been famously stated as being on average 17 years cite:[Morris_Wooding_Grant_2011], and is thought to range from 10 to 25 years.
 
-What these artefacts are considered to consist of within the openEHR process architecture, and how they interrelate are described below.
+It has been recognised for some years that if best practice pathways and guidelines could be made computable in the form of plan and/or decision structures, they could be incorporated _directly into clinical applications in use at point of care_, greatly reducing the delay from research to use to potentially weeks or months rather than a decade or more via educational or manual dissemination routes.
 
-=== Clinical Practice Guidelines (CPGs) and Care Pathways
+If formalisation of natural language guidelines can succeed, a new possibility of major importance appears: the potential for the primary authoring of pathways and guidelines to be undertaken via tools that create formal expressions directly. This opens up further possibilities such as clinical guideline simulation, testing, and formal verification, which could revolutionise the both the production as well as the translation to point of care of best practices.
 
-_Clinical practice guidelines_ (CPGs) and _care pathways_ are two kinds of published, evidence-based artefact used in clinical medicine, designed as structured aids to providing care.
-
-NOTE: in openEHR documents and specifications, the term _guideline_ is used as a synonym for clinical practice guideline.
-
-A common definition of a guideline is (emphasis added):
-
-* a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for _specific clinical circumstances_ ({cemb_oxford}[Oxford Centre for Evidence-based Medicine^]).
-
-Guidelines are usually either _therapeutic_, i.e. oriented to describing a procedure e.g. intubation, asthma management, or _diagnostic_, such as for diagnosing various forms of angina. Many diagnostic guidelines are relatively simple scores based on a number of patient variables, whose aim is to stratify risk into categories corresponding to type of intervention. Examples of guidelines include:
-
-* {chad2ds2vasc_score}[CHA2DS2–VASc stroke risk score^];
-* {nice_uk_stable_angina}[UK NICE Stable angina management guideline^];
-* {acep_covid_19_severity_tool_pdf}[American College of Emergency Physicians (ACEP) Covid19 Severity Classification tool^];
-* Australian Clinical Guidelines for the Diagnosis and Management of Atrial Fibrillation 2018 cite:[Afib_NHFA_CSANZ_2018].
-
-The notion of care pathway, also known by names such as 'integrated care pathway' (ICP) and 'critical care pathway', has various definitions in healthcare, such as summarised by the {e_p_a_care_pathways}[European Pathway Association (E-P-A)^] and many other authors and organisations. Based on these, we take a care pathway to be:
-
-* a structured description of _complex care_ based on evidence, oriented to managing a particular primary condition;
-* patient-centric (rather than institution- or procedure-centric) and therefore multi-disciplinary and cross-enterprise.
-
-A care pathway is thus a higher-level entity aimed at achieving a _patient outcome_, whereas a guideline is aimed at performing a more specific professional task. Consequently, care pathways typically refer to one or more guidelines that describe in detail how to deal with specific situations within the management of the condition (citenp:[Schrijvers_et_al2012], citenp:[Vanhaecht_et_al2007]). Care pathway examples include:
-
-* {nice_uk_pathways}[UK NICE Sepsis pathway^];
-* {cancer_council_australia_breast}[Cancer Council Australia Breast cancer pathway^];
-* {ihc_stroke_pathway}[Intermountain Healthcare Acute Stroke CPM^].
-
-Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There are a couple of important issues that affect potential formalisation.
-
-The first is the problem of _partial coverage_. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.
-
-The second is the problem of _adaptation_, which can be divided into two sub-problems. The first is that each pathway or guideline is designed to address _one primary condition_ (sepsis, ARDS, angina etc) and will not generally be applicable unmodified to a real patient, due to patient specifics including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. We might term this as a _merge_ problem since it is essentially a question of arriving at a safe pathway for an actual patient that accounts for all of the patient's current conditions (and therefore multiple applicable care pathways), medications and phenotypic specifics. Secondly, local practice factors such as formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines. We can understand this as a _localisation_ problem.
-
-Due to the merge problem, _more than one pathway may apply to a patient_, e.g. one for chronic care and one for an acute situation. There may be conflicts between the pathways - commonly in medications recommendations - but also between the pathways and the other patient specificities. Well-written pathways and CPGs usually include obvious contra-indications for medications (e.g. being on anti-rejection medications post transplant conflicts with some chemotherapy drug classes), common phenotypic features (e.g. being female, being allergic to taxanes), and patient history (e.g. being pregnant). There is no guarantee that any given pathway or guideline covers all possible conflicts, hence manual _inspection, adjustment and customisation_ is almost always required. Localisation factors often means further modifications or constraints.
-
-For convenience, we term a care pathway- or guideline-like artefact for a specific patient, however arrived at and incorporating any necessary conflict resolution, merging and localisation, a _patient plan_.
-
-With respect to the challenge of applying information technology to process-oriented care, key questions to do with published (natural language) pathways and guidelines are:
-
-* the extent to which they are formally representable, including contra-indications and conflicts;
-* how conflict, merge and localisation is solved to produce an automatable patient plan.
-
-We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. A survey of published pathways and guidelines shows that they consist of:
-
-* _goal_ (pathway) or _purpose_ (guideline);
-* _indications_, i.e. clinical pre-conditions for use;
-* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or parallel, and which may include activities relating to:
-** orders or order sets;
-** medication administration;
-* _classification rules_ that convert a real-world value to a classification for the purpose of the guideline, e.g.:
-** SpO2 of 88% -> 'critical' in a Covid19 assessment tool;
-** Systolic pressure > 160 mm[Hg] -> 'high', in a hypertension guideline;
-* decision rules, flowcharts and tables that act as related _rule-sets_, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N variables.
-
-Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
-
-=== Order Set
-
-Within the above-described artefacts references to so-called _order sets_ may exist. An order set is generally understood as:
-
-* a set of orders for diagnostic tests and/or medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;
-* potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;
-* descriptive meta-data, including authors, history, evidence base, etc.
-
-In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'prescriptions', while the second is a candidate for representation as a formalised plan. 
-
-In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a _condition-specific set of orders_ with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.
-
-=== Care Plan
-
-The care plan is a common artefact within clinical care, originating in nursing. Definitions include {rn_central_care_plan}[a nursing-oriented definition from RN-central^] and one from the {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
-
-* _care plan_ - a dynamic, personalised plan, relating to one or more specified health issues, that describes patient objectives and goals, defining diagnoses and steps for resolution and monitoring.
-
-Historically, a care plan has been a _description_ of intended care that may be followed by relevant staff e.g. home-visit nurses. A patient may have more than one care plan, and the contents of a care plan may be informed by one or more care pathways and/or CPGs, or might be 'standard local practice'. A care plan may even be _ad hoc_ in the case of a patient type with no well-described models of care available.
-
-Within the openEHR process architecture, a care plan is considered a structured artefact whose contents are consumed by human actors, rather than being a directly automatable entity. It is assumed to include items such as:
-
-* identifier and purpose;
-* descriptive text;
-* potentially references to CPG(s) or care pathway(s) that apply, with any modifictions necessary;
-* goals and targets;
-* relevant problems and diagnoses;
-* interventions: medication and other orders (and potentially order sets);
-* monitoring criteria / instructions.
-
-A care plan may be formalised in the sense that the referenced CPG(s) and/or care pathway are formalised as a personalised patient plan (per above).
-
-=== Artefact Relationships and Formalisation
-
-The clinical artefacts described so far may be classified as follows, for the purposes of potential computable representation:
-
-* _automatable artefacts_: care pathways, guidelines, order set administration plans;
-* _structured artefacts_: care plans.
-
-Automatable artefacts are assumed to consists of at least three kinds of element:
-
-* _descriptive_: structured description, identification etc;
-* _workflow_: a representation of tasks, activities etc;
-* _decision logic_: a representation of rules, ultimately based on a combination of _subject variable_ values and clinical evidence based logic, ranges, threshold values etc. 
-
-None of the above artefacts acts directly as an _executable plan_ for a specific subject (i.e. patient). Care pathways and guidelines each relate to a single isolated condition or procedure, whereas the general situation for a real patient is multiple conditions plus phenotypic specificities (e.g. allergies) plus current situation (e.g. being pregnant) plus non-clinical elements (e.g. patient preferences, type of health plan cover etc). Adaptation and merging is in general unavoidable.
-
-Although there is no commonly recognised term for an automatable patient-specific plan, we assume its existence and term such an artefact a _patient plan_ for convenience, and make the assumption that for the purposes of formal representation it is a combination of:
-
-* a care plan that describes the intended care approach (may be minimal in some circumstances, e.g. emergency);
-* a potentially executable pathway of the same _formal representation_ as a care pathway or guideline, but whose content is adapted from relevant automatable CPGs and/or care pathways, where available.
-
-Since a computable patient plan may originate from a full care pathway, such as for complex pregnancy, or a simple guideline, such as {chad2ds2vasc_score}[CHA2DS2–VASc^], it may express any level of clinical detail.
-
-The various clinical artefacts described above and related computational entities, along with their relationships, can be visualised as follows.
-
-[.text-center]
-.Care management artefacts
-image::{diagrams_uri}/artefact_relations.svg[id=care_mgt_artefact_relations, align="center"]
-
-In the diagram, the term _executable plan_ is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.
-
-Entities shown with dotted lines are not assumed to exist in all real world clinical situations. That is, care may be being provided for a patient for which no published care pathway is available, and only limited published guidelines. This would imply no or limited availability of condition-specific executable plans for use in constructing an executable patient plan. Nevertheless, the latter could be constructed _de novo_, rather than by adaptation of library pathways or guidelines.
+The ability to express best practice guidelines in a computable form thus lies at the heart of the requirements for automation of care process. The various kinds of artefacts are described in detail in <<_care_process_artefacts>>.
 
 == Long-running Processes
 
@@ -199,7 +82,12 @@ From a user perspective, if this information structure (in an appropriate unfill
 
 === The Co-pilot Paradigm
 
-Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs. 
+Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.
+
+The co-pilot paradigm has direct consequences for formal representation of plans and decision-making, including:
+
+* a worker may treat computed inferences (i.e. rule results etc) as recommendations that may be overridden; this implies a specific kind of interaction with a plan automation system unlike pure automatic computation (as would be used in an industrial process for example);
+* a worker may request the chain of logical justification of a particular rule result; this implies that rule execution must be done so that the execution trace is available for inspection.
 
 === Voice-based HCI
 
@@ -209,3 +97,10 @@ One kind of technology that is becoming routine is voice-based human/computer in
 * it largely removes the problem of maintaining the _sterile field_ around a patient that would otherwise be jeapordised by multiple workers touching keyboards and touchscreens.
 
 Voice control is also likely to be crucial to enabling a clinical process support system to operate as an intelligent co-pilot rather than an overbearing presence in the work environment, since it starts to emulate the normal conversational abilities of human workers, via which any principal worker may ask for help as needed, but also limit system intervention when it is not needed.
+
+== Independenace of Reusable Guidelines from Legacy HIT Environments
+
+One of the hardest problems to solve historically with respect to computable guidelines and pathways has been how to author them so as to reference needed external data about the subject, but to do so independent of any particular back-end system environment. The general situation is that the data items, which we term _subject variables_, needed by a plan or guideline are populated from numerous kinds of back-end systems and products, including EMR systems, disease registers, departmental systems, research systems and increasingly, real-time devices. Each of these have their own data models, terminologies and access methods. Although there are standards for accessing such systems including standards from HL7 (HL7v2, CDA, FHIR), IHE (XDS), OMG, and IEEE these are themselves used in different forms and 'profiles', and are not used on all systems, particularly smaller research or practitioner-specific systems. Additionally, which standards are in use in particular places changes over time.
+
+In order to ensure computable plans and guidelines are independent of the heterogeneity of both back-end systems and ever-changing data standards, an approach is needed such that subject variables are _declared symbolically_ within the computable representation, and are mapped to local system environments in a separate location, such as a dedicated service.
+

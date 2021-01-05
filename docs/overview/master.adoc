@@ -28,9 +28,10 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 
 == Acknowledgements
 
-=== Primary Author
+=== Primary Authors
 
-* Thomas Beale, Ars Semantica; openEHR Foundation Management Board.
+* Thomas Beale, Ars Semantica, openEHR International Board, UK;
+* Rong Chen MD, PhD, Cambio CDS, Sweden
 
 === Contributors
 
@@ -43,6 +44,7 @@ The work reported in this specification has been funded by the following organis
 * City of Moscow
 * Better d.o.o., Slovenia
 * Ars Semantica, UK
+* Cambio CDS, Sweden
 
 //
 // --------------------------------------------- TOC -----------------------------------------------
@@ -56,9 +58,10 @@ The work reported in this specification has been funded by the following organis
 include::master01-preface.adoc[leveloffset=+1]
 include::master02-introduction.adoc[leveloffset=+1]
 include::master03-needs.adoc[leveloffset=+1]
-include::master04-deployment_paradigm.adoc[leveloffset=+1]
-include::master05-conceptual_architecture.adoc[leveloffset=+1]
-include::master06-deployment_architectures.adoc[leveloffset=+1]
+include::master04-artefacts.adoc[leveloffset=+1]
+include::master05-deployment_paradigm.adoc[leveloffset=+1]
+include::master06-conceptual_architecture.adoc[leveloffset=+1]
+include::master07-deployment_architectures.adoc[leveloffset=+1]
 
 //
 // --------------------------------------------- REFERENCES -----------------------------------------------
