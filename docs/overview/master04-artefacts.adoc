@@ -42,7 +42,7 @@ A care pathway is thus a higher-level entity aimed at achieving a _patient outco
 
 Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There are a couple of important issues that affect potential formalisation.
 
-The first is the problem of _partial coverage_. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.
+The first is the problem of _partial coverage_. There is  no guarantee that any particular condition will have a published care pathway or guidelines for all of its subordinate activities. Coverage is likely to be partial, or sometimes completely absent. Consequently, the definition of a pathway for a particular patient (type) may have to be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.
 
 The second is the problem of _adaptation_, which can be divided into two sub-problems. The first is that each pathway or guideline is designed to address _one primary condition_ (sepsis, ARDS, angina etc) and will not generally be applicable unmodified to a real patient, due to patient specifics including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. We might term this as a _merge_ problem since it is essentially a question of arriving at a safe pathway for an actual patient that accounts for all of the patient's current conditions (and therefore multiple applicable care pathways), medications and phenotypic specifics. Secondly, local practice factors such as formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines. We can understand this as a _localisation_ problem.
 
@@ -81,7 +81,7 @@ In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'pres
 
 In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a _condition-specific set of orders_ with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.
 
-=== Care Plan
+== Care Plan
 
 The care plan is a common artefact within clinical care, originating in nursing. Definitions include {rn_central_care_plan}[a nursing-oriented definition from RN-central^] and one from the {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
 

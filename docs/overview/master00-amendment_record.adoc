@@ -11,7 +11,7 @@
 |T Beale, +
  R Chen, +
  K Salzman
-|[[latest_issue_date]]05 Jan 2021
+|[[latest_issue_date]]07 Jan 2021
 
 |===
 

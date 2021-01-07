@@ -35,9 +35,10 @@
 </li>
 <li><a href="#_introduction">2. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#_openehr_process_and_planning_artefacts">2.1. openEHR Process and Planning Artefacts</a></li>
+<li><a href="#_openehr_process_and_planning_specifications">2.1. openEHR Process and Planning Specifications</a></li>
 <li><a href="#_prior_art">2.2. Prior Art</a></li>
-<li><a href="#_other_standards">2.3. Other Standards</a></li>
+<li><a href="#_relationship_to_standards">2.3. Relationship to Standards</a></li>
+<li><a href="#_theoretical_references">2.4. Theoretical References</a></li>
 </ul>
 </li>
 <li><a href="#_needs">3. Needs</a>
@@ -52,20 +53,17 @@
 <li><a href="#_voice_based_hci">3.5.2. Voice-based HCI</a></li>
 </ul>
 </li>
-<li><a href="#_independenace_of_reusable_guidelines_from_legacy_hit_environments">3.6. Independenace of Reusable Guidelines from Legacy HIT Environments</a></li>
+<li><a href="#_independence_of_reusable_guidelines_from_legacy_hit_environments">3.6. Independence of Reusable Guidelines from Legacy HIT Environments</a></li>
 </ul>
 </li>
 <li><a href="#_care_process_artefacts">4. Care Process Artefacts and their Formalisation</a>
 <ul class="sectlevel2">
 <li><a href="#_clinical_practice_guidelines_cpgs_and_care_pathways">4.1. Clinical Practice Guidelines (CPGs) and Care Pathways</a></li>
-<li><a href="#_order_set">4.2. Order Set</a>
+<li><a href="#_order_set">4.2. Order Set</a></li>
+<li><a href="#_care_plan">4.3. Care Plan</a></li>
+<li><a href="#_formalisation">4.4. Formalisation</a>
 <ul class="sectlevel3">
-<li><a href="#_care_plan">4.2.1. Care Plan</a></li>
-</ul>
-</li>
-<li><a href="#_formalisation">4.3. Formalisation</a>
-<ul class="sectlevel3">
-<li><a href="#_general_vision">4.3.1. General Vision</a></li>
+<li><a href="#_general_vision">4.4.1. General Vision</a></li>
 </ul>
 </li>
 </ul>
@@ -203,7 +201,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  R Chen,<br>
  K Salzman</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>05 Jan 2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Jan 2021</p></td>
 </tr>
 </tbody>
 </table>
@@ -346,17 +344,17 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>2. Introduction</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_openehr_process_and_planning_artefacts"><a class="anchor" href="#_openehr_process_and_planning_artefacts"></a>2.1. openEHR Process and Planning Artefacts</h3>
+<h3 id="_openehr_process_and_planning_specifications"><a class="anchor" href="#_openehr_process_and_planning_specifications"></a>2.1. openEHR Process and Planning Specifications</h3>
 <div class="paragraph">
 <p>openEHR provides specifications for various models and languages to address the area of process and guideline-driven healthcare. These are as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A <em>plan</em> definition formalism: the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning specification</a>;</p>
+<p>A <em>plan</em> definition formalism: the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning specification (TP)</a>;</p>
 </li>
 <li>
-<p>A <em>guideline and rule</em> language: the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language specification</a>;</p>
+<p>A <em>guideline and rule</em> language: the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language specification (DL)</a>;</p>
 </li>
 <li>
 <p>An <em>expression language</em>, which forms the basis for writing expressions and rules, defined by the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language (EL)</a>;</p>
@@ -370,27 +368,33 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Together these enable the authoring of care pathways, guidelines, executable care plans and in-application active forms. There is also an existing guideline language, <a href="https://specifications.openehr.org/releases/CDS/latest/GDL2.html" target="_blank" rel="noopener">Guideline Definition Language 2 (GDL2)</a>, which defines an earlier self-standing guideline format, and which can be replaced by the DLM format GDL3 guideline.</p>
+<p>Together these enable the authoring of care pathways, guidelines, executable care plans and in-application active forms. There is also an existing guideline language, <a href="https://specifications.openehr.org/releases/CDS/latest/GDL2.html" target="_blank" rel="noopener">Guideline Definition Language 2 (GDL2)</a>, which defines an earlier self-standing guideline format, on which some self-standing guidelines solutions are built. In some circumstances, such systems may be equivalently implemented in the future using TP/DL/EL instead of GDL2.</p>
+</div>
+<div class="paragraph">
+<p>Many of the formal semantics of the DLM formalism comes from experience with existing GDL2 deployments.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_prior_art"><a class="anchor" href="#_prior_art"></a>2.2. Prior Art</h3>
 <div class="paragraph">
-<p>openEHR Decision Language may be compared to other languages developed in the health arena for expressing 'medical logic', including <a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">HL7 Arden Syntax</a>, Guideline Interchange Format (<a href="#GLIF">Ohno-Machado et al.&#44; 1998</a>), ProForma (<a href="#SuttonFox2003">Sutton &amp; Fox&#44; 2003</a>), as well as Decision Languages such as <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" target="_blank" rel="noopener">HL7 Gello</a>. These languages were not directly used, for various reasons including:</p>
+<p>The openEHR Task Planning specification is conceptually close to the YAWL language (Yet Another Workflow Language) (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), as well as to the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a> and <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> standards, which support different flavours of workflow. Many ideas were adopted and/or adapted from YAWL, of which the only deficiencies are: being agnostic on rule language and data persistence (both of centra importance in healthcare IT), and no longer being actively maintained. The BPMN and CMMN standards have a weaker theoretical foundation, and were not originally conceived as being business analysis rather than executable formalisms; they also have only limited worker definition and allocation semantics, are weak on data persistence and have a rules expression formalism (<a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a>) that is relatively under-developed or tested in healthcare.</p>
+</div>
+<div class="paragraph">
+<p>openEHR GDL2 and the more recent Decision Language may be compared to other languages developed in the health arena for expressing medical logic and rules, including <a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">HL7 Arden Syntax</a>, Guideline Interchange Format (<a href="#GLIF">Ohno-Machado et al.&#44; 1998</a>), ProForma (<a href="#SuttonFox2003">Sutton &amp; Fox&#44; 2003</a>), as well as Decision Languages such as <a href="https://www.hl7.org/implement/standards/product_brief.cfm?product_id=5" target="_blank" rel="noopener">HL7 Gello</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">OMG DMN</a>, and the HL7 <a href="https://cql.hl7.org" target="_blank" rel="noopener">Clinical Quality Language (CQL)</a>. These languages were not directly used, for various reasons including:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>they do not support any distinction of ontic versus epistemic variables;</p>
+<p>they do not support a clear distinction of <a href="#_subject_proxy_service">ontic versus epistemic subject variables</a>;</p>
 </li>
 <li>
-<p>none have an easily extensible value referencing mechanism;</p>
+<p>lack of an integrated plan / workflow formalism (all except DMN);</p>
 </li>
 <li>
-<p>some are too procedural (Arden, GLIF);</p>
+<p>some are too procedural rather then declarative (Arden, GLIF);</p>
 </li>
 <li>
-<p>current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);</p>
+<p>current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and now obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);</p>
 </li>
 <li>
 <p>none of them support an integrated representation of the 'semantic stack' of process representation, decision logic, proxy data and data access;</p>
@@ -401,16 +405,98 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Nevertheless, various elements of Arden provided useful inspiration for the formalism described here. The Data Access Binding described here may be understood as a solution to the so-called 'curly braces problem' of Arden (<a href="#Samwald_arden_2012">Samwald&#44; Fehre&#44; de Bruin&#44; &amp; Adlassnig&#44; 2012</a>), i.e. the need to be able to bind rule logic to real-world variables. The ProForma language and underlying scientific analysis also has much to recommend it, and has been used as an important theoretical input to the specifications developed for openEHR.</p>
-</div>
-<div class="paragraph">
-<p>Many of the formal semantics of the DLM formalism comes from experience with existing GDL2 deployments.</p>
+<p>Nevertheless, the design approach of Arden provided useful inspiration for the formalism described here, and indeed the Subject Proxy approach used in openEHR may be understood as a solution to the so-called 'curly braces problem' of Arden (<a href="#Samwald_arden_2012">Samwald&#44; Fehre&#44; de Bruin&#44; &amp; Adlassnig&#44; 2012</a>), i.e. the need to be able to bind rule logic to real-world variables. The ProForma language and underlying scientific analysis also has much to recommend it, and has been used as an important theoretical input to the specifications developed for openEHR. The <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>, although lacking a workflow language, provided useful insights including on temporal logic operators (originally described in <a href="#Allen_1984">Allen (1984)</a>), data binding and general expression language design.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_standards"><a class="anchor" href="#_other_standards"></a>2.3. Other Standards</h3>
+<h3 id="_relationship_to_standards"><a class="anchor" href="#_relationship_to_standards"></a>2.3. Relationship to Standards</h3>
 <div class="paragraph">
-<p>Other relevant formalisms include the OMG <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> standards, and the <a href="https://cql.hl7.org" target="_blank" rel="noopener">HL7 CQL standard</a>. The former group of standards are starting (as of 2020) to find use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses some of the same issues as openEHR DL/EL.</p>
+<p>The following table indicates the approximate correspondences between the openEHR process specifications and various published standards.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 22.2222%;">
+<col style="width: 22.2222%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">openEHR Formalism</th>
+<th class="tableblock halign-left valign-top">HL7 standard</th>
+<th class="tableblock halign-left valign-top">OMG standard</th>
+<th class="tableblock halign-left valign-top">Other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">Task Planning (TP)</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a>, <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">Decision Language (DL)</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cql.hl7.org" target="_blank" rel="noopener">CQL</a>, FHIRpath?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.hl7.org/special/Committees/arden/index.cfm" target="_blank" rel="noopener">Arden</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/" target="_blank" rel="noopener">ProForma</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">Expression Language (EL)</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cql.hl7.org" target="_blank" rel="noopener">CQL</a> ELM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">DMN</a> FEEL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(numerous)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_subject_proxy_service" target="_blank" rel="noopener">Subject Proxy Service (SPS)</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(SDMN)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The OMG group of standards are starting (as of 2020) to find use in the healthcare arena under the banner <a href="http://bpm-plus.org/" target="_blank" rel="noopener">BPM+</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_theoretical_references"><a class="anchor" href="#_theoretical_references"></a>2.4. Theoretical References</h3>
+<div class="paragraph">
+<p>Numerous publications have appeared over the last 30 years on process automation, decision support and related subjects, including within healthcare. A small number of seminal publications have been particularly valuable in the development of the openEHR Process-related specifications, including <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a> and <a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a>.</p>
+</div>
+<div class="paragraph">
+<p>The first of these presented an often-cited diagram capturing the existence and challenges of representation between the various elements needed in computable guideline technology, shown below.</p>
+</div>
+<div id="rector_model_interfaces" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/diagrams/Rector_model_interfaces.svg" alt="Rector model interfaces">
+</div>
+<div class="title">Figure 1. Interfaces, models and corresponding repositories, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
+</div>
+<div class="paragraph">
+<p>The enumerated many challenges relevant today, including the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the need for a coherent, symbolic means of referring to real-world entities from guidelines to patient data sources (originally: Need  for  inferential  abstractions; Ambiguity  of    operational  meaning);</p>
+</li>
+<li>
+<p>the need to abstract away differing concrete representations of subject data e.g. 'blood pressure' in back-end systems (originally: Differences  in  encapsulation  and  form  of  expression);</p>
+</li>
+<li>
+<p>the need to be able to convert quantitative data values to ranges, e.g. blood pressure of 190/110 to 'elevated blood pressure';</p>
+</li>
+<li>
+<p>computation of a subject value from underlying values via a formula, e.g. BMI from patient height and weight;</p>
+</li>
+<li>
+<p>temporal predicates, e.g. 'rising blood pressure', 'being on steroids for 3 months' etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This paper presaged the notion of the 'vritual medical record', which itself may be seen as a precursor for the Subject Proxy concept used here.</p>
 </div>
 </div>
 </div>
@@ -554,7 +640,7 @@
 <div class="content">
 <img src="overview/images/cyclophosphamide_instruction.png" alt="cyclophosphamide instruction">
 </div>
-<div class="title">Figure 1. Detailed task instruction</div>
+<div class="title">Figure 2. Detailed task instruction</div>
 </div>
 <div class="paragraph">
 <p>In an application, the dose will have been pre-computed based on patient body surface area. The administration description will usually be recorded in a structured way, e.g. <code>{medication=cyclophosphamide; dose=1mg; route=IV; timing=30 mins; method=with 0.9% NaCl, &#8230;&#8203;}</code>.</p>
@@ -608,7 +694,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_independenace_of_reusable_guidelines_from_legacy_hit_environments"><a class="anchor" href="#_independenace_of_reusable_guidelines_from_legacy_hit_environments"></a>3.6. Independenace of Reusable Guidelines from Legacy HIT Environments</h3>
+<h3 id="_independence_of_reusable_guidelines_from_legacy_hit_environments"><a class="anchor" href="#_independence_of_reusable_guidelines_from_legacy_hit_environments"></a>3.6. Independence of Reusable Guidelines from Legacy HIT Environments</h3>
 <div class="paragraph">
 <p>One of the hardest problems to solve historically with respect to computable guidelines and pathways has been how to author them so as to reference needed external data about the subject, but to do so independent of any particular back-end system environment. The general situation is that the data items, which we term <em>subject variables</em>, needed by a plan or guideline are populated from numerous kinds of back-end systems and products, including EMR systems, disease registers, departmental systems, research systems and increasingly, real-time devices. Each of these have their own data models, terminologies and access methods. Although there are standards for accessing such systems including standards from HL7 (HL7v2, CDA, FHIR), IHE (XDS), OMG, and IEEE these are themselves used in different forms and 'profiles', and are not used on all systems, particularly smaller research or practitioner-specific systems. Additionally, which standards are in use in particular places changes over time.</p>
 </div>
@@ -725,7 +811,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There are a couple of important issues that affect potential formalisation.</p>
 </div>
 <div class="paragraph">
-<p>The first is the problem of <em>partial coverage</em>. There is  no guarantee that any particular condition will have a published care pathway, consequently, the definition of a pathway for a particular patient (type) may be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.</p>
+<p>The first is the problem of <em>partial coverage</em>. There is  no guarantee that any particular condition will have a published care pathway or guidelines for all of its subordinate activities. Coverage is likely to be partial, or sometimes completely absent. Consequently, the definition of a pathway for a particular patient (type) may have to be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.</p>
 </div>
 <div class="paragraph">
 <p>The second is the problem of <em>adaptation</em>, which can be divided into two sub-problems. The first is that each pathway or guideline is designed to address <em>one primary condition</em> (sepsis, ARDS, angina etc) and will not generally be applicable unmodified to a real patient, due to patient specifics including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. We might term this as a <em>merge</em> problem since it is essentially a question of arriving at a safe pathway for an actual patient that accounts for all of the patient&#8217;s current conditions (and therefore multiple applicable care pathways), medications and phenotypic specifics. Secondly, local practice factors such as formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines. We can understand this as a <em>localisation</em> problem.</p>
@@ -819,8 +905,9 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="paragraph">
 <p>In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a <em>condition-specific set of orders</em> with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.</p>
 </div>
-<div class="sect3">
-<h4 id="_care_plan"><a class="anchor" href="#_care_plan"></a>4.2.1. Care Plan</h4>
+</div>
+<div class="sect2">
+<h3 id="_care_plan"><a class="anchor" href="#_care_plan"></a>4.3. Care Plan</h3>
 <div class="paragraph">
 <p>The care plan is a common artefact within clinical care, originating in nursing. Definitions include <a href="http://www.rncentral.com/nursing-library/careplans/" target="_blank" rel="noopener">a nursing-oriented definition from RN-central</a> and one from the <a href="https://www.iso.org/standard/58102.html" target="_blank" rel="noopener">ISO Continuity of Care standard ('contsys')</a>. From these we synthesise the following definition:</p>
 </div>
@@ -866,11 +953,10 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>A care plan may be formalised in the sense that the referenced CPG(s) and/or care pathway are formalised as a personalised patient plan (per above).</p>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_formalisation"><a class="anchor" href="#_formalisation"></a>4.3. Formalisation</h3>
+<h3 id="_formalisation"><a class="anchor" href="#_formalisation"></a>4.4. Formalisation</h3>
 <div class="sect3">
-<h4 id="_general_vision"><a class="anchor" href="#_general_vision"></a>4.3.1. General Vision</h4>
+<h4 id="_general_vision"><a class="anchor" href="#_general_vision"></a>4.4.1. General Vision</h4>
 <div class="paragraph">
 <p>The clinical artefacts described so far may be classified as follows, for the purposes of potential computable representation:</p>
 </div>
@@ -926,7 +1012,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/artefact_relations.svg" alt="artefact relations">
 </div>
-<div class="title">Figure 2. Care management artefacts</div>
+<div class="title">Figure 3. Care management artefacts</div>
 </div>
 <div class="paragraph">
 <p>In the diagram, the term <em>executable plan</em> is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.</p>
@@ -1002,7 +1088,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/workflow_execution_paradigm.svg" alt="workflow execution paradigm" width="55%">
 </div>
-<div class="title">Figure 3. Plan execution paradigm</div>
+<div class="title">Figure 4. Plan execution paradigm</div>
 </div>
 </div>
 <div class="sect2">
@@ -1039,7 +1125,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/distributed_plan_execution.svg" alt="distributed plan execution" width="80%">
 </div>
-<div class="title">Figure 4. Distributed plan execution</div>
+<div class="title">Figure 5. Distributed plan execution</div>
 </div>
 <div class="paragraph">
 <p>The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is <em>some</em> means of enabling the various parts of a plan to execute in the various work-places required.</p>
@@ -1056,7 +1142,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="sect2">
 <h3 id="_overview"><a class="anchor" href="#_overview"></a>6.1. Overview</h3>
 <div class="paragraph">
-<p>Within <a href="#care_mgt_artefact_relations">Figure 2</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
+<p>Within <a href="#care_mgt_artefact_relations">Figure 3</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
 </div>
 <div class="paragraph">
 <p>The primary formal elements of executable plans are the <em>workflow</em>, i.e. a structured representation of tasks to be performed including decision points, and the <em>decision logic</em>, whose rules provide values for decisions, as well as declarations of <em>subject variables</em>. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
@@ -1074,7 +1160,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/conceptual_model.svg" alt="conceptual model">
 </div>
-<div class="title">Figure 5. openEHR conceptual framework for care pathways and guidelines</div>
+<div class="title">Figure 6. openEHR conceptual framework for care pathways and guidelines</div>
 </div>
 </div>
 <div class="sect2">
@@ -1114,7 +1200,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/work_plan_structure.svg" alt="work plan structure">
 </div>
-<div class="title">Figure 6. Work Plan general structure</div>
+<div class="title">Figure 7. Work Plan general structure</div>
 </div>
 <div class="paragraph">
 <p>Using this model, plans for any of the above situations can be defined by domain experts using dedicated graphical tools. Work Plans are <em>executed</em> by a <em>plan engine</em>, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker&#8217;s process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.</p>
@@ -1126,7 +1212,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/RCHOPS21-simple.svg" alt="RCHOPS21 simple">
 </div>
-<div class="title">Figure 7. Work plan for RCHOPS chemotherapy administration</div>
+<div class="title">Figure 8. Work plan for RCHOPS chemotherapy administration</div>
 </div>
 <div class="paragraph">
 <p>One of the key formal elements of a Work Plan is decision points (green nodes in the plan diagrams above), where plan branching occurs, based on <em>conditions</em> and <em>rules</em> that ultimately depend on <em>subject variables</em>. In the openEHR architecture, all such decisional logic is expressed in dedicated <em>Decision Logic Modules (DLMs)</em>, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.</p>
@@ -1301,7 +1387,7 @@ terminology
 <p>To make decision logic comprehensible to (and therefor authorable by) domain experts, subject variable names need to be close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional directly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code> which should of course be hidden in implementations.</p>
 </div>
 <div class="paragraph">
-<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 5</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
+<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 6</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: include event listener in subject proxy or in separate component?</p>
@@ -1413,7 +1499,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/plan-architecture.svg" alt="plan architecture">
 </div>
-<div class="title">Figure 8. Example Plan-based system architecture</div>
+<div class="title">Figure 9. Example Plan-based system architecture</div>
 </div>
 </div>
 <div class="sect2">
@@ -1425,7 +1511,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/gdl-architecture.svg" alt="gdl architecture">
 </div>
-<div class="title">Figure 9. Example Guideline-based system architecture</div>
+<div class="title">Figure 10. Example Guideline-based system architecture</div>
 </div>
 </div>
 </div>
@@ -1433,6 +1519,9 @@ terminology
 <div class="sect1">
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><a id="Allen_1984"></a>Allen, J. (1984). Towards a general theory of actions and time. <em>Artificial Intelligence</em>, <em>23</em>(2), 123–154.</p>
+</div>
 <div class="paragraph">
 <p><a id="Afib_NHFA_CSANZ_2018"></a>Brieger, D., Amerena, J., Bajorek, B., &amp; others. (2018). NHFA CSANZ Atrial Fibrillation Guideline Working Group: Australian Clinical Guidelines for the Diagnosis and Management of Atrial Fibrillation. <em>Heart, Lung and Circulation</em>, <em>27</em>(10), 1209–1266. Retrieved from <a href="https://www.heartlungcirc.org/article/S1443-9506(18)31778-5/pdf" class="bare">https://www.heartlungcirc.org/article/S1443-9506(18)31778-5/pdf</a></p>
 </div>
@@ -1447,6 +1536,9 @@ terminology
 </div>
 <div class="paragraph">
 <p><a id="GLIF"></a>Ohno-Machado, L., Gennari, J. H., Murphy, S. N., Jain, N. L., Tu, S. W., Oliver, D. E., Pattison-Gordon, E., et al. (1998). The GuideLine Interchange Format - A Model for Representing Guidelines. <em>J Am Med Inform Assoc</em>, 357–372.</p>
+</div>
+<div class="paragraph">
+<p><a id="Rector_at_al_interfaces_2001"></a>Rector, A., Johnson, P., Tu, S., Wroe, C., &amp; Rogers, J. (2001). Interface of Inference Models with Concept and Medical Record Models (pp. 314–323). Retrieved from <a href="https://www.researchgate.net/publication/221450288_Interface_of_Inference_Models_with_Concept_and_Medical_Record_Models" class="bare">https://www.researchgate.net/publication/221450288_Interface_of_Inference_Models_with_Concept_and_Medical_Record_Models</a></p>
 </div>
 <div class="paragraph">
 <p><a id="Samwald_arden_2012"></a>Samwald, M., Fehre, K., Bruin, J. de, &amp; Adlassnig, K.-P. (2012). The Arden Syntax standard for clinical decision support: Experiences and directions. <em>Journal of Biomedical Informatics</em>, <em>45</em>, 711–718. Retrieved from <a href="https://www.sciencedirect.com/science/article/pii/S1532046412000226" class="bare">https://www.sciencedirect.com/science/article/pii/S1532046412000226</a></p>

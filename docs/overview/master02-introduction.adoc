@@ -1,32 +1,84 @@
 = Introduction
 
-== openEHR Process and Planning Artefacts
+== openEHR Process and Planning Specifications
 
 openEHR provides specifications for various models and languages to address the area of process and guideline-driven healthcare. These are as follows:
 
-* A _plan_ definition formalism: the {openehr_task_planning}[openEHR Task Planning specification^];
-* A _guideline and rule_ language: the {openehr_decision_language}[openEHR Decision Language specification^];
+* A _plan_ definition formalism: the {openehr_task_planning}[openEHR Task Planning specification (TP)^];
+* A _guideline and rule_ language: the {openehr_decision_language}[openEHR Decision Language specification (DL)^];
 * An _expression language_, which forms the basis for writing expressions and rules, defined by the {openehr_expression_language}[openEHR Expression Language (EL)^];
 * A _subject proxy service_, which forms the bridge between Plans and Guidelines as consumers of subject data, and data sources: the {openehr_sm_openehr_platform}#_subject_proxy_service[openEHR Subject Proxy Service^].
 * An underlying _meta-model_ formalising information models, expression language and decision constructs, defined by the {openehr_bmm}[openEHR Basic Meta-Model^];
 
-Together these enable the authoring of care pathways, guidelines, executable care plans and in-application active forms. There is also an existing guideline language, {openehr_cds_gdl2}[Guideline Definition Language 2 (GDL2)^], which defines an earlier self-standing guideline format, and which can be replaced by the DLM format GDL3 guideline.
-
-== Prior Art
-
-openEHR Decision Language may be compared to other languages developed in the health arena for expressing 'medical logic', including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as Decision Languages such as {hl7v3_gello}[HL7 Gello^]. These languages were not directly used, for various reasons including:
-
-* they do not support any distinction of ontic versus epistemic variables;
-* none have an easily extensible value referencing mechanism;
-* some are too procedural (Arden, GLIF);
-* current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);
-* none of them support an integrated representation of the 'semantic stack' of process representation, decision logic, proxy data and data access;
-* the maintenance and support is unclear and/or limited.
-
-Nevertheless, various elements of Arden provided useful inspiration for the formalism described here. The Data Access Binding described here may be understood as a solution to the so-called 'curly braces problem' of Arden cite:[Samwald_arden_2012], i.e. the need to be able to bind rule logic to real-world variables. The ProForma language and underlying scientific analysis also has much to recommend it, and has been used as an important theoretical input to the specifications developed for openEHR.
+Together these enable the authoring of care pathways, guidelines, executable care plans and in-application active forms. There is also an existing guideline language, {openehr_cds_gdl2}[Guideline Definition Language 2 (GDL2)^], which defines an earlier self-standing guideline format, on which some self-standing guidelines solutions are built. In some circumstances, such systems may be equivalently implemented in the future using TP/DL/EL instead of GDL2.
 
 Many of the formal semantics of the DLM formalism comes from experience with existing GDL2 deployments.
 
-== Other Standards
+== Prior Art
 
-Other relevant formalisms include the OMG {omg_bpmn}[BPMN^], {omg_cmmn}[CMMN^] and {omg_dmn}[DMN^] standards, and the {hl7_cql}[HL7 CQL standard^]. The former group of standards are starting (as of 2020) to find use in the healthcare arena, having been developed for other industries including process control, logistics and insurance, and will require further development and integration for use in healthcare. The HL7 CQL standard addresses some of the same issues as openEHR DL/EL.
+The openEHR Task Planning specification is conceptually close to the YAWL language (Yet Another Workflow Language) cite:[Hofstede_van_der_Aalst2009], as well as to the OMG {omg_bpmn}[BPMN^] and {omg_cmmn}[CMMN^] standards, which support different flavours of workflow. Many ideas were adopted and/or adapted from YAWL, of which the only deficiencies are: being agnostic on rule language and data persistence (both of centra importance in healthcare IT), and no longer being actively maintained. The BPMN and CMMN standards have a weaker theoretical foundation, and were not originally conceived as being business analysis rather than executable formalisms; they also have only limited worker definition and allocation semantics, are weak on data persistence and have a rules expression formalism ({omg_dmn}[DMN^]) that is relatively under-developed or tested in healthcare.
+
+openEHR GDL2 and the more recent Decision Language may be compared to other languages developed in the health arena for expressing medical logic and rules, including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as Decision Languages such as {hl7v3_gello}[HL7 Gello^] and {omg_dmn}[OMG DMN^], and the HL7 {hl7_cql}[Clinical Quality Language (CQL)^]. These languages were not directly used, for various reasons including:
+
+* they do not support a clear distinction of <<_subject_proxy_service, ontic versus epistemic subject variables>>;
+* lack of an integrated plan / workflow formalism (all except DMN);
+* some are too procedural rather then declarative (Arden, GLIF);
+* current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and now obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);
+* none of them support an integrated representation of the 'semantic stack' of process representation, decision logic, proxy data and data access;
+* the maintenance and support is unclear and/or limited.
+
+Nevertheless, the design approach of Arden provided useful inspiration for the formalism described here, and indeed the Subject Proxy approach used in openEHR may be understood as a solution to the so-called 'curly braces problem' of Arden cite:[Samwald_arden_2012], i.e. the need to be able to bind rule logic to real-world variables. The ProForma language and underlying scientific analysis also has much to recommend it, and has been used as an important theoretical input to the specifications developed for openEHR. The {hl7_cql}[HL7 CQL standard^], although lacking a workflow language, provided useful insights including on temporal logic operators (originally described in citenp:[Allen_1984]), data binding and general expression language design.
+
+== Relationship to Standards
+
+The following table indicates the approximate correspondences between the openEHR process specifications and various published standards.
+
+[cols="3,2,2,2", options="header"]
+|===
+|openEHR Formalism|HL7 standard|OMG standard|Other
+
+|{openehr_task_planning}[Task Planning (TP)^]
+|
+|{omg_bpmn}[BPMN^], {omg_cmmn}[CMMN^]
+|{yawl}[YAWL^]
+
+|{openehr_decision_language}[Decision Language (DL)^]
+|{hl7_cql}[CQL^], FHIRpath?
+|{omg_dmn}[DMN^]
+|{hl7v3_arden}[Arden^], {proforma_language}[ProForma^]
+
+|{openehr_expression_language}[Expression Language (EL)^]
+|{hl7_cql}[CQL^] ELM
+|{omg_dmn}[DMN^] FEEL
+|(numerous)
+
+|{openehr_sm_openehr_platform}#_subject_proxy_service[Subject Proxy Service (SPS)^]
+|
+|(SDMN)
+|
+
+|===
+
+The OMG group of standards are starting (as of 2020) to find use in the healthcare arena under the banner {bpm_plus}[BPM+^].
+
+== Theoretical References
+
+Numerous publications have appeared over the last 30 years on process automation, decision support and related subjects, including within healthcare. A small number of seminal publications have been particularly valuable in the development of the openEHR Process-related specifications, including citenp:[Rector_at_al_interfaces_2001] and citenp:[Hofstede_van_der_Aalst2009].
+
+The first of these presented an often-cited diagram capturing the existence and challenges of representation between the various elements needed in computable guideline technology, shown below.
+
+[.text-center]
+.Interfaces, models and corresponding repositories, adapted from citenp:[Rector_at_al_interfaces_2001]
+image::{diagrams_uri}/Rector_model_interfaces.svg[id=rector_model_interfaces, align="center"]
+
+The enumerated many challenges relevant today, including the following:
+
+* the need for a coherent, symbolic means of referring to real-world entities from guidelines to patient data sources (originally: Need  for  inferential  abstractions; Ambiguity  of    operational  meaning);
+* the need to abstract away differing concrete representations of subject data e.g. 'blood pressure' in back-end systems (originally: Differences  in  encapsulation  and  form  of  expression);
+* the need to be able to convert quantitative data values to ranges, e.g. blood pressure of 190/110 to 'elevated blood pressure';
+* computation of a subject value from underlying values via a formula, e.g. BMI from patient height and weight;
+* temporal predicates, e.g. 'rising blood pressure', 'being on steroids for 3 months' etc.
+
+This paper presaged the notion of the 'vritual medical record', which itself may be seen as a precursor for the Subject Proxy concept used here.
+
+
