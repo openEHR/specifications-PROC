@@ -51,7 +51,7 @@ image::{images_uri}/cha2ds2vasc.png[id=cha2ds2vasc_gdl_form, align="center"]
 
 Some hundreds of similar guidelines are available in the openEHR {gdl_models_github}[GDL2 Clinical Models Repository^].
 
-=== Care Pathway
+=== Care Pathways
 
 The notion of care pathway, also known by names such as 'integrated care pathway' (ICP) and 'critical care pathway', has various definitions in healthcare, such as summarised by the {e_p_a_care_pathways}[European Pathway Association (E-P-A)^] and many other authors and organisations. Based on these, we take a care pathway to be:
 
@@ -63,6 +63,8 @@ A care pathway is thus a higher-level entity aimed at achieving a _patient outco
 * {nice_uk_pathways}[UK NICE Sepsis pathway^];
 * {cancer_council_australia_breast}[Cancer Council Australia Breast cancer pathway^];
 * {ihc_stroke_pathway}[Intermountain Healthcare Acute Stroke CPM^].
+
+=== Representation Challenges
 
 Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There are a couple of important issues that affect potential formalisation.
 
@@ -107,7 +109,7 @@ In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'pres
 
 In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a _condition-specific set of orders_ with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.
 
-== Care Plan
+== Care Plans
 
 The care plan is a common artefact within clinical care, originating in nursing and relates to a specific patient rather than a condition. Definitions include {rn_central_care_plan}[a nursing-oriented definition from RN-central^] and one from the {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
 
