@@ -58,13 +58,22 @@
 </li>
 <li><a href="#_care_process_artefacts">4. Care Process Artefacts and their Formalisation</a>
 <ul class="sectlevel2">
-<li><a href="#_clinical_practice_guidelines_cpgs_and_care_pathways">4.1. Clinical Practice Guidelines (CPGs) and Care Pathways</a></li>
-<li><a href="#_order_set">4.2. Order Set</a></li>
-<li><a href="#_care_plan">4.3. Care Plan</a></li>
-<li><a href="#_formalisation">4.4. Formalisation</a>
+<li><a href="#_best_practice_artefacts">4.1. Best Practice Artefacts</a>
 <ul class="sectlevel3">
-<li><a href="#_general_vision">4.4.1. General Vision</a></li>
-<li><a href="#_separation_of_concerns">4.4.2. Separation of Concerns</a></li>
+<li><a href="#_clinical_practice_guidelines_cpgs">4.1.1. Clinical Practice Guidelines (CPGs)</a>
+<ul class="sectlevel4">
+<li><a href="#_score_based_decision_support_guidelines">4.1.1.1. Score-based Decision Support Guidelines</a></li>
+</ul>
+</li>
+<li><a href="#_care_pathway">4.1.2. Care Pathway</a></li>
+<li><a href="#_order_set">4.1.3. Order Set</a></li>
+</ul>
+</li>
+<li><a href="#_care_plan">4.2. Care Plan</a></li>
+<li><a href="#_formalisation">4.3. Formalisation</a>
+<ul class="sectlevel3">
+<li><a href="#_general_vision">4.3.1. General Vision</a></li>
+<li><a href="#_separation_of_concerns">4.3.2. Separation of Concerns</a></li>
 </ul>
 </li>
 </ul>
@@ -734,10 +743,9 @@
 <p>Nevertheless, the formalisation of the semantics of these artefacts is a major part of the overall semantics of the languages described here. Accordingly, what these are considered to consist of within the openEHR process architecture, and how they interrelate is described below.</p>
 </div>
 <div class="sect2">
-<h3 id="_clinical_practice_guidelines_cpgs_and_care_pathways"><a class="anchor" href="#_clinical_practice_guidelines_cpgs_and_care_pathways"></a>4.1. Clinical Practice Guidelines (CPGs) and Care Pathways</h3>
-<div class="paragraph">
-<p><em>Clinical practice guidelines</em> (CPGs) and <em>care pathways</em> are two kinds of published, evidence-based artefact used in clinical medicine, designed as structured aids to providing care.</p>
-</div>
+<h3 id="_best_practice_artefacts"><a class="anchor" href="#_best_practice_artefacts"></a>4.1. Best Practice Artefacts</h3>
+<div class="sect3">
+<h4 id="_clinical_practice_guidelines_cpgs"><a class="anchor" href="#_clinical_practice_guidelines_cpgs"></a>4.1.1. Clinical Practice Guidelines (CPGs)</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -745,7 +753,7 @@
 <div class="title">Note</div>
 </td>
 <td class="content">
-in openEHR documents and specifications, the term <em>guideline</em> is used as a synonym for clinical practice guideline.
+in openEHR specifications, the term <em>guideline</em> is used as a synonym for 'clinical practice guideline'.
 </td>
 </tr>
 </table>
@@ -789,6 +797,43 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 </li>
 </ul>
 </div>
+<div class="sect4">
+<h5 id="_score_based_decision_support_guidelines"><a class="anchor" href="#_score_based_decision_support_guidelines"></a>4.1.1.1. Score-based Decision Support Guidelines</h5>
+<div class="paragraph">
+<p>A very common kind of clinical guideline takes the form of a <em>score</em>, and consists of the following logical parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an <em>input variable</em> set;</p>
+</li>
+<li>
+<p>one or more <em>score functions</em> of the input variables that generates a numeric value(s);</p>
+</li>
+<li>
+<p>one or more <em>stratification</em> table(s) that convert score values to care classifications, e.g. 'refer to ICU' / 'monitor 24h' / 'send home'.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Although technically relatively simple, this kind of guideline can be very effective in changing clinical behaviour, primarily due to the fact that the score function and stratification table reflect the current evidence for the relevant condition. Such guidelines are usually executed in a single-shot fashion to generate recommendations for the clinician at the point of care. They are often visualised as a single form containing the input variables, the score and the resulting classification, with the input fields being populated from an EMR and/or manually fillable as required.</p>
+</div>
+<div class="paragraph">
+<p>The openeHR GDL2 language is used to represent this kind of guideline, and implementations typically show interactive forms such as the following.</p>
+</div>
+<div id="cha2ds2vasc_gdl_form" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/images/cha2ds2vasc.png" alt="cha2ds2vasc">
+</div>
+<div class="title">Figure 3. GDL2 CHA2DS2–VASc stroke risk score</div>
+</div>
+<div class="paragraph">
+<p>Some hundreds of similar guidelines are available in the openEHR <a href="https://github.com/gdl-lang/common-clinical-models/blob/master/README.md" target="_blank" rel="noopener">GDL2 Clinical Models Repository</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_care_pathway"><a class="anchor" href="#_care_pathway"></a>4.1.2. Care Pathway</h4>
 <div class="paragraph">
 <p>The notion of care pathway, also known by names such as 'integrated care pathway' (ICP) and 'critical care pathway', has various definitions in healthcare, such as summarised by the <a href="http://e-p-a.org/care-pathways/" target="_blank" rel="noopener">European Pathway Association (E-P-A)</a> and many other authors and organisations. Based on these, we take a care pathway to be:</p>
 </div>
@@ -895,8 +940,8 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed <em>de novo</em> when needed.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_order_set"><a class="anchor" href="#_order_set"></a>4.2. Order Set</h3>
+<div class="sect3">
+<h4 id="_order_set"><a class="anchor" href="#_order_set"></a>4.1.3. Order Set</h4>
 <div class="paragraph">
 <p>Within the above-described artefacts references to so-called <em>order sets</em> may exist. An order set is generally understood as:</p>
 </div>
@@ -920,10 +965,11 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a <em>condition-specific set of orders</em> with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_care_plan"><a class="anchor" href="#_care_plan"></a>4.3. Care Plan</h3>
+<h3 id="_care_plan"><a class="anchor" href="#_care_plan"></a>4.2. Care Plan</h3>
 <div class="paragraph">
-<p>The care plan is a common artefact within clinical care, originating in nursing. Definitions include <a href="http://www.rncentral.com/nursing-library/careplans/" target="_blank" rel="noopener">a nursing-oriented definition from RN-central</a> and one from the <a href="https://www.iso.org/standard/58102.html" target="_blank" rel="noopener">ISO Continuity of Care standard ('contsys')</a>. From these we synthesise the following definition:</p>
+<p>The care plan is a common artefact within clinical care, originating in nursing and relates to a specific patient rather than a condition. Definitions include <a href="http://www.rncentral.com/nursing-library/careplans/" target="_blank" rel="noopener">a nursing-oriented definition from RN-central</a> and one from the <a href="https://www.iso.org/standard/58102.html" target="_blank" rel="noopener">ISO Continuity of Care standard ('contsys')</a>. From these we synthesise the following definition:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -947,7 +993,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>descriptive text;</p>
 </li>
 <li>
-<p>potentially references to CPG(s) or care pathway(s) that apply, with any modifictions necessary;</p>
+<p>potentially references to CPG(s) or care pathway(s) that apply, with any necessary modifications;</p>
 </li>
 <li>
 <p>goals and targets;</p>
@@ -968,9 +1014,9 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_formalisation"><a class="anchor" href="#_formalisation"></a>4.4. Formalisation</h3>
+<h3 id="_formalisation"><a class="anchor" href="#_formalisation"></a>4.3. Formalisation</h3>
 <div class="sect3">
-<h4 id="_general_vision"><a class="anchor" href="#_general_vision"></a>4.4.1. General Vision</h4>
+<h4 id="_general_vision"><a class="anchor" href="#_general_vision"></a>4.3.1. General Vision</h4>
 <div class="paragraph">
 <p>The clinical artefacts described so far may be classified as follows, for the purposes of potential computable representation:</p>
 </div>
@@ -1026,7 +1072,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/artefact_relations.svg" alt="artefact relations">
 </div>
-<div class="title">Figure 3. Care management artefacts</div>
+<div class="title">Figure 4. Care management artefacts</div>
 </div>
 <div class="paragraph">
 <p>In the diagram, the term <em>executable plan</em> is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.</p>
@@ -1036,9 +1082,9 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_separation_of_concerns"><a class="anchor" href="#_separation_of_concerns"></a>4.4.2. Separation of Concerns</h4>
+<h4 id="_separation_of_concerns"><a class="anchor" href="#_separation_of_concerns"></a>4.3.2. Separation of Concerns</h4>
 <div class="paragraph">
-<p>As implied by the analysis of <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a>, the formally represented pathways and guidelines shown on the right hand side of <a href="#care_mgt_artefact_relations">Figure 3</a> have important relationships with both terminologies and data sources such as the patient record. Some of the requirements described above - independence of guidelines from legacy HIS back-ends, and also the need for a high-level language of guideline authoring that enables 'smart' subject variables such as 'highest systolic pressure over previous 2 weeks' and 'oxygen saturation, no older than 1 hour', as well as functions of base variables, such as Body Mass Index (BMI, a function of height and weight), lead naturally to a greater separation of guidelines from information models of the back-end systems.</p>
+<p>As implied by the analysis of <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a>, the formally represented pathways and guidelines shown on the right hand side of <a href="#care_mgt_artefact_relations">Figure 4</a> have important relationships with both terminologies and data sources such as the patient record. Some of the requirements described above - independence of guidelines from legacy HIS back-ends, and also the need for a high-level language of guideline authoring that enables 'smart' subject variables such as 'highest systolic pressure over previous 2 weeks' and 'oxygen saturation, no older than 1 hour', as well as functions of base variables, such as Body Mass Index (BMI, a function of height and weight), lead naturally to a greater separation of guidelines from information models of the back-end systems.</p>
 </div>
 <div class="paragraph">
 <p>The general approach taken by the openEHR specifications is to treat smart subject variables as a first order concern termed here <em>data enrichment</em>. We also recognise a more contemporary view of patient record systems, devices and intermediate interoperability standards designed to retrieve data from such systems in a more homogenous way than in the original version of the Rector paper (from 2001). The conceptual view that results is shown below in a modified version of the original figure.</p>
@@ -1047,7 +1093,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/Rector_model_interfaces-openEHR.svg" alt="Rector model interfaces openEHR">
 </div>
-<div class="title">Figure 4. Models, interfaces and repositories with subject proxies, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
+<div class="title">Figure 5. Models, interfaces and repositories with subject proxies, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
 </div>
 <div class="paragraph">
 <p>In the above, a <em>subject proxy</em> model is introduced that represents one or more subject variables, including basic measurable values (e.g. heart rate), functions of other values (e.g. BMI), and computed ranges (e.g. conversion of systolic pressure = 165 to 'very high' range), interval averages and so on. It is assumed that each guideline or pathway (or related collections) have their own specific set of subject variables. A subject proxy is therefore not a fixed global model like the older 'virtual medical record' notion, but instead a limited virtual view of the subject relevant to some guideline.</p>
@@ -1120,7 +1166,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/workflow_execution_paradigm.svg" alt="workflow execution paradigm" width="55%">
 </div>
-<div class="title">Figure 5. Plan execution paradigm</div>
+<div class="title">Figure 6. Plan execution paradigm</div>
 </div>
 </div>
 <div class="sect2">
@@ -1157,7 +1203,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/distributed_plan_execution.svg" alt="distributed plan execution" width="80%">
 </div>
-<div class="title">Figure 6. Distributed plan execution</div>
+<div class="title">Figure 7. Distributed plan execution</div>
 </div>
 <div class="paragraph">
 <p>The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is <em>some</em> means of enabling the various parts of a plan to execute in the various work-places required.</p>
@@ -1174,7 +1220,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="sect2">
 <h3 id="_overview"><a class="anchor" href="#_overview"></a>6.1. Overview</h3>
 <div class="paragraph">
-<p>Within <a href="#care_mgt_artefact_relations">Figure 3</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
+<p>Within <a href="#care_mgt_artefact_relations">Figure 4</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
 </div>
 <div class="paragraph">
 <p>The primary formal elements of executable plans are the <em>workflow</em>, i.e. a structured representation of tasks to be performed including decision points, and the <em>decision logic</em>, whose rules provide values for decisions, as well as declarations of <em>subject variables</em>. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
@@ -1192,7 +1238,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/conceptual_model.svg" alt="conceptual model">
 </div>
-<div class="title">Figure 7. openEHR conceptual framework for care pathways and guidelines</div>
+<div class="title">Figure 8. openEHR conceptual framework for care pathways and guidelines</div>
 </div>
 </div>
 <div class="sect2">
@@ -1232,7 +1278,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/work_plan_structure.svg" alt="work plan structure">
 </div>
-<div class="title">Figure 8. Work Plan general structure</div>
+<div class="title">Figure 9. Work Plan general structure</div>
 </div>
 <div class="paragraph">
 <p>Using this model, plans for any of the above situations can be defined by domain experts using dedicated graphical tools. Work Plans are <em>executed</em> by a <em>plan engine</em>, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker&#8217;s process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.</p>
@@ -1244,7 +1290,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/RCHOPS21-simple.svg" alt="RCHOPS21 simple">
 </div>
-<div class="title">Figure 9. Work plan for RCHOPS chemotherapy administration</div>
+<div class="title">Figure 10. Work plan for RCHOPS chemotherapy administration</div>
 </div>
 <div class="paragraph">
 <p>One of the key formal elements of a Work Plan is decision points (green nodes in the plan diagrams above), where plan branching occurs, based on <em>conditions</em> and <em>rules</em> that ultimately depend on <em>subject variables</em>. In the openEHR architecture, all such decisional logic is expressed in dedicated <em>Decision Logic Modules (DLMs)</em>, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.</p>
@@ -1419,7 +1465,7 @@ terminology
 <p>To make decision logic comprehensible to (and therefor authorable by) domain experts, subject variable names need to be close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional directly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code> which should of course be hidden in implementations.</p>
 </div>
 <div class="paragraph">
-<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 7</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
+<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 8</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: include event listener in subject proxy or in separate component?</p>
@@ -1531,7 +1577,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/plan-architecture.svg" alt="plan architecture">
 </div>
-<div class="title">Figure 10. Example Plan-based system architecture</div>
+<div class="title">Figure 11. Example Plan-based system architecture</div>
 </div>
 </div>
 <div class="sect2">
@@ -1543,7 +1589,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/gdl-architecture.svg" alt="gdl architecture">
 </div>
-<div class="title">Figure 11. Example Guideline-based system architecture</div>
+<div class="title">Figure 12. Example Guideline-based system architecture</div>
 </div>
 </div>
 </div>

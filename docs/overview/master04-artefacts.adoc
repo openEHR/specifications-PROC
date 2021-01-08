@@ -12,11 +12,11 @@ These artefacts do not constitute the totality of requirements of formal care pr
 
 Nevertheless, the formalisation of the semantics of these artefacts is a major part of the overall semantics of the languages described here. Accordingly, what these are considered to consist of within the openEHR process architecture, and how they interrelate is described below.
 
-== Clinical Practice Guidelines (CPGs) and Care Pathways
+==  Best Practice Artefacts
 
-_Clinical practice guidelines_ (CPGs) and _care pathways_ are two kinds of published, evidence-based artefact used in clinical medicine, designed as structured aids to providing care.
+=== Clinical Practice Guidelines (CPGs)
 
-NOTE: in openEHR documents and specifications, the term _guideline_ is used as a synonym for clinical practice guideline.
+NOTE: in openEHR specifications, the term _guideline_ is used as a synonym for 'clinical practice guideline'.
 
 A commonly cited definition of a guideline is (emphasis added):
 
@@ -32,6 +32,26 @@ Guidelines are usually either _therapeutic_, i.e. oriented to describing a proce
 * {nice_uk_stable_angina}[UK NICE Stable angina management guideline^];
 * {acep_covid_19_severity_tool_pdf}[American College of Emergency Physicians (ACEP) Covid19 Severity Classification tool^];
 * Australian Clinical Guidelines for the Diagnosis and Management of Atrial Fibrillation 2018 cite:[Afib_NHFA_CSANZ_2018].
+
+==== Score-based Decision Support Guidelines
+
+A very common kind of clinical guideline takes the form of a _score_, and consists of the following logical parts:
+
+* an _input variable_ set;
+* one or more _score functions_ of the input variables that generates a numeric value(s);
+* one or more _stratification_ table(s) that convert score values to care classifications, e.g. 'refer to ICU' / 'monitor 24h' / 'send home'.
+
+Although technically relatively simple, this kind of guideline can be very effective in changing clinical behaviour, primarily due to the fact that the score function and stratification table reflect the current evidence for the relevant condition. Such guidelines are usually executed in a single-shot fashion to generate recommendations for the clinician at the point of care. They are often visualised as a single form containing the input variables, the score and the resulting classification, with the input fields being populated from an EMR and/or manually fillable as required. 
+
+The openeHR GDL2 language is used to represent this kind of guideline, and implementations typically show interactive forms such as the following.
+
+[.text-center]
+.GDL2 CHA2DS2–VASc stroke risk score
+image::{images_uri}/cha2ds2vasc.png[id=cha2ds2vasc_gdl_form, align="center"]
+
+Some hundreds of similar guidelines are available in the openEHR {gdl_models_github}[GDL2 Clinical Models Repository^].
+
+=== Care Pathway
 
 The notion of care pathway, also known by names such as 'integrated care pathway' (ICP) and 'critical care pathway', has various definitions in healthcare, such as summarised by the {e_p_a_care_pathways}[European Pathway Association (E-P-A)^] and many other authors and organisations. Based on these, we take a care pathway to be:
 
@@ -75,7 +95,7 @@ We make a baseline assumption that guidelines and care pathways are essentially 
 
 Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
 
-== Order Set
+=== Order Set
 
 Within the above-described artefacts references to so-called _order sets_ may exist. An order set is generally understood as:
 
@@ -89,7 +109,7 @@ In the openEHR process architecture, an 'order set' is considered to be a plan a
 
 == Care Plan
 
-The care plan is a common artefact within clinical care, originating in nursing. Definitions include {rn_central_care_plan}[a nursing-oriented definition from RN-central^] and one from the {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
+The care plan is a common artefact within clinical care, originating in nursing and relates to a specific patient rather than a condition. Definitions include {rn_central_care_plan}[a nursing-oriented definition from RN-central^] and one from the {iso_13940}[ISO Continuity of Care standard ('contsys')^]. From these we synthesise the following definition:
 
 * _care plan_ - a dynamic, personalised plan, relating to one or more specified health issues, that describes patient objectives and goals, defining diagnoses and steps for resolution and monitoring.
 
@@ -99,7 +119,7 @@ Within the openEHR process architecture, a care plan is considered a structured 
 
 * identifier and purpose;
 * descriptive text;
-* potentially references to CPG(s) or care pathway(s) that apply, with any modifictions necessary;
+* potentially references to CPG(s) or care pathway(s) that apply, with any necessary modifications;
 * goals and targets;
 * relevant problems and diagnoses;
 * interventions: medication and other orders (and potentially order sets);
