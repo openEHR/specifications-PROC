@@ -18,9 +18,13 @@ _Clinical practice guidelines_ (CPGs) and _care pathways_ are two kinds of publi
 
 NOTE: in openEHR documents and specifications, the term _guideline_ is used as a synonym for clinical practice guideline.
 
-A common definition of a guideline is (emphasis added):
+A commonly cited definition of a guideline is (emphasis added):
 
 * a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for _specific clinical circumstances_ ({cemb_oxford}[Oxford Centre for Evidence-based Medicine^]).
+
+A more recent version of this puts emphasis on the evidential basis:
+
+* Clinical guidelines are statements that include recommendations intended to optimize patient care that are informed by a systematic review of evidence and an assessment of the benefits and harms of alternative care options cite:[IOM_CPG_2011]
 
 Guidelines are usually either _therapeutic_, i.e. oriented to describing a procedure e.g. intubation, asthma management, or _diagnostic_, such as for diagnosing various forms of angina. Many diagnostic guidelines are relatively simple scores based on a number of patient variables, whose aim is to stratify risk into categories corresponding to type of intervention. Examples of guidelines include:
 
@@ -47,6 +51,8 @@ The first is the problem of _partial coverage_. There is  no guarantee that any 
 The second is the problem of _adaptation_, which can be divided into two sub-problems. The first is that each pathway or guideline is designed to address _one primary condition_ (sepsis, ARDS, angina etc) and will not generally be applicable unmodified to a real patient, due to patient specifics including co-morbidities, phenotypic specificities, current medications and patient needs and preferences. We might term this as a _merge_ problem since it is essentially a question of arriving at a safe pathway for an actual patient that accounts for all of the patient's current conditions (and therefore multiple applicable care pathways), medications and phenotypic specifics. Secondly, local practice factors such as formulary, local protocols, type of care setting (community clinic/hospital versus tertiary care centre/teaching hospital), availability and cost of imaging, drugs for rare conditions etc, will often constrain and/or modify any standard pathways or guidelines. We can understand this as a _localisation_ problem.
 
 Due to the merge problem, _more than one pathway may apply to a patient_, e.g. one for chronic care and one for an acute situation. There may be conflicts between the pathways - commonly in medications recommendations - but also between the pathways and the other patient specificities. Well-written pathways and CPGs usually include obvious contra-indications for medications (e.g. being on anti-rejection medications post transplant conflicts with some chemotherapy drug classes), common phenotypic features (e.g. being female, being allergic to taxanes), and patient history (e.g. being pregnant). There is no guarantee that any given pathway or guideline covers all possible conflicts, hence manual _inspection, adjustment and customisation_ is almost always required. Localisation factors often means further modifications or constraints.
+
+There currently appears to be little science on adaptation of guidelines, which means there is no obvious candidate method that might lead to automated or computer-aided adaptation. However communities such as the {guidelines_intl_network}[Guidelines International Network^] have working groups related to adaptation and localisation, which may lead to such methods in the future cite:[Kredo_et_al_2016].
 
 For convenience, we term a care pathway- or guideline-like artefact for a specific patient, however arrived at and incorporating any necessary conflict resolution, merging and localisation, a _patient plan_.
 
@@ -134,3 +140,15 @@ image::{diagrams_uri}/artefact_relations.svg[id=care_mgt_artefact_relations, ali
 In the diagram, the term _executable plan_ is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.
 
 Entities shown with dotted lines are not assumed to exist in all real world clinical situations. That is, care may be being provided for a patient for which no published care pathway is available, and only limited published guidelines. This would imply no or limited availability of condition-specific executable plans for use in constructing an executable patient plan. Nevertheless, the latter could be constructed _de novo_, rather than by adaptation of library pathways or guidelines.
+
+=== Separation of Concerns
+
+As implied by the analysis of citenp:[Rector_at_al_interfaces_2001], the formally represented pathways and guidelines shown on the right hand side of <<care_mgt_artefact_relations>> have important relationships with both terminologies and data sources such as the patient record. Some of the requirements described above - independence of guidelines from legacy HIS back-ends, and also the need for a high-level language of guideline authoring that enables 'smart' subject variables such as 'highest systolic pressure over previous 2 weeks' and 'oxygen saturation, no older than 1 hour', as well as functions of base variables, such as Body Mass Index (BMI, a function of height and weight), lead naturally to a greater separation of guidelines from information models of the back-end systems.
+
+The general approach taken by the openEHR specifications is to treat smart subject variables as a first order concern termed here _data enrichment_. We also recognise a more contemporary view of patient record systems, devices and intermediate interoperability standards designed to retrieve data from such systems in a more homogenous way than in the original version of the Rector paper (from 2001). The conceptual view that results is shown below in a modified version of the original figure.
+
+[.text-center]
+.Models, interfaces and repositories with subject proxies, adapted from citenp:[Rector_at_al_interfaces_2001]
+image::{diagrams_uri}/Rector_model_interfaces-openEHR.svg[id=rector_model_interfaces_openehr, align="center"]
+
+In the above, a _subject proxy_ model is introduced that represents one or more subject variables, including basic measurable values (e.g. heart rate), functions of other values (e.g. BMI), and computed ranges (e.g. conversion of systolic pressure = 165 to 'very high' range), interval averages and so on. It is assumed that each guideline or pathway (or related collections) have their own specific set of subject variables. A subject proxy is therefore not a fixed global model like the older 'virtual medical record' notion, but instead a limited virtual view of the subject relevant to some guideline.

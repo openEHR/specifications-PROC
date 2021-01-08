@@ -68,12 +68,12 @@ Numerous publications have appeared over the last 30 years on process automation
 The first of these presented an often-cited diagram capturing the existence and challenges of representation between the various elements needed in computable guideline technology, shown below.
 
 [.text-center]
-.Interfaces, models and corresponding repositories, adapted from citenp:[Rector_at_al_interfaces_2001]
+.Interfaces, models and corresponding repositories cite:[Rector_at_al_interfaces_2001]
 image::{diagrams_uri}/Rector_model_interfaces.svg[id=rector_model_interfaces, align="center"]
 
-The enumerated many challenges relevant today, including the following:
+The authors enumerated many challenges directly relevant to the specifications described here, including the following:
 
-* the need for a coherent, symbolic means of referring to real-world entities from guidelines to patient data sources (originally: Need  for  inferential  abstractions; Ambiguity  of    operational  meaning);
+* the need for a coherent, symbolic means of referring to real-world entities from guidelines to patient data sources (originally: Need  for  inferential  abstractions; Ambiguity  of operational  meaning);
 * the need to abstract away differing concrete representations of subject data e.g. 'blood pressure' in back-end systems (originally: Differences  in  encapsulation  and  form  of  expression);
 * the need to be able to convert quantitative data values to ranges, e.g. blood pressure of 190/110 to 'elevated blood pressure';
 * computation of a subject value from underlying values via a formula, e.g. BMI from patient height and weight;

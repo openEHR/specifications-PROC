@@ -53,7 +53,7 @@
 <li><a href="#_voice_based_hci">3.5.2. Voice-based HCI</a></li>
 </ul>
 </li>
-<li><a href="#_independence_of_reusable_guidelines_from_legacy_hit_environments">3.6. Independence of Reusable Guidelines from Legacy HIT Environments</a></li>
+<li><a href="#_independence_of_reusable_guidelines_from_legacy_his_environments">3.6. Independence of Reusable Guidelines from Legacy HIS Environments</a></li>
 </ul>
 </li>
 <li><a href="#_care_process_artefacts">4. Care Process Artefacts and their Formalisation</a>
@@ -64,6 +64,7 @@
 <li><a href="#_formalisation">4.4. Formalisation</a>
 <ul class="sectlevel3">
 <li><a href="#_general_vision">4.4.1. General Vision</a></li>
+<li><a href="#_separation_of_concerns">4.4.2. Separation of Concerns</a></li>
 </ul>
 </li>
 </ul>
@@ -471,15 +472,15 @@
 <div class="content">
 <img src="overview/diagrams/Rector_model_interfaces.svg" alt="Rector model interfaces">
 </div>
-<div class="title">Figure 1. Interfaces, models and corresponding repositories, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
+<div class="title">Figure 1. Interfaces, models and corresponding repositories (<a href="#Rector_at_al_interfaces_2001">Rector&#44; Johnson&#44; Tu&#44; Wroe&#44; &amp; Rogers&#44; 2001</a>)</div>
 </div>
 <div class="paragraph">
-<p>The enumerated many challenges relevant today, including the following:</p>
+<p>The authors enumerated many challenges directly relevant to the specifications described here, including the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the need for a coherent, symbolic means of referring to real-world entities from guidelines to patient data sources (originally: Need  for  inferential  abstractions; Ambiguity  of    operational  meaning);</p>
+<p>the need for a coherent, symbolic means of referring to real-world entities from guidelines to patient data sources (originally: Need  for  inferential  abstractions; Ambiguity  of operational  meaning);</p>
 </li>
 <li>
 <p>the need to abstract away differing concrete representations of subject data e.g. 'blood pressure' in back-end systems (originally: Differences  in  encapsulation  and  form  of  expression);</p>
@@ -657,7 +658,7 @@
 <div class="sect3">
 <h4 id="_the_co_pilot_paradigm"><a class="anchor" href="#_the_co_pilot_paradigm"></a>3.5.1. The Co-pilot Paradigm</h4>
 <div class="paragraph">
-<p>Common to all of the categories of requirement described above is a general need that any clinical process planning system not disturb the cognitive processing of workers, but provide judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time <em>override</em> system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.</p>
+<p>Common to all of the categories of requirement described above is a general need that any clinical process planning system augment rather than replace the cognitive processing of workers, by providing judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time <em>override</em> system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.</p>
 </div>
 <div class="paragraph">
 <p>The co-pilot paradigm has direct consequences for formal representation of plans and decision-making, including:</p>
@@ -694,7 +695,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_independence_of_reusable_guidelines_from_legacy_hit_environments"><a class="anchor" href="#_independence_of_reusable_guidelines_from_legacy_hit_environments"></a>3.6. Independence of Reusable Guidelines from Legacy HIT Environments</h3>
+<h3 id="_independence_of_reusable_guidelines_from_legacy_his_environments"><a class="anchor" href="#_independence_of_reusable_guidelines_from_legacy_his_environments"></a>3.6. Independence of Reusable Guidelines from Legacy HIS Environments</h3>
 <div class="paragraph">
 <p>One of the hardest problems to solve historically with respect to computable guidelines and pathways has been how to author them so as to reference needed external data about the subject, but to do so independent of any particular back-end system environment. The general situation is that the data items, which we term <em>subject variables</em>, needed by a plan or guideline are populated from numerous kinds of back-end systems and products, including EMR systems, disease registers, departmental systems, research systems and increasingly, real-time devices. Each of these have their own data models, terminologies and access methods. Although there are standards for accessing such systems including standards from HL7 (HL7v2, CDA, FHIR), IHE (XDS), OMG, and IEEE these are themselves used in different forms and 'profiles', and are not used on all systems, particularly smaller research or practitioner-specific systems. Additionally, which standards are in use in particular places changes over time.</p>
 </div>
@@ -750,12 +751,22 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 </table>
 </div>
 <div class="paragraph">
-<p>A common definition of a guideline is (emphasis added):</p>
+<p>A commonly cited definition of a guideline is (emphasis added):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>a systematically developed statement designed to assist health care professionals and patients make decisions about appropriate health care for <em>specific clinical circumstances</em> (<a href="https://www.cebm.ox.ac.uk/resources/ebm-tools/glossary" target="_blank" rel="noopener">Oxford Centre for Evidence-based Medicine</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A more recent version of this puts emphasis on the evidential basis:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clinical guidelines are statements that include recommendations intended to optimize patient care that are informed by a systematic review of evidence and an assessment of the benefits and harms of alternative care options (<a href="#IOM_CPG_2011">Graham&#44; Mancher&#44; Wolman&#44; Greenfield&#44; &amp; eds&#44; 2011</a>)</p>
 </li>
 </ul>
 </div>
@@ -818,6 +829,9 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 </div>
 <div class="paragraph">
 <p>Due to the merge problem, <em>more than one pathway may apply to a patient</em>, e.g. one for chronic care and one for an acute situation. There may be conflicts between the pathways - commonly in medications recommendations - but also between the pathways and the other patient specificities. Well-written pathways and CPGs usually include obvious contra-indications for medications (e.g. being on anti-rejection medications post transplant conflicts with some chemotherapy drug classes), common phenotypic features (e.g. being female, being allergic to taxanes), and patient history (e.g. being pregnant). There is no guarantee that any given pathway or guideline covers all possible conflicts, hence manual <em>inspection, adjustment and customisation</em> is almost always required. Localisation factors often means further modifications or constraints.</p>
+</div>
+<div class="paragraph">
+<p>There currently appears to be little science on adaptation of guidelines, which means there is no obvious candidate method that might lead to automated or computer-aided adaptation. However communities such as the <a href="https://g-i-n.net/" target="_blank" rel="noopener">Guidelines International Network</a> have working groups related to adaptation and localisation, which may lead to such methods in the future (<a href="#Kredo_et_al_2016">Kredo et al.&#44; 2016</a>).</p>
 </div>
 <div class="paragraph">
 <p>For convenience, we term a care pathway- or guideline-like artefact for a specific patient, however arrived at and incorporating any necessary conflict resolution, merging and localisation, a <em>patient plan</em>.</p>
@@ -1021,6 +1035,24 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <p>Entities shown with dotted lines are not assumed to exist in all real world clinical situations. That is, care may be being provided for a patient for which no published care pathway is available, and only limited published guidelines. This would imply no or limited availability of condition-specific executable plans for use in constructing an executable patient plan. Nevertheless, the latter could be constructed <em>de novo</em>, rather than by adaptation of library pathways or guidelines.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_separation_of_concerns"><a class="anchor" href="#_separation_of_concerns"></a>4.4.2. Separation of Concerns</h4>
+<div class="paragraph">
+<p>As implied by the analysis of <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a>, the formally represented pathways and guidelines shown on the right hand side of <a href="#care_mgt_artefact_relations">Figure 3</a> have important relationships with both terminologies and data sources such as the patient record. Some of the requirements described above - independence of guidelines from legacy HIS back-ends, and also the need for a high-level language of guideline authoring that enables 'smart' subject variables such as 'highest systolic pressure over previous 2 weeks' and 'oxygen saturation, no older than 1 hour', as well as functions of base variables, such as Body Mass Index (BMI, a function of height and weight), lead naturally to a greater separation of guidelines from information models of the back-end systems.</p>
+</div>
+<div class="paragraph">
+<p>The general approach taken by the openEHR specifications is to treat smart subject variables as a first order concern termed here <em>data enrichment</em>. We also recognise a more contemporary view of patient record systems, devices and intermediate interoperability standards designed to retrieve data from such systems in a more homogenous way than in the original version of the Rector paper (from 2001). The conceptual view that results is shown below in a modified version of the original figure.</p>
+</div>
+<div id="rector_model_interfaces_openehr" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/diagrams/Rector_model_interfaces-openEHR.svg" alt="Rector model interfaces openEHR">
+</div>
+<div class="title">Figure 4. Models, interfaces and repositories with subject proxies, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
+</div>
+<div class="paragraph">
+<p>In the above, a <em>subject proxy</em> model is introduced that represents one or more subject variables, including basic measurable values (e.g. heart rate), functions of other values (e.g. BMI), and computed ranges (e.g. conversion of systolic pressure = 165 to 'very high' range), interval averages and so on. It is assumed that each guideline or pathway (or related collections) have their own specific set of subject variables. A subject proxy is therefore not a fixed global model like the older 'virtual medical record' notion, but instead a limited virtual view of the subject relevant to some guideline.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1088,7 +1120,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/workflow_execution_paradigm.svg" alt="workflow execution paradigm" width="55%">
 </div>
-<div class="title">Figure 4. Plan execution paradigm</div>
+<div class="title">Figure 5. Plan execution paradigm</div>
 </div>
 </div>
 <div class="sect2">
@@ -1125,7 +1157,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/distributed_plan_execution.svg" alt="distributed plan execution" width="80%">
 </div>
-<div class="title">Figure 5. Distributed plan execution</div>
+<div class="title">Figure 6. Distributed plan execution</div>
 </div>
 <div class="paragraph">
 <p>The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is <em>some</em> means of enabling the various parts of a plan to execute in the various work-places required.</p>
@@ -1160,7 +1192,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/conceptual_model.svg" alt="conceptual model">
 </div>
-<div class="title">Figure 6. openEHR conceptual framework for care pathways and guidelines</div>
+<div class="title">Figure 7. openEHR conceptual framework for care pathways and guidelines</div>
 </div>
 </div>
 <div class="sect2">
@@ -1200,7 +1232,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/work_plan_structure.svg" alt="work plan structure">
 </div>
-<div class="title">Figure 7. Work Plan general structure</div>
+<div class="title">Figure 8. Work Plan general structure</div>
 </div>
 <div class="paragraph">
 <p>Using this model, plans for any of the above situations can be defined by domain experts using dedicated graphical tools. Work Plans are <em>executed</em> by a <em>plan engine</em>, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker&#8217;s process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.</p>
@@ -1212,7 +1244,7 @@ in openEHR documents and specifications, the term <em>guideline</em> is used as 
 <div class="content">
 <img src="overview/diagrams/RCHOPS21-simple.svg" alt="RCHOPS21 simple">
 </div>
-<div class="title">Figure 8. Work plan for RCHOPS chemotherapy administration</div>
+<div class="title">Figure 9. Work plan for RCHOPS chemotherapy administration</div>
 </div>
 <div class="paragraph">
 <p>One of the key formal elements of a Work Plan is decision points (green nodes in the plan diagrams above), where plan branching occurs, based on <em>conditions</em> and <em>rules</em> that ultimately depend on <em>subject variables</em>. In the openEHR architecture, all such decisional logic is expressed in dedicated <em>Decision Logic Modules (DLMs)</em>, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.</p>
@@ -1387,7 +1419,7 @@ terminology
 <p>To make decision logic comprehensible to (and therefor authorable by) domain experts, subject variable names need to be close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional directly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code> which should of course be hidden in implementations.</p>
 </div>
 <div class="paragraph">
-<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 6</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
+<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 7</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
 </div>
 <div class="paragraph tbd">
 <p>TBD: include event listener in subject proxy or in separate component?</p>
@@ -1499,7 +1531,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/plan-architecture.svg" alt="plan architecture">
 </div>
-<div class="title">Figure 9. Example Plan-based system architecture</div>
+<div class="title">Figure 10. Example Plan-based system architecture</div>
 </div>
 </div>
 <div class="sect2">
@@ -1511,7 +1543,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/gdl-architecture.svg" alt="gdl architecture">
 </div>
-<div class="title">Figure 10. Example Guideline-based system architecture</div>
+<div class="title">Figure 11. Example Guideline-based system architecture</div>
 </div>
 </div>
 </div>
@@ -1526,10 +1558,16 @@ terminology
 <p><a id="Afib_NHFA_CSANZ_2018"></a>Brieger, D., Amerena, J., Bajorek, B., &amp; others. (2018). NHFA CSANZ Atrial Fibrillation Guideline Working Group: Australian Clinical Guidelines for the Diagnosis and Management of Atrial Fibrillation. <em>Heart, Lung and Circulation</em>, <em>27</em>(10), 1209–1266. Retrieved from <a href="https://www.heartlungcirc.org/article/S1443-9506(18)31778-5/pdf" class="bare">https://www.heartlungcirc.org/article/S1443-9506(18)31778-5/pdf</a></p>
 </div>
 <div class="paragraph">
+<p><a id="IOM_CPG_2011"></a>Graham, R., Mancher, M., Wolman, D. M., Greenfield, S., &amp; (eds), E. S. (2011). <em>Clinical Practice Guidelines We Can Trust (Institute of Medicine)</em>. Washington, DC: The National Academies Press.</p>
+</div>
+<div class="paragraph">
 <p><a id="JCI_CPGs_2016"></a>Hoesing, H., &amp; International, J. C. (2016). Clinical Practice Guidelines: Closing the Gap Between Theory and Practice. Retrieved from <a href="https://www.elsevier.com/__data/assets/pdf_file/0007/190177/JCI-Whitepaper_cpgs-closing-the-gap.pdf" class="bare">https://www.elsevier.com/__data/assets/pdf_file/0007/190177/JCI-Whitepaper_cpgs-closing-the-gap.pdf</a></p>
 </div>
 <div class="paragraph">
 <p><a id="Hofstede_van_der_Aalst2009"></a>Hofstede, A. H. M. T., Aalst, W. M. P. van der, Adams, M., &amp; Russell, N. (2010). <em>Modern Business Process Automation: YAWL and its Support Environment</em>. Springer-Verlag.</p>
+</div>
+<div class="paragraph">
+<p><a id="Kredo_et_al_2016"></a>Kredo, T., Bernhardsson, S., Machingaidze, S., Young, T., Louw, Q., Ochodo, E., &amp; Grimmer, K. (2016). Guide to clinical practice guidelines: the current state of play. <em>International Journal for Quality in Health Care</em>, <em>28</em>(1), 122–128. Retrieved from <a href="https://doi.org/10.1093/intqhc/mzv115" class="bare">https://doi.org/10.1093/intqhc/mzv115</a></p>
 </div>
 <div class="paragraph">
 <p><a id="Morris_Wooding_Grant_2011"></a>Morris, Z. S., Wooding, S., &amp; Grant, J. (2011). The answer is 17 years, what is the question: understanding time lags in translational research. <em>Journal of the Royal Society of Medicine</em>, <em>104</em>(12), 510–520. Retrieved from <a href="https://doi.org/10.1258/jrsm.2011.110180" class="bare">https://doi.org/10.1258/jrsm.2011.110180</a></p>
