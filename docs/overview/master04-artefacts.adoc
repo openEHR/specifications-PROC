@@ -3,7 +3,7 @@
 
 Various kinds of potentially formalisable artefact commonly used in healthcare are implied by the needs described earlier, including the following:
 
-* _care pathway_: evidence-based plan of a complex care condition;
+* _care pathway_: evidence-based plan of care for a complex condition;
 * _clinical practice guideline (CPG)_: evidence-based protocol for a specific clinical task;
 * _order set_: 'template' set of combined orders for tests, medications etc relating to a condition;
 * _care plan_: descriptive plan for individual patient care, typically either oriented to in-patient care or post-discharge nursing care.
@@ -26,7 +26,12 @@ A more recent version of this puts emphasis on the evidential basis:
 
 * Clinical guidelines are statements that include recommendations intended to optimize patient care that are informed by a systematic review of evidence and an assessment of the benefits and harms of alternative care options cite:[IOM_CPG_2011]
 
-Guidelines are usually either _therapeutic_, i.e. oriented to describing a procedure e.g. intubation, asthma management, or _diagnostic_, such as for diagnosing various forms of angina. Many diagnostic guidelines are relatively simple scores based on a number of patient variables, whose aim is to stratify risk into categories corresponding to type of intervention. Examples of guidelines include:
+Guidelines are usually either:
+
+* _therapeutic_, i.e. oriented to describing a procedure e.g. intubation; medication dosing and administration; and management of a specific condition e.g. asthma, or;
+* _diagnostic_, such as for diagnosing various forms of angina.
+
+Many diagnostic guidelines are relatively simple scores based on a number of patient variables, whose aim is to stratify risk into categories corresponding to type of intervention. Examples of guidelines include:
 
 * {chad2ds2vasc_score}[CHA2DS2–VASc stroke risk score^];
 * {nice_uk_stable_angina}[UK NICE Stable angina management guideline^];
@@ -43,7 +48,7 @@ A very common kind of clinical guideline takes the form of a _score_, and consis
 
 Although technically relatively simple, this kind of guideline can be very effective in changing clinical behaviour, primarily due to the fact that the score function and stratification table reflect the current evidence for the relevant condition. Such guidelines are usually executed in a single-shot fashion to generate recommendations for the clinician at the point of care. They are often visualised as a single form containing the input variables, the score and the resulting classification, with the input fields being populated from an EMR and/or manually fillable as required. 
 
-The openeHR GDL2 language is used to represent this kind of guideline, and implementations typically show interactive forms such as the following.
+The {openehr_cds_gdl2}[openEHR GDL2 language^] is used to represent this kind of guideline, and implementations typically show interactive forms such as the following.
 
 [.text-center]
 .GDL2 CHA2DS2–VASc stroke risk score
@@ -66,7 +71,9 @@ A care pathway is thus a higher-level entity aimed at achieving a _patient outco
 
 === Representation Challenges
 
-Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. There are a couple of important issues that affect potential formalisation.
+Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. 
+
+Care pathways and guidelines are published based on studies performed on the available evidence base. This often occurs initially at a specific institution that is a recognised center of excellence for a condition (e.g. aortic dissection), or as the result of a wider research study focussed on a specific disease cohort (most rare diseases). Over time, successful guidelines and pathways find wider adoption and may migrate to a professional college or national institute for the long term. Regardless of the development history, there are a number of important issues that affect potential formalisation.
 
 The first is the problem of _partial coverage_. There is  no guarantee that any particular condition will have a published care pathway or guidelines for all of its subordinate activities. Coverage is likely to be partial, or sometimes completely absent. Consequently, the definition of a pathway for a particular patient (type) may have to be undertaken locally by institutions and/or simply achieved by 'old school medicine'. This implies that some automatable patient plans will be developed manually rather than from any existing pathway template.
 
@@ -76,7 +83,7 @@ Due to the merge problem, _more than one pathway may apply to a patient_, e.g. o
 
 There currently appears to be little science on adaptation of guidelines, which means there is no obvious candidate method that might lead to automated or computer-aided adaptation. However communities such as the {guidelines_intl_network}[Guidelines International Network^] have working groups related to adaptation and localisation, which may lead to such methods in the future cite:[Kredo_et_al_2016].
 
-For convenience, we term a care pathway- or guideline-like artefact for a specific patient, however arrived at and incorporating any necessary conflict resolution, merging and localisation, a _patient plan_.
+For convenience, we term a care pathway- or guideline-like artefact for a specific patient, incorporating any necessary conflict resolution, merging and localisation, a _patient plan_.
 
 With respect to the challenge of applying information technology to process-oriented care, key questions to do with published (natural language) pathways and guidelines are:
 
@@ -87,7 +94,7 @@ We make a baseline assumption that guidelines and care pathways are essentially 
 
 * _goal_ (pathway) or _purpose_ (guideline);
 * _indications_, i.e. clinical pre-conditions for use;
-* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or parallel, and which may include activities relating to:
+* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or concurrent, and which may include activities relating to:
 ** orders or order sets;
 ** medication administration;
 * _classification rules_ that convert a real-world value to a classification for the purpose of the guideline, e.g.:
@@ -95,7 +102,7 @@ We make a baseline assumption that guidelines and care pathways are essentially 
 ** Systolic pressure > 160 mm[Hg] -> 'high', in a hypertension guideline;
 * decision rules, flowcharts and tables that act as related _rule-sets_, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N variables.
 
-Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
+Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).  Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
 
 === Order Set
 

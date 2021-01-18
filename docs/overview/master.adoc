@@ -30,12 +30,13 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 
 === Primary Authors
 
-* Thomas Beale, Ars Semantica, openEHR International Board, UK;
+* Thomas Beale, Ars Semantica, openEHR International Board, UK
 * Rong Chen MD, PhD, Cambio CDS, Sweden
 
 === Contributors
 
-* Keith Salzman, MD/CMIO, US Army (ret.)
+* Ken Lord, Principal, MDIXinc, US
+* Keith Salzman MD, CMIO US Army (ret.)
 
 === Support
 

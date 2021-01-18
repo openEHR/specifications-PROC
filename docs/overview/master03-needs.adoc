@@ -8,18 +8,19 @@ Naive approaches to the use of IT to support clinical care process generally ass
 
 To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.
 
-The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. Nevertheless, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
+The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. Nevertheless, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to long term nursing or home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
 
 The second aspect to consider is that clinical professionals don't need to be told how to do medicine. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:
 
 * _following care pathways and guidelines_ for complex conditions e.g. acute stroke, sepsis, complex childbirth; also guidelines that incorporate changing _policy_ on the use of specific types of test whose costs and risks change over time (e.g. CT scan, MRI, certain drugs);
 * _clinical check lists_ for multi-step procedures, including surgery, to prevent busy or tired personnel forgetting common steps;
+* _reminders_ (that may be signed off) for critical actions in procedures not yet performed, particularly in team-oriented and busy environments (e.g. ED);
 * _decision support_ to determine appropriate treatments, medications from among numerous and/or changing possibilities;
 * _verification (signing off)_ of tasks performed for medico-legal reasons, process improvement (including _process mining_).
 
 In general, the above capabilities address three human fallibilities:
 
-* limited capacity to _deal with complexity_ unaided (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^]); 
+* limited capacity to _deal with complexity_ unaided (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^], which refers to the limited number of variables that the vast majority of human beings can keep in mind at one time); 
 * the inability to _keep up with change_ (new medications, research etc); and
 * forgetting routine steps in an activity due to fatigue, rushing or an unexpected change of personnel in the middle of a procedure.
 
@@ -27,12 +28,12 @@ Automated support for the above would significantly aid the short-term, single c
 
 * _coordination_ of:
 ** team members across departments (via e.g. plan-generated notifications); e.g. acute stroke care;
-** workers undertaking care spanning multiple shifts and personnel, e.g. multi-week chemotherapy administration;
+** workers undertaking care spanning shifts and personnel changes, e.g. multi-week chemotherapy administration;
 ** longer term care, e.g. pregnancy, chronic disease monitoring.
 
-A further clinical need which process automation can potentially address is reduction of _documentation burden_, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and seeing more patients.
+A further clinical need which process automation can potentially address is reduction of _documentation burden_, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and spending time with the patient.
 
-Process automation could address the disconnect between process and documenting by supporting _fine-grained, on-the-fly interaction with the EHR_, such that as clinical work proceeds, documentation is also being done incrementally. When the work is done, the EHR is up-to-date, or very close to it, alowing clinicians to move immediately to the next patient.
+Process automation could address the disconnect between process and documenting by supporting _fine-grained, on-the-fly interaction with the EHR_, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior consultant having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).
 
 A final category of requirement for clinical process automation is _training_. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one's professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.
 
@@ -40,15 +41,28 @@ The sections below elucidate some of these topics.
 
 == Implementing Best Practices
 
-Best practices in healthcare, especially for complex conditions and treatment pathways with co-morbidities, but also routine activities such as dialysis and angina diangosis, are increasingly codified in the form of Care Pathways, Clinical Practice Guidelines (CPGs) and related artefacts published by professional colleges, universities, teaching hospitals, and national institutes. These artefacts are based on outcomes-based and other kinds of research that have determined which specific approaches to care produce better and more repeatable outcomes for patients. They are usually published as PDF files or HTML websites containing a modicum of structural visualisation of decision pathways; they may contain hundreds of details to do with particular drugs, dosing, analyte levels, and investigational pathways.
+Best practices in healthcare, especially for complex conditions and treatment pathways with co-morbidities, but also routine activities such as dialysis and angina diagnosis, are increasingly codified in the form of Care Pathways, Clinical Practice Guidelines (CPGs) and related artefacts published by professional colleges, universities, teaching hospitals, and national institutes. These artefacts are based on evidence-based and other kinds of research that have determined which specific approaches to care produce better and more repeatable outcomes for patients. They are usually published as PDF files or HTML websites containing a modicum of structural visualisation of decision pathways; they may contain hundreds of details to do with particular drugs, dosing, analyte levels, and investigational pathways.
 
 One of the primary obstructions to the routine uptake of best practices publications is the inability to integrate them directly into the cognitive care environment of working clinicians. Their use relies on reading prior to care, and either memorisation or else use on a screen or in printed form at the point of care. Due to this basic difficulty, many guidelines are only used in a patchy way depending on individual clinician interest, spare time and psychological factors cite:[JCI_CPGs_2016]. Many of the major benefits are consequently not realised until they are incorporated into mainstream medical and nursing training, at which point they become the norm. The time lag for this to occur has been famously stated as being on average 17 years cite:[Morris_Wooding_Grant_2011], and is thought to range from 10 to 25 years.
 
 It has been recognised for some years that if best practice pathways and guidelines could be made computable in the form of plan and/or decision structures, they could be incorporated _directly into clinical applications in use at point of care_, greatly reducing the delay from research to use to potentially weeks or months rather than a decade or more via educational or manual dissemination routes.
 
+== Guideline and Pathway Authoring in Computable Form
+
 If formalisation of natural language guidelines can succeed, a new possibility of major importance appears: the potential for the primary authoring of pathways and guidelines to be undertaken via tools that create formal expressions directly. This opens up further possibilities such as clinical guideline simulation, testing, and formal verification, which could revolutionise the both the production as well as the translation to point of care of best practices.
 
 The ability to express best practice guidelines in a computable form thus lies at the heart of the requirements for automation of care process. The various kinds of artefacts are described in detail in <<_care_process_artefacts>>.
+
+== Simulation and Training
+
+One of the benefits that clinical process automation can bring is the ability to execute plans in a simulation mode. This can be done for a number of reasons:
+
+* during development of a guideline or pathway, as a means of 'debugging' it;
+* for training purposes for new personnel;
+* for training for experience personnel on rarely used or changed procedures;
+* to test alternative approaches to team structure, improve efficiency etc.
+
+Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc. 
 
 == Long-running Processes
 
@@ -78,17 +92,17 @@ In an application, the dose will have been pre-computed based on patient body su
 
 From a user perspective, if this information structure (in an appropriate unfilled template form) can be directly associated with the task within a plan in such a way as to enable easy filling in of the data and subsequent recording in the patient record, no further work is required to update the record at plan (or task) completion. Similar situations require display of specific data sets as part of performing a task. However, if this is not the case, plan automation will not significantly reduce clinician documentation burden, and may have limited value. Worse, if there is no ability to associate information retrieval and recording actions with their real world tasks, plan authors will be forced to create tasks within plans dedicated to these information system interactions. This will have the effect of greatly increasing the size of many plans while reducing their comprehensibility.
 
-In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many partical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in native openEHR environments, where archetypes and templates enable convenient domain-level data set definition, whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other forms or similar.
+In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many practical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in native openEHR environments, where archetypes and templates enable convenient domain-level data set definition, whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other similar forms.
 
 == Cognitive Model
 
 === The Co-pilot Paradigm
 
-Common to all of the categories of requirement described above is a general need that any clinical process planning system augment rather than replace the cognitive processing of workers, by providing judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.
+Common to all of the categories of requirement described above is a general need that any clinical process planning system _augment_ rather than replace the cognitive processing of workers, by providing judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.
 
 The co-pilot paradigm has direct consequences for formal representation of plans and decision-making, including:
 
-* a worker may treat computed inferences (i.e. rule results etc) as recommendations that may be overridden; this implies a specific kind of interaction with a plan automation system unlike pure automatic computation (as would be used in an industrial process for example);
+* a worker may treat computed inferences (i.e. rule results etc) as recommendations that may be overridden (usually with the ability to record justification); this implies a specific kind of interaction with a plan automation system unlike pure automatic computation (as would be used in an industrial process for example);
 * a worker may request the chain of logical justification of a particular rule result; this implies that rule execution must be done so that the execution trace is available for inspection.
 
 === Voice-based HCI
@@ -102,7 +116,7 @@ Voice control is also likely to be crucial to enabling a clinical process suppor
 
 == Independence of Reusable Guidelines from Legacy HIS Environments
 
-One of the hardest problems to solve historically with respect to computable guidelines and pathways has been how to author them so as to reference needed external data about the subject, but to do so independent of any particular back-end system environment. The general situation is that the data items, which we term _subject variables_, needed by a plan or guideline are populated from numerous kinds of back-end systems and products, including EMR systems, disease registers, departmental systems, research systems and increasingly, real-time devices. Each of these have their own data models, terminologies and access methods. Although there are standards for accessing such systems including standards from HL7 (HL7v2, CDA, FHIR), IHE (XDS), OMG, and IEEE these are themselves used in different forms and 'profiles', and are not used on all systems, particularly smaller research or practitioner-specific systems. Additionally, which standards are in use in particular places changes over time.
+One of the hardest problems to solve historically with respect to computable guidelines and pathways has been how to author them so as to reference needed external data about the subject, but to do so independent of any particular back-end system environment. The general situation is that the data items, which we term _subject variables_, needed by a plan or guideline are populated from numerous kinds of back-end systems and products, including EMR systems, disease registers, departmental systems, research systems and increasingly, real-time devices. Each of these have their own data models, terminologies and access methods. Although there are standards for accessing such systems including standards from HL7 (HL7v2, CDA, FHIR), IHE (XDS), OMG, and IEEE these are themselves used in different forms and 'profiles', and are not used on all systems, particularly smaller research or practitioner-specific systems. Additionally, which data interoperability standards are in use in particular places changes over time.
 
 In order to ensure computable plans and guidelines are independent of the heterogeneity of both back-end systems and ever-changing data standards, an approach is needed such that subject variables are _declared symbolically_ within the computable representation, and are mapped to local system environments in a separate location, such as a dedicated service.
 
