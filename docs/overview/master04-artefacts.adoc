@@ -94,7 +94,8 @@ We make a baseline assumption that guidelines and care pathways are essentially 
 
 * _goal_ (pathway) or _purpose_ (guideline);
 * _indications_, i.e. clinical pre-conditions for use;
-* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or concurrent, and which may include activities relating to:
+* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or concurrent, and which may relate to:
+** observations and assessments;
 ** orders or order sets;
 ** medication administration;
 * _classification rules_ that convert a real-world value to a classification for the purpose of the guideline, e.g.:
@@ -102,7 +103,9 @@ We make a baseline assumption that guidelines and care pathways are essentially 
 ** Systolic pressure > 160 mm[Hg] -> 'high', in a hypertension guideline;
 * decision rules, flowcharts and tables that act as related _rule-sets_, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N variables.
 
-Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).  Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
+Formalising such a structure primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).  
+
+Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
 
 === Order Set
 

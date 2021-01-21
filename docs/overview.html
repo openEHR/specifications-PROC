@@ -207,14 +207,31 @@
 <th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 2.0.0 (unreleased)</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.2</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a href="https://specifications.openehr.org/tickets/SPECPROC-45" target="_blank" rel="noopener">SPECPROC-45</a>. Add Process component Overview document.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
- R Chen,<br>
- K Salzman</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Jan 2021</p></td>
+ R Chen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 Jan 2021</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Improvements due to review.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R Chen,<br>
+ K Salzman,<br>
+ K Lord</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Initial writing.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2020</p></td>
 </tr>
 </tbody>
 </table>
@@ -962,9 +979,12 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <p><em>indications</em>, i.e. clinical pre-conditions for use;</p>
 </li>
 <li>
-<p>structured natural language statements describing a <em>plan</em>, also commonly known as <em>tasks</em> or <em>activities</em>, which may be sequential or concurrent, and which may include activities relating to:</p>
+<p>structured natural language statements describing a <em>plan</em>, also commonly known as <em>tasks</em> or <em>activities</em>, which may be sequential or concurrent, and which may relate to:</p>
 <div class="ulist">
 <ul>
+<li>
+<p>observations and assessments;</p>
+</li>
 <li>
 <p>orders or order sets;</p>
 </li>
@@ -993,7 +1013,10 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 </ul>
 </div>
 <div class="paragraph">
-<p>Formalising such a structure for automation primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).  Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed <em>de novo</em> when needed.</p>
+<p>Formalising such a structure primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).</p>
+</div>
+<div class="paragraph">
+<p>Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed <em>de novo</em> when needed.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1285,7 +1308,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <p>Plans are formally defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>, and visualised (including for authoring purposes) in <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Plan Visual Modelling Language (TP-VML)</a>. DLMs are written in the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language (DL)</a>, which is a high-level syntax.</p>
 </div>
 <div class="paragraph">
-<p>Both of these artefacts contain references to subject variables, i.e. ontic (real-world) subject state, such as <em>date_of_birth</em>, <em>weight</em>, <em>systolic_BP</em> and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be <em>tracked</em> over time. This might entail near real-time (i.e. seconds, minutes) update from measuring devices or simply repeated querying for routine measurements over time from the patient record. A collection of subject variables relevant to plans and DLMs is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.</p>
+<p>Both of these artefacts contain references to subject variables, i.e. ontic (real-world) subject state, such as <em>date_of_birth</em>, <em>weight</em>, <em>systolic_BP</em> and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be <em>tracked</em> over time. Tracking subject variables over time might entail near real-time (i.e. seconds, minutes) update from measuring devices or simply repeated querying for routine measurements over time from the patient record. A collection of subject variables relevant to plans and DLMs is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.</p>
 </div>
 <div class="paragraph">
 <p>In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.</p>

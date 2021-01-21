@@ -6,12 +6,23 @@
 
 4+^h|*PROC Release 2.0.0 (unreleased)*
 
-|[[latest_issue]]0.5.0
+|[[latest_issue]]0.5.2
 |{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document.
 |T Beale, +
- R Chen, +
- K Salzman
-|[[latest_issue_date]]07 Jan 2021
+ R Chen
+|[[latest_issue_date]]30 Jan 2021
+
+|0.5.1
+|Improvements due to review.
+|R Chen, +
+ K Salzman, +
+ K Lord
+|15 Dec 2020
+
+|0.5.0
+|Initial writing.
+|T Beale
+|15 Dec 2020
 
 |===
 
