@@ -62,7 +62,7 @@ One of the benefits that clinical process automation can bring is the ability to
 * for training for experience personnel on rarely used or changed procedures;
 * to test alternative approaches to team structure, improve efficiency etc.
 
-Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc. 
+Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc.
 
 == Long-running Processes
 
@@ -80,7 +80,44 @@ A priori, healthcare systems, via the administrators, managers, and clinicians i
 
 Nevertheless, no plan automation system can assume that worker availability is automatic, or guaranteed to cleanly fit with the periods in time during which the patient needs attendance. An automatable plan representation will therefore need to explicitly incorporate the notion of _allocation and de-allocation_ of workers to tasks (including in the middle of a task), as well as _hand-overs_ between workers. This would imply for example, that a task within a plan cannot proceed until an appropriate worker had been allocated to it, which further implies that some basis for allocation may need to be specified. The YAWL language cite:[Hofstede_van_der_Aalst2009] for example supports various allocation strategies such as 'first available', 'most frequently used' and so on.
 
-== Integration with the Patient Record
+== Cognitive Model
+
+=== The Co-pilot Paradigm
+
+Common to all of the categories of requirement described above is a general need that any planning / decision support system _augment_ rather than replace the cognitive processing of workers, by providing judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.
+
+The co-pilot paradigm has direct consequences for formal representation of plans and decision-making, including:
+
+* a worker may treat computed inferences (i.e. rule results etc) as _recommendations_ that may be overridden (usually with the ability to record justification); this implies a specific kind of interaction with a plan automation system unlike pure automatic computation (as would be used in an industrial process for example);
+* a worker may request the chain of logical justification of a particular rule result; this implies that rule execution must be done so that the execution trace is available for inspection.
+
+=== Voice-based HCIs
+
+One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home audio-visual systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:
+
+* by replacing physical keyboard interaction with voice, it enables interaction with the system to occur in _parallel_, and therefore in real-time, with clinical work that typically already occupies the worker's hands and eyes;
+* it largely removes the problem of maintaining the _sterile field_ around a patient that would otherwise be jeapordised by multiple workers touching keyboards and touchscreens.
+
+Voice control is also likely to be crucial to enabling a clinical process support system to operate as an intelligent co-pilot rather than an overbearing presence in the work environment, since it starts to emulate the normal conversational abilities of human workers, via which any principal worker may ask for help as needed, but also limit system intervention when it is not needed.
+
+== Activation of Plans, Guidelines and Decision Support
+
+One of the basic challenges that emerges as soon as computable decision support, guidelines or planning are introduced to the workplace is how the appropriate artefacts from among possible candidates are activated. There are at least three ways this can happen:
+
+* via static linking of CPGs, plans etc to specific applications and forms, which are launched intentionally by the worker for each kind of work, e.g. specific type of patient visit;
+* via rules that execute when a particular application runs, to try to identify appropriate plans to use;
+* via a rule evaluator running in the background that executes on various events, e.g. data being committed to the EHR (e.g. test results), device data values, or simply on a timed basis.
+
+The first of these is likely to be used with more comprehensive pathways and guidelines, such as ante-natal care, that have their a dedicated application or form within another application. The second approach normally limits guidelines activated to candidates matched to the type of patient or condition of the application in question, and might offer choices to the user. The third approach is normally used to run decision support guidelines designed to generate alerts for patients with specific risks, and might range from medication recommendations for patients showing evidence of hypertension to alerts for notifiable infections, such as methicillin-resistant staphylococcus aureus (MRSA) and Covid-19.
+
+Mechanisms based on Event-Condition-Action (ECA) rules such as {cds_hooks}[CDS-hooks^] are used to enable events in the clinical work environment to create requests to external CDS services and return recommendations. A well-known problem with injudicious launching of guidelines or rules is 'alert fatigue' due to numerous and/or incoherent alerts only weakly related to the patient. This is a serious problem that can impact on patient safety, since clinicians can easily miss the few important alerts that may occur.
+
+Various requirements on computable representation of plans and guidelines follow from the above considerations:
+
+* care pathways, therapeutic guidelines and order sets need to include clinical _indications_, defined in terms of health conditions (e.g. having viral pneumonia), current medications or other evaluable criteria, which allow _matching_ to subject state;
+* CDS (diagnostic) guidelines might include broad patient matching criteria (e.g. age, sex, being diabetic) rather than precise indications, and activation often relies only on the required input variables being available.
+
+== Integration with the Patient Health Record
 
 General-purpose workflow formalisms and products do not generally assume the presence of a system whose purpose is to record information (e.g. observations, decisions, orders, actions) undertaken for the subject, beyond some direct record of the plan execution itself. However many tasks in healthcare plans involve the review and/or capture of complex data sets specific to the task at hand, which would naturally be recorded in the patient record. In order to make clinical plans efficient for their users, the formal representation of tasks needs to account for data sets and detailed action descriptions. For example a task whose short description is 'administer Cyclophosphamide, day 1' will have a detailed description such as:
 
@@ -94,29 +131,8 @@ From a user perspective, if this information structure (in an appropriate unfill
 
 In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many practical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in native openEHR environments, where archetypes and templates enable convenient domain-level data set definition, whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other similar forms.
 
-== Cognitive Model
-
-=== The Co-pilot Paradigm
-
-Common to all of the categories of requirement described above is a general need that any clinical process planning system _augment_ rather than replace the cognitive processing of workers, by providing judicious help when needed. In this view, the system acts like a co-pilot, and does not attempt to be the pilot. It may remind, notify, verify, answer questions and perform documentation, but always assumes that the clinical professionals are both the ultimate performers of the work as well as the ultimate deciders. The latter means that workers may at any time _override_ system-proposed tasks or decisions. Similar to a car navigation system, a clinical co-pilot must absorb deviations from original plans and recompute the pathway at each new situation, as it occurs.
-
-The co-pilot paradigm has direct consequences for formal representation of plans and decision-making, including:
-
-* a worker may treat computed inferences (i.e. rule results etc) as recommendations that may be overridden (usually with the ability to record justification); this implies a specific kind of interaction with a plan automation system unlike pure automatic computation (as would be used in an industrial process for example);
-* a worker may request the chain of logical justification of a particular rule result; this implies that rule execution must be done so that the execution trace is available for inspection.
-
-=== Voice-based HCI
-
-One kind of technology that is becoming routine is voice-based human/computer interaction (HCI). Voice technology has become a useful convenience for using mobile phones while driving or interacting with home audio-visual systems, where it is replacing the remote control. It is likely to become the principle means of HCI in many clinical situations, since it achieves two things difficult to achieve by other means:
-
-* by replacing physical keyboard interaction with voice, it enables interaction with the system to occur in _parallel_, and therefore in real-time, with clinical work that typically already occupies the worker's hands and eyes;
-* it largely removes the problem of maintaining the _sterile field_ around a patient that would otherwise be jeapordised by multiple workers touching keyboards and touchscreens.
-
-Voice control is also likely to be crucial to enabling a clinical process support system to operate as an intelligent co-pilot rather than an overbearing presence in the work environment, since it starts to emulate the normal conversational abilities of human workers, via which any principal worker may ask for help as needed, but also limit system intervention when it is not needed.
-
 == Independence of Reusable Guidelines from Legacy HIS Environments
 
 One of the hardest problems to solve historically with respect to computable guidelines and pathways has been how to author them so as to reference needed external data about the subject, but to do so independent of any particular back-end system environment. The general situation is that the data items, which we term _subject variables_, needed by a plan or guideline are populated from numerous kinds of back-end systems and products, including EMR systems, disease registers, departmental systems, research systems and increasingly, real-time devices. Each of these have their own data models, terminologies and access methods. Although there are standards for accessing such systems including standards from HL7 (HL7v2, CDA, FHIR), IHE (XDS), OMG, and IEEE these are themselves used in different forms and 'profiles', and are not used on all systems, particularly smaller research or practitioner-specific systems. Additionally, which data interoperability standards are in use in particular places changes over time.
 
 In order to ensure computable plans and guidelines are independent of the heterogeneity of both back-end systems and ever-changing data standards, an approach is needed such that subject variables are _declared symbolically_ within the computable representation, and are mapped to local system environments in a separate location, such as a dedicated service.
-
