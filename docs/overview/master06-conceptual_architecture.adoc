@@ -197,7 +197,7 @@ TBD: include event listener in subject proxy or in separate component?
 
 == Subject Proxy Service
 
-Extraction of subject state from its sources is managed by a {openehr_sm_openehr_platform}#_subject_proxy_service[Subject Proxy service^]. _Data Access Bindings (DAB)_ are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.
+Extraction of subject state from its sources is managed by a {openehr_sm_openehr_platform}#_subject_proxy_service[Subject Proxy service^]. __Data Access Bindings (DAB)__ are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.
 
 The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including Plan workflows and Decision Support. These jobs are described below.
 
