@@ -69,9 +69,19 @@ A care pathway is thus a higher-level entity aimed at achieving a _patient outco
 * {cancer_council_australia_breast}[Cancer Council Australia Breast cancer pathway^];
 * {ihc_stroke_pathway}[Intermountain Healthcare Acute Stroke CPM^].
 
-=== Representation Challenges
+=== Order Sets
 
-Care pathways and guidelines are published based on studies performed on the available evidence base e.g. at an institution, within a specific disease cohort, or more widely. 
+Within the above-described artefacts references to so-called _order sets_ may exist. An order set is understood as:
+
+* a set of orders for diagnostic tests and/or medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;
+* potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;
+* descriptive meta-data, including authors, history, evidence base, etc.
+
+In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'prescriptions', while the second is a candidate for representation as a formalised plan. 
+
+In the openEHR process architecture, an order set is considered to be an artefact of the same general form as a CPG, oriented to closely related orderable activities. It is therefore treated as a specific sub-category of plan artefacts, whose initial actions consist of a _condition-specific set of orders_ with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway or CPG, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan. Following this analysis, the question of formal representation of order sets is assumed to be solved via the same plan representation described for care pathways and CPGs.
+
+=== Representation Challenges
 
 Care pathways and guidelines are published based on studies performed on the available evidence base. This often occurs initially at a specific institution that is a recognised center of excellence for a condition (e.g. aortic dissection), or as the result of a wider research study focussed on a specific disease cohort (most rare diseases). Over time, successful guidelines and pathways find wider adoption and may migrate to a professional college or national institute for the long term. Regardless of the development history, there are a number of important issues that affect potential formalisation.
 
@@ -106,18 +116,6 @@ We make a baseline assumption that guidelines and care pathways are essentially 
 Formalising such a structure primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).  
 
 Assuming this can be achieved, the second challenge then requires support within tools such that formal patient-level plans could be adapted in a fine-grained from existing pathways and CPGs and/or developed _de novo_ when needed.
-
-=== Order Set
-
-Within the above-described artefacts references to so-called _order sets_ may exist. An order set is generally understood as:
-
-* a set of orders for diagnostic tests and/or medications and/or other therapies that are used together to achieve a particular clinical goal, e.g. the drugs for a particular chemotherapy regimen are often modelled as an order set;
-* potentially a detailed plan for administration of the items in the order set, which may be a fully planned out schedule of single administrations on particular days and times;
-* descriptive meta-data, including authors, history, evidence base, etc.
-
-In most EHR/EMR sytems, the first item corresponds to a set of 'orders' or 'prescriptions', while the second is a candidate for representation as a formalised plan. 
-
-In the openEHR process architecture, an 'order set' is considered to be a plan artefact, whose initial actions consist of a _condition-specific set of orders_ with associated descriptive information. Administration actions may follow, within the same plan. Similarly to a care pathway, an order set may need to be modified for use with a real patient due to interactions or contra-indications, and any administration plan provided (perhaps as a template) may need to be copied and adapted for use in a larger patient-specific plan.
 
 == Care Plans
 
