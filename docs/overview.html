@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="openEHR Process and Planning Overview">
-<meta name="keywords" content="process, guidelines, GDL, planning, workflow">
-<title>Process &amp; Planning Overview</title>
+<meta name="description" content="Overview of openEHR CDS, Guidelines and Planning specifications.">
+<meta name="keywords" content="process, guidelines, GDL, planning, CDS, workflow, CPG">
+<title>CDS, Guidelines and Planning Overview</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 </head>
 <body class="book toc2 toc-left">
@@ -15,7 +15,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_process_planning_overview">Process &amp; Planning Overview</a>
+<li><a href="#_cds_guidelines_and_planning_overview">CDS, Guidelines and Planning Overview</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -126,7 +126,7 @@
 </div>
 </div>
 </div>
-<h1 id="_process_planning_overview" class="sect0"><a class="anchor" href="#_process_planning_overview"></a>Process &amp; Planning Overview</h1>
+<h1 id="_cds_guidelines_and_planning_overview" class="sect0"><a class="anchor" href="#_cds_guidelines_and_planning_overview"></a>CDS, Guidelines and Planning Overview</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all fit-content spread">
@@ -149,7 +149,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: process, guidelines, GDL, planning, workflow</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: process, guidelines, GDL, planning, CDS, workflow, CPG</p></td>
 </tr>
 </tbody>
 </table>
@@ -258,6 +258,9 @@
 <h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
 <div class="ulist">
 <ul>
+<li>
+<p>Joost Holslag, MD, Nedap Healthcare &amp; University of Groningen, Netherlands</p>
+</li>
 <li>
 <p>Ken Lord, Principal, MDIXinc, US</p>
 </li>
@@ -617,7 +620,7 @@
 <p>A further clinical need which process automation can potentially address is reduction of <em>documentation burden</em>, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and spending time with the patient.</p>
 </div>
 <div class="paragraph">
-<p>Process automation could address the disconnect between process and documenting by supporting <em>fine-grained, on-the-fly interaction with the EHR</em>, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior consultant having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).</p>
+<p>Process automation could address the disconnect between process and documenting by supporting <em>fine-grained, on-the-fly interaction with the EHR</em>, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior clinician having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).</p>
 </div>
 <div class="paragraph">
 <p>A final category of requirement for clinical process automation is <em>training</em>. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one&#8217;s professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.</p>
@@ -759,7 +762,7 @@
 <p>The first of these is likely to be used with more comprehensive pathways and guidelines, such as ante-natal care, that have their a dedicated application or form within another application. The second approach normally limits guidelines activated to candidates matched to the type of patient or condition of the application in question, and might offer choices to the user. The third approach is normally used to run decision support guidelines designed to generate alerts for patients with specific risks, and might range from medication recommendations for patients showing evidence of hypertension to alerts for notifiable infections, such as methicillin-resistant staphylococcus aureus (MRSA) and Covid-19.</p>
 </div>
 <div class="paragraph">
-<p>Mechanisms based on Event-Condition-Action (ECA) rules such as <a href="https://cds-hooks.org" target="_blank" rel="noopener">CDS-hooks</a> are used to enable events in the clinical work environment to create requests to external CDS services and return recommendations. A well-known problem with injudicious launching of guidelines or rules is 'alert fatigue' due to numerous and/or incoherent alerts only weakly related to the patient. This is a serious problem that can impact on patient safety, since clinicians can easily miss the few important alerts that may occur.</p>
+<p>Mechanisms based on Event-Condition-Action (ECA) rules such as <a href="https://cds-hooks.org" target="_blank" rel="noopener">CDS-hooks</a> are used to enable events in the clinical work environment to create requests to external CDS services and return recommendations. A well-known problem with injudicious launching of guidelines or rules is 'alert fatigue' due to numerous and/or incoherent alerts only weakly related to the patient. Uncontrolled alerting can adversely affect patient safety, since clinicians can easily miss the few important alerts that may occur.</p>
 </div>
 <div class="paragraph">
 <p>Various requirements on computable representation of plans and guidelines follow from the above considerations:</p>
@@ -1581,14 +1584,11 @@ terminology
 <div class="paragraph">
 <p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 8</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
 </div>
-<div class="paragraph tbd">
-<p>TBD: include event listener in subject proxy or in separate component?</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_subject_proxy_service"><a class="anchor" href="#_subject_proxy_service"></a>6.5. Subject Proxy Service</h3>
 <div class="paragraph">
-<p>Extraction of subject state from its sources is managed by a <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_subject_proxy_service" target="_blank" rel="noopener">Subject Proxy service</a>. <em>Data Access Bindings (DAB)</em> are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.</p>
+<p>Extraction of subject state from its sources is managed by a <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_subject_proxy_service_sps" target="_blank" rel="noopener">Subject Proxy service</a>. <em>Data Access Bindings (DAB)</em> are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.</p>
 </div>
 <div class="paragraph">
 <p>The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including Plan workflows and Decision Support. These jobs are described below.</p>
@@ -1655,13 +1655,13 @@ terminology
 </ul>
 </div>
 <div class="paragraph">
-<p>The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, such 'live' data obtained by sich methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.</p>
+<p>The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, 'live' data obtained by such methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_type_conversion"><a class="anchor" href="#_type_conversion"></a>6.5.3. Type Conversion</h4>
 <div class="paragraph">
-<p>A natural consequence of obtaining data from multiple sources is that the data will be instances of different concrete concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-based and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital sign data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).</p>
+<p>A natural consequence of obtaining data from multiple sources is that the data will be instances of different concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-based and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital signs data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).</p>
 </div>
 <div class="paragraph">
 <p>The consequence of this is that the type system required at the Subject Proxy level may be significantly simplified compared to the type systems and structures in which data are originally captured. The use of subject proxy variables as the interface for decision support and plan applications to back-end systems greatly simplifies the artifacts needed in the latter components.</p>
@@ -1755,7 +1755,7 @@ terminology
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-18 18:06:19 UTC
+Last updated 2021-01-30 13:41:08 UTC
 </div>
 </div>
 </body>

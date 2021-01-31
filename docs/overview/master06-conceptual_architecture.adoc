@@ -192,12 +192,9 @@ To make decision logic comprehensible to (and therefor authorable by) domain exp
 
 Conceptually, the collection of subject variables of interest to a plan or DLM is a _subject proxy_, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <<conceptual_framework>>, two _subject proxies_ are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.
 
-[.tbd]
-TBD: include event listener in subject proxy or in separate component?
-
 == Subject Proxy Service
 
-Extraction of subject state from its sources is managed by a {openehr_sm_openehr_platform}#_subject_proxy_service[Subject Proxy service^]. __Data Access Bindings (DAB)__ are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.
+Extraction of subject state from its sources is managed by a {openehr_sm_openehr_platform}#_subject_proxy_service_sps[Subject Proxy service^]. __Data Access Bindings (DAB)__ are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.
 
 The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including Plan workflows and Decision Support. These jobs are described below.
 
@@ -234,11 +231,11 @@ Consequently, we can say that the following constitute two more routine data sou
 * just-in-time UI capture of missing data;
 * _manually-reported_ events 'in the room'.
 
-The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, such 'live' data obtained by sich methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.
+The effect of data concentration in the Subject Proxy is that the plan, decision support, and all other applications can rely on a single location to obtain patient state and events, even where the relevant underlying data are not (yet) available in source systems. Additionally, 'live' data obtained by such methods may be written to the relevant EMR and/or EHR by the Subject Proxy, removing the problem of other applications having to make ad hoc writes, following ad hoc data capture.
 
 === Type Conversion
 
-A natural consequence of obtaining data from multiple sources is that the data will be instances of different concrete concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-based and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital sign data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).
+A natural consequence of obtaining data from multiple sources is that the data will be instances of different concrete models (e.g. HL7 messages, documents and FHIR resources; openEHR query results; proprietary EMR data etc). It is also the case that the requesting plan-based and decision-support applications can work effectively with a relatively stripped down system of data types and limited structures. The latter is due to the fact that although data tend to be captured in larger structures such as full blood panels, full vital signs data sets and so on, guidelines and plans tend to require only specific lab analytes (e.g. troponin for investigating possible heart attack) and vital signs, e.g. systolic blood pressure (no need for diastolic pressure, patient position or other details).
 
 The consequence of this is that the type system required at the Subject Proxy level may be significantly simplified compared to the type systems and structures in which data are originally captured. The use of subject proxy variables as the interface for decision support and plan applications to back-end systems greatly simplifies the artifacts needed in the latter components.
 

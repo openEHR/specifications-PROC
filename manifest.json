@@ -6,14 +6,14 @@
     "specifications": [
         {
             "id": "overview",
-            "title": "Process & Planning Overview",
+            "title": "CDS, Guidelines and Planning Overview",
             "title_short": "Overview",
-            "description": "openEHR Process and Planning Overview",
-            "summary": "Overview of openEHR Process, Planning and Guidelines specs.",
-            "micro_summary": "Overview of openEHR Process, Planing and Guidelines specifications.",
+            "description": "Overview of openEHR CDS, Guidelines and Planning specifications.",
+            "summary": "Overview of openEHR CDS, Guidelines and Planning specifications.",
+            "micro_summary": "Overview of CDS, Guidelines, and Planning specifications.",
 			"copyright_year": "2020",
 			"spec_status": "DEVELOPMENT",
-			"keywords": "process, guidelines, GDL, planning, workflow"
+			"keywords": "process, guidelines, GDL, planning, CDS, workflow, CPG"
         },
         {
             "id": "task_planning",
@@ -51,18 +51,18 @@
             "micro_summary": "A visual modelling language for clinical plans and workflows.",
 			"copyright_year": "2017",
 			"spec_status": "TRIAL",
-			"keywords": "task planning, visual language, workflow"
+			"keywords": "task planning, visual language, workflow, care pathway, guideline, order set"
         },
         {
             "id": "process_examples",
-            "title": "openEHR Process Examples",
-            "title_short": "Process Examples",
-            "description": "Examples of openEHR Plan, Guideline and Decision framework.",
-            "summary": "Real world examples of openEHR Plan, Guideline and Decision framework.",
-            "micro_summary": "Real-world worked Process examples.",
+            "title": "openEHR CDS, Guidelines and Planning Examples",
+            "title_short": "Process CDS, Guidelines and Planning Examples",
+            "description": "Examples of openEHR CDS, Guideline and Planning artefacts.",
+            "summary": "Real world examples of openEHR CDS, Guideline and Planning artefacts.",
+            "micro_summary": "Real-world CDS/Process examples.",
 			"copyright_year": "2017",
 			"spec_status": "DEVELOPMENT",
-			"keywords": "process, task planning, decision logic, examples, workflow"
+			"keywords": "process, task planning, CDS, CPG, decision logic, examples, workflow"
         }
     ],
     "expressions": [

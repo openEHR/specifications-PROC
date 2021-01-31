@@ -1,5 +1,5 @@
-:spec_title: Process & Planning Overview
+:spec_title: CDS, Guidelines and Planning Overview
 :copyright_year: 2020
 :spec_status: DEVELOPMENT
-:keywords: process, guidelines, GDL, planning, workflow
-:description: openEHR Process and Planning Overview
+:keywords: process, guidelines, GDL, planning, CDS, workflow, CPG
+:description: Overview of openEHR CDS, Guidelines and Planning specifications.
