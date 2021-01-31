@@ -1,5 +1,5 @@
-:spec_title: openEHR Process Examples
+:spec_title: openEHR CDS, Guidelines and Planning Examples
 :copyright_year: 2017
 :spec_status: DEVELOPMENT
-:keywords: process, task planning, decision logic, examples, workflow
-:description: Examples of openEHR Plan, Guideline and Decision framework.
+:keywords: process, task planning, CDS, CPG, decision logic, examples, workflow
+:description: Examples of openEHR CDS, Guideline and Planning artefacts.

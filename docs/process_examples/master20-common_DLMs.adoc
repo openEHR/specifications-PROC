@@ -1,0 +1,309 @@
+= Common Decision Logic Modules
+
+== BASIC: Demographics
+
+----
+dlm BASIC.v0.5.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Thomas Beale">
+        ["email"] = <"thomas.beale@openEHR.org">
+        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
+        ["date"] = <"2021-011-10">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To access common demographic state.">
+        >
+    >
+    
+input -- Administrative
+
+    date_of_birth: Date
+        ;
+        
+    |
+    | sex: [male] | [female] | [indeterminate]
+    |
+    sex: Terminology_code <<sexes>>
+        ;
+        
+    |
+    | race
+    |
+    race: Terminology_code <<races>>
+        ;
+        
+    |
+    | Ethnicity:
+    |   [white_or_not_stated]
+    |   [indian]
+    |   [pakistani]
+    |   [bangladeshi]
+    |   [other_asian]
+    |   [black_caribbean]
+    |   [black_african]
+    |   [other_ethnic_group]
+    |
+    ethnicity: Terminology_code <<ethnicities>>
+        ;
+
+rules -- Main
+
+    |
+    | age in years
+    |
+    age_in_years: Integer
+        Result := (current_date - date_of_birth).as_years
+        ;
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["date_of_birth"] = <
+                text = <"Date of birth">
+            >
+            ["age"] = <
+                text = <"Age">
+            >
+            ["age_in_years"] = <
+                text = <"Age in years">
+            >
+            ["sex"] = <
+                text = <"Sex">
+            >
+            ["male"] = <
+                text = <"Male sex">
+            >
+            ["female"] = <
+                text = <"Female sex">
+            >
+        >
+    >
+    value_sets = <
+        ["sexes"] = <
+            id = <"sexes">
+            members = <"male", "female", "indeterminate">
+        >
+        ["ethnicities"] = <
+            id = <"ethnicities">
+            members = <"white", 
+                "indian", "pakistani", "bangladeshi",
+                "other_asian", "black_caribbean",
+                "black_african", "other_ethnic_group"
+            >
+        >
+        ["races"] = <
+            id = <"races">
+            members = <"caucasian", 
+                "asian", "black", "other"
+            >
+        >
+    >
+
+----
+        
+== BSA: Body Surface Area
+
+----
+dlm BSA.v0.5.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Thomas Beale">
+        ["email"] = <"thomas.beale@openEHR.org">
+        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
+        ["date"] = <"2021-011-10">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Body surface area.">
+            use = <"Used to calculate dosage e.g. for chemotherapy and other systemic medications.">
+        >
+    >
+    
+input -- State
+
+    |
+    | Weight as recorded in local system
+    |
+    weight: Quantity
+        ;
+        
+    |
+    | Height as recorded in local system
+    |
+    height: Quantity
+        ;
+        
+rules -- Main
+
+    |
+    | Weight in kg
+    |
+    weight_in_kg: Real
+        Result := choice of 
+            ===============================================================================================
+            weight.units = "kg":    weight.magnitude,
+            -----------------------------------------------------------------------------------------------
+            weight.units = "lb":    weight.magnitude / 2.2,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (weight.value, from: weight.units, to: "kg", UCUM.[mass])
+            ===============================================================================================
+        ;
+        
+    |
+    | Height in cm
+    |
+    height_in_cm: Real
+        Result := choice of 
+            ===============================================================================================
+            height.units = "cm":    height.magnitude,
+            -----------------------------------------------------------------------------------------------
+            height.units = "m":     height.magnitude * 100,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (height.value, from: height.units, to: "cm", UCUM.[length])
+            ===============================================================================================
+        ;
+        
+    |
+    | Body surface area
+    |
+    bsa: Real
+        Result := {math}.sqrt (weight_in_kg * height_in_cm / 3600)
+        ;
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["bsa"] = <
+                text = <"Body surface area">
+            >
+            ["weight"] = <
+                text = <"Body weight, in whatever units are in local use">
+            >
+            ["height"] = <
+                text = <"Body height, in whatever units are in local use">
+            >
+            ["weight_in_kg"] = <
+                text = <"Body weight in kg">
+            >
+            ["height_in_cm"] = <
+                text = <"Body height in cm">
+            >
+        >
+    >
+----
+
+== BMI: Body Mass Index
+
+----
+dlm BMI.v0.5.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Thomas Beale">
+        ["email"] = <"thomas.beale@openEHR.org">
+        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
+        ["date"] = <"2021-011-10">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Body mass index.">
+            use = <"Used as a rough surrogate for determining whether a person has in the normal weight range for their height.">
+        >
+    >
+    
+input -- State
+
+    |
+    | Weight as recorded in local system
+    |
+    weight: Quantity
+        ;
+        
+    |
+    | Height as recorded in local system
+    |
+    height: Quantity
+        ;
+        
+rules -- Main
+
+    |
+    | Weight in kg, converted as necessary from subject weight
+    |
+    weight_in_kg: Real
+        Result := choice of 
+            ===============================================================================================
+            weight.units = "kg":    weight.magnitude,
+            -----------------------------------------------------------------------------------------------
+            weight.units = "lb":    weight.magnitude / 2.2,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (weight.value, from: weight.units, to: "kg", UCUM.[mass])
+            ===============================================================================================
+        ;
+        
+    |
+    | Height in m, converted as necessary from subject height
+    |
+    height_in_m: Real
+        Result := choice of 
+            ===============================================================================================
+            height.units = "m":     height.magnitude,
+            -----------------------------------------------------------------------------------------------
+            height.units = "cm":    height.magnitude / 100,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (height.value, from: height.units, to: "m", UCUM.[length])
+            ===============================================================================================
+        ;
+        
+    |
+    | Body mass index
+    |
+    bmi: Real
+        Result := weight_in_kg / height_in_m ^ 2
+        ;
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["bmi"] = <
+                text = <"Body mass index">
+            >
+            ["weight"] = <
+                text = <"Body weight, in whatever units are in local use">
+            >
+            ["height"] = <
+                text = <"Body height, in whatever units are in local use">
+            >
+            ["weight_in_kg"] = <
+                text = <"Body weight in kg">
+            >
+            ["height_in_m"] = <
+                text = <"Body height in m">
+            >
+        >
+    >
+----
+

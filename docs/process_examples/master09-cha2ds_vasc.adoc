@@ -1,0 +1,190 @@
+= CHA2DS2-VASc
+
+== Work Plan
+
+== Decision Logic Module
+
+----
+dlm CHA2DS2_VASc.v0.5.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Rong Chen">
+        ["email"] = <"models@cambiocds.com">
+        ["organisation"] = <"Cambio Healthcare Systems <https://www.cambiogroup.com/our-solutions/cambio-cds-clinical-decision-support/>">
+        ["date"] = <"2016-12-16">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an individual's CHA2DS2-VASc score parameters and total score.">
+				use = <"Use for stroke risk stratification in patients with atrial fibrillation.
+                        CHA2DS2-VASc is an acronym, with each factor contributing points to the total score:
+                        - Congestive heart failure 1p
+                        - Hypertension 1p
+                        - Age ≥75 years 2p
+                        - Diabetes1p
+                        - Stroke 2p
+                        - Vascular disease 1p
+                        - Age 65–74 years 1p
+                        - Sex category 1p for female
+
+                        The maximum score is 9p and the result is interpreted as;
+                        0p - low risk
+                        1p - intermediate risk
+                        2p or more - high risk
+
+                        Further interpretation in accordance with [4]
+                        1p - stroke risk 0,6% per year, risk of stroke/TIA/thromboembolism 0,9% per year
+                        2p - stroke risk 2,2% per year, risk of stroke/TIA/thromboembolism 2,9% per year
+                        3p - stroke risk 3,2% per year, risk of stroke/TIA/thromboembolism 4,6% per year
+                        4p - stroke risk 4,8% per year, risk of stroke/TIA/thromboembolism 6,7% per year
+                        5p - stroke risk 7,2% per year, risk of stroke/TIA/thromboembolism 10,0% per year
+                        6p - stroke risk 9,7% per year, risk of stroke/TIA/thromboembolism 13,6% per year
+                        7p - stroke risk 11,2% per year, risk of stroke/TIA/thromboembolism 15,7% per year
+                        8p - stroke risk 10,8% per year, risk of stroke/TIA/thromboembolism 15,2% per year
+                        9p - stroke risk 12,2% per year, risk of stroke/TIA/thromboembolism 17,4% per year"
+                >
+			>
+        >
+    >
+    copyright = <"© 2020 openEHR Foundation">
+    licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
+    references = <"[1] Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-                    based approach: the euro heart survey on atrial fibrillation. Chest. 2010 Feb;137(2):263-72.
+                    [2] Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al. Guidelines for the management of atrial fibrillation: the Task Force for the Management of Atrial Fibrillation of the European Society of Cardiology (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.
+                    [3] Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk for stroke despite anticoagulation: a comparison of contemporary stroke risk stratification schemes in an anticoagulated atrial fibrillation cohort. Stroke. 2010 Dec;41(12):2731-8.
+                    [4] Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes for ischaemic stroke and bleeding in 182 678 patients with atrial fibrillation: the Swedish Atrial Fibrillation cohort study. Eur Heart J. 2012 Jun;33(12):1500-10."
+    >
+        
+use
+    BASIC: Basic_patient_data
+
+input -- Historical state
+    
+    has_congestive_heart_failure: Boolean
+        ;
+        
+    has_hypertension: Boolean
+        ;
+                
+    |
+    | Has recently had or currently has a stroke, TIA or thromboembolism
+    |
+    has_stroke_TIA_thromboembolism: Boolean
+        ;
+        
+    has_diabetes: Boolean
+        ;
+
+    has_vascular_disease: Boolean
+        ;
+
+rules -- Main
+
+    |
+    | Convert sex to binary gender;
+    | treat indeterminate sex as female
+    |
+    gender: Terminology_code <<sexes>>
+        Result := case BASIC.sex in
+            ================
+            {[male]}: [male],
+            ----------------
+            *:      [female]
+            ================
+        ;
+
+    age_score: Integer
+        Result := case BASIC.age_in_years in
+            ================
+            |<65|:       0,
+            ----------------
+            |65..74|:    1,
+            ----------------
+            |>=75|:      2
+            ================
+        ;
+
+    CHA2DS2_VASc_score: Integer
+        Result.add (
+            ---------------------------------------------
+            BASIC.gender = [male]                ? 1 : 0,
+            age_score,
+            has_congestive_heart_failure         ? 1 : 0,
+            has_hypertension                     ? 1 : 0,
+            has_stroke_TIA_thromboembolism       ? 1 : 0,
+            has_vascular_disease                 ? 1 : 0,
+            has_diabetes                         ? 1 : 0
+            ---------------------------------------------
+        )
+        ;        
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["date_of_birth"] = <
+                text = <"Date of birth">
+                provenance = <["GDL2"] = <"gt0009">>
+            >
+            ["age_in_years"] = <
+                text = <"Age (years)">
+                provenance = <["GDL2"] = <"gt0010">>
+            >
+            ["age_category"] = <
+                text = <"Age category">
+                provenance = <["GDL2"] = <"gt0017">>
+            >
+            ["gender"] = <
+                text = <"Gender">
+                provenance = <["GDL2"] = <"gt0009", "gt0016">>
+            >
+            ["has_congestive_heart_failure"] = <
+                text = <"xxx">
+                provenance = <["GDL2"] = <"gt0011", "gt0018">>
+            >
+            ["has_hypertension"] = <
+                text = <"xxx">
+                provenance = <["GDL2"] = <"gt0012", "gt0019">>
+            >
+            ["has_diabetes"] = <
+                text = <"Diabetes">
+                provenance = <["GDL2"] = <"gt0015", "gt0022">>
+            >
+            ["has_stroke_TIA_thromboembolism"] = <
+                text = <"Stroke/TIA/Thromboembolism">
+                provenance = <["GDL2"] = <"gt0013", "gt0020">>
+            >
+            ["has_vascular_disease"] = <
+                text = <"Vascular disease">
+                provenance = <["GDL2"] = <"gt0014", "gt0021">>
+            >
+            ["male"] = <
+                text = <"Male gender">
+                provenance = <["GDL2"] = <"gt0035">>
+            >
+            ["female"] = <
+                text = <"Female gender">
+                provenance = <["GDL2"] = <"gt0025">>
+            >
+            ["CHA2DS2_VASc_score"] = <
+                text = <"xxx">
+                description = <"...">
+                provenance = <["GDL2"] = <"gt0011">>
+            >
+        >
+    >
+
+    value_sets = <
+        ["genders"] = <
+            id = <"genders">
+            members = <"male", "female">
+        >
+    >
+
+binding
+
+----

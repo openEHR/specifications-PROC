@@ -1,0 +1,659 @@
+= qRisk3-2017
+
+This stroke/heart attack risk calculator was developed in the UK by University of Nottingham and EMIS (a major GP EMR supplier). An online calculator is https://qrisk.org/three/index.php[visible here^]. The algorithm is https://qrisk.org/three/src.php[published as a PHP program^]. See also https://www.bmj.com/content/357/bmj.j2099[this article^].
+
+What we can show here is how to represent the algorithm in a way that clinicians can directly understand, and indeed, could develop and maintain, given appropriate tools.
+
+== Decision Logic Module
+
+This DLM is a fairly literal rendering of the algorithm at the above link, with a cleaner representation of the scale factors, and a bit of vector math.
+
+----
+dlm qRisk3_2017.v0.5.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Thomas Beale">
+        ["email"] = <"thomas.beale @openEHR.org">
+        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
+        ["date"] = <"2021-011-10">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an individual's QRISK3 score.">
+        >
+    >
+    copyright = <"© 2021 openEHR Foundation">
+    licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
+    ip_acknowledgements = <
+        ["ClinRisk"] = <"This content developed from original publication of
+            © 2017 ClinRisk Ltd., see https://qrisk.org">
+        ["QRISK"] = <"QRISK® is a registered trademark of the University of Nottingham and EMIS">
+    >
+
+use
+    BASIC: Basic_patient_data
+    BMI: Body_mass_index
+            
+reference
+
+    Ethnicity_risk_factors = {
+            [female]: {
+                [white_or_not_stated]:  0.280403143329954250,
+                [indian]:               0.562989941420753980,
+                [pakistani]:            0.295900008511165160,
+                [bangladeshi]:          0.072785379877982545,
+                [other_asian]:         -0.170721355088573170,
+                [black_caribbean]:     -0.393710433148749710,  
+                [black_african]:       -0.326324952835302720,
+                [other_ethnic_group]:  -0.171270568832417840
+            },
+            [male]: {
+                [white_or_not_stated]:  0.277192487603082790,
+                [indian]:               0.474463607149312680,
+                [pakistani]:            0.529617299196893710,
+                [bangladeshi]:          0.035100159186299017,
+                [other_asian]:         -0.358078996693279190,
+                [black_caribbean]:     -0.400564852321651400,  
+                [black_african]:       -0.415227928898301730,
+                [other_ethnic_group]:  -0.263213481347499670
+            },
+        }
+        ;
+
+    Smoking_risk_factors = {
+            [female]: {
+                [non_smoker]:           0,
+                [ex_smoker]:            0.133868337865462620,
+                [light_smoker]:         0.562008580124385370,
+                [moderate_smoker]:      0.667495933775025470,
+                [heavy_smoker]:         0.849481776448308470
+            },
+            [male]: {
+                [non_smoker]:           0,
+                [ex_smoker]:            0.191282228633889830,
+                [light_smoker]:         0.552415881926455520,
+                [moderate_smoker]:      0.638350530275060720,
+                [heavy_smoker]:         0.789838198818580190
+            }
+        }
+        ;
+
+    Age_1_stats = {
+            [female]: {
+                [centre]:   0.053274843841791,
+                [scale]:   -8.138810924772618800
+            },
+            [male]: {
+                [centre]:   0.053274843841791,
+                [scale]:   -17.839781666005575000
+            }
+        }
+        ;
+
+    Age_2_stats = {
+            [female]: {
+                [centre]:   4.332503318786621,
+                [scale]:    0.797333766896990980
+            },
+            [male]: {
+                [centre]:   77.284080505371094,
+                [scale]:    0.0022964880605765492
+            }
+        }
+        ;
+
+    BMI_1_stats = {
+            [female]: {
+                [centre]:   0.154946178197861,
+                [scale]:    0.292360922754600520
+            },
+            [male]: {
+                [centre]:   0.149176135659218,
+                [scale]:    2.456277666053635800
+            }
+        }
+        ;
+
+    BMI_2_stats = {
+            [female]: {
+                [centre]:   0.144462317228317,
+                [scale]:   -4.151330021383766500
+            },
+            [male]: {
+                [centre]:   0.141913309693336,
+                [scale]:   -8.301112231471135400
+            }
+        }
+        ;
+
+    Rheumatoid_arthritis_stats = {
+            [female]: {
+                [centre]:   3.476326465606690,
+                [scale]:    0.153380358208025540
+            },
+            [male]: {
+                [centre]:   4.300998687744141,
+                [scale]:    0.173401968563271110
+            }
+        }
+        ;
+    
+    Systolic_BP_stats = {
+            [female]: {
+                [centre]:   123.130012512207030,
+                [scale]:    0.0131314884071034240
+            },
+            [male]: {
+                [centre]:   128.571578979492190,
+                [scale]:    0.0129101265425533050
+            }
+        }
+        ;
+
+    Systolic_BP_std_dev_stats = {
+            [female]: {
+                [centre]:   9.002537727355957,
+                [scale]:    0.0078894541014586095
+            },
+            [male]: {
+                [centre]:   8.756621360778809,
+                [scale]:    0.0129101265425533050
+            }
+        }
+        ;
+        
+    Townsend_stats = {
+            [female]: {
+                [centre]:   0.392308831214905,
+                [scale]:    0.0772237905885901080
+            },
+            [male]: {
+                [centre]:   0.526304900646210,
+                [scale]:    0.0332682012772872950
+            }
+        }
+        ;
+
+    Risk_factor_scales = {
+            [female]: {
+                [has_atrial_fibrillation]:              1.59233549692696630,
+                [atypical_antipsychotic_medication]:    0.252376420701155570,
+                [on_corticosteroids]:                   0.595207253046018510,
+                [impotence]:                            0,
+                [has_migraines]:                        0.3012672608703450,
+                [has_rheumatoid_arthritis]:             0.213648034351819420,
+                [has_chronic_kidney_disease]:           0.651945694938458330,
+                [has_severe_mental_illness]:            0.125553080588201780,
+                [has_systemic_lupus]:                   0.758809386542676930,
+                [on_hypertension_treatment]:            0.509315936834230040,
+                [has_family_history_CV_disease]:        0.454453190208962130
+            },
+            [male]: {
+                [has_atrial_fibrillation]:              0.882092369280546570,
+                [atypical_antipsychotic_medication]:    0.130468798551735130,
+                [on_corticosteroids]:                   0.454853997504455430,
+                [impotence]:                            0.222518590867053830,
+                [has_migraines]:                        0.255841780741599130,
+                [has_rheumatoid_arthritis]:             0.209706580139565670,
+                [has_chronic_kidney_disease]:           0.718532612882743840,
+                [has_severe_mental_illness]:            0.121330398820471640,
+                [has_systemic_lupus]:                   0.440157217445752200,
+                [on_hypertension_treatment]:            0.516598710826954740,
+                [has_family_history_CV_disease]:        0.540554690093901560
+            }
+        }
+        ;
+        
+    Diabetes_scales: 
+            [female]: {
+                [no_diabetes]:      0,
+                [type1_diabetes]:   1.72679775105373470,
+                [type2_diabetes]:   1.06887732446154680
+            }
+            [male]: {
+                [no_diabetes]:      0,
+                [type1_diabetes]:   1.234342552167517500
+                [type2_diabetes]:   0.859420714309322210
+        }
+        ;
+        
+    Interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [has_atrial_fibrillation]:     19.9380348895465610,
+                    [on_corticosteroids]:          -0.9840804523593628100000000,
+                    [impotence]:                    0,                    
+                    [has_migraines]:                1.7634979587872999000000000,
+                    [has_chronic_kidney_disease]:  -3.5874047731694114000000000,
+                    [has_systemic_lupus]:          19.6903037386382920000000000,
+                    [on_hypertension_treatment]:   11.8728097339218120000000000,
+                    [bmi_1]:                       23.8026234121417420000000000,
+                    [bmi_2]:                      -71.1849476920870070000000000,
+                    [family_history_CV_disease]:    0.9946780794043512700000000,
+                    [systolic_BP]:                  0.0341318423386154850000000,
+                    [townsend]:                    -1.0301180802035639000000000
+                },
+                [age_2]:   {
+                    [has_atrial_fibrillation]:     -0.0761826510111625050000000,
+                    [on_corticosteroids]:          -0.1200536494674247200000000,
+                    [impotence]:                    0,                    
+                    [has_migraines]:               -0.0655869178986998590000000,
+                    [has_chronic_kidney_disease]:  -0.2268887308644250700000000,
+                    [has_systemic_lupus]:           0.0773479496790162730000000,
+                    [on_hypertension_treatment]:    0.0009685782358817443600000,
+                    [bmi_1]:                        0.5236995893366442900000000,
+                    [bmi_2]:                        0.0457441901223237590000000,
+                    [family_history_CV_disease]:   -0.0768850516984230380000000,
+                    [systolic_BP]:                 -0.0015082501423272358000000,
+                    [townsend]:                    -0.0315934146749623290000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [has_atrial_fibrillation]:      3.4896675530623207000000000,
+                    [on_corticosteroids]:           1.1708133653489108000000000,
+                    [impotence]:                   -1.5064009857454310000000000,
+                    [has_migraines]:                2.3491159871402441000000000,
+                    [has_chronic_kidney_disease]:  -0.5065671632722369400000000,
+                    [on_hypertension_treatment]:    6.5114581098532671000000000,
+                    [bmi_1]:                       31.0049529560338860000000000,
+                    [bmi_2]:                     -111.2915718439164300000000000,
+                    [family_history_CV_disease]:    2.7808628508531887000000000,
+                    [systolic_BP]:                  0.0188585244698658530000000,
+                    [townsend]:                    -0.1007554870063731000000000
+                },
+                [age_2]:   {
+                    [has_atrial_fibrillation]:     -0.0003499560834063604900000,
+                    [on_corticosteroids]:          -0.0002496045095297166000000,
+                    [impotence]:                   -0.0011058218441227373000000,
+                    [has_migraines]:                0.0001989644604147863100000,
+                    [has_chronic_kidney_disease]:  -0.0018325930166498813000000,
+                    [on_hypertension_treatment]:    0.0006383805310416501300000,
+                    [bmi_1]:                        0.0050380102356322029000000,
+                    [bmi_2]:                       -0.0130744830025243190000000,
+                    [family_history_CV_disease]:   -0.0002479180990739603700000,
+                    [systolic_BP]:                 -0.0000127187419158845700000,
+                    [townsend]:                    -0.0000932996423232728880000
+                }
+            }
+        }
+        ;
+
+    Snoking_interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [non_smoker]:                   0, 
+                    [ex_smoker]:                   -4.70571617858518910, 
+                    [light_smoker]:                -2.74303834035733370,
+                    [moderate_smoker]:             -0.866080888293921820, 
+                    [heavy_smoker]:                 0.902415623697106480
+                },
+                [age_2]:   {
+                    [non_smoker]:                   0, 
+                    [ex_smoker]:                   -0.0755892446431930260000000,
+                    [light_smoker]:                -0.1195119287486707400000000,
+                    [moderate_smoker]: -            0.1036630639757192300000000,
+                    [heavy_smoker]:                -0.1399185359171838900000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [non_smoker]:                   0, 
+                    [ex_smoker]:                   -0.2101113393351634600000000,
+                    [light_smoker]:                 0.7526867644750319100000000,
+                    [moderate_smoker]:              0.9931588755640579100000000,
+                    [heavy_smoker]:                 2.1331163414389076000000000
+                },
+                [age_2]:   {
+                    [non_smoker]:                   0, 
+                    [ex_smoker]:                   -0.0004985487027532612100000,
+                    [light_smoker]:                -0.0007987563331738541400000,
+                    [moderate_smoker]:             -0.0008370618426625129600000,
+                    [heavy_smoker]:                -0.0007840031915563728900000
+                }
+            }
+        }
+        ;
+
+    Diabetes_interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:              -1.2444332714320747000000000,
+                    [type2_diabetes]:               6.8652342000009599000000000
+                },
+                [age_2]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:              -0.2872406462448894900000000,
+                    [type2_diabetes]:              -0.0971122525906954890000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:               5.3379864878006531000000000,
+                    [type2_diabetes]:               3.6461817406221311000000000
+                },
+                [age_2]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:               0.0006409780808752897000000,
+                    [type2_diabetes]:              -0.0002469569558886831500000
+                }
+            }
+        }
+        ;
+
+input -- Administrative
+
+    |
+    | Ethnicity for qRisk3:
+    |   [white_or_not_stated]
+    |   [indian]
+    |   [pakistani]
+    |   [bangladeshi]
+    |   [other_asian]
+    |   [black_caribbean]
+    |   [black_african]
+    |   [other_ethnic_group]
+    |
+    qRisk3_ethnicity: Terminology_code <<qrisk_ethnicities>>
+        ;
+
+    townsend: Real
+        ;
+
+input -- Historical state
+    
+    |
+    | Smoking status: 
+    |   [non_smoker]
+    |   [ex_smoker]
+    |   [light_smoker]
+    |   [moderate_smoker]
+    |   [heavy_smoker]
+    |
+    smoking_status: Terminology_code <<smoking_status>>
+        ;
+        
+    |
+    | Diabetes: 
+    |   [no_diabetes]
+    |   [type1_diabetes]
+    |   [type2_diabetes]
+    |
+    diabetes_status: Terminology_code <<diabetes_status>>
+        ;
+        
+    |
+    | Angina or heart attack in a 1st degree relative < 60
+    |
+    family_history_CV_disease: Boolean
+        ;
+                
+    |
+    | Chronic kidney disease (stage 3, 4 or 5)
+    |
+    has_chronic_kidney_disease: Boolean
+        ;
+        
+    has_atrial_fibrillation: Boolean
+        ;
+
+    on_hypertension_treatment: Boolean
+        ;
+
+    has_migraines: Boolean
+        ;
+
+    has_rheumatoid_arthritis: Boolean
+        ;
+        
+    |
+    | Has or being treated for erectile dysfunction
+    | (female -> False)
+    |
+    impotence: Boolean
+
+    |
+    | Has Systemic lupus erythematosus (SLE)
+    |
+    has_systemic_lupus: Boolean
+        ;
+        
+    |
+    | Severe mental illness (this includes schizophrenia, 
+    | bipolar disorder and moderate/severe depression)
+    |
+    has_severe_mental_illness: Boolean
+        ;
+        
+    on_atypical_antipsychotic_medication: Boolean
+        ;
+        
+    on_corticosteroids: Boolean
+        ;
+    
+    |
+    | Has diagnosis of or treatment for erectile disfunction
+    |
+    has_erectile_dysfunction: Boolean
+        ;
+        
+input -- Tracking state
+
+    total_cholesterol_HDL_ratio: Real
+        ;
+        
+    |
+    | Systolic BP in [mmHg], at least 2, max 10 samples
+    |
+    systolic_BP_history: Array<Real>[2..10]
+        ;
+        
+rules -- Main
+
+    systolic_BP_std_deviation: Real
+        Result := {Statistical_evaluator}.std_dev (systolic_BP_history)
+        ;
+
+    |
+    | Applying the fractional polynomial transforms
+	| (which includes scaling)
+    |
+    
+    age_1_centred: Real
+        Result := (BASIC.age_in_years/10) ^ 0.5  - Age_1_stats[BASIC.sex, [centre]]
+        ;
+        
+    age_1_score: Real
+        Result := age_1_centred * Age_1_stats[BASIC.sex, [scale]]
+        ;
+        
+    age_2_centred: Real
+        Result := BASIC.age_in_years/10 - Age_2_stats[BASIC.sex, [centre]]
+        ;
+
+    age_2_score: Real
+        Result := age_2_centred * Age_2_stats[BASIC.sex, [scale]]
+        ;
+        
+    BMI_1_centred: Real
+        Result := (BMI.bmi/10) ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
+        ;
+        
+    BMI_1_score: Real
+        Result := BMI_1_centred * BMI_1_stats[BASIC.sex, [scale]]
+        ;
+        
+    BMI_2_centred: Real
+        Result := (BMI.bmi/10) ^ 0.5 * {math}.ln(dbmi) - BMI_2_stats[BASIC.sex, [centre]]
+        ;
+        
+    BMI_2_score: Real
+        Result := BMI_2_centred * BMI_2_stats[BASIC.sex, [scale]]
+        ;
+        
+    rheumatoid_arthritis_score: Real
+        Result := (has_rheumatoid_arthritis.as_integer - Rheumatoid_arthritis_stats[BASIC.sex, [centre]]) * Rheumatoid_arthritis_stats[BASIC.sex, [scale]]
+        ;
+    
+    systolic_BP: Real
+        Result := systolic_BP_history.last
+        ;
+
+    systolic_BP_score: Real
+        Result := (systolic_BP - Systolic_BP_stats[BASIC.sex, [centre]]) * Systolic_BP_stats[BASIC.sex, [scale]]
+        ;
+
+    systolic_BP_std_dev_score: Real
+        Result := (systolic_BP_std_deviation - Systolic_BP_std_dev_stats[BASIC.sex, [centre]]) * Systolic_BP_std_dev_stats[BASIC.sex, [scale]]
+        ;
+        
+    townsend_score: Real
+        Result := (townsend_score - Townsend_stats[BASIC.sex, [centre]]) * Townsend_stats[BASIC.sex, [scale]]
+        ;
+        
+    |
+    | TODO: Unclear what this is from published algorithm
+    |
+    survivor_factor: Real
+        ;
+    
+    |
+    | Compute quantitative & classified part of score
+    |
+    raw_score_1: Real
+        Result := add (
+            Ethnicity_risk_factors[BASIC.sex, qRisk3_ethnicity],
+            Smoking_risk_factors[BASIC.sex, smoking_status],
+            age_1_score,
+            age_2_score,
+	        BMI_1_score,
+	        BMI_2_score,
+	        rheumatoid_arthritis_score,
+	        systolic_BP_score,
+	        systolic_BP_std_dev_score,
+	        townsend_score_score,
+            Diabetes_scales[BASIC.sex, diabetes_status]
+        )
+            
+    |
+    | Compute boolean part of score; use vector
+    | in order to copmpute dot product with scales
+    |
+    boolean_risks: Vector<Real>
+        Result := [
+            has_atrial_fibrillation.as_integer,
+            on_atypical_antipsychotic_medication.as_integer,
+            on_corticosteroids.as_integer,
+            impotence.as_integer,
+            has_migraines.as_integer,
+            has_rheumatoid_arthritis.as_integer,
+            has_chronic_kidney_disease.as_integer,
+            has_severe_mental_illness.as_integer,
+            has_systemic_lupus.as_integer,
+            on_hypertension_treatment.as_integer,
+            family_history_CV_disease.as_integer
+        ]
+        ;
+        
+    raw_score_2: Real
+        Result := boolean_risks . Risk_factor_scales[BASIC.sex]
+        ;
+        
+    |
+    | Compute interaction part of score; use vector
+    | in order to copmpute dot product with scales
+    |
+    interaction_risks: Vector<Real>
+        Result := [
+            has_atrial_fibrillation.as_integer,
+            on_corticosteroids.as_integer,
+            impotence.as_integer,  
+            has_migraines.as_integer,
+            has_chronic_kidney_disease.as_integer,
+            has_systemic_lupus.as_integer,
+            on_hypertension_treatment.as_integer,
+            BMI_1_centred,
+            BMI_2_centred,
+            family_history_CV_disease.as_integer,
+            systolic_BP,
+            townsend
+        ]
+        ;
+        
+    raw_score_3: Real
+        Result := add (
+            age_1_centred * Smoking_interaction_scales[BASIC.sex, [age_1], smoking_status],
+            age_1_centred * Diabetes_interaction_scales[BASIC.sex, [age_1], diabetes_status],
+
+            age_1_centred * interaction_risks . Interaction_scales[BASIC.sex, [age_1]],
+            
+            age_2_centred * Smoking_interaction_scales[BASIC.sex, [age_2], smoking_status],
+            age_2_centred * Diabetes_interaction_scales[BASIC.sex, [age_2], diabetes_status],
+
+            age_2_centred * interaction_risks . Interaction_scales[BASIC.sex, [age_2]],
+        )
+        ;
+        
+    raw_score: Real
+        Result = raw_score_1 + raw_score_2 + raw_score_3
+        ;
+
+    qRisk3_score: Real
+        Result := 100.0 * (1 - survivor_factor ^ exp (raw_score))
+    
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["date_of_birth"] = <
+                text = <"Date of birth">
+            >
+            ["age_in_years"] = <
+                text = <"Age (years)">
+            >
+            ["qRisk_score"] = <
+                text = <"QRISK2 score">
+            >
+            ["non_smoker"] = <
+                text = <"Non-smoker">
+            >
+            ["no_diabetes"] = <
+                text = <"Non-diabetic">
+            >
+            ["total_cholesterol_HDL_ratio"] = <
+                text = <"Total cholesterol : HDL ratio">
+            >
+        >
+    >
+
+    value_sets = <
+        ["qrisk_ethnicities"] = <
+            id = <"qrisk_ethnicities">
+            members = <"white", 
+                "indian", "pakistani", "bangladeshi",
+                "other_asian", "black_caribbean",
+                "black_african", "other_ethnic_group"
+            >
+        >
+        ["diabetes_status"] = <
+            id = <"diabetes_status">
+            members = <"no_diabetes", "type1_diabetes", "type2_diabetes">
+        >
+        ["smoking status"] = <
+            id = <"status">
+            members = <"non_smoker", "ex_smoker", "light_smoker",
+                "moderate_smoker", "heavy_smoker"
+            >
+        >
+    >
+    
+binding
+
+----

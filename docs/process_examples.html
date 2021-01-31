@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="Examples of openEHR Plan, Guideline and Decision framework.">
-<meta name="keywords" content="process, task planning, decision logic, examples, workflow">
-<title>openEHR Process Examples</title>
+<meta name="description" content="Examples of openEHR CDS, Guideline and Planning artefacts.">
+<meta name="keywords" content="process, task planning, CDS, CPG, decision logic, examples, workflow">
+<title>openEHR CDS, Guidelines and Planning Examples</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 </head>
 <body class="book toc2 toc-left">
@@ -15,7 +15,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
-<li><a href="#_openehr_process_examples">openEHR Process Examples</a>
+<li><a href="#_openehr_cds_guidelines_and_planning_examples">openEHR CDS, Guidelines and Planning Examples</a>
 <ul class="sectlevel1">
 <li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
@@ -82,6 +82,24 @@
 <li><a href="#_decision_logic_module_2">8.2. Decision Logic Module</a></li>
 </ul>
 </li>
+<li><a href="#_cha2ds2_vasc">9. CHA2DS2-VASc</a>
+<ul class="sectlevel2">
+<li><a href="#_work_plan_3">9.1. Work Plan</a></li>
+<li><a href="#_decision_logic_module_3">9.2. Decision Logic Module</a></li>
+</ul>
+</li>
+<li><a href="#_qrisk3_2017">10. qRisk3-2017</a>
+<ul class="sectlevel2">
+<li><a href="#_decision_logic_module_4">10.1. Decision Logic Module</a></li>
+</ul>
+</li>
+<li><a href="#_common_decision_logic_modules">11. Common Decision Logic Modules</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_demographics">11.1. BASIC: Demographics</a></li>
+<li><a href="#_bsa_body_surface_area">11.2. BSA: Body Surface Area</a></li>
+<li><a href="#_bmi_body_mass_index">11.3. BMI: Body Mass Index</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -97,7 +115,7 @@
 </div>
 </div>
 </div>
-<h1 id="_openehr_process_examples" class="sect0"><a class="anchor" href="#_openehr_process_examples"></a>openEHR Process Examples</h1>
+<h1 id="_openehr_cds_guidelines_and_planning_examples" class="sect0"><a class="anchor" href="#_openehr_cds_guidelines_and_planning_examples"></a>openEHR CDS, Guidelines and Planning Examples</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-all grid-all fit-content spread">
@@ -120,7 +138,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: process, task planning, decision logic, examples, workflow</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: process, task planning, CDS, CPG, decision logic, examples, workflow</p></td>
 </tr>
 </tbody>
 </table>
@@ -1699,10 +1717,1191 @@ rules
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_cha2ds2_vasc"><a class="anchor" href="#_cha2ds2_vasc"></a>9. CHA2DS2-VASc</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_work_plan_3"><a class="anchor" href="#_work_plan_3"></a>9.1. Work Plan</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_decision_logic_module_3"><a class="anchor" href="#_decision_logic_module_3"></a>9.2. Decision Logic Module</h3>
+<div class="listingblock">
+<div class="content">
+<pre>dlm CHA2DS2_VASc.v0.5.0
+
+language
+    original_language = &lt;[ISO_639-1::en]&gt;
+
+description
+    lifecycle_state = &lt;"unmanaged"&gt;
+    original_author = &lt;
+        ["name"] = &lt;"Rong Chen"&gt;
+        ["email"] = &lt;"models@cambiocds.com"&gt;
+        ["organisation"] = &lt;"Cambio Healthcare Systems &lt;https://www.cambiogroup.com/our-solutions/cambio-cds-clinical-decision-support/&gt;"&gt;
+        ["date"] = &lt;"2016-12-16"&gt;
+    &gt;
+    details = &lt;
+        ["en"] = &lt;
+            language = &lt;[ISO_639-1::en]&gt;
+            purpose = &lt;"To record an individual's CHA2DS2-VASc score parameters and total score."&gt;
+				use = &lt;"Use for stroke risk stratification in patients with atrial fibrillation.
+                        CHA2DS2-VASc is an acronym, with each factor contributing points to the total score:
+                        - Congestive heart failure 1p
+                        - Hypertension 1p
+                        - Age ≥75 years 2p
+                        - Diabetes1p
+                        - Stroke 2p
+                        - Vascular disease 1p
+                        - Age 65–74 years 1p
+                        - Sex category 1p for female
+
+                        The maximum score is 9p and the result is interpreted as;
+                        0p - low risk
+                        1p - intermediate risk
+                        2p or more - high risk
+
+                        Further interpretation in accordance with [4]
+                        1p - stroke risk 0,6% per year, risk of stroke/TIA/thromboembolism 0,9% per year
+                        2p - stroke risk 2,2% per year, risk of stroke/TIA/thromboembolism 2,9% per year
+                        3p - stroke risk 3,2% per year, risk of stroke/TIA/thromboembolism 4,6% per year
+                        4p - stroke risk 4,8% per year, risk of stroke/TIA/thromboembolism 6,7% per year
+                        5p - stroke risk 7,2% per year, risk of stroke/TIA/thromboembolism 10,0% per year
+                        6p - stroke risk 9,7% per year, risk of stroke/TIA/thromboembolism 13,6% per year
+                        7p - stroke risk 11,2% per year, risk of stroke/TIA/thromboembolism 15,7% per year
+                        8p - stroke risk 10,8% per year, risk of stroke/TIA/thromboembolism 15,2% per year
+                        9p - stroke risk 12,2% per year, risk of stroke/TIA/thromboembolism 17,4% per year"
+                &gt;
+			&gt;
+        &gt;
+    &gt;
+    copyright = &lt;"© 2020 openEHR Foundation"&gt;
+    licence = &lt;"Creative Commons CC-BY &lt;https://creativecommons.org/licenses/by/3.0/&gt;"&gt;
+    references = &lt;"[1] Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-                    based approach: the euro heart survey on atrial fibrillation. Chest. 2010 Feb;137(2):263-72.
+                    [2] Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al. Guidelines for the management of atrial fibrillation: the Task Force for the Management of Atrial Fibrillation of the European Society of Cardiology (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.
+                    [3] Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk for stroke despite anticoagulation: a comparison of contemporary stroke risk stratification schemes in an anticoagulated atrial fibrillation cohort. Stroke. 2010 Dec;41(12):2731-8.
+                    [4] Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes for ischaemic stroke and bleeding in 182 678 patients with atrial fibrillation: the Swedish Atrial Fibrillation cohort study. Eur Heart J. 2012 Jun;33(12):1500-10."
+    &gt;
+
+use
+    BASIC: Basic_patient_data
+
+input -- Historical state
+
+    has_congestive_heart_failure: Boolean
+        ;
+
+    has_hypertension: Boolean
+        ;
+
+    |
+    | Has recently had or currently has a stroke, TIA or thromboembolism
+    |
+    has_stroke_TIA_thromboembolism: Boolean
+        ;
+
+    has_diabetes: Boolean
+        ;
+
+    has_vascular_disease: Boolean
+        ;
+
+rules -- Main
+
+    |
+    | Convert sex to binary gender;
+    | treat indeterminate sex as female
+    |
+    gender: Terminology_code &lt;&lt;sexes&gt;&gt;
+        Result := case BASIC.sex in
+            ================
+            {[male]}: [male],
+            ----------------
+            *:      [female]
+            ================
+        ;
+
+    age_score: Integer
+        Result := case BASIC.age_in_years in
+            ================
+            |&lt;65|:       0,
+            ----------------
+            |65..74|:    1,
+            ----------------
+            |&gt;=75|:      2
+            ================
+        ;
+
+    CHA2DS2_VASc_score: Integer
+        Result.add (
+            ---------------------------------------------
+            BASIC.gender = [male]                ? 1 : 0,
+            age_score,
+            has_congestive_heart_failure         ? 1 : 0,
+            has_hypertension                     ? 1 : 0,
+            has_stroke_TIA_thromboembolism       ? 1 : 0,
+            has_vascular_disease                 ? 1 : 0,
+            has_diabetes                         ? 1 : 0
+            ---------------------------------------------
+        )
+        ;
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["date_of_birth"] = &lt;
+                text = &lt;"Date of birth"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0009"&gt;&gt;
+            &gt;
+            ["age_in_years"] = &lt;
+                text = &lt;"Age (years)"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0010"&gt;&gt;
+            &gt;
+            ["age_category"] = &lt;
+                text = &lt;"Age category"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0017"&gt;&gt;
+            &gt;
+            ["gender"] = &lt;
+                text = &lt;"Gender"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0009", "gt0016"&gt;&gt;
+            &gt;
+            ["has_congestive_heart_failure"] = &lt;
+                text = &lt;"xxx"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0011", "gt0018"&gt;&gt;
+            &gt;
+            ["has_hypertension"] = &lt;
+                text = &lt;"xxx"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0012", "gt0019"&gt;&gt;
+            &gt;
+            ["has_diabetes"] = &lt;
+                text = &lt;"Diabetes"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0015", "gt0022"&gt;&gt;
+            &gt;
+            ["has_stroke_TIA_thromboembolism"] = &lt;
+                text = &lt;"Stroke/TIA/Thromboembolism"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0013", "gt0020"&gt;&gt;
+            &gt;
+            ["has_vascular_disease"] = &lt;
+                text = &lt;"Vascular disease"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0014", "gt0021"&gt;&gt;
+            &gt;
+            ["male"] = &lt;
+                text = &lt;"Male gender"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0035"&gt;&gt;
+            &gt;
+            ["female"] = &lt;
+                text = &lt;"Female gender"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0025"&gt;&gt;
+            &gt;
+            ["CHA2DS2_VASc_score"] = &lt;
+                text = &lt;"xxx"&gt;
+                description = &lt;"..."&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0011"&gt;&gt;
+            &gt;
+        &gt;
+    &gt;
+
+    value_sets = &lt;
+        ["genders"] = &lt;
+            id = &lt;"genders"&gt;
+            members = &lt;"male", "female"&gt;
+        &gt;
+    &gt;
+
+binding</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_qrisk3_2017"><a class="anchor" href="#_qrisk3_2017"></a>10. qRisk3-2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This stroke/heart attack risk calculator was developed in the UK by University of Nottingham and EMIS (a major GP EMR supplier). An online calculator is <a href="https://qrisk.org/three/index.php" target="_blank" rel="noopener">visible here</a>. The algorithm is <a href="https://qrisk.org/three/src.php" target="_blank" rel="noopener">published as a PHP program</a>. See also <a href="https://www.bmj.com/content/357/bmj.j2099" target="_blank" rel="noopener">this article</a>.</p>
+</div>
+<div class="paragraph">
+<p>What we can show here is how to represent the algorithm in a way that clinicians can directly understand, and indeed, could develop and maintain, given appropriate tools.</p>
+</div>
+<div class="sect2">
+<h3 id="_decision_logic_module_4"><a class="anchor" href="#_decision_logic_module_4"></a>10.1. Decision Logic Module</h3>
+<div class="paragraph">
+<p>This DLM is a fairly literal rendering of the algorithm at the above link, with a cleaner representation of the scale factors, and a bit of vector math.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>dlm qRisk3_2017.v0.5.0
+
+language
+    original_language = &lt;[ISO_639-1::en]&gt;
+
+description
+    lifecycle_state = &lt;"unmanaged"&gt;
+    original_author = &lt;
+        ["name"] = &lt;"Thomas Beale"&gt;
+        ["email"] = &lt;"thomas.beale @openEHR.org"&gt;
+        ["organisation"] = &lt;"openEHR Foundation &lt;http://www.openEHR.org&gt;"&gt;
+        ["date"] = &lt;"2021-011-10"&gt;
+    &gt;
+    details = &lt;
+        ["en"] = &lt;
+            language = &lt;[ISO_639-1::en]&gt;
+            purpose = &lt;"To record an individual's QRISK3 score."&gt;
+        &gt;
+    &gt;
+    copyright = &lt;"© 2021 openEHR Foundation"&gt;
+    licence = &lt;"Creative Commons CC-BY &lt;https://creativecommons.org/licenses/by/3.0/&gt;"&gt;
+    ip_acknowledgements = &lt;
+        ["ClinRisk"] = &lt;"This content developed from original publication of
+            © 2017 ClinRisk Ltd., see https://qrisk.org"&gt;
+        ["QRISK"] = &lt;"QRISK® is a registered trademark of the University of Nottingham and EMIS"&gt;
+    &gt;
+
+use
+    BASIC: Basic_patient_data
+    BMI: Body_mass_index
+
+reference
+
+    Ethnicity_risk_factors = {
+            [female]: {
+                [white_or_not_stated]:  0.280403143329954250,
+                [indian]:               0.562989941420753980,
+                [pakistani]:            0.295900008511165160,
+                [bangladeshi]:          0.072785379877982545,
+                [other_asian]:         -0.170721355088573170,
+                [black_caribbean]:     -0.393710433148749710,
+                [black_african]:       -0.326324952835302720,
+                [other_ethnic_group]:  -0.171270568832417840
+            },
+            [male]: {
+                [white_or_not_stated]:  0.277192487603082790,
+                [indian]:               0.474463607149312680,
+                [pakistani]:            0.529617299196893710,
+                [bangladeshi]:          0.035100159186299017,
+                [other_asian]:         -0.358078996693279190,
+                [black_caribbean]:     -0.400564852321651400,
+                [black_african]:       -0.415227928898301730,
+                [other_ethnic_group]:  -0.263213481347499670
+            },
+        }
+        ;
+
+    Smoking_risk_factors = {
+            [female]: {
+                [non_smoker]:           0,
+                [ex_smoker]:            0.133868337865462620,
+                [light_smoker]:         0.562008580124385370,
+                [moderate_smoker]:      0.667495933775025470,
+                [heavy_smoker]:         0.849481776448308470
+            },
+            [male]: {
+                [non_smoker]:           0,
+                [ex_smoker]:            0.191282228633889830,
+                [light_smoker]:         0.552415881926455520,
+                [moderate_smoker]:      0.638350530275060720,
+                [heavy_smoker]:         0.789838198818580190
+            }
+        }
+        ;
+
+    Age_1_stats = {
+            [female]: {
+                [centre]:   0.053274843841791,
+                [scale]:   -8.138810924772618800
+            },
+            [male]: {
+                [centre]:   0.053274843841791,
+                [scale]:   -17.839781666005575000
+            }
+        }
+        ;
+
+    Age_2_stats = {
+            [female]: {
+                [centre]:   4.332503318786621,
+                [scale]:    0.797333766896990980
+            },
+            [male]: {
+                [centre]:   77.284080505371094,
+                [scale]:    0.0022964880605765492
+            }
+        }
+        ;
+
+    BMI_1_stats = {
+            [female]: {
+                [centre]:   0.154946178197861,
+                [scale]:    0.292360922754600520
+            },
+            [male]: {
+                [centre]:   0.149176135659218,
+                [scale]:    2.456277666053635800
+            }
+        }
+        ;
+
+    BMI_2_stats = {
+            [female]: {
+                [centre]:   0.144462317228317,
+                [scale]:   -4.151330021383766500
+            },
+            [male]: {
+                [centre]:   0.141913309693336,
+                [scale]:   -8.301112231471135400
+            }
+        }
+        ;
+
+    Rheumatoid_arthritis_stats = {
+            [female]: {
+                [centre]:   3.476326465606690,
+                [scale]:    0.153380358208025540
+            },
+            [male]: {
+                [centre]:   4.300998687744141,
+                [scale]:    0.173401968563271110
+            }
+        }
+        ;
+
+    Systolic_BP_stats = {
+            [female]: {
+                [centre]:   123.130012512207030,
+                [scale]:    0.0131314884071034240
+            },
+            [male]: {
+                [centre]:   128.571578979492190,
+                [scale]:    0.0129101265425533050
+            }
+        }
+        ;
+
+    Systolic_BP_std_dev_stats = {
+            [female]: {
+                [centre]:   9.002537727355957,
+                [scale]:    0.0078894541014586095
+            },
+            [male]: {
+                [centre]:   8.756621360778809,
+                [scale]:    0.0129101265425533050
+            }
+        }
+        ;
+
+    Townsend_stats = {
+            [female]: {
+                [centre]:   0.392308831214905,
+                [scale]:    0.0772237905885901080
+            },
+            [male]: {
+                [centre]:   0.526304900646210,
+                [scale]:    0.0332682012772872950
+            }
+        }
+        ;
+
+    Risk_factor_scales = {
+            [female]: {
+                [has_atrial_fibrillation]:              1.59233549692696630,
+                [atypical_antipsychotic_medication]:    0.252376420701155570,
+                [on_corticosteroids]:                   0.595207253046018510,
+                [impotence]:                            0,
+                [has_migraines]:                        0.3012672608703450,
+                [has_rheumatoid_arthritis]:             0.213648034351819420,
+                [has_chronic_kidney_disease]:           0.651945694938458330,
+                [has_severe_mental_illness]:            0.125553080588201780,
+                [has_systemic_lupus]:                   0.758809386542676930,
+                [on_hypertension_treatment]:            0.509315936834230040,
+                [has_family_history_CV_disease]:        0.454453190208962130
+            },
+            [male]: {
+                [has_atrial_fibrillation]:              0.882092369280546570,
+                [atypical_antipsychotic_medication]:    0.130468798551735130,
+                [on_corticosteroids]:                   0.454853997504455430,
+                [impotence]:                            0.222518590867053830,
+                [has_migraines]:                        0.255841780741599130,
+                [has_rheumatoid_arthritis]:             0.209706580139565670,
+                [has_chronic_kidney_disease]:           0.718532612882743840,
+                [has_severe_mental_illness]:            0.121330398820471640,
+                [has_systemic_lupus]:                   0.440157217445752200,
+                [on_hypertension_treatment]:            0.516598710826954740,
+                [has_family_history_CV_disease]:        0.540554690093901560
+            }
+        }
+        ;
+
+    Diabetes_scales:
+            [female]: {
+                [no_diabetes]:      0,
+                [type1_diabetes]:   1.72679775105373470,
+                [type2_diabetes]:   1.06887732446154680
+            }
+            [male]: {
+                [no_diabetes]:      0,
+                [type1_diabetes]:   1.234342552167517500
+                [type2_diabetes]:   0.859420714309322210
+        }
+        ;
+
+    Interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [has_atrial_fibrillation]:     19.9380348895465610,
+                    [on_corticosteroids]:          -0.9840804523593628100000000,
+                    [impotence]:                    0,
+                    [has_migraines]:                1.7634979587872999000000000,
+                    [has_chronic_kidney_disease]:  -3.5874047731694114000000000,
+                    [has_systemic_lupus]:          19.6903037386382920000000000,
+                    [on_hypertension_treatment]:   11.8728097339218120000000000,
+                    [bmi_1]:                       23.8026234121417420000000000,
+                    [bmi_2]:                      -71.1849476920870070000000000,
+                    [family_history_CV_disease]:    0.9946780794043512700000000,
+                    [systolic_BP]:                  0.0341318423386154850000000,
+                    [townsend]:                    -1.0301180802035639000000000
+                },
+                [age_2]:   {
+                    [has_atrial_fibrillation]:     -0.0761826510111625050000000,
+                    [on_corticosteroids]:          -0.1200536494674247200000000,
+                    [impotence]:                    0,
+                    [has_migraines]:               -0.0655869178986998590000000,
+                    [has_chronic_kidney_disease]:  -0.2268887308644250700000000,
+                    [has_systemic_lupus]:           0.0773479496790162730000000,
+                    [on_hypertension_treatment]:    0.0009685782358817443600000,
+                    [bmi_1]:                        0.5236995893366442900000000,
+                    [bmi_2]:                        0.0457441901223237590000000,
+                    [family_history_CV_disease]:   -0.0768850516984230380000000,
+                    [systolic_BP]:                 -0.0015082501423272358000000,
+                    [townsend]:                    -0.0315934146749623290000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [has_atrial_fibrillation]:      3.4896675530623207000000000,
+                    [on_corticosteroids]:           1.1708133653489108000000000,
+                    [impotence]:                   -1.5064009857454310000000000,
+                    [has_migraines]:                2.3491159871402441000000000,
+                    [has_chronic_kidney_disease]:  -0.5065671632722369400000000,
+                    [on_hypertension_treatment]:    6.5114581098532671000000000,
+                    [bmi_1]:                       31.0049529560338860000000000,
+                    [bmi_2]:                     -111.2915718439164300000000000,
+                    [family_history_CV_disease]:    2.7808628508531887000000000,
+                    [systolic_BP]:                  0.0188585244698658530000000,
+                    [townsend]:                    -0.1007554870063731000000000
+                },
+                [age_2]:   {
+                    [has_atrial_fibrillation]:     -0.0003499560834063604900000,
+                    [on_corticosteroids]:          -0.0002496045095297166000000,
+                    [impotence]:                   -0.0011058218441227373000000,
+                    [has_migraines]:                0.0001989644604147863100000,
+                    [has_chronic_kidney_disease]:  -0.0018325930166498813000000,
+                    [on_hypertension_treatment]:    0.0006383805310416501300000,
+                    [bmi_1]:                        0.0050380102356322029000000,
+                    [bmi_2]:                       -0.0130744830025243190000000,
+                    [family_history_CV_disease]:   -0.0002479180990739603700000,
+                    [systolic_BP]:                 -0.0000127187419158845700000,
+                    [townsend]:                    -0.0000932996423232728880000
+                }
+            }
+        }
+        ;
+
+    Snoking_interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [non_smoker]:                   0,
+                    [ex_smoker]:                   -4.70571617858518910,
+                    [light_smoker]:                -2.74303834035733370,
+                    [moderate_smoker]:             -0.866080888293921820,
+                    [heavy_smoker]:                 0.902415623697106480
+                },
+                [age_2]:   {
+                    [non_smoker]:                   0,
+                    [ex_smoker]:                   -0.0755892446431930260000000,
+                    [light_smoker]:                -0.1195119287486707400000000,
+                    [moderate_smoker]: -            0.1036630639757192300000000,
+                    [heavy_smoker]:                -0.1399185359171838900000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [non_smoker]:                   0,
+                    [ex_smoker]:                   -0.2101113393351634600000000,
+                    [light_smoker]:                 0.7526867644750319100000000,
+                    [moderate_smoker]:              0.9931588755640579100000000,
+                    [heavy_smoker]:                 2.1331163414389076000000000
+                },
+                [age_2]:   {
+                    [non_smoker]:                   0,
+                    [ex_smoker]:                   -0.0004985487027532612100000,
+                    [light_smoker]:                -0.0007987563331738541400000,
+                    [moderate_smoker]:             -0.0008370618426625129600000,
+                    [heavy_smoker]:                -0.0007840031915563728900000
+                }
+            }
+        }
+        ;
+
+    Diabetes_interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:              -1.2444332714320747000000000,
+                    [type2_diabetes]:               6.8652342000009599000000000
+                },
+                [age_2]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:              -0.2872406462448894900000000,
+                    [type2_diabetes]:              -0.0971122525906954890000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:               5.3379864878006531000000000,
+                    [type2_diabetes]:               3.6461817406221311000000000
+                },
+                [age_2]:   {
+                    [no_diabetes]:                  0,
+                    [type1_diabetes]:               0.0006409780808752897000000,
+                    [type2_diabetes]:              -0.0002469569558886831500000
+                }
+            }
+        }
+        ;
+
+input -- Administrative
+
+    |
+    | Ethnicity for qRisk3:
+    |   [white_or_not_stated]
+    |   [indian]
+    |   [pakistani]
+    |   [bangladeshi]
+    |   [other_asian]
+    |   [black_caribbean]
+    |   [black_african]
+    |   [other_ethnic_group]
+    |
+    qRisk3_ethnicity: Terminology_code &lt;&lt;qrisk_ethnicities&gt;&gt;
+        ;
+
+    townsend: Real
+        ;
+
+input -- Historical state
+
+    |
+    | Smoking status:
+    |   [non_smoker]
+    |   [ex_smoker]
+    |   [light_smoker]
+    |   [moderate_smoker]
+    |   [heavy_smoker]
+    |
+    smoking_status: Terminology_code &lt;&lt;smoking_status&gt;&gt;
+        ;
+
+    |
+    | Diabetes:
+    |   [no_diabetes]
+    |   [type1_diabetes]
+    |   [type2_diabetes]
+    |
+    diabetes_status: Terminology_code &lt;&lt;diabetes_status&gt;&gt;
+        ;
+
+    |
+    | Angina or heart attack in a 1st degree relative &lt; 60
+    |
+    family_history_CV_disease: Boolean
+        ;
+
+    |
+    | Chronic kidney disease (stage 3, 4 or 5)
+    |
+    has_chronic_kidney_disease: Boolean
+        ;
+
+    has_atrial_fibrillation: Boolean
+        ;
+
+    on_hypertension_treatment: Boolean
+        ;
+
+    has_migraines: Boolean
+        ;
+
+    has_rheumatoid_arthritis: Boolean
+        ;
+
+    |
+    | Has or being treated for erectile dysfunction
+    | (female -&gt; False)
+    |
+    impotence: Boolean
+
+    |
+    | Has Systemic lupus erythematosus (SLE)
+    |
+    has_systemic_lupus: Boolean
+        ;
+
+    |
+    | Severe mental illness (this includes schizophrenia,
+    | bipolar disorder and moderate/severe depression)
+    |
+    has_severe_mental_illness: Boolean
+        ;
+
+    on_atypical_antipsychotic_medication: Boolean
+        ;
+
+    on_corticosteroids: Boolean
+        ;
+
+    |
+    | Has diagnosis of or treatment for erectile disfunction
+    |
+    has_erectile_dysfunction: Boolean
+        ;
+
+input -- Tracking state
+
+    total_cholesterol_HDL_ratio: Real
+        ;
+
+    |
+    | Systolic BP in [mmHg], at least 2, max 10 samples
+    |
+    systolic_BP_history: Array&lt;Real&gt;[2..10]
+        ;
+
+rules -- Main
+
+    systolic_BP_std_deviation: Real
+        Result := {Statistical_evaluator}.std_dev (systolic_BP_history)
+        ;
+
+    |
+    | Applying the fractional polynomial transforms
+	| (which includes scaling)
+    |
+
+    age_1_centred: Real
+        Result := (BASIC.age_in_years/10) ^ 0.5  - Age_1_stats[BASIC.sex, [centre]]
+        ;
+
+    age_1_score: Real
+        Result := age_1_centred * Age_1_stats[BASIC.sex, [scale]]
+        ;
+
+    age_2_centred: Real
+        Result := BASIC.age_in_years/10 - Age_2_stats[BASIC.sex, [centre]]
+        ;
+
+    age_2_score: Real
+        Result := age_2_centred * Age_2_stats[BASIC.sex, [scale]]
+        ;
+
+    BMI_1_centred: Real
+        Result := (BMI.bmi/10) ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
+        ;
+
+    BMI_1_score: Real
+        Result := BMI_1_centred * BMI_1_stats[BASIC.sex, [scale]]
+        ;
+
+    BMI_2_centred: Real
+        Result := (BMI.bmi/10) ^ 0.5 * {math}.ln(dbmi) - BMI_2_stats[BASIC.sex, [centre]]
+        ;
+
+    BMI_2_score: Real
+        Result := BMI_2_centred * BMI_2_stats[BASIC.sex, [scale]]
+        ;
+
+    rheumatoid_arthritis_score: Real
+        Result := (has_rheumatoid_arthritis.as_integer - Rheumatoid_arthritis_stats[BASIC.sex, [centre]]) * Rheumatoid_arthritis_stats[BASIC.sex, [scale]]
+        ;
+
+    systolic_BP: Real
+        Result := systolic_BP_history.last
+        ;
+
+    systolic_BP_score: Real
+        Result := (systolic_BP - Systolic_BP_stats[BASIC.sex, [centre]]) * Systolic_BP_stats[BASIC.sex, [scale]]
+        ;
+
+    systolic_BP_std_dev_score: Real
+        Result := (systolic_BP_std_deviation - Systolic_BP_std_dev_stats[BASIC.sex, [centre]]) * Systolic_BP_std_dev_stats[BASIC.sex, [scale]]
+        ;
+
+    townsend_score: Real
+        Result := (townsend_score - Townsend_stats[BASIC.sex, [centre]]) * Townsend_stats[BASIC.sex, [scale]]
+        ;
+
+    |
+    | TODO: Unclear what this is from published algorithm
+    |
+    survivor_factor: Real
+        ;
+
+    |
+    | Compute quantitative &amp; classified part of score
+    |
+    raw_score_1: Real
+        Result := add (
+            Ethnicity_risk_factors[BASIC.sex, qRisk3_ethnicity],
+            Smoking_risk_factors[BASIC.sex, smoking_status],
+            age_1_score,
+            age_2_score,
+	        BMI_1_score,
+	        BMI_2_score,
+	        rheumatoid_arthritis_score,
+	        systolic_BP_score,
+	        systolic_BP_std_dev_score,
+	        townsend_score_score,
+            Diabetes_scales[BASIC.sex, diabetes_status]
+        )
+
+    |
+    | Compute boolean part of score; use vector
+    | in order to copmpute dot product with scales
+    |
+    boolean_risks: Vector&lt;Real&gt;
+        Result := [
+            has_atrial_fibrillation.as_integer,
+            on_atypical_antipsychotic_medication.as_integer,
+            on_corticosteroids.as_integer,
+            impotence.as_integer,
+            has_migraines.as_integer,
+            has_rheumatoid_arthritis.as_integer,
+            has_chronic_kidney_disease.as_integer,
+            has_severe_mental_illness.as_integer,
+            has_systemic_lupus.as_integer,
+            on_hypertension_treatment.as_integer,
+            family_history_CV_disease.as_integer
+        ]
+        ;
+
+    raw_score_2: Real
+        Result := boolean_risks . Risk_factor_scales[BASIC.sex]
+        ;
+
+    |
+    | Compute interaction part of score; use vector
+    | in order to copmpute dot product with scales
+    |
+    interaction_risks: Vector&lt;Real&gt;
+        Result := [
+            has_atrial_fibrillation.as_integer,
+            on_corticosteroids.as_integer,
+            impotence.as_integer,
+            has_migraines.as_integer,
+            has_chronic_kidney_disease.as_integer,
+            has_systemic_lupus.as_integer,
+            on_hypertension_treatment.as_integer,
+            BMI_1_centred,
+            BMI_2_centred,
+            family_history_CV_disease.as_integer,
+            systolic_BP,
+            townsend
+        ]
+        ;
+
+    raw_score_3: Real
+        Result := add (
+            age_1_centred * Smoking_interaction_scales[BASIC.sex, [age_1], smoking_status],
+            age_1_centred * Diabetes_interaction_scales[BASIC.sex, [age_1], diabetes_status],
+
+            age_1_centred * interaction_risks . Interaction_scales[BASIC.sex, [age_1]],
+
+            age_2_centred * Smoking_interaction_scales[BASIC.sex, [age_2], smoking_status],
+            age_2_centred * Diabetes_interaction_scales[BASIC.sex, [age_2], diabetes_status],
+
+            age_2_centred * interaction_risks . Interaction_scales[BASIC.sex, [age_2]],
+        )
+        ;
+
+    raw_score: Real
+        Result = raw_score_1 + raw_score_2 + raw_score_3
+        ;
+
+    qRisk3_score: Real
+        Result := 100.0 * (1 - survivor_factor ^ exp (raw_score))
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["date_of_birth"] = &lt;
+                text = &lt;"Date of birth"&gt;
+            &gt;
+            ["age_in_years"] = &lt;
+                text = &lt;"Age (years)"&gt;
+            &gt;
+            ["qRisk_score"] = &lt;
+                text = &lt;"QRISK2 score"&gt;
+            &gt;
+            ["non_smoker"] = &lt;
+                text = &lt;"Non-smoker"&gt;
+            &gt;
+            ["no_diabetes"] = &lt;
+                text = &lt;"Non-diabetic"&gt;
+            &gt;
+            ["total_cholesterol_HDL_ratio"] = &lt;
+                text = &lt;"Total cholesterol : HDL ratio"&gt;
+            &gt;
+        &gt;
+    &gt;
+
+    value_sets = &lt;
+        ["qrisk_ethnicities"] = &lt;
+            id = &lt;"qrisk_ethnicities"&gt;
+            members = &lt;"white",
+                "indian", "pakistani", "bangladeshi",
+                "other_asian", "black_caribbean",
+                "black_african", "other_ethnic_group"
+            &gt;
+        &gt;
+        ["diabetes_status"] = &lt;
+            id = &lt;"diabetes_status"&gt;
+            members = &lt;"no_diabetes", "type1_diabetes", "type2_diabetes"&gt;
+        &gt;
+        ["smoking status"] = &lt;
+            id = &lt;"status"&gt;
+            members = &lt;"non_smoker", "ex_smoker", "light_smoker",
+                "moderate_smoker", "heavy_smoker"
+            &gt;
+        &gt;
+    &gt;
+
+binding</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common_decision_logic_modules"><a class="anchor" href="#_common_decision_logic_modules"></a>11. Common Decision Logic Modules</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_demographics"><a class="anchor" href="#_basic_demographics"></a>11.1. BASIC: Demographics</h3>
+<div class="listingblock">
+<div class="content">
+<pre>dlm BASIC.v0.5.0
+
+language
+    original_language = &lt;[ISO_639-1::en]&gt;
+
+description
+    lifecycle_state = &lt;"unmanaged"&gt;
+    original_author = &lt;
+        ["name"] = &lt;"Thomas Beale"&gt;
+        ["email"] = &lt;"thomas.beale@openEHR.org"&gt;
+        ["organisation"] = &lt;"openEHR Foundation &lt;http://www.openEHR.org&gt;"&gt;
+        ["date"] = &lt;"2021-011-10"&gt;
+    &gt;
+    details = &lt;
+        ["en"] = &lt;
+            language = &lt;[ISO_639-1::en]&gt;
+            purpose = &lt;"To access common demographic state."&gt;
+        &gt;
+    &gt;
+
+input -- Administrative
+
+    date_of_birth: Date
+        ;
+
+    |
+    | sex: [male] | [female] | [indeterminate]
+    |
+    sex: Terminology_code &lt;&lt;sexes&gt;&gt;
+        ;
+
+    |
+    | race
+    |
+    race: Terminology_code &lt;&lt;races&gt;&gt;
+        ;
+
+    |
+    | Ethnicity:
+    |   [white_or_not_stated]
+    |   [indian]
+    |   [pakistani]
+    |   [bangladeshi]
+    |   [other_asian]
+    |   [black_caribbean]
+    |   [black_african]
+    |   [other_ethnic_group]
+    |
+    ethnicity: Terminology_code &lt;&lt;ethnicities&gt;&gt;
+        ;
+
+rules -- Main
+
+    |
+    | age in years
+    |
+    age_in_years: Integer
+        Result := (current_date - date_of_birth).as_years
+        ;
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["date_of_birth"] = &lt;
+                text = &lt;"Date of birth"&gt;
+            &gt;
+            ["age"] = &lt;
+                text = &lt;"Age"&gt;
+            &gt;
+            ["age_in_years"] = &lt;
+                text = &lt;"Age in years"&gt;
+            &gt;
+            ["sex"] = &lt;
+                text = &lt;"Sex"&gt;
+            &gt;
+            ["male"] = &lt;
+                text = &lt;"Male sex"&gt;
+            &gt;
+            ["female"] = &lt;
+                text = &lt;"Female sex"&gt;
+            &gt;
+        &gt;
+    &gt;
+    value_sets = &lt;
+        ["sexes"] = &lt;
+            id = &lt;"sexes"&gt;
+            members = &lt;"male", "female", "indeterminate"&gt;
+        &gt;
+        ["ethnicities"] = &lt;
+            id = &lt;"ethnicities"&gt;
+            members = &lt;"white",
+                "indian", "pakistani", "bangladeshi",
+                "other_asian", "black_caribbean",
+                "black_african", "other_ethnic_group"
+            &gt;
+        &gt;
+        ["races"] = &lt;
+            id = &lt;"races"&gt;
+            members = &lt;"caucasian",
+                "asian", "black", "other"
+            &gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bsa_body_surface_area"><a class="anchor" href="#_bsa_body_surface_area"></a>11.2. BSA: Body Surface Area</h3>
+<div class="listingblock">
+<div class="content">
+<pre>dlm BSA.v0.5.0
+
+language
+    original_language = &lt;[ISO_639-1::en]&gt;
+
+description
+    lifecycle_state = &lt;"unmanaged"&gt;
+    original_author = &lt;
+        ["name"] = &lt;"Thomas Beale"&gt;
+        ["email"] = &lt;"thomas.beale@openEHR.org"&gt;
+        ["organisation"] = &lt;"openEHR Foundation &lt;http://www.openEHR.org&gt;"&gt;
+        ["date"] = &lt;"2021-011-10"&gt;
+    &gt;
+    details = &lt;
+        ["en"] = &lt;
+            language = &lt;[ISO_639-1::en]&gt;
+            purpose = &lt;"Body surface area."&gt;
+            use = &lt;"Used to calculate dosage e.g. for chemotherapy and other systemic medications."&gt;
+        &gt;
+    &gt;
+
+input -- State
+
+    |
+    | Weight as recorded in local system
+    |
+    weight: Quantity
+        ;
+
+    |
+    | Height as recorded in local system
+    |
+    height: Quantity
+        ;
+
+rules -- Main
+
+    |
+    | Weight in kg
+    |
+    weight_in_kg: Real
+        Result := choice of
+            ===============================================================================================
+            weight.units = "kg":    weight.magnitude,
+            -----------------------------------------------------------------------------------------------
+            weight.units = "lb":    weight.magnitude / 2.2,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (weight.value, from: weight.units, to: "kg", UCUM.[mass])
+            ===============================================================================================
+        ;
+
+    |
+    | Height in cm
+    |
+    height_in_cm: Real
+        Result := choice of
+            ===============================================================================================
+            height.units = "cm":    height.magnitude,
+            -----------------------------------------------------------------------------------------------
+            height.units = "m":     height.magnitude * 100,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (height.value, from: height.units, to: "cm", UCUM.[length])
+            ===============================================================================================
+        ;
+
+    |
+    | Body surface area
+    |
+    bsa: Real
+        Result := {math}.sqrt (weight_in_kg * height_in_cm / 3600)
+        ;
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["bsa"] = &lt;
+                text = &lt;"Body surface area"&gt;
+            &gt;
+            ["weight"] = &lt;
+                text = &lt;"Body weight, in whatever units are in local use"&gt;
+            &gt;
+            ["height"] = &lt;
+                text = &lt;"Body height, in whatever units are in local use"&gt;
+            &gt;
+            ["weight_in_kg"] = &lt;
+                text = &lt;"Body weight in kg"&gt;
+            &gt;
+            ["height_in_cm"] = &lt;
+                text = &lt;"Body height in cm"&gt;
+            &gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bmi_body_mass_index"><a class="anchor" href="#_bmi_body_mass_index"></a>11.3. BMI: Body Mass Index</h3>
+<div class="listingblock">
+<div class="content">
+<pre>dlm BMI.v0.5.0
+
+language
+    original_language = &lt;[ISO_639-1::en]&gt;
+
+description
+    lifecycle_state = &lt;"unmanaged"&gt;
+    original_author = &lt;
+        ["name"] = &lt;"Thomas Beale"&gt;
+        ["email"] = &lt;"thomas.beale@openEHR.org"&gt;
+        ["organisation"] = &lt;"openEHR Foundation &lt;http://www.openEHR.org&gt;"&gt;
+        ["date"] = &lt;"2021-011-10"&gt;
+    &gt;
+    details = &lt;
+        ["en"] = &lt;
+            language = &lt;[ISO_639-1::en]&gt;
+            purpose = &lt;"Body mass index."&gt;
+            use = &lt;"Used as a rough surrogate for determining whether a person has in the normal weight range for their height."&gt;
+        &gt;
+    &gt;
+
+input -- State
+
+    |
+    | Weight as recorded in local system
+    |
+    weight: Quantity
+        ;
+
+    |
+    | Height as recorded in local system
+    |
+    height: Quantity
+        ;
+
+rules -- Main
+
+    |
+    | Weight in kg, converted as necessary from subject weight
+    |
+    weight_in_kg: Real
+        Result := choice of
+            ===============================================================================================
+            weight.units = "kg":    weight.magnitude,
+            -----------------------------------------------------------------------------------------------
+            weight.units = "lb":    weight.magnitude / 2.2,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (weight.value, from: weight.units, to: "kg", UCUM.[mass])
+            ===============================================================================================
+        ;
+
+    |
+    | Height in m, converted as necessary from subject height
+    |
+    height_in_m: Real
+        Result := choice of
+            ===============================================================================================
+            height.units = "m":     height.magnitude,
+            -----------------------------------------------------------------------------------------------
+            height.units = "cm":    height.magnitude / 100,
+            -----------------------------------------------------------------------------------------------
+            *:                      {Quantity_converter}.
+                                    convert_value (height.value, from: height.units, to: "m", UCUM.[length])
+            ===============================================================================================
+        ;
+
+    |
+    | Body mass index
+    |
+    bmi: Real
+        Result := weight_in_kg / height_in_m ^ 2
+        ;
+
+terminology
+    term_definitions = &lt;
+        ["en"] = &lt;
+            ["bmi"] = &lt;
+                text = &lt;"Body mass index"&gt;
+            &gt;
+            ["weight"] = &lt;
+                text = &lt;"Body weight, in whatever units are in local use"&gt;
+            &gt;
+            ["height"] = &lt;
+                text = &lt;"Body height, in whatever units are in local use"&gt;
+            &gt;
+            ["weight_in_kg"] = &lt;
+                text = &lt;"Body weight in kg"&gt;
+            &gt;
+            ["height_in_m"] = &lt;
+                text = &lt;"Body height in m"&gt;
+            &gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-03 15:15:47 UTC
+Last updated 2021-01-31 19:56:45 UTC
 </div>
 </div>
 </body>
