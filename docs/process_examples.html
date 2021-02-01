@@ -591,7 +591,7 @@ description
     &gt;
 
 use
-    BSA: Body_surface_area
+    BSA: Body_surface_area.v0.5.0
 
 preconditions
     has_lymphoma_diagnosis
@@ -687,12 +687,15 @@ rules -- Main
         Result := not
             (platelets.in_range ([very_low]) or
              neutrophils.in_range ([very_low]))
+        ;
 
     prednisolone_dose: Quantity
         Result := prednisolone_dose_per_m2 * BSA.bsa_m2
+        ;
 
     rituximab_dose: Quantity
         Result := rituximab_dose_per_m2 * BSA.bsa_m2
+        ;
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
@@ -702,13 +705,14 @@ rules -- Main
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-            ;
+        ;
 
     |
     | TODO: hepatic impairment dose modification
     |
     vincristine_dose: Quantity
         Result := vincristine_dose_per_m2 * BSA.bsa_m2
+        ;
 
     |
     | CHECK: is low platelets and GFR dose modification
@@ -727,7 +731,7 @@ rules -- Main
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
-            ;
+        ;
 
     |
     | International Prognostic Index
@@ -756,6 +760,7 @@ rules -- Main
             extranodal_sites &gt; 1                 ? 1 : 0
             ---------------------------------------------
         )
+        ;
 
     ipi_risk: Terminology_code
         Result :=
@@ -766,7 +771,7 @@ rules -- Main
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk];
                 =======================================
-            ;
+        ;
 
 terminology
     term_definitions = &lt;
@@ -860,7 +865,7 @@ types
             -------------------
         ;
 
-input -- State
+input -- Historical state
 
     is_type1_diabetic: Boolean
 
@@ -894,16 +899,6 @@ input -- State
     has_anaemia_of_pregnancy: Boolean
 
 input -- Tracked State
-
-    bmi: Quantity
-        currency = 30d
-        ranges =
-            ------------------------------------
-            [high]:      |&gt;30 kg/m^2|,
-            [normal]:    |&gt;=15 .. &lt;= 30 kg/m^2|,
-            [low]:       |&lt; 15 kg/m^2|
-            ------------------------------------
-        ;
 
     |
     | Possible values:
@@ -951,6 +946,19 @@ input -- Tracked State
         currency = 24h
 
 rules
+    |
+    | Convert BMI to ranges
+    |
+    bmi_range: Terminology_code &lt;&lt;COMMON.simple_ranges&gt;&gt;
+        Result := case BMI.BMI in
+            =============================
+            |&gt;30|:              [high],
+            -----------------------------
+            |&gt;=15 .. &lt;= 30|:    [normal],
+            -----------------------------
+            |&lt; 15|:             [low]
+            =============================
+        ;
 
     |
     | Possible values:
@@ -1030,7 +1038,7 @@ rules
     gestational_diabetes_risk: Risk_value
         Result := choice of
             =================================================
-            bmi.in_range ([high]) or
+            bmi_range = [high] or
             previous_macrosomic_baby or
             previous_gestational_diabetes or
             family_history_of_diabetes or
@@ -1180,7 +1188,7 @@ terminology
 <div class="content">
 <pre>dlm guideline Oncology_breast_cancer.v0.5.0
 
-input -- State
+input -- Historical state
 
     has_heart_failure_class_II: Boolean
 
@@ -1420,8 +1428,8 @@ description
     &gt;
 
 use
-    BASIC: Basic_patient_data
-    BMI: Body_mass_index
+    BASIC: Basic_patient_data.v0.5.0
+    BMI: Body_mass_index.v0.5.0
 
 input -- Administrative
 
@@ -1826,11 +1834,11 @@ rules -- Main
     |
     gender: Terminology_code &lt;&lt;sexes&gt;&gt;
         Result := case BASIC.sex in
-            ================
+            =================
             {[male]}: [male],
-            ----------------
+            -----------------
             *:      [female]
-            ================
+            =================
         ;
 
     age_score: Integer
@@ -1970,8 +1978,8 @@ description
     &gt;
 
 use
-    BASIC: Basic_patient_data
-    BMI: Body_mass_index
+    BASIC: Basic_patient_data.v0.5.0
+    BMI: Body_mass_index.v0.5.0
 
 reference
 
@@ -2705,7 +2713,7 @@ terminology
 <h3 id="_bsa_body_surface_area"><a class="anchor" href="#_bsa_body_surface_area"></a>11.2. BSA: Body Surface Area</h3>
 <div class="listingblock">
 <div class="content">
-<pre>dlm BSA.v0.5.0
+<pre>dlm Body_surface_area.v0.5.0
 
 language
     original_language = &lt;[ISO_639-1::en]&gt;
@@ -2732,12 +2740,14 @@ input -- State
     | Weight as recorded in local system
     |
     weight: Quantity
+        currency = 30d
         ;
 
     |
     | Height as recorded in local system
     |
     height: Quantity
+        currency = 5y
         ;
 
 rules -- Main
@@ -2812,7 +2822,7 @@ terminology
 <h3 id="_bmi_body_mass_index"><a class="anchor" href="#_bmi_body_mass_index"></a>11.3. BMI: Body Mass Index</h3>
 <div class="listingblock">
 <div class="content">
-<pre>dlm BMI.v0.5.0
+<pre>dlm Body_mass_index.v0.5.0
 
 language
     original_language = &lt;[ISO_639-1::en]&gt;
@@ -2839,12 +2849,14 @@ input -- State
     | Weight as recorded in local system
     |
     weight: Quantity
+        currency = 30d
         ;
 
     |
     | Height as recorded in local system
     |
     height: Quantity
+        currency = 5y
         ;
 
 rules -- Main

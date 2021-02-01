@@ -93,11 +93,11 @@ rules -- Main
     |
     gender: Terminology_code <<sexes>>
         Result := case BASIC.sex in
-            ================
+            =================
             {[male]}: [male],
-            ----------------
+            -----------------
             *:      [female]
-            ================
+            =================
         ;
 
     age_score: Integer

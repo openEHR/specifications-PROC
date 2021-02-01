@@ -30,7 +30,7 @@ types
             -------------------
         ;
 
-input -- State
+input -- Historical state
 
     is_type1_diabetic: Boolean
 
@@ -65,16 +65,6 @@ input -- State
 
 input -- Tracked State
 
-    bmi: Quantity
-        currency = 30d
-        ranges =
-            ------------------------------------
-            [high]:      |>30 kg/m^2|,
-            [normal]:    |>=15 .. <= 30 kg/m^2|,
-            [low]:       |< 15 kg/m^2|
-            ------------------------------------
-        ;
-    
     |
     | Possible values:
     |   |premature rupture|, 
@@ -121,7 +111,20 @@ input -- Tracked State
         currency = 24h
     
 rules
-
+    |
+    | Convert BMI to ranges
+    |
+    bmi_range: Terminology_code <<COMMON.simple_ranges>>
+        Result := case BMI.BMI in
+            =============================
+            |>30|:              [high],
+            -----------------------------
+            |>=15 .. <= 30|:    [normal],
+            -----------------------------
+            |< 15|:             [low]
+            =============================
+        ;
+    
     |
     | Possible values:
     |    |excluded|, |anaemia of pregnancy|
@@ -200,7 +203,7 @@ rules
     gestational_diabetes_risk: Risk_value
         Result := choice of
             =================================================
-            bmi.in_range ([high]) or
+            bmi_range = [high] or
             previous_macrosomic_baby or
             previous_gestational_diabetes or
             family_history_of_diabetes or

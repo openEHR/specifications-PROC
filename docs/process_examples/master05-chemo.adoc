@@ -49,7 +49,7 @@ description
     >
    
 use
-    BSA: Body_surface_area
+    BSA: Body_surface_area.v0.5.0
     
 preconditions
     has_lymphoma_diagnosis
@@ -145,12 +145,15 @@ rules -- Main
         Result := not
             (platelets.in_range ([very_low]) or
              neutrophils.in_range ([very_low]))
+        ;
 
     prednisolone_dose: Quantity
         Result := prednisolone_dose_per_m2 * BSA.bsa_m2
+        ;
 
     rituximab_dose: Quantity
         Result := rituximab_dose_per_m2 * BSA.bsa_m2
+        ;
 
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
@@ -160,13 +163,14 @@ rules -- Main
                 [very_high]:   0.25,
                 [crit_high]:   0.0
                 ===================
-            ;
+        ;
 
     |
     | TODO: hepatic impairment dose modification
     |
     vincristine_dose: Quantity
         Result := vincristine_dose_per_m2 * BSA.bsa_m2
+        ;
 
     |
     | CHECK: is low platelets and GFR dose modification
@@ -185,7 +189,7 @@ rules -- Main
                 [low]:         0.75,
                 [very_low]:    0.5
                 ===================
-            ;
+        ;
    
     |
     | International Prognostic Index
@@ -214,6 +218,7 @@ rules -- Main
             extranodal_sites > 1                 ? 1 : 0
             ---------------------------------------------
         )
+        ;
        
     ipi_risk: Terminology_code
         Result :=
@@ -224,7 +229,7 @@ rules -- Main
                 |3|     : [ipi_intermediate_high_risk],
                 |4..5|  : [ipi_high_risk];
                 =======================================
-            ;
+        ;
                 
 terminology
     term_definitions = <

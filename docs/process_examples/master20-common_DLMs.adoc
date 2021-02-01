@@ -112,7 +112,7 @@ terminology
 == BSA: Body Surface Area
 
 ----
-dlm BSA.v0.5.0
+dlm Body_surface_area.v0.5.0
 
 language
     original_language = <[ISO_639-1::en]>
@@ -139,12 +139,14 @@ input -- State
     | Weight as recorded in local system
     |
     weight: Quantity
+        currency = 30d
         ;
         
     |
     | Height as recorded in local system
     |
     height: Quantity
+        currency = 5y
         ;
         
 rules -- Main
@@ -217,7 +219,7 @@ terminology
 == BMI: Body Mass Index
 
 ----
-dlm BMI.v0.5.0
+dlm Body_mass_index.v0.5.0
 
 language
     original_language = <[ISO_639-1::en]>
@@ -244,12 +246,14 @@ input -- State
     | Weight as recorded in local system
     |
     weight: Quantity
+        currency = 30d
         ;
         
     |
     | Height as recorded in local system
     |
     height: Quantity
+        currency = 5y
         ;
         
 rules -- Main

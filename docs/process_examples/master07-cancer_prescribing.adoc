@@ -5,7 +5,7 @@
 ----
 dlm guideline Oncology_breast_cancer.v0.5.0
 
-input -- State
+input -- Historical state
 
     has_heart_failure_class_II: Boolean
     

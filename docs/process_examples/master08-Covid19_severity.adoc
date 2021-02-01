@@ -43,8 +43,8 @@ description
     >
     
 use
-    BASIC: Basic_patient_data
-    BMI: Body_mass_index
+    BASIC: Basic_patient_data.v0.5.0
+    BMI: Body_mass_index.v0.5.0
     
 input -- Administrative
 
