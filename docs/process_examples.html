@@ -2106,7 +2106,7 @@ reference
                 [has_atrial_fibrillation]:              1.59233549692696630,
                 [atypical_antipsychotic_medication]:    0.252376420701155570,
                 [on_corticosteroids]:                   0.595207253046018510,
-                [impotence]:                            0,
+                [has_impotence]:                        0,
                 [has_migraines]:                        0.3012672608703450,
                 [has_rheumatoid_arthritis]:             0.213648034351819420,
                 [has_chronic_kidney_disease]:           0.651945694938458330,
@@ -2119,7 +2119,7 @@ reference
                 [has_atrial_fibrillation]:              0.882092369280546570,
                 [atypical_antipsychotic_medication]:    0.130468798551735130,
                 [on_corticosteroids]:                   0.454853997504455430,
-                [impotence]:                            0.222518590867053830,
+                [has_impotence]:                        0.222518590867053830,
                 [has_migraines]:                        0.255841780741599130,
                 [has_rheumatoid_arthritis]:             0.209706580139565670,
                 [has_chronic_kidney_disease]:           0.718532612882743840,
@@ -2149,7 +2149,7 @@ reference
                  [age_1]:   {
                     [has_atrial_fibrillation]:     19.9380348895465610,
                     [on_corticosteroids]:          -0.9840804523593628100000000,
-                    [impotence]:                    0,
+                    [has_impotence]:                0,
                     [has_migraines]:                1.7634979587872999000000000,
                     [has_chronic_kidney_disease]:  -3.5874047731694114000000000,
                     [has_systemic_lupus]:          19.6903037386382920000000000,
@@ -2163,7 +2163,7 @@ reference
                 [age_2]:   {
                     [has_atrial_fibrillation]:     -0.0761826510111625050000000,
                     [on_corticosteroids]:          -0.1200536494674247200000000,
-                    [impotence]:                    0,
+                    [has_impotence]:                0,
                     [has_migraines]:               -0.0655869178986998590000000,
                     [has_chronic_kidney_disease]:  -0.2268887308644250700000000,
                     [has_systemic_lupus]:           0.0773479496790162730000000,
@@ -2179,7 +2179,7 @@ reference
                  [age_1]:   {
                     [has_atrial_fibrillation]:      3.4896675530623207000000000,
                     [on_corticosteroids]:           1.1708133653489108000000000,
-                    [impotence]:                   -1.5064009857454310000000000,
+                    [has_impotence]:               -1.5064009857454310000000000,
                     [has_migraines]:                2.3491159871402441000000000,
                     [has_chronic_kidney_disease]:  -0.5065671632722369400000000,
                     [on_hypertension_treatment]:    6.5114581098532671000000000,
@@ -2192,7 +2192,7 @@ reference
                 [age_2]:   {
                     [has_atrial_fibrillation]:     -0.0003499560834063604900000,
                     [on_corticosteroids]:          -0.0002496045095297166000000,
-                    [impotence]:                   -0.0011058218441227373000000,
+                    [has_impotence]:               -0.0011058218441227373000000,
                     [has_migraines]:                0.0001989644604147863100000,
                     [has_chronic_kidney_disease]:  -0.0018325930166498813000000,
                     [on_hypertension_treatment]:    0.0006383805310416501300000,
@@ -2339,7 +2339,7 @@ input -- Historical state
     | Has or being treated for erectile dysfunction
     | (female -&gt; False)
     |
-    impotence: Boolean
+    has_impotence: Boolean
 
     |
     | Has Systemic lupus erythematosus (SLE)
@@ -2358,12 +2358,6 @@ input -- Historical state
         ;
 
     on_corticosteroids: Boolean
-        ;
-
-    |
-    | Has diagnosis of or treatment for erectile disfunction
-    |
-    has_erectile_dysfunction: Boolean
         ;
 
 input -- Tracking state
@@ -2385,7 +2379,7 @@ rules -- Main
 
     |
     | Applying the fractional polynomial transforms
-	| (which includes scaling)
+    | (which includes scaling)
     |
 
     age_1_centred: Real
@@ -2421,7 +2415,8 @@ rules -- Main
         ;
 
     rheumatoid_arthritis_score: Real
-        Result := (has_rheumatoid_arthritis.as_integer - Rheumatoid_arthritis_stats[BASIC.sex, [centre]]) * Rheumatoid_arthritis_stats[BASIC.sex, [scale]]
+        Result := (has_rheumatoid_arthritis.as_integer - Rheumatoid_arthritis_stats[BASIC.sex, [centre]])
+                    * Rheumatoid_arthritis_stats[BASIC.sex, [scale]]
         ;
 
     systolic_BP: Real
@@ -2429,15 +2424,18 @@ rules -- Main
         ;
 
     systolic_BP_score: Real
-        Result := (systolic_BP - Systolic_BP_stats[BASIC.sex, [centre]]) * Systolic_BP_stats[BASIC.sex, [scale]]
+        Result := (systolic_BP - Systolic_BP_stats[BASIC.sex, [centre]])
+                    * Systolic_BP_stats[BASIC.sex, [scale]]
         ;
 
     systolic_BP_std_dev_score: Real
-        Result := (systolic_BP_std_deviation - Systolic_BP_std_dev_stats[BASIC.sex, [centre]]) * Systolic_BP_std_dev_stats[BASIC.sex, [scale]]
+        Result := (systolic_BP_std_deviation - Systolic_BP_std_dev_stats[BASIC.sex, [centre]])
+                    * Systolic_BP_std_dev_stats[BASIC.sex, [scale]]
         ;
 
     townsend_score: Real
-        Result := (townsend_score - Townsend_stats[BASIC.sex, [centre]]) * Townsend_stats[BASIC.sex, [scale]]
+        Result := (townsend_score - Townsend_stats[BASIC.sex, [centre]])
+                    * Townsend_stats[BASIC.sex, [scale]]
         ;
 
     |
@@ -2455,12 +2453,12 @@ rules -- Main
             Smoking_risk_factors[BASIC.sex, smoking_status],
             age_1_score,
             age_2_score,
-	        BMI_1_score,
-	        BMI_2_score,
-	        rheumatoid_arthritis_score,
-	        systolic_BP_score,
-	        systolic_BP_std_dev_score,
-	        townsend_score_score,
+            BMI_1_score,
+            BMI_2_score,
+            rheumatoid_arthritis_score,
+            systolic_BP_score,
+            systolic_BP_std_dev_score,
+            townsend_score_score,
             Diabetes_scales[BASIC.sex, diabetes_status]
         )
 
@@ -2473,7 +2471,7 @@ rules -- Main
             has_atrial_fibrillation.as_integer,
             on_atypical_antipsychotic_medication.as_integer,
             on_corticosteroids.as_integer,
-            impotence.as_integer,
+            has_impotence.as_integer,
             has_migraines.as_integer,
             has_rheumatoid_arthritis.as_integer,
             has_chronic_kidney_disease.as_integer,
@@ -2496,7 +2494,7 @@ rules -- Main
         Result := [
             has_atrial_fibrillation.as_integer,
             on_corticosteroids.as_integer,
-            impotence.as_integer,
+            has_impotence.as_integer,
             has_migraines.as_integer,
             has_chronic_kidney_disease.as_integer,
             has_systemic_lupus.as_integer,
@@ -2519,7 +2517,7 @@ rules -- Main
             age_2_centred * Smoking_interaction_scales[BASIC.sex, [age_2], smoking_status],
             age_2_centred * Diabetes_interaction_scales[BASIC.sex, [age_2], diabetes_status],
 
-            age_2_centred * interaction_risks . Interaction_scales[BASIC.sex, [age_2]],
+            age_2_centred * interaction_risks . Interaction_scales[BASIC.sex, [age_2]]
         )
         ;
 
@@ -2551,18 +2549,13 @@ terminology
             ["total_cholesterol_HDL_ratio"] = &lt;
                 text = &lt;"Total cholesterol : HDL ratio"&gt;
             &gt;
+            ["TODO: rest of terminology"] = &lt;
+                text = &lt;"TODO: rest of terminology"&gt;
+            &gt;
         &gt;
     &gt;
 
     value_sets = &lt;
-        ["qrisk_ethnicities"] = &lt;
-            id = &lt;"qrisk_ethnicities"&gt;
-            members = &lt;"white",
-                "indian", "pakistani", "bangladeshi",
-                "other_asian", "black_caribbean",
-                "black_african", "other_ethnic_group"
-            &gt;
-        &gt;
         ["diabetes_status"] = &lt;
             id = &lt;"diabetes_status"&gt;
             members = &lt;"no_diabetes", "type1_diabetes", "type2_diabetes"&gt;
@@ -2573,9 +2566,7 @@ terminology
                 "moderate_smoker", "heavy_smoker"
             &gt;
         &gt;
-    &gt;
-
-binding</pre>
+    &gt;</pre>
 </div>
 </div>
 </div>
