@@ -4,6 +4,8 @@
 
 == Decision Logic Module
 
+This DLM is a direct translation of the Cambio https://github.com/gdl-lang/common-clinical-models/blob/master/guidelines/CHA2DS2-VASc.v1.gdl[CHA2DS2-VASc.v1^] GDL2 guideline.
+
 ----
 dlm CHA2DS2_VASc.v0.5.0
 

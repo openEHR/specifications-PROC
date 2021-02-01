@@ -911,7 +911,7 @@ input -- Tracked State
     |   |polyhydramnios|, |oligohydramnios|,
     |   |severe polyhydramnios|, |severe oligohydramnios|
     |
-    amniotic_fluid_state: Terminology_term
+    amniotic_fluid_state: Terminology_term &lt;&lt;amniotic_fluid_state&gt;&gt;
         currency = 24h
 
     uterine_fundal_height: Quantity
@@ -956,7 +956,7 @@ rules
     | Possible values:
     |    |excluded|, |anaemia of pregnancy|
     |
-    anaemia_type: Terminology_term
+    anaemia_type: Terminology_term &lt;&lt;anaemia_type&gt;&gt;
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
     |
@@ -1097,11 +1097,11 @@ terminology
                 text = &lt;"oligohydramnios"&gt;
                 description = &lt;"..."&gt;
             &gt;
-            ["severe polyhydramnios"] = &lt;
+            ["severe_polyhydramnios"] = &lt;
                 text = &lt;"severe polyhydramnios"&gt;
                 description = &lt;"..."&gt;
             &gt;
-            ["severe oligohydramnios"] = &lt;
+            ["severe_oligohydramnios"] = &lt;
                 text = &lt;"severe oligohydramnios"&gt;
                 description = &lt;"..."&gt;
             &gt;
@@ -1154,7 +1154,16 @@ terminology
                 text = &lt;"xxx"&gt;
                 description = &lt;"..."&gt;
             &gt;
-
+        &gt;
+    &gt;
+    value_sets = &lt;
+        ["amniotic_fluid_state"] = &lt;
+            id = &lt;"amniotic_fluid_state"&gt;
+            members = &lt;"premature_rupture", "polyhydramnios", "oligohydramnios", "severe_polyhydramnios", "severe_oligohydramnios"&gt;
+        &gt;
+        ["anaemia_type"] = &lt;
+            id = &lt;"anaemia_type"&gt;
+            members = &lt;"excluded", "anaemia_of_pregnancy"&gt;
         &gt;
     &gt;</pre>
 </div>
@@ -1726,6 +1735,9 @@ rules
 </div>
 <div class="sect2">
 <h3 id="_decision_logic_module_3"><a class="anchor" href="#_decision_logic_module_3"></a>9.2. Decision Logic Module</h3>
+<div class="paragraph">
+<p>This DLM is a direct translation of the Cambio <a href="https://github.com/gdl-lang/common-clinical-models/blob/master/guidelines/CHA2DS2-VASc.v1.gdl" target="_blank" rel="noopener">CHA2DS2-VASc.v1</a> GDL2 guideline.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>dlm CHA2DS2_VASc.v0.5.0
@@ -2398,8 +2410,12 @@ rules -- Main
         Result := age_2_centred * Age_2_stats[BASIC.sex, [scale]]
         ;
 
+    BMI_scaled: Real
+        Result := BMI.BMI/10
+        ;
+
     BMI_1_centred: Real
-        Result := (BMI.bmi/10) ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
+        Result := BMI_scaled ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
         ;
 
     BMI_1_score: Real
@@ -2407,7 +2423,7 @@ rules -- Main
         ;
 
     BMI_2_centred: Real
-        Result := (BMI.bmi/10) ^ 0.5 * {math}.ln(dbmi) - BMI_2_stats[BASIC.sex, [centre]]
+        Result := BMI_scaled ^ 0.5 * {math}.ln (BMI_scaled) - BMI_2_stats[BASIC.sex, [centre]]
         ;
 
     BMI_2_score: Real
@@ -2759,7 +2775,7 @@ rules -- Main
     |
     | Body surface area
     |
-    bsa: Real
+    BSA: Real
         Result := {math}.sqrt (weight_in_kg * height_in_cm / 3600)
         ;
 
@@ -2860,7 +2876,7 @@ rules -- Main
     |
     | Body mass index
     |
-    bmi: Real
+    BMI: Real
         Result := weight_in_kg / height_in_m ^ 2
         ;
 

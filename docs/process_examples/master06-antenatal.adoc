@@ -81,7 +81,7 @@ input -- Tracked State
     |   |polyhydramnios|, |oligohydramnios|,
     |   |severe polyhydramnios|, |severe oligohydramnios|
     |
-    amniotic_fluid_state: Terminology_term
+    amniotic_fluid_state: Terminology_term <<amniotic_fluid_state>>
         currency = 24h
 
     uterine_fundal_height: Quantity
@@ -126,7 +126,7 @@ rules
     | Possible values:
     |    |excluded|, |anaemia of pregnancy|
     |
-    anaemia_type: Terminology_term
+    anaemia_type: Terminology_term <<anaemia_type>>
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
 
     |
@@ -267,11 +267,11 @@ terminology
                 text = <"oligohydramnios">
                 description = <"...">
             >
-            ["severe polyhydramnios"] = <
+            ["severe_polyhydramnios"] = <
                 text = <"severe polyhydramnios">
                 description = <"...">
             >
-            ["severe oligohydramnios"] = <
+            ["severe_oligohydramnios"] = <
                 text = <"severe oligohydramnios">
                 description = <"...">
             >
@@ -324,7 +324,17 @@ terminology
                 text = <"xxx">
                 description = <"...">
             >
-
         >
-    >    
+    >
+    value_sets = <
+        ["amniotic_fluid_state"] = <
+            id = <"amniotic_fluid_state">
+            members = <"premature_rupture", "polyhydramnios", "oligohydramnios", "severe_polyhydramnios", "severe_oligohydramnios">
+        >
+        ["anaemia_type"] = <
+            id = <"anaemia_type">
+            members = <"excluded", "anaemia_of_pregnancy">
+        >        
+    >
+    
 ----

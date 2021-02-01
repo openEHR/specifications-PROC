@@ -182,7 +182,7 @@ rules -- Main
     |
     | Body surface area
     |
-    bsa: Real
+    BSA: Real
         Result := {math}.sqrt (weight_in_kg * height_in_cm / 3600)
         ;
 
@@ -281,7 +281,7 @@ rules -- Main
     |
     | Body mass index
     |
-    bmi: Real
+    BMI: Real
         Result := weight_in_kg / height_in_m ^ 2
         ;
 

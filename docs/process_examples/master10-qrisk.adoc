@@ -477,8 +477,12 @@ rules -- Main
         Result := age_2_centred * Age_2_stats[BASIC.sex, [scale]]
         ;
         
+    BMI_scaled: Real
+        Result := BMI.BMI/10
+        ;
+        
     BMI_1_centred: Real
-        Result := (BMI.bmi/10) ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
+        Result := BMI_scaled ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
         ;
         
     BMI_1_score: Real
@@ -486,7 +490,7 @@ rules -- Main
         ;
         
     BMI_2_centred: Real
-        Result := (BMI.bmi/10) ^ 0.5 * {math}.ln(dbmi) - BMI_2_stats[BASIC.sex, [centre]]
+        Result := BMI_scaled ^ 0.5 * {math}.ln (BMI_scaled) - BMI_2_stats[BASIC.sex, [centre]]
         ;
         
     BMI_2_score: Real
