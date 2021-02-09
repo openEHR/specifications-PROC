@@ -24,8 +24,10 @@ description
         ["en"] = <
             language = <[ISO_639-1::en]>
             purpose = <"To record an individual's CHA2DS2-VASc score parameters and total score.">
-				use = <"Use for stroke risk stratification in patients with atrial fibrillation.
-                        CHA2DS2-VASc is an acronym, with each factor contributing points to the total score:
+                use = <
+                    "Use for stroke risk stratification in patients with atrial fibrillation.
+                     CHA2DS2-VASc is an acronym, with each factor contributing points to the 
+                        total score:
                         - Congestive heart failure 1p
                         - Hypertension 1p
                         - Age ≥75 years 2p
@@ -34,32 +36,32 @@ description
                         - Vascular disease 1p
                         - Age 65–74 years 1p
                         - Sex category 1p for female
-
-                        The maximum score is 9p and the result is interpreted as;
-                        0p - low risk
-                        1p - intermediate risk
-                        2p or more - high risk
-
-                        Further interpretation in accordance with [4]
-                        1p - stroke risk 0,6% per year, risk of stroke/TIA/thromboembolism 0,9% per year
-                        2p - stroke risk 2,2% per year, risk of stroke/TIA/thromboembolism 2,9% per year
-                        3p - stroke risk 3,2% per year, risk of stroke/TIA/thromboembolism 4,6% per year
-                        4p - stroke risk 4,8% per year, risk of stroke/TIA/thromboembolism 6,7% per year
-                        5p - stroke risk 7,2% per year, risk of stroke/TIA/thromboembolism 10,0% per year
-                        6p - stroke risk 9,7% per year, risk of stroke/TIA/thromboembolism 13,6% per year
-                        7p - stroke risk 11,2% per year, risk of stroke/TIA/thromboembolism 15,7% per year
-                        8p - stroke risk 10,8% per year, risk of stroke/TIA/thromboembolism 15,2% per year
-                        9p - stroke risk 12,2% per year, risk of stroke/TIA/thromboembolism 17,4% per year"
                 >
-			>
+            >
         >
     >
     copyright = <"© 2020 openEHR Foundation">
     licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
-    references = <"[1] Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-                    based approach: the euro heart survey on atrial fibrillation. Chest. 2010 Feb;137(2):263-72.
-                    [2] Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al. Guidelines for the management of atrial fibrillation: the Task Force for the Management of Atrial Fibrillation of the European Society of Cardiology (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.
-                    [3] Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk for stroke despite anticoagulation: a comparison of contemporary stroke risk stratification schemes in an anticoagulated atrial fibrillation cohort. Stroke. 2010 Dec;41(12):2731-8.
-                    [4] Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes for ischaemic stroke and bleeding in 182 678 patients with atrial fibrillation: the Swedish Atrial Fibrillation cohort study. Eur Heart J. 2012 Jun;33(12):1500-10."
+    references = <
+        "[1] Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk
+            stratification for predicting stroke and thromboembolism in atrial 
+            fibrillation using a novel risk factor-based approach: the euro heart survey
+            on atrial fibrillation. Chest. 2010 Feb;137(2):263-72.
+            
+        [2] Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al. 
+            Guidelines for the management of atrial fibrillation: the Task Force for 
+            the Management of Atrial Fibrillation of the European Society of Cardiology
+            (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.
+            
+        [3] Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk 
+            for stroke despite anticoagulation: a comparison of contemporary stroke risk 
+            stratification schemes in an anticoagulated atrial fibrillation cohort. 
+            Stroke. 2010 Dec;41(12):2731-8.
+            
+        [4] Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes 
+            for ischaemic stroke and bleeding in 182 678 patients with atrial 
+            fibrillation: the Swedish Atrial Fibrillation cohort study. 
+            Eur Heart J. 2012 Jun;33(12):1500-10."
     >
         
 use
@@ -93,11 +95,11 @@ rules -- Main
     |
     gender: Terminology_code <<sexes>>
         Result := case BASIC.sex in
-            =================
-            {[male]}: [male],
-            -----------------
-            *:      [female]
-            =================
+            =====================
+            {[male]}:     [male],
+            ---------------------
+            *:          [female]
+            =====================
         ;
 
     age_score: Integer
@@ -124,6 +126,61 @@ rules -- Main
             ---------------------------------------------
         )
         ;        
+
+rules -- Output
+
+    |
+    | The maximum score is 9 and the result is interpreted as;
+    | 0 - low risk
+    | 1 - intermediate risk
+    | 2 or more - high risk
+    |
+    risk_assessment: Terminology_code «risks»
+        Result := case CHA2DS2_VASc_score in
+            =============================
+            0:       [low_risk],
+            1:       [intermediate_risk],
+            |>=2|:   [high_risk]
+            =============================
+        ;
+    
+    |
+    | Further interpretation in accordance with [4]
+    |
+    annual_stroke_risk: Real
+        Result := case CHA2DS2_VASc_score in
+            ==============
+            0:       0.0%,
+            1:       0.6%,
+            2:       2.2%,
+            3:       3.2%,
+            4:       4.8%,
+            5:       7.2%,
+            6:       9.7%,
+            7:      11.2%,
+            8:      10.8%,
+            9:      12.2%
+            ==============
+        ;
+    
+    |
+    | Further interpretation in accordance with [4]
+    |
+    annual_stroke_TIA_thromboembolism_risk: Real
+        Result := case CHA2DS2_VASc_score in
+            ==============
+            0:       0.0%,
+            1:       0.9%,
+            2:       2.9%,
+            3:       4.6%,
+            4:       6.7%,
+            5:      10.0%,
+            6:      13.6%,
+            7:      15.7%,
+            8:      15.2%,
+            9:      17.4%
+            ==============
+        ;
 
 terminology
     term_definitions = <
@@ -173,9 +230,29 @@ terminology
                 provenance = <["GDL2"] = <"gt0025">>
             >
             ["CHA2DS2_VASc_score"] = <
-                text = <"xxx">
-                description = <"...">
+                text = <"CHA2DS2VASc score">
                 provenance = <["GDL2"] = <"gt0011">>
+            >
+            ["risk_assessment"] = <
+                text = <"Risk assessment">
+                provenance = <["GDL2"] = <"gt0005">>
+            >
+            ["annual_stroke_risk"] = <
+                text = <"Annual stroke risk">
+                provenance = <["GDL2"] = <"gt0006">>
+            >
+            ["annual_stroke_TIA_thromboembolism_risk"] = <
+                text = <"Annual risk of stroke/TIA/thromboembolism">
+                provenance = <["GDL2"] = <"gt0011">>
+            >
+            ["low_risk"] = <
+                text = <"Low risk">
+            >
+            ["intermediate_risk"] = <
+                text = <"Intermediate risk">
+            >
+            ["high_risk"] = <
+                text = <"High risk">
             >
         >
     >
@@ -185,8 +262,49 @@ terminology
             id = <"genders">
             members = <"male", "female">
         >
+        ["risks"] = <
+            id = <"risks">
+            members = <"low_risk", "intermediate_risk", "high_risk">
+        >
     >
 
-binding
+----
 
+== Bindings
+
+The following defines the logical bindings of DLM variables to back-end data.
+
+----
+--
+-- Demographic items: AQL query
+--
+SELECT
+    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0004] AS date_of_birth,
+    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0008] AS sex
+    C/context/start_time AS time
+FROM
+    EHR e[ehr_id/value=$ehrUid]
+        CONTAINS COMPOSITION C
+        CONTAINS OBSERVATION OBS[openEHR-EHR-OBSERVATION.basic_demographic.v1]
+ORDER BY
+    time DESC
+
+
+--
+-- CHA2DS2-VASc input items
+--
+SELECT
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0026] AS has_congestive_heart_failure,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0029] AS has_hypertension,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0039] AS has_stroke_TIA_thromboembolism,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0046] AS has_vascular_disease,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0032] AS has_diabetes,
+    C/context/start_time AS time
+FROM
+    EHR e[ehr_id/value=$ehrUid]
+        CONTAINS COMPOSITION C
+        CONTAINS OBSERVATION OBS[openEHR-EHR-OBSERVATION.chadsvasc_score.v1]
+ORDER BY
+    time DESC
+    
 ----

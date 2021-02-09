@@ -86,6 +86,7 @@
 <ul class="sectlevel2">
 <li><a href="#_work_plan_3">9.1. Work Plan</a></li>
 <li><a href="#_decision_logic_module_3">9.2. Decision Logic Module</a></li>
+<li><a href="#_bindings">9.3. Bindings</a></li>
 </ul>
 </li>
 <li><a href="#_qrisk3_2017">10. qRisk3-2017</a>
@@ -856,7 +857,7 @@ preconditions
 
 types
 
-    Risk_value ::= Ordinal
+    Risk_type ::= Ordinal
         map =
             -------------------
             [emergency]:    2,
@@ -902,11 +903,11 @@ input -- Tracked State
 
     |
     | Possible values:
-    |   |premature rupture|,
-    |   |polyhydramnios|, |oligohydramnios|,
-    |   |severe polyhydramnios|, |severe oligohydramnios|
+    |   [premature rupture],
+    |   [polyhydramnios], [oligohydramnios],
+    |   [severe polyhydramnios], [severe oligohydramnios]
     |
-    amniotic_fluid_state: Terminology_term &lt;&lt;amniotic_fluid_state&gt;&gt;
+    amniotic_fluid_state: Terminology_term «amniotic_fluid_state»
         currency = 24h
 
     uterine_fundal_height: Quantity
@@ -971,7 +972,7 @@ rules
     | Return the highest level risk of any of the
     | assessed risks
     |
-    effective_risk: Risk_value
+    effective_risk: Risk_type
         Result := Result.max ({fundal_height_related_risk,
                     amniotic_fluid_risk,
                     vaginal_bleeding_related_risk,
@@ -986,7 +987,7 @@ rules
                 amniotic_fluid_risk != [low_risk] or
                 vaginal_bleeding_related_risk != [low_risk]
 
-    anaemia_risk: Risk_value
+    anaemia_risk: Risk_type
         Result := case anaemia_type in
             ============================================
             [severe_anaemia_of_pregnancy]:  [emergency],
@@ -997,7 +998,7 @@ rules
             ============================================
         ;
 
-    fundal_height_related_risk: Risk_value
+    fundal_height_related_risk: Risk_type
         Result := case ultrasound_finding in
             =================================================
             [interuterine_growth_retardation],
@@ -1008,7 +1009,7 @@ rules
             =================================================
         ;
 
-    amniotic_fluid_risk: Risk_value
+    amniotic_fluid_risk: Risk_type
         Result := case amniotic_fluid_state in
             =========================================
             [premature_rupture],
@@ -1022,7 +1023,7 @@ rules
             =========================================
         ;
 
-    vaginal_bleeding_related_risk: Risk_value
+    vaginal_bleeding_related_risk: Risk_type
         Result := case vaginal_physical_exam_assessment in
             =================================================
             [ectopic_pregnancy],
@@ -1035,7 +1036,7 @@ rules
             =================================================
         ;
 
-    gestational_diabetes_risk: Risk_value
+    gestational_diabetes_risk: Risk_type
         Result := choice of
             =================================================
             bmi_range = [high] or
@@ -1050,7 +1051,7 @@ rules
             =================================================
         ;
 
-    hypertension_risk: Risk_value
+    hypertension_risk: Risk_type
         Result := choice of
             =================================================
             has_pre_eclampsia or
@@ -1212,13 +1213,13 @@ input -- Tracked State
     tnm_g: String
         currency = 60 days
 
-    estrogen_receptor: Terminology_term «pos_neg_vs»
+    estrogen_receptor: Terminology_term «pos_neg»
         currency = 60 days
 
-    progesterone_receptor:  Terminology_term «pos_neg_vs»
+    progesterone_receptor:  Terminology_term «pos_neg»
         currency = 60 days
 
-    her2_expression: Terminology_term «pos_neg_vs»
+    her2_expression: Terminology_term «pos_neg»
         currency = 60 days
 
     ki67: Quantity
@@ -1344,33 +1345,37 @@ terminology
     term_definitions = &lt;
         ["en"] = &lt;
             ["luminal_A"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+                text = &lt;"luminal A"&gt;
             &gt;
             ["luminal_B_HER2_positive"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+                text = &lt;"luminal B HER2-positive"&gt;
             &gt;
             ["luminal_B_HER2_negative"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+                text = &lt;"luminal B HER2-negative"&gt;
             &gt;
             ["HER2_positive"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+                text = &lt;"HER2-positive"&gt;
             &gt;
-            ["HER2_megative"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+            ["HER2_negative"] = &lt;
+                text = &lt;"HER2-negative"&gt;
             &gt;
             ["triple_negative"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+                text = &lt;"triple-negative"&gt;
             &gt;
-            ["oligohydramnios"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
-            &gt;</pre>
+            ["negative"] = &lt;
+                text = &lt;"negative presence of gene"&gt;
+            &gt;
+            ["positive"] = &lt;
+                text = &lt;"positive presence of gene"&gt;
+            &gt;
+
+
+    value_sets = &lt;
+        ["pos_neg"] = &lt;
+            id = &lt;"pos_neg"&gt;
+            members = &lt;"positive", "negative"&gt;
+        &gt;
+    &gt;</pre>
 </div>
 </div>
 </div>
@@ -1765,8 +1770,10 @@ description
         ["en"] = &lt;
             language = &lt;[ISO_639-1::en]&gt;
             purpose = &lt;"To record an individual's CHA2DS2-VASc score parameters and total score."&gt;
-				use = &lt;"Use for stroke risk stratification in patients with atrial fibrillation.
-                        CHA2DS2-VASc is an acronym, with each factor contributing points to the total score:
+                use = &lt;
+                    "Use for stroke risk stratification in patients with atrial fibrillation.
+                     CHA2DS2-VASc is an acronym, with each factor contributing points to the
+                        total score:
                         - Congestive heart failure 1p
                         - Hypertension 1p
                         - Age ≥75 years 2p
@@ -1775,32 +1782,32 @@ description
                         - Vascular disease 1p
                         - Age 65–74 years 1p
                         - Sex category 1p for female
-
-                        The maximum score is 9p and the result is interpreted as;
-                        0p - low risk
-                        1p - intermediate risk
-                        2p or more - high risk
-
-                        Further interpretation in accordance with [4]
-                        1p - stroke risk 0,6% per year, risk of stroke/TIA/thromboembolism 0,9% per year
-                        2p - stroke risk 2,2% per year, risk of stroke/TIA/thromboembolism 2,9% per year
-                        3p - stroke risk 3,2% per year, risk of stroke/TIA/thromboembolism 4,6% per year
-                        4p - stroke risk 4,8% per year, risk of stroke/TIA/thromboembolism 6,7% per year
-                        5p - stroke risk 7,2% per year, risk of stroke/TIA/thromboembolism 10,0% per year
-                        6p - stroke risk 9,7% per year, risk of stroke/TIA/thromboembolism 13,6% per year
-                        7p - stroke risk 11,2% per year, risk of stroke/TIA/thromboembolism 15,7% per year
-                        8p - stroke risk 10,8% per year, risk of stroke/TIA/thromboembolism 15,2% per year
-                        9p - stroke risk 12,2% per year, risk of stroke/TIA/thromboembolism 17,4% per year"
                 &gt;
-			&gt;
+            &gt;
         &gt;
     &gt;
     copyright = &lt;"© 2020 openEHR Foundation"&gt;
     licence = &lt;"Creative Commons CC-BY &lt;https://creativecommons.org/licenses/by/3.0/&gt;"&gt;
-    references = &lt;"[1] Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-                    based approach: the euro heart survey on atrial fibrillation. Chest. 2010 Feb;137(2):263-72.
-                    [2] Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al. Guidelines for the management of atrial fibrillation: the Task Force for the Management of Atrial Fibrillation of the European Society of Cardiology (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.
-                    [3] Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk for stroke despite anticoagulation: a comparison of contemporary stroke risk stratification schemes in an anticoagulated atrial fibrillation cohort. Stroke. 2010 Dec;41(12):2731-8.
-                    [4] Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes for ischaemic stroke and bleeding in 182 678 patients with atrial fibrillation: the Swedish Atrial Fibrillation cohort study. Eur Heart J. 2012 Jun;33(12):1500-10."
+    references = &lt;
+        "[1] Lip GY, Nieuwlaat R, Pisters R, Lane DA, Crijns HJ. Refining clinical risk
+            stratification for predicting stroke and thromboembolism in atrial
+            fibrillation using a novel risk factor-based approach: the euro heart survey
+            on atrial fibrillation. Chest. 2010 Feb;137(2):263-72.
+
+        [2] Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al.
+            Guidelines for the management of atrial fibrillation: the Task Force for
+            the Management of Atrial Fibrillation of the European Society of Cardiology
+            (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.
+
+        [3] Lip GY, Frison L, Halperin JL, Lane DA. Identifying patients at high risk
+            for stroke despite anticoagulation: a comparison of contemporary stroke risk
+            stratification schemes in an anticoagulated atrial fibrillation cohort.
+            Stroke. 2010 Dec;41(12):2731-8.
+
+        [4] Friberg L, Rosenqvist M, Lip GY. Evaluation of risk stratification schemes
+            for ischaemic stroke and bleeding in 182 678 patients with atrial
+            fibrillation: the Swedish Atrial Fibrillation cohort study.
+            Eur Heart J. 2012 Jun;33(12):1500-10."
     &gt;
 
 use
@@ -1834,11 +1841,11 @@ rules -- Main
     |
     gender: Terminology_code &lt;&lt;sexes&gt;&gt;
         Result := case BASIC.sex in
-            =================
-            {[male]}: [male],
-            -----------------
-            *:      [female]
-            =================
+            =====================
+            {[male]}:     [male],
+            ---------------------
+            *:          [female]
+            =====================
         ;
 
     age_score: Integer
@@ -1864,6 +1871,61 @@ rules -- Main
             has_diabetes                         ? 1 : 0
             ---------------------------------------------
         )
+        ;
+
+rules -- Output
+
+    |
+    | The maximum score is 9 and the result is interpreted as;
+    | 0 - low risk
+    | 1 - intermediate risk
+    | 2 or more - high risk
+    |
+    risk_assessment: Terminology_code «risks»
+        Result := case CHA2DS2_VASc_score in
+            =============================
+            0:       [low_risk],
+            1:       [intermediate_risk],
+            |&gt;=2|:   [high_risk]
+            =============================
+        ;
+
+    |
+    | Further interpretation in accordance with [4]
+    |
+    annual_stroke_risk: Real
+        Result := case CHA2DS2_VASc_score in
+            ==============
+            0:       0.0%,
+            1:       0.6%,
+            2:       2.2%,
+            3:       3.2%,
+            4:       4.8%,
+            5:       7.2%,
+            6:       9.7%,
+            7:      11.2%,
+            8:      10.8%,
+            9:      12.2%
+            ==============
+        ;
+
+    |
+    | Further interpretation in accordance with [4]
+    |
+    annual_stroke_TIA_thromboembolism_risk: Real
+        Result := case CHA2DS2_VASc_score in
+            ==============
+            0:       0.0%,
+            1:       0.9%,
+            2:       2.9%,
+            3:       4.6%,
+            4:       6.7%,
+            5:      10.0%,
+            6:      13.6%,
+            7:      15.7%,
+            8:      15.2%,
+            9:      17.4%
+            ==============
         ;
 
 terminology
@@ -1914,9 +1976,29 @@ terminology
                 provenance = &lt;["GDL2"] = &lt;"gt0025"&gt;&gt;
             &gt;
             ["CHA2DS2_VASc_score"] = &lt;
-                text = &lt;"xxx"&gt;
-                description = &lt;"..."&gt;
+                text = &lt;"CHA2DS2VASc score"&gt;
                 provenance = &lt;["GDL2"] = &lt;"gt0011"&gt;&gt;
+            &gt;
+            ["risk_assessment"] = &lt;
+                text = &lt;"Risk assessment"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0005"&gt;&gt;
+            &gt;
+            ["annual_stroke_risk"] = &lt;
+                text = &lt;"Annual stroke risk"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0006"&gt;&gt;
+            &gt;
+            ["annual_stroke_TIA_thromboembolism_risk"] = &lt;
+                text = &lt;"Annual risk of stroke/TIA/thromboembolism"&gt;
+                provenance = &lt;["GDL2"] = &lt;"gt0011"&gt;&gt;
+            &gt;
+            ["low_risk"] = &lt;
+                text = &lt;"Low risk"&gt;
+            &gt;
+            ["intermediate_risk"] = &lt;
+                text = &lt;"Intermediate risk"&gt;
+            &gt;
+            ["high_risk"] = &lt;
+                text = &lt;"High risk"&gt;
             &gt;
         &gt;
     &gt;
@@ -1926,9 +2008,52 @@ terminology
             id = &lt;"genders"&gt;
             members = &lt;"male", "female"&gt;
         &gt;
-    &gt;
+        ["risks"] = &lt;
+            id = &lt;"risks"&gt;
+            members = &lt;"low_risk", "intermediate_risk", "high_risk"&gt;
+        &gt;
+    &gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bindings"><a class="anchor" href="#_bindings"></a>9.3. Bindings</h3>
+<div class="paragraph">
+<p>The following defines the logical bindings of DLM variables to back-end data.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>--
+-- Demographic items: AQL query
+--
+SELECT
+    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0004] AS date_of_birth,
+    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0008] AS sex
+    C/context/start_time AS time
+FROM
+    EHR e[ehr_id/value=$ehrUid]
+        CONTAINS COMPOSITION C
+        CONTAINS OBSERVATION OBS[openEHR-EHR-OBSERVATION.basic_demographic.v1]
+ORDER BY
+    time DESC
 
-binding</pre>
+
+--
+-- CHA2DS2-VASc input items
+--
+SELECT
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0026] AS has_congestive_heart_failure,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0029] AS has_hypertension,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0039] AS has_stroke_TIA_thromboembolism,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0046] AS has_vascular_disease,
+    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0032] AS has_diabetes,
+    C/context/start_time AS time
+FROM
+    EHR e[ehr_id/value=$ehrUid]
+        CONTAINS COMPOSITION C
+        CONTAINS OBSERVATION OBS[openEHR-EHR-OBSERVATION.chadsvasc_score.v1]
+ORDER BY
+    time DESC</pre>
 </div>
 </div>
 </div>
@@ -2485,6 +2610,7 @@ rules -- Main
             townsend_score_score,
             Diabetes_scales[BASIC.sex, diabetes_status]
         )
+        ;
 
     |
     | Compute boolean part of score; use vector
@@ -2549,8 +2675,11 @@ rules -- Main
         Result = raw_score_1 + raw_score_2 + raw_score_3
         ;
 
+rules -- Output
+
     qRisk3_score: Real
         Result := 100.0 * (1 - survivor_factor ^ exp (raw_score))
+        ;
 
 terminology
     term_definitions = &lt;
@@ -2788,6 +2917,8 @@ rules -- Main
             =====================================================
         ;
 
+rules -- Output
+
     |
     | Body surface area
     |
@@ -2896,6 +3027,8 @@ rules -- Main
                                         UCUM.[length])
             =====================================================
         ;
+
+rules -- Output
 
     |
     | Body mass index

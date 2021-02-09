@@ -29,13 +29,13 @@ input -- Tracked State
     tnm_g: String
         currency = 60 days
 
-    estrogen_receptor: Terminology_term «pos_neg_vs»
+    estrogen_receptor: Terminology_term «pos_neg»
         currency = 60 days
 
-    progesterone_receptor:  Terminology_term «pos_neg_vs»
+    progesterone_receptor:  Terminology_term «pos_neg»
         currency = 60 days
 
-    her2_expression: Terminology_term «pos_neg_vs»
+    her2_expression: Terminology_term «pos_neg»
         currency = 60 days
 
     ki67: Quantity
@@ -161,32 +161,36 @@ terminology
     term_definitions = <
         ["en"] = <
             ["luminal_A"] = <
-                text = <"xxx">
-                description = <"...">
+                text = <"luminal A">
             >
             ["luminal_B_HER2_positive"] = <
-                text = <"xxx">
-                description = <"...">
+                text = <"luminal B HER2-positive">
             >
             ["luminal_B_HER2_negative"] = <
-                text = <"xxx">
-                description = <"...">
+                text = <"luminal B HER2-negative">
             >
             ["HER2_positive"] = <
-                text = <"xxx">
-                description = <"...">
+                text = <"HER2-positive">
             >
-            ["HER2_megative"] = <
-                text = <"xxx">
-                description = <"...">
+            ["HER2_negative"] = <
+                text = <"HER2-negative">
             >
             ["triple_negative"] = <
-                text = <"xxx">
-                description = <"...">
+                text = <"triple-negative">
             >
-            ["oligohydramnios"] = <
-                text = <"xxx">
-                description = <"...">
+            ["negative"] = <
+                text = <"negative presence of gene">
             >
+            ["positive"] = <
+                text = <"positive presence of gene">
+            >
+
+
+    value_sets = <
+        ["pos_neg"] = <
+            id = <"pos_neg">
+            members = <"positive", "negative">
+        >
+    >
 
 ----

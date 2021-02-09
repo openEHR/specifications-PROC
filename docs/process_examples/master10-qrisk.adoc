@@ -544,6 +544,7 @@ rules -- Main
             townsend_score_score,
             Diabetes_scales[BASIC.sex, diabetes_status]
         )
+        ;
             
     |
     | Compute boolean part of score; use vector
@@ -608,8 +609,11 @@ rules -- Main
         Result = raw_score_1 + raw_score_2 + raw_score_3
         ;
 
+rules -- Output
+
     qRisk3_score: Real
         Result := 100.0 * (1 - survivor_factor ^ exp (raw_score))
+        ;
     
 terminology
     term_definitions = <
