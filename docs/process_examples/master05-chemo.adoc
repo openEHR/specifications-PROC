@@ -28,25 +28,33 @@ image::{diagrams_uri}/RCHOPS21-admin.svg[id=rchops_admin, align="center"]
 
 == RCHOPS21 Decision Logic Module
 
+[source,ts]
 ----
 dlm RCHOPS21 
 
-language
-    original_language = <[ISO_639-1::en]>
-    
-description
-    lifecycle_state = <"unmanaged">
-    original_author = <
-        ["name"] = <"Dr Spock">
-        ["organisation"] = <"Acme healthcare">
-        ["date"] = <"2020-03-22">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"NHS CHOPS-21 chemotherapy guideline ....">
-        >
-    >
+definitions -- Descriptive
+
+    language = {
+        original_language: [ISO_639-1::en]
+    }
+    ;
+
+    description = {
+        lifecycle_state: "unmanaged",
+        original_author: {
+            name:           "Thomas Beale",
+            email:          "thomas.beale@openEHR.org",
+            organisation:   "openEHR Foundation <http://www.openEHR.org>",
+            date:           "2021-01-10"
+        },
+        details: {
+            "en" : {
+                language: [ISO_639-1::en],
+                purpose: "NHS CHOPS-21 chemotherapy guideline ...."
+            }
+        }
+    }
+    ;
    
 use
     BSA: Body_surface_area.v0.5.0
@@ -54,16 +62,17 @@ use
 preconditions
     has_lymphoma_diagnosis
     
-reference
-    paracetamol_dose: Quantity = 1g
-    chlorphenamine_dose: Quantity = 10mg
-    prednisolone_dose_per_m2: Quantity = 40mg   
-    rituximab_dose_per_m2: Quantity = 375mg
-    doxorubicin_dose_per_m2: Quantity = 50mg
-    vincristine_dose_per_m2: Quantity = 1.4mg
-    cyclophosphamide_dose_per_m2: Quantity = 750mg
-    cycle_period: Duration = 3w
-    cycle_repeats: Integer = 6
+definitions -- Reference
+
+    paracetamol_dose: Quantity = 1g;
+    chlorphenamine_dose: Quantity = 10mg;
+    prednisolone_dose_per_m2: Quantity = 40mg; 
+    rituximab_dose_per_m2: Quantity = 375mg;
+    doxorubicin_dose_per_m2: Quantity = 50mg;
+    vincristine_dose_per_m2: Quantity = 1.4mg;
+    cyclophosphamide_dose_per_m2: Quantity = 750mg;
+    cycle_period: Duration = 3w;
+    cycle_repeats: Integer = 6;
 
 input -- State
 
@@ -75,10 +84,12 @@ input -- Tracked state
     staging: Terminology_term «ann_arbor_staging»
         currency = 30 days
         time_window = tw_current_episode
+        ;
 
     has_metastases: Boolean
         currency = 30 days
         time_window = tw_current_episode
+        ;
 
     neutrophils: Quantity
         currency = 3d
@@ -135,6 +146,7 @@ rules -- Conditions
 
     high_ipi:
         Result := ipi_risk ∈ {[ipi_high_risk], [ipi_intermediate_high_risk]}
+        ;
        
 rules -- Main
 
@@ -230,54 +242,54 @@ rules -- Main
                 |4..5|  : [ipi_high_risk];
                 =======================================
         ;
-                
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["paracetamol_dose"] = <
-                text = <"paracetamol dose">
-                description = <"paracetamol base dose level per sq. m of BSA">
-            >
-            ["chlorphenamine_dose"] = <
-                text = <"chlorphenamine dose">
-                description = <"chlorphenamine base dose level per sq. m of BSA">
-            >
-            ...
-            ["staging"] = <
-                text = <"Cancer staging">
-                description = <"Cancer staging (Ann Arbor system)">
-            >
-            ["has_metastases"] = <
-                text = <"Metastatic status">
-                description = <"Status of metastasis of cancer">
-            >
-            ...
-            ["neutrophils"] = <
-                text = <"neutrophils">
-                description = <"neutrophils level">
-            >
-            ["platelets"] = <
-                text = <"platelets">
-                description = <"platelets level">
-            >
-            ...
-            ["ipi_low_risk"] = <
-                text = <"low risk: 5y survival - 73%">
-                description = <"..">
-            >
-            ["ipi_intermediate_low_risk"] = <
-                text = <"intermediate-low risk: 5y survival - 51%">
-                description = <"..">
-            >
-            ["ipi_intermediate_high_risk"] = <
-                text = <"intermediate-high risk: 5y survival - 43%">
-                description = <"...">
-            >
-            ["ipi_high_risk"] = <
-                text = <"high risk: 5y survival - 26%">
-                description = <"...">
-            >
-        >
-    > 
+
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "paracetamol_dose" : {
+                    text: "paracetamol dose",
+                    description: "paracetamol base dose level per sq. m of BSA"
+                },
+                "chlorphenamine_dose" : {
+                    text: "chlorphenamine dose",
+                    description: "chlorphenamine base dose level per sq. m of BSA"
+                },
+                "staging" : {
+                    text: "Cancer staging",
+                    description: "Cancer staging (Ann Arbor system)"
+                },
+                "has_metastases" : {
+                    text: "Metastatic status",
+                    description: "Status of metastasis of cancer"
+                },
+                "neutrophils" : {
+                    text: "neutrophils",
+                    description: "neutrophils level"
+                },
+                "platelets" : {
+                    text: "platelets",
+                    description: "platelets level"
+                },
+                "ipi_low_risk" : {
+                    text: "low risk: 5y survival - 73%",
+                    description: ".."
+                },
+                "ipi_intermediate_low_risk" : {
+                    text: "intermediate-low risk: 5y survival - 51%",
+                    description: ".."
+                },
+                "ipi_intermediate_high_risk" : {
+                    text: "intermediate-high risk: 5y survival - 43%",
+                    description: "..."
+                },
+                "ipi_high_risk" : {
+                    text: "high risk: 5y survival - 26%",
+                    description: "..."
+                }
+            }
+        }
+    }
         
 ----

@@ -163,7 +163,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2020 - 2020 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2020 - 2021 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -422,11 +422,22 @@
 <div class="content">
 <pre>dlm &lt;form&gt; &lt;identifier&gt;
 
-[language
-    &lt;lang and translations meta-data, as for archetypes&gt;]
+definitions -- Descriptive
 
-[description
-    &lt;descriptive meta-data&gt;]
+    |
+    | lang and translations meta-data, as for archetypes
+    |
+    language = {
+            original_language: [ISO_639-1::en],
+            translations: {...}
+        }
+        ;
+
+    |
+    | description meta-data, as for archetypes
+    |
+    description = {...}
+        ;
 
 [use_model
     &lt;reference model ids; defaults to openEHR Foundation &amp; Base types&gt;]
@@ -438,27 +449,36 @@
 [preconditions
     &lt;conditions that act as pre-conditions for this module&gt;]
 
-[reference
+[definitions -- Reference
     &lt;constant definitions&gt;]
 
-input
-    &lt;subject variable declarations&gt;
+input -- Administrative State
+    &lt;administrative subject variables&gt;
 
-rules
-    &lt;conditions and rules expressed as EL functions&gt;
+input -- Historical State
+    &lt;historical subject variables&gt;
 
-[output
-    &lt;output variable declarations&gt;]
+input -- Tracked State
+    &lt;real-time subject variable&gt;
 
-[terminology
-    &lt;symbol definitions in archetype format&gt;]</pre>
+rules -- Conditions
+    &lt;conditions expressed as EL functions&gt;
+
+rules -- Main
+    &lt;computational rules expressed as EL functions&gt;
+
+rules -- Output
+    &lt;output rules expressed as EL functions&gt;
+
+definitions -- Terminology
+    terminology = {...};</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Many of the sections are optional and are only used in specific <em>forms</em> of DLM, indicated by the <code>&lt;form&gt;</code> on the first line.</p>
 </div>
 <div class="paragraph">
-<p>The <code>language</code>, <code>description</code> and <code>terminology</code> sections (which are identical in form to the same-named sections in openEHR archetypes) can be omitted for DLMs in development for which no descriptive meta-data or terminology is needed.</p>
+<p>The <code>definitions&#8201;&#8212;&#8201;Descriptive</code> and <code>definitions&#8201;&#8212;&#8201;Terminology</code> sections (which are logically identical data structures to the same-named sections in openEHR archetypes, but in a JSON5 superset form) can be omitted for DLMs in development for which no descriptive meta-data or terminology is needed.</p>
 </div>
 <div class="sect2">
 <h3 id="_identifiers"><a class="anchor" href="#_identifiers"></a>3.1. Identifiers</h3>
@@ -467,20 +487,23 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="odin"><span></span><span class="tok-nc">terminology</span>
-    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;resting_heart_rate&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;heart rate at rest&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;...&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">...</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;SpO2&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Oxygen saturation&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;...&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">definitions</span> <span class="tok-o">--</span> <span class="tok-nx">Terminology</span>
+
+    <span class="tok-nx">terminology</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+        <span class="tok-nx">term_definitions</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+            <span class="tok-s2">&quot;en&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-s2">&quot;resting_heart_rate&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;heart rate at rest&quot;</span><span class="tok-p">,</span>
+                    <span class="tok-nx">description</span><span class="tok-o">:</span> <span class="tok-s2">&quot;...&quot;</span>
+                <span class="tok-p">}</span>
+                <span class="tok-p">...</span>
+                <span class="tok-s2">&quot;SpO2&quot;</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Oxygen saturation&quot;</span><span class="tok-p">;</span>
+                    <span class="tok-nx">description</span><span class="tok-o">:</span> <span class="tok-s2">&quot;...&quot;</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -518,21 +541,36 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="odin"><span></span><span class="tok-nc">language</span>
-    <span class="tok-nc">original_language</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">ISO_639-1</span><span class="tok-p">::</span><span class="tok-nd">en</span><span class="tok-p">]&gt;</span>
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">definitions</span> <span class="tok-o">--</span> <span class="tok-nx">Descriptive</span>
 
-<span class="tok-nc">description</span>
-    <span class="tok-nc">lifecycle_state</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;stable&quot;</span><span class="tok-p">&gt;</span>
-    <span class="tok-nc">original_author</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;name&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Rong Chen&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;date&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;2020-03-22&quot;</span><span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span>
-    <span class="tok-nc">details</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-nc">language</span> <span class="tok-o">=</span> <span class="tok-p">&lt;[</span><span class="tok-nd">ISO_639-1</span><span class="tok-p">::</span><span class="tok-nd">en</span><span class="tok-p">]&gt;</span>
-            <span class="tok-nc">purpose</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Simple cardiology guideline&quot;</span><span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span></code></pre>
+    <span class="tok-nx">language</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+            <span class="tok-nx">original_language</span><span class="tok-o">:</span> <span class="tok-p">[</span><span class="tok-nx">ISO_639</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">::</span><span class="tok-nx">en</span><span class="tok-p">]</span>
+        <span class="tok-p">}</span>
+        <span class="tok-p">;</span>
+
+    <span class="tok-nx">description</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+            <span class="tok-nx">lifecycle_state</span><span class="tok-o">:</span> <span class="tok-s2">&quot;unmanaged&quot;</span><span class="tok-p">,</span>
+            <span class="tok-nx">original_author</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-nx">name</span><span class="tok-o">:</span>           <span class="tok-s2">&quot;Thomas Beale&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">email</span><span class="tok-o">:</span>          <span class="tok-s2">&quot;thomas.beale@openEHR.org&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">organisation</span><span class="tok-o">:</span>   <span class="tok-s2">&quot;openEHR Foundation &lt;http://www.openEHR.org&gt;&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">date</span><span class="tok-o">:</span>           <span class="tok-s2">&quot;2021-01-10&quot;</span>
+            <span class="tok-p">},</span>
+            <span class="tok-nx">details</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-s2">&quot;en&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">language</span><span class="tok-o">:</span> <span class="tok-p">[</span><span class="tok-nx">ISO_639</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">::</span><span class="tok-nx">en</span><span class="tok-p">],</span>
+                    <span class="tok-nx">purpose</span><span class="tok-o">:</span> <span class="tok-s2">&quot;To record an individual&#39;s QRISK3 score.&quot;</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">},</span>
+            <span class="tok-nx">copyright</span><span class="tok-o">:</span>  <span class="tok-s2">&quot;© 2021 openEHR Foundation&quot;</span><span class="tok-p">,</span>
+            <span class="tok-nx">licence</span><span class="tok-o">:</span>    <span class="tok-s2">&quot;Creative Commons CC-BY &lt;https://creativecommons.org/licenses/by/3.0/&gt;&quot;</span><span class="tok-p">,</span>
+            <span class="tok-nx">ip_acknowledgements</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-s2">&quot;ClinRisk&quot;</span> <span class="tok-o">:</span> <span class="tok-s2">&quot;This content developed from original publication of</span>
+<span class="tok-s2">                    © 2017 ClinRisk Ltd., see https://qrisk.org&quot;</span><span class="tok-p">,</span>
+                <span class="tok-s2">&quot;QRISK&quot;</span> <span class="tok-o">:</span> <span class="tok-s2">&quot;QRISK® is a registered trademark of the University of Nottingham and EMIS&quot;</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -582,16 +620,46 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">reference</span>
-    <span class="tok-n">paracetamol_dose</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">1</span><span class="tok-n">g</span>
-    <span class="tok-n">chlorphenamine_dose</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">10</span><span class="tok-n">mg</span>
-    <span class="tok-n">prednisolone_dose_per_m2</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">40</span><span class="tok-n">mg</span>
-    <span class="tok-n">rituximab_dose_per_m2</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">375</span><span class="tok-n">mg</span>
-    <span class="tok-n">doxorubicin_dose_per_m2</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">50</span><span class="tok-n">mg</span>
-    <span class="tok-n">vincristine_dose_per_m2</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">1.4</span><span class="tok-n">mg</span>
-    <span class="tok-n">cyclophosphamide_dose_per_m2</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span> <span class="tok-p">=</span> <span class="tok-m">750</span><span class="tok-n">mg</span>
-    <span class="tok-n">cycle_period</span><span class="tok-p">:</span> <span class="tok-n">Duration</span> <span class="tok-p">=</span> <span class="tok-m">3</span><span class="tok-n">w</span>
-    <span class="tok-n">cycle_repeats</span><span class="tok-p">:</span> <span class="tok-n">Integer</span> <span class="tok-p">=</span> <span class="tok-m">6</span></code></pre>
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">definitions</span> <span class="tok-o">--</span> <span class="tok-nx">Reference</span>
+
+    <span class="tok-nx">paracetamol_dose</span>: <span class="tok-kt">Quantity</span> <span class="tok-o">=</span> <span class="tok-mi">1</span><span class="tok-nx">g</span><span class="tok-p">;</span>
+    <span class="tok-nx">chlorphenamine_dose</span>: <span class="tok-kt">Quantity</span> <span class="tok-o">=</span> <span class="tok-mi">10</span><span class="tok-nx">mg</span><span class="tok-p">;</span>
+    <span class="tok-nx">prednisolone_dose_per_m2</span>: <span class="tok-kt">Quantity</span> <span class="tok-o">=</span> <span class="tok-mi">40</span><span class="tok-nx">mg</span><span class="tok-p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These may be data structures of significant complexity, such as the following risk tables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">definitions</span> <span class="tok-o">--</span> <span class="tok-nx">Reference</span>
+
+    <span class="tok-nx">Snoking_interaction_scales</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+            <span class="tok-p">[</span><span class="tok-nx">female</span><span class="tok-p">]</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                 <span class="tok-p">[</span><span class="tok-nx">age_1</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-p">{</span>
+                    <span class="tok-p">[</span><span class="tok-nx">non_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                   <span class="tok-mi">0</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">ex_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                   <span class="tok-o">-</span><span class="tok-mf">4.70571617858518910</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">light_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                <span class="tok-o">-</span><span class="tok-mf">2.74303834035733370</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">moderate_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>             <span class="tok-o">-</span><span class="tok-mf">0.866080888293921820</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">heavy_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                 <span class="tok-mf">0.902415623697106480</span>
+                <span class="tok-p">},</span>
+                <span class="tok-p">[</span><span class="tok-nx">age_2</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-p">{</span>
+                    <span class="tok-p">[</span><span class="tok-nx">non_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                   <span class="tok-mi">0</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">etc</span><span class="tok-p">]</span><span class="tok-o">:</span>                         <span class="tok-o">-</span><span class="tok-mf">0.0755892446431930260000000</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">},</span>
+            <span class="tok-p">[</span><span class="tok-nx">male</span><span class="tok-p">]</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                 <span class="tok-p">[</span><span class="tok-nx">age_1</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-p">{</span>
+                    <span class="tok-p">[</span><span class="tok-nx">non_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                   <span class="tok-mi">0</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">etc</span><span class="tok-p">]</span><span class="tok-o">:</span>                         <span class="tok-o">-</span><span class="tok-mf">0.2101113393351634600000000</span>
+                <span class="tok-p">},</span>
+                <span class="tok-p">[</span><span class="tok-nx">age_2</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-p">{</span>
+                    <span class="tok-p">[</span><span class="tok-nx">non_smoker</span><span class="tok-p">]</span><span class="tok-o">:</span>                   <span class="tok-mi">0</span><span class="tok-p">,</span>
+                    <span class="tok-p">[</span><span class="tok-nx">etc</span><span class="tok-p">]</span><span class="tok-o">:</span>                         <span class="tok-o">-</span><span class="tok-mf">0.0004985487027532612100000</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -663,39 +731,49 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
-    <span class="tok-p">|</span>
-    <span class="tok-p">|</span> <span class="tok-n">untracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
-    <span class="tok-p">|</span> <span class="tok-n">DOB</span> <span class="tok-n">never</span> <span class="tok-n">changes</span><span class="tok-p">,</span> <span class="tok-n">no</span> <span class="tok-n">currency</span> <span class="tok-n">needed</span>
-    <span class="tok-p">|</span>
-    <span class="tok-n">date_of_birth</span><span class="tok-p">:</span> <span class="tok-n">Date</span>
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">input</span> <span class="tok-o">--</span> <span class="tok-nx">Administrative</span> <span class="tok-nx">State</span>
 
-    <span class="tok-p">|</span>
-    <span class="tok-p">|</span> <span class="tok-n">tracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
-    <span class="tok-p">|</span> <span class="tok-n">weight</span> <span class="tok-n">changes</span> <span class="tok-n">over</span> <span class="tok-n">a</span> <span class="tok-n">period</span> <span class="tok-n">of</span> <span class="tok-n">days</span>
-    <span class="tok-p">|</span>
-    <span class="tok-n">weight</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
-        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">3</span> <span class="tok-n">days</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">untracked</span> <span class="tok-nx">variable</span><span class="tok-o">:</span>
+    <span class="tok-o">|</span> <span class="tok-nx">DOB</span> <span class="tok-nx">never</span> <span class="tok-nx">changes</span><span class="tok-p">,</span> <span class="tok-nx">no</span> <span class="tok-nx">currency</span> <span class="tok-nx">needed</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">date_of_birth</span>: <span class="tok-kt">Date</span>
+        <span class="tok-p">;</span>
 
-    <span class="tok-p">|</span>
-    <span class="tok-p">|</span> <span class="tok-n">untracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
-    <span class="tok-p">|</span> <span class="tok-n">assuming</span> <span class="tok-n">an</span> <span class="tok-n">adult</span> <span class="tok-n">subject</span><span class="tok-p">,</span> <span class="tok-n">height</span> <span class="tok-n">constant</span>
-    <span class="tok-p">|</span>
-    <span class="tok-n">height</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
+<span class="tok-nx">input</span> <span class="tok-o">--</span> <span class="tok-nx">Historical</span> <span class="tok-nx">State</span>
 
-    <span class="tok-p">|</span>
-    <span class="tok-p">|</span> <span class="tok-n">tracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
-    <span class="tok-p">|</span> <span class="tok-n">blood</span> <span class="tok-n">glucose</span> <span class="tok-n">changes</span> <span class="tok-n">within</span> <span class="tok-n">minutes</span> <span class="tok-k">in</span> <span class="tok-n">response</span> <span class="tok-n">to</span> <span class="tok-n">food</span>
-    <span class="tok-p">|</span>
-    <span class="tok-n">blood_glucose</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
-        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">15</span> <span class="tok-n">min</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">tracked</span> <span class="tok-nx">variable</span><span class="tok-o">:</span>
+    <span class="tok-o">|</span> <span class="tok-nx">weight</span> <span class="tok-nx">changes</span> <span class="tok-nx">over</span> <span class="tok-nx">a</span> <span class="tok-nx">period</span> <span class="tok-nx">of</span> <span class="tok-nx">days</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">weight</span>: <span class="tok-kt">Quantity</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">3</span> <span class="tok-nx">days</span>
+        <span class="tok-p">;</span>
 
-    <span class="tok-p">|</span>
-    <span class="tok-p">|</span> <span class="tok-n">tracked</span> <span class="tok-n">variable</span><span class="tok-p">:</span>
-    <span class="tok-p">|</span> <span class="tok-n">Heart</span><span class="tok-p">-</span><span class="tok-n">rate</span> <span class="tok-n">may</span> <span class="tok-n">change</span> <span class="tok-n">quickly</span>
-    <span class="tok-p">|</span>
-    <span class="tok-n">heart_rate</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
-        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">5</span> <span class="tok-n">sec</span></code></pre>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">untracked</span> <span class="tok-nx">variable</span><span class="tok-o">:</span>
+    <span class="tok-o">|</span> <span class="tok-nx">assuming</span> <span class="tok-nx">an</span> <span class="tok-nx">adult</span> <span class="tok-nx">subject</span><span class="tok-p">,</span> <span class="tok-nx">height</span> <span class="tok-nx">constant</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">height</span>: <span class="tok-kt">Quantity</span>
+        <span class="tok-p">;</span>
+
+<span class="tok-nx">input</span> <span class="tok-o">--</span> <span class="tok-nx">Tracked</span> <span class="tok-nx">State</span>
+
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">tracked</span> <span class="tok-nx">variable</span><span class="tok-o">:</span>
+    <span class="tok-o">|</span> <span class="tok-nx">blood</span> <span class="tok-nx">glucose</span> <span class="tok-nx">changes</span> <span class="tok-nx">within</span> <span class="tok-nx">minutes</span> <span class="tok-k">in</span> <span class="tok-nx">response</span> <span class="tok-nx">to</span> <span class="tok-nx">food</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">blood_glucose</span>: <span class="tok-kt">Quantity</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">15</span> <span class="tok-nx">min</span>
+        <span class="tok-p">;</span>
+
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">tracked</span> <span class="tok-nx">variable</span><span class="tok-o">:</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Heart</span><span class="tok-o">-</span><span class="tok-nx">rate</span> <span class="tok-nx">may</span> <span class="tok-nx">change</span> <span class="tok-nx">quickly</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">heart_rate</span>: <span class="tok-kt">Quantity</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">sec</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -715,7 +793,8 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span> <span class="tok-p">--</span> <span class="tok-n">Tracked</span> <span class="tok-n">State</span>
+
     <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
         <span class="tok-n">ranges</span> <span class="tok-p">=</span>
@@ -731,21 +810,19 @@ rules
 </div>
 </div>
 <div class="paragraph">
-<p>The above declaration allows the use of the predefined <code>in_range</code> function, which returns the most precise range in which the value falls, in rule expressions such as the following:</p>
+<p>The above declaration allows the use of the predefined <code>range</code> function, which returns the most precise range in which the value falls, in rule expressions such as the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">Result</span> <span class="tok-p">:=</span>
-        <span class="tok-n">choice</span> <span class="tok-k">in</span>
-            <span class="tok-p">========================================================</span>
-            <span class="tok-n">systolic_blood_pressure</span>
-                <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">([</span><span class="tok-n">critical_high</span><span class="tok-p">]):</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
-            <span class="tok-p">--------------------------------------------------------</span>
-            <span class="tok-n">systolic_blood_pressure</span>
-                <span class="tok-p">.</span><span class="tok-n">in_range</span> <span class="tok-p">({[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}):</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
-            <span class="tok-p">--------------------------------------------------------</span>
-            <span class="tok-p">*:</span>                                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
-            <span class="tok-p">========================================================</span>
+        <span class="tok-n">case</span> <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">.</span><span class="tok-n">range</span> <span class="tok-k">in</span>
+            <span class="tok-p">=======================================</span>
+<span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
+            <span class="tok-p">---------------------------------------</span>
+            <span class="tok-p">{[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}:</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
+            <span class="tok-p">---------------------------------------</span>
+            <span class="tok-p">*:</span>                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
+            <span class="tok-p">=======================================</span>
         <span class="tok-p">;</span></code></pre>
 </div>
 </div>
@@ -770,12 +847,13 @@ rules
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span>
+<pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span> <span class="tok-p">--</span> <span class="tok-n">Tracked</span> <span class="tok-n">State</span>
+
     <span class="tok-n">PaO2_FiO2_ratio</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span>
+        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
             <span class="tok-p">=================================================</span>
-<span class="tok-na">            [SI]</span><span class="tok-p">:</span>
+<span class="tok-na">            [SI]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
                 <span class="tok-p">---------------------------------------------</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">400</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">300</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">399</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
@@ -783,8 +861,8 @@ rules
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">199</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
 <span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
                 <span class="tok-p">---------------------------------------------</span>
-            <span class="tok-p">;</span>
-<span class="tok-na">            [metric]</span><span class="tok-p">:</span>
+            <span class="tok-p">},</span>
+<span class="tok-na">            [metric]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
                 <span class="tok-p">-----------------------------------------</span>
 <span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
@@ -792,8 +870,10 @@ rules
 <span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
 <span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|</span>
                 <span class="tok-p">-----------------------------------------</span>
+            <span class="tok-p">}</span>
             <span class="tok-p">==================================================</span>
-            <span class="tok-p">;</span></code></pre>
+        <span class="tok-p">}</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -876,32 +956,47 @@ rules
 <div class="sect2">
 <h3 id="_terminology_section"><a class="anchor" href="#_terminology_section"></a>3.11. Terminology Section</h3>
 <div class="paragraph">
-<p>The <code>terminology</code> section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the codes in a DLM may be freely named, since they act as names of all symbolic entities referenced elsewhere in the DLM, including rules (i.e. functions), subject variables and constants. A typical DLM <code>terminology</code> section is shown below.</p>
+<p>The <code>definitions&#8201;&#8212;&#8201;Terminology</code> section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the codes in a DLM may be freely named, since they act as names of all symbolic entities referenced elsewhere in the DLM, including rules (i.e. functions), subject variables and constants. A typical DLM terminology section is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="odin"><span></span><span class="tok-nc">terminology</span>
-    <span class="tok-nc">term_definitions</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-        <span class="tok-p">[</span><span class="tok-s">&quot;en&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;paracetamol_dose&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;paracetamol dose&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;paracetamol base dose level per sq. m of BSA&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;chlorphenamine_dose&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;chlorphenamine dose&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;chlorphenamine base dose level per sq. m of BSA&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">...</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;staging&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Cancer staging&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Cancer staging (Ann Arbor system)&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-            <span class="tok-p">[</span><span class="tok-s">&quot;has_metastases&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span>
-                <span class="tok-nc">text</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Metastatic status&quot;</span><span class="tok-p">&gt;</span>
-                <span class="tok-nc">description</span> <span class="tok-o">=</span> <span class="tok-p">&lt;</span><span class="tok-s">&quot;Status of metastasis of cancer&quot;</span><span class="tok-p">&gt;</span>
-            <span class="tok-p">&gt;</span>
-        <span class="tok-p">&gt;</span>
-    <span class="tok-p">&gt;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">definitions</span> <span class="tok-o">--</span> <span class="tok-nx">Terminology</span>
+
+    <span class="tok-nx">terminology</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+        <span class="tok-nx">term_definitions</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+            <span class="tok-s2">&quot;en&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-s2">&quot;date_of_birth&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Date of birth&quot;</span>
+                <span class="tok-p">},</span>
+                <span class="tok-s2">&quot;age_in_years&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Age (years)&quot;</span>
+                <span class="tok-p">},</span>
+                <span class="tok-s2">&quot;qRisk_score&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;QRISK2 score&quot;</span>
+                <span class="tok-p">},</span>
+                <span class="tok-s2">&quot;diabetes_status&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Diabetic status of subject&quot;</span>
+                <span class="tok-p">},</span>
+                <span class="tok-s2">&quot;no_diabetes&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Non-diabetic&quot;</span>
+                <span class="tok-p">},</span>
+                <span class="tok-s2">&quot;type1_diabetes&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Has type 1 diabetes&quot;</span>
+                <span class="tok-p">},</span>
+                <span class="tok-s2">&quot;type2_diabetes&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Has type 2 diabetes&quot;</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+
+        <span class="tok-nx">value_sets</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+            <span class="tok-s2">&quot;diabetes_status&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-nx">id</span><span class="tok-o">:</span> <span class="tok-s2">&quot;diabetes_status&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">members</span><span class="tok-o">:</span> <span class="tok-p">[</span><span class="tok-s2">&quot;no_diabetes&quot;</span><span class="tok-p">,</span> <span class="tok-s2">&quot;type1_diabetes&quot;</span><span class="tok-p">,</span> <span class="tok-s2">&quot;type2_diabetes&quot;</span><span class="tok-p">]</span>
+            <span class="tok-p">}</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+    <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 </div>

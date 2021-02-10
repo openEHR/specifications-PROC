@@ -12,46 +12,53 @@ image::{diagrams_uri}/ACEP_covid19_severity.svg[id=ACEP_covid19_severity, align=
 
 == Decision Logic Module
 
+[source,ts]
 ----
 dlm ACEP_COVID19_severity_classification.v0.5.0
 
-language
-    original_language = <[ISO_639-1::en]>
-    
-description
-    lifecycle_state = <"unmanaged">
-    original_author = <
-        ["name"] = <"Thomas Beale">
-        ["email"] = <"thomas.beale@openEHR.org">
-        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
-        ["date"] = <"2020-12-02">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"This tool was developed by ACEP and EvidenceCare to assist
-                in determining the appropriate evaluation and disposition for adult
-                patients with suspected or confirmed COVID-19.">
-        >
-    >
-    copyright = <"© 2020 openEHR Foundation">
-    licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
-    ip_acknowledgements = <
-        ["ACEP_EvidenceCare"] = <"This content developed from original publication of
-            © 2020 American College of Emergency Physicians (ACEP), EvidenceCare, 
-            see https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf">
-    >
+definitions -- Descriptive
+
+    language = {
+            original_language: [ISO_639-1::en]
+        }
+        ;
+
+    description = {
+            lifecycle_state: "unmanaged",
+            original_author: {
+                name:           "Thomas Beale",
+                email:          "thomas.beale@openEHR.org",
+                organisation :  "openEHR Foundation <http://www.openEHR.org>",
+                date:           2020-12-02
+            },
+            details = {
+                "en" : {
+                    language: [ISO_639-1::en],
+                    purpose:  "This tool was developed by ACEP and EvidenceCare to assist
+                                in determining the appropriate evaluation and disposition 
+                                for adult patients with suspected or confirmed COVID-19.",
+                }
+            },
+            copyright: "© 2020 openEHR Foundation",
+            licence: "Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>",
+            ip_acknowledgements = {
+                "ACEP_EvidenceCare" : {"This content developed from original publication of
+                    © 2020 American College of Emergency Physicians (ACEP), EvidenceCare, 
+                    see https://www.acep.org/globalassets/sites/acep/media/covid-19-main/acep_evidencecare_covid19severitytool.pdf"},
+            }
+        }
+        ;
     
 use
     BASIC: Basic_patient_data.v0.5.0
     BMI: Body_mass_index.v0.5.0
     
-input -- Administrative
+input -- Administrative State
 
     is_LT_care_resident: Boolean
         ;
         
-input -- State
+input -- Historical State
 
     |
     | Extract from master problem list or ask patient
@@ -175,7 +182,7 @@ input -- Tracked State
         currency = 5 min
         ;
         
-rules
+rules -- Main
 
     heart_rate_score: Integer
         Result := case heart_rate in
@@ -344,5 +351,39 @@ rules
             |>= 3%|:  [mild_at_risk]
             ========================
         ;
+
+definitions -- Terminology
+            
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "qCSI_score" : {
+                    text: "..."
+                },
+                "qCSI_risk" : {
+                    text: "..."
+                },
+                "risk_factors_demographic_count" : {
+                    text: "..."
+                },
+                "risk_factors_medical_count" : {
+                    text: "..."
+                },
+                "risk_factors_count" : {
+                    text: "..."
+                },
+                "symptoms_related_risk" : {
+                    text: "..."
+                },
+                "exertional_SpO2_drop" : {
+                    text: "..."
+                },
+                "exertional_SpO2_result" : {
+                    text: "..."
+                }
+            }
+        }
+    }
+    ;
 
 ----

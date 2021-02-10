@@ -12,6 +12,7 @@ image::{diagrams_uri}/prenatal_risk_assessment2.svg[id=prenatal_risk_assessment,
 
 == Pregnancy Risk Assessment DLM
 
+[source,ts]
 ----
 dlm ruleset Obstetric_pregnancy 
 
@@ -19,7 +20,7 @@ preconditions
 
     is_pregnant
     
-types
+definitions -- Types
 
     Risk_type ::= Ordinal
         map =
@@ -33,35 +34,49 @@ types
 input -- Historical state
 
     is_type1_diabetic: Boolean
+        ;
 
     previous_obstetric_hypertension: Boolean
+        ;
 
     previous_pre_eclampsia: Boolean
+        ;
 
     previous_eclampsia: Boolean
+        ;
 
     previous_gestational_diabetes: Boolean
+        ;
 
     family_history_of_diabetes: Boolean
+        ;
 
     race_related_diabetes_risk: Boolean
+        ;
     
     |
     | Macrosomic baby from any previous pregnancy
     |
     previous_macrosomic_baby: Boolean
+        ;
 
     is_pregnant: Boolean
+        ;
 
     has_gestational_diabetes: Boolean
+        ;
 
     has_pregnancy_hypertension: Boolean 
+        ;
 
     has_pre_eclampsia: Boolean
+        ;
 
     has_eclampsia: Boolean
+        ;
     
     has_anaemia_of_pregnancy: Boolean
+        ;
 
 input -- Tracked State
 
@@ -73,14 +88,19 @@ input -- Tracked State
     |
     amniotic_fluid_state: Terminology_term «amniotic_fluid_state»
         currency = 24h
+        ;
 
     uterine_fundal_height: Quantity
         currency = 24h
+        ;
 
     vaginal_blood_flow: Quantity
         currency = 30mins
         ranges =
+            ------------------------------
             [critical_high]: |> 500 mL/hr|
+            ------------------------------
+        ;
 
     |
     | Assessment of vaginal bleeding, pain, confirm
@@ -90,12 +110,15 @@ input -- Tracked State
     |
     vaginal_physical_exam_assessment: Terminology_term
         currency = 48h
+        ;
         
     vomiting_assessment: Terminology_term
         currency = 48h
+        ;
     
     ultrasound_finding: Terminology_term
         currency = 48h
+        ;
 
     amniotic_volume: Real
         currency = 24h
@@ -109,12 +132,14 @@ input -- Tracked State
 
     labour_onset_assessment: Terminology_term
         currency = 24h
+        ;
     
-rules
+rules -- Main
+
     |
     | Convert BMI to ranges
     |
-    bmi_range: Terminology_code <<COMMON.simple_ranges>>
+    bmi_range: Terminology_code <<COMMON.simple_ranges>},
         Result := case BMI.BMI in
             =============================
             |>30|:              [high],
@@ -129,27 +154,15 @@ rules
     | Possible values:
     |    |excluded|, |anaemia of pregnancy|
     |
-    anaemia_type: Terminology_term <<anaemia_type>>
+    anaemia_type: Terminology_term <<anaemia_type>},
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
-
-    |
-    | Return the highest level risk of any of the
-    | assessed risks
-    |
-    effective_risk: Risk_type
-        Result := Result.max ({fundal_height_related_risk, 
-                    amniotic_fluid_risk,
-                    vaginal_bleeding_related_risk,
-                    hypertension_risk,
-                    hyperemesis_related_risk,
-                    gestational_diabetes_risk,
-                    anaemia_risk})
         ;
-        
+
     ultrasound_required: Boolean
         Result := fundal_height_related_risk != [low_risk] or
                 amniotic_fluid_risk != [low_risk] or 
                 vaginal_bleeding_related_risk != [low_risk]
+        ;
 
     anaemia_risk: Risk_type
         Result := case anaemia_type in
@@ -242,102 +255,122 @@ rules
             *:                     [observation]
             ====================================
         ;
-    
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["low_risk"] = <
-                text = <"Normal obstetric care">
-                description = <"...">
-            >
-            ["emergency"] = <
-                text = <"Obstetric emergency">
-                description = <"...">
-            >
-            ["high_risk"] = <
-                text = <"Refer to high risk care">
-                description = <"...">
-            >
-            ["premature_rupture"] = <
-                text = <"Premature rupture of membranes">
-                description = <"...">
-            >
-            ["polyhydramnios"] = <
-                text = <"polyhydramnios">
-                description = <"...">
-            >
-            ["oligohydramnios"] = <
-                text = <"oligohydramnios">
-                description = <"...">
-            >
-            ["severe_polyhydramnios"] = <
-                text = <"severe polyhydramnios">
-                description = <"...">
-            >
-            ["severe_oligohydramnios"] = <
-                text = <"severe oligohydramnios">
-                description = <"...">
-            >
-            ["severe_anaemia_of_pregnancy"] = <
-                text = <"anaemia of pregnancy, severe">
-                description = <"...">
-            >
-            ["anaemia_of_pregnancy"] = <
-                text = <"anaemia of pregnancy">
-                description = <"...">
-            >
-            ["amniotic_fluid_risk"] = <
-                text = <"Risk of pregnancy-related amniotic fluid">
-                description = <"...">
-            >
-            ["hypertension_risk"] = <
-                text = <"Risk of pregnancy-related hypertension">
-                description = <"...">
-            >
-            ["diabetes_risk"] = <
-                text = <"Risk of pregnancy-related diabetes">
-                description = <"...">
-            >
-            ["anaemia_risk"] = <
-                text = <"Risk of pregnancy-related anaemia">
-                description = <"...">
-            >
-            ["previous_macrosomic_baby"] = <
-                text = <"Baby weighing 4.5kg or above">
-                description = <"...">
-            >
-            ["previous_gestational_diabetes"] = <
-                text = <"xxx">
-                description = <"...">
-            >
 
-            ["ectopic_pregnancy"] = <
-                text = <"Ectopic pregnancy">
-                description = <"...">
-            >
-            ["gestational_trophoblastic_disease"] = <
-                text = <"Gestational trophoblastic disease">
-                description = <"...">
-            >
-            ["previous_macrosomic_baby"] = <
-                text = <"Baby weighing 4.5kg or above">
-                description = <"...">
-            >
-            ["previous_gestational_diabetes"] = <
-                text = <"xxx">
-                description = <"...">
-            >
-        >
-    >
-    value_sets = <
-        ["amniotic_fluid_state"] = <
-            id = <"amniotic_fluid_state">
-            members = <"premature_rupture", "polyhydramnios", "oligohydramnios", "severe_polyhydramnios", "severe_oligohydramnios">
-        >
-        ["anaemia_type"] = <
-            id = <"anaemia_type">
-            members = <"excluded", "anaemia_of_pregnancy">
-        >        
-    >
+rules -- Output
+
+    |
+    | Return the highest level risk of any of the
+    | assessed risks
+    |
+    effective_risk: Risk_type
+        Result := Result.max ({fundal_height_related_risk, 
+                    amniotic_fluid_risk,
+                    vaginal_bleeding_related_risk,
+                    hypertension_risk,
+                    hyperemesis_related_risk,
+                    gestational_diabetes_risk,
+                    anaemia_risk})
+        ;
+        
+definitions -- Terminology
     
+    terminology = {
+        term_definitions = {
+            "en" : {
+                "low_risk" : {
+                    text: "Normal obstetric care",
+                    description: "..."
+                },
+                "emergency" : {
+                    text: "Obstetric emergency",
+                    description: "..."
+                },
+                "high_risk" : {
+                    text: "Refer to high risk care",
+                    description: "..."
+                },
+                "premature_rupture" : {
+                    text: "Premature rupture of membranes",
+                    description: "..."
+                },
+                "polyhydramnios" : {
+                    text: "polyhydramnios",
+                    description: "..."
+                },
+                "oligohydramnios" : {
+                    text: "oligohydramnios",
+                    description: "..."
+                },
+                "severe_polyhydramnios" : {
+                    text: "severe polyhydramnios",
+                    description: "..."
+                },
+                "severe_oligohydramnios" : {
+                    text: "severe oligohydramnios",
+                    description: "..."
+                },
+                "severe_anaemia_of_pregnancy" : {
+                    text: "anaemia of pregnancy, severe",
+                    description: "..."
+                },
+                "anaemia_of_pregnancy" : {
+                    text: "anaemia of pregnancy",
+                    description: "..."
+                },
+                "amniotic_fluid_risk" : {
+                    text: "Risk of pregnancy-related amniotic fluid",
+                    description: "..."
+                },
+                "hypertension_risk" : {
+                    text: "Risk of pregnancy-related hypertension",
+                    description: "..."
+                },
+                "diabetes_risk" : {
+                    text: "Risk of pregnancy-related diabetes",
+                    description: "..."
+                },
+                "anaemia_risk" : {
+                    text: "Risk of pregnancy-related anaemia",
+                    description: "..."
+                },
+                "previous_macrosomic_baby" : {
+                    text: "Baby weighing 4.5kg or above",
+                    description: "..."
+                },
+                "previous_gestational_diabetes" : {
+                    text: "xxx",
+                    description: "..."
+                },
+
+                "ectopic_pregnancy" : {
+                    text: "Ectopic pregnancy",
+                    description: "..."
+                },
+                "gestational_trophoblastic_disease" : {
+                    text: "Gestational trophoblastic disease",
+                    description: "..."
+                },
+                "previous_macrosomic_baby" : {
+                    text: "Baby weighing 4.5kg or above",
+                    description: "..."
+                },
+                "previous_gestational_diabetes" : {
+                    text: "xxx",
+                    description: "..."
+                }
+            }
+        },
+        value_sets = {
+            "amniotic_fluid_state" : {
+                id: "amniotic_fluid_state",
+                members: ["premature_rupture", "polyhydramnios", "oligohydramnios", "severe_polyhydramnios", "severe_oligohydramnios"]
+            },
+            "anaemia_type" : {
+                id: "anaemia_type",
+                members: ["excluded", "anaemia_of_pregnancy"]
+            }
+        }
+    }
+    ;
+
 ----

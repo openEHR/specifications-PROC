@@ -2,26 +2,33 @@
 
 == BASIC: Demographics
 
+[source,ts]
 ----
 dlm BASIC.v0.5.0
 
-language
-    original_language = <[ISO_639-1::en]>
-    
-description
-    lifecycle_state = <"unmanaged">
-    original_author = <
-        ["name"] = <"Thomas Beale">
-        ["email"] = <"thomas.beale@openEHR.org">
-        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
-        ["date"] = <"2021-011-10">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"To access common demographic state.">
-        >
-    >
+definitions -- Descriptive
+
+    language = {
+        original_language: [ISO_639-1::en]
+    }
+    ;
+
+    description = {
+        lifecycle_state: "unmanaged",
+        original_author: {
+            name:           "Thomas Beale",
+            email:          "thomas.beale@openEHR.org",
+            organisation:   "openEHR Foundation <http://www.openEHR.org>",
+            date:           "2021-01-10"
+        },
+        details: {
+            "en" : {
+                language: [ISO_639-1::en],
+                purpose: "To access common demographic state."
+            }
+        }
+    }
+    ;
     
 input -- Administrative
 
@@ -31,13 +38,13 @@ input -- Administrative
     |
     | sex: [male] | [female] | [indeterminate]
     |
-    sex: Terminology_code <<sexes>>
+    sex: Terminology_code <<sexes>},
         ;
         
     |
     | race
     |
-    race: Terminology_code <<races>>
+    race: Terminology_code <<races>},
         ;
         
     |
@@ -51,7 +58,7 @@ input -- Administrative
     |   [black_african]
     |   [other_ethnic_group]
     |
-    ethnicity: Terminology_code <<ethnicities>>
+    ethnicity: Terminology_code <<ethnicities>},
         ;
 
 rules -- Main
@@ -63,75 +70,83 @@ rules -- Main
         Result := (current_date - date_of_birth).as_years
         ;
 
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["date_of_birth"] = <
-                text = <"Date of birth">
-            >
-            ["age"] = <
-                text = <"Age">
-            >
-            ["age_in_years"] = <
-                text = <"Age in years">
-            >
-            ["sex"] = <
-                text = <"Sex">
-            >
-            ["male"] = <
-                text = <"Male sex">
-            >
-            ["female"] = <
-                text = <"Female sex">
-            >
-        >
-    >
-    value_sets = <
-        ["sexes"] = <
-            id = <"sexes">
-            members = <"male", "female", "indeterminate">
-        >
-        ["ethnicities"] = <
-            id = <"ethnicities">
-            members = <"white", 
-                "indian", "pakistani", "bangladeshi",
-                "other_asian", "black_caribbean",
-                "black_african", "other_ethnic_group"
-            >
-        >
-        ["races"] = <
-            id = <"races">
-            members = <"caucasian", 
-                "asian", "black", "other"
-            >
-        >
-    >
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "date_of_birth" : {
+                    text: "Date of birth"
+                },
+                "age" : {
+                    text: "Age"
+                },
+                "age_in_years" : {
+                    text: "Age in years"
+                },
+                "sex" : {
+                    text: "Sex"
+                },
+                "male" : {
+                    text: "Male sex"
+                },
+                "female" : {
+                    text: "Female sex"
+                },
+            },
+        },
+        value_sets: {
+            "sexes" : {
+                id: "sexes",
+                members: ["male", "female", "indeterminate"]
+            },
+            "ethnicities" : {
+                id: "ethnicities",
+                members: ["white", 
+                    "indian", "pakistani", "bangladeshi",
+                    "other_asian", "black_caribbean",
+                    "black_african", "other_ethnic_group"
+                ]
+            },
+            "races" : {
+                id: "races",
+                members: ["caucasian", "asian", "black", "other"]
+            }
+        }
+    }
 
 ----
         
 == BSA: Body Surface Area
 
+[source,ts]
 ----
 dlm Body_surface_area.v0.5.0
 
-language
-    original_language = <[ISO_639-1::en]>
+definitions -- Descriptive
+
+    language = {
+        original_language: [ISO_639-1::en]
+    }
+    ;
     
-description
-    lifecycle_state = <"unmanaged">
-    original_author = <
-        ["name"] = <"Thomas Beale">
-        ["email"] = <"thomas.beale@openEHR.org">
-        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
-        ["date"] = <"2021-011-10">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"Body surface area.">
-            use = <"Used to calculate dosage e.g. for chemotherapy and other systemic medications.">
-        >
-    >
+    description = {
+        lifecycle_state: "unmanaged",
+        original_author: {
+            name:           "Thomas Beale",
+            email:          "thomas.beale@openEHR.org",
+            organisation:   "openEHR Foundation <http://www.openEHR.org>",
+            date:           "2021-01-10"
+        },
+        details: {
+            "en" : {
+                language: [ISO_639-1::en],
+                purpose:  "Body surface area.",
+                use:      "Used to calculate dosage e.g. for chemotherapy and other systemic medications."
+            }
+        }
+    }
+    ;
     
 input -- State
 
@@ -196,51 +211,63 @@ rules -- Output
         Result := {math}.sqrt (weight_in_kg * height_in_cm / 3600)
         ;
 
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["bsa"] = <
-                text = <"Body surface area">
-            >
-            ["weight"] = <
-                text = <"Body weight, in whatever units are in local use">
-            >
-            ["height"] = <
-                text = <"Body height, in whatever units are in local use">
-            >
-            ["weight_in_kg"] = <
-                text = <"Body weight in kg">
-            >
-            ["height_in_cm"] = <
-                text = <"Body height in cm">
-            >
-        >
-    >
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "bsa" : {
+                    text: "Body surface area"
+                },
+                "weight" : {
+                    text: "Body weight, in whatever units are in local use"
+                },
+                "height" : {
+                    text: "Body height, in whatever units are in local use"
+                },
+                "weight_in_kg" : {
+                    text: "Body weight in kg"
+                },
+                "height_in_cm" : {
+                    text: "Body height in cm"
+                }
+            }
+        }
+    }
+    ;
 ----
 
 == BMI: Body Mass Index
 
+[source,ts]
 ----
 dlm Body_mass_index.v0.5.0
 
-language
-    original_language = <[ISO_639-1::en]>
+definitions -- Descriptive
+
+    language = {
+        original_language: [ISO_639-1::en]
+    }
+    ;
     
-description
-    lifecycle_state = <"unmanaged">
-    original_author = <
-        ["name"] = <"Thomas Beale">
-        ["email"] = <"thomas.beale@openEHR.org">
-        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
-        ["date"] = <"2021-011-10">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"Body mass index.">
-            use = <"Used as a rough surrogate for determining whether a person has in the normal weight range for their height.">
-        >
-    >
+    description = {
+        lifecycle_state: "unmanaged",
+        original_author: {
+            name:           "Thomas Beale",
+            email:          "thomas.beale@openEHR.org",
+            organisation:   "openEHR Foundation <http://www.openEHR.org>",
+            date:           "2021-01-10"
+        },
+        details: {
+            "en" : {
+                language: [ISO_639-1::en],
+                purpose:  "Body mass index.",
+                use:      "Used as a rough surrogate for determining whether a 
+                          person has in the normal weight range for their height."
+            }
+        }
+    }
+    ;
     
 input -- State
 
@@ -305,25 +332,29 @@ rules -- Output
         Result := weight_in_kg / height_in_m ^ 2
         ;
 
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["bmi"] = <
-                text = <"Body mass index">
-            >
-            ["weight"] = <
-                text = <"Body weight, in whatever units are in local use">
-            >
-            ["height"] = <
-                text = <"Body height, in whatever units are in local use">
-            >
-            ["weight_in_kg"] = <
-                text = <"Body weight in kg">
-            >
-            ["height_in_m"] = <
-                text = <"Body height in m">
-            >
-        >
-    >
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "bmi" : {
+                    text: "Body mass index"
+                },
+                "weight" : {
+                    text: "Body weight, in whatever units are in local use"
+                },
+                "height" : {
+                    text: "Body height, in whatever units are in local use"
+                },
+                "weight_in_kg" : {
+                    text: "Body weight in kg"
+                },
+                "height_in_m" : {
+                    text: "Body height in m"
+                }
+            }
+        }
+    }
+    ;
 ----
 

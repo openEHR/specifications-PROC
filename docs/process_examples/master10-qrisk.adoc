@@ -8,39 +8,46 @@ What we can show here is how to represent the algorithm in a way that clinicians
 
 This DLM is a fairly literal rendering of the algorithm at the above link, with a cleaner representation of the scale factors, and a bit of vector math.
 
+[source,ts]
 ----
 dlm qRisk3_2017.v0.5.0
 
-language
-    original_language = <[ISO_639-1::en]>
-    
-description
-    lifecycle_state = <"unmanaged">
-    original_author = <
-        ["name"] = <"Thomas Beale">
-        ["email"] = <"thomas.beale @openEHR.org">
-        ["organisation"] = <"openEHR Foundation <http://www.openEHR.org>">
-        ["date"] = <"2021-011-10">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"To record an individual's QRISK3 score.">
-        >
-    >
-    copyright = <"© 2021 openEHR Foundation">
-    licence = <"Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>">
-    ip_acknowledgements = <
-        ["ClinRisk"] = <"This content developed from original publication of
-            © 2017 ClinRisk Ltd., see https://qrisk.org">
-        ["QRISK"] = <"QRISK® is a registered trademark of the University of Nottingham and EMIS">
-    >
+definitions -- Descriptive
+
+    language = {
+            original_language: [ISO_639-1::en]
+        }
+        ;
+
+    description = {
+            lifecycle_state: "unmanaged",
+            original_author: {
+                name:           "Thomas Beale",
+                email:          "thomas.beale@openEHR.org",
+                organisation:   "openEHR Foundation <http://www.openEHR.org>",
+                date:           "2021-01-10"
+            },
+            details: {
+                "en" : {
+                    language: [ISO_639-1::en],
+                    purpose: "To record an individual's QRISK3 score."
+                }
+            },
+            copyright:  "© 2021 openEHR Foundation",
+            licence:    "Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>",
+            ip_acknowledgements: {
+                "ClinRisk" : "This content developed from original publication of
+                    © 2017 ClinRisk Ltd., see https://qrisk.org",
+                "QRISK" : "QRISK® is a registered trademark of the University of Nottingham and EMIS"
+            }
+        }
+        ;
 
 use
     BASIC: Basic_patient_data.v0.5.0
     BMI: Body_mass_index.v0.5.0
             
-reference
+definitions -- Reference
 
     Ethnicity_risk_factors = {
             [female]: {
@@ -298,7 +305,7 @@ reference
                     [non_smoker]:                   0, 
                     [ex_smoker]:                   -0.0755892446431930260000000,
                     [light_smoker]:                -0.1195119287486707400000000,
-                    [moderate_smoker]: -            0.1036630639757192300000000,
+                    [moderate_smoker]:             -0.1036630639757192300000000,
                     [heavy_smoker]:                -0.1399185359171838900000000
                 }
             },
@@ -362,7 +369,7 @@ input -- Administrative
     |   [black_african]
     |   [other_ethnic_group]
     |
-    qRisk3_ethnicity: Terminology_code <<qrisk_ethnicities>>
+    qRisk3_ethnicity: Terminology_code <<qrisk_ethnicities>},
         ;
 
     townsend: Real
@@ -378,7 +385,7 @@ input -- Historical state
     |   [moderate_smoker]
     |   [heavy_smoker]
     |
-    smoking_status: Terminology_code <<smoking_status>>
+    smoking_status: Terminology_code <<smoking_status>},
         ;
         
     |
@@ -387,7 +394,7 @@ input -- Historical state
     |   [type1_diabetes]
     |   [type2_diabetes]
     |
-    diabetes_status: Terminology_code <<diabetes_status>>
+    diabetes_status: Terminology_code <<diabetes_status>},
         ;
         
     |
@@ -550,7 +557,7 @@ rules -- Main
     | Compute boolean part of score; use vector
     | in order to copmpute dot product with scales
     |
-    boolean_risks: Vector<Real>
+    boolean_risks: Vector<Real},
         Result := [
             has_atrial_fibrillation.as_integer,
             on_atypical_antipsychotic_medication.as_integer,
@@ -574,7 +581,7 @@ rules -- Main
     | Compute interaction part of score; use vector
     | in order to copmpute dot product with scales
     |
-    interaction_risks: Vector<Real>
+    interaction_risks: Vector<Real},
         Result := [
             has_atrial_fibrillation.as_integer,
             on_corticosteroids.as_integer,
@@ -615,44 +622,46 @@ rules -- Output
         Result := 100.0 * (1 - survivor_factor ^ exp (raw_score))
         ;
     
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["date_of_birth"] = <
-                text = <"Date of birth">
-            >
-            ["age_in_years"] = <
-                text = <"Age (years)">
-            >
-            ["qRisk_score"] = <
-                text = <"QRISK2 score">
-            >
-            ["non_smoker"] = <
-                text = <"Non-smoker">
-            >
-            ["no_diabetes"] = <
-                text = <"Non-diabetic">
-            >
-            ["total_cholesterol_HDL_ratio"] = <
-                text = <"Total cholesterol : HDL ratio">
-            >
-            ["TODO: rest of terminology"] = <
-                text = <"TODO: rest of terminology">
-            >
-        >
-    >
+definitions -- Terminology
 
-    value_sets = <
-        ["diabetes_status"] = <
-            id = <"diabetes_status">
-            members = <"no_diabetes", "type1_diabetes", "type2_diabetes">
-        >
-        ["smoking status"] = <
-            id = <"status">
-            members = <"non_smoker", "ex_smoker", "light_smoker",
-                "moderate_smoker", "heavy_smoker"
-            >
-        >
-    >
-    
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "date_of_birth" : {
+                    text: "Date of birth"
+                },
+                "age_in_years" : {
+                    text: "Age (years)"
+                },
+                "qRisk_score" : {
+                    text: "QRISK2 score"
+                },
+                "non_smoker" : {
+                    text: "Non-smoker"
+                },
+                "no_diabetes" : {
+                    text: "Non-diabetic"
+                },
+                "total_cholesterol_HDL_ratio" : {
+                    text: "Total cholesterol : HDL ratio"
+                },
+                "TODO: rest of terminology" : {
+                    text: "TODO: rest of terminology"
+                }
+            }
+        }
+
+        value_sets: {
+            "diabetes_status" : {
+                id: "diabetes_status",
+                members: ["no_diabetes", "type1_diabetes", "type2_diabetes"]
+            },
+            "smoking status": {
+                id: "status",
+                members: ["non_smoker", "ex_smoker", "light_smoker",
+                    "moderate_smoker", "heavy_smoker"]
+            }
+        }
+    }
+    ;
 ----

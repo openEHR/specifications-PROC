@@ -6,11 +6,22 @@ The openEHR Decision Language (DL) is primarily used to write Decision Logic Mod
 ----
 dlm <form> <identifier>
 
-[language
-    <lang and translations meta-data, as for archetypes>]
+definitions -- Descriptive
+    
+    |
+    | lang and translations meta-data, as for archetypes
+    |
+    language = {
+            original_language: [ISO_639-1::en],
+            translations: {...}
+        }
+        ;
 
-[description
-    <descriptive meta-data>]
+    |
+    | description meta-data, as for archetypes
+    |
+    description = {...}
+        ;
 
 [use_model
     <reference model ids; defaults to openEHR Foundation & Base types>]
@@ -22,46 +33,58 @@ dlm <form> <identifier>
 [preconditions
     <conditions that act as pre-conditions for this module>]
 
-[reference
+[definitions -- Reference
     <constant definitions>]
 
-input
-    <subject variable declarations>
+input -- Administrative State
+    <administrative subject variables>
 
-rules
-    <conditions and rules expressed as EL functions>
+input -- Historical State
+    <historical subject variables>
 
-[output
-    <output variable declarations>]
+input -- Tracked State
+    <real-time subject variable>
 
-[terminology
-    <symbol definitions in archetype format>]
+rules -- Conditions
+    <conditions expressed as EL functions>
+
+rules -- Main
+    <computational rules expressed as EL functions>
+
+rules -- Output
+    <output rules expressed as EL functions>
+
+definitions -- Terminology
+    terminology = {...};
 ----
 
 Many of the sections are optional and are only used in specific _forms_ of DLM, indicated by the `<form>` on the first line.
 
-The `language`, `description` and `terminology` sections (which are identical in form to the same-named sections in openEHR archetypes) can be omitted for DLMs in development for which no descriptive meta-data or terminology is needed.
+The `definitions -- Descriptive` and `definitions -- Terminology` sections (which are logically identical data structures to the same-named sections in openEHR archetypes, but in a JSON5 superset form) can be omitted for DLMs in development for which no descriptive meta-data or terminology is needed.
 
 == Identifiers
 
 All identifiers in a DLM are strings with no whitespace. If the `terminology` section is present, these identifiers are included with linguistic definitions and translations, in the same way as archetypes. This approach enables the symbolic variables such as `is_type1_diabetic` to be used in rules, and to have a full, formal, multi-lingual definition, such as the following:
 
-[source,odin]
+[source,ts]
 ----
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["resting_heart_rate"] = <
-                text = <"heart rate at rest">
-                description = <"...">
-            >
-            ...
-            ["SpO2"] = <
-                text = <"Oxygen saturation">
-                description = <"...">
-            >
-        >
-    >
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "resting_heart_rate" : {
+                    text: "heart rate at rest",
+                    description: "..."
+                }
+                ...
+                "SpO2": {
+                    text: "Oxygen saturation";
+                    description: "..."
+                }
+            }
+        }
+    }
 ----
 
 == Identification Section
@@ -83,23 +106,38 @@ A reference to a DLM may be effected by quoting the whole identifier, or a form 
 
 The `language` and `description` sections are the same as for openEHR archetypes, and are formally defined by the {openehr_resource}[openEHR Resource specification^]. The following provides an example.
 
-[source,odin]
+[source,ts]
 ----
-language
-    original_language = <[ISO_639-1::en]>
+definitions -- Descriptive
 
-description
-    lifecycle_state = <"stable">
-    original_author = <
-        ["name"] = <"Rong Chen">
-        ["date"] = <"2020-03-22">
-    >
-    details = <
-        ["en"] = <
-            language = <[ISO_639-1::en]>
-            purpose = <"Simple cardiology guideline">
-        >
-    >
+    language = {
+            original_language: [ISO_639-1::en]
+        }
+        ;
+
+    description = {
+            lifecycle_state: "unmanaged",
+            original_author: {
+                name:           "Thomas Beale",
+                email:          "thomas.beale@openEHR.org",
+                organisation:   "openEHR Foundation <http://www.openEHR.org>",
+                date:           "2021-01-10"
+            },
+            details: {
+                "en" : {
+                    language: [ISO_639-1::en],
+                    purpose: "To record an individual's QRISK3 score."
+                }
+            },
+            copyright:  "© 2021 openEHR Foundation",
+            licence:    "Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>",
+            ip_acknowledgements: {
+                "ClinRisk" : "This content developed from original publication of
+                    © 2017 ClinRisk Ltd., see https://qrisk.org",
+                "QRISK" : "QRISK® is a registered trademark of the University of Nottingham and EMIS"
+            }
+        }
+        ;
 ----
 
 == Use_model Section
@@ -135,18 +173,47 @@ preconditions
 
 The `reference` section of a DLM contains what might be thought of constant definitions, i.e. identifiers declared with fixed values. The following illustrates.
 
-[source,kotlin]
+[source,ts]
 ----
-reference
-    paracetamol_dose: Quantity = 1g
-    chlorphenamine_dose: Quantity = 10mg
-    prednisolone_dose_per_m2: Quantity = 40mg
-    rituximab_dose_per_m2: Quantity = 375mg
-    doxorubicin_dose_per_m2: Quantity = 50mg
-    vincristine_dose_per_m2: Quantity = 1.4mg
-    cyclophosphamide_dose_per_m2: Quantity = 750mg
-    cycle_period: Duration = 3w
-    cycle_repeats: Integer = 6
+definitions -- Reference
+
+    paracetamol_dose: Quantity = 1g;
+    chlorphenamine_dose: Quantity = 10mg;
+    prednisolone_dose_per_m2: Quantity = 40mg;
+----
+
+These may be data structures of significant complexity, such as the following risk tables.
+
+[source,ts]
+----
+definitions -- Reference
+
+    Snoking_interaction_scales = {
+            [female]: {
+                 [age_1]:   {
+                    [non_smoker]:                   0, 
+                    [ex_smoker]:                   -4.70571617858518910, 
+                    [light_smoker]:                -2.74303834035733370,
+                    [moderate_smoker]:             -0.866080888293921820, 
+                    [heavy_smoker]:                 0.902415623697106480
+                },
+                [age_2]:   {
+                    [non_smoker]:                   0, 
+                    [etc]:                         -0.0755892446431930260000000
+                }
+            },
+            [male]: {
+                 [age_1]:   {
+                    [non_smoker]:                   0, 
+                    [etc]:                         -0.2101113393351634600000000
+                },
+                [age_2]:   {
+                    [non_smoker]:                   0, 
+                    [etc]:                         -0.0004985487027532612100000
+                }
+            }
+        }
+        ;
 ----
 
 == Input Section
@@ -199,14 +266,18 @@ The use of the currency modifier establishes that a subject variable is a time-r
 
 Since the various physiological and disease process that occur in a human body have significantly differing temporal rhythms, currency will vary widely for different subject variables, as per the following examples.
 
-[source,kotlin]
+[source,ts]
 ----
-input
+input -- Administrative State
+
     |
     | untracked variable:
     | DOB never changes, no currency needed
     |
     date_of_birth: Date
+        ;
+
+input -- Historical State
 
     |
     | tracked variable:
@@ -214,12 +285,16 @@ input
     |
     weight: Quantity
         currency = 3 days
+        ;
 
     |
     | untracked variable:
     | assuming an adult subject, height constant
     |
     height: Quantity
+        ;
+
+input -- Tracked State
 
     |
     | tracked variable:
@@ -227,6 +302,7 @@ input
     |
     blood_glucose: Quantity
         currency = 15 min
+        ;
 
     |
     | tracked variable:
@@ -234,6 +310,7 @@ input
     |
     heart_rate: Quantity
         currency = 5 sec
+        ;
 ----
 
 Variables for which no currency is stated may be understood as having the currency equal to the age of the subject.
@@ -249,7 +326,8 @@ The ranges for a subject variable are declared in the following way:
 
 [source,kotlin]
 ----
-input
+input -- Tracked State
+
     systolic_blood_pressure: Quantity
         currency = 1 min
         ranges =
@@ -264,21 +342,19 @@ input
         ;
 ----
 
-The above declaration allows the use of the predefined `in_range` function, which returns the most precise range in which the value falls, in rule expressions such as the following:
+The above declaration allows the use of the predefined `range` function, which returns the most precise range in which the value falls, in rule expressions such as the following:
 
 [source,kotlin]
 ----
     Result :=
-        choice in
-            ========================================================
-            systolic_blood_pressure
-                .in_range ([critical_high]):           [emergency],
-            --------------------------------------------------------
-            systolic_blood_pressure
-                .in_range ({[high], [very_high]}):     [high_risk],
-            --------------------------------------------------------
-            *:                                         [monitor]
-            ========================================================
+        case systolic_blood_pressure.range in
+            =======================================
+            [critical_high]:           [emergency],
+            ---------------------------------------
+            {[high], [very_high]}:     [high_risk],
+            ---------------------------------------
+            *:                         [monitor]
+            =======================================
         ;
 ----
 
@@ -293,12 +369,13 @@ Sometimes there are multiple ranges, usually due to alternative units systems. T
 
 [source,kotlin]
 ----
-input
+input -- Tracked State
+
     PaO2_FiO2_ratio: Quantity
         currency = 1 min
-        ranges =
+        ranges = {
             =================================================
-            [SI]:
+            [SI]: {
                 ---------------------------------------------
                 [normal]:         |≥400 mm[Hg]|,
                 [low]:            |300 mm[Hg] .. 399 mm[Hg]|,
@@ -306,8 +383,8 @@ input
                 [extremely_low]:  |100 mm[Hg] .. 199 mm[Hg]|,
                 [critical_low]:   |<100 mm[Hg]|
                 ---------------------------------------------
-            ;   
-            [metric]:
+            },
+            [metric]: {
                 -----------------------------------------
                 [normal]:         |≥53 kPa|,
                 [low]:            |39.9 kPa .. 53 kPa|,
@@ -315,8 +392,10 @@ input
                 [extremely_low]:  |13.3 kPa .. 26.5 kPa|,
                 [critical_low]:   |<13.3 kPa|
                 -----------------------------------------
+            }
             ==================================================
-            ;
+        }
+        ;
 ----
 
 To access a range within this structure, an expression of the form `systolic_blood_pressure.in_range ([metric], [high])` is needed. This makes use of an overload of the `in_range()` function taking two keys. We can now see that the simpler form `systolic_blood_pressure.in_range ([critical_high])` first chooses the first range group, and then extracts the required entry.
@@ -389,31 +468,46 @@ TBD:
 
 == Terminology Section
 
-The `terminology` section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the codes in a DLM may be freely named, since they act as names of all symbolic entities referenced elsewhere in the DLM, including rules (i.e. functions), subject variables and constants. A typical DLM `terminology` section is shown below.
+The `definitions -- Terminology` section of a DLM serves the same purpose as the terminology section in an openEHR archetype, which is to provide multi-lingual definitions of all codes used in the artefact. Unlike archetypes, the codes in a DLM may be freely named, since they act as names of all symbolic entities referenced elsewhere in the DLM, including rules (i.e. functions), subject variables and constants. A typical DLM terminology section is shown below.
 
-[source,odin]
+[source,ts]
 ----
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["paracetamol_dose"] = <
-                text = <"paracetamol dose">
-                description = <"paracetamol base dose level per sq. m of BSA">
-            >
-            ["chlorphenamine_dose"] = <
-                text = <"chlorphenamine dose">
-                description = <"chlorphenamine base dose level per sq. m of BSA">
-            >
-            ...
-            ["staging"] = <
-                text = <"Cancer staging">
-                description = <"Cancer staging (Ann Arbor system)">
-            >
-            ["has_metastases"] = <
-                text = <"Metastatic status">
-                description = <"Status of metastasis of cancer">
-            >
-        >
-    >
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "date_of_birth" : {
+                    text: "Date of birth"
+                },
+                "age_in_years" : {
+                    text: "Age (years)"
+                },
+                "qRisk_score" : {
+                    text: "QRISK2 score"
+                },
+                "diabetes_status" : {
+                    text: "Diabetic status of subject"
+                },
+                "no_diabetes" : {
+                    text: "Non-diabetic"
+                },
+                "type1_diabetes" : {
+                    text: "Has type 1 diabetes"
+                },
+                "type2_diabetes" : {
+                    text: "Has type 2 diabetes"
+                }
+            }
+        }
+
+        value_sets: {
+            "diabetes_status" : {
+                id: "diabetes_status",
+                members: ["no_diabetes", "type1_diabetes", "type2_diabetes"]
+            }
+        }
+    }
+    ;
 ----
 

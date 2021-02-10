@@ -2,6 +2,7 @@
 
 == Decision Logic Module
 
+[source,ts]
 ----
 dlm guideline Oncology_breast_cancer.v0.5.0
 
@@ -91,7 +92,7 @@ rules -- Conditions
             or has_allergy_to_taxanes
             or has_intolerance ([taxanes])
         
-rules -- Guideline
+rules -- Main
 
     molecular_subtype: Terminology_term
         Result := 
@@ -122,6 +123,8 @@ rules -- Guideline
                 =========================================================
             ;
     
+rules -- Output
+
     chemotherapy_regime: Terminology_term
         Result := 
             choice of
@@ -157,40 +160,44 @@ rules -- Guideline
                 =================================================================================
             ;
             
-terminology
-    term_definitions = <
-        ["en"] = <
-            ["luminal_A"] = <
-                text = <"luminal A">
-            >
-            ["luminal_B_HER2_positive"] = <
-                text = <"luminal B HER2-positive">
-            >
-            ["luminal_B_HER2_negative"] = <
-                text = <"luminal B HER2-negative">
-            >
-            ["HER2_positive"] = <
-                text = <"HER2-positive">
-            >
-            ["HER2_negative"] = <
-                text = <"HER2-negative">
-            >
-            ["triple_negative"] = <
-                text = <"triple-negative">
-            >
-            ["negative"] = <
-                text = <"negative presence of gene">
-            >
-            ["positive"] = <
-                text = <"positive presence of gene">
-            >
-
-
-    value_sets = <
-        ["pos_neg"] = <
-            id = <"pos_neg">
-            members = <"positive", "negative">
-        >
-    >
+definitions -- Terminology
+            
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "luminal_A" : {
+                    text: "luminal A"
+                },
+                "luminal_B_HER2_positive" : {
+                    text: "luminal B HER2-positive"
+                },
+                "luminal_B_HER2_negative" : {
+                    text: "luminal B HER2-negative"
+                },
+                "HER2_positive" : {
+                    text: "HER2-positive"
+                },
+                "HER2_negative" : {
+                    text: "HER2-negative"
+                },
+                "triple_negative" : {
+                    text: "triple-negative"
+                },
+                "negative" : {
+                    text: "negative presence of gene"
+                },
+                "positive" : {
+                    text: "positive presence of gene"
+                }
+            }
+        },
+        value_sets = {
+            "pos_neg" : {
+                id: "pos_neg",
+                members: ["positive", "negative"]
+            }
+        }
+    }
+    ;
 
 ----
