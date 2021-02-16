@@ -4,40 +4,42 @@ This section discusses the requirements for a category of computational system t
 
 == How Can IT Improve Clinical Care Process?
 
-Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself _perform_ the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since a clinical process is not the same thing as the work undertaken by one of its performers.
+Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself _perform_ the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since the process that executes within a workflow engine is not the same thing as the work undertaken by its various performers. Instead, an executable clinical process is better understood as a _plan and related decision logic_ whose execution creates a sophisticated presencial helper within the cognitive space of each connected worker in the real world.
 
-To understand the form a clinical workflow / planning system must take to be useful, we need to understand how clinical work is performed in the real world.
+To understand the form a clinical workflow / planning system must take to be useful, we firstly need to understand how clinical work is performed in the real world.
 
 The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical _per se_, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. Nevertheless, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to long term nursing or home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.
 
 The second aspect to consider is that clinical professionals don't need to be told how to do medicine. When the moment for performing clinical work arrives, with the exception of pure training situations, professionals already know what to do. What they may need is help with any of the following:
 
-* _following care pathways and guidelines_ for complex conditions e.g. acute stroke, sepsis, complex childbirth; also guidelines that incorporate changing _policy_ on the use of specific types of test whose costs and risks change over time (e.g. CT scan, MRI, certain drugs);
-* _clinical check lists_ for multi-step procedures, including surgery, to prevent busy or tired personnel forgetting common steps;
-* _reminders_ (that may be signed off) for critical actions in procedures not yet performed, particularly in team-oriented and busy environments (e.g. ED);
-* _decision support_ to determine appropriate treatments, medications from among numerous and/or changing possibilities;
-* _verification (signing off)_ of tasks performed for medico-legal reasons, process improvement (including _process mining_).
+* *following care pathways and guidelines* for complex conditions e.g. acute stroke, sepsis, complex childbirth; also guidelines that incorporate changing _policy_ on the use of specific types of test whose costs and risks change over time (e.g. CT scan, MRI, certain drugs);
+* *clinical check lists* for multi-step procedures, including surgery, to prevent busy or tired personnel forgetting common steps;
+* *reminders* (that may be signed off) for critical actions in procedures not yet performed, particularly in team-oriented and busy environments (e.g. ED);
+* *decision support* to determine appropriate treatments, medications from among numerous and/or changing possibilities;
+* *verification (signing off)* of tasks performed for medico-legal reasons, process improvement, including _process mining_ (see below).
 
 In general, the above capabilities address three human fallibilities:
 
-* limited capacity to _deal with complexity_ unaided (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^], which refers to the limited number of variables that the vast majority of human beings can keep in mind at one time); 
-* the inability to _keep up with change_ (new medications, research etc); and
-* forgetting routine steps in an activity due to fatigue, rushing or an unexpected change of personnel in the middle of a procedure.
+* limited capacity to *deal with complexity* unaided (often denoted as {wikipedia_seven_plus_or_minus_two}[the '7±2' problem^], which refers to the limited number of variables that the majority of human beings can keep in mind at one time); 
+* the inability to *keep up with change* (new medications, research etc); and
+* *forgetting routine steps due to fatigue*, rushing or an unexpected change of personnel in the middle of a procedure.
 
 Automated support for the above would significantly aid the short-term, single clinician/patient situation, but much clinical care today is team-based, and also unfolds over a longer time than a single work shift or day. Therefore another important kind of help is needed:
 
-* _coordination_ of:
+* *coordination* of:
 ** team members across departments (via e.g. plan-generated notifications); e.g. acute stroke care;
 ** workers undertaking care spanning shifts and personnel changes, e.g. multi-week chemotherapy administration;
 ** longer term care, e.g. pregnancy, chronic disease monitoring.
 
-A further clinical need which process automation can potentially address is reduction of _documentation burden_, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and spending time with the patient.
+A further clinical need which process automation can potentially address is reduction of *documentation burden*, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and spending time with the patient.
 
-Process automation could address the disconnect between process and documenting by supporting _fine-grained, on-the-fly interaction with the EHR_, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior clinician having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).
+Process automation could also address the disconnect between process and documenting by supporting _fine-grained, on-the-fly interaction with the EHR_, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior clinician having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).
 
-A final category of requirement for clinical process automation is _training_. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one's professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.
+A further category of requirement for clinical process automation is *training*. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one's professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.
 
-The sections below elucidate some of these topics.
+A final and not immediately obvious benefit of process automation is the ability to record with reasonably good fidelity the steps and decisions taken by workers in the course of each procedure or episode of care. The resulting event logs provide a rich resource for _process mining_, a relatively recent discipline described in citenp:[Van_der_Aalst_2016], that uses the history of worker actions to discover how processes actually execute in the real world, with the aim of analysis and improvement of the original executable plan definitions.
+
+The sections below elaborate on some of these topics.
 
 == Implementing Best Practices
 
@@ -62,7 +64,7 @@ One of the benefits that clinical process automation can bring is the ability to
 * for training for experience personnel on rarely used or changed procedures;
 * to test alternative approaches to team structure, improve efficiency etc.
 
-Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc.
+Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc. However, medical simulation teaching environments do exist in which process simulation could be established, e.g. {https://www.ohsu.edu/simulation/about}[Oregon Health Sciences University (OHSU) simulation center^].
 
 == Long-running Processes
 
@@ -78,7 +80,7 @@ In contrast to this, the 'work to be done', whether a well-defined procedure (e.
 
 A priori, healthcare systems, via the administrators, managers, and clinicians in each facility generally make concerted efforts to maintain continuity of care, e.g. by arranging of appointments to ensure that as far as possible, the patient sees the same care team members over time, and by personal efforts to ensure that each logical segment of care is completed in a coherent fashion (for example in antenatal care).
 
-Nevertheless, no plan automation system can assume that worker availability is automatic, or guaranteed to cleanly fit with the periods in time during which the patient needs attendance. An automatable plan representation will therefore need to explicitly incorporate the notion of _allocation and de-allocation_ of workers to tasks (including in the middle of a task), as well as _hand-overs_ between workers. This would imply for example, that a task within a plan cannot proceed until an appropriate worker had been allocated to it, which further implies that some basis for allocation may need to be specified. The YAWL language cite:[Hofstede_van_der_Aalst2009] for example supports various allocation strategies such as 'first available', 'most frequently used' and so on.
+Nevertheless, a plan automation system cannot necessarily assume worker availability, or that it is guaranteed to cover the periods in time during which the patient needs attendance, although ICUs, surgical units etc would usually get close. An automatable plan representation will therefore need to explicitly incorporate the notion of _allocation and de-allocation_ of workers to tasks (including in the middle of a task), as well as _hand-overs_ between workers. This would imply for example, that a task within a plan cannot proceed until an appropriate worker had been allocated to it, which further implies that some basis for allocation may need to be specified. The YAWL language cite:[Hofstede_van_der_Aalst2009] for example supports various allocation strategies such as 'first available', 'most frequently used' and so on.
 
 == Cognitive Model
 
@@ -119,7 +121,7 @@ Various requirements on computable representation of plans and guidelines follow
 
 == Integration with the Patient Health Record
 
-General-purpose workflow formalisms and products do not generally assume the presence of a system whose purpose is to record information (e.g. observations, decisions, orders, actions) undertaken for the subject, beyond some direct record of the plan execution itself. However many tasks in healthcare plans involve the review and/or capture of complex data sets specific to the task at hand, which would naturally be recorded in the patient record. In order to make clinical plans efficient for their users, the formal representation of tasks needs to account for data sets and detailed action descriptions. For example a task whose short description is 'administer Cyclophosphamide, day 1' will have a detailed description such as:
+General-purpose workflow formalisms and products do not generally assume the presence of a system whose purpose is to record information (e.g. observations, decisions, orders, actions) undertaken for the subject, beyond some direct record of the plan execution itself. However many tasks in healthcare plans involve the review and/or capture of complex data sets specific to the task at hand, which would naturally be recorded in the patient record. In order to make clinical plans efficient for their users, the formal representation of tasks needs to account for precise, unambiguous data sets and detailed action descriptions. For example a task whose short description is 'administer Cyclophosphamide, day 1' will have a detailed description such as:
 
 [.text-center]
 .Detailed task instruction
@@ -129,7 +131,7 @@ In an application, the dose will have been pre-computed based on patient body su
 
 From a user perspective, if this information structure (in an appropriate unfilled template form) can be directly associated with the task within a plan in such a way as to enable easy filling in of the data and subsequent recording in the patient record, no further work is required to update the record at plan (or task) completion. Similar situations require display of specific data sets as part of performing a task. However, if this is not the case, plan automation will not significantly reduce clinician documentation burden, and may have limited value. Worse, if there is no ability to associate information retrieval and recording actions with their real world tasks, plan authors will be forced to create tasks within plans dedicated to these information system interactions. This will have the effect of greatly increasing the size of many plans while reducing their comprehensibility.
 
-In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many practical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in native openEHR environments, where archetypes and templates enable convenient domain-level data set definition, whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other similar forms.
+In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many practical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in environments that support detailed clinical data-set definitions (e.g. openEHR archetypes and templates, published HL7 FHIR profiles, Intermountain CEMs etc), whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other application UI forms.
 
 == Independence of Reusable Guidelines from Legacy HIS Environments
 
