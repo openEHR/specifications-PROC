@@ -22,7 +22,7 @@ definitions -- Descriptive
             original_author: {
                 name:           "Thomas Beale",
                 email:          "models@cambiocds.com",
-                organisation:   "Cambio Healthcare Systems <https://www.cambiogroup.com/our-solutions/cambio-cds-clinical-decision-support/>",
+                organisation:   "Cambio Healthcare Systems <https://www.cambiogroup.com>",
                 date:           "2016-12-16"
             },
             details: {
@@ -102,7 +102,7 @@ rules -- Main
     | Convert sex to binary gender;
     | treat indeterminate sex as female
     |
-    gender: Terminology_code <<sexes>},
+    gender: Terminology_code «sexes»,
         Result := case BASIC.sex in
             =====================
             {[male]}:     [male],

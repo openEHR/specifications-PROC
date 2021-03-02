@@ -63,6 +63,7 @@ include::master07-cancer_prescribing.adoc[leveloffset=+1]
 include::master08-Covid19_severity.adoc[leveloffset=+1]
 include::master09-cha2ds_vasc.adoc[leveloffset=+1]
 include::master10-qrisk.adoc[leveloffset=+1]
+include::master11-news2.adoc[leveloffset=+1]
 include::master20-common_DLMs.adoc[leveloffset=+1]
 
 //

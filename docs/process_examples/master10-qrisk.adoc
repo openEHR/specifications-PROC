@@ -24,7 +24,7 @@ definitions -- Descriptive
             original_author: {
                 name:           "Thomas Beale",
                 email:          "thomas.beale@openEHR.org",
-                organisation:   "openEHR Foundation <http://www.openEHR.org>",
+                organisation:   "openEHR International <http://www.openEHR.org>",
                 date:           "2021-01-10"
             },
             details: {
@@ -369,7 +369,7 @@ input -- Administrative
     |   [black_african]
     |   [other_ethnic_group]
     |
-    qRisk3_ethnicity: Terminology_code <<qrisk_ethnicities>},
+    qRisk3_ethnicity: Terminology_code «qrisk_ethnicities»,
         ;
 
     townsend: Real
@@ -385,7 +385,7 @@ input -- Historical state
     |   [moderate_smoker]
     |   [heavy_smoker]
     |
-    smoking_status: Terminology_code <<smoking_status>},
+    smoking_status: Terminology_code «smoking_status»,
         ;
         
     |
@@ -394,7 +394,7 @@ input -- Historical state
     |   [type1_diabetes]
     |   [type2_diabetes]
     |
-    diabetes_status: Terminology_code <<diabetes_status>},
+    diabetes_status: Terminology_code «diabetes_status»,
         ;
         
     |
@@ -557,7 +557,7 @@ rules -- Main
     | Compute boolean part of score; use vector
     | in order to copmpute dot product with scales
     |
-    boolean_risks: Vector<Real},
+    boolean_risks: Vector<Real>,
         Result := [
             has_atrial_fibrillation.as_integer,
             on_atypical_antipsychotic_medication.as_integer,
@@ -581,7 +581,7 @@ rules -- Main
     | Compute interaction part of score; use vector
     | in order to copmpute dot product with scales
     |
-    interaction_risks: Vector<Real},
+    interaction_risks: Vector<Real>,
         Result := [
             has_atrial_fibrillation.as_integer,
             on_corticosteroids.as_integer,

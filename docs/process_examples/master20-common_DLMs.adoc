@@ -38,13 +38,13 @@ input -- Administrative
     |
     | sex: [male] | [female] | [indeterminate]
     |
-    sex: Terminology_code <<sexes>},
+    sex: Terminology_code «sexes»,
         ;
         
     |
     | race
     |
-    race: Terminology_code <<races>},
+    race: Terminology_code «races»,
         ;
         
     |
@@ -58,7 +58,7 @@ input -- Administrative
     |   [black_african]
     |   [other_ethnic_group]
     |
-    ethnicity: Terminology_code <<ethnicities>},
+    ethnicity: Terminology_code «ethnicities»,
         ;
 
 rules -- Main

@@ -195,7 +195,8 @@ rules -- Main
                 [normal]:      1,
                 [low]:         0.75
                 ===================
-            * case gfr.range in {
+                ;
+            * case gfr.range in
                 ===================
                 [normal]:      1,
                 [low]:         0.75,
