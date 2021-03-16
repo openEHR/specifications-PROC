@@ -105,7 +105,7 @@ rules -- Main
     gender: Terminology_code «sexes»,
         Result := case BASIC.sex in
             =====================
-            {[male]}:     [male],
+            [male]:     [male],
             ---------------------
             *:          [female]
             =====================
@@ -118,7 +118,7 @@ rules -- Main
             ----------------
             |65..74|:    1,
             ----------------
-            |>=75|:      2
+            |≥75|:      2
             ================
         ;
 
@@ -149,7 +149,7 @@ rules -- Output
             =============================
             0:       [low_risk],
             1:       [intermediate_risk],
-            |>=2|:   [high_risk]
+            |≥2|:   [high_risk]
             =============================
         ;
     

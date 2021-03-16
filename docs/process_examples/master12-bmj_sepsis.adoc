@@ -1,0 +1,264 @@
+= BMJ Sepsis Infographic
+
+This CPG was developed from the a https://www.bmj.com/content/354/bmj.i4030/infographic[2016 BMJ 'summary' infographic^] based on NICE sepsis guidelines.
+
+== Work Plan
+
+xxx.
+
+[.tbd]
+TODO: Work Plan 
+
+== Decision Logic Module
+
+[source,ts]
+----
+dlm bmj_sepsis_2016.v0.5.0
+
+definitions -- Descriptive
+
+    language = {
+            original_language: [ISO_639-1::en]
+        }
+        ;
+
+    description = {
+            lifecycle_state: "unmanaged",
+            original_author: {
+                name:           "Thomas Beale",
+                email:          "thomas.beale@openEHR.org",
+                organisation:   "openEHR International <http://www.openEHR.org>",
+                date:           "2021-03-08"
+            },
+            details: {
+                "en" : {
+                    language: [ISO_639-1::en],
+                    purpose: "To determine sepsis risk and pathway."
+                }
+            },
+            copyright:  "© 2021 openEHR Foundation",
+            licence:    "Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>",
+            ip_acknowledgements: {
+                "BMJ" : "xxx",
+                "NICE" : "xxx"
+            }
+        }
+        ;
+
+use
+    BASIC: Basic_patient_data.v0.5.0
+            
+definitions -- Reference
+
+    |
+    | Heart rate risk factor, stratified by age
+    |
+    Heart_rate_risks = {
+            |<1y|: {
+                |≥ 160|:     [high],
+                |150..159|:  [moderate],
+                |60..<150|:  [low],
+                |<60|:       [high]
+            },
+            |1..2|: {
+                |≥ 150|:     [high],
+                |140..149|:  [moderate],
+                |60..<140|:  [low],
+                |<60|:       [high]
+            },
+            |3..4|: {
+                |≥ 140|:     [high],
+                |130..139|:  [moderate],
+                |60..<130|:  [low],
+                |<60|:       [high]
+            },
+            |5|: {
+                |≥ 130|:     [high],
+                |120..129|:  [moderate],
+                |60..<120|:  [low],
+                |<60|:       [high]
+            },
+            |6..7|: {
+                |≥ 120|:     [high],
+                |110..119|:  [moderate],
+                |60..<110|:  [low],
+                |<60|:       [high]
+            },
+            |8..11|: {
+                |≥ 115|:     [high],
+                |105..114|:  [moderate],
+                |60..<105|:  [low],
+                |<60|:       [high]
+            },
+            |≥12|: {
+                |≥ 131|:    [high],
+                |91..130|:  [moderate],
+                |<91|:      [low]
+            }
+        }
+        ;
+
+    |
+    | Heart rate risk factor, stratified by age
+    |
+    Heart_rate_risks_pregnant = {
+                |≥ 131|:     [high],
+                |100..130|:  [moderate],
+                |<100|:      [low]
+        }
+        ;
+
+input -- Historical state
+    
+    |
+    | Was pregnant in last 6 weeks
+    |
+    recently_pregnant: Boolean
+        ;
+        
+    is_pregnant: Boolean
+        ;
+        
+    |
+    | Reference systolic BP in [mmHg]
+    |
+    reference_systolic_BP: Real
+        currency = 1 month
+        ;
+        
+input -- Tracking state
+
+    |
+    | Body temperature (deg C)
+    |
+    body_temperature_degC: Real
+        currency = 2h
+        ;
+        
+    |
+    | Systolic BP in [mmHg]
+    |
+    systolic_BP: Real
+        currency = 15min
+        ;
+        
+    |
+    | Breathing /min
+    |
+    breathing: Real
+        currency = 15min
+        ;
+        
+    |
+    | Heart rate bpm
+    |
+    heart_rate: Integer
+        currency = 15min
+        ;
+        
+    |
+    | Capillary refill time (seconds)
+    |
+    capillary_refill_time: Real
+        currency = 2h
+        ;
+
+    |
+    | Cold hands and/or feet
+    |
+    cold_hands_feet: Boolean
+        currency = 2h
+        ;
+
+    |
+    | Leg pain
+    |
+    leg_pain: Boolean
+        currency = 2h
+        ;
+
+    |
+    | New onset arrhythmia
+    |
+    new_onset_arrhythmia: Boolean
+        currency = 2h
+        ;
+
+rules -- Main
+
+    |
+    | Heart rate-related risk, function of
+    |   age
+    |   pregnant status
+    |   heart rate
+    |
+    heart_rate_risk: Terminology_code «risk»
+        Result := case is_pregnant in 
+            ==========================================================
+            False:   Heart_rate_risks[BASIC.age_in_years][heart_rate],
+            ---------------------------------------------------------
+            True:    Heart_rate_risks_pregnant[heart_rate]
+            ==========================================================
+        ;
+        
+    circulatory_risk_adult: Terminology_code «risk»
+        Result := choice of 
+            ======================================================
+            systolic_BP ≤ 90 or 
+            reference_systolic_BP - systolic_BP ≥ 40:      [high],
+            ------------------------------------------------------
+            systolic_BP in |91..100|:                       [low],
+            ------------------------------------------------------
+            *:                                          [moderate]
+            ======================================================
+        ;
+
+    circulatory_risk_child: Terminology_code «risk»
+        Result := choice of 
+            ==============================================
+            capillary_refill_time ≥3 or
+            cold_hands_feet or
+            leg_pain:                           [moderate],
+            ----------------------------------------------
+            *:                                  [low]
+            ==============================================
+        ;
+        
+rules -- Output
+
+    xx: Real
+        Result := 
+        ;
+    
+definitions -- Terminology
+
+    terminology = {
+        term_definitions: {
+            "en" : {
+                "qRisk_score" : {
+                    text: "QRISK2 score"
+                },
+                "non_smoker" : {
+                    text: "Non-smoker"
+                },
+                "no_diabetes" : {
+                    text: "Non-diabetic"
+                },
+                "total_cholesterol_HDL_ratio" : {
+                    text: "Total cholesterol : HDL ratio"
+                },
+                "TODO: rest of terminology" : {
+                    text: "TODO: rest of terminology"
+                }
+            }
+        }
+
+        value_sets: {
+            "risks" : {
+                id: "risks",
+                members: ["low", "moderate", "high"]
+            }
+        }
+    }
+    ;
+----

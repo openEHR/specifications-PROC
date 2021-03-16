@@ -577,7 +577,7 @@ definitions -- Terminology
 <div class="sect2">
 <h3 id="_use_model_section"><a class="anchor" href="#_use_model_section"></a>3.4. Use_model Section</h3>
 <div class="paragraph">
-<p>The optional <code>use_model</code> section enables a DLM to specify a model that defines the type system for the DLM. The identifier of the model must be resolvable to a BMM model, i.e. a model for which an <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model</a> file is available. This might be a well-known model such as the <a href="https://specifications.openehr.org/releases/RM/latest/index" target="_blank" rel="noopener">openEHR Reference Model</a> (<a href="https://specifications.openehr.org/releases/ITS/latest" target="_blank" rel="noopener">BMM form</a>), or a custom model created for local use. The model identifier must include a version matching part, with at least the major version present. The following example specifies the use of the openEHR RM in the latest <code>1.1</code> version available.</p>
+<p>The optional <code>use_model</code> section enables a DLM to specify a model that defines the type system for the DLM. The identifier of the model must be resolvable to a BMM model, i.e. a model for which an <a href="https://specifications.openehr.org/releases/LANG/latest/bmm.html" target="_blank" rel="noopener">openEHR Basic Meta-Model</a> file is available. This might be a well-known model such as the <a href="https://specifications.openehr.org/releases/RM/latest/index" target="_blank" rel="noopener">openEHR Reference Model</a> (<a href="https://specifications.openehr.org/releases/ITS-BMM/latest" target="_blank" rel="noopener">BMM form</a>), or a custom model created for local use. The model identifier must include a version matching part, with at least the major version present. The following example specifies the use of the openEHR RM in the latest <code>1.1</code> version available.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -795,17 +795,20 @@ definitions -- Terminology
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span> <span class="tok-p">--</span> <span class="tok-n">Tracked</span> <span class="tok-n">State</span>
 
-    <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
+    <span class="tok-p">|</span>
+    <span class="tok-p">|</span> <span class="tok-n">Systolic</span> <span class="tok-n">BP</span> <span class="tok-p">(</span><span class="tok-n">mmHg</span><span class="tok-p">)</span>
+    <span class="tok-p">|</span>
+    <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Real</span>
         <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span>
-            <span class="tok-p">------------------------------------------------</span>
-<span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>  <span class="tok-p">|&gt;=</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [very_high]</span><span class="tok-p">:</span>      <span class="tok-p">|&gt;</span>  <span class="tok-m">140</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [high]</span><span class="tok-p">:</span>           <span class="tok-p">|&gt;</span>  <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-p">&lt;=</span> <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [low]</span><span class="tok-p">:</span>            <span class="tok-p">|&lt;=</span>  <span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
-            <span class="tok-p">------------------------------------------------</span>
+        <span class="tok-n">ranges</span><span class="tok-p">[</span><span class="tok-s">&quot;mmHg&quot;</span><span class="tok-p">]</span> <span class="tok-p">=</span>
+            <span class="tok-p">------------------------------------</span>
+            <span class="tok-p">|</span><span class="tok-err">≥</span> <span class="tok-m">180</span><span class="tok-p">|:</span>            <span class="tok-p">[</span><span class="tok-n">critical_high</span><span class="tok-p">],</span>
+            <span class="tok-p">|&gt;</span> <span class="tok-m">140</span><span class="tok-p">|:</span>            <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">],</span>
+            <span class="tok-p">|&gt;</span> <span class="tok-m">120</span><span class="tok-p">|:</span>            <span class="tok-p">[</span><span class="tok-n">high</span><span class="tok-p">],</span>
+            <span class="tok-p">|&gt;</span> <span class="tok-m">90</span> <span class="tok-p">..</span> <span class="tok-err">≤</span> <span class="tok-m">120</span><span class="tok-p">|:</span>    <span class="tok-p">[</span><span class="tok-n">normal</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-err">≤</span> <span class="tok-m">90</span><span class="tok-p">|:</span>             <span class="tok-p">[</span><span class="tok-n">low</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-err">≤</span> <span class="tok-m">50</span><span class="tok-p">|:</span>             <span class="tok-p">[</span><span class="tok-n">critical_low</span><span class="tok-p">]</span>
+            <span class="tok-p">------------------------------------</span>
         <span class="tok-p">;</span></code></pre>
 </div>
 </div>
@@ -816,13 +819,13 @@ definitions -- Terminology
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">Result</span> <span class="tok-p">:=</span>
         <span class="tok-n">case</span> <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">.</span><span class="tok-n">range</span> <span class="tok-k">in</span>
-            <span class="tok-p">=======================================</span>
-<span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>           <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
-            <span class="tok-p">---------------------------------------</span>
-            <span class="tok-p">{[</span><span class="tok-n">high</span><span class="tok-p">],</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]}:</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
-            <span class="tok-p">---------------------------------------</span>
-            <span class="tok-p">*:</span>                         <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
-            <span class="tok-p">=======================================</span>
+            <span class="tok-p">=====================================</span>
+<span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>         <span class="tok-p">[</span><span class="tok-n">emergency</span><span class="tok-p">],</span>
+            <span class="tok-p">-------------------------------------</span>
+<span class="tok-na">            [high]</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">]:</span>     <span class="tok-p">[</span><span class="tok-n">high_risk</span><span class="tok-p">],</span>
+            <span class="tok-p">-------------------------------------</span>
+            <span class="tok-p">*:</span>                       <span class="tok-p">[</span><span class="tok-n">monitor</span><span class="tok-p">]</span>
+            <span class="tok-p">=====================================</span>
         <span class="tok-p">;</span></code></pre>
 </div>
 </div>
@@ -850,37 +853,32 @@ definitions -- Terminology
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span><span class="tok-n">input</span> <span class="tok-p">--</span> <span class="tok-n">Tracked</span> <span class="tok-n">State</span>
 
     <span class="tok-n">PaO2_FiO2_ratio</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
-        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span> <span class="tok-p">{</span>
-            <span class="tok-p">=================================================</span>
-<span class="tok-na">            [SI]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
-                <span class="tok-p">---------------------------------------------</span>
-<span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">400</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">300</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">399</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">200</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">299</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-m">199</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">100</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|</span>
-                <span class="tok-p">---------------------------------------------</span>
-            <span class="tok-p">},</span>
-<span class="tok-na">            [metric]</span><span class="tok-p">:</span> <span class="tok-p">{</span>
-                <span class="tok-p">-----------------------------------------</span>
-<span class="tok-na">                [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
-<span class="tok-na">                [low]</span><span class="tok-p">:</span>            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">53</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
-<span class="tok-na">                [very_low]</span><span class="tok-p">:</span>       <span class="tok-p">|</span><span class="tok-m">26.6</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">39.8</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
-<span class="tok-na">                [extremely_low]</span><span class="tok-p">:</span>  <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span> <span class="tok-n">kPa</span><span class="tok-p">|,</span>
-<span class="tok-na">                [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span> <span class="tok-n">kPa</span><span class="tok-p">|</span>
-                <span class="tok-p">-----------------------------------------</span>
-            <span class="tok-p">}</span>
-            <span class="tok-p">==================================================</span>
-        <span class="tok-p">}</span>
+        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span><span class="tok-p">,</span>
+        <span class="tok-n">ranges</span><span class="tok-p">[</span><span class="tok-s">&quot;mm[Hg]&quot;</span><span class="tok-p">]</span> <span class="tok-p">=</span>
+            <span class="tok-p">---------------------------------</span>
+            <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">400</span> <span class="tok-p">|:</span>        <span class="tok-p">[</span><span class="tok-n">normal</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-m">300</span> <span class="tok-p">..</span> <span class="tok-m">399</span><span class="tok-p">|:</span>   <span class="tok-p">[</span><span class="tok-n">low</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-m">200</span> <span class="tok-p">..</span> <span class="tok-m">299</span><span class="tok-p">|:</span>   <span class="tok-p">[</span><span class="tok-n">very_low</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-m">100</span> <span class="tok-p">..</span> <span class="tok-m">199</span><span class="tok-p">|:</span>   <span class="tok-p">[</span><span class="tok-n">extremely_low</span><span class="tok-p">],</span>
+            <span class="tok-p">|&lt;</span><span class="tok-m">100</span><span class="tok-p">|:</span>         <span class="tok-p">[</span><span class="tok-n">critical_low</span><span class="tok-p">]</span>
+            <span class="tok-p">---------------------------------</span>
+        <span class="tok-p">;,</span>
+        <span class="tok-n">ranges</span><span class="tok-p">[</span><span class="tok-s">&quot;kPa&quot;</span><span class="tok-p">]</span> <span class="tok-p">=</span>
+            <span class="tok-p">---------------------------------</span>
+            <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">53</span><span class="tok-p">|:</span>          <span class="tok-p">[</span><span class="tok-n">normal</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-m">39.9</span> <span class="tok-p">..</span> <span class="tok-m">53</span><span class="tok-p">|:</span>   <span class="tok-p">[</span><span class="tok-n">low</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-m">26.6</span> <span class="tok-p">..</span> <span class="tok-m">39.8</span><span class="tok-p">|:</span> <span class="tok-p">[</span><span class="tok-n">very_low</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-m">13.3</span> <span class="tok-p">..</span> <span class="tok-m">26.5</span><span class="tok-p">|:</span> <span class="tok-p">[</span><span class="tok-n">extremely_low</span><span class="tok-p">],</span>
+            <span class="tok-p">|&lt;</span><span class="tok-m">13.3</span><span class="tok-p">|:</span>        <span class="tok-p">[</span><span class="tok-n">critical_low</span><span class="tok-p">]</span>
+            <span class="tok-p">---------------------------------</span>
         <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To access a range within this structure, an expression of the form <code>systolic_blood_pressure.in_range ([metric], [high])</code> is needed. This makes use of an overload of the <code>in_range()</code> function taking two keys. We can now see that the simpler form <code>systolic_blood_pressure.in_range ([critical_high])</code> first chooses the first range group, and then extracts the required entry.</p>
+<p>To access a range within this structure, an expression of the form <code>systolic_blood_pressure.in_range (["kPa"], [high])</code> is needed. This makes use of an overload of the <code>in_range()</code> function taking two keys. We can now see that the simpler form <code>systolic_blood_pressure.in_range ([critical_high])</code> first chooses the first range group, and then extracts the required entry.</p>
 </div>
 <div class="paragraph">
-<p>The above case reveals the general structure of the <code>ranges</code> property, with a formal type equivalent to <code>Map&lt;Terminology_code, Map &lt;Terminology_code, Interval &lt;T&gt;&gt;</code>, where <code>T</code> is the declared type of the subject variable. In both the simple and discriminator cases, the entry <code>[very_high], |&gt;  140 mm[Hg]|</code> defines a <code>[key, value]</code> pair whose key is of type <code>Terminology_code</code> and whose value is of type <code>Interval &lt;Quantity&gt;</code>.</p>
+<p>The above case reveals the general structure of the <code>ranges</code> property, with a formal type equivalent to <code>Map &lt;Terminology_code, Map &lt;Interval &lt;T&gt;, Terminology_code&gt;</code>, where <code>T</code> is the declared type of the subject variable. In both the simple and discriminator cases, the entry <code>|&gt;  140|: [very_high]</code> defines a <code>[key, value]</code> pair whose key is of type <code>Interval &lt;Real&gt;</code> and whose value is of type <code>Terminology_code</code>.</p>
 </div>
 </div>
 </div>
@@ -1084,19 +1082,7 @@ definitions -- Terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>definitions</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_constant_class">BMM_CONSTANT</sup></a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Constant definitions needed by module.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1155,7 +1141,7 @@ definitions -- Terminology
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_constant_class">BMM_CONSTANT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Set of features in this group.</p>
+<p>Constant definitions needed by module.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1203,7 +1189,7 @@ definitions -- Terminology
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class">List<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_bmm_constant_class">BMM_CONSTANT</sup></a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Set of features in this group.</p>
+<p>Input variable proxies.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1251,7 +1237,7 @@ definitions -- Terminology
 (redefined)</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>features</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_list_class" target="_blank" rel="noopener">List</a>&lt;<a href="#_dlm_rule_class">DLM_RULE</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Set of features in this group.</p>
+<p>Rules for this module.</p>
 </div></div></td>
 </tr>
 </tbody>

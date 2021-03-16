@@ -640,55 +640,70 @@
         <span class="tok-nx">time_window</span> <span class="tok-o">=</span> <span class="tok-nx">tw_current_episode</span>
         <span class="tok-p">;</span>
 
-    <span class="tok-nx">neutrophils</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">3</span><span class="tok-nx">d</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">----------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>      <span class="tok-o">|&gt;</span><span class="tok-mi">1</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span><span class="tok-o">:</span>         <span class="tok-o">|</span><span class="tok-mf">0.5</span> <span class="tok-o">-</span> <span class="tok-mi">1</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&lt;</span><span class="tok-mf">0.5</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span>
-            <span class="tok-o">----------------------------------</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Neutrophils</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">neutrophils</span>: <span class="tok-kt">Real</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">3</span><span class="tok-nx">d</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;/L&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">--------------------------------</span>
+            <span class="tok-o">|&gt;</span><span class="tok-mi">1</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">|:</span>          <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mf">0.5</span> <span class="tok-o">-</span> <span class="tok-mi">1</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span><span class="tok-mf">0.5</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">|:</span>        <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span>
+            <span class="tok-o">--------------------------------</span>
         <span class="tok-p">;</span>
 
-    <span class="tok-nx">platelets</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">12</span><span class="tok-nx">h</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">----------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>      <span class="tok-o">|&gt;</span><span class="tok-mi">75</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span><span class="tok-o">:</span>         <span class="tok-o">|</span><span class="tok-mi">50</span> <span class="tok-o">-</span> <span class="tok-mi">74</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&lt;</span><span class="tok-mi">50</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span>
-            <span class="tok-o">----------------------------------</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Platelets</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">platelets</span>: <span class="tok-kt">Real</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">12</span><span class="tok-nx">h</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;/L&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">------------------------------</span>
+            <span class="tok-o">|&gt;</span><span class="tok-mi">75</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">50</span> <span class="tok-o">-</span> <span class="tok-mi">74</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span><span class="tok-mi">50</span> <span class="tok-nx">x</span> <span class="tok-mi">10</span><span class="tok-o">^</span><span class="tok-mi">9</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span>
+            <span class="tok-o">------------------------------</span>
         <span class="tok-p">;</span>
 
-    <span class="tok-nx">bilirubin</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">12</span><span class="tok-nx">h</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">----------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>      <span class="tok-o">|&lt;</span><span class="tok-mi">20</span> <span class="tok-nx">mmol</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">]</span><span class="tok-o">:</span>        <span class="tok-o">|</span><span class="tok-mi">20</span> <span class="tok-o">-</span> <span class="tok-mi">51</span> <span class="tok-nx">mmol</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">very_high</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-o">|</span><span class="tok-mi">51</span> <span class="tok-o">-</span> <span class="tok-mi">85</span> <span class="tok-nx">mmol</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">crit_high</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-o">|&gt;</span><span class="tok-mi">85</span> <span class="tok-nx">mmol</span><span class="tok-o">/</span><span class="tok-nx">L</span><span class="tok-o">|</span>
-            <span class="tok-o">----------------------------------</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Bilirubins</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">bilirubin</span>: <span class="tok-kt">Real</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">12</span><span class="tok-nx">h</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;mmol/L&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">----------------------------</span>
+            <span class="tok-o">|&lt;</span><span class="tok-mi">20</span><span class="tok-o">|:</span>          <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">20</span> <span class="tok-o">-</span> <span class="tok-mi">51</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">51</span> <span class="tok-o">-</span> <span class="tok-mi">85</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">very_high</span><span class="tok-p">],</span>
+            <span class="tok-o">|&gt;</span><span class="tok-mi">85</span><span class="tok-o">|:</span>          <span class="tok-p">[</span><span class="tok-nx">crit_high</span><span class="tok-p">]</span>
+            <span class="tok-o">---------------------------</span>
         <span class="tok-p">;</span>
 
-    <span class="tok-nx">gfr</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">24</span><span class="tok-nx">h</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">----------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>      <span class="tok-o">|&gt;</span><span class="tok-mi">20</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span><span class="tok-o">:</span>         <span class="tok-o">|</span><span class="tok-mi">10</span> <span class="tok-o">-</span> <span class="tok-mi">20</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&lt;</span><span class="tok-mi">10</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span>
-            <span class="tok-o">----------------------------------</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Glomerular</span> <span class="tok-nx">filtration</span> <span class="tok-nx">rate</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">gfr</span>: <span class="tok-kt">Real</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">24</span><span class="tok-nx">h</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;mL/min&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">----------------------</span>
+            <span class="tok-o">|&gt;</span><span class="tok-mi">20</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">10</span> <span class="tok-o">-</span> <span class="tok-mi">20</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span><span class="tok-mi">10</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span>
+            <span class="tok-o">----------------------</span>
         <span class="tok-p">;</span>
 
-    <span class="tok-nx">ldh</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">24</span><span class="tok-nx">h</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">----------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>      <span class="tok-o">|&gt;</span><span class="tok-mi">20</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span><span class="tok-o">:</span>         <span class="tok-o">|</span><span class="tok-mi">10</span> <span class="tok-o">-</span> <span class="tok-mi">20</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&lt;</span><span class="tok-mi">10</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span>
-            <span class="tok-o">----------------------------------</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Lactate</span> <span class="tok-nx">dehydrogenase</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">ldh</span>: <span class="tok-kt">Real</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">24</span><span class="tok-nx">h</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;mL/min&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">--------------------------</span>
+            <span class="tok-o">|&gt;</span><span class="tok-mi">20</span> <span class="tok-o">|:</span>         <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">10</span> <span class="tok-o">-</span> <span class="tok-mi">20</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span><span class="tok-mi">10</span><span class="tok-o">|:</span>          <span class="tok-p">[</span><span class="tok-nx">very_low</span><span class="tok-p">]</span>
+            <span class="tok-o">--------------------------</span>
         <span class="tok-p">;</span>
 
 <span class="tok-nx">rules</span> <span class="tok-o">--</span> <span class="tok-nx">Conditions</span>
@@ -719,11 +734,11 @@
     <span class="tok-nx">doxorubicin_dose</span>: <span class="tok-kt">Quantity</span>
         <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">doxorubicin_dose_per_m2</span> <span class="tok-o">*</span> <span class="tok-nx">BSA</span><span class="tok-p">.</span><span class="tok-nx">bsa_m2</span>
             <span class="tok-o">*</span> <span class="tok-k">case</span> <span class="tok-nx">bilirubin</span><span class="tok-p">.</span><span class="tok-nx">range</span> <span class="tok-k">in</span>
-                <span class="tok-o">===================</span>
+                <span class="tok-o">====================</span>
                 <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">]</span><span class="tok-o">:</span>        <span class="tok-mf">0.5</span><span class="tok-p">,</span>
                 <span class="tok-p">[</span><span class="tok-nx">very_high</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-mf">0.25</span><span class="tok-p">,</span>
                 <span class="tok-p">[</span><span class="tok-nx">crit_high</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-mf">0.0</span>
-                <span class="tok-o">===================</span>
+                <span class="tok-o">====================</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>
@@ -949,11 +964,11 @@
         <span class="tok-p">;</span>
 
     <span class="tok-nx">vaginal_blood_flow</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">30</span><span class="tok-nx">mins</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">critical_high</span><span class="tok-p">]</span><span class="tok-o">:</span> <span class="tok-o">|&gt;</span> <span class="tok-mi">500</span> <span class="tok-nx">mL</span><span class="tok-o">/</span><span class="tok-nx">hr</span><span class="tok-o">|</span>
-            <span class="tok-o">------------------------------</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">30</span><span class="tok-nx">mins</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;mL/hr&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">---------------------------</span>
+            <span class="tok-o">|&gt;</span> <span class="tok-mi">500</span><span class="tok-o">|:</span>    <span class="tok-p">[</span><span class="tok-nx">critical_high</span><span class="tok-p">]</span>
+            <span class="tok-o">---------------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>
@@ -974,13 +989,16 @@
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">48</span><span class="tok-nx">h</span>
         <span class="tok-p">;</span>
 
-    <span class="tok-nx">amniotic_volume</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">24</span><span class="tok-nx">h</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
+    <span class="tok-o">|</span>
+    <span class="tok-o">|</span> <span class="tok-nx">Amniotic</span> <span class="tok-nx">fluid</span> <span class="tok-nx">index</span> <span class="tok-p">(</span><span class="tok-nx">cm</span><span class="tok-p">)</span> <span class="tok-nx">via</span> <span class="tok-mi">4</span><span class="tok-o">-</span><span class="tok-nx">quadrant</span> <span class="tok-nx">method</span>
+    <span class="tok-o">|</span>
+    <span class="tok-nx">amniotic_fluid_index</span>: <span class="tok-kt">Real</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">24</span><span class="tok-nx">h</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;cm&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
             <span class="tok-o">------------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">polyhydramnios</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&gt;</span> <span class="tok-mi">14</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>            <span class="tok-o">|&gt;=</span> <span class="tok-mi">5</span> <span class="tok-p">..</span> <span class="tok-o">&lt;=</span> <span class="tok-mi">14</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">oligohydramnios</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-o">|&lt;</span> <span class="tok-mi">5</span><span class="tok-o">|</span>
+            <span class="tok-o">|&gt;</span> <span class="tok-mi">14</span><span class="tok-o">|:</span>            <span class="tok-p">[</span><span class="tok-nx">polyhydramnios</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">5</span> <span class="tok-p">..</span> <span class="tok-err">≤</span> <span class="tok-mi">14</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span> <span class="tok-mi">5</span><span class="tok-o">|:</span>             <span class="tok-p">[</span><span class="tok-nx">oligohydramnios</span><span class="tok-p">]</span>
             <span class="tok-o">------------------------------------</span>
         <span class="tok-p">;</span>
 
@@ -993,22 +1011,22 @@
     <span class="tok-o">|</span>
     <span class="tok-o">|</span> <span class="tok-nx">Convert</span> <span class="tok-nx">BMI</span> <span class="tok-nx">to</span> <span class="tok-nx">ranges</span>
     <span class="tok-o">|</span>
-    <span class="tok-nx">bmi_range</span>: <span class="tok-kt">Terminology_code</span> <span class="tok-o">&lt;&lt;</span><span class="tok-nx">COMMON</span><span class="tok-p">.</span><span class="tok-nx">simple_ranges</span><span class="tok-o">&gt;</span><span class="tok-p">},</span>
+    <span class="tok-nx">bmi_range</span>: <span class="tok-kt">Terminology_code</span> <span class="tok-err">«</span><span class="tok-nx">COMMON</span><span class="tok-p">.</span><span class="tok-nx">simple_ranges</span><span class="tok-err">»</span><span class="tok-p">,</span>
         <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-k">case</span> <span class="tok-nx">BMI</span><span class="tok-p">.</span><span class="tok-nx">BMI</span> <span class="tok-k">in</span>
-            <span class="tok-o">=============================</span>
-            <span class="tok-o">|&gt;</span><span class="tok-mi">30</span><span class="tok-o">|:</span>              <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">],</span>
-            <span class="tok-o">-----------------------------</span>
-            <span class="tok-o">|&gt;=</span><span class="tok-mi">15</span> <span class="tok-p">..</span> <span class="tok-o">&lt;=</span> <span class="tok-mi">30</span><span class="tok-o">|:</span>    <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
-            <span class="tok-o">-----------------------------</span>
-            <span class="tok-o">|&lt;</span> <span class="tok-mi">15</span><span class="tok-o">|:</span>             <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span>
-            <span class="tok-o">=============================</span>
+            <span class="tok-o">===========================</span>
+            <span class="tok-o">|&gt;</span> <span class="tok-mi">30</span><span class="tok-o">|:</span>           <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">],</span>
+            <span class="tok-o">---------------------------</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">15</span> <span class="tok-p">..</span> <span class="tok-err">≤</span> <span class="tok-mi">30</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">---------------------------</span>
+            <span class="tok-o">|&lt;</span> <span class="tok-mi">15</span><span class="tok-o">|:</span>           <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span>
+            <span class="tok-o">===========================</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>
     <span class="tok-o">|</span> <span class="tok-nx">Possible</span> <span class="tok-nx">values</span><span class="tok-o">:</span>
     <span class="tok-o">|</span>    <span class="tok-o">|</span><span class="tok-nx">excluded</span><span class="tok-o">|</span><span class="tok-p">,</span> <span class="tok-o">|</span><span class="tok-nx">anaemia</span> <span class="tok-nx">of</span> <span class="tok-nx">pregnancy</span><span class="tok-o">|</span>
     <span class="tok-o">|</span>
-    <span class="tok-nx">anaemia_type</span>: <span class="tok-kt">Terminology_term</span> <span class="tok-o">&lt;&lt;</span><span class="tok-nx">anaemia_type</span><span class="tok-o">&gt;</span><span class="tok-p">},</span>
+    <span class="tok-nx">anaemia_type</span>: <span class="tok-kt">Terminology_term</span> <span class="tok-err">«</span><span class="tok-nx">anaemia_type</span><span class="tok-err">»</span><span class="tok-p">,</span>
         <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">not</span> <span class="tok-nx">has_anaemia_of_pregnancy</span> <span class="tok-o">?</span> <span class="tok-p">[</span><span class="tok-nx">excluded</span><span class="tok-p">]</span> <span class="tok-o">:</span> <span class="tok-p">[</span><span class="tok-nx">anaemia_of_pregnancy</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
@@ -1275,20 +1293,20 @@
 
     <span class="tok-nx">ki67</span>: <span class="tok-kt">Quantity</span>
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">60</span> <span class="tok-nx">days</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">-------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-o">|&gt;=</span> <span class="tok-mi">14</span><span class="tok-o">%|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span> <span class="tok-o">|&lt;</span> <span class="tok-mi">14</span><span class="tok-o">%|</span>
-            <span class="tok-o">-------------------</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;%&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">------------------</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">14</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">high</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span> <span class="tok-mi">14</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span>
+            <span class="tok-o">------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">ejection_fraction</span>: <span class="tok-kt">Quantity</span>
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">60</span> <span class="tok-nx">days</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">--------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|&gt;=</span> <span class="tok-mi">40</span><span class="tok-o">%|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span>  <span class="tok-o">:</span>   <span class="tok-o">|&lt;</span> <span class="tok-mi">40</span><span class="tok-o">%|</span>
-            <span class="tok-o">--------------------</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;%&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">-------------------</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">40</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
+            <span class="tok-o">|&lt;</span> <span class="tok-mi">40</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">low</span><span class="tok-p">]</span>
+            <span class="tok-o">-------------------</span>
         <span class="tok-p">;</span>
 
 <span class="tok-nx">rules</span> <span class="tok-o">--</span> <span class="tok-nx">Conditions</span>
@@ -1372,7 +1390,7 @@
                         <span class="tok-p">(</span><span class="tok-nx">tnm_t</span> <span class="tok-o">&gt;</span> <span class="tok-s1">&#39;1a&#39;</span> <span class="tok-nx">or</span> <span class="tok-nx">tnm_n</span> <span class="tok-o">&gt;</span> <span class="tok-s1">&#39;0&#39;</span><span class="tok-p">)</span><span class="tok-o">:</span>                   <span class="tok-p">[</span><span class="tok-nx">taxanes</span><span class="tok-p">],</span>
                         <span class="tok-o">------------------------------------------------------------------------</span>
                         <span class="tok-nx">molecular_subtype</span> <span class="tok-o">=</span> <span class="tok-p">[</span><span class="tok-nx">luminal_A</span><span class="tok-p">]</span> <span class="tok-nx">and</span>
-                        <span class="tok-p">(</span><span class="tok-nx">tnm_t</span> <span class="tok-o">&gt;=</span> <span class="tok-s1">&#39;3&#39;</span> <span class="tok-nx">or</span> <span class="tok-nx">tnm_n</span> <span class="tok-o">&gt;=</span> <span class="tok-s1">&#39;2&#39;</span> <span class="tok-nx">or</span> <span class="tok-nx">tnm_g</span> <span class="tok-o">&gt;=</span> <span class="tok-s1">&#39;3&#39;</span><span class="tok-p">)</span><span class="tok-o">:</span>  <span class="tok-p">[</span><span class="tok-nx">anthracyclines</span><span class="tok-p">],</span>
+                        <span class="tok-p">(</span><span class="tok-nx">tnm_t</span> <span class="tok-err">≥</span> <span class="tok-s1">&#39;3&#39;</span> <span class="tok-nx">or</span> <span class="tok-nx">tnm_n</span> <span class="tok-err">≥</span> <span class="tok-s1">&#39;2&#39;</span> <span class="tok-nx">or</span> <span class="tok-nx">tnm_g</span> <span class="tok-err">≥</span> <span class="tok-s1">&#39;3&#39;</span><span class="tok-p">)</span><span class="tok-o">:</span>  <span class="tok-p">[</span><span class="tok-nx">anthracyclines</span><span class="tok-p">],</span>
                         <span class="tok-o">------------------------------------------------------------------------</span>
                         <span class="tok-nx">molecular_subtype</span> <span class="tok-o">=</span> <span class="tok-p">[</span><span class="tok-nx">luminal_B_HER2_positive</span><span class="tok-p">]</span> <span class="tok-nx">and</span>
                         <span class="tok-p">(</span><span class="tok-nx">tnm_t</span> <span class="tok-o">=</span> <span class="tok-s1">&#39;1b&#39;</span> <span class="tok-nx">or</span> <span class="tok-nx">tnm_t</span> <span class="tok-o">=</span> <span class="tok-s1">&#39;1c&#39;</span> <span class="tok-nx">and</span> <span class="tok-nx">tnm_n</span> <span class="tok-o">=</span> <span class="tok-s1">&#39;0&#39;</span><span class="tok-p">)</span> <span class="tok-nx">or</span>
@@ -1549,9 +1567,9 @@
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">1</span> <span class="tok-nx">min</span>
         <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
             <span class="tok-o">------------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|&lt;=</span> <span class="tok-mi">99</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-o">|</span><span class="tok-mi">100</span> <span class="tok-p">..</span> <span class="tok-mi">120</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|&gt;=</span> <span class="tok-mi">121</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span>
+            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">99</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">100</span> <span class="tok-p">..</span> <span class="tok-mi">120</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">121</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span>
             <span class="tok-o">------------------------------------</span>
         <span class="tok-p">;</span>
 
@@ -1559,8 +1577,8 @@
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">10</span> <span class="tok-nx">min</span>
         <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
             <span class="tok-o">--------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">critical_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|&lt;</span> <span class="tok-mi">90</span> <span class="tok-nx">mm</span><span class="tok-p">[</span><span class="tok-nx">Hg</span><span class="tok-p">]</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">normal_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&gt;=</span> <span class="tok-mi">90</span> <span class="tok-nx">mm</span><span class="tok-p">[</span><span class="tok-nx">Hg</span><span class="tok-p">]</span><span class="tok-o">|</span>
+            <span class="tok-o">|&lt;</span> <span class="tok-mi">90</span> <span class="tok-nx">mm</span><span class="tok-p">[</span><span class="tok-nx">Hg</span><span class="tok-p">]</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">critical_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">90</span> <span class="tok-nx">mm</span><span class="tok-p">[</span><span class="tok-nx">Hg</span><span class="tok-p">]</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">normal_risk</span><span class="tok-p">]</span>
             <span class="tok-o">--------------------------------</span>
         <span class="tok-p">;</span>
 
@@ -1571,9 +1589,9 @@
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">8</span> <span class="tok-nx">hr</span>
         <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
             <span class="tok-o">------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|&gt;=</span> <span class="tok-mi">93</span> <span class="tok-o">%|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|</span><span class="tok-mi">89</span> <span class="tok-p">..</span> <span class="tok-mi">92</span> <span class="tok-o">%|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&lt;=</span> <span class="tok-mi">88</span> <span class="tok-o">%|</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">93</span> <span class="tok-o">%|:</span>       <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">89</span> <span class="tok-p">..</span> <span class="tok-mi">92</span> <span class="tok-o">%|:</span>   <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">88</span> <span class="tok-o">%|:</span>      <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
             <span class="tok-o">------------------------------</span>
         <span class="tok-p">;</span>
 
@@ -1581,9 +1599,9 @@
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">2</span> <span class="tok-nx">min</span>
         <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
             <span class="tok-o">----------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|&lt;=</span> <span class="tok-mi">22</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|</span><span class="tok-mi">23</span> <span class="tok-p">..</span> <span class="tok-mi">28</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&gt;=</span> <span class="tok-mi">29</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span>
+            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">22</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">23</span> <span class="tok-p">..</span> <span class="tok-mi">28</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">29</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
             <span class="tok-o">----------------------------------</span>
         <span class="tok-p">;</span>
 
@@ -1591,23 +1609,11 @@
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">2</span> <span class="tok-nx">min</span>
         <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
             <span class="tok-o">---------------------------------</span>
-            <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|=</span> <span class="tok-mi">0</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>   <span class="tok-o">|</span><span class="tok-mi">1</span> <span class="tok-p">..</span> <span class="tok-mi">2</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>  <span class="tok-o">|</span><span class="tok-mi">3</span> <span class="tok-p">..</span> <span class="tok-mi">4</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span><span class="tok-p">,</span>
-            <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span><span class="tok-o">:</span>    <span class="tok-o">|&gt;=</span> <span class="tok-mi">5</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|</span>
+            <span class="tok-o">|=</span> <span class="tok-mi">0</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">1</span> <span class="tok-p">..</span> <span class="tok-mi">2</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">3</span> <span class="tok-p">..</span> <span class="tok-mi">4</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">5</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
             <span class="tok-o">---------------------------------</span>
-        <span class="tok-p">;</span>
-
-    <span class="tok-nx">has_altered_LOC</span>: <span class="tok-kt">Boolean</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
-        <span class="tok-p">;</span>
-
-    <span class="tok-nx">has_hemoptysis</span>: <span class="tok-kt">Boolean</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
-        <span class="tok-p">;</span>
-
-    <span class="tok-nx">has_persistent_dyspnea</span>: <span class="tok-kt">Boolean</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>
@@ -1625,6 +1631,18 @@
     <span class="tok-o">|</span> <span class="tok-nx">Post</span> <span class="tok-nx">exertion</span> <span class="tok-nx">SpO2</span>
     <span class="tok-o">|</span>
     <span class="tok-nx">SpO2_exertion_post</span>: <span class="tok-kt">Quantity</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
+        <span class="tok-p">;</span>
+
+    <span class="tok-nx">has_altered_LOC</span>: <span class="tok-kt">Boolean</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
+        <span class="tok-p">;</span>
+
+    <span class="tok-nx">has_hemoptysis</span>: <span class="tok-kt">Boolean</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
+        <span class="tok-p">;</span>
+
+    <span class="tok-nx">has_persistent_dyspnea</span>: <span class="tok-kt">Boolean</span>
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">5</span> <span class="tok-nx">min</span>
         <span class="tok-p">;</span>
 
@@ -1709,7 +1727,7 @@
             <span class="tok-o">----------------------------</span>
             <span class="tok-o">|</span><span class="tok-mi">6</span><span class="tok-p">..</span><span class="tok-mi">8</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">],</span>
             <span class="tok-o">----------------------------</span>
-            <span class="tok-o">|&gt;=</span> <span class="tok-mi">9</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">critical_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">9</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">critical_risk</span><span class="tok-p">]</span>
             <span class="tok-o">============================</span>
         <span class="tok-p">;</span>
 
@@ -1764,7 +1782,7 @@
             <span class="tok-nx">has_persistent_dyspnea</span> <span class="tok-nx">or</span>
             <span class="tok-nx">is_LT_care_resident</span><span class="tok-o">:</span>                <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
             <span class="tok-o">----------------------------------------------------</span>
-            <span class="tok-nx">risk_factors_count</span> <span class="tok-err">∈</span> <span class="tok-p">{</span><span class="tok-o">|&gt;=</span> <span class="tok-mi">2</span><span class="tok-o">|</span><span class="tok-p">}</span><span class="tok-o">:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
+            <span class="tok-nx">risk_factors_count</span> <span class="tok-err">∈</span> <span class="tok-p">{</span><span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">2</span><span class="tok-o">|</span><span class="tok-p">}</span><span class="tok-o">:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
             <span class="tok-o">----------------------------------------------------</span>
             <span class="tok-nx">risk_factors_count</span> <span class="tok-err">∈</span> <span class="tok-p">{</span><span class="tok-o">|</span><span class="tok-mi">0</span><span class="tok-p">..</span><span class="tok-mi">1</span><span class="tok-o">|</span><span class="tok-p">}</span><span class="tok-o">:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">]</span>
             <span class="tok-o">====================================================</span>
@@ -1794,7 +1812,7 @@
             <span class="tok-o">========================</span>
             <span class="tok-o">|&lt;</span> <span class="tok-mi">3</span><span class="tok-o">%|:</span>   <span class="tok-p">[</span><span class="tok-nx">normal</span><span class="tok-p">],</span>
             <span class="tok-o">------------------------</span>
-            <span class="tok-o">|&gt;=</span> <span class="tok-mi">3</span><span class="tok-o">%|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">3</span><span class="tok-o">%|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">]</span>
             <span class="tok-o">========================</span>
         <span class="tok-p">;</span>
 
@@ -1947,7 +1965,7 @@
     <span class="tok-nx">gender</span>: <span class="tok-kt">Terminology_code</span> <span class="tok-err">«</span><span class="tok-nx">sexes</span><span class="tok-err">»</span><span class="tok-p">,</span>
         <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-k">case</span> <span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span> <span class="tok-k">in</span>
             <span class="tok-o">=====================</span>
-            <span class="tok-p">{[</span><span class="tok-nx">male</span><span class="tok-p">]}</span><span class="tok-o">:</span>     <span class="tok-p">[</span><span class="tok-nx">male</span><span class="tok-p">],</span>
+            <span class="tok-p">[</span><span class="tok-nx">male</span><span class="tok-p">]</span><span class="tok-o">:</span>     <span class="tok-p">[</span><span class="tok-nx">male</span><span class="tok-p">],</span>
             <span class="tok-o">---------------------</span>
             <span class="tok-o">*:</span>          <span class="tok-p">[</span><span class="tok-nx">female</span><span class="tok-p">]</span>
             <span class="tok-o">=====================</span>
@@ -1960,7 +1978,7 @@
             <span class="tok-o">----------------</span>
             <span class="tok-o">|</span><span class="tok-mi">65</span><span class="tok-p">..</span><span class="tok-mi">74</span><span class="tok-o">|:</span>    <span class="tok-mi">1</span><span class="tok-p">,</span>
             <span class="tok-o">----------------</span>
-            <span class="tok-o">|&gt;=</span><span class="tok-mi">75</span><span class="tok-o">|:</span>      <span class="tok-mi">2</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span><span class="tok-mi">75</span><span class="tok-o">|:</span>      <span class="tok-mi">2</span>
             <span class="tok-o">================</span>
         <span class="tok-p">;</span>
 
@@ -1991,7 +2009,7 @@
             <span class="tok-o">=============================</span>
             <span class="tok-mi">0</span><span class="tok-o">:</span>       <span class="tok-p">[</span><span class="tok-nx">low_risk</span><span class="tok-p">],</span>
             <span class="tok-mi">1</span><span class="tok-o">:</span>       <span class="tok-p">[</span><span class="tok-nx">intermediate_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|&gt;=</span><span class="tok-mi">2</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">high_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span><span class="tok-mi">2</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">high_risk</span><span class="tok-p">]</span>
             <span class="tok-o">=============================</span>
         <span class="tok-p">;</span>
 
@@ -2642,19 +2660,19 @@ ORDER BY
     <span class="tok-o">|</span>
 
     <span class="tok-nx">age_1_centred</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">age_in_years</span><span class="tok-o">/</span><span class="tok-mi">10</span><span class="tok-p">)</span> <span class="tok-o">^</span> <span class="tok-mf">0.5</span>  <span class="tok-o">-</span> <span class="tok-nx">Age_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">age_in_years</span><span class="tok-o">/</span><span class="tok-mi">10</span><span class="tok-p">)</span> <span class="tok-o">^</span> <span class="tok-mf">0.5</span>  <span class="tok-o">-</span> <span class="tok-nx">Age_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">age_1_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">age_1_centred</span> <span class="tok-o">*</span> <span class="tok-nx">Age_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">age_1_centred</span> <span class="tok-o">*</span> <span class="tok-nx">Age_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">age_2_centred</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">age_in_years</span><span class="tok-o">/</span><span class="tok-mi">10</span> <span class="tok-o">-</span> <span class="tok-nx">Age_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">age_in_years</span><span class="tok-o">/</span><span class="tok-mi">10</span> <span class="tok-o">-</span> <span class="tok-nx">Age_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">age_2_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">age_2_centred</span> <span class="tok-o">*</span> <span class="tok-nx">Age_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">age_2_centred</span> <span class="tok-o">*</span> <span class="tok-nx">Age_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">BMI_scaled</span>: <span class="tok-kt">Real</span>
@@ -2662,24 +2680,24 @@ ORDER BY
         <span class="tok-p">;</span>
 
     <span class="tok-nx">BMI_1_centred</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_scaled</span> <span class="tok-o">^</span> <span class="tok-mf">0.5</span> <span class="tok-o">-</span> <span class="tok-nx">BMI_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_scaled</span> <span class="tok-o">^</span> <span class="tok-mf">0.5</span> <span class="tok-o">-</span> <span class="tok-nx">BMI_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">BMI_1_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_1_centred</span> <span class="tok-o">*</span> <span class="tok-nx">BMI_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_1_centred</span> <span class="tok-o">*</span> <span class="tok-nx">BMI_1_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">BMI_2_centred</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_scaled</span> <span class="tok-o">^</span> <span class="tok-mf">0.5</span> <span class="tok-o">*</span> <span class="tok-p">{</span><span class="tok-nx">math</span><span class="tok-p">}.</span><span class="tok-nx">ln</span> <span class="tok-p">(</span><span class="tok-nx">BMI_scaled</span><span class="tok-p">)</span> <span class="tok-o">-</span> <span class="tok-nx">BMI_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_scaled</span> <span class="tok-o">^</span> <span class="tok-mf">0.5</span> <span class="tok-o">*</span> <span class="tok-p">{</span><span class="tok-nx">math</span><span class="tok-p">}.</span><span class="tok-nx">ln</span> <span class="tok-p">(</span><span class="tok-nx">BMI_scaled</span><span class="tok-p">)</span> <span class="tok-o">-</span> <span class="tok-nx">BMI_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">BMI_2_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_2_centred</span> <span class="tok-o">*</span> <span class="tok-nx">BMI_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-nx">BMI_2_centred</span> <span class="tok-o">*</span> <span class="tok-nx">BMI_2_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">rheumatoid_arthritis_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">has_rheumatoid_arthritis</span><span class="tok-p">.</span><span class="tok-nx">as_integer</span> <span class="tok-o">-</span> <span class="tok-nx">Rheumatoid_arthritis_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]])</span>
-                    <span class="tok-o">*</span> <span class="tok-nx">Rheumatoid_arthritis_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">has_rheumatoid_arthritis</span><span class="tok-p">.</span><span class="tok-nx">as_integer</span> <span class="tok-o">-</span> <span class="tok-nx">Rheumatoid_arthritis_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">])</span>
+                    <span class="tok-o">*</span> <span class="tok-nx">Rheumatoid_arthritis_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">systolic_BP</span>: <span class="tok-kt">Real</span>
@@ -2687,18 +2705,18 @@ ORDER BY
         <span class="tok-p">;</span>
 
     <span class="tok-nx">systolic_BP_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">systolic_BP</span> <span class="tok-o">-</span> <span class="tok-nx">Systolic_BP_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]])</span>
-                    <span class="tok-o">*</span> <span class="tok-nx">Systolic_BP_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">systolic_BP</span> <span class="tok-o">-</span> <span class="tok-nx">Systolic_BP_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">])</span>
+                    <span class="tok-o">*</span> <span class="tok-nx">Systolic_BP_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">systolic_BP_std_dev_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">systolic_BP_std_deviation</span> <span class="tok-o">-</span> <span class="tok-nx">Systolic_BP_std_dev_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]])</span>
-                    <span class="tok-o">*</span> <span class="tok-nx">Systolic_BP_std_dev_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">systolic_BP_std_deviation</span> <span class="tok-o">-</span> <span class="tok-nx">Systolic_BP_std_dev_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">])</span>
+                    <span class="tok-o">*</span> <span class="tok-nx">Systolic_BP_std_dev_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">townsend_score</span>: <span class="tok-kt">Real</span>
-        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">townsend_score</span> <span class="tok-o">-</span> <span class="tok-nx">Townsend_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">centre</span><span class="tok-p">]])</span>
-                    <span class="tok-o">*</span> <span class="tok-nx">Townsend_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nx">scale</span><span class="tok-p">]]</span>
+        <span class="tok-nx">Result</span> <span class="tok-o">:=</span> <span class="tok-p">(</span><span class="tok-nx">townsend_score</span> <span class="tok-o">-</span> <span class="tok-nx">Townsend_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">centre</span><span class="tok-p">])</span>
+                    <span class="tok-o">*</span> <span class="tok-nx">Townsend_stats</span><span class="tok-p">[</span><span class="tok-nx">BASIC</span><span class="tok-p">.</span><span class="tok-nx">sex</span><span class="tok-p">][</span><span class="tok-nx">scale</span><span class="tok-p">]</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>
@@ -2800,12 +2818,6 @@ ORDER BY
     <span class="tok-nx">terminology</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
         <span class="tok-nx">term_definitions</span><span class="tok-o">:</span> <span class="tok-p">{</span>
             <span class="tok-s2">&quot;en&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
-                <span class="tok-s2">&quot;date_of_birth&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
-                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Date of birth&quot;</span>
-                <span class="tok-p">},</span>
-                <span class="tok-s2">&quot;age_in_years&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
-                    <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Age (years)&quot;</span>
-                <span class="tok-p">},</span>
                 <span class="tok-s2">&quot;qRisk_score&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
                     <span class="tok-nx">text</span><span class="tok-o">:</span> <span class="tok-s2">&quot;QRISK2 score&quot;</span>
                 <span class="tok-p">},</span>

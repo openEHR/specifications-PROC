@@ -95,11 +95,11 @@ input -- Tracked State
         ;
 
     vaginal_blood_flow: Quantity
-        currency = 30mins
-        ranges =
-            ------------------------------
-            [critical_high]: |> 500 mL/hr|
-            ------------------------------
+        currency = 30mins,
+        ranges["mL/hr"] =
+            ---------------------------
+            |> 500|:    [critical_high]
+            ---------------------------
         ;
 
     |
@@ -120,13 +120,16 @@ input -- Tracked State
         currency = 48h
         ;
 
-    amniotic_volume: Real
-        currency = 24h
-        ranges =
+    |
+    | Amniotic fluid index (cm) via 4-quadrant method
+    |
+    amniotic_fluid_index: Real
+        currency = 24h,
+        ranges["cm"] =
             ------------------------------------
-            [polyhydramnios]:    |> 14|,
-            [normal]:            |>= 5 .. <= 14|,
-            [oligohydramnios]:   |< 5|
+            |> 14|:            [polyhydramnios],
+            |≥ 5 .. ≤ 14|:     [normal],
+            |< 5|:             [oligohydramnios]
             ------------------------------------
         ;
 
@@ -139,22 +142,22 @@ rules -- Main
     |
     | Convert BMI to ranges
     |
-    bmi_range: Terminology_code <<COMMON.simple_ranges>},
+    bmi_range: Terminology_code «COMMON.simple_ranges»,
         Result := case BMI.BMI in
-            =============================
-            |>30|:              [high],
-            -----------------------------
-            |>=15 .. <= 30|:    [normal],
-            -----------------------------
-            |< 15|:             [low]
-            =============================
+            ===========================
+            |> 30|:           [high],
+            ---------------------------
+            |≥ 15 .. ≤ 30|:   [normal],
+            ---------------------------
+            |< 15|:           [low]
+            ===========================
         ;
     
     |
     | Possible values:
     |    |excluded|, |anaemia of pregnancy|
     |
-    anaemia_type: Terminology_term <<anaemia_type>},
+    anaemia_type: Terminology_term «anaemia_type»,
         Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
         ;
 

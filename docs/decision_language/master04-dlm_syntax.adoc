@@ -328,17 +328,20 @@ The ranges for a subject variable are declared in the following way:
 ----
 input -- Tracked State
 
-    systolic_blood_pressure: Quantity
+    |
+    | Systolic BP (mmHg)
+    |
+    systolic_blood_pressure: Real
         currency = 1 min
-        ranges =
-            ------------------------------------------------
-            [critical_high]:  |>= 180 mm[Hg]|,
-            [very_high]:      |>  140 mm[Hg]|,
-            [high]:           |>  120 mm[Hg]|,
-            [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
-            [low]:            |<=  90 mm[Hg]|,
-            [critical_low]:   |<=  50 mm[Hg]|
-            ------------------------------------------------
+        ranges["mmHg"] =
+            ------------------------------------
+            |≥ 180|:            [critical_high],
+            |> 140|:            [very_high],
+            |> 120|:            [high],
+            |> 90 .. ≤ 120|:    [normal],
+            |≤ 90|:             [low],
+            |≤ 50|:             [critical_low]
+            ------------------------------------
         ;
 ----
 
@@ -348,13 +351,13 @@ The above declaration allows the use of the predefined `range` function, which r
 ----
     Result :=
         case systolic_blood_pressure.range in
-            =======================================
-            [critical_high]:           [emergency],
-            ---------------------------------------
-            {[high], [very_high]}:     [high_risk],
-            ---------------------------------------
-            *:                         [monitor]
-            =======================================
+            =====================================
+            [critical_high]:         [emergency],
+            -------------------------------------
+            [high], [very_high]:     [high_risk],
+            -------------------------------------
+            *:                       [monitor]
+            =====================================
         ;
 ----
 
@@ -372,35 +375,30 @@ Sometimes there are multiple ranges, usually due to alternative units systems. T
 input -- Tracked State
 
     PaO2_FiO2_ratio: Quantity
-        currency = 1 min
-        ranges = {
-            =================================================
-            [SI]: {
-                ---------------------------------------------
-                [normal]:         |≥400 mm[Hg]|,
-                [low]:            |300 mm[Hg] .. 399 mm[Hg]|,
-                [very_low]:       |200 mm[Hg] .. 299 mm[Hg]|,
-                [extremely_low]:  |100 mm[Hg] .. 199 mm[Hg]|,
-                [critical_low]:   |<100 mm[Hg]|
-                ---------------------------------------------
-            },
-            [metric]: {
-                -----------------------------------------
-                [normal]:         |≥53 kPa|,
-                [low]:            |39.9 kPa .. 53 kPa|,
-                [very_low]:       |26.6 kPa .. 39.8 kPa|,
-                [extremely_low]:  |13.3 kPa .. 26.5 kPa|,
-                [critical_low]:   |<13.3 kPa|
-                -----------------------------------------
-            }
-            ==================================================
-        }
+        currency = 1 min,
+        ranges["mm[Hg]"] =
+            ---------------------------------
+            |≥400 |:        [normal],
+            |300 .. 399|:   [low],
+            |200 .. 299|:   [very_low],
+            |100 .. 199|:   [extremely_low],
+            |<100|:         [critical_low]
+            ---------------------------------
+        ;,
+        ranges["kPa"] = 
+            ---------------------------------
+            |≥53|:          [normal],
+            |39.9 .. 53|:   [low],
+            |26.6 .. 39.8|: [very_low],
+            |13.3 .. 26.5|: [extremely_low],
+            |<13.3|:        [critical_low]
+            ---------------------------------
         ;
 ----
 
-To access a range within this structure, an expression of the form `systolic_blood_pressure.in_range ([metric], [high])` is needed. This makes use of an overload of the `in_range()` function taking two keys. We can now see that the simpler form `systolic_blood_pressure.in_range ([critical_high])` first chooses the first range group, and then extracts the required entry.
+To access a range within this structure, an expression of the form `systolic_blood_pressure.in_range (["kPa"], [high])` is needed. This makes use of an overload of the `in_range()` function taking two keys. We can now see that the simpler form `systolic_blood_pressure.in_range ([critical_high])` first chooses the first range group, and then extracts the required entry.
 
-The above case reveals the general structure of the `ranges` property, with a formal type equivalent to `Map<Terminology_code, Map <Terminology_code, Interval <T>>`, where `T` is the declared type of the subject variable. In both the simple and discriminator cases, the entry `[very_high], |>  140 mm[Hg]|` defines a `[key, value]` pair whose key is of type `Terminology_code` and whose value is of type `Interval <Quantity>`.
+The above case reveals the general structure of the `ranges` property, with a formal type equivalent to `Map <Terminology_code, Map <Interval <T>, Terminology_code>`, where `T` is the declared type of the subject variable. In both the simple and discriminator cases, the entry `|>  140|: [very_high]` defines a `[key, value]` pair whose key is of type `Interval <Real>` and whose value is of type `Terminology_code`.
 
 == Rules Section
 

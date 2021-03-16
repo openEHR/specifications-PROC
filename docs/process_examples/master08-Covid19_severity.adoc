@@ -103,9 +103,9 @@ input -- Tracked State
         currency = 1 min
         ranges =
             ------------------------------------
-            [mild_low_risk]:  |<= 99 /min|,
-            [mild_at_risk]:   |100 .. 120 /min|,
-            [moderate_risk]:  |>= 121 /min|
+            |≤ 99 /min|:       [mild_low_risk],
+            |100 .. 120 /min|:  [mild_at_risk],
+            |≥ 121 /min|:       [moderate_risk]
             ------------------------------------
         ;
         
@@ -113,8 +113,8 @@ input -- Tracked State
         currency = 10 min
         ranges =
             --------------------------------
-            [critical_risk]:  |< 90 mm[Hg]|,
-            [normal_risk]:    |>= 90 mm[Hg]|
+            |< 90 mm[Hg]|:  [critical_risk],
+            |≥ 90 mm[Hg]|:  [normal_risk]
             --------------------------------
         ;
         
@@ -125,9 +125,9 @@ input -- Tracked State
         currency = 8 hr
         ranges =
             ------------------------------
-            [mild_low_risk]:  |>= 93 %|,
-            [moderate_risk]:  |89 .. 92 %|,
-            [severe_risk]:    |<= 88 %|
+            |≥ 93 %|:       [mild_low_risk],
+            |89 .. 92 %|:   [moderate_risk],
+            |≤ 88 %|:      [severe_risk]
             ------------------------------
         ;
         
@@ -135,9 +135,9 @@ input -- Tracked State
         currency = 2 min
         ranges =
             ----------------------------------
-            [mild_low_risk]:  |<= 22 /min|,
-            [moderate_risk]:  |23 .. 28 /min|,
-            [severe_risk]:    |>= 29 /min|
+            |≤ 22 /min|:     [mild_low_risk],
+            |23 .. 28 /min|:  [moderate_risk],
+            |≥ 29 /min|:     [severe_risk]
             ----------------------------------
         ;
         
@@ -145,25 +145,13 @@ input -- Tracked State
         currency = 2 min
         ranges =
             ---------------------------------
-            [mild_low_risk]:  |= 0 L/min|,
-            [mild_at_risk]:   |1 .. 2 L/min|,
-            [moderate_risk]:  |3 .. 4 L/min|,
-            [severe_risk]:    |>= 5 L/min|
+            |= 0 L/min|:     [mild_low_risk],
+            |1 .. 2 L/min|:  [mild_at_risk],
+            |3 .. 4 L/min|:  [moderate_risk],
+            |≥ 5 L/min|:     [severe_risk]
             ---------------------------------
         ;
         
-    has_altered_LOC: Boolean
-        currency = 5 min
-        ;
-        
-    has_hemoptysis: Boolean
-        currency = 5 min
-        ;
-        
-    has_persistent_dyspnea: Boolean
-        currency = 5 min
-        ;
-    
     |
     | Reference SpO2 for exertional test: a 1-minute sit-to-stand 
     | test can be performed within the patient’s room. 
@@ -181,7 +169,19 @@ input -- Tracked State
     SpO2_exertion_post: Quantity
         currency = 5 min
         ;
+    
+    has_altered_LOC: Boolean
+        currency = 5 min
+        ;
         
+    has_hemoptysis: Boolean
+        currency = 5 min
+        ;
+        
+    has_persistent_dyspnea: Boolean
+        currency = 5 min
+        ;
+            
 rules -- Main
 
     heart_rate_score: Integer
@@ -263,7 +263,7 @@ rules -- Main
             ----------------------------
             |6..8|:     [severe_risk],
             ----------------------------
-            |>= 9|:     [critical_risk]
+            |≥ 9|:     [critical_risk]
             ============================
         ;
 
@@ -318,7 +318,7 @@ rules -- Main
             has_persistent_dyspnea or
             is_LT_care_resident:                [moderate_risk],
             ----------------------------------------------------
-            risk_factors_count ∈ {|>= 2|}:     [mild_at_risk],
+            risk_factors_count ∈ {|≥ 2|}:     [mild_at_risk],
             ----------------------------------------------------
             risk_factors_count ∈ {|0..1|}:     [mild_low_risk]
             ====================================================
@@ -348,7 +348,7 @@ rules -- Main
             ========================
             |< 3%|:   [normal],
             ------------------------
-            |>= 3%|:  [mild_at_risk]
+            |≥ 3%|:  [mild_at_risk]
             ========================
         ;
 

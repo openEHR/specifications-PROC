@@ -469,19 +469,19 @@ rules -- Main
     |
     
     age_1_centred: Real
-        Result := (BASIC.age_in_years/10) ^ 0.5  - Age_1_stats[BASIC.sex, [centre]]
+        Result := (BASIC.age_in_years/10) ^ 0.5  - Age_1_stats[BASIC.sex][centre]
         ;
         
     age_1_score: Real
-        Result := age_1_centred * Age_1_stats[BASIC.sex, [scale]]
+        Result := age_1_centred * Age_1_stats[BASIC.sex][scale]
         ;
         
     age_2_centred: Real
-        Result := BASIC.age_in_years/10 - Age_2_stats[BASIC.sex, [centre]]
+        Result := BASIC.age_in_years/10 - Age_2_stats[BASIC.sex][centre]
         ;
 
     age_2_score: Real
-        Result := age_2_centred * Age_2_stats[BASIC.sex, [scale]]
+        Result := age_2_centred * Age_2_stats[BASIC.sex][scale]
         ;
         
     BMI_scaled: Real
@@ -489,24 +489,24 @@ rules -- Main
         ;
         
     BMI_1_centred: Real
-        Result := BMI_scaled ^ 0.5 - BMI_1_stats[BASIC.sex, [centre]]
+        Result := BMI_scaled ^ 0.5 - BMI_1_stats[BASIC.sex][centre]
         ;
         
     BMI_1_score: Real
-        Result := BMI_1_centred * BMI_1_stats[BASIC.sex, [scale]]
+        Result := BMI_1_centred * BMI_1_stats[BASIC.sex][scale]
         ;
         
     BMI_2_centred: Real
-        Result := BMI_scaled ^ 0.5 * {math}.ln (BMI_scaled) - BMI_2_stats[BASIC.sex, [centre]]
+        Result := BMI_scaled ^ 0.5 * {math}.ln (BMI_scaled) - BMI_2_stats[BASIC.sex][centre]
         ;
         
     BMI_2_score: Real
-        Result := BMI_2_centred * BMI_2_stats[BASIC.sex, [scale]]
+        Result := BMI_2_centred * BMI_2_stats[BASIC.sex][scale]
         ;
         
     rheumatoid_arthritis_score: Real
-        Result := (has_rheumatoid_arthritis.as_integer - Rheumatoid_arthritis_stats[BASIC.sex, [centre]]) 
-                    * Rheumatoid_arthritis_stats[BASIC.sex, [scale]]
+        Result := (has_rheumatoid_arthritis.as_integer - Rheumatoid_arthritis_stats[BASIC.sex][centre]) 
+                    * Rheumatoid_arthritis_stats[BASIC.sex][scale]
         ;
     
     systolic_BP: Real
@@ -514,18 +514,18 @@ rules -- Main
         ;
 
     systolic_BP_score: Real
-        Result := (systolic_BP - Systolic_BP_stats[BASIC.sex, [centre]]) 
-                    * Systolic_BP_stats[BASIC.sex, [scale]]
+        Result := (systolic_BP - Systolic_BP_stats[BASIC.sex][centre]) 
+                    * Systolic_BP_stats[BASIC.sex][scale]
         ;
 
     systolic_BP_std_dev_score: Real
-        Result := (systolic_BP_std_deviation - Systolic_BP_std_dev_stats[BASIC.sex, [centre]]) 
-                    * Systolic_BP_std_dev_stats[BASIC.sex, [scale]]
+        Result := (systolic_BP_std_deviation - Systolic_BP_std_dev_stats[BASIC.sex][centre]) 
+                    * Systolic_BP_std_dev_stats[BASIC.sex][scale]
         ;
         
     townsend_score: Real
-        Result := (townsend_score - Townsend_stats[BASIC.sex, [centre]]) 
-                    * Townsend_stats[BASIC.sex, [scale]]
+        Result := (townsend_score - Townsend_stats[BASIC.sex][centre]) 
+                    * Townsend_stats[BASIC.sex][scale]
         ;
         
     |
@@ -627,12 +627,6 @@ definitions -- Terminology
     terminology = {
         term_definitions: {
             "en" : {
-                "date_of_birth" : {
-                    text: "Date of birth"
-                },
-                "age_in_years" : {
-                    text: "Age (years)"
-                },
                 "qRisk_score" : {
                     text: "QRISK2 score"
                 },

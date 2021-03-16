@@ -91,55 +91,70 @@ input -- Tracked state
         time_window = tw_current_episode
         ;
 
-    neutrophils: Quantity
-        currency = 3d
-        ranges =
-            ----------------------------------
-            [normal]:      |>1 x 10^9/L|,
-            [low]:         |0.5 - 1 x 10^9/L|,
-            [very_low]:    |<0.5 x 10^9/L|
-            ----------------------------------
+    |
+    | Neutrophils
+    |
+    neutrophils: Real
+        currency = 3d,
+        ranges["/L"] =
+            --------------------------------
+            |>1 x 10^9|:          [normal],
+            |0.5 - 1 x 10^9|:     [low],
+            |<0.5 x 10^9|:        [very_low]
+            --------------------------------
         ;
 
-    platelets: Quantity
-        currency = 12h
-        ranges =
-            ----------------------------------
-            [normal]:      |>75 x 10^9/L|,
-            [low]:         |50 - 74 x 10^9/L|,
-            [very_low]:    |<50 x 10^9/L|
-            ----------------------------------
+    |
+    | Platelets
+    |
+    platelets: Real
+        currency = 12h,
+        ranges["/L"] =
+            ------------------------------
+            |>75 x 10^9|:       [normal],
+            |50 - 74 x 10^9|:   [low],
+            |<50 x 10^9|:       [very_low]
+            ------------------------------
         ;
 
-    bilirubin: Quantity
-        currency = 12h
-        ranges =
-            ----------------------------------
-            [normal]:      |<20 mmol/L|,
-            [high]:        |20 - 51 mmol/L|,
-            [very_high]:   |51 - 85 mmol/L|,
-            [crit_high]:   |>85 mmol/L|
-            ----------------------------------
+    |
+    | Bilirubins
+    |
+    bilirubin: Real
+        currency = 12h,
+        ranges["mmol/L"] =
+            ----------------------------
+            |<20|:          [normal],
+            |20 - 51|:      [high],
+            |51 - 85|:      [very_high],
+            |>85|:          [crit_high]
+            ---------------------------
         ;
 
-    gfr: Quantity
-        currency = 24h
-        ranges =
-            ----------------------------------
-            [normal]:      |>20 mL/min|,
-            [low]:         |10 - 20 mL/min|,
-            [very_low]:    |<10 mL/min|
-            ----------------------------------
+    |
+    | Glomerular filtration rate
+    |
+    gfr: Real
+        currency = 24h,
+        ranges["mL/min"] =
+            ----------------------
+            |>20|:      [normal],
+            |10 - 20|:  [low],
+            |<10|:      [very_low]  
+            ----------------------
         ;
 
-    ldh: Quantity
-        currency = 24h
-        ranges =
-            ----------------------------------
-            [normal]:      |>20 mL/min|,
-            [low]:         |10 - 20 mL/min|,
-            [very_low]:    |<10 mL/min|
-            ----------------------------------
+    |
+    | Lactate dehydrogenase
+    |
+    ldh: Real
+        currency = 24h,
+        ranges["mL/min"] =
+            --------------------------
+            |>20 |:         [normal],
+            |10 - 20|:      [low],
+            |<10|:          [very_low]
+            --------------------------
         ;
 
 rules -- Conditions
@@ -170,11 +185,11 @@ rules -- Main
     doxorubicin_dose: Quantity
         Result := doxorubicin_dose_per_m2 * BSA.bsa_m2
             * case bilirubin.range in
-                ===================
+                ====================
                 [high]:        0.5,
                 [very_high]:   0.25,
                 [crit_high]:   0.0
-                ===================
+                ====================
         ;
 
     |
