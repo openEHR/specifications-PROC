@@ -71,13 +71,15 @@
 <li><a href="#_care_pathways">4.1.2. Care Pathways</a></li>
 <li><a href="#_order_sets">4.1.3. Order Sets</a></li>
 <li><a href="#_representation_challenges">4.1.4. Representation Challenges</a></li>
+<li><a href="#_a_descriptive_model">4.1.5. A Descriptive Model</a></li>
 </ul>
 </li>
 <li><a href="#_care_plans">4.2. Care Plans</a></li>
 <li><a href="#_formalisation">4.3. Formalisation</a>
 <ul class="sectlevel3">
-<li><a href="#_general_vision">4.3.1. General Vision</a></li>
-<li><a href="#_separation_of_concerns">4.3.2. Separation of Concerns</a></li>
+<li><a href="#_conceptual_model_of_guidelines">4.3.1. Conceptual Model of Guidelines</a></li>
+<li><a href="#_general_vision">4.3.2. General Vision</a></li>
+<li><a href="#_separation_of_concerns">4.3.3. Separation of Concerns</a></li>
 </ul>
 </li>
 </ul>
@@ -210,11 +212,20 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.5.2</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="https://specifications.openehr.org/tickets/SPECPROC-45" target="_blank" rel="noopener">SPECPROC-45</a>. Add Process component Overview document.</p>
+<p><a href="https://specifications.openehr.org/tickets/SPECPROC-45" target="_blank" rel="noopener">SPECPROC-45</a>. Add Process component Overview document.<br>
+ Add conceptual CIG model; adjust nomenclature in artefacts diagram.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>16 Mar 2021</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>GDL-oriented review.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
  R Chen</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>30 Jan 2021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 Jan 2021</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.5.1</p></td>
@@ -550,7 +561,7 @@
 <p>Naive approaches to the use of IT to support clinical care process generally assume that the benefits are obvious and automatic, and as a result, often fail to understand in what form computer support may be useful. An error common among IT professionals is to imagine that a clinical workflow system will itself <em>perform</em> the work currently performed by humans, i.e. to replace them. Even with the advent of AI-driven autonomous surgical robots and sophisticated decision support, this view is mistaken, since the process that executes within a workflow engine is not the same thing as the work undertaken by its various performers. Instead, an executable clinical process is better understood as a <em>plan and related decision logic</em> whose execution creates a sophisticated presencial helper within the cognitive space of each connected worker in the real world.</p>
 </div>
 <div class="paragraph">
-<p>To understand the form a clinical workflow / planning system must take to be useful, we firstly need to understand how clinical work is performed in the real world.</p>
+<p>To understand the form a clinical planning system must take to be useful, we firstly need to understand how clinical work is performed in the real world.</p>
 </div>
 <div class="paragraph">
 <p>The first aspect to consider is that a significant proportion of the activities of healthcare delivery are not clinical <em>per se</em>, but administrative and logistical, such as registering, booking, scheduling, transfers of care and so on. Nevertheless, the timing and conditions that govern appointments and transfers are unavoidably clinically driven, for example: the visits during routine ante-natal care; follow-up appointments post breast cancer treatment; determination of when to discharge a patient to long term nursing or home care. This tells us that there will be some representation of long-term planning in a clinical process support system, not just in administrative systems.</p>
@@ -583,7 +594,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>limited capacity to <strong>deal with complexity</strong> unaided (often denoted as <a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>, which refers to the limited number of variables that the majority of human beings can keep in mind at one time);</p>
+<p>limited capacity to <strong>deal with complexity</strong> unaided, often denoted as <a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two" target="_blank" rel="noopener">the '7±2' problem</a>, which refers to the limited number of variables that the majority of human beings can keep in mind at one time;</p>
 </li>
 <li>
 <p>the inability to <strong>keep up with change</strong> (new medications, research etc); and</p>
@@ -620,10 +631,10 @@
 <p>A further clinical need which process automation can potentially address is reduction of <strong>documentation burden</strong>, which with the advent of EMR and other Health IT systems has become a major issue in recent years. In most healthcare delivery environments, clinical documentation is not synchronised with the process of the care delivery, but fitted in when possible, often after the fact. This creates a mental load on physicians, as well as sometimes forcing them to choose between more detailed documentation and spending time with the patient.</p>
 </div>
 <div class="paragraph">
-<p>Process automation could also address the disconnect between process and documenting by supporting <em>fine-grained, on-the-fly interaction with the EHR</em>, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior clinician having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).</p>
+<p>Process automation could also address the <strong>disconnect between work and documenting</strong> by supporting <em>fine-grained, on-the-fly interaction with the EHR</em>, such that as clinical work proceeds, documentation is also being done incrementally. This approach has the effect that all workers involved in the execution of a plan create documentation on the fly, rather than the senior clinician having to do all the documentation. When the work is done, the EHR is up-to-date, or very close to it, allowing all the involved clinicians to move very quickly to the next patient(s).</p>
 </div>
 <div class="paragraph">
-<p>A further category of requirement for clinical process automation is <strong>training</strong>. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical workflow system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one&#8217;s professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.</p>
+<p>A further category of requirement for clinical process automation is <strong>training</strong>. In this case, the steps of a procedure may be second nature to an experienced clinician but for a trainee nurse or surgeon to whom much is new, a clinical guideline system would potentially represent even the most basic steps (e.g. cannulation, central line insertion, surgery preparation) to the trainee. Since being 'experienced' is not a binary state, but a continuum over one&#8217;s professional life, some level of training support is likely to be useful for any professional of any level of knowledge, e.g. to learn a newly developed surgical method, or revise a procedure not performed for some time. Training support therefore needs to be a flexible capability to be turned on or off at multiple levels of expertise, by any type of professional role, also based on work context.</p>
 </div>
 <div class="paragraph">
 <p>A final and not immediately obvious benefit of process automation is the ability to record with reasonably good fidelity the steps and decisions taken by workers in the course of each procedure or episode of care. The resulting event logs provide a rich resource for <em>process mining</em>, a relatively recent discipline described in <a href="#Van_der_Aalst_2016">van der Aalst (2016)</a>, that uses the history of worker actions to discover how processes actually execute in the real world, with the aim of analysis and improvement of the original executable plan definitions.</p>
@@ -715,10 +726,13 @@
 <div class="ulist">
 <ul>
 <li>
+<p>the interaction between a worker and the guideline / decision support system might be very fine- or coarse-grained, i.e. the worker may ask the copilot for input frequently or infrequently;</p>
+</li>
+<li>
 <p>a worker may treat computed inferences (i.e. rule results etc) as <em>recommendations</em> that may be overridden (usually with the ability to record justification); this implies a specific kind of interaction with a plan automation system unlike pure automatic computation (as would be used in an industrial process for example);</p>
 </li>
 <li>
-<p>a worker may request the chain of logical justification of a particular rule result; this implies that rule execution must be done so that the execution trace is available for inspection.</p>
+<p>a worker may request the chain of <em>logical justification</em> of a particular rule result; this implies that rule execution must be done so that the execution trace is available for inspection.</p>
 </li>
 </ul>
 </div>
@@ -784,7 +798,7 @@
 <div class="sect2">
 <h3 id="_integration_with_the_patient_health_record"><a class="anchor" href="#_integration_with_the_patient_health_record"></a>3.8. Integration with the Patient Health Record</h3>
 <div class="paragraph">
-<p>General-purpose workflow formalisms and products do not generally assume the presence of a system whose purpose is to record information (e.g. observations, decisions, orders, actions) undertaken for the subject, beyond some direct record of the plan execution itself. However many tasks in healthcare plans involve the review and/or capture of complex data sets specific to the task at hand, which would naturally be recorded in the patient record. In order to make clinical plans efficient for their users, the formal representation of tasks needs to account for precise, unambiguous data sets and detailed action descriptions. For example a task whose short description is 'administer Cyclophosphamide, day 1' will have a detailed description such as:</p>
+<p>General-purpose workflow formalisms and products do not generally assume the presence of a system whose purpose is to record information (e.g. observations, decisions, orders, actions) undertaken for the subject, beyond some direct record of the plan execution itself. However many tasks in healthcare plans involve the review and/or capture of complex data sets specific to the task at hand, which would naturally be recorded in the patient record. In order to make clinical plans efficient for their users, the formal representation of tasks needs to account for precise, unambiguous data sets and detailed action descriptions. For example a task whose short description is 'administer Cyclophosphamide, day 1' will have a detailed description as shown in the highlighted row of the following table:</p>
 </div>
 <div id="cyclophosphamide_instruction" class="imageblock text-center text-center">
 <div class="content">
@@ -796,7 +810,7 @@
 <p>In an application, the dose will have been pre-computed based on patient body surface area. The administration description will usually be recorded in a structured way, e.g. <code>{medication=cyclophosphamide; dose=1mg; route=IV; timing=30 mins; method=with 0.9% NaCl, &#8230;&#8203;}</code>.</p>
 </div>
 <div class="paragraph">
-<p>From a user perspective, if this information structure (in an appropriate unfilled template form) can be directly associated with the task within a plan in such a way as to enable easy filling in of the data and subsequent recording in the patient record, no further work is required to update the record at plan (or task) completion. Similar situations require display of specific data sets as part of performing a task. However, if this is not the case, plan automation will not significantly reduce clinician documentation burden, and may have limited value. Worse, if there is no ability to associate information retrieval and recording actions with their real world tasks, plan authors will be forced to create tasks within plans dedicated to these information system interactions. This will have the effect of greatly increasing the size of many plans while reducing their comprehensibility.</p>
+<p>From a user perspective, if this information structure (in an appropriate unfilled template form) can be directly associated with the task within a plan in such a way as to enable easy filling in of the data and subsequent recording in the patient record, no further work is required to update the record at plan (or task) completion. Similar situations require display of specific data sets as part of performing a task. However, if patient record interactions cannot be tightly associated with tasks in a plan, plan automation may not significantly reduce clinician documentation burden, and may have limited value. Worse, if there is no ability to associate information retrieval and recording actions with their real world tasks, plan authors will be forced to create tasks within plans dedicated to these information system interactions. This will have the effect of greatly increasing the size of many plans while reducing their comprehensibility.</p>
 </div>
 <div class="paragraph">
 <p>In an ideal realisation of healthcare process automation, the data sets would be standardised, and most likely part of the plan definition. However, for many practical reasons, data sets vary across environments, and a realistic approach to integrating data sets with plans needs to allow for both explicit declaration and anonymous referencing. The former may be used in environments that support detailed clinical data-set definitions (e.g. openEHR archetypes and templates, published HL7 FHIR profiles, Intermountain CEMs etc), whereas deployment in environments with mixed back-ends and legacy EMR systems will more likely require plan tasks to simply reference native EMR or other application UI forms.</p>
@@ -1037,6 +1051,9 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_a_descriptive_model"><a class="anchor" href="#_a_descriptive_model"></a>4.1.5. A Descriptive Model</h4>
 <div class="paragraph">
 <p>We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. A survey of published pathways and guidelines shows that they consist of:</p>
 </div>
@@ -1049,7 +1066,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <p><em>indications</em>, i.e. clinical pre-conditions for use;</p>
 </li>
 <li>
-<p>structured natural language statements describing a <em>plan</em>, also commonly known as <em>tasks</em> or <em>activities</em>, which may be sequential or concurrent, and which may relate to:</p>
+<p><em>plan</em>: structured natural language statements describing a plan, i.e. a struconsisting of <em>tasks</em> (also known as <em>activities</em>), <em>decisions</em> (understood as a special kind of task), and <em>wait conditions</em> (enabling tasks to be situated in time or to be ready when certain events occur). Tasks and decisions  may be sequential or concurrent, and which may relate to:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1078,7 +1095,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 </div>
 </li>
 <li>
-<p>decision rules, flowcharts and tables that act as related <em>rule-sets</em>, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N variables.</p>
+<p><em>decision rules</em>, in the form of logical statements, flowcharts, and tables, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N subject variables.</p>
 </li>
 </ul>
 </div>
@@ -1140,9 +1157,66 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="sect2">
 <h3 id="_formalisation"><a class="anchor" href="#_formalisation"></a>4.3. Formalisation</h3>
 <div class="sect3">
-<h4 id="_general_vision"><a class="anchor" href="#_general_vision"></a>4.3.1. General Vision</h4>
+<h4 id="_conceptual_model_of_guidelines"><a class="anchor" href="#_conceptual_model_of_guidelines"></a>4.3.1. Conceptual Model of Guidelines</h4>
 <div class="paragraph">
-<p>The clinical artefacts described so far may be classified as follows, for the purposes of potential computable representation:</p>
+<p>In the description of guidelines above, two of the key candidates for formal representation are plans and rules. Over some decades, the use of formal languages specifically designed for representing computable CPGs, often known as <em>computer interpretable guidelines (CIGs)</em>, including Arden, Asbru, EON, PRO<em>forma</em> and others (summarised in <a href="#Sutton_taylor_earl_2006">Sutton Taylor &amp; Earle (2006)</a>) has shown that plans and rules indeed emerge as the two main components, and each consists of certain conceptual elements. Not all of these languages agree in all details, nor support all concepts equally well (temporal operators for example), however the common set of general features can be used to inform a conceptual basis and nomenclature for the formal elements of CIGs, which we take to be as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>plans</em> consist of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>tasks</em>, also known as <em>activities</em>;</p>
+</li>
+<li>
+<p><em>decisions</em>, understood as a special kind of task;</p>
+</li>
+<li>
+<p><em>wait conditions</em>, enabling tasks to be situated in time or to become ready when certain <em>events</em> occur;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>logic modules</em> containing:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>subject proxy</em>, consisting of the set of <em>subject variable</em> declarations relevant to the rest of the logic;</p>
+</li>
+<li>
+<p><em>conditions</em>, i.e. simple Boolean-valued expressions referring to subject variables;</p>
+</li>
+<li>
+<p><em>rules</em>, i.e. more complex computations generating results of any type (quantity, coded term, etc) codifying the main decision criteria described in a guideline.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following diagram illustrates these conceptual elements.</p>
+</div>
+<div id="simple_plan_rule_structure" class="imageblock text-center text-center">
+<div class="content">
+<img src="overview/diagrams/simple_plan_rule_structure.svg" alt="simple plan rule structure">
+</div>
+<div class="title">Figure 4. Basic formalism concepts</div>
+</div>
+<div class="paragraph">
+<p>Some simple distinctions are thus made, for example that a <em>decision</em> is a kind of <em>task</em> (or activity) undertaken by a cognitive agent, whereas a <em>rule</em> is an algorithm for computing the values on which basis decision pathways are taken.</p>
+</div>
+<div class="paragraph">
+<p>One of the important assumptions made here is that all conditions, rules and other decision computations (e.g. Bayesian logic, calls to AI services) are <em>defined within logic modules, rather than being included within plans</em>, as is the common practice for example in the use of most workflow formalisms (BPEL, BPMN, etc). This is to ensure all computable criteria, no matter how trivial-seeming (e.g. the expression <code>systolic_blood_pressure &gt;= 160</code>) are represented and documented in one place, and in a form that may be understood and maintained by the domain experts and guideline authors.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_general_vision"><a class="anchor" href="#_general_vision"></a>4.3.2. General Vision</h4>
+<div class="paragraph">
+<p>The clinical artefacts described above may be classified as follows, for the purposes of potential computable representation:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1155,7 +1229,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 </ul>
 </div>
 <div class="paragraph">
-<p>Automatable artefacts are assumed to consist of at least three kinds of element:</p>
+<p>Following the preceding section, automatable artefacts are assumed to consist of at least three kinds of element:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1163,18 +1237,18 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <p><em>descriptive</em>: structured description, identification etc;</p>
 </li>
 <li>
-<p><em>workflow</em>: a representation of tasks, activities etc;</p>
+<p><em>plan</em>: a representation of tasks, events and decision points (also known as <em>workflow</em>);</p>
 </li>
 <li>
-<p><em>decision logic</em>: a representation of decisions, rules, ultimately based on a combination of <em>subject variable</em> values and clinical evidence based logic, ranges, threshold values etc.</p>
+<p><em>decision logic</em>: subject variable declarations and rules.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>None of the above artefacts acts directly as an <em>executable plan</em> for a specific subject (i.e. patient). Care pathways and guidelines each relate to a single isolated condition or procedure, whereas the general situation for a real patient is multiple conditions plus phenotypic specificities (e.g. allergies) plus current situation (e.g. being pregnant) plus non-clinical elements (e.g. patient preferences, type of health plan cover etc). Adaptation and merging is in general unavoidable.</p>
+<p>None of the above artefacts acts directly as an executable plan <em>for a specific subject</em> (i.e. patient). Care pathways and guidelines each relate to a single isolated condition or procedure, whereas the general situation for a real patient is multiple conditions plus phenotypic specificities (e.g. allergies) plus current situation (e.g. being pregnant) plus non-clinical elements (e.g. patient preferences, type of health plan cover etc). Adaptation and merging is in general unavoidable.</p>
 </div>
 <div class="paragraph">
-<p>Although there is no commonly recognised term for an automatable patient-specific plan, we assume its existence and term such an artefact a <em>patient plan</em> for convenience, and make the assumption that for the purposes of formal representation it is a combination of:</p>
+<p>Although there is no commonly recognised term for an patient-specific CIG, we assume its existence and term such an artefact a <em>patient plan</em> for convenience, and make the assumption that for the purposes of formal representation it is a combination of:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1196,19 +1270,19 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="content">
 <img src="overview/diagrams/artefact_relations.svg" alt="artefact relations">
 </div>
-<div class="title">Figure 4. Care management artefacts</div>
+<div class="title">Figure 5. Care management artefacts</div>
 </div>
 <div class="paragraph">
-<p>In the diagram, the term <em>executable plan</em> is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.</p>
+<p>In the diagram, the term computer-interpretable guideline (CIG) is used to denote any formal representation of plan and related decision logic that could be executed by an appropriate engine. A CIG can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.</p>
 </div>
 <div class="paragraph">
 <p>Entities shown with dotted lines are not assumed to exist in all real world clinical situations. That is, care may be being provided for a patient for which no published care pathway is available, and only limited published guidelines. This would imply no or limited availability of condition-specific executable plans for use in constructing an executable patient plan. Nevertheless, the latter could be constructed <em>de novo</em>, rather than by adaptation of library pathways or guidelines.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_separation_of_concerns"><a class="anchor" href="#_separation_of_concerns"></a>4.3.2. Separation of Concerns</h4>
+<h4 id="_separation_of_concerns"><a class="anchor" href="#_separation_of_concerns"></a>4.3.3. Separation of Concerns</h4>
 <div class="paragraph">
-<p>As implied by the analysis of <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a>, the formally represented pathways and guidelines shown on the right hand side of <a href="#care_mgt_artefact_relations">Figure 4</a> have important relationships with both terminologies and data sources such as the patient record. Some of the requirements described above - independence of guidelines from legacy HIS back-ends, and also the need for a high-level language of guideline authoring that enables 'smart' subject variables such as 'highest systolic pressure over previous 2 weeks' and 'oxygen saturation, no older than 1 hour', as well as functions of base variables, such as Body Mass Index (BMI, a function of height and weight), lead naturally to a greater separation of guidelines from information models of the back-end systems.</p>
+<p>As implied by the analysis of <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a>, the formally represented pathways and guidelines shown on the right hand side of <a href="#care_mgt_artefact_relations">Figure 5</a> have important relationships with both terminologies and data sources such as the patient record. Some of the requirements described above - independence of guidelines from legacy HIS back-ends, and also the need for a high-level language of guideline authoring that enables 'smart' subject variables such as 'highest systolic pressure over previous 2 weeks' and 'oxygen saturation, no older than 1 hour', as well as functions of base variables, such as Body Mass Index (BMI, a function of height and weight), lead naturally to a greater separation of guidelines from information models of the back-end systems.</p>
 </div>
 <div class="paragraph">
 <p>The general approach taken by the openEHR specifications is to treat smart subject variables as a first order concern termed here <em>data enrichment</em>. We also recognise a more contemporary view of patient record systems, devices and intermediate interoperability standards designed to retrieve data from such systems in a more homogenous way than in the original version of the Rector paper (from 2001). The conceptual view that results is shown below in a modified version of the original figure.</p>
@@ -1217,7 +1291,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="content">
 <img src="overview/diagrams/Rector_model_interfaces-openEHR.svg" alt="Rector model interfaces openEHR">
 </div>
-<div class="title">Figure 5. Models, interfaces and repositories with subject proxies, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
+<div class="title">Figure 6. Models, interfaces and repositories with subject proxies, adapted from <a href="#Rector_at_al_interfaces_2001">Rector Johnson Tu Wroe &amp; Rogers (2001)</a></div>
 </div>
 <div class="paragraph">
 <p>In the above, a <em>subject proxy</em> model is introduced that represents one or more subject variables, including basic measurable values (e.g. heart rate), functions of other values (e.g. BMI), and computed ranges (e.g. conversion of systolic pressure = 165 to 'very high' range), interval averages and so on. It is assumed that each guideline or pathway (or related collections) have their own specific set of subject variables. A subject proxy is therefore not a fixed global model like the older 'virtual medical record' notion, but instead a limited virtual view of the subject relevant to some guideline.</p>
@@ -1290,7 +1364,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="content">
 <img src="overview/diagrams/workflow_execution_paradigm.svg" alt="workflow execution paradigm" width="55%">
 </div>
-<div class="title">Figure 6. Plan execution paradigm</div>
+<div class="title">Figure 7. Plan execution paradigm</div>
 </div>
 </div>
 <div class="sect2">
@@ -1327,7 +1401,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="content">
 <img src="overview/diagrams/distributed_plan_execution.svg" alt="distributed plan execution" width="80%">
 </div>
-<div class="title">Figure 7. Distributed plan execution</div>
+<div class="title">Figure 8. Distributed plan execution</div>
 </div>
 <div class="paragraph">
 <p>The diagram implies a scheme in which the same plan might be executed in multiple places, presumably with synchronisation, however this is not posited as a requirement. The only hard requirement is that there is <em>some</em> means of enabling the various parts of a plan to execute in the various work-places required.</p>
@@ -1344,10 +1418,10 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="sect2">
 <h3 id="_overview"><a class="anchor" href="#_overview"></a>6.1. Overview</h3>
 <div class="paragraph">
-<p>Within <a href="#care_mgt_artefact_relations">Figure 4</a>, the <em>executable plan</em> is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
+<p>Within <a href="#care_mgt_artefact_relations">Figure 5</a>, CIGs (computer-interpretable guidelines) are shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.</p>
 </div>
 <div class="paragraph">
-<p>The primary formal elements of executable plans are the <em>workflow</em>, i.e. a structured representation of tasks to be performed including decision points, and the <em>decision logic</em>, whose rules provide values for decisions, as well as declarations of <em>subject variables</em>. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
+<p>The primary formal elements of  (CIGs) are the <em>plan</em>, i.e. a structured representation of tasks to be performed including decision points, and the <em>decision logic</em>, whose rules provide values for decisions, as well as declarations of <em>subject variables</em>. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).</p>
 </div>
 <div class="paragraph">
 <p>Plans are formally defined by the <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">openEHR Task Planning model</a>, and visualised (including for authoring purposes) in <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Plan Visual Modelling Language (TP-VML)</a>. DLMs are written in the <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language (DL)</a>, which is a high-level syntax.</p>
@@ -1356,13 +1430,13 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <p>Both of these artefacts contain references to subject variables, i.e. ontic (real-world) subject state, such as <em>date_of_birth</em>, <em>weight</em>, <em>systolic_BP</em> and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be <em>tracked</em> over time. Tracking subject variables over time might entail near real-time (i.e. seconds, minutes) update from measuring devices or simply repeated querying for routine measurements over time from the patient record. A collection of subject variables relevant to plans and DLMs is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.</p>
 </div>
 <div class="paragraph">
-<p>In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.</p>
+<p>In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following diagram illustrates these conceptual artefacts.</p>
 </div>
 <div id="conceptual_framework" class="imageblock text-center text-center">
 <div class="content">
 <img src="overview/diagrams/conceptual_model.svg" alt="conceptual model">
 </div>
-<div class="title">Figure 8. openEHR conceptual framework for care pathways and guidelines</div>
+<div class="title">Figure 9. openEHR conceptual framework for care pathways and guidelines</div>
 </div>
 </div>
 <div class="sect2">
@@ -1402,7 +1476,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="content">
 <img src="overview/diagrams/work_plan_structure.svg" alt="work plan structure">
 </div>
-<div class="title">Figure 9. Work Plan general structure</div>
+<div class="title">Figure 10. Work Plan general structure</div>
 </div>
 <div class="paragraph">
 <p>Using this model, plans for any of the above situations can be defined by domain experts using dedicated graphical tools. Work Plans are <em>executed</em> by a <em>plan engine</em>, which connects with workers (generally human, although software agents and autonomous devices may also perform tasks) and acts as a co-pilot for each one, reminding them of tasks and relevant details according to the worker&#8217;s process. It also manages coordinating notifications and commits and retrieval to and from the EHR. In this way, it can convert disparate workers with weak communication into an integrated, coordinated team.</p>
@@ -1414,7 +1488,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="content">
 <img src="overview/diagrams/RCHOPS21-simple.svg" alt="RCHOPS21 simple">
 </div>
-<div class="title">Figure 10. Work plan for RCHOPS chemotherapy administration</div>
+<div class="title">Figure 11. Work plan for RCHOPS chemotherapy administration</div>
 </div>
 <div class="paragraph">
 <p>One of the key formal elements of a Work Plan is decision points (green nodes in the plan diagrams above), where plan branching occurs, based on <em>conditions</em> and <em>rules</em> that ultimately depend on <em>subject variables</em>. In the openEHR architecture, all such decisional logic is expressed in dedicated <em>Decision Logic Modules (DLMs)</em>, rather than within the plan. This ensures all decision conditions are treated as first order knowledge artefacts, rather than being hidden as (possibly duplicated) ad hoc expressions within the plan, where they are difficult to find and maintain.</p>
@@ -1588,7 +1662,7 @@ terminology
 <p>To make decision logic comprehensible to (and therefor authorable by) domain experts, subject variable names need to be close to the language of the domain, for example <code><em>is_type1_diabetic</em></code> and <code><em>has_family_history_of_breast_cancer</em></code> are things a clinical professional directly understands. Semantically, they tend to be highly precoordinated forms of more technical representations, e.g. <code>problem_list.contains (type = 73211009|diabetes mellitus|, status=confirmed)</code> which should of course be hidden in implementations.</p>
 </div>
 <div class="paragraph">
-<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 8</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
+<p>Conceptually, the collection of subject variables of interest to a plan or DLM is a <em>subject proxy</em>, i.e. a (generally partial) proxy view of a subject in reality, such as a real patient. Accordingly, in <a href="#conceptual_framework">Figure 9</a>, two <em>subject proxies</em> are shown, attached respectively to the plan definition and the DLM, i.e. in the application execution context. These proxies maintain copies of variables needed by the executing plan and its logic modules. The proxies are connected to a Subject Proxy Service, which extracts data from back-end systems and other sources, and updates the proxies over time.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1597,7 +1671,7 @@ terminology
 <p>Extraction of subject state from its sources is managed by a <a href="https://specifications.openehr.org/releases/SM/latest/openehr_platform.html#_subject_proxy_service_sps" target="_blank" rel="noopener">Subject Proxy service</a>. <em>Data Access Bindings (DAB)</em> are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.</p>
 </div>
 <div class="paragraph">
-<p>The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including Plan workflows and Decision Support. These jobs are described below.</p>
+<p>The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including CIGs and Decision Support. These jobs are described below.</p>
 </div>
 <div class="sect3">
 <h4 id="_semantic_reframing_from_the_general_and_epistemic_to_the_ontic_and_use_specific"><a class="anchor" href="#_semantic_reframing_from_the_general_and_epistemic_to_the_ontic_and_use_specific"></a>6.5.1. Semantic Reframing: from the General and Epistemic to the Ontic and Use-specific</h4>
@@ -1697,7 +1771,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/plan-architecture.svg" alt="plan architecture">
 </div>
-<div class="title">Figure 11. Example Plan-based system architecture</div>
+<div class="title">Figure 12. Example Plan-based system architecture</div>
 </div>
 </div>
 <div class="sect2">
@@ -1709,7 +1783,7 @@ terminology
 <div class="content">
 <img src="overview/diagrams/gdl-architecture.svg" alt="gdl architecture">
 </div>
-<div class="title">Figure 12. Example Guideline-based system architecture</div>
+<div class="title">Figure 13. Example Guideline-based system architecture</div>
 </div>
 </div>
 </div>
@@ -1752,6 +1826,9 @@ terminology
 </div>
 <div class="paragraph">
 <p><a id="SuttonFox2003"></a>Sutton, D. R., &amp; Fox, J. (2003). The syntax and semantics of the PROforma guideline modeling language. <em>J Am Med Inform Assoc.</em>, <em>10(5)</em>, 433–443. Retrieved from <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/" class="bare">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC212780/</a></p>
+</div>
+<div class="paragraph">
+<p><a id="Sutton_taylor_earl_2006"></a>Sutton, D. R., Taylor, P., &amp; Earle, K. (2006). Evaluation of PROforma as a language for implementing medical guidelines in a practical context. <em>BMC Medical Informatics and Decision Making</em>, <em>6</em>. Retrieved from <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-6-20" class="bare">https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-6-20</a></p>
 </div>
 <div class="paragraph">
 <p><a id="Van_der_Aalst_2016"></a>Aalst, W. M. P. van der. (2016). <em>Process Mining: Data Science in Action</em>. Springer-Verlag.</p>

@@ -7,10 +7,16 @@
 4+^h|*PROC Release 1.6.0 (unreleased)*
 
 |[[latest_issue]]0.5.2
-|{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document.
+|{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. +
+ Add conceptual CIG model; adjust nomenclature in artefacts diagram.
+|T Beale
+|[[latest_issue_date]]16 Mar 2021
+
+|
+|GDL-oriented review.
 |T Beale, +
  R Chen
-|[[latest_issue_date]]30 Jan 2021
+|30 Jan 2021
 
 |0.5.1
 |Improvements due to reviews.

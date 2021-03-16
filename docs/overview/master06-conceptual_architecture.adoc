@@ -2,15 +2,15 @@
 
 == Overview
 
-Within <<care_mgt_artefact_relations>>, the _executable plan_ is shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
+Within <<care_mgt_artefact_relations>>, CIGs (computer-interpretable guidelines) are shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
 
-The primary formal elements of executable plans are the _workflow_, i.e. a structured representation of tasks to be performed including decision points, and the _decision logic_, whose rules provide values for decisions, as well as declarations of _subject variables_. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
+The primary formal elements of  (CIGs) are the _plan_, i.e. a structured representation of tasks to be performed including decision points, and the _decision logic_, whose rules provide values for decisions, as well as declarations of _subject variables_. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
 
 Plans are formally defined by the {openehr_task_planning}[openEHR Task Planning model^], and visualised (including for authoring purposes) in {openehr_tp_vml}[Task Plan Visual Modelling Language (TP-VML)^]. DLMs are written in the {openehr_decision_language}[openEHR Decision Language (DL)^], which is a high-level syntax.
 
 Both of these artefacts contain references to subject variables, i.e. ontic (real-world) subject state, such as _date_of_birth_, _weight_, _systolic_BP_ and so on. Some of these variables are unchanging in time (e.g. date of birth; sex) or nearly so (height, in adults; type 1 diabetic status), while others are time-varying and may need to be _tracked_ over time. Tracking subject variables over time might entail near real-time (i.e. seconds, minutes) update from measuring devices or simply repeated querying for routine measurements over time from the patient record. A collection of subject variables relevant to plans and DLMs is termed a Subject Proxy, i.e. a proxy representation of a real world subject (such as a patient) for use by plans, DLMs and other applications.
 
-In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following illustrates these conceptual artefacts.
+In order to execute a plan and its related logic, a means of populating a subject proxy is therefore required. This is termed a Subject Proxy Service. Within such a service, bindings to particular source sytems (queries, API calls etc) are installed, which are denoted here Data Access Bindings (DABs). The following diagram illustrates these conceptual artefacts.
 
 [.text-center]
 .openEHR conceptual framework for care pathways and guidelines
@@ -196,7 +196,7 @@ Conceptually, the collection of subject variables of interest to a plan or DLM i
 
 Extraction of subject state from its sources is managed by a {openehr_sm_openehr_platform}#_subject_proxy_service_sps[Subject Proxy service^]. __Data Access Bindings (DAB)__ are required within the service to extract data from specific data sources and repositories (i.e. via specific queries, APIs etc), such as patient health records, lab systems and monitoring devices. Where data is not available from these sources, users may be requested to provide it.
 
-The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including Plan workflows and Decision Support. These jobs are described below.
+The Subject Proxy Service performs a number of jobs, which taken together, have the effect of 'lifting' data from the typically complex IT environment, and converting it to a clean representation of specific subject attributes relevant to specific applications, including CIGs and Decision Support. These jobs are described below.
 
 === Semantic Reframing: from the General and Epistemic to the Ontic and Use-specific
 

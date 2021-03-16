@@ -102,18 +102,20 @@ With respect to the challenge of applying information technology to process-orie
 * the extent to which they are formally representable, including contra-indications and conflicts;
 * how conflict, merge and localisation is solved to produce an automatable patient plan.
 
+=== A Descriptive Model
+
 We make a baseline assumption that guidelines and care pathways are essentially the same kind of entity in terms of structure, and are formalisable with the same model or language, with any differences (e.g. in goal or subject) handled by variable elements of the formalism. A survey of published pathways and guidelines shows that they consist of:
 
 * _goal_ (pathway) or _purpose_ (guideline);
 * _indications_, i.e. clinical pre-conditions for use;
-* structured natural language statements describing a _plan_, also commonly known as _tasks_ or _activities_, which may be sequential or concurrent, and which may relate to:
+* _plan_: structured natural language statements describing a plan, i.e. a struconsisting of _tasks_ (also known as _activities_), _decisions_ (understood as a special kind of task), and _wait conditions_ (enabling tasks to be situated in time or to be ready when certain events occur). Tasks and decisions  may be sequential or concurrent, and which may relate to:
 ** observations and assessments;
 ** orders or order sets;
 ** medication administration;
 * _classification rules_ that convert a real-world value to a classification for the purpose of the guideline, e.g.:
 ** SpO2 of 88% -> 'critical' in a Covid19 assessment tool;
 ** Systolic pressure > 160 mm[Hg] -> 'high', in a hypertension guideline;
-* decision rules, flowcharts and tables that act as related _rule-sets_, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N variables.
+* _decision rules_, in the form of logical statements, flowcharts, and tables, defining the primary logic of the artefact, e.g. a risk classification for a patient based on N subject variables.
 
 Formalising such a structure primarily involves finding sufficiently powerful language(s) for the plan and logic (i.e. rules) parts. Following the general principle of separation of concerns, we assume that the languages for plan representation and rules definition are likely to be distinct, and indeed that plan artefacts and rules/decision modules are preferably separate and related by reference. This enables decision logic to be developed governed independently of particular plans, and prevents bad practices such as clinically significant rules being hidden inside plan definitions (typically on decision nodes).  
 
@@ -141,22 +143,45 @@ A care plan may be formalised in the sense that the referenced CPG(s) and/or car
 
 == Formalisation
 
+=== Conceptual Model of Guidelines
+
+In the description of guidelines above, two of the key candidates for formal representation are plans and rules. Over some decades, the use of formal languages specifically designed for representing computable CPGs, often known as _computer interpretable guidelines (CIGs)_, including Arden, Asbru, EON, PRO__forma__ and others (summarised in citenp:[Sutton_taylor_earl_2006]) has shown that plans and rules indeed emerge as the two main components, and each consists of certain conceptual elements. Not all of these languages agree in all details, nor support all concepts equally well (temporal operators for example), however the common set of general features can be used to inform a conceptual basis and nomenclature for the formal elements of CIGs, which we take to be as follows:
+
+* _plans_ consist of:
+** _tasks_, also known as _activities_;
+** _decisions_, understood as a special kind of task;
+** _wait conditions_, enabling tasks to be situated in time or to become ready when certain _events_ occur;
+* _logic modules_ containing:
+** _subject proxy_, consisting of the set of _subject variable_ declarations relevant to the rest of the logic;
+** _conditions_, i.e. simple Boolean-valued expressions referring to subject variables;
+** _rules_, i.e. more complex computations generating results of any type (quantity, coded term, etc) codifying the main decision criteria described in a guideline.
+
+The following diagram illustrates these conceptual elements.
+
+[.text-center]
+.Basic formalism concepts
+image::{diagrams_uri}/simple_plan_rule_structure.svg[id=simple_plan_rule_structure, align="center"]
+
+Some simple distinctions are thus made, for example that a _decision_ is a kind of _task_ (or activity) undertaken by a cognitive agent, whereas a _rule_ is an algorithm for computing the values on which basis decision pathways are taken.
+
+One of the important assumptions made here is that all conditions, rules and other decision computations (e.g. Bayesian logic, calls to AI services) are _defined within logic modules, rather than being included within plans_, as is the common practice for example in the use of most workflow formalisms (BPEL, BPMN, etc). This is to ensure all computable criteria, no matter how trivial-seeming (e.g. the expression `systolic_blood_pressure >= 160`) are represented and documented in one place, and in a form that may be understood and maintained by the domain experts and guideline authors.
+
 === General Vision
 
-The clinical artefacts described so far may be classified as follows, for the purposes of potential computable representation:
+The clinical artefacts described above may be classified as follows, for the purposes of potential computable representation:
 
 * _automatable artefacts_: care pathways, guidelines, order set administration plans;
 * _structured artefacts_: care plans.
 
-Automatable artefacts are assumed to consist of at least three kinds of element:
+Following the preceding section, automatable artefacts are assumed to consist of at least three kinds of element:
 
 * _descriptive_: structured description, identification etc;
-* _workflow_: a representation of tasks, activities etc;
-* _decision logic_: a representation of decisions, rules, ultimately based on a combination of _subject variable_ values and clinical evidence based logic, ranges, threshold values etc. 
+* _plan_: a representation of tasks, events and decision points (also known as _workflow_);
+* _decision logic_: subject variable declarations and rules.
 
-None of the above artefacts acts directly as an _executable plan_ for a specific subject (i.e. patient). Care pathways and guidelines each relate to a single isolated condition or procedure, whereas the general situation for a real patient is multiple conditions plus phenotypic specificities (e.g. allergies) plus current situation (e.g. being pregnant) plus non-clinical elements (e.g. patient preferences, type of health plan cover etc). Adaptation and merging is in general unavoidable.
+None of the above artefacts acts directly as an executable plan _for a specific subject_ (i.e. patient). Care pathways and guidelines each relate to a single isolated condition or procedure, whereas the general situation for a real patient is multiple conditions plus phenotypic specificities (e.g. allergies) plus current situation (e.g. being pregnant) plus non-clinical elements (e.g. patient preferences, type of health plan cover etc). Adaptation and merging is in general unavoidable.
 
-Although there is no commonly recognised term for an automatable patient-specific plan, we assume its existence and term such an artefact a _patient plan_ for convenience, and make the assumption that for the purposes of formal representation it is a combination of:
+Although there is no commonly recognised term for an patient-specific CIG, we assume its existence and term such an artefact a _patient plan_ for convenience, and make the assumption that for the purposes of formal representation it is a combination of:
 
 * a care plan that describes the intended care approach (may be minimal in some circumstances, e.g. emergency);
 * a potentially executable pathway of the same _formal representation_ as a care pathway or guideline, but whose content is adapted from relevant automatable CPGs and/or care pathways, where available.
@@ -169,7 +194,7 @@ The various clinical artefacts described above and related computational entitie
 .Care management artefacts
 image::{diagrams_uri}/artefact_relations.svg[id=care_mgt_artefact_relations, align="center"]
 
-In the diagram, the term _executable plan_ is used to denote any formal representation of workflow and related decision logic that could be executed by an appropriate engine. A computable plan can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.
+In the diagram, the term computer-interpretable guideline (CIG) is used to denote any formal representation of plan and related decision logic that could be executed by an appropriate engine. A CIG can thus be used to represent both condition-specific guidelines, care pathways as well as a patient plan. For the latter, it is assumed that the executable representation of a care plan may be included, where one exists.
 
 Entities shown with dotted lines are not assumed to exist in all real world clinical situations. That is, care may be being provided for a patient for which no published care pathway is available, and only limited published guidelines. This would imply no or limited availability of condition-specific executable plans for use in constructing an executable patient plan. Nevertheless, the latter could be constructed _de novo_, rather than by adaptation of library pathways or guidelines.
 
