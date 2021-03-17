@@ -1164,7 +1164,7 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="ulist">
 <ul>
 <li>
-<p><em>plans</em> consist of:</p>
+<p><em>plans</em> consisting of:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1184,21 +1184,21 @@ in openEHR specifications, the term <em>guideline</em> is used as a synonym for 
 <div class="ulist">
 <ul>
 <li>
-<p><em>subject proxy</em>, consisting of the set of <em>subject variable</em> declarations relevant to the rest of the logic;</p>
-</li>
-<li>
 <p><em>conditions</em>, i.e. simple Boolean-valued expressions referring to subject variables;</p>
 </li>
 <li>
-<p><em>rules</em>, i.e. more complex computations generating results of any type (quantity, coded term, etc) codifying the main decision criteria described in a guideline.</p>
+<p><em>rules</em>, i.e. more complex computations generating results of any type (quantity, coded term, etc) codifying the main decision criteria described in a guideline;</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p><em>subject proxy</em>, consisting of the set of <em>subject variable</em> declarations relevant to the rest of the logic.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following diagram illustrates these conceptual elements.</p>
+<p>An architecture based on these precepts would of course have to solve the question of referencing from plans to logic modules and from both of those to the subject proxy variables, as well as the semantics of run-time loading, execution and much else. The above just establishes the basic conceptual vocabulary for such developments. The following diagram illustrates these conceptual elements.</p>
 </div>
 <div id="simple_plan_rule_structure" class="imageblock text-center text-center">
 <div class="content">

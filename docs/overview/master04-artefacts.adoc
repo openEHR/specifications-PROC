@@ -147,16 +147,16 @@ A care plan may be formalised in the sense that the referenced CPG(s) and/or car
 
 In the description of guidelines above, two of the key candidates for formal representation are plans and rules. Over some decades, the use of formal languages specifically designed for representing computable CPGs, often known as _computer interpretable guidelines (CIGs)_, including Arden, Asbru, EON, PRO__forma__ and others (summarised in citenp:[Sutton_taylor_earl_2006]) has shown that plans and rules indeed emerge as the two main components, and each consists of certain conceptual elements. Not all of these languages agree in all details, nor support all concepts equally well (temporal operators for example), however the common set of general features can be used to inform a conceptual basis and nomenclature for the formal elements of CIGs, which we take to be as follows:
 
-* _plans_ consist of:
+* _plans_ consisting of:
 ** _tasks_, also known as _activities_;
 ** _decisions_, understood as a special kind of task;
 ** _wait conditions_, enabling tasks to be situated in time or to become ready when certain _events_ occur;
 * _logic modules_ containing:
-** _subject proxy_, consisting of the set of _subject variable_ declarations relevant to the rest of the logic;
 ** _conditions_, i.e. simple Boolean-valued expressions referring to subject variables;
-** _rules_, i.e. more complex computations generating results of any type (quantity, coded term, etc) codifying the main decision criteria described in a guideline.
+** _rules_, i.e. more complex computations generating results of any type (quantity, coded term, etc) codifying the main decision criteria described in a guideline;
+* _subject proxy_, consisting of the set of _subject variable_ declarations relevant to the rest of the logic.
 
-The following diagram illustrates these conceptual elements.
+An architecture based on these precepts would of course have to solve the question of referencing from plans to logic modules and from both of those to the subject proxy variables, as well as the semantics of run-time loading, execution and much else. The above just establishes the basic conceptual vocabulary for such developments. The following diagram illustrates these conceptual elements.
 
 [.text-center]
 .Basic formalism concepts
