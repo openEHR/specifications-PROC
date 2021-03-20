@@ -100,8 +100,6 @@
 <li><a href="#_value_snapshot_class">4.3.2.2. VALUE_SNAPSHOT Class</a></li>
 <li><a href="#_tracked_state_variable_class">4.3.2.3. TRACKED_STATE_VARIABLE Class</a></li>
 <li><a href="#_tracked_quantitative_variable_class">4.3.2.4. TRACKED_QUANTITATIVE_VARIABLE Class</a></li>
-<li><a href="#_range_group_class">4.3.2.5. RANGE_GROUP Class</a></li>
-<li><a href="#_range_def_class">4.3.2.6. RANGE_DEF Class</a></li>
 </ul>
 </li>
 </ul>
@@ -1082,7 +1080,7 @@ definitions -- Terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/resource.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/RM/latest/common.html#_authored_resource_class" target="_blank" rel="noopener">AUTHORED_RESOURCE</a></code>, <code><a href="/releases/LANG/latest/bmm.html#_bmm_simple_class_class" target="_blank" rel="noopener">BMM_SIMPLE_CLASS</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1302,14 +1300,17 @@ definitions -- Terminology
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="kotlin"><span></span>    <span class="tok-n">systolic_blood_pressure</span><span class="tok-p">:</span> <span class="tok-n">Quantity</span>
-        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span>
-        <span class="tok-n">ranges</span> <span class="tok-p">=</span>
-<span class="tok-na">            [critical_high]</span><span class="tok-p">:</span>  <span class="tok-p">|&gt;=</span> <span class="tok-m">180</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [very_high]</span><span class="tok-p">:</span>      <span class="tok-p">|&gt;</span>  <span class="tok-m">140</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [high]</span><span class="tok-p">:</span>           <span class="tok-p">|&gt;</span>  <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [normal]</span><span class="tok-p">:</span>         <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]</span> <span class="tok-p">..</span> <span class="tok-p">&lt;=</span> <span class="tok-m">120</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [low]</span><span class="tok-p">:</span>            <span class="tok-p">|&lt;=</span>  <span class="tok-m">90</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|,</span>
-<span class="tok-na">            [critical_low]</span><span class="tok-p">:</span>   <span class="tok-p">|&lt;=</span>  <span class="tok-m">50</span> <span class="tok-n">mm</span><span class="tok-p">[</span><span class="tok-n">Hg</span><span class="tok-p">]|;</span></code></pre>
+        <span class="tok-n">currency</span> <span class="tok-p">=</span> <span class="tok-m">1</span> <span class="tok-n">min</span><span class="tok-p">,</span>
+        <span class="tok-n">ranges</span><span class="tok-p">[</span><span class="tok-s">&quot;mm[Hg]&quot;</span><span class="tok-p">]</span> <span class="tok-p">=</span>
+            <span class="tok-p">--------------------------------</span>
+            <span class="tok-p">|</span><span class="tok-err">≥</span><span class="tok-m">180</span><span class="tok-p">|:</span>         <span class="tok-p">[</span><span class="tok-n">critical_high</span><span class="tok-p">],</span>
+            <span class="tok-p">|&gt;</span><span class="tok-m">140</span><span class="tok-p">|:</span>         <span class="tok-p">[</span><span class="tok-n">very_high</span><span class="tok-p">],</span>
+            <span class="tok-p">|&gt;</span><span class="tok-m">120</span><span class="tok-p">|:</span>         <span class="tok-p">[</span><span class="tok-n">high</span><span class="tok-p">],</span>
+            <span class="tok-p">|&gt;</span><span class="tok-m">90</span> <span class="tok-p">..</span> <span class="tok-err">≤</span><span class="tok-m">120</span><span class="tok-p">|:</span>  <span class="tok-p">[</span><span class="tok-n">normal</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-err">≤</span><span class="tok-m">90</span><span class="tok-p">|:</span>          <span class="tok-p">[</span><span class="tok-n">low</span><span class="tok-p">],</span>
+            <span class="tok-p">|</span><span class="tok-err">≤</span><span class="tok-m">50</span><span class="tok-p">|:</span>          <span class="tok-p">[</span><span class="tok-n">critical_low</span><span class="tok-p">]</span>
+            <span class="tok-p">--------------------------------</span>
+        <span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1354,17 +1355,16 @@ definitions -- Terminology
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;T&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
+<p>Abstraction of a real-world variable that represents a quality of a subject, e.g. patient diabetic status, date of birth etc.</p>
+</div>
+<div class="paragraph">
+<p>The generic parameter is a model type from an accessible model.</p>
 </div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_external_variable_class">EXTERNAL_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1373,9 +1373,42 @@ definitions -- Terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_value_snapshot_class">VALUE_SNAPSHOT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
+<p>Local history of values.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of variable.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return True if there is a value in <code><em>history</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unavailable_reason</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If <code><em>is_available</em></code> is False, potentially provide a reason.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong> (): <code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Retrieve latest value, or null if none.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1476,7 +1509,7 @@ definitions -- Terminology
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/PROC/latest/task_planning.html#_state_variable_class" target="_blank" rel="noopener">STATE_VARIABLE</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_state_variable_class">STATE_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1550,9 +1583,9 @@ a_time: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_date
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>range_groups</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_range_group_class">RANGE_GROUP</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unit_ranges</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="/releases/LANG/latest/bmm.html#_el_case_table_class">EL_CASE_TABLE<sup></a>&lt;<a href="/releases/LANG/latest/bmm.html#_el_literal_class">EL_LITERAL</sup></a>&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Range definitions, organised as groups, each one exhaustively covering the value space.</p>
+<p>Range definitions, represented as tables, each one exhaustively covering the value space.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1612,88 +1645,6 @@ a_range: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology
 ): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Form of <code><em>range_def()</em></code> to use when there is more than one range group.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_range_group_class"><a class="anchor" href="#_range_group_class"></a>4.3.2.5. RANGE_GROUP Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RANGE_GROUP&lt;T&gt;</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Structure representing a set of range definitions covering the value space of the variable.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ranges</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_range_def_class">RANGE_DEF</a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Map of variable range definitions within this group.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of this range group, e.g. "metric", "SI" etc.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_range_def_class"><a class="anchor" href="#_range_def_class"></a>4.3.2.6. RANGE_DEF Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>RANGE_DEF&lt;T&gt;</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Definition of a range of a tracked variable in terms of an Interval of the variable type.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Name of this range.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>interval</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class" target="_blank" rel="noopener">Interval</a>&lt;T&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Interval specification for the range.</p>
 </div></div></td>
 </tr>
 </tbody>

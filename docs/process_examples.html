@@ -1564,56 +1564,56 @@
 <span class="tok-nx">input</span> <span class="tok-o">--</span> <span class="tok-nx">Tracked</span> <span class="tok-nx">State</span>
 
     <span class="tok-nx">heart_rate</span>: <span class="tok-kt">Count</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">1</span> <span class="tok-nx">min</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">------------------------------------</span>
-            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">99</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-mi">100</span> <span class="tok-p">..</span> <span class="tok-mi">120</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">121</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span>
-            <span class="tok-o">------------------------------------</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">1</span> <span class="tok-nx">min</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;/min&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">------------------------------</span>
+            <span class="tok-o">|</span><span class="tok-err">≤</span><span class="tok-mi">99</span><span class="tok-o">|:</span>       <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">100</span><span class="tok-p">..</span><span class="tok-mi">120</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span><span class="tok-mi">121</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">------------------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">systolic_BP</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">10</span> <span class="tok-nx">min</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">--------------------------------</span>
-            <span class="tok-o">|&lt;</span> <span class="tok-mi">90</span> <span class="tok-nx">mm</span><span class="tok-p">[</span><span class="tok-nx">Hg</span><span class="tok-p">]</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">critical_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">90</span> <span class="tok-nx">mm</span><span class="tok-p">[</span><span class="tok-nx">Hg</span><span class="tok-p">]</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">normal_risk</span><span class="tok-p">]</span>
-            <span class="tok-o">--------------------------------</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">10</span> <span class="tok-nx">min</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;mm[Hg]&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">------------------------</span>
+            <span class="tok-o">|&lt;</span><span class="tok-mi">90</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">critical_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span><span class="tok-mi">90</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">normal_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">------------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>
     <span class="tok-o">|</span> <span class="tok-nx">Minimum</span> <span class="tok-nx">documented</span> <span class="tok-nx">within</span> <span class="tok-nx">last</span> <span class="tok-mi">8</span> <span class="tok-nx">hrs</span>
     <span class="tok-o">|</span>
     <span class="tok-nx">lowest_SpO2</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">8</span> <span class="tok-nx">hr</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">------------------------------</span>
-            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">93</span> <span class="tok-o">%|:</span>       <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-mi">89</span> <span class="tok-p">..</span> <span class="tok-mi">92</span> <span class="tok-o">%|:</span>   <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">88</span> <span class="tok-o">%|:</span>      <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
-            <span class="tok-o">------------------------------</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">8</span> <span class="tok-nx">hr</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;%&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">----------------------------</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span><span class="tok-mi">93</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">89</span><span class="tok-p">..</span><span class="tok-mi">92</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≤</span><span class="tok-mi">88</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">----------------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">respiratory_rate</span>: <span class="tok-kt">Quantity</span>
         <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">2</span> <span class="tok-nx">min</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">----------------------------------</span>
-            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">22</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-mi">23</span> <span class="tok-p">..</span> <span class="tok-mi">28</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">29</span> <span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
-            <span class="tok-o">----------------------------------</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;/min&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">-----------------------------</span>
+            <span class="tok-o">|</span><span class="tok-err">≤</span> <span class="tok-mi">22</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">23</span> <span class="tok-p">..</span> <span class="tok-mi">28</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">29</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">-----------------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-nx">O2_flow_rate</span>: <span class="tok-kt">Quantity</span>
-        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">2</span> <span class="tok-nx">min</span>
-        <span class="tok-nx">ranges</span> <span class="tok-o">=</span>
-            <span class="tok-o">---------------------------------</span>
-            <span class="tok-o">|=</span> <span class="tok-mi">0</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-mi">1</span> <span class="tok-p">..</span> <span class="tok-mi">2</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-mi">3</span> <span class="tok-p">..</span> <span class="tok-mi">4</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>  <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
-            <span class="tok-o">|</span><span class="tok-err">≥</span> <span class="tok-mi">5</span> <span class="tok-nx">L</span><span class="tok-o">/</span><span class="tok-nx">min</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
-            <span class="tok-o">---------------------------------</span>
+        <span class="tok-nx">currency</span> <span class="tok-o">=</span> <span class="tok-mi">2</span> <span class="tok-nx">min</span><span class="tok-p">,</span>
+        <span class="tok-nx">ranges</span><span class="tok-p">[</span><span class="tok-s2">&quot;L/min&quot;</span><span class="tok-p">]</span> <span class="tok-o">=</span>
+            <span class="tok-o">--------------------------</span>
+            <span class="tok-o">|</span><span class="tok-mi">0</span><span class="tok-o">|:</span>      <span class="tok-p">[</span><span class="tok-nx">mild_low_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">1</span><span class="tok-p">..</span><span class="tok-mi">2</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">mild_at_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-mi">3</span><span class="tok-p">..</span><span class="tok-mi">4</span><span class="tok-o">|:</span>   <span class="tok-p">[</span><span class="tok-nx">moderate_risk</span><span class="tok-p">],</span>
+            <span class="tok-o">|</span><span class="tok-err">≥</span><span class="tok-mi">5</span><span class="tok-o">|:</span>     <span class="tok-p">[</span><span class="tok-nx">severe_risk</span><span class="tok-p">]</span>
+            <span class="tok-o">--------------------------</span>
         <span class="tok-p">;</span>
 
     <span class="tok-o">|</span>

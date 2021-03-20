@@ -11,7 +11,7 @@ h|*Description*
 The generic parameter is a model type from an accessible model.
 
 h|*Inherit*
-2+|`link:/releases/PROC/{proc_release}/task_planning.html#_state_variable_class[STATE_VARIABLE^]`
+2+|`<<_state_variable_class,STATE_VARIABLE>>`
 
 h|*Attributes*
 ^h|*Signature*

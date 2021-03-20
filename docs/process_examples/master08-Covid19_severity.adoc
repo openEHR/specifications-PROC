@@ -100,56 +100,56 @@ input -- Historical State
 input -- Tracked State
 
     heart_rate: Count
-        currency = 1 min
-        ranges =
-            ------------------------------------
-            |≤ 99 /min|:       [mild_low_risk],
-            |100 .. 120 /min|:  [mild_at_risk],
-            |≥ 121 /min|:       [moderate_risk]
-            ------------------------------------
+        currency = 1 min,
+        ranges["/min"] =
+            ------------------------------
+            |≤99|:       [mild_low_risk],
+            |100..120|:  [mild_at_risk],
+            |≥121|:      [moderate_risk]
+            ------------------------------
         ;
         
     systolic_BP: Quantity
-        currency = 10 min
-        ranges =
-            --------------------------------
-            |< 90 mm[Hg]|:  [critical_risk],
-            |≥ 90 mm[Hg]|:  [normal_risk]
-            --------------------------------
+        currency = 10 min,
+        ranges["mm[Hg]"] =
+            ------------------------
+            |<90|:  [critical_risk],
+            |≥90|:  [normal_risk]
+            ------------------------
         ;
         
     |
     | Minimum documented within last 8 hrs
     |
     lowest_SpO2: Quantity
-        currency = 8 hr
-        ranges =
-            ------------------------------
-            |≥ 93 %|:       [mild_low_risk],
-            |89 .. 92 %|:   [moderate_risk],
-            |≤ 88 %|:      [severe_risk]
-            ------------------------------
+        currency = 8 hr,
+        ranges["%"] =
+            ----------------------------
+            |≥93|:      [mild_low_risk],
+            |89..92|:   [moderate_risk],
+            |≤88|:      [severe_risk]
+            ----------------------------
         ;
         
     respiratory_rate: Quantity
         currency = 2 min
-        ranges =
-            ----------------------------------
-            |≤ 22 /min|:     [mild_low_risk],
-            |23 .. 28 /min|:  [moderate_risk],
-            |≥ 29 /min|:     [severe_risk]
-            ----------------------------------
+        ranges["/min"] =
+            -----------------------------
+            |≤ 22|:      [mild_low_risk],
+            |23 .. 28|:  [moderate_risk],
+            |≥ 29|:      [severe_risk]
+            -----------------------------
         ;
         
     O2_flow_rate: Quantity
-        currency = 2 min
-        ranges =
-            ---------------------------------
-            |= 0 L/min|:     [mild_low_risk],
-            |1 .. 2 L/min|:  [mild_at_risk],
-            |3 .. 4 L/min|:  [moderate_risk],
-            |≥ 5 L/min|:     [severe_risk]
-            ---------------------------------
+        currency = 2 min,
+        ranges["L/min"] =
+            --------------------------
+            |0|:      [mild_low_risk],
+            |1..2|:   [mild_at_risk],
+            |3..4|:   [moderate_risk],
+            |≥5|:     [severe_risk]
+            --------------------------
         ;
         
     |

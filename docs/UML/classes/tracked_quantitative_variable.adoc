@@ -16,8 +16,8 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*range_groups*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_range_group_class,RANGE_GROUP>>>`
-a|Range definitions, organised as groups, each one exhaustively covering the value space.
+|*unit_ranges*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],link:/releases/LANG/{lang_release}/bmm.html#_el_case_table_class[EL_CASE_TABLE^]<link:/releases/LANG/{lang_release}/bmm.html#_el_literal_class[EL_LITERAL^]>>`
+a|Range definitions, represented as tables, each one exhaustively covering the value space.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*

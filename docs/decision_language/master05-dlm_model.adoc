@@ -70,14 +70,17 @@ Variable declarations in DL syntax, as described in the language section above a
 [source,kotlin]
 ----
     systolic_blood_pressure: Quantity
-        currency = 1 min
-        ranges =
-            [critical_high]:  |>= 180 mm[Hg]|,
-            [very_high]:      |>  140 mm[Hg]|,
-            [high]:           |>  120 mm[Hg]|,
-            [normal]:         |>90 mm[Hg] .. <= 120 mm[Hg]|,
-            [low]:            |<=  90 mm[Hg]|,
-            [critical_low]:   |<=  50 mm[Hg]|;
+        currency = 1 min,
+        ranges["mm[Hg]"] =
+            --------------------------------
+            |≥180|:         [critical_high],
+            |>140|:         [very_high],
+            |>120|:         [high],
+            |>90..≤120|:    [normal],
+            |≤90|:          [low],
+            |≤50|:          [critical_low]
+            --------------------------------
+        ;
 ----
 
 If we were to rewrite this in a more standard programming language, it might look like the following object instantiation, preceded by setup code (the syntax 'Type_name (args)' is used to represent an object creation using a constructor call in each case):
@@ -111,6 +114,3 @@ include::{uml_export_dir}/classes/state_variable.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/value_snapshot.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/tracked_state_variable.adoc[leveloffset=+1]]
 include::{uml_export_dir}/classes/tracked_quantitative_variable.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/range_group.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/range_def.adoc[leveloffset=+1]]
-
