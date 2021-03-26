@@ -14,8 +14,34 @@ image::{diagrams_uri}/prenatal_risk_assessment2.svg[id=prenatal_risk_assessment,
 
 [source,ts]
 ----
-dlm ruleset Obstetric_pregnancy 
+dlm ruleset pregnancy_risk_assessment.v0.5.0
 
+definitions -- Descriptive
+
+    language = {
+            original_language: [ISO_639-1::en]
+        }
+        ;
+
+    description = {
+            lifecycle_state: "unmanaged",
+            original_author: {
+                name:           "Danielle Santos Alves",
+                email:          "dsa3@cin.ufpe.br",
+                organisation :  "Universidade Federal de Pernambuco",
+                date:           2020-12-02
+            },
+            details = {
+                "en" : {
+                    language: [ISO_639-1::en],
+                    purpose:  "Rules representing the risks during pregnancy."
+                }
+            },
+            copyright: "© 2020 Danielle Santos Alves",
+            licence: "Creative Commons CC-BY <https://creativecommons.org/licenses/by/3.0/>",
+        }
+        ;
+    
 preconditions
 
     is_pregnant

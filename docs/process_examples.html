@@ -883,7 +883,33 @@
 <h3 id="_pregnancy_risk_assessment_dlm"><a class="anchor" href="#_pregnancy_risk_assessment_dlm"></a>6.2. Pregnancy Risk Assessment DLM</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">dlm</span> <span class="tok-nx">ruleset</span> <span class="tok-nx">Obstetric_pregnancy</span>
+<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-nx">dlm</span> <span class="tok-nx">ruleset</span> <span class="tok-nx">pregnancy_risk_assessment</span><span class="tok-p">.</span><span class="tok-nx">v0</span><span class="tok-p">.</span><span class="tok-mf">5.0</span>
+
+<span class="tok-nx">definitions</span> <span class="tok-o">--</span> <span class="tok-nx">Descriptive</span>
+
+    <span class="tok-nx">language</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+            <span class="tok-nx">original_language</span><span class="tok-o">:</span> <span class="tok-p">[</span><span class="tok-nx">ISO_639</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">::</span><span class="tok-nx">en</span><span class="tok-p">]</span>
+        <span class="tok-p">}</span>
+        <span class="tok-p">;</span>
+
+    <span class="tok-nx">description</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+            <span class="tok-nx">lifecycle_state</span><span class="tok-o">:</span> <span class="tok-s2">&quot;unmanaged&quot;</span><span class="tok-p">,</span>
+            <span class="tok-nx">original_author</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+                <span class="tok-nx">name</span><span class="tok-o">:</span>           <span class="tok-s2">&quot;Danielle Santos Alves&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">email</span><span class="tok-o">:</span>          <span class="tok-s2">&quot;dsa3@cin.ufpe.br&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">organisation</span> <span class="tok-o">:</span>  <span class="tok-s2">&quot;Universidade Federal de Pernambuco&quot;</span><span class="tok-p">,</span>
+                <span class="tok-nx">date</span>:           <span class="tok-kt">2020</span><span class="tok-o">-</span><span class="tok-mi">12</span><span class="tok-o">-</span><span class="tok-mi">02</span>
+            <span class="tok-p">},</span>
+            <span class="tok-nx">details</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+                <span class="tok-s2">&quot;en&quot;</span> <span class="tok-o">:</span> <span class="tok-p">{</span>
+                    <span class="tok-nx">language</span><span class="tok-o">:</span> <span class="tok-p">[</span><span class="tok-nx">ISO_639</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">::</span><span class="tok-nx">en</span><span class="tok-p">],</span>
+                    <span class="tok-nx">purpose</span><span class="tok-o">:</span>  <span class="tok-s2">&quot;Rules representing the risks during pregnancy.&quot;</span>
+                <span class="tok-p">}</span>
+            <span class="tok-p">},</span>
+            <span class="tok-nx">copyright</span><span class="tok-o">:</span> <span class="tok-s2">&quot;© 2020 Danielle Santos Alves&quot;</span><span class="tok-p">,</span>
+            <span class="tok-nx">licence</span><span class="tok-o">:</span> <span class="tok-s2">&quot;Creative Commons CC-BY &lt;https://creativecommons.org/licenses/by/3.0/&gt;&quot;</span><span class="tok-p">,</span>
+        <span class="tok-p">}</span>
+        <span class="tok-p">;</span>
 
 <span class="tok-nx">preconditions</span>
 
