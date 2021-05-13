@@ -2,7 +2,7 @@
 
 == Purpose
 
-This specification of the openEHR Task Planning facility addresses requirements in the area of automated clinical process automation in which some form of granular planning of clinical work is required. The central concept is that of a _plan_ (or set of plans) designed to achieve a _goal_ and that relate to an _active subject_. Plans generally have related decision logic and require a means of extracting data from back-end systems concerning the subject. These other elements and their relationship to plans are described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^].
+This specification of the openEHR Task Planning facility addresses requirements in the area of clinical process automation in which some form of granular planning of clinical work is required. The central concept is that of a _plan_ (or set of plans) designed to achieve a _goal_ and that relate to an _active subject_. Plans generally have related decision logic and require a means of extracting data from back-end systems concerning the subject. These other elements and their relationship to plans are described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^].
 
 The intended audience includes:
 

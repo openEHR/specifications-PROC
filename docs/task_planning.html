@@ -42,7 +42,6 @@
 <ul class="sectlevel3">
 <li><a href="#_representation_of_care_management_artefacts">2.1.1. Representation of Care Management Artefacts</a></li>
 <li><a href="#_limitations_of_the_openehr_standard_entry_model">2.1.2. Limitations of the openEHR standard Entry Model</a></li>
-<li><a href="#_use_in_heterogeneous_system_environments">2.1.3. Use in Heterogeneous System Environments</a></li>
 </ul>
 </li>
 <li><a href="#_what_task_planning_does_not_do">2.2. What Task Planning Does Not Do</a>
@@ -548,7 +547,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2020 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2021 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -588,19 +587,16 @@
 </thead>
 <tbody>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 2.0.0 (unreleased)</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.6.0 (unreleased)</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.6.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-45" target="_blank" rel="noopener">SPECPROC-45</a>. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Dec 2020</p></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.6.0 (unreleased)</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.6.0</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-44" target="_blank" rel="noopener">SPECPROC-44</a>. Correct <code>PLAN_TIME_ORIGIN</code> enum order and add values. See <a href="#_plan_time_origin_enumeration">Section 5.6.1.4</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">18 Sep 2020</p></td>
@@ -999,7 +995,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This specification of the openEHR Task Planning facility addresses requirements in the area of automated clinical process automation in which some form of granular planning of clinical work is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active subject</em>. Plans generally have related decision logic and require a means of extracting data from back-end systems concerning the subject. These other elements and their relationship to plans are described in the <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
+<p>This specification of the openEHR Task Planning facility addresses requirements in the area of clinical process automation in which some form of granular planning of clinical work is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active subject</em>. Plans generally have related decision logic and require a means of extracting data from back-end systems concerning the subject. These other elements and their relationship to plans are described in the <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -1136,12 +1132,8 @@
 <p>Task Planning addresses the inability of the openEHR EHR architecture to directly represent fine-grained tasks. The Entry model described in the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html" target="_blank" rel="noopener">openEHR EHR IM</a> defines a way to record clinical statements representing real observations, decisions, orders and performed actions in the EHR. In this scheme, Instructions represent orders for Actions to be performed, such as 'administer 3 times a day, for 7 days, with meals'. Such orders are consumed by human actors and mentally converted to individual tasks (21 administrations), with Actions and Observations recording what was done after the fact.</p>
 </div>
 <div class="paragraph">
-<p>There is however a common need to concretely represent the plan of Actions and Observations <em>ahead of time</em>, as a set of individual tasks that can be displayed, verified, performed (or not) and signed off ny workers. A set of planned tasks need not all relate to a single order, or indeed any order. The general picture is that a task plan corresponds to any self-standing healthcare job to be done.</p>
+<p>There is however a common need to concretely represent the plan of Actions and Observations <em>ahead of time</em>, as a set of individual tasks that can be displayed, verified, performed (or not) and signed off by workers. A set of planned tasks need not all relate to a single order, or indeed any order. The general picture is that a task plan corresponds to any self-standing healthcare job to be done.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_use_in_heterogeneous_system_environments"><a class="anchor" href="#_use_in_heterogeneous_system_environments"></a>2.1.3. Use in Heterogeneous System Environments</h4>
-
 </div>
 </div>
 <div class="sect2">
@@ -1180,7 +1172,7 @@
 <div class="sect2">
 <h3 id="_relationship_to_existing_workflow_formalisms"><a class="anchor" href="#_relationship_to_existing_workflow_formalisms"></a>2.3. Relationship to Existing Workflow Formalisms</h3>
 <div class="paragraph">
-<p>This specification describes a model for a task plan concept that incudes support for work distribution across multiple performers, nested task plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a> and <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), as well as emerging case-based standards such as <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
+<p>This specification describes a model of planning that includes support for work distribution across multiple performers, nested plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>) and <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a>, as well as emerging case-based standards such as <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
 </div>
 <div class="paragraph">
 <p>While the model described here takes ideas from these languages, there are some key differences as well. The primary conceptual difference is that the subject (i.e. 'case') here is assumed to be a) an intentional agent (generally a human patient) that makes choices, and b) an active biological organism, which reacts to drugs and other interventions. In other words, an entity that cannot be considered a passive object (such as a package or blood sample), as is the case for most logistic workflows, for which languages such as BPMN are designed. (Note that even the patient can be a passive object in some circumstances, such as radiology.) Other departures include the use of a declarative rather than prescriptive means of defining the plan graph structure, and the formalisation of all elements of a plan and its execution.</p>
@@ -1277,10 +1269,10 @@
 <p>The simplest need is to be able to post a full plan of all actions to be performed for an order, in advance of the order commencing. This would result in a series of Tasks for each planned openEHR <code>ACTION</code> at execution time.</p>
 </div>
 <div class="paragraph">
-<p>In openEHR, an order is represented by an <code>INSTRUCTION</code> instance, which contains a directive to do something such as preform radiography or administer medication. The form of representation in the Instruction is normally <em>interpretable</em> by an agent who will convert it to separate tasks. For example, a drug order for Amoxicillin 500mg oral tablet 3 times/day x 7 days is converted by a human agent to 21 separate tasks, each consisting of taking one tablet at a certain time or day. These tasks can be represented in a plan, each task of which which can then be performed and signed off by a staff member, e.g. a shift nurse. The structure of such a granular plan can act as a record of what has been done (or not), and what is left to do.</p>
+<p>In openEHR, an order is represented by an <code>INSTRUCTION</code> instance, which contains a directive to do something such as perform radiography or administer medication. The form of representation in the Instruction is normally <em>interpretable</em> by an agent who will convert it to separate tasks. For example, a drug order for Amoxicillin 500mg oral tablet 3 times/day x 7 days is converted by a human agent to 21 separate tasks, each consisting of taking one tablet at a certain time or day. These tasks can be represented in a plan, each task of which which can then be performed and signed off by a staff member, e.g. a shift nurse. The structure of such a granular plan can act as a record of what has been done (or not), and what is left to do.</p>
 </div>
 <div class="paragraph">
-<p>One difficulty with posting a full plan is that in some cases, the work is effectively open-ended, i.e. it has no currently known completion date. This might be because the patient condition being treated is chronic, e.g. insulin or Salbutamol (Ventolin) treatment; or it might be that although the condition is assumed to be limited in time, no current assumption can be made about when, e.g. pain medication of a trauma patient.</p>
+<p>One difficulty with posting a full plan is that in some cases, the work is effectively open-ended, i.e. it has no currently known completion date. E.g. diabetes is a chronic condition, so insulin treatment will never be completed. Or currently no assumption can be made about the competition date, e.g. pain medication for a trauma patient.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2508,17 +2500,16 @@ The following UML diagram illustrates.</p>
 <tbody>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;TT&gt;</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>STATE_VARIABLE&lt;T&gt;</strong></p></th>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
 <td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Variable that is updated by polling, and is regarded as correct as long as the last update occurred at or more recently than the required currency.</p>
+<p>Abstraction of a real-world variable that represents a quality of a subject, e.g. patient diabetic status, date of birth etc.</p>
+</div>
+<div class="paragraph">
+<p>The generic parameter is a model type from an accessible model.</p>
 </div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_external_variable_class">EXTERNAL_VARIABLE</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2527,9 +2518,42 @@ The following UML diagram illustrates.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>required_currency</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_iso8601_duration_class" target="_blank" rel="noopener">Iso8601_duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>history</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_hash_class">Hash<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_string_class">String</sup></a>,<a href="#_value_snapshot_class">VALUE_SNAPSHOT</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Required currency of data in target system (e.g. EHR) to be considered valid in the context of this Task.</p>
+<p>Local history of values.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>name</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of variable.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_available</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Return True if there is a value in <code><em>history</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unavailable_reason</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If <code><em>is_available</em></code> is False, potentially provide a reason.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value</strong> (): <code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Retrieve latest value, or null if none.</p>
 </div></div></td>
 </tr>
 </tbody>

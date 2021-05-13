@@ -21,11 +21,7 @@ The {openehr_proc_overview}[openEHR Process and Planning Overview^] provides a c
 
 Task Planning addresses the inability of the openEHR EHR architecture to directly represent fine-grained tasks. The Entry model described in the {openehr_rm_ehr}[openEHR EHR IM^] defines a way to record clinical statements representing real observations, decisions, orders and performed actions in the EHR. In this scheme, Instructions represent orders for Actions to be performed, such as 'administer 3 times a day, for 7 days, with meals'. Such orders are consumed by human actors and mentally converted to individual tasks (21 administrations), with Actions and Observations recording what was done after the fact. 
 
-There is however a common need to concretely represent the plan of Actions and Observations _ahead of time_, as a set of individual tasks that can be displayed, verified, performed (or not) and signed off ny workers. A set of planned tasks need not all relate to a single order, or indeed any order. The general picture is that a task plan corresponds to any self-standing healthcare job to be done.
-
-=== Use in Heterogeneous System Environments
-
-
+There is however a common need to concretely represent the plan of Actions and Observations _ahead of time_, as a set of individual tasks that can be displayed, verified, performed (or not) and signed off by workers. A set of planned tasks need not all relate to a single order, or indeed any order. The general picture is that a task plan corresponds to any self-standing healthcare job to be done.
 
 == What Task Planning Does Not Do
 
@@ -51,7 +47,7 @@ While this specification covers the computable representation of decisions in a 
 
 == Relationship to Existing Workflow Formalisms
 
-This specification describes a model for a task plan concept that incudes support for work distribution across multiple performers, nested task plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as {omg_bpmn}[OMG BPMN (Business Process Modelling Notation)^] and {yawl}[YAWL (Yet another Workflow Language)^] cite:[Hofstede_van_der_Aalst2009], as well as emerging case-based standards such as {omg_cmmn}[OMG CMMN (Case Management Modelling Notation)^] and {omg_dmn}[OMG DMN (Decision Model and Notation)^]. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.
+This specification describes a model of planning that includes support for work distribution across multiple performers, nested plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as {yawl}[YAWL (Yet another Workflow Language)^] cite:[Hofstede_van_der_Aalst2009] and {omg_bpmn}[OMG BPMN (Business Process Modelling Notation)^], as well as emerging case-based standards such as {omg_cmmn}[OMG CMMN (Case Management Modelling Notation)^] and {omg_dmn}[OMG DMN (Decision Model and Notation)^]. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.
 
 While the model described here takes ideas from these languages, there are some key differences as well. The primary conceptual difference is that the subject (i.e. 'case') here is assumed to be a) an intentional agent (generally a human patient) that makes choices, and b) an active biological organism, which reacts to drugs and other interventions. In other words, an entity that cannot be considered a passive object (such as a package or blood sample), as is the case for most logistic workflows, for which languages such as BPMN are designed. (Note that even the patient can be a passive object in some circumstances, such as radiology.) Other departures include the use of a declarative rather than prescriptive means of defining the plan graph structure, and the formalisation of all elements of a plan and its execution.
 

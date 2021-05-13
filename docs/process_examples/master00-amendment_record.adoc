@@ -4,14 +4,41 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*PROC Release 1.6.0*
+
+|[[latest_issue]]1.0.0
+|Add initial version of BMJ Sepsis example.
+|T Beale
+|[[latest_issue_date]]02 Mar 2021
+
+|
+|Add initial version of NEWS2 DLM.
+|T Beale
+|02 Mar 2021
+
+|
+|Add CHA2DS2-VASc, qRISK3 and common DLM (BMI, BSA) examples.
+|T Beale
+|31 Jan 2021
+
+|
+|Add ACEP Covid19 severity guideline (version 1).
+|T Beale
+|03 Dec 2020
+
+|
+|Add perinatal care DLM.
+|D S Alves
+|18 Nov 2020
+
+|
+|Add RCHOPS21 chemotherapy example.
+|T Beale
+|02 Jun 2020
+
 4+^h|*PROC Release 1.5.0*
 
 4+^h|*PROC Release 1.0.0*
-
-|[[latest_issue]]0.1.12
-|Update perinatal care DLM.
-|D S Alves
-|[[latest_issue_date]]18 Nov 2020
 
 |0.1.1
 |Replace 'manual notification' callback by normal Handoff followed by manual notification Task wait state.

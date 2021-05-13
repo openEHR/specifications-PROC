@@ -4,16 +4,14 @@
 |===
 |Issue|Details|Raiser|Completed
 
-4+^h|*PROC Release 2.0.0 (unreleased)*
+4+^h|*PROC Release 1.6.0 (unreleased)*
 
-|[[latest_issue]]
+|[[latest_issue]]1.6.0
 |{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.
 |T Beale
 |[[latest_issue_date]]21 Dec 2020
 
-4+^h|*PROC Release 1.6.0 (unreleased)*
-
-|1.6.0
+|
 |{spec_tickets}/SPECPROC-44[SPECPROC-44^]. Correct `PLAN_TIME_ORIGIN` enum order and add values. See <<_plan_time_origin_enumeration>>.
 |M Kejžar
 |18 Sep 2020
