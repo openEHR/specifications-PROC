@@ -4,7 +4,7 @@
 |===
 |Issue|Details|Raiser, Implementer|Completed
 
-4+^h|*PROC Release 1.6.0 (unreleased)*
+4+^h|*PROC Release 1.6.0*
 
 |[[latest_issue]]0.5.2
 |{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. +

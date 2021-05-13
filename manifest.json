@@ -32,17 +32,6 @@
 			"keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
         },
         {
-            "id": "decision_language",
-            "title": "Decision Language specification",
-            "title_short": "Decision Language",
-            "description": "openEHR Decision Language specification",
-            "summary": "Language for expressing rules and guidelines, for use with GDL3, Task Planning (TP).",
-            "micro_summary": "Rule language for use with GDL, TP.",
-            "copyright_year": "2020",
-            "spec_status": "DEVELOPMENT",
-            "keywords": "expressions, rules, guidelines"
-        },
-        {
             "id": "tp_vml",
             "title": "Task Planning Visual Modelling Language (TP-VML)",
             "title_short": "TP Visual Modelling Language (TP_VML)",
@@ -102,7 +91,7 @@
         },
         {
             "id": "1.6.0",
-            "date": "",
+            "date": "2021-05-14",
             "jira": {
                 "crs": "SPECPROC/versions/12539",
                 "prs": "SPECPR/versions/12527"
