@@ -1,5 +1,5 @@
 :spec_title: Task Planning Visual Modelling Language (TP-VML)
 :copyright_year: 2017
 :spec_status: TRIAL
-:keywords: task planning, visual language, workflow
+:keywords: task planning, visual language, workflow, care pathway, guideline, order set
 :description: openEHR Task Planning Visual Modelling Language
