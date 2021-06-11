@@ -91,10 +91,10 @@
         },
         {
             "id": "1.6.0",
-            "date": "2021-05-14",
+            "date": "2021-06-11",
             "jira": {
                 "crs": "SPECPROC/versions/12539",
-                "prs": "SPECPR/versions/12527"
+                "prs": "SPECPR/versions/12561"
             }
         },
         {
