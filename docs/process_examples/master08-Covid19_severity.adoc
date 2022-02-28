@@ -103,18 +103,18 @@ input -- Tracked State
         currency = 1 min,
         ranges["/min"] =
             ------------------------------
-            |≤99|:       [mild_low_risk],
-            |100..120|:  [mild_at_risk],
-            |≥121|:      [moderate_risk]
+            |≤99|:       #mild_low_risk,
+            |100..120|:  #mild_at_risk,
+            |≥121|:      #moderate_risk
             ------------------------------
         ;
         
     systolic_BP: Quantity
         currency = 10 min,
-        ranges["mm[Hg]"] =
+        ranges["mm#Hg"] =
             ------------------------
-            |<90|:  [critical_risk],
-            |≥90|:  [normal_risk]
+            |<90|:  #critical_risk,
+            |≥90|:  #normal_risk
             ------------------------
         ;
         
@@ -125,9 +125,9 @@ input -- Tracked State
         currency = 8 hr,
         ranges["%"] =
             ----------------------------
-            |≥93|:      [mild_low_risk],
-            |89..92|:   [moderate_risk],
-            |≤88|:      [severe_risk]
+            |≥93|:      #mild_low_risk,
+            |89..92|:   #moderate_risk,
+            |≤88|:      #severe_risk
             ----------------------------
         ;
         
@@ -135,9 +135,9 @@ input -- Tracked State
         currency = 2 min
         ranges["/min"] =
             -----------------------------
-            |≤ 22|:      [mild_low_risk],
-            |23 .. 28|:  [moderate_risk],
-            |≥ 29|:      [severe_risk]
+            |≤ 22|:      #mild_low_risk,
+            |23 .. 28|:  #moderate_risk,
+            |≥ 29|:      #severe_risk
             -----------------------------
         ;
         
@@ -145,10 +145,10 @@ input -- Tracked State
         currency = 2 min,
         ranges["L/min"] =
             --------------------------
-            |0|:      [mild_low_risk],
-            |1..2|:   [mild_at_risk],
-            |3..4|:   [moderate_risk],
-            |≥5|:     [severe_risk]
+            |0|:      #mild_low_risk,
+            |1..2|:   #mild_at_risk,
+            |3..4|:   #moderate_risk,
+            |≥5|:     #severe_risk
             --------------------------
         ;
         
@@ -201,11 +201,11 @@ rules -- Main
     SpO2_score: Integer
         Result := case lowest_SpO2 in
             =====================
-            [mild_low_risk]:  0,
+            #mild_low_risk:  0,
             ---------------------
-            [moderate_risk]:  2,
+            #moderate_risk:  2,
             ---------------------
-            [severe_risk]:    5,
+            #severe_risk:    5,
             ---------------------
             *:                0
             =====================
@@ -214,11 +214,11 @@ rules -- Main
     respiratory_rate_score: Integer
         Result := case respiratory_rate in
             =====================
-            [mild_low_risk]:  0,
+            #mild_low_risk:  0,
             ---------------------
-            [mild_at_risk]:   1,
+            #mild_at_risk:   1,
             ---------------------
-            [moderate_risk]:  2,
+            #moderate_risk:  2,
             ---------------------
             *:                0
             =====================
@@ -227,12 +227,12 @@ rules -- Main
     O2_flow_rate_score: Integer
         Result := case O2_flow_rate in
             =====================
-            [mild_low_risk],
-            [mild_at_risk]:   0,
+            #mild_low_risk,
+            #mild_at_risk:   0,
             ---------------------
-            [moderate_risk]:  4,
+            #moderate_risk:  4,
             ---------------------
-            [severe_risk]:    5,
+            #severe_risk:    5,
             ---------------------
             *:                0
             =====================
@@ -255,15 +255,15 @@ rules -- Main
     qCSI_risk: Terminology_code
         Result := case qCSI_score in
             ============================
-            0:          [mild_low_risk],
+            0:          #mild_low_risk,
             ----------------------------
-            |1..2|:     [mild_at_risk],
+            |1..2|:     #mild_at_risk,
             ----------------------------
-            |3..5|:     [moderate_risk],
+            |3..5|:     #moderate_risk,
             ----------------------------
-            |6..8|:     [severe_risk],
+            |6..8|:     #severe_risk,
             ----------------------------
-            |≥ 9|:     [critical_risk]
+            |≥ 9|:     #critical_risk
             ============================
         ;
 
@@ -273,9 +273,9 @@ rules -- Main
     risk_factors_demographic_count: Integer
         Result.add (
             ------------------------------------
-            BASIC.sex = [male]          ? 1 : 0,
+            BASIC.sex = #male          ? 1 : 0,
             BASIC.age > 60              ? 1 : 0,
-            BASIC.race = [black_race]   ? 1 : 0
+            BASIC.race = #black_race   ? 1 : 0
             ------------------------------------
         );
        
@@ -311,16 +311,16 @@ rules -- Main
     symptoms_related_risk: Terminology_code
         Result := choice of
             ====================================================
-            has_altered_LOC:                    [critical_risk],
+            has_altered_LOC:                    #critical_risk,
             ----------------------------------------------------
-            has_hemoptysis:                     [severe_risk],
+            has_hemoptysis:                     #severe_risk,
             ----------------------------------------------------
             has_persistent_dyspnea or
-            is_LT_care_resident:                [moderate_risk],
+            is_LT_care_resident:                #moderate_risk,
             ----------------------------------------------------
-            risk_factors_count ∈ {|≥ 2|}:     [mild_at_risk],
+            risk_factors_count ∈ {|≥ 2|}:     #mild_at_risk,
             ----------------------------------------------------
-            risk_factors_count ∈ {|0..1|}:     [mild_low_risk]
+            risk_factors_count ∈ {|0..1|}:     #mild_low_risk
             ====================================================
         ;
 
@@ -329,9 +329,9 @@ rules -- Main
     |
     can_discharge: Boolean
         Result := 
-            qCSI_risk = [mild_low_risk] and
-            symptoms_related_risk = [mild_low_risk] and
-            exertional_SpO2_drop = [normal] and
+            qCSI_risk = #mild_low_risk and
+            symptoms_related_risk = #mild_low_risk and
+            exertional_SpO2_drop = #normal and
             TO BE COMPLETED
         ;
         
@@ -346,9 +346,9 @@ rules -- Main
     exertional_SpO2_result: Terminology_code
         Result := case exertional_SpO2_drop in
             ========================
-            |< 3%|:   [normal],
+            |< 3%|:   #normal,
             ------------------------
-            |≥ 3%|:  [mild_at_risk]
+            |≥ 3%|:  #mild_at_risk
             ========================
         ;
 

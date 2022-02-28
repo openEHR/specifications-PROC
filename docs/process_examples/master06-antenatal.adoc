@@ -51,9 +51,9 @@ definitions -- Types
     Risk_type ::= Ordinal
         map =
             -------------------
-            [emergency]:    2,
-            [high_risk]:    1,
-            [low_risk]:     0
+            #emergency:    2,
+            #high_risk:    1,
+            #low_risk:     0
             -------------------
         ;
 
@@ -109,7 +109,7 @@ input -- Tracked State
     |
     | Possible values:
     |   [premature rupture], 
-    |   [polyhydramnios], [oligohydramnios],
+    |   #polyhydramnios, #oligohydramnios,
     |   [severe polyhydramnios], [severe oligohydramnios]
     |
     amniotic_fluid_state: Terminology_term «amniotic_fluid_state»
@@ -124,7 +124,7 @@ input -- Tracked State
         currency = 30mins,
         ranges["mL/hr"] =
             ---------------------------
-            |> 500|:    [critical_high]
+            |> 500|:    #critical_high
             ---------------------------
         ;
 
@@ -153,9 +153,9 @@ input -- Tracked State
         currency = 24h,
         ranges["cm"] =
             ------------------------------------
-            |> 14|:            [polyhydramnios],
-            |≥ 5 .. ≤ 14|:     [normal],
-            |< 5|:             [oligohydramnios]
+            |> 14|:            #polyhydramnios,
+            |≥ 5 .. ≤ 14|:     #normal,
+            |< 5|:             #oligohydramnios
             ------------------------------------
         ;
 
@@ -171,11 +171,11 @@ rules -- Main
     bmi_range: Terminology_code «COMMON.simple_ranges»,
         Result := case BMI.BMI in
             ===========================
-            |> 30|:           [high],
+            |> 30|:           #high,
             ---------------------------
-            |≥ 15 .. ≤ 30|:   [normal],
+            |≥ 15 .. ≤ 30|:   #normal,
             ---------------------------
-            |< 15|:           [low]
+            |< 15|:           #low
             ===========================
         ;
     
@@ -184,76 +184,76 @@ rules -- Main
     |    |excluded|, |anaemia of pregnancy|
     |
     anaemia_type: Terminology_term «anaemia_type»,
-        Result := not has_anaemia_of_pregnancy ? [excluded] : [anaemia_of_pregnancy]
+        Result := not has_anaemia_of_pregnancy ? #excluded : #anaemia_of_pregnancy
         ;
 
     ultrasound_required: Boolean
-        Result := fundal_height_related_risk != [low_risk] or
-                amniotic_fluid_risk != [low_risk] or 
-                vaginal_bleeding_related_risk != [low_risk]
+        Result := fundal_height_related_risk != #low_risk or
+                amniotic_fluid_risk != #low_risk or 
+                vaginal_bleeding_related_risk != #low_risk
         ;
 
     anaemia_risk: Risk_type
         Result := case anaemia_type in
             ============================================
-            [severe_anaemia_of_pregnancy]:  [emergency],
+            #severe_anaemia_of_pregnancy:  #emergency,
             --------------------------------------------
-            [anaemia_of_pregnancy]:         [high_risk],
+            #anaemia_of_pregnancy:         #high_risk,
             --------------------------------------------
-            *:                              [low_risk]
+            *:                              #low_risk
             ============================================
         ;
     
     fundal_height_related_risk: Risk_type
         Result := case ultrasound_finding in
             =================================================
-            [interuterine_growth_retardation],
-            [multiple_pregnancy],
-            [macrosomia]:                        [high_risk],
+            #interuterine_growth_retardation,
+            #multiple_pregnancy,
+            #macrosomia:                        #high_risk,
             -------------------------------------------------
-            *:                                   [low_risk]
+            *:                                   #low_risk
             =================================================
         ;
     
     amniotic_fluid_risk: Risk_type
         Result := case amniotic_fluid_state in
             =========================================
-            [premature_rupture],
-            [severe_oligohydramnios],
-            [severe_polyhydramnios]:     [emergency],
+            #premature_rupture,
+            #severe_oligohydramnios,
+            #severe_polyhydramnios:     #emergency,
             -----------------------------------------
-            [polyhydramnios],
-            [oligohydramnios]:           [high_risk],
+            #polyhydramnios,
+            #oligohydramnios:           #high_risk,
             -----------------------------------------
-            *:                            [low_risk]
+            *:                            #low_risk
             =========================================
         ;
     
     vaginal_bleeding_related_risk: Risk_type
         Result := case vaginal_physical_exam_assessment in
             =================================================
-            [ectopic_pregnancy],
-            [gestational_trophoblastic_disease]: [emergency],
+            #ectopic_pregnancy,
+            #gestational_trophoblastic_disease: #emergency,
             -------------------------------------------------
-            [placenta_previa],
-            [risk_of_miscarriage]:               [high_risk],
+            #placenta_previa,
+            #risk_of_miscarriage:               #high_risk,
             -------------------------------------------------
-            *:                                   [low_risk]
+            *:                                   #low_risk
             =================================================
         ;
             
     gestational_diabetes_risk: Risk_type
         Result := choice of
             =================================================
-            bmi_range = [high] or
+            bmi_range = #high or
             previous_macrosomic_baby or
             previous_gestational_diabetes or
             family_history_of_diabetes or
             race_related_diabetes_risk or
             has_gestational_diabetes or
-            is_type1_diabetic:                  [high_risk],
+            is_type1_diabetic:                  #high_risk,
             -------------------------------------------------
-            *:                                  [low_risk]
+            *:                                  #low_risk
             =================================================
         ;
             
@@ -261,27 +261,27 @@ rules -- Main
         Result := choice of
             =================================================
             has_pre_eclampsia or 
-            has_eclampsia:                      [emergency],
+            has_eclampsia:                      #emergency,
             -------------------------------------------------
             previous_obstetric_hypertension or
             previous_pre_eclampsia or
             previous_eclampsia or
-            has_pregnancy_hypertension:         [high_risk],
+            has_pregnancy_hypertension:         #high_risk,
             -------------------------------------------------
-            *:                                  [low_risk]
+            *:                                  #low_risk
             =================================================
         ;
             
    labour_onset_pathway: Terminology
         Result := case labour_onset_assessment in
             ====================================
-            [placental_abruption],
-            [premature_labour]:    [emergency],
+            #placental_abruption,
+            #premature_labour:    #emergency,
             ------------------------------------
-            [onset_of_labour],
-            [labour_first_stage]:  [maternity],
+            #onset_of_labour,
+            #labour_first_stage:  #maternity,
             ------------------------------------
-            *:                     [observation]
+            *:                     #observation
             ====================================
         ;
 

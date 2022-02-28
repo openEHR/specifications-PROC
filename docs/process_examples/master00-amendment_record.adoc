@@ -6,10 +6,15 @@
 
 4+^h|*PROC Release 1.6.0*
 
-|[[latest_issue]]1.0.0
+|[[latest_issue]]1.0.1
+|Convert `[term_code]` to `#term_code`.
+|T Beale
+|[[latest_issue_date]]22 Feb 2022
+
+|1.0.0
 |Add initial version of BMJ Sepsis example.
 |T Beale
-|[[latest_issue_date]]02 Mar 2021
+|02 Mar 2021
 
 |
 |Add initial version of NEWS2 DLM.

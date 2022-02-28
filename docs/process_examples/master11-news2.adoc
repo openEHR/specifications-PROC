@@ -123,15 +123,15 @@ input -- Tracked State
         ;
         
     |
-    | [air] | [oxygen]
+    | #air | #oxygen
     |
     gases: Terminology_code «gases»
         currency = 1 hr
         ;
 
     |
-    | [alert]: normally alert
-    | [CVPU]: new confusion
+    | #alert: normally alert
+    | #CVPU: new confusion
     |
     conscious_state: Terminology_code «conscious_state»
         currency = 1 hr
@@ -192,10 +192,10 @@ rules -- Main
                 ==============
                 ;,
             --------------------------------------------
-            SpO2 ≥ 93 and gases = [air]: 
+            SpO2 ≥ 93 and gases = #air: 
                 0,
             --------------------------------------------
-            SpO2 ≥ 93 and gases = [oxygen]: case SpO2 in 
+            SpO2 ≥ 93 and gases = #oxygen: case SpO2 in 
                 ==============
                 |93..94|:   1,
                 --------------
@@ -214,9 +214,9 @@ rules -- Main
     gases_score: Integer
         Result := case gases in
             ==============
-            [air]:     0,
+            #air:     0,
             --------------
-            [oxygen]:  2
+            #oxygen:  2
             ==============
         ;
 
@@ -305,13 +305,13 @@ rules -- Output
     clinical_risk: Terminology_code «NEWS2_clinical_risk»
         Result := choice of
             ========================================
-            NEWS2_score in |0..4|:  [low],
+            NEWS2_score in |0..4|:  #low,
             ----------------------------------------
-            has_red_score:          [low_to_medium],
+            has_red_score:          #low_to_medium,
             ----------------------------------------
-            NEWS2_score in |5..6|:  [medium],
+            NEWS2_score in |5..6|:  #medium,
             ----------------------------------------
-            NEWS2_score ≥7:         [high]
+            NEWS2_score ≥7:         #high
             ========================================
         ;
 
@@ -322,15 +322,15 @@ rules -- Output
     clinical_response_band: Terminology_code «NEWS2_clinical_response_band»
         Result := choice of
             =======================================
-            NEWS2_score = 0:        [NEWS2_band_1],
+            NEWS2_score = 0:        #NEWS2_band_1,
             ---------------------------------------
-            NEWS2_score in |1..4|:  [NEWS2_band_2],
+            NEWS2_score in |1..4|:  #NEWS2_band_2,
             ---------------------------------------
-            has_red_score:          [NEWS2_band_3],
+            has_red_score:          #NEWS2_band_3,
             ---------------------------------------
-            NEWS2_score in |5..6|:  [NEWS2_band_4],
+            NEWS2_score in |5..6|:  #NEWS2_band_4,
             ---------------------------------------
-            NEWS2_score in |≥7|:    [NEWS2_band_5]
+            NEWS2_score in |≥7|:    #NEWS2_band_5
             =======================================
         ;
 
@@ -340,14 +340,14 @@ rules -- Output
     clinical_monitoring: Terminology_code «NEWS2_clinical_monitoring»
         Result := case clinical_response_band in
             ====================================================
-            [NEWS2_band_1]:  [minimum_12_hourly_monitoring],
+            #NEWS2_band_1:  #minimum_12_hourly_monitoring,
             ----------------------------------------------------
-            [NEWS2_band_2]:  [minimum_4_to_6_hourly_monitoring],
+            #NEWS2_band_2:  #minimum_4_to_6_hourly_monitoring,
             ----------------------------------------------------
-            [NEWS2_band_3],
-            [NEWS2_band_4]:  [minimum_1_hourly_monitoring],
+            #NEWS2_band_3,
+            #NEWS2_band_4:  #minimum_1_hourly_monitoring,
             ----------------------------------------------------
-            [NEWS2_band_5]:  [continuous_monitoring]
+            #NEWS2_band_5:  #continuous_monitoring
             ====================================================
         ;
 
@@ -476,8 +476,8 @@ The following defines the logical bindings of DLM variables to back-end data.
 -- Demographic items: AQL query
 --
 SELECT
-    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0004] AS date_of_birth,
-    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0008] AS sex
+    OBS/data#at0001/events#at0002/data#at0003/items#at0004 AS date_of_birth,
+    OBS/data#at0001/events#at0002/data#at0003/items#at0008 AS sex
     C/context/start_time AS time
 FROM
     EHR e[ehr_id/value=$ehrUid]
@@ -491,11 +491,11 @@ ORDER BY
 -- CHA2DS2-VASc input items
 --
 SELECT
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0026] AS has_congestive_heart_failure,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0029] AS has_hypertension,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0039] AS has_stroke_TIA_thromboembolism,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0046] AS has_vascular_disease,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0032] AS has_diabetes,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0026 AS has_congestive_heart_failure,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0029 AS has_hypertension,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0039 AS has_stroke_TIA_thromboembolism,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0046 AS has_vascular_disease,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0032 AS has_diabetes,
     C/context/start_time AS time
 FROM
     EHR e[ehr_id/value=$ehrUid]

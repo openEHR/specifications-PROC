@@ -105,9 +105,9 @@ rules -- Main
     gender: Terminology_code «sexes»,
         Result := case BASIC.sex in
             =====================
-            [male]:     [male],
+            #male:     #male,
             ---------------------
-            *:          [female]
+            *:          #female
             =====================
         ;
 
@@ -125,7 +125,7 @@ rules -- Main
     CHA2DS2_VASc_score: Integer
         Result.add (
             ---------------------------------------------
-            BASIC.gender = [male]                ? 1 : 0,
+            BASIC.gender = #male                ? 1 : 0,
             age_score,
             has_congestive_heart_failure         ? 1 : 0,
             has_hypertension                     ? 1 : 0,
@@ -147,14 +147,14 @@ rules -- Output
     risk_assessment: Terminology_code «risks»
         Result := case CHA2DS2_VASc_score in
             =============================
-            0:       [low_risk],
-            1:       [intermediate_risk],
-            |≥2|:   [high_risk]
+            0:       #low_risk,
+            1:       #intermediate_risk,
+            |≥2|:   #high_risk
             =============================
         ;
     
     |
-    | Further interpretation in accordance with [4]
+    | Further interpretation in accordance with #4
     |
     annual_stroke_risk: Real
         Result := case CHA2DS2_VASc_score in
@@ -173,7 +173,7 @@ rules -- Output
         ;
     
     |
-    | Further interpretation in accordance with [4]
+    | Further interpretation in accordance with #4
     |
     annual_stroke_TIA_thromboembolism_risk: Real
         Result := case CHA2DS2_VASc_score in
@@ -291,8 +291,8 @@ The following defines the logical bindings of DLM variables to back-end data.
 -- Demographic items: AQL query
 --
 SELECT
-    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0004] AS date_of_birth,
-    OBS/data[at0001]/events[at0002]/data[at0003]/items[at0008] AS sex
+    OBS/data#at0001/events#at0002/data#at0003/items#at0004 AS date_of_birth,
+    OBS/data#at0001/events#at0002/data#at0003/items#at0008 AS sex
     C/context/start_time AS time
 FROM
     EHR e[ehr_id/value=$ehrUid]
@@ -306,11 +306,11 @@ ORDER BY
 -- CHA2DS2-VASc input items
 --
 SELECT
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0026] AS has_congestive_heart_failure,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0029] AS has_hypertension,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0039] AS has_stroke_TIA_thromboembolism,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0046] AS has_vascular_disease,
-    OBS/data[at0002]/events[at0003]/data[at0001]/items[at0032] AS has_diabetes,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0026 AS has_congestive_heart_failure,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0029 AS has_hypertension,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0039 AS has_stroke_TIA_thromboembolism,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0046 AS has_vascular_disease,
+    OBS/data#at0002/events#at0003/data#at0001/items#at0032 AS has_diabetes,
     C/context/start_time AS time
 FROM
     EHR e[ehr_id/value=$ehrUid]

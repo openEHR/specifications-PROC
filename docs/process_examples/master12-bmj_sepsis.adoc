@@ -55,45 +55,45 @@ definitions -- Reference
     |
     Heart_rate_risks = {
             |<1y|: {
-                |≥ 160|:     [high],
-                |150..159|:  [moderate],
-                |60..<150|:  [low],
-                |<60|:       [high]
+                |≥ 160|:     #high,
+                |150..159|:  #moderate,
+                |60..<150|:  #low,
+                |<60|:       #high
             },
             |1..2|: {
-                |≥ 150|:     [high],
-                |140..149|:  [moderate],
-                |60..<140|:  [low],
-                |<60|:       [high]
+                |≥ 150|:     #high,
+                |140..149|:  #moderate,
+                |60..<140|:  #low,
+                |<60|:       #high
             },
             |3..4|: {
-                |≥ 140|:     [high],
-                |130..139|:  [moderate],
-                |60..<130|:  [low],
-                |<60|:       [high]
+                |≥ 140|:     #high,
+                |130..139|:  #moderate,
+                |60..<130|:  #low,
+                |<60|:       #high
             },
             |5|: {
-                |≥ 130|:     [high],
-                |120..129|:  [moderate],
-                |60..<120|:  [low],
-                |<60|:       [high]
+                |≥ 130|:     #high,
+                |120..129|:  #moderate,
+                |60..<120|:  #low,
+                |<60|:       #high
             },
             |6..7|: {
-                |≥ 120|:     [high],
-                |110..119|:  [moderate],
-                |60..<110|:  [low],
-                |<60|:       [high]
+                |≥ 120|:     #high,
+                |110..119|:  #moderate,
+                |60..<110|:  #low,
+                |<60|:       #high
             },
             |8..11|: {
-                |≥ 115|:     [high],
-                |105..114|:  [moderate],
-                |60..<105|:  [low],
-                |<60|:       [high]
+                |≥ 115|:     #high,
+                |105..114|:  #moderate,
+                |60..<105|:  #low,
+                |<60|:       #high
             },
             |≥12|: {
-                |≥ 131|:    [high],
-                |91..130|:  [moderate],
-                |<91|:      [low]
+                |≥ 131|:    #high,
+                |91..130|:  #moderate,
+                |<91|:      #low
             }
         }
         ;
@@ -102,9 +102,9 @@ definitions -- Reference
     | Heart rate risk factor, stratified by age
     |
     Heart_rate_risks_pregnant = {
-                |≥ 131|:     [high],
-                |100..130|:  [moderate],
-                |<100|:      [low]
+                |≥ 131|:     #high,
+                |100..130|:  #moderate,
+                |<100|:      #low
         }
         ;
 
@@ -120,7 +120,7 @@ input -- Historical state
         ;
         
     |
-    | Reference systolic BP in [mmHg]
+    | Reference systolic BP in #mmHg
     |
     reference_systolic_BP: Real
         currency = 1 month
@@ -136,7 +136,7 @@ input -- Tracking state
         ;
         
     |
-    | Systolic BP in [mmHg]
+    | Systolic BP in #mmHg
     |
     systolic_BP: Real
         currency = 15min
@@ -195,9 +195,9 @@ rules -- Main
     heart_rate_risk: Terminology_code «risk»
         Result := case is_pregnant in 
             ==========================================================
-            False:   Heart_rate_risks[BASIC.age_in_years][heart_rate],
+            False:   Heart_rate_risks[BASIC.age_in_years]#heart_rate,
             ---------------------------------------------------------
-            True:    Heart_rate_risks_pregnant[heart_rate]
+            True:    Heart_rate_risks_pregnant#heart_rate
             ==========================================================
         ;
         
@@ -205,11 +205,11 @@ rules -- Main
         Result := choice of 
             ======================================================
             systolic_BP ≤ 90 or 
-            reference_systolic_BP - systolic_BP ≥ 40:      [high],
+            reference_systolic_BP - systolic_BP ≥ 40:      #high,
             ------------------------------------------------------
-            systolic_BP in |91..100|:                       [low],
+            systolic_BP in |91..100|:                       #low,
             ------------------------------------------------------
-            *:                                          [moderate]
+            *:                                          #moderate
             ======================================================
         ;
 
@@ -218,9 +218,9 @@ rules -- Main
             ==============================================
             capillary_refill_time ≥3 or
             cold_hands_feet or
-            leg_pain:                           [moderate],
+            leg_pain:                           #moderate,
             ----------------------------------------------
-            *:                                  [low]
+            *:                                  #low
             ==============================================
         ;
         

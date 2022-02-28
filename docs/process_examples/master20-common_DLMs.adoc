@@ -36,7 +36,7 @@ input -- Administrative
         ;
         
     |
-    | sex: [male] | [female] | [indeterminate]
+    | sex: #male | #female | #indeterminate
     |
     sex: Terminology_code «sexes»,
         ;
@@ -49,14 +49,14 @@ input -- Administrative
         
     |
     | Ethnicity:
-    |   [white_or_not_stated]
-    |   [indian]
-    |   [pakistani]
-    |   [bangladeshi]
-    |   [other_asian]
-    |   [black_caribbean]
-    |   [black_african]
-    |   [other_ethnic_group]
+    |   #white_or_not_stated
+    |   #indian
+    |   #pakistani
+    |   #bangladeshi
+    |   #other_asian
+    |   #black_caribbean
+    |   #black_african
+    |   #other_ethnic_group
     |
     ethnicity: Terminology_code «ethnicities»,
         ;
@@ -180,7 +180,7 @@ rules -- Main
                                     convert_value (weight.value, 
                                         from: weight.units,
                                         to: "kg", 
-                                        UCUM.[mass])
+                                        UCUM.#mass)
             =====================================================
         ;
         
@@ -198,7 +198,7 @@ rules -- Main
                                     convert_value (height.value,
                                         from: height.units,
                                         to: "cm",
-                                        UCUM.[length])
+                                        UCUM.#length)
             =====================================================
         ;
         
@@ -301,7 +301,7 @@ rules -- Main
                                     convert_value (weight.value,
                                         from: weight.units,
                                         to: "kg",
-                                        UCUM.[mass])
+                                        UCUM.#mass)
             ====================================================
         ;
         
@@ -319,7 +319,7 @@ rules -- Main
                                     convert_value (height.value,
                                         from: height.units,
                                         to: "m",
-                                        UCUM.[length])
+                                        UCUM.#length)
             =====================================================
         ;
         
