@@ -547,7 +547,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2021 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2022 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -2195,7 +2195,7 @@ The following UML diagram illustrates.</p>
 <p>An instance of <code>PLAN_DATA_CONTEXT</code> represents the full set of tracked variables and expressions used in a Work Plan, which are either  atomic <em>variables</em> or <em>constants</em>, or else <em>expressions</em> that reference such variables, respectively represented by the classes <code>CONTEXT_VARIABLE&lt;T&gt;</code>, <code>CONTEXT_CONSTANT&lt;T&gt;</code> and <code>CONTEXT_EXPRESSION&lt;T&gt;</code>. These classes and the abstract parent are generic, with the parameter being the formal type of variable or expression.</p>
 </div>
 <div class="paragraph">
-<p>Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as <code>$bp_systolic - $bp_diastolic</code>, where <code>$bp_systolic</code> and <code>$bp_diastolic</code> are defined as single variables. The syntax of expressions is defined by the <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html">openEHR Expression language</a>.</p>
+<p>Context variables are typically related to subject state, such as patient vital signs, key demographic characteristics and so on, or the clinical care process, such as the 'time since stroke event', while expressions are used to represent logical expressions such as <code>$bp_systolic - $bp_diastolic</code>, where <code>$bp_systolic</code> and <code>$bp_diastolic</code> are defined as single variables. The syntax of expressions is defined by the <a href="https://specifications.openehr.org/releases/LANG/latest/EL.html">openEHR Expression language</a>.</p>
 </div>
 <div class="paragraph">
 <p>Two types of context variable are distinguished: external and local, represented by <code>EXTERNAL_VARIABLE&lt;t&gt;</code> and <code>LOCAL_VARIABLE&lt;T&gt;</code>. The former represent values of entities outside the task planning environment, and are written to via a <code><em>populating_request</em></code> which uses some method (such as EHR querying, API calls) to obtain the relevant external value. They are accordingly not writable from within the Work Plan.</p>
@@ -4982,7 +4982,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <p><code>TASK_ACTION</code> includes two attributes that apply to all subtypes. The first is <code><em>subject_preconditions</em></code>, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.</p>
 </div>
 <div class="paragraph">
-<p>A subject precondition is formally represented as a <code>BOOLEAN_CONTEXT_EXPRESSION</code>, whose <code><em>expression</em></code> value is a string in <a href="https://specifications.openehr.org/releases/LANG/latest/expression_language.html" target="_blank" rel="noopener">openEHR Expression Language</a> syntax.</p>
+<p>A subject precondition is formally represented as a <code>BOOLEAN_CONTEXT_EXPRESSION</code>, whose <code><em>expression</em></code> value is a string in <a href="https://specifications.openehr.org/releases/LANG/latest/EL.html" target="_blank" rel="noopener">openEHR Expression Language</a> syntax.</p>
 </div>
 <div class="paragraph">
 <p>Pre-conditions are evaluated at the point at which the Task to which they are attached becomes available during execution. If any pre-condition evaluates to False, the Task is in theory unable to be performed. A clinical professional may override at execution time, since it may always be the case that particular circumstances obviate the need for a particular pre-condition that normally applies.</p>
