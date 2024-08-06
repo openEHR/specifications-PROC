@@ -1,5 +1,5 @@
 :spec_title: openEHR CDS, Guidelines and Planning Examples
 :copyright_year: 2017
-:spec_status: DEVELOPMENT
+:spec_status: RETIRED
 :keywords: process, task planning, CDS, CPG, decision logic, examples, workflow
 :description: Examples of openEHR CDS, Guideline and Planning artefacts.

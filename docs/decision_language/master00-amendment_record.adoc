@@ -4,12 +4,17 @@
 |===
 |Issue|Details|Raiser, Implementer|Completed
 
-4+^h|*PROC Release 2.0.0 (unreleased)*
+4+^h|*PROC Release 1.7.0*
 
-|[[latest_issue]]0.6.0
+|[[latest_issue]]1.7.0
+|{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
+|openEHR SEC
+|[[latest_issue_date]]07 Aug 2024
+
+|0.6.0
 |{spec_tickets}/SPECPROC-41[SPECPROC-41^]. Add Decision Language specification.
 |T Beale
-|[[latest_issue_date]]02 Jan 2021
+|02 Jan 2021
 
 |===
 

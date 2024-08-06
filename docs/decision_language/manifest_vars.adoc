@@ -1,5 +1,5 @@
 :spec_title: Decision Language specification
 :copyright_year: 2020
-:spec_status: DEVELOPMENT
+:spec_status: RETIRED
 :keywords: expressions, rules, guidelines
 :description: openEHR Decision Language specification

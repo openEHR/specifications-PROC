@@ -1,5 +1,5 @@
 :spec_title: CDS, Guidelines and Planning Overview
 :copyright_year: 2020
-:spec_status: TRIAL
+:spec_status: RETIRED
 :keywords: process, guidelines, GDL, planning, CDS, workflow, CPG
 :description: Overview of openEHR CDS, Guidelines and Planning specifications.

@@ -4,12 +4,20 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*PROC Release 1.7.0*
+
+|[[latest_issue]]1.7.0
+|{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
+|openEHR SEC
+|[[latest_issue_date]]07 Aug 2024
+
+
 4+^h|*PROC Release 1.6.0*
 
-|[[latest_issue]]1.6.0
+|1.6.0
 |{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.
 |T Beale
-|[[latest_issue_date]]21 Dec 2020
+|21 Dec 2020
 
 |
 |{spec_tickets}/SPECPROC-44[SPECPROC-44^]. Correct `PLAN_TIME_ORIGIN` enum order and add values. See <<_plan_time_origin_enumeration>>.

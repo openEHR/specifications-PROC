@@ -4,13 +4,21 @@
 |===
 |Issue|Details|Raiser, Implementer|Completed
 
+4+^h|*PROC Release 1.7.0*
+
+|[[latest_issue]]1.7.0
+|{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
+|openEHR SEC
+|[[latest_issue_date]]07 Aug 2024
+
+
 4+^h|*PROC Release 1.6.0*
 
-|[[latest_issue]]0.5.2
+|0.5.2
 |{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. +
  Add conceptual CIG model; adjust nomenclature in artefacts diagram.
 |T Beale
-|[[latest_issue_date]]16 Mar 2021
+|16 Mar 2021
 
 |
 |GDL-oriented review.

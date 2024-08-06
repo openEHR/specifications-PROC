@@ -4,12 +4,20 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*PROC Release 1.7.0*
+
+|[[latest_issue]]1.7.0
+|{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
+|openEHR SEC
+|[[latest_issue_date]]07 Aug 2024
+
+
 4+^h|*PROC Release 1.6.0*
 
-|[[latest_issue]]1.0.1
+|1.0.1
 |Convert `[term_code]` to `#term_code`.
 |T Beale
-|[[latest_issue_date]]22 Feb 2022
+|22 Feb 2022
 
 |1.0.0
 |Add initial version of BMJ Sepsis example.

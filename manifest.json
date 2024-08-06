@@ -3,6 +3,7 @@
     "title": "Process Model",
     "description": "openEHR Process Model Component",
     "keywords": "process model, workflow, pathways, openehr",
+    "status": "RETIRED",
     "specifications": [
         {
             "id": "overview",
@@ -12,7 +13,7 @@
             "summary": "Overview of openEHR CDS, Guidelines and Planning specifications.",
             "micro_summary": "Overview of CDS, Guidelines, and Planning specifications.",
 			"copyright_year": "2020",
-			"spec_status": "TRIAL",
+			"spec_status": "RETIRED",
 			"keywords": "process, guidelines, GDL, planning, CDS, workflow, CPG"
         },
         {
@@ -28,7 +29,7 @@
                 "PLAN_EVENT"
             ],
 			"copyright_year": "2017",
-			"spec_status": "TRIAL",
+			"spec_status": "RETIRED",
 			"keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
         },
         {
@@ -39,7 +40,7 @@
             "summary": "Language for expressing rules and guidelines, for use with GDL3, Task Planning (TP).",
             "micro_summary": "Rule language for use with GDL, TP.",
             "copyright_year": "2020",
-            "spec_status": "DEVELOPMENT",
+            "spec_status": "RETIRED",
             "keywords": "expressions, rules, guidelines"
         },
         {
@@ -50,7 +51,7 @@
             "summary": "Task Planning Visual Modelling Language - a visual modelling language for Task Planning.",
             "micro_summary": "A visual modelling language for clinical plans and workflows.",
 			"copyright_year": "2017",
-			"spec_status": "TRIAL",
+			"spec_status": "RETIRED",
 			"keywords": "task planning, visual language, workflow, care pathway, guideline, order set"
         },
         {
@@ -61,7 +62,7 @@
             "summary": "Real world examples of openEHR CDS, Guideline and Planning artefacts.",
             "micro_summary": "Real-world CDS/Process examples.",
 			"copyright_year": "2017",
-			"spec_status": "DEVELOPMENT",
+			"spec_status": "RETIRED",
 			"keywords": "process, task planning, CDS, CPG, decision logic, examples, workflow"
         }
     ],
@@ -98,6 +99,14 @@
             "jira": {
                 "crs": "SPECPROC/versions/12506",
                 "prs": "SPECPR/versions/12527"
+            }
+        },
+        {
+            "id": "1.7.0",
+            "date": "2024-08-07",
+            "jira": {
+                "crs": "SPECPROC/versions/12541",
+                "prs": "SPECPR/versions/12561"
             }
         },
         {
