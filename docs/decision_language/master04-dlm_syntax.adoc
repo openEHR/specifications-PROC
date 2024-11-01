@@ -27,7 +27,7 @@ definitions -- Descriptive
     <reference model ids; defaults to openEHR Foundation & Base types>]
 
 [use
-    <local identifier>: <dlm identifier>
+    <local identifier>: <dlm identifier> 
     <local identifier>: <dlm identifier>]
 
 [preconditions

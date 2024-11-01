@@ -29,7 +29,7 @@ This document is in the {spec_status} state.
 
 Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
 [.tbd]
-*TBD*: (example To Be Determined paragraph)
+*TBD*: (example To Be Determined paragraph) 
 
 == Feedback
 

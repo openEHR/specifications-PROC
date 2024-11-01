@@ -452,7 +452,7 @@ input -- Tracking state
         ;
         
     |
-    | Systolic BP in #mmHg, at least 2, max 10 samples
+    | Systolic BP in mmHg, at least 2, max 10 samples
     |
     systolic_BP_history: Array<Real>[2..10]
         ;

@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.17">
 <meta name="description" content="openEHR Task Planning specification">
 <meta name="keywords" content="workflow, task, planning, EHR, EMR, reference model, openehr">
 <title>Task Planning (TP) Specification</title>
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
 <link rel="stylesheet" href="https://specifications.openehr.org/styles/pygments-default.css">
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/asciidoctor-tabs.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -19,6 +18,7 @@
 <ul class="sectlevel0">
 <li><a href="#_task_planning_tp_specification">Task Planning (TP) Specification</a>
 <ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
 <ul class="sectlevel2">
 <li><a href="#_primary_author">Primary Author</a></li>
@@ -493,7 +493,6 @@
 <li><a href="#_execution_time_ehr_structures">12.2. Execution-time EHR Structures</a></li>
 </ul>
 </li>
-<li><a href="#_amendment_record">Amendment Record</a></li>
 <li><a href="#_references">References</a></li>
 </ul>
 </li>
@@ -525,8 +524,8 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: PROC Release-1.7.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: RETIRED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: PROC latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: TRIAL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
@@ -549,7 +548,7 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2024 The openEHR Foundation</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2017 - 2022 The openEHR Foundation</th>
 </tr>
 </thead>
 <tbody>
@@ -564,6 +563,323 @@
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://specifications.openehr.org/components/PROC/open_issues" target="_blank" rel="noopener">Problem Reports</a><br>
  Web: <a href="https://specifications.openehr.org" target="_blank" rel="noopener">specifications.openEHR.org</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 54.5454%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.6.0</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.6.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-45" target="_blank" rel="noopener">SPECPROC-45</a>. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>21 Dec 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-44" target="_blank" rel="noopener">SPECPROC-44</a>. Correct <code>PLAN_TIME_ORIGIN</code> enum order and add values. See <a href="#_plan_time_origin_enumeration">Section 5.6.1.4</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 Sep 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-43" target="_blank" rel="noopener">SPECPROC-43</a>. Add inheritance to separate <code>CALLBACK_NOTIFICATION</code> from other Plan Event types;<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation;<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>; add enumeration Integer values; improve text.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">29 May 2020</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.5.0</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order and semantics of <code>REPEAT_SPEC</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">05 May 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Change method of 'manual notification' for callbacks; remove <code><em>manually_notified</em>: Boolean</code> from <code>CALLBACK_NOTIFICATION</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 Apr 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
+ M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19 Mar 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-32" target="_blank" rel="noopener">SPECPROC-32</a>. Improve Introduction and Requirements Discussion.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D Santos Alves,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 Jan 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-30" target="_blank" rel="noopener">SPECPROC-30</a>. Adjustments to Events model.<br>
+ change <code>TASK_WAIT.<em>start_window</em>: REMINDER[0..1]</code> to <code>PLAN_ITEM.<em>reminders</em>: REMINDER[*]</code>;<br>
+ add invariant to <code>TIMER_WAIT</code> to prevent it having a timeout;<br>
+ make <code>REMINDER</code> a generic <code>EVENT_WAIT</code> to allow it to be fired by any event, not just a timer event;<br>
+ remove <code>DELAY_EVENT</code>; move its <code><em>delay</em></code> attribute to <code>PLAN_EVENT</code>,<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-31" target="_blank" rel="noopener">SPECPROC-31</a>. Simplifications to Conditional structures: remove <code>BLOCKING_GROUP</code>, <code>BLOCKING_BRANCH</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03 Jan 2020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-28" target="_blank" rel="noopener">SPECPROC-28</a>. Improve definition of <code>TIMELINE_MOMENT</code> and <code>TIMER_EVENT</code>; add <code>PLAN_TIME_ORIGIN</code> enum; remove <code>CALENDAR_TIME</code> class.
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-29" target="_blank" rel="noopener">SPECPROC-29</a>. Add <code><em>guideline_step</em></code> to <code>PLAN_ITEM</code>; make Work Plan and Task Plan guideline refs more flexible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">09 Aug 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-26" target="_blank" rel="noopener">SPECPROC-26</a>. Dataset improvements: make <code>DATASET_SPEC</code> inherit from <code>LOCATABLE</code>; support form sub-sections.
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-27" target="_blank" rel="noopener">SPECPROC-27</a>. Add <code><em>classification</em></code> attribute to <code>WORK_PLAN</code> and <code>PLAN_ITEM</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22 Jul 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-24" target="_blank" rel="noopener">SPECPROC-24</a>. Add Order tracking to model: add class <code>ORDER_REF</code>; add <code>WORK_PLAN.<em>order_list</em></code>; add <code>TASK_PLAN.<em>order_tags</em></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ M Polajnar,<br>
+ T Beale,<br>
+ B Naess</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">29 May 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Enable Callbacks to be manually notified - add <code><em>manually_notified</em>: Boolean</code> to <code>CALLBACK_NOTIFICATION</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">01 May 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-23" target="_blank" rel="noopener">SPECPROC-23</a>. Correct <code>CLOCK_TIME.<em>time</em></code> type to <code>Iso8601_time</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25 Apr 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-20" target="_blank" rel="noopener">SPECPROC-20</a>. Add <code><em>period</em></code> to <code>TASK_REPEAT</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 Apr 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-19" target="_blank" rel="noopener">SPECPROC-19</a>. Refine model of concurrency in <code>TASK_GROUP</code>: add class <code>CONCURRENCY_MODE</code>; improve explanation of <code>TASK_GROUP</code>;<br>
+ Add <code><em>concurrency_mode</em> = xor_one_path</code> invariant to <code>CHOICE_GROUP</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18 Mar 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-18" target="_blank" rel="noopener">SPECPROC-18</a>. Support custom actions for callback receipt of events;<br>
+ Improve diagrams and explanation on Task wait states and Events;<br>
+ Add <code>CALLBACK_WAIT.<em>custom_actions</em></code>;<br>
+ Add <code>REMINDER.<em>repeats</em></code>;<br>
+ Add <code>TASK_WAIT.<em>next_state</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ B Naess</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11 Mar 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-17" target="_blank" rel="noopener">SPECPROC-17</a>. Specialise <code>DATASET_SPEC</code> into Capture and Review forms.<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-16" target="_blank" rel="noopener">SPECPROC-16</a>. Change <code>WORK_PLAN.<em>top_level_plans</em></code> and <code>LINKED_PLAN.<em>target</em></code> to direct links.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ B Naess,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Jan 2019</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-15" target="_blank" rel="noopener">SPECPROC-15</a>. Convert <code>DELAY_EVENT.<em>source</em></code> to a direct reference.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 Nov 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-2" target="_blank" rel="noopener">SPECPROC-2</a>. Change date/time types to <code>Iso8601_xxx</code> types from Foundation Types spec.<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-11" target="_blank" rel="noopener">SPECPROC-11</a>. Add <code>WORK_PLAN.<em>indications</em></code>;<br>
+ Improve documentation of <code>TIMELINE_MOMENT</code>;<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-13" target="_blank" rel="noopener">SPECPROC-13</a>. Clarify Work Plan instantiation and distribution semantics:<br>
+ Add section 4.4.1 Phases of Work;<br>
+ Add subsection to section 2.5 on Distributed plans.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
+ M Kejžar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">31 Oct 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-9" target="_blank" rel="noopener">SPECPROC-9</a>. Add sub-section on Time and Work in Background section.<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-10" target="_blank" rel="noopener">SPECPROC-10</a>. Add <code>BLOCKING_GROUP</code> and <code>BLOCKING_BRANCH</code> classes and <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 Jun 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-6" target="_blank" rel="noopener">SPECPROC-6</a>. Adjust <code>SYSTEM_CALL</code> definition;<br>
+ Add <code>PARAMETER_DEF</code> and <code>PARAMETER_MAPPING</code> types.<br>
+ <a href="https://specifications.openehr.org/tickets/SPECPROC-7" target="_blank" rel="noopener">SPECPROC-7</a>. Provide support in decision structures for automated / decision support / ad hoc modes;<br>
+ Add <code>CHOICE_GROUP</code>, <code>CHOICE_BRANCH</code>, <code>ADHOC_GROUP</code>, <code>ADHOC_BRANCH</code> classes, and an attribute for marking any group as overridable at execution time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ M Kejžar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 Jan 2018</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-3" target="_blank" rel="noopener">SPECPROC-3</a>. Context value model adjustments;<br>
+ Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
+ Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-5" target="_blank" rel="noopener">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-4" target="_blank" rel="noopener">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
+ M Polajnar,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02 Dec 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-2" target="_blank" rel="noopener">SPECPROC-2</a> Fix various typos; add missed <code>BOOLEAN_CONTEXT_EXPRESSION</code>;
+ Remove duplicate attribute <code>WORK_PLAN.<em>events</em></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24 Oct 2017</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.0.0</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-1" target="_blank" rel="noopener">SPECPROC-1</a>. Further documentation improvements;
+ Added explanations for resume semantics; added <code>RESUME_ACTION</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17 Oct 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.9.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-1" target="_blank" rel="noopener">SPECPROC-1</a>. Restructure document;
+ Various refactoring of Event classes; global calendar, timeline.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 Oct 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-1" target="_blank" rel="noopener">SPECPROC-1</a>. Workshop Sep 25-28 and follow-up calls;<br>
+ Significant updates to model;<br>
+ Include event-based design;<br>
+ Moved spec to new PROC openEHR component.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
+ B Lah,<br>
+ B Naess,<br>
+ M Kejžar,<br>
+ E Leonov,<br>
+ V Makarov,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Oct 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New Task subtypes; re-design 'system request' concept; build out callback classes; remove explicit notifications from model.<br>
+ Improve performer model. Add more design material. Improved Task state machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25 Aug 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incorporate changes from Workshop 28/29 July. Change principal performer to Group level; add specialised Task types; add system request.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Lah,<br>
+ B Naess,<br>
+ M Kejžar,<br>
+ E Leonov,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">06 Jul 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incorporate review comments from Boštjan Lah.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B Lah,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 Jun 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rework runtime model.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">07 Jun 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incorporate review comments from Pablo Pazos.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
+ T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">06 Jun 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Major rewrite, incorporating structure, parallelism, decision paths, and execution history.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">31 May 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECRM-58" target="_blank" rel="noopener">SPECRM-58</a>. Initial writing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
+ B Naess,<br>
+ I McNicoll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 Jan 2017</p></td>
 </tr>
 </tbody>
 </table>
@@ -656,7 +972,7 @@
 <p>Additionally the Activity-Based Design (ABD) project at Intermountain Healthcare (2015-), on which the primary author worked part time proved an important source of cross-fertilisation. The latter project is led by David Edwards and Alan James (chief architect), within the clinical quality program, under Dr Brent James, Chief Quality Officer at Intermountain Healthcare. ABD has a sophisticated architecture based on a custom archetype / template framework, adaptive workflow concepts, application generation and real-time speech recognition. It has pioneered a number of concepts used in the current specification, including the separation of definition, materialised and runtime levels of representation.</p>
 </div>
 <div class="paragraph">
-<p>Lastly, a review of research literature and standards was conducted. Many of the ideas in YAWL <span class="citation">(<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>)</span> and its underlying research influenced this specification. The authors also reviewed various standards, including the OMG&#8217;s <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a> and <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a>.</p>
+<p>Lastly, a review of research literature and standards was conducted. Many of the ideas in YAWL (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>) and its underlying research influenced this specification. The authors also reviewed various standards, including the OMG&#8217;s <a href="http://www.bpmn.org/" target="_blank" rel="noopener">BPMN</a> and <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">CMMN</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -680,7 +996,7 @@
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This specification of the openEHR Task Planning facility addresses requirements in the area of clinical process automation in which some form of granular planning of clinical work is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active subject</em>. Plans generally have related decision logic and require a means of extracting data from back-end systems concerning the subject. These other elements and their relationship to plans are described in the <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
+<p>This specification of the openEHR Task Planning facility addresses requirements in the area of clinical process automation in which some form of granular planning of clinical work is required. The central concept is that of a <em>plan</em> (or set of plans) designed to achieve a <em>goal</em> and that relate to an <em>active subject</em>. Plans generally have related decision logic and require a means of extracting data from back-end systems concerning the subject. These other elements and their relationship to plans are described in the <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -719,7 +1035,7 @@
 <p>The <a href="https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html" target="_blank" rel="noopener">openEHR Architecture Overview</a>;</p>
 </li>
 <li>
-<p>The <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/overview.html" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
 </li>
 </ul>
 </div>
@@ -729,13 +1045,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a>;</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a>;</p>
 </li>
 <li>
-<p>The <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language</a>;</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/decision_language.html" target="_blank" rel="noopener">openEHR Decision Language</a>;</p>
 </li>
 <li>
-<p><a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/process_examples.html" target="_blank" rel="noopener">openEHR Process Examples</a>;</p>
+<p><a href="https://specifications.openehr.org/releases/PROC/latest/process_examples.html" target="_blank" rel="noopener">openEHR Process Examples</a>;</p>
 </li>
 <li>
 <p>The <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html" target="_blank" rel="noopener">openEHR EHR Information Model</a>;</p>
@@ -746,7 +1062,7 @@
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
 <div class="paragraph">
-<p>This specification is in the RETIRED state.</p>
+<p>This specification is in the TRIAL state. The development version of this document can be found at <a href="https://specifications.openehr.org/releases/PROC/latest/task_planning.html" target="_blank" rel="noopener">https://specifications.openehr.org/releases/PROC/latest/task_planning.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -808,7 +1124,7 @@
 <p>They may be referred to by <em>care plans</em>, which provide a patient-level description of intended care and monitoring for a condition.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/overview.html" target="_blank" rel="noopener">openEHR Process and Planning Overview</a> provides a comprehensive overview of these artefacts, Task Planning and its related specifications.</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html" target="_blank" rel="noopener">openEHR Process and Planning Overview</a> provides a comprehensive overview of these artefacts, Task Planning and its related specifications.</p>
 </div>
 </div>
 <div class="sect3">
@@ -857,7 +1173,7 @@
 <div class="sect2">
 <h3 id="_relationship_to_existing_workflow_formalisms"><a class="anchor" href="#_relationship_to_existing_workflow_formalisms"></a>2.3. Relationship to Existing Workflow Formalisms</h3>
 <div class="paragraph">
-<p>This specification describes a model of planning that includes support for work distribution across multiple performers, nested plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> <span class="citation">(<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>)</span> and <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a>, as well as emerging case-based standards such as <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
+<p>This specification describes a model of planning that includes support for work distribution across multiple performers, nested plans, conditional branching, timing and various other facilities. Many of these are conceptually close to the features found in standard workflow languages such as <a href="http://yawlfoundation.org/" target="_blank" rel="noopener">YAWL (Yet another Workflow Language)</a> (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>) and <a href="http://www.bpmn.org/" target="_blank" rel="noopener">OMG BPMN (Business Process Modelling Notation)</a>, as well as emerging case-based standards such as <a href="https://www.omg.org/spec/CMMN/1.0/" target="_blank" rel="noopener">OMG CMMN (Case Management Modelling Notation)</a> and <a href="https://www.omg.org/spec/DMN/" target="_blank" rel="noopener">OMG DMN (Decision Model and Notation)</a>. Of these, YAWL is the most comprehensive in its design and the most useful source of concepts for the current specification.</p>
 </div>
 <div class="paragraph">
 <p>While the model described here takes ideas from these languages, there are some key differences as well. The primary conceptual difference is that the subject (i.e. 'case') here is assumed to be a) an intentional agent (generally a human patient) that makes choices, and b) an active biological organism, which reacts to drugs and other interventions. In other words, an entity that cannot be considered a passive object (such as a package or blood sample), as is the case for most logistic workflows, for which languages such as BPMN are designed. (Note that even the patient can be a passive object in some circumstances, such as radiology.) Other departures include the use of a declarative rather than prescriptive means of defining the plan graph structure, and the formalisation of all elements of a plan and its execution.</p>
@@ -874,7 +1190,7 @@
 <div class="sect2">
 <h3 id="_overview"><a class="anchor" href="#_overview"></a>3.1. Overview</h3>
 <div class="paragraph">
-<p>The <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/overview.html" target="_blank" rel="noopener">openEHR Process and Planning Overview</a> describes the general requirements for Task Planning and its related formalisms, which may be summarised as follows:</p>
+<p>The <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html" target="_blank" rel="noopener">openEHR Process and Planning Overview</a> describes the general requirements for Task Planning and its related formalisms, which may be summarised as follows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1186,7 +1502,7 @@
 <div class="sect2">
 <h3 id="_conceptual_model"><a class="anchor" href="#_conceptual_model"></a>4.1. Conceptual Model</h3>
 <div class="paragraph">
-<p>Conceptually, <em>plans</em> as defined in this specification are not standalone, and require decision logic as well as access to subject data in order to execute. Such logic is represented in <em>decision logic modules</em>, as described in the <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
+<p>Conceptually, <em>plans</em> as defined in this specification are not standalone, and require decision logic as well as access to subject data in order to execute. Such logic is represented in <em>decision logic modules</em>, as described in the <a href="https://specifications.openehr.org/releases/PROC/latest/overview.html#_conceptual_framework" target="_blank" rel="noopener">openEHR Process and Planning Overview</a>.</p>
 </div>
 <div class="paragraph">
 <p>One important consequence of this separation of concerns is that the Task Plan model described here uses <em>symbolic references</em> to refer to both proxy values (patient state, previous diagnoses etc) and decision logic functions, rather than including expressions inline, in the manner of most workflow languages. All 'expressions' are thus represented externally, either within decision logic modules or proxies. Both of the latter are maintained as independent knowledge artefacts and <em>used</em> by plans.</p>
@@ -1198,7 +1514,7 @@
 <p>A basic choice in the architecture presented here is that it is <em>executable</em> in the sense that Plan definitions have an objective computational meaning and can therefore be executed according to the semantics of the model defined in this specification. This does not of course mean that the resulting system performs the work (although it may contain software agents that perform some particular Tasks). Instead, the resulting executable artefacts and application(s) when executed in a real world socio-technical environment that includes human and other actors, will convert disparate workers with weak communication into an integrated, coordinated team.</p>
 </div>
 <div class="paragraph">
-<p>This follows the YAWL approach <span class="citation">(<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>)</span>, such that no Plan defined according to this specification has ambiguous meaning.</p>
+<p>This follows the YAWL approach (<a href="#Hofstede_van_der_Aalst2009">Hofstede&#44; van der Aalst&#44; Adams&#44; &amp; Russell&#44; 2010</a>), such that no Plan defined according to this specification has ambiguous meaning.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1823,7 +2139,7 @@
 <h2 id="_task_planning_model_overview"><a class="anchor" href="#_task_planning_model_overview"></a>5. Task Planning Model Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section and the following one describe the Task Planning model in technical detail. Most of the emphasis is on the 'definition' level of expression, with most details of the 'materialised' and 'runtime' expressions left to implementers. Throughout these sections, a version of the <a href="https://specifications.openehr.org/releases/PROC/Release-1.7.0/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a> is used to illustrate instance structures. This visual language is designed to be formally aligned to the semantics of the model.</p>
+<p>This section and the following one describe the Task Planning model in technical detail. Most of the emphasis is on the 'definition' level of expression, with most details of the 'materialised' and 'runtime' expressions left to implementers. Throughout these sections, a version of the <a href="https://specifications.openehr.org/releases/PROC/latest/tp_vml.html" target="_blank" rel="noopener">Task Planning Visual Modelling Language (TP-VML)</a> is used to illustrate instance structures. This visual language is designed to be formally aligned to the semantics of the model.</p>
 </div>
 <div class="paragraph">
 <p>The following UML diagram shows the <code>rm.task_planning</code> package in overview form, showing the constituent packages, <code>definition</code>, <code>materialised</code>, and <code>history</code>. The first of these packages contains the class model for the <em>definition model</em> expression of a Work Plan, i.e. the workflow structure intentionally designed to achive a goal.</p>
@@ -2338,12 +2654,12 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="ts"><span></span><span class="tok-w">    </span><span class="tok-nx">cds_calc_risk</span><span class="tok-w"> </span><span class="tok-p">(</span>
-<span class="tok-w">        </span><span class="tok-nx">riskType</span><span class="tok-o">:</span><span class="tok-w">    </span><span class="tok-kt">String</span><span class="tok-p">;</span>
-<span class="tok-w">        </span><span class="tok-nx">sex</span><span class="tok-o">:</span><span class="tok-w">         </span><span class="tok-kt">CodedText</span><span class="tok-p">;</span>
-<span class="tok-w">        </span><span class="tok-nx">dateOfBirth</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-kt">Iso8601Date</span><span class="tok-p">;</span>
-<span class="tok-w">        </span><span class="tok-nx">isSmoker</span><span class="tok-o">:</span><span class="tok-w">    </span><span class="tok-kt">Boolean</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-p">)</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nx">Real</span></code></pre>
+<pre class="pygments highlight"><code data-lang="ts"><span></span>    <span class="tok-nx">cds_calc_risk</span> <span class="tok-p">(</span>
+        <span class="tok-nx">riskType</span>:    <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">sex</span>:         <span class="tok-kt">CodedText</span><span class="tok-p">;</span>
+        <span class="tok-nx">dateOfBirth</span>: <span class="tok-kt">Iso8601Date</span><span class="tok-p">;</span>
+        <span class="tok-nx">isSmoker</span>:    <span class="tok-kt">Boolean</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Real</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2351,13 +2667,13 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="json"><span></span><span class="tok-w">    </span><span class="tok-p">{</span>
-<span class="tok-w">        </span><span class="tok-nt">&quot;parameter_map&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-p">[</span>
-<span class="tok-w">            </span><span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;subject_sex&quot;</span><span class="tok-p">,</span><span class="tok-w">        </span><span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;sex&quot;</span><span class="tok-p">},</span>
-<span class="tok-w">            </span><span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;subject_dob&quot;</span><span class="tok-p">,</span><span class="tok-w">        </span><span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;dateOfBirth&quot;</span><span class="tok-p">},</span>
-<span class="tok-w">            </span><span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;tobacco_use_status&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-s2">&quot;isSmoker&quot;</span><span class="tok-p">}</span>
-<span class="tok-w">        </span><span class="tok-p">]</span>
-<span class="tok-w">    </span><span class="tok-p">}</span></code></pre>
+<pre class="pygments highlight"><code data-lang="json"><span></span>    <span class="tok-p">{</span>
+        <span class="tok-nt">&quot;parameter_map&quot;</span><span class="tok-p">:</span> <span class="tok-p">[</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_sex&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;sex&quot;</span><span class="tok-p">},</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;subject_dob&quot;</span><span class="tok-p">,</span>        <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;dateOfBirth&quot;</span><span class="tok-p">},</span>
+            <span class="tok-p">{</span><span class="tok-nt">&quot;context_name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;tobacco_use_status&quot;</span><span class="tok-p">,</span> <span class="tok-nt">&quot;name&quot;</span><span class="tok-p">:</span> <span class="tok-s2">&quot;isSmoker&quot;</span><span class="tok-p">}</span>
+        <span class="tok-p">]</span>
+    <span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2380,17 +2696,17 @@ The following UML diagram illustrates.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="typescript"><span></span><span class="tok-w">    </span><span class="tok-c1">// ad hoc query call</span>
-<span class="tok-w">    </span><span class="tok-nx">execute_ad_hoc_query</span><span class="tok-w"> </span><span class="tok-p">(</span>
-<span class="tok-w">        </span><span class="tok-nx">query_text</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-kt">String</span><span class="tok-p">;</span>
-<span class="tok-w">        </span><span class="tok-nx">parameters</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-p">)</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nx">Result</span>
+<pre class="pygments highlight"><code data-lang="typescript"><span></span>    <span class="tok-c1">// ad hoc query call</span>
+    <span class="tok-nx">execute_ad_hoc_query</span> <span class="tok-p">(</span>
+        <span class="tok-nx">query_text</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">parameters</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span>
 
-<span class="tok-w">    </span><span class="tok-c1">// stored query call</span>
-<span class="tok-w">    </span><span class="tok-nx">execute_stored_query</span><span class="tok-w"> </span><span class="tok-p">(</span>
-<span class="tok-w">        </span><span class="tok-nx">query_id</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-kt">String</span><span class="tok-p">;</span>
-<span class="tok-w">        </span><span class="tok-nx">parameters</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-p">)</span><span class="tok-o">:</span><span class="tok-w"> </span><span class="tok-nx">Result</span></code></pre>
+    <span class="tok-c1">// stored query call</span>
+    <span class="tok-nx">execute_stored_query</span> <span class="tok-p">(</span>
+        <span class="tok-nx">query_id</span>: <span class="tok-kt">String</span><span class="tok-p">;</span>
+        <span class="tok-nx">parameters</span>: <span class="tok-kt">Hash</span><span class="tok-o">&lt;</span><span class="tok-nb">String</span><span class="tok-p">,</span> <span class="tok-nb">String</span><span class="tok-o">&gt;</span><span class="tok-p">;</span>
+    <span class="tok-p">)</span><span class="tok-o">:</span> <span class="tok-nx">Result</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3396,7 +3712,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 </ul>
 </div>
 <div class="paragraph">
-<p>A Task is considered <code>available</code> according to this logic even if performer and/or resources have not been allocated. Availability in this sense is the equivalent of the 'enabled' state of a task within a Workflow Net, described in <span class="citation"><a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a></span>, section 2.3.2.</p>
+<p>A Task is considered <code>available</code> according to this logic even if performer and/or resources have not been allocated. Availability in this sense is the equivalent of the 'enabled' state of a task within a Workflow Net, described in <a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a>, section 2.3.2.</p>
 </div>
 <div class="paragraph">
 <p>The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, forcing the lifecycle transition <code><em>override</em></code> from <code>planned</code> to <code>available</code>. A corresponding <code>TASK_EVENT_RECORD</code> is created recording the use of the override.</p>
@@ -3405,7 +3721,7 @@ Task lifecycle only accounts for the states of a Task itself; states of an order
 <div class="sect4">
 <h5 id="_aggregate_process_state"><a class="anchor" href="#_aggregate_process_state"></a>6.2.3.3. Aggregate Process State</h5>
 <div class="paragraph">
-<p>The effective state of a Task Group, Task Plan and Work Plan can be inferred from the lifecycle states of the Tasks, according to logic described in <a href="#_aggregate_lifecycle_state">Section 7.3</a>. This includes availability of Task Groups containing parallel paths with associated OR logic, i.e. the equivalent of the OR-join in YAWL (<span class="citation"><a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a></span>, section 3.2).</p>
+<p>The effective state of a Task Group, Task Plan and Work Plan can be inferred from the lifecycle states of the Tasks, according to logic described in <a href="#_aggregate_lifecycle_state">Section 7.3</a>. This includes availability of Task Groups containing parallel paths with associated OR logic, i.e. the equivalent of the OR-join in YAWL (<a href="#Hofstede_van_der_Aalst2009">Hofstede van der Aalst Adams &amp; Russell (2010)</a>, section 3.2).</p>
 </div>
 </div>
 </div>
@@ -7933,24 +8249,24 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <span class="tok-c1">// Infer the state of a collection whose members&#39; states are in source_states.</span>
 <span class="tok-c1">// The order of if/else evaluation determines the correct result.</span>
 <span class="tok-c1">//</span>
-<span class="tok-n">Task_lifecycle</span><span class="tok-w"> </span><span class="tok-nf">aggregate_state</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_lifecycle</span><span class="tok-o">&gt;</span><span class="tok-w"> </span><span class="tok-n">source_states</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-n">Task_lifecycle</span> <span class="tok-nf">aggregate_state</span> <span class="tok-p">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_lifecycle</span><span class="tok-o">&gt;</span> <span class="tok-n">source_states</span><span class="tok-p">)</span> <span class="tok-p">{</span>
 
-<span class="tok-w">    </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Abandoned</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Abandoned</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Available</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Available</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Planned</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Planned</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Suspended</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Suspended</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Underway</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Underway</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Completed</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Completed</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Cancelled</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Cancelled</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Initial</span><span class="tok-p">;</span>
+    <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Abandoned</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Available</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Planned</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Suspended</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Underway</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Completed</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">source_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Cancelled</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span>
+        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-p">;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -8034,24 +8350,24 @@ at least one of the branches should have a timeout set, i.e. <code><em>wait_spec
 <span class="tok-c1">// OR-join algorithm: apply to Aggregate lifcycle algorithm results</span>
 <span class="tok-c1">// obtained from all commenced branches.</span>
 <span class="tok-c1">//</span>
-<span class="tok-n">Task_lifecycle</span><span class="tok-w"> </span><span class="tok-nf">or_join_state</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_lifecycle</span><span class="tok-o">&gt;</span><span class="tok-w"> </span><span class="tok-n">branch_states</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-n">Task_lifecycle</span> <span class="tok-nf">or_join_state</span> <span class="tok-p">(</span><span class="tok-n">Set</span><span class="tok-o">&lt;</span><span class="tok-n">Task_lifecycle</span><span class="tok-o">&gt;</span> <span class="tok-n">branch_states</span><span class="tok-p">)</span> <span class="tok-p">{</span>
 
-<span class="tok-w">    </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Abandoned</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Abandoned</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Completed</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Completed</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Underway</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Underway</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Suspended</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Suspended</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Available</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Available</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Planned</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Planned</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span><span class="tok-w"> </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Cancelled</span><span class="tok-p">))</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Cancelled</span><span class="tok-p">;</span>
-<span class="tok-w">    </span><span class="tok-k">else</span>
-<span class="tok-w">        </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-n">Initial</span><span class="tok-p">;</span>
+    <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Abandoned</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Abandoned</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Completed</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Completed</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Underway</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Underway</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Suspended</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Suspended</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Available</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Available</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Planned</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Planned</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">branch_states</span><span class="tok-p">.</span><span class="tok-na">contains</span><span class="tok-p">(</span><span class="tok-n">Cancelled</span><span class="tok-p">))</span>
+        <span class="tok-k">return</span> <span class="tok-n">Cancelled</span><span class="tok-p">;</span>
+    <span class="tok-k">else</span>
+        <span class="tok-k">return</span> <span class="tok-n">Initial</span><span class="tok-p">;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -9256,332 +9572,6 @@ a_task_plan_id: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_
 </div>
 </div>
 <div class="sect1">
-<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 9.0909%;">
-<col style="width: 54.5454%;">
-<col style="width: 18.1818%;">
-<col style="width: 18.1819%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Issue</th>
-<th class="tableblock halign-left valign-top">Details</th>
-<th class="tableblock halign-left valign-top">Raiser</th>
-<th class="tableblock halign-left valign-top">Completed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.7.0</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>1.7.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-52" target="_blank" rel="noopener">SPECPROC-52</a>. Retire Process component and all its specifications.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">openEHR SEC</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>07 Aug 2024</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.6.0</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.6.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-45" target="_blank" rel="noopener">SPECPROC-45</a>. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">21 Dec 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-44" target="_blank" rel="noopener">SPECPROC-44</a>. Correct <code>PLAN_TIME_ORIGIN</code> enum order and add values. See <a href="#_plan_time_origin_enumeration">Section 5.6.1.4</a>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">18 Sep 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-43" target="_blank" rel="noopener">SPECPROC-43</a>. Add inheritance to separate <code>CALLBACK_NOTIFICATION</code> from other Plan Event types;<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-33" target="_blank" rel="noopener">SPECPROC-33</a>. Support progressive data set creation;<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-39" target="_blank" rel="noopener">SPECPROC-39</a>. Correct error in <code>TASK_LIFECYCLE</code> state enumeration: remove <code>resumed</code> state; also correct mentions of <code>aborted</code> state to <code>abandoned</code>; add enumeration Integer values; improve text.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
- M Kejžar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">29 May 2020</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.5.0</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.5.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-34" target="_blank" rel="noopener">SPECPROC-34</a>. Clarify evaluate order and semantics of <code>REPEAT_SPEC</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">05 May 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Change method of 'manual notification' for callbacks; remove <code><em>manually_notified</em>: Boolean</code> from <code>CALLBACK_NOTIFICATION</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16 Apr 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-12" target="_blank" rel="noopener">SPECPROC-12</a>. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
- M Polajnar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">19 Mar 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-32" target="_blank" rel="noopener">SPECPROC-32</a>. Improve Introduction and Requirements Discussion.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">D Santos Alves,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">26 Jan 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-30" target="_blank" rel="noopener">SPECPROC-30</a>. Adjustments to Events model.<br>
- change <code>TASK_WAIT.<em>start_window</em>: REMINDER[0..1]</code> to <code>PLAN_ITEM.<em>reminders</em>: REMINDER[*]</code>;<br>
- add invariant to <code>TIMER_WAIT</code> to prevent it having a timeout;<br>
- make <code>REMINDER</code> a generic <code>EVENT_WAIT</code> to allow it to be fired by any event, not just a timer event;<br>
- remove <code>DELAY_EVENT</code>; move its <code><em>delay</em></code> attribute to <code>PLAN_EVENT</code>,<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-31" target="_blank" rel="noopener">SPECPROC-31</a>. Simplifications to Conditional structures: remove <code>BLOCKING_GROUP</code>, <code>BLOCKING_BRANCH</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">03 Jan 2020</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPUB-7" target="_blank" rel="noopener">SPECPUB-7</a>: Convert citations to bibtex form.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">15 Dec 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-28" target="_blank" rel="noopener">SPECPROC-28</a>. Improve definition of <code>TIMELINE_MOMENT</code> and <code>TIMER_EVENT</code>; add <code>PLAN_TIME_ORIGIN</code> enum; remove <code>CALENDAR_TIME</code> class.
- <a href="https://specifications.openehr.org/tickets/SPECPROC-29" target="_blank" rel="noopener">SPECPROC-29</a>. Add <code><em>guideline_step</em></code> to <code>PLAN_ITEM</code>; make Work Plan and Task Plan guideline refs more flexible.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">09 Aug 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-26" target="_blank" rel="noopener">SPECPROC-26</a>. Dataset improvements: make <code>DATASET_SPEC</code> inherit from <code>LOCATABLE</code>; support form sub-sections.
- <a href="https://specifications.openehr.org/tickets/SPECPROC-27" target="_blank" rel="noopener">SPECPROC-27</a>. Add <code><em>classification</em></code> attribute to <code>WORK_PLAN</code> and <code>PLAN_ITEM</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">22 Jul 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.4.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-24" target="_blank" rel="noopener">SPECPROC-24</a>. Add Order tracking to model: add class <code>ORDER_REF</code>; add <code>WORK_PLAN.<em>order_list</em></code>; add <code>TASK_PLAN.<em>order_tags</em></code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
- M Polajnar,<br>
- T Beale,<br>
- B Naess</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">29 May 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-22" target="_blank" rel="noopener">SPECPROC-22</a>. Enable Callbacks to be manually notified - add <code><em>manually_notified</em>: Boolean</code> to <code>CALLBACK_NOTIFICATION</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">01 May 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-23" target="_blank" rel="noopener">SPECPROC-23</a>. Correct <code>CLOCK_TIME.<em>time</em></code> type to <code>Iso8601_time</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25 Apr 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-20" target="_blank" rel="noopener">SPECPROC-20</a>. Add <code><em>period</em></code> to <code>TASK_REPEAT</code> class.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">12 Apr 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-19" target="_blank" rel="noopener">SPECPROC-19</a>. Refine model of concurrency in <code>TASK_GROUP</code>: add class <code>CONCURRENCY_MODE</code>; improve explanation of <code>TASK_GROUP</code>;<br>
- Add <code><em>concurrency_mode</em> = xor_one_path</code> invariant to <code>CHOICE_GROUP</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">18 Mar 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-18" target="_blank" rel="noopener">SPECPROC-18</a>. Support custom actions for callback receipt of events;<br>
- Improve diagrams and explanation on Task wait states and Events;<br>
- Add <code>CALLBACK_WAIT.<em>custom_actions</em></code>;<br>
- Add <code>REMINDER.<em>repeats</em></code>;<br>
- Add <code>TASK_WAIT.<em>next_state</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
- B Naess</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11 Mar 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-17" target="_blank" rel="noopener">SPECPROC-17</a>. Specialise <code>DATASET_SPEC</code> into Capture and Review forms.<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-16" target="_blank" rel="noopener">SPECPROC-16</a>. Change <code>WORK_PLAN.<em>top_level_plans</em></code> and <code>LINKED_PLAN.<em>target</em></code> to direct links.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
- B Naess,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">04 Jan 2019</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.2.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-15" target="_blank" rel="noopener">SPECPROC-15</a>. Convert <code>DELAY_EVENT.<em>source</em></code> to a direct reference.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Polajnar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">21 Nov 2018</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-2" target="_blank" rel="noopener">SPECPROC-2</a>. Change date/time types to <code>Iso8601_xxx</code> types from Foundation Types spec.<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-11" target="_blank" rel="noopener">SPECPROC-11</a>. Add <code>WORK_PLAN.<em>indications</em></code>;<br>
- Improve documentation of <code>TIMELINE_MOMENT</code>;<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-13" target="_blank" rel="noopener">SPECPROC-13</a>. Clarify Work Plan instantiation and distribution semantics:<br>
- Add section 4.4.1 Phases of Work;<br>
- Add subsection to section 2.5 on Distributed plans.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Naess,<br>
- M Kejžar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">31 Oct 2018</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-9" target="_blank" rel="noopener">SPECPROC-9</a>. Add sub-section on Time and Work in Background section.<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-10" target="_blank" rel="noopener">SPECPROC-10</a>. Add <code>BLOCKING_GROUP</code> and <code>BLOCKING_BRANCH</code> classes and <code>EVENT_ACTION.<em>receiver_thread_next_state</em></code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">21 Jun 2018</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-6" target="_blank" rel="noopener">SPECPROC-6</a>. Adjust <code>SYSTEM_CALL</code> definition;<br>
- Add <code>PARAMETER_DEF</code> and <code>PARAMETER_MAPPING</code> types.<br>
- <a href="https://specifications.openehr.org/tickets/SPECPROC-7" target="_blank" rel="noopener">SPECPROC-7</a>. Provide support in decision structures for automated / decision support / ad hoc modes;<br>
- Add <code>CHOICE_GROUP</code>, <code>CHOICE_BRANCH</code>, <code>ADHOC_GROUP</code>, <code>ADHOC_BRANCH</code> classes, and an attribute for marking any group as overridable at execution time.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
- M Kejžar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">15 Jan 2018</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-3" target="_blank" rel="noopener">SPECPROC-3</a>. Context value model adjustments;<br>
- Adjust <code>CONTEXT_EXPRESSION</code> type to have <code><em>name</em></code>;<br>
- Add <code>CONTEXT_CONSTANT</code>, <code>EXTERNAL_VARIABLE</code> and <code>LOCAL_VARIABLE</code> types.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-5" target="_blank" rel="noopener">SPECPROC-5</a>. Correct <code>DECISION_BRANCH</code> method of specifying value.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">04 Dec 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-4" target="_blank" rel="noopener">SPECPROC-4</a>. Refine <code>SYSTEM_CALL</code> model, describe variable referencing.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar,<br>
- M Polajnar,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">02 Dec 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-2" target="_blank" rel="noopener">SPECPROC-2</a> Fix various typos; add missed <code>BOOLEAN_CONTEXT_EXPRESSION</code>;
- Remove duplicate attribute <code>WORK_PLAN.<em>events</em></code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">M Kejžar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">24 Oct 2017</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>PROC Release 1.0.0</strong></p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-1" target="_blank" rel="noopener">SPECPROC-1</a>. Further documentation improvements;
- Added explanations for resume semantics; added <code>RESUME_ACTION</code> class.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">17 Oct 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.9.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-1" target="_blank" rel="noopener">SPECPROC-1</a>. Restructure document;
- Various refactoring of Event classes; global calendar, timeline.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">12 Oct 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECPROC-1" target="_blank" rel="noopener">SPECPROC-1</a>. Workshop Sep 25-28 and follow-up calls;<br>
- Significant updates to model;<br>
- Include event-based design;<br>
- Moved spec to new PROC openEHR component.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Fabjan,<br>
- B Lah,<br>
- B Naess,<br>
- M Kejžar,<br>
- E Leonov,<br>
- V Makarov,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10 Oct 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">New Task subtypes; re-design 'system request' concept; build out callback classes; remove explicit notifications from model.<br>
- Improve performer model. Add more design material. Improved Task state machine.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25 Aug 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Incorporate changes from Workshop 28/29 July. Change principal performer to Group level; add specialised Task types; add system request.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Lah,<br>
- B Naess,<br>
- M Kejžar,<br>
- E Leonov,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">06 Jul 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Incorporate review comments from Boštjan Lah.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B Lah,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">20 Jun 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rework runtime model.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">07 Jun 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Incorporate review comments from Pablo Pazos.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">P Pazos,<br>
- T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">06 Jun 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.7.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Major rewrite, incorporating structure, parallelism, decision paths, and execution history.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">31 May 2017</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.openehr.org/tickets/SPECRM-58" target="_blank" rel="noopener">SPECRM-58</a>. Initial writing.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale,<br>
- B Naess,<br>
- I McNicoll</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">26 Jan 2017</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -9592,9 +9582,8 @@ a_task_plan_id: <code><a href="/releases/BASE/latest/base_types.html#_uid_based_
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-06 20:44:29 UTC
+Last updated 2020-12-22 16:52:56 UTC
 </div>
 </div>
-<script src="https://specifications.openehr.org/js/asciidoctor-tabs.js"></script>
 </body>
 </html>

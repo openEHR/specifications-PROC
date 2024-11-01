@@ -64,7 +64,7 @@ One of the benefits that clinical process automation can bring is the ability to
 * for training for experience personnel on rarely used or changed procedures;
 * to test alternative approaches to team structure, improve efficiency etc.
 
-Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc. However, medical simulation teaching environments do exist in which process simulation could be established, e.g. {https://www.ohsu.edu/simulation/about}[Oregon Health Sciences University (OHSU) simulation center^].
+Computer-aided simulation of surgical procedures is not new (e.g. haptic feedback robotic systems with augmented / virtual reality visualisation are used to train surgeons in brain procedures), but is uncommon for longer running and team-based procedures e.g. complex childbirth, sepsis etc. However, medical simulation teaching environments do exist in which process simulation could be established, e.g. https://www.ohsu.edu/simulation/about[Oregon Health Sciences University (OHSU) simulation center^].
 
 == Long-running Processes
 

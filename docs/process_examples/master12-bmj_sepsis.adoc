@@ -120,7 +120,7 @@ input -- Historical state
         ;
         
     |
-    | Reference systolic BP in #mmHg
+    | Reference systolic BP in mmHg
     |
     reference_systolic_BP: Real
         currency = 1 month
@@ -136,7 +136,7 @@ input -- Tracking state
         ;
         
     |
-    | Systolic BP in #mmHg
+    | Systolic BP in mmHg
     |
     systolic_BP: Real
         currency = 15min

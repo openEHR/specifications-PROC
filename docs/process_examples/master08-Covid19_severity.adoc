@@ -111,7 +111,7 @@ input -- Tracked State
         
     systolic_BP: Quantity
         currency = 10 min,
-        ranges["mm#Hg"] =
+        ranges["mmHg"] =
             ------------------------
             |<90|:  #critical_risk,
             |≥90|:  #normal_risk
