@@ -4,13 +4,19 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*PROC Release 1.7.1*
+
+|[[latest_issue]]1.7.1
+|{spec_tickets}/SPECPROC-56[SPECPROC-56^]. Change the status and license of PROC component.
+|openEHR SEC
+|[[latest_issue_date]]10 Nov 2025
+
 4+^h|*PROC Release 1.7.0*
 
-|[[latest_issue]]1.7.0
+|1.7.0
 |{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
 |openEHR SEC
-|[[latest_issue_date]]07 Aug 2024
-
+|07 Aug 2024
 
 4+^h|*PROC Release 1.6.0*
 
