@@ -1,0 +1,130 @@
+= Plan Structure
+
+The top-level structure for defining plans is a `WORK_PLAN`, which includes one or more related `TASK_PLANs` making up a logical goal-oriented plan. Within a Work Plan, two distinct lists of Task Plans are maintained: 
+
+* `_plans_`: references all Task Plans; 
+* `_top_level_plans_`: 'entry point' Task Plans that will be _unconditionally active at Work Plan activation_ (often limited to only one). 
+
+Non-top-level plans are those used as sub-plans within the hierarchy of a top-level Plan. A typical Work Plan / Task Plan structure is shown below in TP-VML form.
+
+[.text-center]
+.Work Plan top level structure
+image::diagrams/work_task_plans.svg[id=work_task_plans, align="center", width=50%]
+
+`WORK_PLAN` has a number of attributes relating to formal Plan representation, as follows:
+
+* `_context_`: a data context for the Plan as a whole, which enables external variables (such as patient data items) to be tracked and updated;
+* `_calendar_`: a global calendar containing entries that relate to this Work Plan, e.g. appointments, holidays etc;
+* `_timeline_`: the global timeline for the Plan (and hence the subject) into which planned Tasks are fixed, with times specified as offsets from the zero point;
+* `_event_wait_states_`: a reference list of all Event wait instances defined in the Plan;
+* `_order_list_`: a table of references to orders being tracked in the Plan (described in <<_order_tracking>> below).
+
+Additionally, there are the following meta-data attributes:
+
+* `_indications_`: record clinical indications (including codes for diagnoses) for which the Work Plan can be / should be used;
+* `_classification_`: record one or more classifications of the Work Plan as a whole, e.g. business category, administrative category etc. The most common structure is likely to be a logical list (i.e. `ITEM_TREE` instance of linear list form), such that the `_archetype_node_id_` attribute (inherited from `LOCATABLE`) acts as the name of the category (e.g. 'org unit'), and an `ELEMENT` containing a `DV_TEXT` providing the actual category value (e.g. 'inventory management').
+
+Both `WORK_PLAN` and `TASK_PLAN` are descendants of `CONTENT_ITEM`, which makes them a type of content that may occur in an openEHR `COMPOSITION`. Compositions used for this purpose have their `_category_` attribute set to the openEHR coded term `|Work Plan|`. This enables Work Plans to be committed to the openEHR EHR.
+
+Plan internal structure is specified by the `_definition_` attribute of a `TASK_PLAN` is a `TASK_GROUP`, which has as its `_members_` any number of `PLAN_ITEMs`, which resolve either to more `TASK_GROUPs` (and some specialisations described below), or `TASK` entities.
+
+== The Plan Calendar
+
+The Work Plan `_calendar_` consists of Plan-related entries fixed in time, as per the usual notion of a person's or organisational calendar. These will normally be a small subset of entries from a/the work management calendar of the organisation in whose IT system the Work Plans are used. A Plan calendar event can be used as the basis for a wait state (`TASK_WAIT._events_`) for Tasks in the Plan, either to indicate that something should be done on the date/time of the calendar event, or with a certain delay. Calendar events may include organisational events, national holidays and patient appointments. Wait states of the form '2 weeks after Easter Sunday' and '24 week ante-natal review (10 Feb 2019)' can therefore be defined in a Plan.
+
+== Plan Items
+
+The `PLAN_ITEM` class is the parent of all fine-grained elements of a Task Plan, which are either `TASKs` or `TASK_GROUPs`. It has a mandatory `_description_` attribute, which represents a natural language specification of the work of the Task.
+
+=== Wait States
+
+`PLAN_ITEM` also has two optional attributes that control the timing behaviour of Task Plan elements: `_wait_spec_` and `_repeat_spec_`. The first enables a wait state (described above under <<_time_and_wait_states>>) to be applied to a Task or Group, which is triggered by time-related Events (clock time, reaching a point in a calendar) or other kinds of Events (external notifications etc). This allows the timing of a Task to be specified.
+
+=== Repetition
+
+The second attribute, `_repeat_spec_` of type `TASK_REPEAT` enables a Task or Group to be marked as repeating. This is not intended to replace the use of individual Task instances over time, such as repeated medication administrations, but rather to be used to indicate if larger sections (i.e. Task Groups) of planned Tasks are repeatable. Where repeats are specified, they will be unrolled into literal copies in the materialised expression of the Plan.
+
+Repeat behaviour is specified in terms of the attributes `_repeats_`, `_terminate_condition_` and `_period_`. The first indicates the minimum and maximum number of repeats that may occur. Repetition occurs until the minimum number of repeats (i.e. `_repeats.lower_`) is reached. Following that, if `_terminate_condition_` is set, it is evaluated _prior_ to each further potential iteration. Repetition will cease when `_terminate_condition_` becomes True or else when `_repeats.upper_` is reached (assuming no plan abandonment or other exceptions).
+
+The optional `_period_` attribute defines the period of repetition. If the latter is not defined, each repetition commences according to the application of Task availability rules already defined on the individual Tasks and/or Groups; this will typically lead to each repeat executing as soon as the preceding one has completed. If set, the `_period_` will have the effect of spacing iterations out over time. Its value should be greater than the duration of a single iteration, since at execution time, a new iteration can only begin after completion of the previous one.
+
+=== Other Attributes
+
+Two archetypable structure attributes are defined on `PLAN_ITEM`. The first, `_classification_`, is designed to allow any Task Group or Task to be tagged with one or more classifications, and has the same structural definition at `WORK_PLAN._classification_`.
+
+The second, `other_details` is provided to support extensions, in the same manner as elsewhere in openEHR information models.
+
+== Lifecycle State
+
+At execution time, every Plan Item (i.e. Task and Group) notionally has a _lifecycle state_, represented by a state machine, containing states and transitions reflecting possible actions by the performer. The lifecycle state of a Task is set by the TP engine and affected directly by performer actions and other logic, while the lifecycle state of a Group is aggregated from the state values of its member Tasks and Groups.
+
+The lifecycle state does not appear directly as a data attribute on the `PLAN_ITEM` or `TASK` classes since it is a runtime variable for a Task. Accordingly, it appears in the materialised model, <<Materialised Model,described below>>. It is however useful to decribe the lifecycle state here, since it represents a key part of Task Plan semantics, and influences whether Tasks (and thus Groups) fail or complete, and potentially whether the Plan continues in execution.
+
+The state machine is shown below.
+
+[.text-center]
+.Task lifecycle state machine
+image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
+
+The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathway through the state `underway` allows longer-running Tasks to be represented as being worked on. The `suspended` state is used to represent long-running Tasks that have been put on hold, i.e. are not currently being actively worked on, but are still considered to be underway.
+
+NOTE: Task lifecycle only accounts for the states of a Task itself; states of an order (e.g. prescription, lab request) with which the Task may be associated will be visible in the documentation for those objects, e.g. openEHR `ACTION` or other Entry objects.
+
+The lifecycle states are described by the `TASK_LIFECYCLE` enumeration below.
+
+include::{uml_export_dir}/classes/task_lifecycle.adoc[leveloffset=+1]
+
+=== Task Availability
+
+Each Task in a new Plan execution starts in the `initial` state. Following the design principle <<Allocation,described earlier>>, the execution engine executing a Task Plan can determine the _availability_ i.e., when the transition `planned` => `available` may occur for any Task as follows:
+
+* _control-flow_: preceding Tasks / Groups within the owning Task Group are in the `completed` or `cancelled` state;
+* _wait state_: any Task or Group wait state has been exited due to the arrival of the relevant events (including time-related);
+* _subject preconditions_: subject preconditions attached to the current Task Action are satisfied.
+
+A Task is considered `available` according to this logic even if performer and/or resources have not been allocated. Availability in this sense is the equivalent of the 'enabled' state of a task within a Workflow Net, described in citenp:[Hofstede_van_der_Aalst2009], section 2.3.2.
+
+The workflow application may provide an override capability so that a Task can be performed before it is determined to be available. This would enable a user to perform the Task anyway, forcing the lifecycle transition `_override_` from `planned` to `available`. A corresponding `TASK_EVENT_RECORD` is created recording the use of the override.
+
+=== Aggregate Process State
+
+The effective state of a Task Group, Task Plan and Work Plan can be inferred from the lifecycle states of the Tasks, according to logic described in <<Aggregate Lifecycle State>>. This includes availability of Task Groups containing parallel paths with associated OR logic, i.e. the equivalent of the OR-join in YAWL (citenp:[Hofstede_van_der_Aalst2009], section 3.2).
+
+== References to Clinical Quality Artefacts
+
+The classes `WORK_PLAN` and `TASK_PLAN` may contain various references to externally defined clinical quality artefacts that they are based on or relate to, as follows:
+
+* In `WORK_PLAN`:
+** `_care_pathway_`: a reference to a published care pathway from which this Work Plan was derived, if any;
+** `_care_plan_`: a machine reference to an underpinning Care Plan from elsewhere in the EHR, if any exists;
+* In `TASK_PLAN`:
+** `_guideline_`: reference to a published guideline (used by `WORK_PLAN._care_pathway_`, if set) from which this particular Task Plan was derived, if any;
+** `_best_practice_ref_`: reference to an institutional document that defines the best practice on which this Task Plan is based, if any;
+* In `PLAN_ITEM`:
+** `_guideline_step_`: reference to a step within the `_guideline_` referenced by the current Task Plan or the `_care_pathway_` of the Work Plan, which is the basis of this Plan Item, i.e. single Task or Task Group.
+
+In addition, where a Task Plan is driven by an order set, two attributes are provided to record the details:
+
+* In `TASK_PLAN`:
+** `_order_set_type_`: the identifier of a type of Order Set which this Task Plan uses, if any;
+** `_order_set_id_`: the identifier of a specific Order Set which this Task Plan uses, if any.
+
+Lastly, the `_workflow_id_` attribute defined in `ENTRY` may be set within `INSTRUCTION` and `ACTION` to refer to the Order Set instance used in this Task Plan, if set.
+
+== Class Definitions
+
+include::{uml_export_dir}/classes/work_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_calendar.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_timeline.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/calendar_entry.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_plan.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/plan_item.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]

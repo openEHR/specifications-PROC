@@ -1,0 +1,86 @@
+//
+// ============================================ Asciidoc HEADER =============================================
+//
+
+//
+// ============================================ Asciidoc PREAMBLE =============================================
+//
+
+
+= {spec_title}
+
+
+//
+// ============================================= Asciidoc BODY ===============================================
+//
+
+//
+// --------------------------------------------- Preface -----------------------------------------------
+//
+== Acknowledgements
+
+=== Primary Author
+
+* Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board.
+
+=== Contributors
+
+This specification benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
+
+* Danielle Santos Alves, RN, midwife, Federal University of Pernambuco (UFPE), Brazil
+* Borut Fabjan, Program Manager, Better, Slovenia
+* Matija Kejžar, Software Engineer, Better, Slovenia
+* Bostjan Lah, Senior Architect, Marand, Slovenia
+* Eugeny Leonov, Solit Clouds, Moscow, Russia
+* Vladimir V Makarov, Department of Information Technologies, City of Moscow
+* Ian McNicoll MD, FreshEHR, UK
+* Bjørn Næss, DIPS, Norway
+* Pablo Pazos Gutierrez, Senior engineer, CaboLabs, Uruguay
+* Pekka Pesola, Engineer, Tieto, Finland
+* Matija Polajnar, PhD, Software Engineer, Better, Slovenia
+
+=== Support
+
+The work reported in this specification has been funded by the following organisations:
+
+* City of Moscow
+* Better d.o.o., Slovenia (was Marand)
+* DIPS, Norway
+* Ars Semantica, UK
+
+=== Intellectual Origins
+
+Many of the design ideas presented in this specification came from analysis of use cases from industry sources. In particular, the openEHR implementers Marand and DIPS provided significant detailed requirements, use cases, and design ideas.
+
+Additionally the Activity-Based Design (ABD) project at Intermountain Healthcare (2015-), on which the primary author worked part time proved an important source of cross-fertilisation. The latter project is led by David Edwards and Alan James (chief architect), within the clinical quality program, under Dr Brent James, Chief Quality Officer at Intermountain Healthcare. ABD has a sophisticated architecture based on a custom archetype / template framework, adaptive workflow concepts, application generation and real-time speech recognition. It has pioneered a number of concepts used in the current specification, including the separation of definition, materialised and runtime levels of representation.
+
+Lastly, a review of research literature and standards was conducted. Many of the ideas in YAWL cite:[Hofstede_van_der_Aalst2009] and its underlying research influenced this specification. The authors also reviewed various standards, including the OMG's {omg_bpmn}[BPMN^] and {omg_cmmn}[CMMN^].
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation.
+* 'OMG' is a trademark of the Object Management Group.
+
+//
+// --------------------------------------------- TOC -----------------------------------------------
+//
+//toc::[left]
+
+//
+// --------------------------------------------- CHAPTERS -----------------------------------------------
+//
+
+
+
+//
+// --------------------------------------------- Amendment Record -----------------------------------------------
+//
+:sectnums!:
+
+//
+// --------------------------------------------- REFERENCES -----------------------------------------------
+//
+:sectnums!:
+== References
+
+bibliography::[]
