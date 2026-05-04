@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = National Early Warning Score (NEWS) 2
 
 This CPG was developed from the Royal College of Physicians (RCP) https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2[NEWS2 guideline (2017)^].

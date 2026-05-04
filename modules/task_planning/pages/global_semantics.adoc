@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Global Semantics
 
 This section describes the global semantics of the model in execution, taking into account all elements described above.

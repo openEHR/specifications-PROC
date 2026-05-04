@@ -5,4 +5,4 @@ TBD: describe cost tracking.
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task_costing.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_costing.adoc[leveloffset=+1]

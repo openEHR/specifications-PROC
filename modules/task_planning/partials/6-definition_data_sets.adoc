@@ -8,7 +8,7 @@ To achieve this, the Task Planning model formalises the relationship between a '
 
 [.text-center]
 .proc.task_planning.definition model overview
-image::{uml_diagrams_uri}/PROC-task_planning.definition-dataset.svg[id=proc_definition_dataset, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-dataset.svg[id=proc_definition_dataset, align="center"]
 
 == Display and Capture Data-sets
 
@@ -37,10 +37,10 @@ image::diagrams/progressive_data_capture.svg[id=progressive_data_capture, align=
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/dataset_spec.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dataset_spec.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/capture_dataset_spec.adoc[leveloffset=+1]
+include::ROOT:partial$classes/capture_dataset_spec.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/review_dataset_spec.adoc[leveloffset=+1]
+include::ROOT:partial$classes/review_dataset_spec.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/dataset_commit_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dataset_commit_group.adoc[leveloffset=+1]

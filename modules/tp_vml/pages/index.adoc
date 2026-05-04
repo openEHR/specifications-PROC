@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,27 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-paused]#{spec_status}#
+
+Visual Modelling Language for Task Planning: a graphical notation for designing, communicating, and validating clinical care plans and workflow structures using standardised diagram elements. The notation covers task boxes, decision diamonds, event triggers, performer swimlanes, and timing constructs, providing a complete visual vocabulary for care plan design. TP-VML diagrams can be used both as implementation blueprints and as communication tools for clinical teams and system architects.
+
+== Purpose
+
+This document describes a visual modelling language for the openEHR Task Planning Model, known as TP-VML. This is designed to enable visually efficient visual representations of Task Plans to be authored with appropriately configured tools.
+
+The intended audience includes:
+
+* Task Plan and workflow authors;
+* Tool vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_task_planning}[openEHR Task Planning Model^];
+
+
+
 
 
 //
@@ -17,51 +39,13 @@
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Primary Author
+== Feedback
 
-* Thomas Beale, Ars Semantica (UK); openEHR Foundation Management Board.
+Feedback may be provided on the {openehr_process_forum}[process specifications forum^].
 
-=== Contributors
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-This specification benefited from formal and informal input from the openEHR and wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
-* Borut Fabjan, Program Manager, Marand, Slovenia
-* Matija Kejžar, Marand, Slovenia
-* Eugeny Leonov, Solit Clouds, Moscow, Russia
-* Bjørn Næss, DIPS, Norway
 
-=== Support
-
-The work reported in this specification has been funded by the following organisations:
-
-* City of Moscow, Russia
-* DIPS, Norway
-* Marand d.o.o., Slovenia
-* Ars Semantica, UK
-
-=== Trademarks
-
-* 'openEHR' is a trademark of the openEHR Foundation.
-* 'OMG' is a trademark of the Object Management Group.
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-
-//
-// --------------------------------------------- Amendment Record -----------------------------------------------
-//
-:sectnums!:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-//:sectnums!:
-//== References

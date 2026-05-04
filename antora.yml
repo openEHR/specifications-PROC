@@ -1,0 +1,10 @@
+name: PROC
+title: Process Model
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/nav.adoc
+  - modules/overview/nav.adoc
+  - modules/task_planning/nav.adoc
+  - modules/decision_language/nav.adoc
+  - modules/tp_vml/nav.adoc
+  - modules/process_examples/nav.adoc

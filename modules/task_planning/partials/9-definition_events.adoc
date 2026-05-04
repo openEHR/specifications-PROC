@@ -6,7 +6,7 @@ Work plans interact with events in the external world, as well being driven by t
 
 [.text-center]
 .proc.task_planning model - Events
-image::{uml_diagrams_uri}/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
 
 Two general classes of Events are distinguished:
 
@@ -153,7 +153,7 @@ A callback is the mechanism to state what happens when control returns to a Disp
 
 [.text-center]
 .Callback Wait
-image::{uml_diagrams_uri}/PROC-task_planning.definition-callback_wait.svg[id=proc_definition_callback_wait, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-callback_wait.svg[id=proc_definition_callback_wait, align="center"]
 
 In order to define the processing on receipt of a callback event, `CALLBACK_WAIT` adds two attributes to `EVENT_WAIT<T>`:
 
@@ -297,25 +297,25 @@ image::diagrams/manual_callback.svg[id=manual_callback, align="center"]
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task_wait.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_wait.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/event_wait.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/timer_wait.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/reminder.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event_wait.adoc[leveloffset=+1]
+include::ROOT:partial$classes/timer_wait.adoc[leveloffset=+1]
+include::ROOT:partial$classes/reminder.adoc[leveloffset=+1]
+include::ROOT:partial$classes/callback_wait.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/resume_action.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/event.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/plan_event.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event.adoc[leveloffset=+1]
+include::ROOT:partial$classes/plan_event.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/timer_event.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/calendar_event.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/timeline_moment.adoc[leveloffset=+1]
+include::ROOT:partial$classes/timer_event.adoc[leveloffset=+1]
+include::ROOT:partial$classes/calendar_event.adoc[leveloffset=+1]
+include::ROOT:partial$classes/timeline_moment.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/task_transition.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/manual_notification.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/system_notification.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/state_trigger.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_transition.adoc[leveloffset=+1]
+include::ROOT:partial$classes/manual_notification.adoc[leveloffset=+1]
+include::ROOT:partial$classes/system_notification.adoc[leveloffset=+1]
+include::ROOT:partial$classes/state_trigger.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/callback_notification.adoc[leveloffset=+1]
+include::ROOT:partial$classes/callback_notification.adoc[leveloffset=+1]

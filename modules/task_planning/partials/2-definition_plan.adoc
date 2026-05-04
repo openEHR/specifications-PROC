@@ -64,7 +64,7 @@ The state machine is shown below.
 
 [.text-center]
 .Task lifecycle state machine
-image::{uml_diagrams_uri}/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
+image::ROOT:uml/PROC-TaskStateMachine.svg[id=task_state_machine, align="center", width=80%]
 
 The state machine is designed to represent both stateless and stateful views of the actual execution state of a Task in the real world. The standard pathway is `available` => `completed` or `abandoned` or `cancelled`, which enables a user to indicate the outcome of executing a Task, without having to report interim states during execution in the real world. The pathway through the state `underway` allows longer-running Tasks to be represented as being worked on. The `suspended` state is used to represent long-running Tasks that have been put on hold, i.e. are not currently being actively worked on, but are still considered to be underway.
 
@@ -72,7 +72,7 @@ NOTE: Task lifecycle only accounts for the states of a Task itself; states of an
 
 The lifecycle states are described by the `TASK_LIFECYCLE` enumeration below.
 
-include::{uml_export_dir}/classes/task_lifecycle.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_lifecycle.adoc[leveloffset=+1]
 
 === Task Availability
 
@@ -113,18 +113,18 @@ Lastly, the `_workflow_id_` attribute defined in `ENTRY` may be set within `INST
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/work_plan.adoc[leveloffset=+1]
+include::ROOT:partial$classes/work_plan.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/plan_calendar.adoc[leveloffset=+1]
+include::ROOT:partial$classes/plan_calendar.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/plan_timeline.adoc[leveloffset=+1]
+include::ROOT:partial$classes/plan_timeline.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/calendar_entry.adoc[leveloffset=+1]
+include::ROOT:partial$classes/calendar_entry.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/task_plan.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_plan.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/task_participation.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_participation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/plan_item.adoc[leveloffset=+1]
+include::ROOT:partial$classes/plan_item.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/task_repeat.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_repeat.adoc[leveloffset=+1]

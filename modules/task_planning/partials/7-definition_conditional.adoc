@@ -6,7 +6,7 @@ Most Task Plans include decision structures, in which one of multiple branches m
 
 [.text-center]
 .proc.task_planning.choice package - decision structures
-image::{uml_diagrams_uri}/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-decision.svg[id=proc_task_planning_definition_decision, align="center"]
 
 The `CHOICE_GROUP` class defines the essential semantics for all conditional structure types, which is that they conform to a parallel (`_execution_type_` is constrained to `parallel`), XOR-logic (i.e. single path) concurrency model, as indicated by the class invariants. In traditional workflow processing, any instance of a `CHOICE_GROUP` is thus logically an XOR gate.
 
@@ -50,24 +50,24 @@ image::diagrams/event_structure.svg[id=event_structure, align="center"]
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/choice_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/choice_group.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/override_type.adoc[leveloffset=+1]
+include::ROOT:partial$classes/override_type.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/choice_branch.adoc[leveloffset=+1]
+include::ROOT:partial$classes/choice_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/condition_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/condition_group.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/condition_branch.adoc[leveloffset=+1]
+include::ROOT:partial$classes/condition_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/decision_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/decision_group.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/decision_branch.adoc[leveloffset=+1]
+include::ROOT:partial$classes/decision_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/adhoc_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/adhoc_group.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/adhoc_branch.adoc[leveloffset=+1]
+include::ROOT:partial$classes/adhoc_branch.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/event_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event_group.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/event_branch.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event_branch.adoc[leveloffset=+1]

@@ -3,7 +3,7 @@
 A small number of features in the model are designed to support the tracking of orders from a Work Plan. The following UML view shows the relevant classes and properties. 
 [.text-center]
 .Order tracking
-image::{uml_diagrams_uri}/PROC-task_planning.definition-order_tracking.svg[id=proc_definition_order_tracking, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-order_tracking.svg[id=proc_definition_order_tracking, align="center"]
 
 The facilities consist of the following:
 
@@ -49,4 +49,4 @@ An example of a Work Plan representing this scenario is available in the {openeh
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/order_ref.adoc[leveloffset=+1]
+include::ROOT:partial$classes/order_ref.adoc[leveloffset=+1]

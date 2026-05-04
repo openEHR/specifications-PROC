@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = CHA2DS2-VASc
 
 == Work Plan

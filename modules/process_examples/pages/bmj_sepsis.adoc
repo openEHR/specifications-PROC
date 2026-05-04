@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = BMJ Sepsis Infographic
 
 This CPG was developed from the a https://www.bmj.com/content/354/bmj.i4030/infographic[2016 BMJ 'summary' infographic^] based on NICE sepsis guidelines.

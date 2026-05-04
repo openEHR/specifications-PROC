@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Breast Cancer Decision Protocol
 
 == Decision Logic Module

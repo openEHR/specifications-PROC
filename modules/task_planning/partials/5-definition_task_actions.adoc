@@ -4,7 +4,7 @@ The specific definition of the work of Tasks is provided by `TASK._action_`, of 
 
 [.text-center]
 .`proc.task_planning.definition` model - Task Actions
-image::{uml_diagrams_uri}/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-actions.svg[id=rm_definition_actions, align="center"]
 
 `TASK_ACTION` includes two attributes that apply to all subtypes. The first is `_subject_preconditions_`, which enables subject-related preconditions to be expressed, i.e. conditions referencing variables relating to the subject such as vital signs. These preconditions can be understood as conditions for safe processing, and should either be satisfied before proceeding, or else overridden by a competent performer who understands the implications.
 
@@ -69,7 +69,7 @@ Tasks whose definitions are stated within a Task Plan are modelled using the `DE
 
 [.text-center]
 .proc.task_planning.definition - Definition Task
-image::{uml_diagrams_uri}/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center", width=50%]
+image::ROOT:uml/PROC-task_planning.definition-defined_task.svg[id=proc_task_planning_definition_defined_task, align="center", width=50%]
 
 The attribute is called 'prototype' because the target Entry instance is understood as a partially populated, prototype 'planning time' partial copy of an Entry that will be created when the Task is actually performed. For example, a Task Plan for administering medication at 8 hourly intervals over a number of days could consist of a number of `DEFINED_ACTIONs`, each having a protoype of an `ACTION` instance based on the `openEHR-EHR-ACTION.medication.v1` archetype or a templated version thereof. Each such instance would contain the structured description of the medication administration and time, and when the administration was actually performed, an `ACTION` instance would be created from the prototype, modified to reflect any divergence from the planned form of the Task, and committed to the EHR in the normal way.
 
@@ -128,24 +128,24 @@ The Task sub-type `SYSTEM_REQUEST` represents a request to a _system_ with a com
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_action.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/subject_precondition.adoc[leveloffset=+1]
+include::ROOT:partial$classes/subject_precondition.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/performable_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/performable_action.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/resource_participation.adoc[leveloffset=+1]
+include::ROOT:partial$classes/resource_participation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/defined_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/defined_action.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/sub_plan.adoc[leveloffset=+1]
+include::ROOT:partial$classes/sub_plan.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/dispatchable_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dispatchable_action.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/hand_off.adoc[leveloffset=+1]
+include::ROOT:partial$classes/hand_off.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/external_request.adoc[leveloffset=+1]
+include::ROOT:partial$classes/external_request.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/system_request.adoc[leveloffset=+1]
+include::ROOT:partial$classes/system_request.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/linked_plan.adoc[leveloffset=+1]
+include::ROOT:partial$classes/linked_plan.adoc[leveloffset=+1]

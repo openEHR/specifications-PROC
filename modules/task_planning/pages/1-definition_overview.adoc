@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Definition Model
 
 == Overview
@@ -6,7 +8,7 @@ This section describes the formal model of Work Plan and Task Plan, which is pre
 
 [.text-center]
 .`proc.task_planning.definition` model overview
-image::{uml_diagrams_uri}/PROC-task_planning.definition-structure.svg[id=proc_definition_structure, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-structure.svg[id=proc_definition_structure, align="center"]
 
 The remaining classes are shown in various specialised views below.
 

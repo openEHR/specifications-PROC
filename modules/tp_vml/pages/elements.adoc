@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Elements
 
 The elements of TP-VML are based directly on the openEHR Task Planning formal specification, and can be used to construct exectuable Plans.

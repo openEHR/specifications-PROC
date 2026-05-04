@@ -19,8 +19,8 @@ There are some key differences between the two kinds of Task as shown in the fol
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/dispatchable_task.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dispatchable_task.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/performable_task.adoc[leveloffset=+1]
+include::ROOT:partial$classes/performable_task.adoc[leveloffset=+1]

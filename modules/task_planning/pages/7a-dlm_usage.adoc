@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Plan / DLM Interaction
 
 == Data-sharing

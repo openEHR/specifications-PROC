@@ -1,0 +1,9 @@
+* xref:index.adoc[CDS, Guidelines and Planning Overview]
+** xref:introduction.adoc[Introduction]
+** xref:needs.adoc[Needs]
+** xref:artefacts.adoc[Care Process Artefacts and their Formalisation]
+** xref:deployment_paradigm.adoc[Deployment Paradigm]
+** xref:conceptual_architecture.adoc[Conceptual Architecture]
+** xref:deployment_architectures.adoc[Architectural Use-cases]
+** xref:appendix.adoc[Appendix]
+

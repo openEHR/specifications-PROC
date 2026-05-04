@@ -1,0 +1,27 @@
+include::partial$module_vars.adoc[]
+
+= Appendix
+
+
+== Acknowledgements
+
+=== Contributors
+
+* Danielle S Alves, RN, midwife, Federal University of Pernambuco (UFPE), Brazil
+* Bjørn Næss, DIPS, Norway
+
+=== Support
+
+The work reported in this specification has been funded by the following organisations:
+
+* DIPS, Norway
+* Marand d.o.o., Slovenia
+
+=== Trademarks
+
+* 'openEHR' is a trademark of the openEHR Foundation.
+* 'OMG' is a trademark of the Object Management Group.
+
+:sectnums!:
+
+include::partial$amendment_record.adoc[]

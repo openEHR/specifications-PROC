@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 [[_dlm_model]]
 = DLM Model
 
@@ -7,7 +9,7 @@ The structure of the `proc.decision_language` packages is shown below.
 
 [.text-center]
 .`proc.decision_language` Package strucure
-image::{uml_diagrams_uri}/PROC-decision_language-packages.svg[id=dl_packages, align="center", width="50%"]
+image::ROOT:uml/PROC-decision_language-packages.svg[id=dl_packages, align="center", width="50%"]
 
 The packages are described below.
 
@@ -19,7 +21,7 @@ The meta-model is shown below, with the meta-class `DECISION_LOGIC_MODULE` being
 
 [.text-center]
 .`proc.decision_language.dlm` Package
-image::{uml_diagrams_uri}/PROC-decision_language.dlm.svg[id=dl_dlm, align="center"]
+image::ROOT:uml/PROC-decision_language.dlm.svg[id=dl_dlm, align="center"]
 
 Within this model, the various DLM sections are modelled as specialisations of the BMM meta-class `BMM_FEATURE_GROUP`, so as to restrict the kind of features they may define. These are described in the following sub-sections.
 
@@ -41,11 +43,11 @@ The DLM `rules` section is formally represented as a feature group called `'rule
 
 === Class Descriptions
 
-include::{uml_export_dir}/classes/decision_logic_module.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/dlm_reference_section.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/dlm_input_section.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/dlm_rules_section.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/dlm_rule.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/decision_logic_module.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/dlm_reference_section.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/dlm_input_section.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/dlm_rules_section.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/dlm_rule.adoc[leveloffset=+1]]
 
 == DLM Concrete Model
 
@@ -53,7 +55,7 @@ In order to supply a few of the key constructs of a DLM, a concrete model is pro
 
 [.text-center]
 .`proc.decision_language.concrete` Package
-image::{uml_diagrams_uri}/PROC-decision_language.concrete.svg[id=dl_concrete, align="center"]
+image::ROOT:uml/PROC-decision_language.concrete.svg[id=dl_concrete, align="center"]
 
 === Subject Variables
 
@@ -110,7 +112,7 @@ TO BE CONTINUED
 
 === Class Descriptions
 
-include::{uml_export_dir}/classes/state_variable.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/value_snapshot.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/tracked_state_variable.adoc[leveloffset=+1]]
-include::{uml_export_dir}/classes/tracked_quantitative_variable.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/state_variable.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/value_snapshot.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/tracked_state_variable.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/tracked_quantitative_variable.adoc[leveloffset=+1]]

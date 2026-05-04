@@ -1,0 +1,30 @@
+include::partial$module_vars.adoc[]
+
+= Appendix
+
+
+== Acknowledgements
+
+=== Primary Authors
+
+* Thomas Beale, Ars Semantica, openEHR International Board, UK
+* Rong Chen MD, PhD, Cambio CDS, Sweden
+
+=== Contributors
+
+* Joost Holslag, MD, Nedap Healthcare & University of Groningen, Netherlands
+* Ken Lord, Principal, MDIXinc, US
+* Keith Salzman MD, CMIO US Army (ret.)
+
+=== Support
+
+The work reported in this specification has been funded by the following organisations:
+
+* City of Moscow
+* Better d.o.o., Slovenia
+* Ars Semantica, UK
+* Cambio CDS, Sweden
+
+:sectnums!:
+
+include::partial$amendment_record.adoc[]

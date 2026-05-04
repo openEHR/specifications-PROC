@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Needs
 
 This section discusses the requirements for a category of computational system that supports the execution of distributed, team-based, and long-running care processes by professional workers and subjects.

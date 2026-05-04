@@ -1,5 +1,10 @@
+include::ROOT:partial$component_vars.adoc[]
+
 :spec_title: CDS, Guidelines and Planning Overview
 :copyright_year: 2020
 :spec_status: PAUSED
 :keywords: process, guidelines, GDL, planning, CDS, workflow, CPG
 :description: Overview of openEHR CDS, Guidelines and Planning specifications.
+
+:latest_issue: 1.7.1
+:latest_issue_date: 10 Nov 2025

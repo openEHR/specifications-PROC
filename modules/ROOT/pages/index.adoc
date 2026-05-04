@@ -1,0 +1,18 @@
+= Process Model
+
+[.spec-meta-line]
+Status: [.spec-status.spec-status-paused]#PAUSED#  Release: [.release-tag]#{page-component-version}#
+
+
+Task Planning model for adaptive, executable, team-based clinical workflows. Includes the TP-VML visual notation for designing care plans, a decision rule language, and real-world clinical process examples.
+
+.Specification Component Overview
+image::openehr_block_diagram.svg[openEHR Process Model block diagram,role=block-diagram]
+
+== Specifications
+
+* xref:overview:index.adoc[CDS, Guidelines and Planning Overview] [.spec-status.spec-status-paused]#PAUSED# — Overview of CDS, Guidelines, and Planning specifications. -- Positions Task Planning, Decision Language, and GDL within the openEHR platform
+* xref:task_planning:index.adoc[Task Planning (TP) Specification] [.spec-status.spec-status-paused]#PAUSED# — An adaptive, executable, team-based model of clinical workflow -- Adaptive, executable model for team-based clinical workflow and care plans
+* xref:decision_language:index.adoc[Decision Language specification] [.spec-status.spec-status-paused]#PAUSED# — Rule language for use with GDL, TP. -- Rule language for encoding clinical conditions in guidelines and workflows
+* xref:tp_vml:index.adoc[Task Planning Visual Modelling Language (TP-VML)] [.spec-status.spec-status-paused]#PAUSED# — A visual modelling language for clinical plans and workflows. -- Visual notation for designing and communicating clinical care plans
+* xref:process_examples:index.adoc[openEHR CDS, Guidelines and Planning Examples] [.spec-status.spec-status-paused]#PAUSED# — Real-world CDS/Process examples. -- Worked examples of care pathway and guideline artefacts

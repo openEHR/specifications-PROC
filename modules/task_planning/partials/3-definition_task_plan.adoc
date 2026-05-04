@@ -99,10 +99,10 @@ The default value of `_training_level_` is 0.
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_group.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
+include::ROOT:partial$classes/execution_type.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/concurrency_mode.adoc[leveloffset=+1]
+include::ROOT:partial$classes/concurrency_mode.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]
+include::ROOT:partial$classes/execution_rule.adoc[leveloffset=+1]

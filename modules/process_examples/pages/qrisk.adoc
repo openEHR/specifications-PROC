@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = qRisk3-2017
 
 This stroke/heart attack risk calculator was developed in the UK by University of Nottingham and EMIS (a major GP EMR supplier). An online calculator is https://qrisk.org/three/index.php[visible here^]. The algorithm is https://qrisk.org/three/src.php[published as a PHP program^]. See also https://www.bmj.com/content/357/bmj.j2099[this article^].

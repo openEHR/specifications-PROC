@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Execution
 
 This section describes the execution time semantics that correspond to the materialised and runtime forms of the Task Planning model.

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,29 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-paused]#{spec_status}#
+
+Worked examples of clinical process artefacts illustrating Task Planning, Decision Language, and GDL in real-world care pathway and guideline scenarios, covering common hospital and ambulatory care workflows. Each example includes both the formal artefact definitions and narrative commentary explaining design decisions and implementation considerations.
+
+== Purpose
+
+This document contains elaborated examples of the openEHR Process framework, including Task Plans and Decision Logic Modules, with diagrams in TP-VML.
+
+The intended audience includes:
+
+* Plan and Guideline authors;
+* Tool vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_task_planning}[openEHR Task Planning Model^];
+* The {openehr_decision_language}[openEHR Decision Language^];
+* The {openehr_tp_vml}[openEHR Task Planning Visual Modelling Language (TP-VML)^];
+
+
+
 
 
 //
@@ -17,41 +41,13 @@
 //
 // --------------------------------------------- Preface -----------------------------------------------
 //
-== Acknowledgements
 
-=== Contributors
+== Feedback
 
-* Danielle S Alves, RN, midwife, Federal University of Pernambuco (UFPE), Brazil
-* Bjørn Næss, DIPS, Norway
+Feedback may be provided on the {openehr_process_forum}[process specifications forum^].
 
-=== Support
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-The work reported in this specification has been funded by the following organisations:
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
-* DIPS, Norway
-* Marand d.o.o., Slovenia
 
-=== Trademarks
-
-* 'openEHR' is a trademark of the openEHR Foundation.
-* 'OMG' is a trademark of the Object Management Group.
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::#left
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-
-//
-// --------------------------------------------- Amendment Record -----------------------------------------------
-//
-:sectnums!:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-//:sectnums!:
-//== References
