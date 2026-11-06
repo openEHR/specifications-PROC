@@ -1,0 +1,9 @@
+=== CHOICE_GROUP Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/choice_group.adoc[]
+
+====

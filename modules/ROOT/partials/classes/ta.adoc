@@ -1,0 +1,9 @@
+=== TA Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/ta.adoc[]
+
+====

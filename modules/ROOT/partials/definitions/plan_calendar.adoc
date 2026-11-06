@@ -1,0 +1,16 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PLAN_CALENDAR*
+
+h|*Description*
+2+a|Work Plan global calendar in which all absolute-time Calendar Events are recorded.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*entries*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_calendar_entry_class[CALENDAR_ENTRY]>`
+a|Entries in calendar.
+|===

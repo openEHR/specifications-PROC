@@ -1,0 +1,9 @@
+=== DECISION_LOGIC_MODULE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/decision_logic_module.adoc[]
+
+====

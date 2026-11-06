@@ -1,0 +1,9 @@
+=== PLAN_EVENT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/plan_event.adoc[]
+
+====

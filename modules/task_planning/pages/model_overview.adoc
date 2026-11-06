@@ -213,7 +213,7 @@ include::ROOT:partial$classes/customary_time.adoc[leveloffset=+1]
 
 == Enumerated Types
 
-Various enumerated types are defined in the `definitions` package, for use by the definition, materialised and runtime models. The `TASK_LIFECYCLE` enumeration is included in <<_lifecycle_state>>.
+Various enumerated types are defined in the `definitions` package, for use by the definition, materialised and runtime models. The `TASK_LIFECYCLE` enumeration is included in <<1-definition_overview.adoc#{underscore}lifecycle_state,Lifecycle State>>.
 
 === Class Descriptions
 

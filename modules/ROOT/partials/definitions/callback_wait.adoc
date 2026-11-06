@@ -1,0 +1,35 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CALLBACK_WAIT*
+
+h|*Description*
+2+a|Specialised descendant of `EVENT_WAIT <CALL_BACK_NOTIFICATION>` that adds a fail action. Used for representing post-callback actions.
+
+Default processing if `EVENT_ACTION._receiver_thread_next_state_` is not set:
+
+* on `_success_action_`: the owning Task `_lifecycle_state_` is progressed to the `completed` state.
+* on `_fail_action_`: the owning Task `_lifecycle_state_` is progressed to the `abandoned` state.
+
+`EVENT_ACTION._receiver_thread_next_state_` must be set on all
+
+h|*Inherit*
+2+|`xref:task_planning:1-definition_overview.adoc#_event_wait_class[EVENT_WAIT]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*fail_action*: `xref:task_planning:1-definition_overview.adoc#_event_action_class[EVENT_ACTION]`
+a|Action to perform if any listened-for event returns a fail result.
+
+h|*0..1*
+|*custom_actions*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:task_planning:1-definition_overview.adoc#_event_action_class[EVENT_ACTION]>`
+a|A keyed list of specific actions to perform based on custom key values, which are understood as types of remote event more specific than just 'success' or 'fail'.
+
+h|*1..1 +
+(redefined)*
+|*event*: `xref:task_planning:1-definition_overview.adoc#_callback_notification_class[CALLBACK_NOTIFICATION]`
+a|Callback notification on which this Callback wait state is based.
+|===

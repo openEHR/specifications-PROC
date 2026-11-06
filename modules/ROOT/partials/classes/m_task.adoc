@@ -1,0 +1,9 @@
+=== M_TASK Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_task.adoc[]
+
+====

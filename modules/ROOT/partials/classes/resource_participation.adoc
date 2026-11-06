@@ -1,0 +1,9 @@
+=== RESOURCE_PARTICIPATION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/resource_participation.adoc[]
+
+====

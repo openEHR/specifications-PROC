@@ -4,7 +4,7 @@ include::partial$module_vars.adoc[]
 
 == Overview
 
-The <<proc_task_planning_overview,Model overview figure>> shows a package `proc.task_planning.materialised`. This is a partial specification of classes that could be instantiated at Task Plan execution time to track Plan execution, and is provided as a guide to implementing a materialised form for runtime use. A minimal materialised model is described here, as a means of indicating some of the general issues that will be encountered in representation of the runtime form of a Plan definition. *It should not be considered either normative or complete*. The model is shown below.
+The <<model_overview.adoc#proc_task_planning_overview,Model overview figure>> shows a package `proc.task_planning.materialised`. This is a partial specification of classes that could be instantiated at Task Plan execution time to track Plan execution, and is provided as a guide to implementing a materialised form for runtime use. A minimal materialised model is described here, as a means of indicating some of the general issues that will be encountered in representation of the runtime form of a Plan definition. *It should not be considered either normative or complete*. The model is shown below.
 
 [.text-center]
 .proc.task_planning.materialised package

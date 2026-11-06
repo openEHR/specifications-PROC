@@ -1,0 +1,9 @@
+=== PLAN_CALENDAR Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/plan_calendar.adoc[]
+
+====

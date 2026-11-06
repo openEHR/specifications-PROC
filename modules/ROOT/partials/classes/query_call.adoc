@@ -1,0 +1,9 @@
+=== QUERY_CALL Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/query_call.adoc[]
+
+====

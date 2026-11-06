@@ -1,0 +1,9 @@
+=== TIME_SPECIFIER Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/time_specifier.adoc[]
+
+====

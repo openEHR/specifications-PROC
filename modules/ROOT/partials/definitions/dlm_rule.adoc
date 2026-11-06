@@ -1,0 +1,12 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DLM_RULE*
+
+h|*Description*
+2+a|Specialised form of `BMM_FUNCTION` that acts as a DLM rule.
+
+h|*Inherit*
+2+|`xref:{class_bmm_function}[BMM_FUNCTION]`
+
+|===

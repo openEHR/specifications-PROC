@@ -49,4 +49,4 @@ An example of a Work Plan representing this scenario is available in the {openeh
 
 == Class Definitions
 
-include::ROOT:partial$classes/order_ref.adoc[leveloffset=+1]
+include::ROOT:partial$classes/order_ref.adoc[]

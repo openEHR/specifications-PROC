@@ -1,0 +1,9 @@
+=== HAND_OFF Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/hand_off.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== CONDITION_GROUP Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/condition_group.adoc[]
+
+====

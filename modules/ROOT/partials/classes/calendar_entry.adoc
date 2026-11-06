@@ -1,0 +1,9 @@
+=== CALENDAR_ENTRY Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/calendar_entry.adoc[]
+
+====

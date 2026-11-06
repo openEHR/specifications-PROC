@@ -1,0 +1,19 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*CLOCK_TIME*
+
+h|*Description*
+2+a|A point in time within a day.
+
+h|*Inherit*
+2+|`xref:task_planning:model_overview.adoc#_time_specifier_class[TIME_SPECIFIER]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*time*: `xref:{class_iso8601_time}[Iso8601_time]`
+a|Time expressed as a clock time within a day.
+|===

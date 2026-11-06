@@ -1,0 +1,9 @@
+=== EXTERNAL_VARIABLE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/external_variable.adoc[]
+
+====

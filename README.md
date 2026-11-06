@@ -1,0 +1,4 @@
+# specifications-PROC - openEHR Process Model Specifications
+
+This repository contains the document and model sources (Asciidoctor and MagicDraw) for the openEHR Process specifications.
+The published form may be accessed from the openEHR website [PROC specifications index page](https://www.openehr.org/releases/PROC).

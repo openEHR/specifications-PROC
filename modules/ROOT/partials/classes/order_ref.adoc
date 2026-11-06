@@ -1,0 +1,9 @@
+=== ORDER_REF Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/order_ref.adoc[]
+
+====

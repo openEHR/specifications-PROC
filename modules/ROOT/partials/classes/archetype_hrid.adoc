@@ -1,0 +1,9 @@
+=== ARCHETYPE_HRID Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/archetype_hrid.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== TASK_GROUP Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_group.adoc[]
+
+====

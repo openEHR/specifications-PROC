@@ -1,0 +1,9 @@
+=== SUB_PLAN Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/sub_plan.adoc[]
+
+====

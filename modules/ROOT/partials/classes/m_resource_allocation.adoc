@@ -1,0 +1,9 @@
+=== M_RESOURCE_ALLOCATION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_resource_allocation.adoc[]
+
+====

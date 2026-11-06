@@ -128,24 +128,24 @@ The Task sub-type `SYSTEM_REQUEST` represents a request to a _system_ with a com
 
 == Class Definitions
 
-include::ROOT:partial$classes/task_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_action.adoc[]
 
-include::ROOT:partial$classes/subject_precondition.adoc[leveloffset=+1]
+include::ROOT:partial$classes/subject_precondition.adoc[]
 
-include::ROOT:partial$classes/performable_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/performable_action.adoc[]
 
-include::ROOT:partial$classes/resource_participation.adoc[leveloffset=+1]
+include::ROOT:partial$classes/resource_participation.adoc[]
 
-include::ROOT:partial$classes/defined_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/defined_action.adoc[]
 
-include::ROOT:partial$classes/sub_plan.adoc[leveloffset=+1]
+include::ROOT:partial$classes/sub_plan.adoc[]
 
-include::ROOT:partial$classes/dispatchable_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dispatchable_action.adoc[]
 
-include::ROOT:partial$classes/hand_off.adoc[leveloffset=+1]
+include::ROOT:partial$classes/hand_off.adoc[]
 
-include::ROOT:partial$classes/external_request.adoc[leveloffset=+1]
+include::ROOT:partial$classes/external_request.adoc[]
 
-include::ROOT:partial$classes/system_request.adoc[leveloffset=+1]
+include::ROOT:partial$classes/system_request.adoc[]
 
-include::ROOT:partial$classes/linked_plan.adoc[leveloffset=+1]
+include::ROOT:partial$classes/linked_plan.adoc[]

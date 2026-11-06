@@ -1,0 +1,9 @@
+=== PLAN_TIMELINE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/plan_timeline.adoc[]
+
+====

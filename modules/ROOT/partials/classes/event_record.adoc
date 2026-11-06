@@ -1,0 +1,9 @@
+=== EVENT_RECORD Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/event_record.adoc[]
+
+====

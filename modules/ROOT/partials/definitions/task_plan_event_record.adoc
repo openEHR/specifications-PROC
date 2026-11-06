@@ -1,0 +1,19 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*TASK_PLAN_EVENT_RECORD*
+
+h|*Description*
+2+a|Record of an runtime event to a Task Plan, including abandonment, performer allocation and re-allocation and so on.
+
+h|*Inherit*
+2+|`xref:task_planning:model_history.adoc#_event_record_class[EVENT_RECORD]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*details*: `xref:{class_hash}[Hash]<xref:{class_string}[String], xref:{class_string}[String]>`
+a|Other details as a name/value list.
+|===

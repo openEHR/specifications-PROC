@@ -1,0 +1,9 @@
+=== DLM_PRECONDITIONS_SECTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dlm_preconditions_section.adoc[]
+
+====

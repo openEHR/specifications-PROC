@@ -1,0 +1,9 @@
+=== M_PERFORMER_ALLOCATION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_performer_allocation.adoc[]
+
+====

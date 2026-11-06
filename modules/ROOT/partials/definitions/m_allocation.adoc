@@ -1,0 +1,16 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*M_ALLOCATION*
+
+h|*Description*
+2+a|
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*status*: `xref:{class_allocation_status}[ALLOCATION_STATUS]`
+a|
+|===

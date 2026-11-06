@@ -1,0 +1,9 @@
+=== RESUME_ACTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/resume_action.adoc[]
+
+====

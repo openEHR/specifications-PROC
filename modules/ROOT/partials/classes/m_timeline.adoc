@@ -1,0 +1,9 @@
+=== M_TIMELINE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_timeline.adoc[]
+
+====

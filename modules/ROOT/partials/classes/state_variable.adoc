@@ -1,0 +1,9 @@
+=== STATE_VARIABLE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/state_variable.adoc[]
+
+====

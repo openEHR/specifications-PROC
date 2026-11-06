@@ -1,0 +1,9 @@
+=== EVENT_BRANCH Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/event_branch.adoc[]
+
+====

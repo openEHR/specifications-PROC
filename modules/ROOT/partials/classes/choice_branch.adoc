@@ -1,0 +1,9 @@
+=== CHOICE_BRANCH Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/choice_branch.adoc[]
+
+====

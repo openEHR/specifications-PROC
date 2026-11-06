@@ -1,0 +1,9 @@
+=== TIMELINE_MOMENT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/timeline_moment.adoc[]
+
+====

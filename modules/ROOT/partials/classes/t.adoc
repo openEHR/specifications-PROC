@@ -1,0 +1,9 @@
+=== T Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/t.adoc[]
+
+====

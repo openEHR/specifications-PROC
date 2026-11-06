@@ -1,0 +1,19 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DECISION_LOGIC_MODULE*
+
+h|*Description*
+2+a|Specialised kind of class that represents a Decision Logic Module (DLM).
+
+h|*Inherit*
+2+|`xref:{class_authored_resource}[AUTHORED_RESOURCE]`, `xref:{class_bmm_simple_class}[BMM_SIMPLE_CLASS]`
+
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*create_bmm_class*
+a|Generate a `BMM_CLASS` structure whose feature groups correspond to the formal sections of a DLM, instantiated using the `DLM_XXX_SECTION` classes.
+|===

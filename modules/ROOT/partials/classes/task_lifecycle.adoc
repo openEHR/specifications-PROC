@@ -1,0 +1,9 @@
+=== TASK_LIFECYCLE Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_lifecycle.adoc[]
+
+====

@@ -16,7 +16,7 @@ image::diagrams/wp_tp_hierarchy.svg[id=wp_tp_hierarchy, align="center", width=55
 
 === General Scheme
 
-When a materialised Work Plan is activated (<<_activation,see below>>), its top-level Task Plans are active, meaning that their initial Task(s) are in the `available` lifecycle state, as <<_task_lifecycle,described above>>. 
+When a materialised Work Plan is activated (<<execution_model_overview.adoc#{underscore}activation,see below>>), its top-level Task Plans are active, meaning that their initial Task(s) are in the `available` lifecycle state, as <<design.adoc#{underscore}task_lifecycle,described above>>. 
 
 In a Task Plan, the _execution path_ follows the chain of Tasks defined in the `_definition_` of the Plan, which is a `TASK_GROUP`. It descends into and exits any other `TASK_GROUPs` encountered within the Plan as Tasks are executed and completed or cancelled by their workers. A Task becomes `available` based on a combination of completion (or skipping) of previous Tasks and other conditions, according to the Task lifecycle logic <<_task_lifecycle_2,described above>>.
 

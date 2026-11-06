@@ -1,0 +1,9 @@
+=== PARAMETER_MAPPING Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/parameter_mapping.adoc[]
+
+====

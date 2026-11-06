@@ -1,0 +1,9 @@
+=== M_REVIEW_DATASET_SPEC Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_review_dataset_spec.adoc[]
+
+====

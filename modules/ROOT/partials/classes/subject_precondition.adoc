@@ -1,0 +1,9 @@
+=== SUBJECT_PRECONDITION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/subject_precondition.adoc[]
+
+====

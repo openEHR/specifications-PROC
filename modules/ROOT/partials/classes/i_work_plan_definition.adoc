@@ -1,0 +1,9 @@
+=== I_WORK_PLAN_DEFINITION Interface
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/i_work_plan_definition.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== CONDITION_BRANCH Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/condition_branch.adoc[]
+
+====

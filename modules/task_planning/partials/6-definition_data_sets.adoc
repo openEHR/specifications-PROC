@@ -37,10 +37,10 @@ image::diagrams/progressive_data_capture.svg[id=progressive_data_capture, align=
 
 == Class Definitions
 
-include::ROOT:partial$classes/dataset_spec.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dataset_spec.adoc[]
 
-include::ROOT:partial$classes/capture_dataset_spec.adoc[leveloffset=+1]
+include::ROOT:partial$classes/capture_dataset_spec.adoc[]
 
-include::ROOT:partial$classes/review_dataset_spec.adoc[leveloffset=+1]
+include::ROOT:partial$classes/review_dataset_spec.adoc[]
 
-include::ROOT:partial$classes/dataset_commit_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dataset_commit_group.adoc[]

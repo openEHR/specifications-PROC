@@ -1,0 +1,28 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*REMINDER*
+
+h|*Description*
+2+a|Specialised Event wait state activated when its `_event_` fires. This is often a `TIMER_EVENT`, but may be any other kind of event. Will be cancelled when/if its owning Task enters a terminal state (i.e. completes or is cancelled or the Plan abandoned).
+
+If the reminder is activated, its `_success_action_` should be configured to generate a reminder or alert to performer or other user.
+
+h|*Inherit*
+2+|`xref:task_planning:1-definition_overview.adoc#_event_wait_class[EVENT_WAIT]`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(redefined)*
+|*event*: `xref:task_planning:1-definition_overview.adoc#_plan_event_class[PLAN_EVENT]`
+a|The event that will generate the reminder. This could be a timer, or it may be a timeline moment, calendar time, or a non-deterministic event, e.g. state trigger.
+
+h|*Invariants*
+2+a|__Inv_no_timeout__: `timeout = Void`
+
+h|
+2+a|__Inv_has_action__: `success_action /= Void`
+|===

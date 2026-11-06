@@ -1,0 +1,9 @@
+=== TASK_NOTIFICATION_RECORD Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_notification_record.adoc[]
+
+====

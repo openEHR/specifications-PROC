@@ -43,11 +43,11 @@ The DLM `rules` section is formally represented as a feature group called `'rule
 
 === Class Descriptions
 
-include::ROOT:partial$classes/decision_logic_module.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/dlm_reference_section.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/dlm_input_section.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/dlm_rules_section.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/dlm_rule.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/decision_logic_module.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dlm_reference_section.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dlm_input_section.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dlm_rules_section.adoc[leveloffset=+1]
+include::ROOT:partial$classes/dlm_rule.adoc[leveloffset=+1]
 
 == DLM Concrete Model
 
@@ -65,7 +65,7 @@ The class `STATE_VARIABLE<T>` models the simplest case: a variable that may be q
 
 For time-varying variables, the values must usually be tracked. The class `TRACKED_STATE_VARIABLE<T>` is is provided for this purpose, and adds the meta-attribute `_currency_`, a duration indicating the maximum age of the sample value to be useful or valid. The `_history_` attribute now contains variable samples over time. The function `value()` extracts the most recent available value, while `is_available()` is redefined to indicate whether a sufficiently recent value is available. 
 
-Many tracked variables are quantitative, and for these, extra facilities are provided via the class `TRACKED_QUANTITATIVE_VARIABLE<T>`, which adds the ranges facility described earlier in <<_quantitative_tracked_variables>>.
+Many tracked variables are quantitative, and for these, extra facilities are provided via the class `TRACKED_QUANTITATIVE_VARIABLE<T>`, which adds the ranges facility described earlier in <<dlm_syntax.adoc#{underscore}quantitative_tracked_variables,Quantitative Tracked Variables>>.
 
 Variable declarations in DL syntax, as described in the language section above are in fact instantiations of the `STATE_VARIABLE<T>` or a descendant, potentially with constructor paramaters supplied. Consider the following declaration, shown earlier:
 
@@ -112,7 +112,7 @@ TO BE CONTINUED
 
 === Class Descriptions
 
-include::ROOT:partial$classes/state_variable.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/value_snapshot.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/tracked_state_variable.adoc[leveloffset=+1]]
-include::ROOT:partial$classes/tracked_quantitative_variable.adoc[leveloffset=+1]]
+include::ROOT:partial$classes/state_variable.adoc[leveloffset=+1]
+include::ROOT:partial$classes/value_snapshot.adoc[leveloffset=+1]
+include::ROOT:partial$classes/tracked_state_variable.adoc[leveloffset=+1]
+include::ROOT:partial$classes/tracked_quantitative_variable.adoc[leveloffset=+1]

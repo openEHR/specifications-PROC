@@ -1,0 +1,9 @@
+=== TASK_EVENT_RECORD Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_event_record.adoc[]
+
+====

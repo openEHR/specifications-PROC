@@ -1,0 +1,9 @@
+=== CALLBACK_WAIT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/callback_wait.adoc[]
+
+====

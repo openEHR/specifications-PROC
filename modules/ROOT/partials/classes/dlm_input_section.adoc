@@ -1,0 +1,9 @@
+=== DLM_INPUT_SECTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dlm_input_section.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== M_PLAN_ITEM Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_plan_item.adoc[]
+
+====

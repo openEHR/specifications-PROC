@@ -1,0 +1,15 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*ADHOC_BRANCH*
+
+h|*Description*
+2+a|A specialised kind of `TASK_GROUP` representing a branch in an Ad Hoc Group.
+
+h|*Inherit*
+2+|`xref:task_planning:1-definition_overview.adoc#_choice_branch_class[CHOICE_BRANCH]`
+
+
+h|*Invariants*
+2+a|__Inv_no_wait_condition__: `wait_spec = Void`
+|===

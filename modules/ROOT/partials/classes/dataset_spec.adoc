@@ -1,0 +1,9 @@
+=== DATASET_SPEC Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dataset_spec.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== TASK_TRANSITION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_transition.adoc[]
+
+====
