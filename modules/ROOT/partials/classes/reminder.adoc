@@ -1,0 +1,9 @@
+=== REMINDER Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/reminder.adoc[]
+
+====

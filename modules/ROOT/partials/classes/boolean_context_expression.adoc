@@ -1,0 +1,9 @@
+=== BOOLEAN_CONTEXT_EXPRESSION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/boolean_context_expression.adoc[]
+
+====

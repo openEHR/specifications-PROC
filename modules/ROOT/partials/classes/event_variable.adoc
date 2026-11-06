@@ -1,0 +1,9 @@
+=== EVENT_VARIABLE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/event_variable.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== TIMER_EVENT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/timer_event.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== DECISION_BRANCH Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/decision_branch.adoc[]
+
+====

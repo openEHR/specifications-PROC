@@ -1,0 +1,9 @@
+=== TASK_ACTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_action.adoc[]
+
+====

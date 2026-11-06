@@ -1,0 +1,9 @@
+=== EXTERNAL_REQUEST Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/external_request.adoc[]
+
+====

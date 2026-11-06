@@ -1,0 +1,9 @@
+=== PARAMETER_DEF Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/parameter_def.adoc[]
+
+====

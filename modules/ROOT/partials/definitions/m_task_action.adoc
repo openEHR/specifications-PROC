@@ -1,0 +1,16 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*M_TASK_ACTION*
+
+h|*Description*
+2+a|Materialised form of `TASK_ACTION` type.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*definition*: `<<_task_action_class,TASK_ACTION>>`
+a|
+|===

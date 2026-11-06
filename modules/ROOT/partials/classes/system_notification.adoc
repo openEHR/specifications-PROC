@@ -1,0 +1,9 @@
+=== SYSTEM_NOTIFICATION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/system_notification.adoc[]
+
+====

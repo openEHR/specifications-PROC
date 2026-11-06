@@ -1,0 +1,9 @@
+=== WORK_PLAN Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/work_plan.adoc[]
+
+====

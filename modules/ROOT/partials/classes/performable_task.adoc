@@ -1,0 +1,9 @@
+=== PERFORMABLE_TASK Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/performable_task.adoc[]
+
+====

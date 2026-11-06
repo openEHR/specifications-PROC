@@ -1,0 +1,9 @@
+=== TASK_WAIT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_wait.adoc[]
+
+====

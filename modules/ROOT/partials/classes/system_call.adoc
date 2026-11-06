@@ -1,0 +1,9 @@
+=== SYSTEM_CALL Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/system_call.adoc[]
+
+====

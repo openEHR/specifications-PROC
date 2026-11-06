@@ -1,0 +1,26 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*DECISION_GROUP*
+
+h|*Description*
+2+a|Special kind of Task Group whose members are all `DECISION_BRANCH` instances, each of which represents a distinct value sub-range, and which represent together the total possible range of values of the test expression.
+
+This structure is the equivalent of a programming 'case' statement. It is processed in order, and for situations that need it, the last branch may use a `_value_constraint_` representing 'any value', to represent a catch-all 'else' branch.
+
+h|*Inherit*
+2+|`<<_choice_group_class,CHOICE_GROUP>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*value*: `<<_context_expression_class,CONTEXT_EXPRESSION>>`
+a|Reference to an Expression Language terminal that may be a function call or property reference. The Result value is compared to `_value_constraint_` sub-ranges in each of the various output branches, in the manner of a case statement.
+
+h|*0..1 +
+(redefined)*
+|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_decision_branch_class,DECISION_BRANCH>>>`
+a|Set of branches in this Decision Group.
+|===

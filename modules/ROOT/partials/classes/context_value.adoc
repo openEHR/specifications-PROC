@@ -1,0 +1,9 @@
+=== CONTEXT_VALUE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/context_value.adoc[]
+
+====

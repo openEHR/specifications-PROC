@@ -1,0 +1,9 @@
+=== CONTEXT_EXPRESSION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/context_expression.adoc[]
+
+====

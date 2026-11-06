@@ -1,0 +1,9 @@
+=== ALLOCATION_STATUS Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/allocation_status.adoc[]
+
+====

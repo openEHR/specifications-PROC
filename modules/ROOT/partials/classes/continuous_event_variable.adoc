@@ -1,0 +1,9 @@
+=== CONTINUOUS_EVENT_VARIABLE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/continuous_event_variable.adoc[]
+
+====

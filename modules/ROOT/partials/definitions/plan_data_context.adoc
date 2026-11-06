@@ -1,0 +1,24 @@
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*PLAN_DATA_CONTEXT*
+
+h|*Description*
+2+a|Container for all variable definitions used in the Task Plan.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*variables*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_context_variable_class,CONTEXT_VARIABLE>>>`
+a|List of all variables tracked by this Plan.
+
+h|*0..1*
+|*expressions*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_context_expression_class,CONTEXT_EXPRESSION>>>`
+a|List of all expressions used in the Plan, based on tracked variables.
+
+h|*0..1*
+|*constants*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_context_constant_class,CONTEXT_CONSTANT>>>`
+a|List of all constants used in the Plan.
+|===

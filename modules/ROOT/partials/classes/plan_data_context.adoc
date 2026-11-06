@@ -1,0 +1,9 @@
+=== PLAN_DATA_CONTEXT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/plan_data_context.adoc[]
+
+====

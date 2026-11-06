@@ -1,0 +1,9 @@
+=== EVENT_WAIT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/event_wait.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== MANUAL_NOTIFICATION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/manual_notification.adoc[]
+
+====

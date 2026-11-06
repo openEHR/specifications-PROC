@@ -1,0 +1,9 @@
+=== SYSTEM_REQUEST Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/system_request.adoc[]
+
+====

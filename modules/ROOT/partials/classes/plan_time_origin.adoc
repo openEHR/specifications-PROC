@@ -1,0 +1,9 @@
+=== PLAN_TIME_ORIGIN Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/plan_time_origin.adoc[]
+
+====

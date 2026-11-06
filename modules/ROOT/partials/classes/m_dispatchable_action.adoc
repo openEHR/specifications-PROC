@@ -1,0 +1,9 @@
+=== M_DISPATCHABLE_ACTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_dispatchable_action.adoc[]
+
+====

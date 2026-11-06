@@ -1,0 +1,9 @@
+=== EXECUTION_RULE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/execution_rule.adoc[]
+
+====

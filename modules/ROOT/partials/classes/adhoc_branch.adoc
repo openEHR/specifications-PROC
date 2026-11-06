@@ -1,0 +1,9 @@
+=== ADHOC_BRANCH Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/adhoc_branch.adoc[]
+
+====

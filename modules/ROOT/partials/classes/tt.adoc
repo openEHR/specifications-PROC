@@ -1,0 +1,9 @@
+=== TT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/tt.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== TEMPORAL_RELATION Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/temporal_relation.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== CAPTURE_DATASET_SPEC Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/capture_dataset_spec.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== DLM_REFERENCE_SECTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dlm_reference_section.adoc[]
+
+====

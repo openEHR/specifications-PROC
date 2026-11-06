@@ -1,0 +1,9 @@
+=== CONCURRENCY_MODE Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/concurrency_mode.adoc[]
+
+====

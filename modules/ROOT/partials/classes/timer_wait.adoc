@@ -1,0 +1,9 @@
+=== TIMER_WAIT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/timer_wait.adoc[]
+
+====

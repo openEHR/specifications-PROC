@@ -1,0 +1,9 @@
+=== M_PERFORMABLE_ACTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_performable_action.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== M_ALLOCATION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_allocation.adoc[]
+
+====

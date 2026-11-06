@@ -1,0 +1,9 @@
+=== PUBLICATION_REFERENCE Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/publication_reference.adoc[]
+
+====

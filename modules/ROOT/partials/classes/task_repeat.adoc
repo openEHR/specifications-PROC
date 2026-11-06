@@ -1,0 +1,9 @@
+=== TASK_REPEAT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/task_repeat.adoc[]
+
+====

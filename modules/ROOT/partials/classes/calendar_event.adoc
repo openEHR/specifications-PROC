@@ -1,0 +1,9 @@
+=== CALENDAR_EVENT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/calendar_event.adoc[]
+
+====

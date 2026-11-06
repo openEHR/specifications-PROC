@@ -1,0 +1,9 @@
+=== DEFINED_ACTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/defined_action.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== M_TASK_PLAN Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_task_plan.adoc[]
+
+====

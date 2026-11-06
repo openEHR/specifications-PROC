@@ -1,0 +1,9 @@
+=== M_EVENT_GROUP Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/m_event_group.adoc[]
+
+====

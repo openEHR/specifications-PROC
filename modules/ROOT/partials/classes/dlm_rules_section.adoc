@@ -1,0 +1,9 @@
+=== DLM_RULES_SECTION Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dlm_rules_section.adoc[]
+
+====

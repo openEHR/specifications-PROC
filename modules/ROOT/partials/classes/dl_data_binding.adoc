@@ -1,0 +1,9 @@
+=== DL_DATA_BINDING Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dl_data_binding.adoc[]
+
+====

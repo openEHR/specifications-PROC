@@ -1,0 +1,9 @@
+=== RESUME_TYPE Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/resume_type.adoc[]
+
+====

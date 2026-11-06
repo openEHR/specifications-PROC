@@ -1,0 +1,9 @@
+=== STATE_TRIGGER Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/state_trigger.adoc[]
+
+====

@@ -1,0 +1,9 @@
+=== VALUE_SNAPSHOT Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/value_snapshot.adoc[]
+
+====

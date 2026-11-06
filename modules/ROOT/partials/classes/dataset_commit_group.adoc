@@ -1,0 +1,9 @@
+=== DATASET_COMMIT_GROUP Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/dataset_commit_group.adoc[]
+
+====

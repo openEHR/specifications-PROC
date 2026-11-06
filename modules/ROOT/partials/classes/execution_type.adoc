@@ -1,0 +1,9 @@
+=== EXECUTION_TYPE Enumeration
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/execution_type.adoc[]
+
+====

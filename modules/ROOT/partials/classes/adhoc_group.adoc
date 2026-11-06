@@ -1,0 +1,9 @@
+=== ADHOC_GROUP Class
+
+[tabs]
+====
+Definition::
++
+include::ROOT:partial$definitions/adhoc_group.adoc[]
+
+====
