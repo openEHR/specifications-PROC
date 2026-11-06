@@ -1,0 +1,49 @@
+
+== Amendment Record
+
+[cols="1,6a,2,2", options="header"]
+|===
+|Issue|Details|Raiser, Implementer|Completed
+
+4+^h|*PROC Release 1.7.1*
+
+|[[latest_issue]]1.7.1
+|{spec_tickets}/SPECPROC-56[SPECPROC-56^]. Change the status and license of PROC component.
+|openEHR SEC
+|[[latest_issue_date]]10 Nov 2025
+
+4+^h|*PROC Release 1.7.0*
+
+|1.7.0
+|{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
+|openEHR SEC
+|07 Aug 2024
+
+4+^h|*PROC Release 1.6.0*
+
+|0.5.2
+|{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. +
+ Add conceptual CIG model; adjust nomenclature in artefacts diagram.
+|T Beale
+|16 Mar 2021
+
+|
+|GDL-oriented review.
+|T Beale, +
+ R Chen
+|30 Jan 2021
+
+|0.5.1
+|Improvements due to reviews.
+|R Chen, +
+ K Salzman, +
+ K Lord
+|15 Dec 2020
+
+|0.5.0
+|Initial writing.
+|T Beale
+|15 Dec 2020
+
+|===
+

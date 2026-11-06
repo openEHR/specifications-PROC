@@ -1,0 +1,9 @@
+= Patterns
+
+== Synchronisation of Parallel Paths
+
+The following example shows two parallel activity paths, where the completion of one (lab results arriving) causes the termination of the other (medication).
+
+[.text-center]
+.Parallel synchronisation
+image::diagrams/EX-parallel_sync.svg[id=parallel_sync, align="center"]

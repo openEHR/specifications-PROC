@@ -1,0 +1,277 @@
+
+== Amendment Record
+
+[cols="1,6,2,2", options="header"]
+|===
+|Issue|Details|Raiser|Completed
+
+4+^h|*PROC Release 1.7.1*
+
+|[[latest_issue]]1.7.1
+|{spec_tickets}/SPECPROC-56[SPECPROC-56^]. Change the status and license of PROC component.
+|openEHR SEC
+|[[latest_issue_date]]10 Nov 2025
+
+4+^h|*PROC Release 1.7.0*
+
+|1.7.0
+|{spec_tickets}/SPECPROC-52[SPECPROC-52^]. Retire Process component and all its specifications.
+|openEHR SEC
+|07 Aug 2024
+
+4+^h|*PROC Release 1.6.0*
+
+|1.6.0
+|{spec_tickets}/SPECPROC-45[SPECPROC-45^]. Add Process component Overview document. Remove most of Section 2 - Background and part of Section 4.1.
+|T Beale
+|21 Dec 2020
+
+|
+|{spec_tickets}/SPECPROC-44[SPECPROC-44^]. Correct `PLAN_TIME_ORIGIN` enum order and add values. See <<_plan_time_origin_enumeration>>.
+|M Kejžar
+|18 Sep 2020
+
+|
+|{spec_tickets}/SPECPROC-43[SPECPROC-43^]. Add inheritance to separate `CALLBACK_NOTIFICATION` from other Plan Event types; +
+ {spec_tickets}/SPECPROC-33[SPECPROC-33^]. Support progressive data set creation; +
+ {spec_tickets}/SPECPROC-39[SPECPROC-39^]. Correct error in `TASK_LIFECYCLE` state enumeration: remove `resumed` state; also correct mentions of `aborted` state to `abandoned`; add enumeration Integer values; improve text.
+|M Polajnar, +
+ M Kejžar, +
+ T Beale
+|29 May 2020
+
+4+^h|*PROC Release 1.5.0*
+
+|1.5.0
+|{spec_tickets}/SPECPROC-34[SPECPROC-34^]. Clarify evaluate order and semantics of `REPEAT_SPEC`.
+|M Polajnar, +
+ T Beale
+|05 May 2020
+
+|
+|{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Change method of 'manual notification' for callbacks; remove `_manually_notified_: Boolean` from `CALLBACK_NOTIFICATION`.
+|M Polajnar, +
+ T Beale
+|16 Apr 2020
+
+|
+|{spec_tickets}/SPECPROC-12[SPECPROC-12^]. Define lifecycle state for parallel Task Groups, including decision groups. Moved lifecycle state to 6.2.3; update 6.3.2; update Aggregate Lifecycle State section (7.3).
+|B Naess, +
+ M Polajnar, +
+ T Beale
+|19 Mar 2020
+
+|
+|{spec_tickets}/SPECPROC-32[SPECPROC-32^]. Improve Introduction and Requirements Discussion.
+|D Santos Alves, +
+ T Beale
+|26 Jan 2020
+
+|
+|{spec_tickets}/SPECPROC-30[SPECPROC-30^]. Adjustments to Events model. +
+ change `TASK_WAIT._start_window_: REMINDER[0..1]` to `PLAN_ITEM._reminders_: REMINDER[*]`; +
+ add invariant to `TIMER_WAIT` to prevent it having a timeout; +
+ make `REMINDER` a generic `EVENT_WAIT` to allow it to be fired by any event, not just a timer event; +
+ remove `DELAY_EVENT`; move its `_delay_` attribute to `PLAN_EVENT`, +
+ {spec_tickets}/SPECPROC-31[SPECPROC-31^]. Simplifications to Conditional structures: remove `BLOCKING_GROUP`, `BLOCKING_BRANCH`.
+|M Polajnar, +
+ T Beale
+|03 Jan 2020
+
+|1.4.2
+|{spec_tickets}/SPECPUB-7[SPECPUB-7^]: Convert citations to bibtex form.
+|T Beale
+|15 Dec 2019
+
+|
+|{spec_tickets}/SPECPROC-28[SPECPROC-28^]. Improve definition of `TIMELINE_MOMENT` and `TIMER_EVENT`; add `PLAN_TIME_ORIGIN` enum; remove `CALENDAR_TIME` class.
+ {spec_tickets}/SPECPROC-29[SPECPROC-29^]. Add `_guideline_step_` to `PLAN_ITEM`; make Work Plan and Task Plan guideline refs more flexible.
+|M Kejžar, +
+ T Beale
+|09 Aug 2019
+
+|1.4.1
+|{spec_tickets}/SPECPROC-26[SPECPROC-26^]. Dataset improvements: make `DATASET_SPEC` inherit from `LOCATABLE`; support form sub-sections.
+ {spec_tickets}/SPECPROC-27[SPECPROC-27^]. Add `_classification_` attribute to `WORK_PLAN` and `PLAN_ITEM`.
+|M Kejžar, +
+ T Beale
+|22 Jul 2019
+
+|1.4.0
+|{spec_tickets}/SPECPROC-24[SPECPROC-24^]. Add Order tracking to model: add class `ORDER_REF`; add `WORK_PLAN._order_list_`; add `TASK_PLAN._order_tags_`.
+|M Kejžar, +
+ M Polajnar, +
+ T Beale, +
+ B Naess
+|29 May 2019
+
+|1.3.0
+|{spec_tickets}/SPECPROC-22[SPECPROC-22^]. Enable Callbacks to be manually notified - add `_manually_notified_: Boolean` to `CALLBACK_NOTIFICATION`.
+|T Beale
+|01 May 2019
+
+|
+|{spec_tickets}/SPECPROC-23[SPECPROC-23^]. Correct `CLOCK_TIME._time_` type to `Iso8601_time`.
+|B Fabjan
+|25 Apr 2019
+
+|
+|{spec_tickets}/SPECPROC-20[SPECPROC-20^]. Add `_period_` to `TASK_REPEAT` class.
+|M Kejžar, +
+ T Beale
+|12 Apr 2019
+
+|
+|{spec_tickets}/SPECPROC-19[SPECPROC-19^]. Refine model of concurrency in `TASK_GROUP`: add class `CONCURRENCY_MODE`; improve explanation of `TASK_GROUP`; +
+ Add `_concurrency_mode_ = xor_one_path` invariant to `CHOICE_GROUP`.
+|T Beale
+|18 Mar 2019
+
+|
+|{spec_tickets}/SPECPROC-18[SPECPROC-18^]. Support custom actions for callback receipt of events; +
+ Improve diagrams and explanation on Task wait states and Events; +
+ Add `CALLBACK_WAIT._custom_actions_`; +
+ Add `REMINDER._repeats_`; +
+ Add `TASK_WAIT._next_state_`
+|T Beale, +
+ B Naess
+|11 Mar 2019
+
+|
+|{spec_tickets}/SPECPROC-17[SPECPROC-17^]. Specialise `DATASET_SPEC` into Capture and Review forms. +
+ {spec_tickets}/SPECPROC-16[SPECPROC-16^]. Change `WORK_PLAN._top_level_plans_` and `LINKED_PLAN._target_` to direct links.
+|M Kejžar, +
+ B Naess, +
+ T Beale
+|04 Jan 2019
+
+|1.2.0
+|{spec_tickets}/SPECPROC-15[SPECPROC-15^]. Convert `DELAY_EVENT._source_` to a direct reference.
+|M Polajnar 
+|21 Nov 2018
+
+|1.1.2
+|{spec_tickets}/SPECPROC-2[SPECPROC-2^]. Change date/time types to `Iso8601_xxx` types from Foundation Types spec. +
+ {spec_tickets}/SPECPROC-11[SPECPROC-11^]. Add `WORK_PLAN._indications_`; +
+ Improve documentation of `TIMELINE_MOMENT`; +
+ {spec_tickets}/SPECPROC-13[SPECPROC-13^]. Clarify Work Plan instantiation and distribution semantics: +
+ Add section 4.4.1 Phases of Work; +
+ Add subsection to section 2.5 on Distributed plans.
+|B Naess, +
+ M Kejžar, +
+ T Beale
+|31 Oct 2018
+
+|1.1.1
+|{spec_tickets}/SPECPROC-9[SPECPROC-9^]. Add sub-section on Time and Work in Background section. +
+ {spec_tickets}/SPECPROC-10[SPECPROC-10^]. Add `BLOCKING_GROUP` and `BLOCKING_BRANCH` classes and `EVENT_ACTION._receiver_thread_next_state_`.
+|T Beale
+|21 Jun 2018
+
+|1.1.0
+|{spec_tickets}/SPECPROC-6[SPECPROC-6^]. Adjust `SYSTEM_CALL` definition; +
+ Add `PARAMETER_DEF` and `PARAMETER_MAPPING` types. +
+ {spec_tickets}/SPECPROC-7[SPECPROC-7^]. Provide support in decision structures for automated / decision support / ad hoc modes; +
+ Add `CHOICE_GROUP`, `CHOICE_BRANCH`, `ADHOC_GROUP`, `ADHOC_BRANCH` classes, and an attribute for marking any group as overridable at execution time.
+|T Beale, +
+ M Kejžar
+|15 Jan 2018
+
+|1.0.4
+|{spec_tickets}/SPECPROC-3[SPECPROC-3^]. Context value model adjustments; +
+ Adjust `CONTEXT_EXPRESSION` type to have `_name_`; +
+ Add `CONTEXT_CONSTANT`, `EXTERNAL_VARIABLE` and `LOCAL_VARIABLE` types.
+|T Beale
+|04 Dec 2017
+
+|1.0.3
+|{spec_tickets}/SPECPROC-5[SPECPROC-5^]. Correct `DECISION_BRANCH` method of specifying value.
+|T Beale
+|04 Dec 2017
+
+|1.0.2
+|{spec_tickets}/SPECPROC-4[SPECPROC-4^]. Refine `SYSTEM_CALL` model, describe variable referencing.
+|M Kejžar, +
+ M Polajnar, +
+ T Beale
+|02 Dec 2017
+
+|1.0.1
+|{spec_tickets}/SPECPROC-2[SPECPROC-2^] Fix various typos; add missed `BOOLEAN_CONTEXT_EXPRESSION`;
+ Remove duplicate attribute `WORK_PLAN._events_`.
+|M Kejžar
+|24 Oct 2017
+
+4+^h|*PROC Release 1.0.0*
+
+|1.0.0
+|{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Further documentation improvements;
+ Added explanations for resume semantics; added `RESUME_ACTION` class.
+|T Beale
+|17 Oct 2017
+
+|0.9.0
+|{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Restructure document;
+ Various refactoring of Event classes; global calendar, timeline.
+|T Beale
+|12 Oct 2017
+
+|0.8.2
+|{spec_tickets}/SPECPROC-1[SPECPROC-1^]. Workshop Sep 25-28 and follow-up calls; +
+ Significant updates to model; +
+ Include event-based design; +
+ Moved spec to new PROC openEHR component.
+|B Fabjan, +
+ B Lah, +
+ B Naess, +
+ M Kejžar, +
+ E Leonov, +
+ V Makarov, +
+ T Beale
+|10 Oct 2017
+
+|0.8.1
+|New Task subtypes; re-design 'system request' concept; build out callback classes; remove explicit notifications from model. +
+ Improve performer model. Add more design material. Improved Task state machine.
+|T Beale
+|25 Aug 2017
+
+|0.8.0
+|Incorporate changes from Workshop 28/29 July. Change principal performer to Group level; add specialised Task types; add system request.
+|B Lah, +
+ B Naess, +
+ M Kejžar, +
+ E Leonov, +
+ T Beale
+|06 Jul 2017
+
+|0.7.2
+|Incorporate review comments from Boštjan Lah.
+|B Lah, +
+ T Beale
+|20 Jun 2017
+
+|0.7.1
+|Rework runtime model.
+|T Beale
+|07 Jun 2017
+
+|
+|Incorporate review comments from Pablo Pazos.
+|P Pazos, +
+ T Beale
+|06 Jun 2017
+
+|0.7.0
+|Major rewrite, incorporating structure, parallelism, decision paths, and execution history.
+|T Beale
+|31 May 2017
+
+|0.6.0
+|{spec_tickets}/SPECRM-58[SPECRM-58^]. Initial writing.
+|T Beale, +
+ B Naess, +
+ I McNicoll
+|26 Jan 2017
+
+|===
