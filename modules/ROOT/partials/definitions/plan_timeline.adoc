@@ -11,10 +11,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*planned_items*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_plan_item_class,PLAN_ITEM>>>`
+|*planned_items*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_plan_item_class[PLAN_ITEM]>`
 a|List of Plan Items that have a wait_condition containing a `TIMELINE_MOMENT`.
 
 h|*0..1*
-|*timers*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_timer_wait_class,TIMER_WAIT>>>`
+|*timers*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_timer_wait_class[TIMER_WAIT]>`
 a|Reference list of all defined Timers.
 |===

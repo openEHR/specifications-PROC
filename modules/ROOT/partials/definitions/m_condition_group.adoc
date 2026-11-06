@@ -7,7 +7,7 @@ h|*Description*
 2+a|Materialised run-time homologue of CONDITION_GROUP from a Task Plan definition.
 
 h|*Inherit*
-2+|`<<_m_plan_item_class,M_PLAN_ITEM>>`
+2+|`xref:task_planning:model_materialised.adoc#_m_plan_item_class[M_PLAN_ITEM]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -15,6 +15,6 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*definition*: `<<_condition_group_class,CONDITION_GROUP>>`
+|*definition*: `xref:task_planning:1-definition_overview.adoc#_condition_group_class[CONDITION_GROUP]`
 a|Reference to corresponding DECISION_GROUP instance in Task Plan definition.
 |===

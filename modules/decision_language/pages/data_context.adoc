@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Data Bindings
 
 Expressions in the openEHR Expression Language contain variables, which may be _bound_ to entities in a _data context_. Each binding connects a symbolic variable to a data source or target in the data context.

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,35 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-paused]#{spec_status}#
+
+Overview of the openEHR approach to clinical decision support, guideline execution, and workflow coordination. Positions Task Planning, Decision Language, and GDL within the platform and describes their interactions. It explains how decision support, guideline execution, and workflow automation complement each other within openEHR-based clinical systems. Readers planning to implement or integrate any of the PROC specifications should start here to understand the scope and interdependencies.
+
+== Purpose
+
+This document provides an overview of the openEHR PROC component specifications, including the openEHR Decision Logic Module (DLM) Language, {openehr_task_planning}[openEHR Task Planning^] and Subject Proxy service.
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Academic groups using openEHR;
+* Solution vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^].
+
+Related documents include:
+
+* The {openehr_task_planning}[openEHR Task Planning specification^];
+* The {openehr_decision_language}[openEHR Decision Language^];
+* {openehr_process_examples}[openEHR Process Examples^];
+* The {openehr_cds_gdl2}[Guideline Definition Language (GDL2)^].
+
+
+
 
 
 //
@@ -18,46 +48,12 @@
 // --------------------------------------------- Preface -----------------------------------------------
 //
 
-== Acknowledgements
+== Feedback
 
-=== Primary Authors
+Feedback may be provided on the {openehr_process_forum}[process specifications forum^].
 
-* Thomas Beale, Ars Semantica, openEHR International Board, UK
-* Rong Chen MD, PhD, Cambio CDS, Sweden
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-=== Contributors
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
-* Joost Holslag, MD, Nedap Healthcare & University of Groningen, Netherlands
-* Ken Lord, Principal, MDIXinc, US
-* Keith Salzman MD, CMIO US Army (ret.)
 
-=== Support
-
-The work reported in this specification has been funded by the following organisations:
-
-* City of Moscow
-* Better d.o.o., Slovenia
-* Ars Semantica, UK
-* Cambio CDS, Sweden
-
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
-
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
-
-//
-// --------------------------------------------- Amendment Record -----------------------------------------------
-//
-:sectnums!:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:sectnums!:
-== References
-
-bibliography::[]

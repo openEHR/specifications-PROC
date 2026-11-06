@@ -11,29 +11,29 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*start_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+|*start_time*: `xref:{class_iso8601_date_time}[Iso8601_date_time]`
 a|Nominal start time for the Task Plan as a whole. The timings of individual Tasks may be specified as offsets from this time, via `PLANNED_TIME._relative_offset_`.
 
 h|*1..1*
-|*definition*: `<<_m_task_group_class,M_TASK_GROUP>>`
+|*definition*: `xref:task_planning:model_materialised.adoc#_m_task_group_class[M_TASK_GROUP]`
 a|Root of run-time Task Plan Task structure.
 
 h|*1..1*
-|*owner*: `<<_task_plan_class,TASK_PLAN>>`
+|*owner*: `xref:task_planning:1-definition_overview.adoc#_task_plan_class[TASK_PLAN]`
 a|Owning Task Plan definition.
 
 h|*0..1*
-|*pending_callbacks*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_m_callback_class,M_CALLBACK>>>`
+|*pending_callbacks*: `xref:{class_list}[List]<xref:{class_m_callback}[M_CALLBACK]>`
 a|Reference list of all wait conditions in the Task Plan, and current status.
 
 h|*1..1*
-|*principal_performer*: `<<_m_performer_allocation_class,M_PERFORMER_ALLOCATION>>`
+|*principal_performer*: `xref:task_planning:model_materialised.adoc#_m_performer_allocation_class[M_PERFORMER_ALLOCATION]`
 a|Run-time principal performer - a person or other agent.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*lifecycle_state* (): `<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>`
+|*lifecycle_state* (): `xref:task_planning:1-definition_overview.adoc#_task_lifecycle_enumeration[TASK_LIFECYCLE]`
 a|Lifecycle state of Task Plan, derived as a copy of the `_lifecycle_state()_` of the definition `TASK_GROUP`.
 |===

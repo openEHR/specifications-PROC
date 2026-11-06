@@ -7,17 +7,17 @@ h|*Description*
 2+a|Event type for Task transitions, specified in terms of target state reached by the associated Task.
 
 h|*Inherit*
-2+|`<<_plan_event_class,PLAN_EVENT>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_plan_event_class[PLAN_EVENT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*task_id*: `link:/releases/BASE/{base_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
+|*task_id*: `xref:{class_uid_based_id}[UID_BASED_ID]`
 a|Identifier of Task with which this event is associated.
 
 h|*1..1*
-|*transitions*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>>`
+|*transitions*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_task_lifecycle_enumeration[TASK_LIFECYCLE]>`
 a|One or more Task lifecycle transition(s) that defines this event; if more than one, the logical relation is 'OR'.
 |===

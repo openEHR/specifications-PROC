@@ -1,10 +1,12 @@
+include::partial$module_vars.adoc[]
+
 = Execution
 
 This section describes the execution time semantics that correspond to the materialised and runtime forms of the Task Planning model.
 
 == Phases of Processing
 
-As described in the earlier section <<Execution Concepts>>, Work Plan execution traverses three states: `materialised`, `activated` and `terminated`. These are described in the following sub-sections.
+As described in the earlier section <<design.adoc#{underscore}execution_concepts,Execution Concepts>>, Work Plan execution traverses three states: `materialised`, `activated` and `terminated`. These are described in the following sub-sections.
 
 === Materialisation
 
@@ -28,7 +30,7 @@ A materialised Work Plan is _activated_ when it is ready to be used. Activation 
 
 As part of activation, the _runtime window_ must be determined. This is a moving window corresponding to the section of a materialised Plan that will be actively executing at any moment. The size of the window should be at least a working shift (e.g. 8-12 hours), but might be longer, e.g. the number of days used in the organisation for lookahead planning. The parts of Task Plans within a Work Plan that are inside the runtime window are in active execution, while other parts (both prior and after the window) are not currently executing but should be available for visualisation.
 
-When the runtime window is known, allocations for the window can be managed, as <<Allocation,described below>>. To enable allocation to take place, a communication channel must be established with each potential worker or worker pool. This may consist of any technical means, including email, instant messager, a ward screen application and so on. Allocations may be filled in a 'just in time' fashion where the technical means exists to enable it (e.g. push communications from the server).
+When the runtime window is known, allocations for the window can be managed, as <<design.adoc#{underscore}allocation,described below>>. To enable allocation to take place, a communication channel must be established with each potential worker or worker pool. This may consist of any technical means, including email, instant messager, a ward screen application and so on. Allocations may be filled in a 'just in time' fashion where the technical means exists to enable it (e.g. push communications from the server).
 
 Execution starts by putting the Work Plan's top-level Task Plans into an initial wait state, waiting on allocation of principal performer, and availability of the Task Plan subject (patient, related person, image, tissue sample etc). 
 
@@ -62,7 +64,7 @@ If other kinds of changes are needed, this is generally a sign that the Plan des
 
 === Worker Allocation
 
-Before a materialised Work Plan can be executed, at least the `_principal_performer_` must be allocated for Task Plans containing Tasks within the current runtime window (<<Activation,see above>>). Some actors designated `PERFORMABLE_ACTION._other_participations_` of affected Tasks may need to be allocated as well. Not all performers are needed at any time, only those implicated in the part of the Plan to be executed, e.g. for the current day within a multi-day Plan.
+Before a materialised Work Plan can be executed, at least the `_principal_performer_` must be allocated for Task Plans containing Tasks within the current runtime window (<<_activation,see above>>). Some actors designated `PERFORMABLE_ACTION._other_participations_` of affected Tasks may need to be allocated as well. Not all performers are needed at any time, only those implicated in the part of the Plan to be executed, e.g. for the current day within a multi-day Plan.
 
 The allocation process consists of:
 

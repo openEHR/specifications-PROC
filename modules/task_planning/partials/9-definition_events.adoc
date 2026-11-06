@@ -6,7 +6,7 @@ Work plans interact with events in the external world, as well being driven by t
 
 [.text-center]
 .proc.task_planning model - Events
-image::{uml_diagrams_uri}/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-event.svg[id=proc_task_planning_definition_event, align="center"]
 
 Two general classes of Events are distinguished:
 
@@ -153,7 +153,7 @@ A callback is the mechanism to state what happens when control returns to a Disp
 
 [.text-center]
 .Callback Wait
-image::{uml_diagrams_uri}/PROC-task_planning.definition-callback_wait.svg[id=proc_definition_callback_wait, align="center"]
+image::ROOT:uml/PROC-task_planning.definition-callback_wait.svg[id=proc_definition_callback_wait, align="center"]
 
 In order to define the processing on receipt of a callback event, `CALLBACK_WAIT` adds two attributes to `EVENT_WAIT<T>`:
 
@@ -187,7 +187,7 @@ Under each model, the next lifecycle state of the Dispatchable Task is determine
 [.tbd]
 TBD: It would be reasonable to design an implementation with a default message of the form `"Task $task_name[id=$task_id] completed with $state"`, and a global flag `_default_messages_on_` to obviate the need to always set basic messages in `EVENT_ACTION`.
 
-In special cases, it may also cause execution to resume in another place (see <<_resume_semantics>>).
+In special cases, it may also cause execution to resume in another place (see <<global_semantics.adoc#{underscore}resume_semantics,Resume Semantics>>).
 
 A common approach to timeout processing applies to all models. If no callback occurs, and `CALLBACK._timeout.success_action_` is set, its timer will be used to generate the timeout, and also to determine the next state, message etc. If it is not set, the Work Plan global timeout will be triggered to unblock the Task and transition it to the `abandoned` state.
 
@@ -285,7 +285,7 @@ image::diagrams/dispatchable_no_wait_callback.svg[id=dispatchable_no_wait_callba
 
 === Callback with Custom Resume Behaviour
 
-The attribute `EVENT_ACTION._resume_action_` of type `RESUME_ACTION`, and its attribute `_resume_location_` enable custom post-callback behaviour to be stated. The default is to process the `EVENT_ACTION` (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration `RESUME_TYPE`. This kind of resumption is described below in the section on <<_resume_semantics>>.
+The attribute `EVENT_ACTION._resume_action_` of type `RESUME_ACTION`, and its attribute `_resume_location_` enable custom post-callback behaviour to be stated. The default is to process the `EVENT_ACTION` (e.g. post a message, make a system call etc), and then to complete the current Task and progress to the next in the normal way. A custom resume action alows a different resumption location to be specified, as defined by the enumeration `RESUME_TYPE`. This kind of resumption is described below in the section on <<global_semantics.adoc#{underscore}resume_semantics,Resume Semantics>>.
 
 === Manually-notified Pseudo-callback
 
@@ -297,25 +297,25 @@ image::diagrams/manual_callback.svg[id=manual_callback, align="center"]
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task_wait.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_wait.adoc[]
 
-include::{uml_export_dir}/classes/event_wait.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/timer_wait.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/reminder.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/callback_wait.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/event_action.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/resume_action.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event_wait.adoc[]
+include::ROOT:partial$classes/timer_wait.adoc[]
+include::ROOT:partial$classes/reminder.adoc[]
+include::ROOT:partial$classes/callback_wait.adoc[]
+include::ROOT:partial$classes/event_action.adoc[]
+include::ROOT:partial$classes/resume_action.adoc[]
 
-include::{uml_export_dir}/classes/event.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/plan_event.adoc[leveloffset=+1]
+include::ROOT:partial$classes/event.adoc[]
+include::ROOT:partial$classes/plan_event.adoc[]
 
-include::{uml_export_dir}/classes/timer_event.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/calendar_event.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/timeline_moment.adoc[leveloffset=+1]
+include::ROOT:partial$classes/timer_event.adoc[]
+include::ROOT:partial$classes/calendar_event.adoc[]
+include::ROOT:partial$classes/timeline_moment.adoc[]
 
-include::{uml_export_dir}/classes/task_transition.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/manual_notification.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/system_notification.adoc[leveloffset=+1]
-include::{uml_export_dir}/classes/state_trigger.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_transition.adoc[]
+include::ROOT:partial$classes/manual_notification.adoc[]
+include::ROOT:partial$classes/system_notification.adoc[]
+include::ROOT:partial$classes/state_trigger.adoc[]
 
-include::{uml_export_dir}/classes/callback_notification.adoc[leveloffset=+1]
+include::ROOT:partial$classes/callback_notification.adoc[]

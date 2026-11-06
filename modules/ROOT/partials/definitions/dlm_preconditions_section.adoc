@@ -7,7 +7,7 @@ h|*Description*
 2+a|
 
 h|*Inherit*
-2+|`link:/releases/LANG/{lang_release}/bmm.html#_bmm_feature_group_class[BMM_FEATURE_GROUP^]`
+2+|`xref:{class_bmm_feature_group}[BMM_FEATURE_GROUP]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -15,12 +15,12 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^] +
+|*name*: `xref:{class_string}[String] +
 {default{nbsp}={nbsp}"preconditions"}`
 a|Name of this feature group; defaults to 'feature'.
 
 h|*0..1 +
 (redefined)*
-|*features*: `link:/releases/LANG/{lang_release}/bmm.html#_bmm_function_class[BMM_FUNCTION^]`
+|*features*: `xref:{class_bmm_function}[BMM_FUNCTION]`
 a|Precondition expressed as functions.
 |===

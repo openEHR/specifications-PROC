@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Covid19 Severity Classification
 
 This guideline is a formal expression of the {acep_covid_19_severity_tool_pdf}[American College of Emergency Physicians (ACEP) Covid19 Severity Classification tool^] and as an {acep_covid_19_severity_tool_app}[Interactive tool^].

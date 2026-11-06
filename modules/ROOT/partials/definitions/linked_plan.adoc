@@ -11,6 +11,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*target*: `<<_task_plan_class,TASK_PLAN>>`
+|*target*: `xref:task_planning:1-definition_overview.adoc#_task_plan_class[TASK_PLAN]`
 a|Reference to target `TASK_PLAN` object.
 |===

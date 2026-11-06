@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 [[_care_process_artefacts]]
 = Care Process Artefacts and their Formalisation
 

@@ -31,7 +31,7 @@ The first difference between a parallel Group and a sequential one is that when 
 * how commencing a branches affects other branches;
 * under what conditions to consider the group has completed.
 
-Here, the notion of 'completion' corresponds to the `completed` state in the Task lifecycle state machine described earlier, inferred from the completion states of the items in the branches. The detail of how Task Group lifecycle state is aggregated from contained items is described in detail in <<Aggregate Lifecycle State>>. Here we describe only the logic determining the `completed` state, for the sake of simplicity.
+Here, the notion of 'completion' corresponds to the `completed` state in the Task lifecycle state machine described earlier, inferred from the completion states of the items in the branches. The detail of how Task Group lifecycle state is aggregated from contained items is described in detail in <<global_semantics.adoc#{underscore}aggregate_lifecycle_state,Aggregate Lifecycle State>>. Here we describe only the logic determining the `completed` state, for the sake of simplicity.
 
 The AND case is the simplest, since there is no conditional processing - all paths must be followed. An AND Group essentially represents work that should be performed, but for which the ordering is more relaxed than for a strict sequential Group.
 
@@ -99,10 +99,10 @@ The default value of `_training_level_` is 0.
 
 == Class Definitions
 
-include::{uml_export_dir}/classes/task_group.adoc[leveloffset=+1]
+include::ROOT:partial$classes/task_group.adoc[]
 
-include::{uml_export_dir}/classes/execution_type.adoc[leveloffset=+1]
+include::ROOT:partial$classes/execution_type.adoc[]
 
-include::{uml_export_dir}/classes/concurrency_mode.adoc[leveloffset=+1]
+include::ROOT:partial$classes/concurrency_mode.adoc[]
 
-include::{uml_export_dir}/classes/execution_rule.adoc[leveloffset=+1]
+include::ROOT:partial$classes/execution_rule.adoc[]

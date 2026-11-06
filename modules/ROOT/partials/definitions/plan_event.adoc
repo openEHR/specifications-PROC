@@ -7,17 +7,17 @@ h|*Description*
 2+a|Any kind of Event defined as part of a Plan definition.
 
 h|*Inherit*
-2+|`<<_event_class,EVENT>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_event_class[EVENT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*delay*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
+|*delay*: `xref:{class_iso8601_duration}[Iso8601_duration]`
 a|Optional delay to event generation.
 
 h|*0..1*
-|*other_details*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*other_details*: `xref:{class_item_structure}[ITEM_STRUCTURE]`
 a|Archetype-configurable extra meta-data for any event.
 |===

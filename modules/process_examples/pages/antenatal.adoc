@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Antenatal Care
 
 The following pregnancy care DLM was developed by Danielle S Alves (RN, midwife) as part of her PhD thesis at Federal University of Pernambuco (UFPE), Brazil.

@@ -7,22 +7,22 @@ h|*Description*
 2+a|Task type for representing a request to an external organisational service or actor not within the current Work Plan.
 
 h|*Inherit*
-2+|`<<_dispatchable_action_class,DISPATCHABLE_ACTION>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_dispatchable_action_class[DISPATCHABLE_ACTION]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*organisation*: `link:/releases/RM/{rm_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
+|*organisation*: `xref:{class_party_proxy}[PARTY_PROXY]`
 a|Identifier of organisation to which the request or order is addressed.
 
 h|*1..1*
-|*request_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+|*request_id*: `xref:{class_string}[String]`
 a|Request identifier for this type request. May be used in callback notification. Other runtime instance-level identifiers may be needed as well.
 
 h|*0..1*
-|*other_details*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*other_details*: `xref:{class_item_structure}[ITEM_STRUCTURE]`
 a|Request details.
 
 TODO: more details needed.

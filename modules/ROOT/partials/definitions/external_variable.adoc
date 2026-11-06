@@ -7,13 +7,13 @@ h|*Description*
 2+a|A variable that carries a value from the external environment, including patient variables, and has a method of being populated. Cannot be written to from within the TP environment.
 
 h|*Inherit*
-2+|`<<_context_variable_class,CONTEXT_VARIABLE>>`
+2+|`xref:task_planning:model_overview.adoc#_context_variable_class[CONTEXT_VARIABLE]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*populating_request*: `<<_system_call_class,SYSTEM_CALL>>`
+|*populating_request*: `xref:task_planning:model_overview.adoc#_system_call_class[SYSTEM_CALL]`
 a|Optional specification of a system request that would populate a context variable.
 |===

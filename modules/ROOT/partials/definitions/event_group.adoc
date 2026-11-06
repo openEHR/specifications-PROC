@@ -9,7 +9,7 @@ h|*Description*
 NOTE: at least one of the branches should have a timeout set, i.e. `_wait_spec.timeout_ /= Void` to ensure the Event group does not block indefinitely. If no such timeout is set, the Plan global timeout will eventually fire.
 
 h|*Inherit*
-2+|`<<_choice_group_class,CHOICE_GROUP>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_choice_group_class[CHOICE_GROUP]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_event_branch_class,EVENT_BRANCH>>>`
+|*members*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_event_branch_class[EVENT_BRANCH]>`
 a|Set of branches in this Event Group.
 |===

@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Overview
 
 The openEHR Decision Language (DL) and model defines a formalism for expressing decision logic and rules used by process-oriented healthcare information systems, active forms and so on. Decision logic usually sits within a larger environment of plans, guidelines and data sources such as the EHR, as described in the {openehr_proc_overview}#_conceptual_framework[openEHR Process and Planning Overview^]. The primary encapsulation of DL is within a Decision Logic Module (DLM).

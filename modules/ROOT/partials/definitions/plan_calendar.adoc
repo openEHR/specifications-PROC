@@ -11,6 +11,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*entries*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_calendar_entry_class,CALENDAR_ENTRY>>>`
+|*entries*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_calendar_entry_class[CALENDAR_ENTRY]>`
 a|Entries in calendar.
 |===

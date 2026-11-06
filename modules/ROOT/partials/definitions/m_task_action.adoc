@@ -11,6 +11,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*definition*: `<<_task_action_class,TASK_ACTION>>`
+|*definition*: `xref:task_planning:1-definition_overview.adoc#_task_action_class[TASK_ACTION]`
 a|
 |===

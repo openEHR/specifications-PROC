@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 //
 // ============================================ Asciidoc HEADER =============================================
 //
@@ -7,7 +9,33 @@
 //
 
 
-= {spec_title}
+= {spec_title} [.spec-status.spec-status-paused]#{spec_status}#
+
+Formal rule and expression language for computable clinical decision logic. Designed for use with GDL guideline engines and Task Planning workflow conditions, supporting complex multi-variable clinical rules. It provides a formal grammar for condition expressions, action specifications, and variable bindings that can be evaluated by a rule engine against live EHR data. The language is designed to be embedded within GDL guidelines and Task Planning workflow definitions, sharing expression semantics with the EL specification.
+
+== Purpose
+
+This document specifies the openEHR Decision Language, in both abstract syntax form and as a related model. The latter defines the semantics of a first order predicate style logic that can be used to write Decision Logic Modules (DLMs) containing rule-sets that may be used standalone or with a Process / Plan oriented system such as {openehr_task_planning}[openEHR Task Planning^].
+
+The intended audience includes:
+
+* Standards bodies producing health informatics standards;
+* Academic groups using openEHR;
+* Solution vendors.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^].
+
+Related documents include:
+
+* The {openehr_task_planning}[openEHR Task Planning specification^];
+* The {openehr_cds_gdl2}[Guideline Definition Language (GDL2)^].
+
+
+
 
 
 //
@@ -18,36 +46,12 @@
 // --------------------------------------------- Preface -----------------------------------------------
 //
 
-== Acknowledgements
+== Feedback
 
-=== Primary Author
+Feedback may be provided on the {openehr_process_forum}[process specifications forum^].
 
-* Thomas Beale, Ars Semantica; openEHR Foundation Management Board.
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
 
-//
-// --------------------------------------------- TOC -----------------------------------------------
-//
-//toc::[left]
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
 
-//
-// --------------------------------------------- CHAPTERS -----------------------------------------------
-//
 
-//include::master05-dl_statements.adoc[leveloffset=+1]
-//include::master06-dl_module.adoc[leveloffset=+1]
-//include::master07-terminology.adoc[leveloffset=+1]
-//include::master08-data_context.adoc[leveloffset=+1]
-//include::master09-computing_context.adoc[leveloffset=+1]
-
-//
-// --------------------------------------------- Amendment Record -----------------------------------------------
-//
-:sectnums!:
-
-//
-// --------------------------------------------- REFERENCES -----------------------------------------------
-//
-:sectnums!:
-== References
-
-bibliography::[]

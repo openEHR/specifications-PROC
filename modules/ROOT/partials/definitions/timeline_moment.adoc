@@ -13,22 +13,22 @@ This can be used to specify particular times on particular days, e.g.: `07:30:00
 The `_timeline_origin_` can be set to specify another time origin, such as the start of execution of the Task Plan, or of a repeat section.
 
 h|*Inherit*
-2+|`<<_plan_event_class,PLAN_EVENT>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_plan_event_class[PLAN_EVENT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*timeline_offset*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
+|*timeline_offset*: `xref:{class_iso8601_duration}[Iso8601_duration]`
 a|Variable part of time specification, expressed as an offset from the zero time point of the Task Plan. Converted to absolute time at activation.
 
 h|*0..1*
-|*fixed_time*: `<<_time_specifier_class,TIME_SPECIFIER>>`
+|*fixed_time*: `xref:task_planning:model_overview.adoc#_time_specifier_class[TIME_SPECIFIER]`
 a|Fixed time specifier, used to expressed a fixed moment in the day.
 
 h|*0..1*
-|*timeline_origin*: `<<_plan_time_origin_enumeration,PLAN_TIME_ORIGIN>>`
+|*timeline_origin*: `xref:task_planning:model_overview.adoc#_plan_time_origin_enumeration[PLAN_TIME_ORIGIN]`
 a|Relative origin for `_timeline_offset_`. If not set, Work Plan activation is assumed as the time origin.
 
 h|*Invariants*

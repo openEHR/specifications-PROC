@@ -1,5 +1,10 @@
+include::ROOT:partial$component_vars.adoc[]
+
 :spec_title: Task Planning (TP) Specification
 :copyright_year: 2017
 :spec_status: PAUSED
 :keywords: workflow, task, planning, EHR, EMR, reference model, openehr
 :description: openEHR Task Planning specification
+
+:latest_issue: 1.7.1
+:latest_issue_date: 10 Nov 2025

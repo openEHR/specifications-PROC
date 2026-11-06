@@ -15,14 +15,14 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*repeats*: `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_integer_class[Integer^]>`
+|*repeats*: `xref:{class_interval}[Interval]<xref:{class_integer}[Integer]>`
 a|Range of repetitions. If the lower limit is greater than zero, at least one repeat is required. A range such as 0..3 means up to 3 repeats possible, but not required.
 
 h|*0..1*
-|*terminate_condition*: `<<_plan_event_class,PLAN_EVENT>>`
+|*terminate_condition*: `xref:task_planning:1-definition_overview.adoc#_plan_event_class[PLAN_EVENT]`
 a|States a condition for when repetition should stop. If set, tested prior to each further potential repetition once the minimum number have been executed.
 
 h|*0..1*
-|*period*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_duration_class[Iso8601_duration^]`
+|*period*: `xref:{class_iso8601_duration}[Iso8601_duration]`
 a|Optional period of repetition, i.e. duration between the commencement of each `PLAN_ITEM` clone in the materialised form.
 |===

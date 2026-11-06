@@ -7,7 +7,7 @@ h|*Description*
 2+a|Event listener for a Timer event.
 
 h|*Inherit*
-2+|`<<_event_wait_class,EVENT_WAIT>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_event_wait_class[EVENT_WAIT]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -15,7 +15,7 @@ h|*Attributes*
 
 h|*1..1 +
 (redefined)*
-|*event*: `<<_timer_event_class,TIMER_EVENT>>`
+|*event*: `xref:task_planning:1-definition_overview.adoc#_timer_event_class[TIMER_EVENT]`
 a|Redefined from `EVENT_WAIT`.
 
 h|*Invariants*

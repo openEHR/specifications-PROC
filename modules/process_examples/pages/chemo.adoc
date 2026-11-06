@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Multi-drug Chemotherapy
 
 This section illustrates multi-drug chemotherapy with complex dosing and timing arrangements.

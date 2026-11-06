@@ -11,22 +11,22 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*function*: `link:/releases/RM/{rm_release}/data_types.html#_dv_text_class[DV_TEXT^]`
+|*function*: `xref:{class_dv_text}[DV_TEXT]`
 a|The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). This attribute should be coded.
 
 h|*0..1*
-|*role*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/RM/{rm_release}/data_types.html#_dv_text_class[DV_TEXT^]>`
+|*role*: `xref:{class_list}[List]<xref:{class_dv_text}[DV_TEXT]>`
 a|Organisational role, i.e. the professional type of participant in the activity. Preferably coded.
 
 h|*0..1*
-|*mode*: `link:/releases/RM/{rm_release}/data_types.html#_dv_coded_text_class[DV_CODED_TEXT^]`
+|*mode*: `xref:{class_dv_coded_text}[DV_CODED_TEXT]`
 a|Optional field for recording the 'mode' of the performer / activity interaction, e.g. present, by telephone, by email etc.
 
 h|*0..1*
-|*performer*: `link:/releases/RM/{rm_release}/common.html#_party_proxy_class[PARTY_PROXY^]`
+|*performer*: `xref:{class_party_proxy}[PARTY_PROXY]`
 a|The id and possibly demographic system link of the party participating in the activity.
 
 h|*1..1*
-|*optionality*: `link:/releases/BASE/{base_release}/base_types.html#_validity_kind_enumeration[VALIDITY_KIND^]`
+|*optionality*: `xref:{class_validity_kind}[VALIDITY_KIND]`
 a|Condition for participation in the Plan item.
 |===

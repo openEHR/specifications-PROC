@@ -1,8 +1,10 @@
+include::partial$module_vars.adoc[]
+
 = Conceptual Architecture
 
 == Overview
 
-Within <<care_mgt_artefact_relations>>, CIGs (computer-interpretable guidelines) are shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
+Within <<artefacts.adoc#care_mgt_artefact_relations,care_mgt_artefact_relations>>, CIGs (computer-interpretable guidelines) are shown as the principal computable artefact of interest for the development of automatable clinical plans. This section describes the conceptual architecture of this artefact in some detail.
 
 The primary formal elements of  (CIGs) are the _plan_, i.e. a structured representation of tasks to be performed including decision points, and the _decision logic_, whose rules provide values for decisions, as well as declarations of _subject variables_. These are respectively denoted Plan Definition (or just 'plan') and Decision Logic Module (DLM).
 

@@ -9,7 +9,7 @@ h|*Description*
 This structure is the equivalent of a programming if/then/else statement.
 
 h|*Inherit*
-2+|`<<_choice_group_class,CHOICE_GROUP>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_choice_group_class[CHOICE_GROUP]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -17,6 +17,6 @@ h|*Attributes*
 
 h|*0..1 +
 (redefined)*
-|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_condition_branch_class,CONDITION_BRANCH>>>`
+|*members*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_condition_branch_class[CONDITION_BRANCH]>`
 a|Set of branches in this Condition Group.
 |===

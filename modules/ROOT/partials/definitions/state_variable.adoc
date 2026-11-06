@@ -13,22 +13,22 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*history*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_value_snapshot_class,VALUE_SNAPSHOT>>>`
+|*history*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:decision_language:dlm_model.adoc#_value_snapshot_class[VALUE_SNAPSHOT]>`
 a|Local history of values.
 
 h|*1..1*
-|*name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+|*name*: `xref:{class_string}[String]`
 a|Name of variable.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*is_available* (): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+|*is_available* (): `xref:{class_boolean}[Boolean]`
 a|Return True if there is a value in `_history_`.
 
 h|*0..1*
-|*unavailable_reason* (): `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+|*unavailable_reason* (): `xref:{class_string}[String]`
 a|If `_is_available_` is False, potentially provide a reason.
 
 h|*0..1*

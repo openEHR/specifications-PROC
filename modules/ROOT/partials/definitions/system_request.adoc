@@ -7,13 +7,13 @@ h|*Description*
 2+a|Request to an external computational system or service.
 
 h|*Inherit*
-2+|`<<_dispatchable_action_class,DISPATCHABLE_ACTION>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_dispatchable_action_class[DISPATCHABLE_ACTION]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*system_call*: `<<_system_call_class,SYSTEM_CALL>>`
+|*system_call*: `xref:task_planning:model_overview.adoc#_system_call_class[SYSTEM_CALL]`
 a|Definition of call to make.
 |===

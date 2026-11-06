@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Teamwork
 
 The examples in this section illustrate the use of TP for team-based work plans, including hand-offs, callbacks and other kinds of coordination.

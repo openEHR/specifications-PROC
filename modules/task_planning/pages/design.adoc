@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Design Principles
 
 The following sections describe the key design paradigms underpinning the Task Planning model defined in this specification.

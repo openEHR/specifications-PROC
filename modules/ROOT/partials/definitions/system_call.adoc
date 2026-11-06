@@ -15,15 +15,15 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*parameter_map*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_parameter_mapping_class,PARAMETER_MAPPING>>>`
+|*parameter_map*: `xref:{class_list}[List]<xref:task_planning:model_overview.adoc#_parameter_mapping_class[PARAMETER_MAPPING]>`
 a|Map of parameter names from system call definition (i.e. argument names) to Work Plan context variable names. This may be partial if there are bound parameters.
 
 h|*1..1*
-|*system_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+|*system_id*: `xref:{class_string}[String]`
 a|Identifier of target system, typically a domain name.
 
 h|*1..1*
-|*call_name*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+|*call_name*: `xref:{class_string}[String]`
 a|Name of call in API.
 
 h|*0..1*
@@ -33,6 +33,6 @@ a|Signature definition of call.
 TODO: to be defined.
 
 h|*0..1*
-|*bound_parameters*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_parameter_def_class,PARAMETER_DEF>>>`
+|*bound_parameters*: `xref:{class_list}[List]<xref:task_planning:model_overview.adoc#_parameter_def_class[PARAMETER_DEF]>`
 a|Parameter values fixed for any invocation of the call. For example, a general call such as `_cds_check (type: String, other_args, ...)_` might be used from within the Task Plan in the form `_cds_check ("hypertension risk", other_args, ...)_`, i.e. the first argument is always fixed.
 |===

@@ -7,25 +7,25 @@ h|*Description*
 2+a|Materialised form of `TASK_GROUP` from a Task Plan definition.
 
 h|*Inherit*
-2+|`<<_m_plan_item_class,M_PLAN_ITEM>>`
+2+|`xref:task_planning:model_materialised.adoc#_m_plan_item_class[M_PLAN_ITEM]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_m_plan_item_class,M_PLAN_ITEM>>>`
+|*members*: `xref:{class_list}[List]<xref:task_planning:model_materialised.adoc#_m_plan_item_class[M_PLAN_ITEM]>`
 a|Member run-time items in group, mimicking structure of the corresponding definition group instance.
 
 h|*1..1 +
 (redefined)*
-|*definition*: `<<_task_group_class,TASK_GROUP>>`
+|*definition*: `xref:task_planning:1-definition_overview.adoc#_task_group_class[TASK_GROUP]`
 a|Reference to corresponding TASK_GROUP instance in Task Plan definition.
 h|*Functions*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*lifecycle_state* (): `<<_task_lifecycle_enumeration,TASK_LIFECYCLE>>`
+|*lifecycle_state* (): `xref:task_planning:1-definition_overview.adoc#_task_lifecycle_enumeration[TASK_LIFECYCLE]`
 a|Effective lifecycle state, computed from the states of members of the group.
 |===

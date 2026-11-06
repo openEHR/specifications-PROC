@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 
 = DLM Syntax
 
@@ -228,7 +230,7 @@ input
     heart_rate: Quantity
 ----
 
-Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a proxy object described below in <<_dlm_model>>, that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.
+Although a subject variable declaration appears to declare a simple property of a type such as a `Quantity`, in fact it creates an instance of a proxy object described below in xref:dlm_model.adoc[DLM Model], that provides access to snapshot values of the variable over time, as well as other smart facilities including null-value detection and range conversion, described in the sections below.
 
 ==== Variable Naming
 

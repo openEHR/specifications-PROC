@@ -7,17 +7,17 @@ h|*Description*
 2+a|Specifies an event generated during execution when the Plan clock reaches a corresponding entry in the global calendar.
 
 h|*Inherit*
-2+|`<<_plan_event_class,PLAN_EVENT>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_plan_event_class[PLAN_EVENT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*entry_id*: `link:/releases/BASE/{base_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]`
+|*entry_id*: `xref:{class_uid_based_id}[UID_BASED_ID]`
 a|Identifier of entry within global Plan calendar.
 
 h|*1..1*
-|*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_iso8601_date_time_class[Iso8601_date_time^]`
+|*time*: `xref:{class_iso8601_date_time}[Iso8601_date_time]`
 a|Time of entry in calendar.
 |===

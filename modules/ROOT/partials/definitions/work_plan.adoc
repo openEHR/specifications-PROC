@@ -9,14 +9,14 @@ h|*Description*
 The attribute `_care_pathway_` and `_care_plan_`provide a way of associating a Work Plan with a published care pathway, and an operational care plan from within the EHR, if available.
 
 h|*Inherit*
-2+|`link:/releases/RM/{rm_release}/common.html#_authored_resource_class[AUTHORED_RESOURCE^]`, `link:/releases/RM/{rm_release}/ehr.html#_content_item_class[CONTENT_ITEM^]`
+2+|`xref:{class_authored_resource}[AUTHORED_RESOURCE]`, `xref:{class_content_item}[CONTENT_ITEM]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*care_pathway*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*care_pathway*: `xref:{class_item_structure}[ITEM_STRUCTURE]`
 a|Identifier of care pathway etc, on which this Work Plan is based, if such exists. A 'care pathway' is understood here as a published standard for performing care for a major condition or presenting complaint, e.g. sepsis, heart attack etc.
 
 The `ITEM_STRUCTURE` type is used to allow population at runtime with an archetype based on e.g. BibTex publication reference fields, such as the following:
@@ -27,45 +27,45 @@ The `ITEM_STRUCTURE` type is used to allow population at runtime with an archety
 * `url = "https://pathways.nice.org.uk/pathways/sepsis"`.
 
 h|*1..1*
-|*plans*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/BASE/{base_release}/base_types.html#_uid_based_id_class[UID_BASED_ID^]>`
+|*plans*: `xref:{class_list}[List]<xref:{class_uid_based_id}[UID_BASED_ID]>`
 a|References to all Task Plans use in this Work Plan. In general, only some of these are top-level Plans.
 
 h|*0..1*
-|*care_plan*: `link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[LOCATABLE_REF^]`
+|*care_plan*: `xref:{class_locatable_ref}[LOCATABLE_REF]`
 a|Care plan in EHR from which this Work Plan is derived, if any.
 
 h|*1..1*
-|*calendar*: `<<_plan_calendar_class,PLAN_CALENDAR>>`
+|*calendar*: `xref:task_planning:1-definition_overview.adoc#_plan_calendar_class[PLAN_CALENDAR]`
 a|Global calendar object, containing events fixed in time relevant to the Plan's Tasks, for example appointments.
 
 h|*1..1*
-|*timeline*: `<<_plan_timeline_class,PLAN_TIMELINE>>`
+|*timeline*: `xref:task_planning:1-definition_overview.adoc#_plan_timeline_class[PLAN_TIMELINE]`
 a|Global timeline of Work Plan, on which Tasks with planned times can be listed.
 
 h|*0..1*
-|*context*: `<<_plan_data_context_class,PLAN_DATA_CONTEXT>>`
+|*context*: `xref:task_planning:model_overview.adoc#_plan_data_context_class[PLAN_DATA_CONTEXT]`
 a|Global Work Plan data context.
 
 h|*0..1*
-|*event_wait_states*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_event_wait_class,EVENT_WAIT>>>`
+|*event_wait_states*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_event_wait_class[EVENT_WAIT]>`
 a|Reference list of all defined Event Listeners.
 
 h|*0..1*
-|*top_level_plans*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_task_plan_class,TASK_PLAN>>>`
+|*top_level_plans*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_task_plan_class[TASK_PLAN]>`
 a|The set of Task Plans that are active at Work Plan activation. Does not include Task Plans referred to from `HAND_OFF` or `SUB_PLAN`.
 
 TODO: change to computed?
 
 h|*0..1*
-|*indications*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<link:/releases/RM/{rm_release}/data_types.html#_dv_text_class[DV_TEXT^]>`
+|*indications*: `xref:{class_list}[List]<xref:{class_dv_text}[DV_TEXT]>`
 a|Clinical applicability of this Work Plan to subject of work, e.g. 'acute ischaemic stroke' etc. May be derived from a governing guideline.
 
 h|*0..1*
-|*order_list*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],<<_order_ref_class,ORDER_REF>>>`
+|*order_list*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:task_planning:1-definition_overview.adoc#_order_ref_class[ORDER_REF]>`
 a|Orders tracked by Tasks in this Work Plan.
 
 h|*0..1*
-|*classification*: `link:/releases/RM/{rm_release}/data_structures.html#_item_structure_class[ITEM_STRUCTURE^]`
+|*classification*: `xref:{class_item_structure}[ITEM_STRUCTURE]`
 a|Archetypable structure for recording classification of Work Plans, e.g. business process category, administrative category etc.
 
 Note that the same kind of classifications can be applied to Tasks and Groups via `PLAN_ITEM._classification_`.

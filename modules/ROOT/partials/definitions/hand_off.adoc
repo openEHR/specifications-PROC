@@ -11,6 +11,6 @@ Tasks of the linked Plan become available to that performer, who is also alerted
 A hand-off usually involves waiting with later notification (callback), or continuation. Waiting would typically mean the Plan execution engine places this Plan on a wait list, enabling the performer to proceed with work on other subjects.
 
 h|*Inherit*
-2+|`<<_linked_plan_class,LINKED_PLAN>>`, `<<_dispatchable_action_class,DISPATCHABLE_ACTION>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_linked_plan_class[LINKED_PLAN]`, `xref:task_planning:1-definition_overview.adoc#_dispatchable_action_class[DISPATCHABLE_ACTION]`
 
 |===

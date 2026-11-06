@@ -7,23 +7,23 @@ h|*Description*
 2+a|Abstract precursor of root node of any decision structure. All such structures are instances of a Task Group in parallel mode, with XOR (single path) concurrency logic.
 
 h|*Inherit*
-2+|`<<_task_group_class,TASK_GROUP>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_task_group_class[TASK_GROUP]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*override_type*: `<<_override_type_enumeration,OVERRIDE_TYPE>>`
+|*override_type*: `xref:task_planning:1-definition_overview.adoc#_override_type_enumeration[OVERRIDE_TYPE]`
 a|Indicates kind of user override that would be accepted at runtime. If set to a value other than `prohibited`, user interaction is assumed, and runtime processing must enter a wait state.
 
 h|*0..1*
-|*timeout*: `<<_timer_wait_class,TIMER_WAIT>>`
+|*timeout*: `xref:task_planning:1-definition_overview.adoc#_timer_wait_class[TIMER_WAIT]`
 a|Timeout handler to use if `CHOICE_GROUP` blocks unexpectedly, e.g. due to absent user, unavailable external data item.
 
 h|*0..1 +
 (redefined)*
-|*members*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_choice_branch_class,CHOICE_BRANCH>>>`
+|*members*: `xref:{class_list}[List]<xref:task_planning:1-definition_overview.adoc#_choice_branch_class[CHOICE_BRANCH]>`
 a|Set of branches in this Choice Group.
 
 h|*Invariants*

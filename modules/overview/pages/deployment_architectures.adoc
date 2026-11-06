@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Architectural Use-cases
 
 The formal artefacts described above may be deployed in different ways to achieve various goals. 

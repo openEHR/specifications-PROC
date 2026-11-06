@@ -11,6 +11,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*definition*: `<<_plan_data_context_class,PLAN_DATA_CONTEXT>>`
+|*definition*: `xref:task_planning:model_overview.adoc#_plan_data_context_class[PLAN_DATA_CONTEXT]`
 a|Definition object for this execution time context.
 |===

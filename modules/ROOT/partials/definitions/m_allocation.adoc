@@ -11,6 +11,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*status*: `<<_allocation_status_enumeration,ALLOCATION_STATUS>>`
+|*status*: `xref:{class_allocation_status}[ALLOCATION_STATUS]`
 a|
 |===

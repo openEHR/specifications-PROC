@@ -11,6 +11,6 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*definition*: `<<_plan_item_class,PLAN_ITEM>>`
+|*definition*: `xref:task_planning:1-definition_overview.adoc#_plan_item_class[PLAN_ITEM]`
 a|Corresponding item from Task Plan definition. Redefined in descendants to the definition type corresponding to each runtime (RT_XXX) type.
 |===

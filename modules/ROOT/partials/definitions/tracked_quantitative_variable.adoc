@@ -7,14 +7,14 @@ h|*Description*
 2+a|Specialised property that represents a 'tracked variable' within the DLM `input` section. A tracked variable is used to record snapshots of an external variable such as a subject blood pressure.
 
 h|*Inherit*
-2+|`<<_tracked_state_variable_class,TRACKED_STATE_VARIABLE>>`
+2+|`xref:decision_language:dlm_model.adoc#_tracked_state_variable_class[TRACKED_STATE_VARIABLE]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*unit_ranges*: `link:/releases/BASE/{base_release}/foundation_types.html#_hash_class[Hash^]<link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^],link:/releases/LANG/{lang_release}/bmm.html#_el_case_table_class[EL_CASE_TABLE^]<link:/releases/LANG/{lang_release}/bmm.html#_el_literal_class[EL_LITERAL^]>>`
+|*unit_ranges*: `xref:{class_hash}[Hash]<xref:{class_string}[String],xref:{class_el_case_table}[EL_CASE_TABLE]<xref:{class_el_literal}[EL_LITERAL]>>`
 a|Range definitions, represented as tables, each one exhaustively covering the value space.
 h|*Functions*
 ^h|*Signature*
@@ -22,37 +22,37 @@ h|*Functions*
 
 h|*1..1*
 |*in_range* ( +
-a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+a_range: `xref:{class_terminology_code}[Terminology_code][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|Determine if the last read value of the variable is in the named range within the default group. Use when there is only one range group.
 
 h|*1..1*
-|*range* (): `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+|*range* (): `xref:{class_terminology_code}[Terminology_code]`
 a|Return the name of the range from the default range group within which the last read value of the variable resides. Use when there is only one range group.
 
 h|*1..1*
 |*range_definition* ( +
-a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
+a_range: `xref:{class_terminology_code}[Terminology_code][1]` +
+): `xref:{class_interval}[Interval]<T>`
 a|Return the interval of the named range within the default range group. Use when there is only one range group.
 
 h|*1..1*
 |*in_group_range* ( +
-range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]`, +
-a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{base_release}/foundation_types.html#_boolean_class[Boolean^]`
+range_group: `xref:{class_terminology_code}[Terminology_code][1]`, +
+a_range: `xref:{class_terminology_code}[Terminology_code][1]` +
+): `xref:{class_boolean}[Boolean]`
 a|Form of `_in_range()_` to use when there is more than one range group.
 
 h|*1..1*
 |*group_range* ( +
-range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+range_group: `xref:{class_terminology_code}[Terminology_code][1]` +
+): `xref:{class_terminology_code}[Terminology_code]`
 a|Form of `_range()_` to use when there is more than one range group.
 
 h|*1..1*
 |*group_range_definition* ( +
-range_group: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]`, +
-a_range: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^][1]` +
-): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<T>`
+range_group: `xref:{class_terminology_code}[Terminology_code][1]`, +
+a_range: `xref:{class_terminology_code}[Terminology_code][1]` +
+): `xref:{class_interval}[Interval]<T>`
 a|Form of `_range_def()_` to use when there is more than one range group.
 |===

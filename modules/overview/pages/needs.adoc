@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Needs
 
 This section discusses the requirements for a category of computational system that supports the execution of distributed, team-based, and long-running care processes by professional workers and subjects.
@@ -53,7 +55,7 @@ It has been recognised for some years that if best practice pathways and guideli
 
 If formalisation of natural language guidelines can succeed, a new possibility of major importance appears: the potential for the primary authoring of pathways and guidelines to be undertaken via tools that create formal expressions directly. This opens up further possibilities such as clinical guideline simulation, testing, and formal verification, which could revolutionise the both the production as well as the translation to point of care of best practices.
 
-The ability to express best practice guidelines in a computable form thus lies at the heart of the requirements for automation of care process. The various kinds of artefacts are described in detail in <<_care_process_artefacts>>.
+The ability to express best practice guidelines in a computable form thus lies at the heart of the requirements for automation of care process. The various kinds of artefacts are described in detail in xref:artefacts.adoc[Care Process Artefacts and their Formalisation].
 
 == Simulation and Training
 

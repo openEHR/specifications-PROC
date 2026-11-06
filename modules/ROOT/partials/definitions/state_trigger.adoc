@@ -7,13 +7,13 @@ h|*Description*
 2+a|Type of event representing an expression referring to one or more tracked variables, reaching a value or passing a threshold value.
 
 h|*Inherit*
-2+|`<<_plan_event_class,PLAN_EVENT>>`
+2+|`xref:task_planning:1-definition_overview.adoc#_plan_event_class[PLAN_EVENT]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*expression*: `<<_boolean_context_expression_class,BOOLEAN_CONTEXT_EXPRESSION>>`
+|*expression*: `xref:task_planning:model_overview.adoc#_boolean_context_expression_class[BOOLEAN_CONTEXT_EXPRESSION]`
 a|Boolean-returning expression that mentions one or more tracked variables, e.g. `heart_rate > 120 bpm`. Evaluation controlled by Plan variable context.
 |===

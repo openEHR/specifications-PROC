@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Plan Execution History
 
 == Overview
@@ -6,7 +8,7 @@ The history of execution events from a Work Plan execution is represented in the
 
 [.text-center]
 .proc.task_planning.history package
-image::{uml_diagrams_uri}/PROC-task_planning.history.svg[id=proc_task_planning_history, align="center"]
+image::ROOT:uml/PROC-task_planning.history.svg[id=proc_task_planning_history, align="center"]
 
 As shown above, two types of execution event are defined:
 
@@ -31,12 +33,12 @@ This approach cleanly separates the definitional representation of a Task Plan, 
 
 == Class Descriptions
 
-include::{uml_export_dir}/classes/task_plan_execution_history.adoc[]
+include::ROOT:partial$classes/task_plan_execution_history.adoc[]
 
-include::{uml_export_dir}/classes/event_record.adoc[]
+include::ROOT:partial$classes/event_record.adoc[]
 
-include::{uml_export_dir}/classes/task_plan_event_record.adoc[]
+include::ROOT:partial$classes/task_plan_event_record.adoc[]
 
-include::{uml_export_dir}/classes/task_event_record.adoc[]
+include::ROOT:partial$classes/task_event_record.adoc[]
 
-include::{uml_export_dir}/classes/task_notification_record.adoc[]
+include::ROOT:partial$classes/task_notification_record.adoc[]

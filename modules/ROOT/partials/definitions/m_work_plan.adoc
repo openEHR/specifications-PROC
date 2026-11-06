@@ -11,22 +11,22 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*plans*: `link:/releases/BASE/{base_release}/foundation_types.html#_list_class[List^]<<<_m_task_plan_class,M_TASK_PLAN>>>`
+|*plans*: `xref:{class_list}[List]<xref:task_planning:model_materialised.adoc#_m_task_plan_class[M_TASK_PLAN]>`
 a|Member Plans.
 
 h|*1..1*
-|*owner*: `<<_work_plan_class,WORK_PLAN>>`
+|*owner*: `xref:task_planning:1-definition_overview.adoc#_work_plan_class[WORK_PLAN]`
 a|Owning Work Plan definition.
 
 h|*1..1*
-|*timeline*: `<<_m_timeline_class,M_TIMELINE>>`
+|*timeline*: `xref:{class_m_timeline}[M_TIMELINE]`
 a|Materialised global timeline.
 
 h|*1..1*
-|*calendar*: `<<_m_calendar_class,M_CALENDAR>>`
+|*calendar*: `xref:{class_m_calendar}[M_CALENDAR]`
 a|Materialised global calendar.
 
 h|*1..1*
-|*context*: `<<_m_plan_data_context_class,M_PLAN_DATA_CONTEXT>>`
+|*context*: `xref:{class_m_plan_data_context}[M_PLAN_DATA_CONTEXT]`
 a|Materialised global context.
 |===

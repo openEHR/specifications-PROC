@@ -1,3 +1,5 @@
+include::partial$module_vars.adoc[]
+
 = Introduction
 
 == openEHR Process and Planning Specifications
@@ -20,7 +22,7 @@ The openEHR Task Planning specification is conceptually close to the YAWL langua
 
 openEHR GDL2 and the more recent Decision Language may be compared to other languages developed in the health arena for expressing medical logic and rules, including {hl7v3_arden}[HL7 Arden Syntax^], Guideline Interchange Format cite:[GLIF], ProForma cite:[SuttonFox2003], as well as Decision Languages such as {hl7v3_gello}[HL7 Gello^] and {omg_dmn}[OMG DMN^], and the HL7 {hl7_cql}[Clinical Quality Language (CQL)^]. These languages were not directly used, for various reasons including:
 
-* they do not support a clear distinction of <<_subject_proxy_service, ontic versus epistemic subject variables>>;
+* they do not support a clear distinction of <<conceptual_architecture.adoc#{underscore}subject_proxy_service,ontic versus epistemic subject variables>>;
 * lack of an integrated plan / workflow formalism (all except DMN);
 * some are too procedural rather then declarative (Arden, GLIF);
 * current versions of some of these languages have been made specific to the HL7v3 RIM, a particular (and now obsolete) model of health information designed for message representation (GLIF 3.x, GELLO);

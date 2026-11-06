@@ -1,137 +1,137 @@
 {
-    "id": "PROC",
-    "title": "Process Model",
-    "description": "openEHR Process Model Component",
-    "keywords": "process model, workflow, pathways, openehr",
-    "status": "PAUSED",
-    "specifications": [
-        {
-            "id": "overview",
-            "title": "CDS, Guidelines and Planning Overview",
-            "title_short": "Overview",
-            "description": "Overview of openEHR CDS, Guidelines and Planning specifications.",
-            "summary": "Overview of openEHR CDS, Guidelines and Planning specifications.",
-            "micro_summary": "Overview of CDS, Guidelines, and Planning specifications.",
-			"copyright_year": "2020",
-			"spec_status": "PAUSED",
-			"keywords": "process, guidelines, GDL, planning, CDS, workflow, CPG"
-        },
-        {
-            "id": "task_planning",
-            "title": "Task Planning (TP) Specification",
-            "title_short": "Task Planning (TP)",
-            "description": "openEHR Task Planning specification",
-            "summary": "A major extension to the openEHR EHR specifications that defines a formal model for Task Plans and clinical workflow.",
-            "micro_summary": "An adaptive, executable, team-based model of clinical workflow",
-            "classes": [
-                "WORK_PLAN",
-                "TASK_PLAN",
-                "PLAN_EVENT"
-            ],
-			"copyright_year": "2017",
-			"spec_status": "PAUSED",
-			"keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
-        },
-        {
-            "id": "decision_language",
-            "title": "Decision Language specification",
-            "title_short": "Decision Language",
-            "description": "openEHR Decision Language specification",
-            "summary": "Language for expressing rules and guidelines, for use with GDL3, Task Planning (TP).",
-            "micro_summary": "Rule language for use with GDL, TP.",
-            "copyright_year": "2020",
-            "spec_status": "PAUSED",
-            "keywords": "expressions, rules, guidelines"
-        },
-        {
-            "id": "tp_vml",
-            "title": "Task Planning Visual Modelling Language (TP-VML)",
-            "title_short": "TP Visual Modelling Language (TP_VML)",
-            "description": "openEHR Task Planning Visual Modelling Language",
-            "summary": "Task Planning Visual Modelling Language - a visual modelling language for Task Planning.",
-            "micro_summary": "A visual modelling language for clinical plans and workflows.",
-			"copyright_year": "2017",
-			"spec_status": "PAUSED",
-			"keywords": "task planning, visual language, workflow, care pathway, guideline, order set"
-        },
-        {
-            "id": "process_examples",
-            "title": "openEHR CDS, Guidelines and Planning Examples",
-            "title_short": "Process CDS, Guidelines and Planning Examples",
-            "description": "Examples of openEHR CDS, Guideline and Planning artefacts.",
-            "summary": "Real world examples of openEHR CDS, Guideline and Planning artefacts.",
-            "micro_summary": "Real-world CDS/Process examples.",
-			"copyright_year": "2017",
-			"spec_status": "PAUSED",
-			"keywords": "process, task planning, CDS, CPG, decision logic, examples, workflow"
-        }
-    ],
-    "expressions": [
-	    {
-		    "id": "openEHR_UML-PROC.mdzip",
-            "type": "uml",
-		    "title": "PROC UML",
-            "description": "UML file for MagicDraw 19 for PROC model. Contains UML 2.5 standard XMI file."
-		},
-        {
-            "id": "openEHR_UML-RM.mdzip",
-            "dependency": {
-                "component": "RM",
-                "release": "latest"
-            }
-        },
-        {
-            "id": "openEHR_UML-BASE.mdzip",
-            "dependency": {
-                "component": "BASE",
-                "release": "latest"
-            }
-        }
-    ],
-    "jira": {
-        "open_issues": "11106",
-        "roadmap": "SPECPROC"
+  "id": "PROC",
+  "title": "Process Model",
+  "description": "openEHR Process Model Component",
+  "keywords": "process model, workflow, pathways, openehr",
+  "status": "PAUSED",
+  "specifications": [
+    {
+      "id": "overview",
+      "title": "CDS, Guidelines and Planning Overview",
+      "title_short": "Overview",
+      "description": "Overview of openEHR CDS, Guidelines and Planning specifications.",
+      "summary": "Overview of the openEHR approach to clinical decision support, guideline execution, and workflow coordination. Positions Task Planning, Decision Language, and GDL within the platform and describes their interactions. It explains how decision support, guideline execution, and workflow automation complement each other within openEHR-based clinical systems. Readers planning to implement or integrate any of the PROC specifications should start here to understand the scope and interdependencies.",
+      "micro_summary": "Overview of CDS, Guidelines, and Planning specifications.",
+      "copyright_year": "2020",
+      "spec_status": "PAUSED",
+      "keywords": "process, guidelines, GDL, planning, CDS, workflow, CPG"
     },
-    "releases": [
-        {
-            "id": "1.7.1",
-            "date": "",
-            "jira": {
-                "crs": "SPECPROC/versions/12675",
-                "prs": "SPECPR/versions/12561"
-            }
-        },
-        {
-            "id": "1.7.0",
-            "date": "2024-08-07",
-            "jira": {
-                "crs": "SPECPROC/versions/12541",
-                "prs": "SPECPR/versions/12561"
-            }
-        },
-        {
-            "id": "1.6.0",
-            "date": "2021-06-12",
-            "jira": {
-                "crs": "SPECPROC/versions/12539",
-                "prs": "SPECPR/versions/12561"
-            }
-        },
-        {
-            "id": "1.5.0",
-            "date": "2020-05-05",
-            "jira": {
-                "crs": "SPECPROC/versions/12505",
-                "prs": "SPECPR/versions/12536"
-            }
-        },
-        {
-            "id": "1.0.0",
-            "date": "2017-12-01",
-            "jira":  {
-                "crs": "SPECPROC/versions/12500",
-                "prs": "SPECPR/versions/12501"
-            }
-        }
-    ]
+    {
+      "id": "task_planning",
+      "title": "Task Planning (TP) Specification",
+      "title_short": "Task Planning (TP)",
+      "description": "openEHR Task Planning specification",
+      "summary": "Formal model for executable, team-based clinical workflow. Defines Work Plans, Task Plans, task types, conditional branching, event handling, performer roles, and the complete task lifecycle state machine. Work Plans encode the full workflow for a care episode, decomposed into Task Plans per performer role, with support for parallel execution, event-driven transitions, and dynamic adaptation at runtime. The specification is the primary reference for clinical workflow engine developers and care pathway modelling teams.",
+      "micro_summary": "An adaptive, executable, team-based model of clinical workflow",
+      "classes": [
+        "WORK_PLAN",
+        "TASK_PLAN",
+        "PLAN_EVENT"
+      ],
+      "copyright_year": "2017",
+      "spec_status": "PAUSED",
+      "keywords": "workflow, task, planning, EHR, EMR, reference model, openehr"
+    },
+    {
+      "id": "decision_language",
+      "title": "Decision Language specification",
+      "title_short": "Decision Language",
+      "description": "openEHR Decision Language specification",
+      "summary": "Formal rule and expression language for computable clinical decision logic. Designed for use with GDL guideline engines and Task Planning workflow conditions, supporting complex multi-variable clinical rules. It provides a formal grammar for condition expressions, action specifications, and variable bindings that can be evaluated by a rule engine against live EHR data. The language is designed to be embedded within GDL guidelines and Task Planning workflow definitions, sharing expression semantics with the EL specification.",
+      "micro_summary": "Rule language for use with GDL, TP.",
+      "copyright_year": "2020",
+      "spec_status": "PAUSED",
+      "keywords": "expressions, rules, guidelines"
+    },
+    {
+      "id": "tp_vml",
+      "title": "Task Planning Visual Modelling Language (TP-VML)",
+      "title_short": "TP Visual Modelling Language (TP_VML)",
+      "description": "openEHR Task Planning Visual Modelling Language",
+      "summary": "Visual Modelling Language for Task Planning: a graphical notation for designing, communicating, and validating clinical care plans and workflow structures using standardised diagram elements. The notation covers task boxes, decision diamonds, event triggers, performer swimlanes, and timing constructs, providing a complete visual vocabulary for care plan design. TP-VML diagrams can be used both as implementation blueprints and as communication tools for clinical teams and system architects.",
+      "micro_summary": "A visual modelling language for clinical plans and workflows.",
+      "copyright_year": "2017",
+      "spec_status": "PAUSED",
+      "keywords": "task planning, visual language, workflow, care pathway, guideline, order set"
+    },
+    {
+      "id": "process_examples",
+      "title": "openEHR CDS, Guidelines and Planning Examples",
+      "title_short": "Process CDS, Guidelines and Planning Examples",
+      "description": "Examples of openEHR CDS, Guideline and Planning artefacts.",
+      "summary": "Worked examples of clinical process artefacts illustrating Task Planning, Decision Language, and GDL in real-world care pathway and guideline scenarios, covering common hospital and ambulatory care workflows. Each example includes both the formal artefact definitions and narrative commentary explaining design decisions and implementation considerations.",
+      "micro_summary": "Real-world CDS/Process examples.",
+      "copyright_year": "2017",
+      "spec_status": "PAUSED",
+      "keywords": "process, task planning, CDS, CPG, decision logic, examples, workflow"
+    }
+  ],
+  "expressions": [
+    {
+      "id": "openEHR_UML-PROC.mdzip",
+      "type": "uml",
+      "title": "PROC UML",
+      "description": "UML file for MagicDraw 19 for PROC model. Contains UML 2.5 standard XMI file."
+    },
+    {
+      "id": "openEHR_UML-RM.mdzip",
+      "dependency": {
+        "component": "RM",
+        "release": "latest"
+      }
+    },
+    {
+      "id": "openEHR_UML-BASE.mdzip",
+      "dependency": {
+        "component": "BASE",
+        "release": "latest"
+      }
+    }
+  ],
+  "jira": {
+    "open_issues": "11106",
+    "roadmap": "SPECPROC"
+  },
+  "releases": [
+    {
+      "id": "1.7.1",
+      "date": "",
+      "jira": {
+        "crs": "SPECPROC/versions/12675",
+        "prs": "SPECPR/versions/12561"
+      }
+    },
+    {
+      "id": "1.7.0",
+      "date": "2024-08-07",
+      "jira": {
+        "crs": "SPECPROC/versions/12541",
+        "prs": "SPECPR/versions/12561"
+      }
+    },
+    {
+      "id": "1.6.0",
+      "date": "2021-06-12",
+      "jira": {
+        "crs": "SPECPROC/versions/12539",
+        "prs": "SPECPR/versions/12561"
+      }
+    },
+    {
+      "id": "1.5.0",
+      "date": "2020-05-05",
+      "jira": {
+        "crs": "SPECPROC/versions/12505",
+        "prs": "SPECPR/versions/12536"
+      }
+    },
+    {
+      "id": "1.0.0",
+      "date": "2017-12-01",
+      "jira": {
+        "crs": "SPECPROC/versions/12500",
+        "prs": "SPECPR/versions/12501"
+      }
+    }
+  ]
 }
